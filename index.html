@@ -755,10 +755,14 @@ function showDetails(shivrian) {
     document.getElementById("shivrian-name").innerText = shivrian.name;
     let imageElement = document.getElementById("shivrian-image");
     imageElement.src = shivrian.image;
-    if (shivrian.name === "Ariel Salama" || shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
+    if (shivrian.name === "Ariel Salama") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
-    } 
+    }  
+    else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
+        imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
+        imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
+    }
     else {
         imageElement.style.width = (imageElement.naturalWidth * 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 2) + "px";
