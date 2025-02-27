@@ -2,8 +2,7 @@
 
 To Pull:
 ``` bash
-git push --force origin main
-
+git push origin main
 ```
 
 To Update:
