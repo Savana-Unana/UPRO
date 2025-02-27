@@ -9,7 +9,7 @@ git push --force origin main
 To Update:
 ```bash 
 git add -A 
-git commit -m "Fixed lack of image"
+git commit -m ""
 git push origin
 
 ```
