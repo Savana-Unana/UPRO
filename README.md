@@ -8,7 +8,7 @@ git pull origin
 To Update:
 ```bash 
 git add -A 
-git commit -m ""
+git commit -m "Update"
 git push origin
 
 ```
