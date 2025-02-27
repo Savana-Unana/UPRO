@@ -1,7 +1,3 @@
-# UPRO
+#Erm ma ha sigma
 
-Halo Shane.
-
-## I is hack into mainframe
-
-HEEHEE HAHA
+git push --force origin main
