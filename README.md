@@ -10,5 +10,6 @@ To Update:
 ```bash 
 git add -A 
 git commit -m "Fixed lack of image"
+git push origin
 
 ```
