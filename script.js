@@ -202,7 +202,6 @@ function filterShivrian() {
         const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
         const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
-
         const isTalHelp = credits.includes("tal+") && category==("") || category.includes("halloween") || category.includes("frostbite");
         const isTaltHelp = credits.includes("tal+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
         const isJakeHelp = credits.includes("jake+") && category==("") || category.includes("halloween") || category.includes("frostbite");
@@ -311,7 +310,7 @@ function filterShivrian() {
         const isNPC = category.includes("npc");
         const isNPCAlt = category.includes("npca");
 
-        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme") && !credits.includes("tal");
+        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
         const isHalloweenAltMatch = category.includes("halloweenforme");
         const isFrostbiteMatch = category.includes("frostbite");
         const isFrostbiteAltMatch = category.includes("frozen");
@@ -328,6 +327,7 @@ function filterShivrian() {
             else {
                 card.style.display = isNPC ? "block" : "none";
             }
+            return;
         } 
         if (lastQuery === "tal") {
             if (Alt) {
@@ -336,6 +336,7 @@ function filterShivrian() {
             else {
                 card.style.display = isTals ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "jake") {
             if (Alt) {
@@ -344,6 +345,7 @@ function filterShivrian() {
             else {
                 card.style.display = isJakes ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "shane") {
             if (Alt) {
@@ -352,6 +354,7 @@ function filterShivrian() {
             else {
                 card.style.display = isShanes ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ariel") {
             if (Alt) {
@@ -360,6 +363,7 @@ function filterShivrian() {
             else {
                 card.style.display = isAriels ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ivri") {
             if (Alt) {
@@ -368,6 +372,7 @@ function filterShivrian() {
             else {
                 card.style.display = isIvris ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "amo" || lastQuery === "amorayah") {
             if (Alt) {
@@ -376,6 +381,7 @@ function filterShivrian() {
             else {
                 card.style.display = isAmos ? "block" : "none";
             }
+            return;
         } 
         if (lastQuery.includes("tal+")) {
             if (Alt) {
@@ -384,6 +390,7 @@ function filterShivrian() {
             else {
                 card.style.display = isTalHelp ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery.includes("jake+")) {
             if (Alt) {
@@ -392,6 +399,7 @@ function filterShivrian() {
             else {
                 card.style.display = isJakeHelp ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery.includes("shane+")) {
             if (Alt) {
@@ -400,6 +408,7 @@ function filterShivrian() {
             else {
                 card.style.display = isShaneHelp ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery.includes("ariel+")) {
             if (Alt) {
@@ -408,6 +417,7 @@ function filterShivrian() {
             else {
                 card.style.display = isArielHelp ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery.includes("ivri+")) {
             if (Alt) {
@@ -416,6 +426,7 @@ function filterShivrian() {
             else {
                 card.style.display = isIvriHelp ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery.includes("amo+") || lastQuery.includes("amorayah+")) {
             if (Alt) {
@@ -424,6 +435,7 @@ function filterShivrian() {
             else {
                 card.style.display = isAmoHelp ? "block" : "none";
             }
+            return;
         } 
         if (lastQuery === "fire") {
             if (Alt) {
@@ -432,6 +444,7 @@ function filterShivrian() {
             else {
                 card.style.display = isFire ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "water") {
             if (Alt) {
@@ -440,6 +453,7 @@ function filterShivrian() {
             else {
                 card.style.display = isWater ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "grass") {
             if (Alt) {
@@ -448,6 +462,7 @@ function filterShivrian() {
             else {
                 card.style.display = isGrass ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "electric") {
             if (Alt) {
@@ -456,6 +471,7 @@ function filterShivrian() {
             else {
                 card.style.display = isElectric ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ice") {
             if (Alt) {
@@ -464,6 +480,7 @@ function filterShivrian() {
             else {
                 card.style.display = isIce ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "fighting") {
             if (Alt) {
@@ -472,6 +489,7 @@ function filterShivrian() {
             else {
                 card.style.display = isFighting ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "poison") {
             if (Alt) {
@@ -480,6 +498,7 @@ function filterShivrian() {
             else {
                 card.style.display = isPoison ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ground") {
             if (Alt) {
@@ -488,6 +507,7 @@ function filterShivrian() {
             else {
                 card.style.display = isGround ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "flying") {
             if (Alt) {
@@ -496,6 +516,7 @@ function filterShivrian() {
             else {
                 card.style.display = isFlying ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "psychic") {
             if (Alt) {
@@ -504,6 +525,7 @@ function filterShivrian() {
             else {
                 card.style.display = isPsychic ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "bug") {
             if (Alt) {
@@ -512,6 +534,7 @@ function filterShivrian() {
             else {
                 card.style.display = isBug ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "rock") {
             if (Alt) {
@@ -520,6 +543,7 @@ function filterShivrian() {
             else {
                 card.style.display = isRock ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ghost") {
             if (Alt) {
@@ -528,6 +552,7 @@ function filterShivrian() {
             else {
                 card.style.display = isGhost ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "dragon") {
             if (Alt) {
@@ -536,6 +561,7 @@ function filterShivrian() {
             else {
                 card.style.display = isDragon ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "dark") {
             if (Alt) {
@@ -544,6 +570,7 @@ function filterShivrian() {
             else {
                 card.style.display = isDark ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "steel") {
             if (Alt) {
@@ -552,6 +579,7 @@ function filterShivrian() {
             else {
                 card.style.display = isSteel ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "fairy") {
             if (Alt) {
@@ -560,6 +588,7 @@ function filterShivrian() {
             else {
                 card.style.display = isFairy ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "normal") {
             if (Alt) {
@@ -568,7 +597,8 @@ function filterShivrian() {
             else {
                 card.style.display = isNormal ? "block" : "none";
             }
-        }
+            return;
+        } 
         if (lastQuery === "fire+") {
             if (Alt) {
                 card.style.display = isParaFireAlt ? "block" : "none";
@@ -576,6 +606,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaFire ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "water+") {
             if (Alt) {
@@ -584,6 +615,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaWater ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "grass+") {
             if (Alt) {
@@ -592,6 +624,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaGrass ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "electric+") {
             if (Alt) {
@@ -600,6 +633,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaElectric ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ice+") {
             if (Alt) {
@@ -608,6 +642,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaIce ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "fighting+") {
             if (Alt) {
@@ -616,6 +651,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaFighting ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "poison+") {
             if (Alt) {
@@ -624,6 +660,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaPoison ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ground+") {
             if (Alt) {
@@ -632,6 +669,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaGround ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "flying+") {
             if (Alt) {
@@ -640,6 +678,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaFlying ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "psychic+") {
             if (Alt) {
@@ -648,6 +687,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaPsychic ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "bug+") {
             if (Alt) {
@@ -656,6 +696,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaBug ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "rock+") {
             if (Alt) {
@@ -664,6 +705,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaRock ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "ghost+") {
             if (Alt) {
@@ -672,6 +714,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaGhost ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "dragon+") {
             if (Alt) {
@@ -680,6 +723,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaDragon ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "dark+") {
             if (Alt) {
@@ -688,6 +732,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaDark ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "steel+") {
             if (Alt) {
@@ -696,6 +741,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaSteel ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "fairy+") {
             if (Alt) {
@@ -704,6 +750,7 @@ function filterShivrian() {
             else {
                 card.style.display = isParaFairy ? "block" : "none";
             }
+            return;
         } 
         else if (lastQuery === "normal+") {
             if (Alt) {
@@ -712,19 +759,21 @@ function filterShivrian() {
             else {
                 card.style.display = isParaNormal ? "block" : "none";
             }
-        }
-
+            return;
+        } 
         if (lastQuery === "halloween") {
             document.body.style.backgroundColor = "#ED6942";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "black";
             card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
+            return;
         } 
         else if (lastQuery === "frostbite") {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "Gray";
             card.style.border = "Gray";
             card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
+            return;
         } 
         else {
             document.body.style.backgroundColor = "";
