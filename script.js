@@ -106,8 +106,8 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Duochrom", image: "images/MissingNo.png", description: "", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+" },
             {id: 1000, name: "Prismoth", image: "images/Prismoth.png", description: "", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Name-Shane+" },
             {id: 1000, name: "Sacred Prismoth", image: "images/MissingNo.png", description: "", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+" },
-            {id: 1000, name: "Thoot", image: "images/Gobligo.png", description: "", typings: "Water", paratypings: "", category: "", artist: "Ivri", credits: "Drawn-Ivri+" },
-            {id: 1000, name: "Sacred Thoot", image: "images/S.Gobligo.png", description: "", typings: "Water", paratypings: "", category: "Alt", artist: "Ivri", credits: "IDrawn-Ivri+" },
+            {id: 1000, name: "Gobligo", image: "images/Gobligo.png", description: "", typings: "Water", paratypings: "", category: "", artist: "Ivri", credits: "Drawn-Ivri+" },
+            {id: 1000, name: "Sacred Gobligo", image: "images/S.Gobligo.png", description: "", typings: "Water", paratypings: "", category: "Alt", artist: "Ivri", credits: "IDrawn-Ivri+" },
             {id: 1000, name: "Alliminiyum", image: "images/MissingNo.png", description: "", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+" },
             {id: 1000, name: "Sacred Alliminiyum", image: "images/MissingNo.png", description: "", typings: "Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Ivri+" },
             {id: 1000, name: "Vigilith", image: "images/MissingNo.png", description: "", typings: "Rock, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+" },
@@ -223,8 +223,8 @@ function filterShivrian() {
         const isJalts =  artist == ("jake") && category!=("") ;
         const isShanes =  artist == ("shane") && category==("") ;
         const isShalts =  artist == ("shane") && category!=("") ;
-        const isArialt =  artist == ("ivri") && category==("") ;
-        const isAriels =  artist == ("ivri") && category!=("") ;
+        const isArialt =  artist == ("ariel") && category!=("") ;
+        const isAriels =  artist == ("ariel") && category==("") ;
         const isIvris =  artist == ("ivri") && category==("") ;
         const isIvralts = artist == ("ivri") && category!=("") ;
         const isAmos =  artist == ("amo") && category==("") ;
@@ -287,14 +287,14 @@ function filterShivrian() {
         const isParaDark = paratypings.includes("dark") && category == ("");
         const isParaSteel = paratypings.includes("steel") && category == ("");
         const isParaFairy = paratypings.includes("fairy") && category == ("");
-        const iParaNormal = paratypings.includes("normal") && category == ("");
+        const isParaNormal = paratypings.includes("normal") && category == ("");
         const isParaLight = paratypings.includes("light") && category == ("");
 
         const isParaFireAlt = paratypings.includes("fire") && category != ("");
         const isParaWaterAlt = paratypings.includes("water") && category != ("");
         const isParaGrassAlt = paratypings.includes("grass") && category != ("");
         const isParaElectricAlt = paratypings.includes("electric") && category != ("");
-        const isvIceAlt = paratypings.includes("ice") && category != ("");
+        const isParaIceAlt = paratypings.includes("ice") && category != ("");
         const isParaFightingAlt = paratypings.includes("fighting") && category != ("");
         const isParaPoisonAlt = paratypings.includes("poison") && category != ("");
         const isParaGroundAlt = paratypings.includes("ground") && category != ("");
@@ -584,6 +584,14 @@ function filterShivrian() {
                 card.style.display = isNormal ? "block" : "none";
             }
         }
+        else if (lastQuery === "light") {
+            if (Alt) {
+                card.style.display = isLightAlt ? "block" : "none";
+            } 
+            else {
+                card.style.display = isLight ? "block" : "none";
+            }
+        }
         if (lastQuery === "fire+") {
             if (Alt) {
                 card.style.display = isParaFireAlt ? "block" : "none";
@@ -726,6 +734,14 @@ function filterShivrian() {
             } 
             else {
                 card.style.display = isParaNormal ? "block" : "none";
+            }
+        }
+        else if (lastQuery === "light+") {
+            if (Alt) {
+                card.style.display = isParaLightAlt ? "block" : "none";
+            } 
+            else {
+                card.style.display = isParaLight ? "block" : "none";
             }
         }
 
