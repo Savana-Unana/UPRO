@@ -202,18 +202,18 @@ function filterShivrian() {
         const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
         const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
-        const isTalHelp = credits.includes("tal+");
-        const isTaltHelp = credits.includes("tal+");
-        const isJakeHelp = credits.includes("jake+");
-        const isJaltHelp = credits.includes("jake+");
-        const isShaneHelp = credits.includes("shane+");
-        const isShaltHelp = credits.includes("shane+");
-        const isArielHelp = credits.includes("ariel+");
-        const isArialtHelp = credits.includes("ariel+");
-        const isIvriHelp = credits.includes("ivri+");
-        const isIvraltHelp = credits.includes("ivri+");
-        const isAmoHelp = credits.includes("amo+");
-        const isAmaltHelp = credits.includes("amo+");
+        const isTalHelp = credits.includes("tal+") && category==("");
+        const isTaltHelp = credits.includes("tal+") && category==("");
+        const isJakeHelp = credits.includes("jake+") && category==("");
+        const isJaltHelp = credits.includes("jake+") && category==("");
+        const isShaneHelp = credits.includes("shane+") && category==("");
+        const isShaltHelp = credits.includes("shane+") && category==("");
+        const isArielHelp = credits.includes("ariel+") && category==("");
+        const isArialtHelp = credits.includes("ariel+") && category==("");
+        const isIvriHelp = credits.includes("ivri+") && category==("");
+        const isIvraltHelp = credits.includes("ivri+") && category==("");
+        const isAmoHelp = credits.includes("amo+") && category==("");
+        const isAmaltHelp = credits.includes("amo+") && category==("");
 
         const isCredit = credits.includes("+");
 
