@@ -309,8 +309,8 @@ function filterShivrian() {
         const isParaNormalAlt = paratypings.includes("normal") && category != ("");
         const isParaLightAlt = paratypings.includes("light") && category != ("");
 
-        const isNPC = credits.includes("NPC") && category==("");
-        const isNPCAlt = credits.includes("NPCA") && category!=("");
+        const isNPC = category.includes("NPC");
+        const isNPCAlt = category.includes("NPCA");
 
         const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
         const isHalloweenAltMatch = category.includes("halloweenforme");
