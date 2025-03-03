@@ -383,6 +383,9 @@ function filterShivrian() {
             }
             return;
         } 
+        else{
+            card.style.display = "block";
+        }
         if (lastQuery.includes("tal+")) {
             if (Alt) {
                 card.style.display = isTaltHelp ? "block" : "none";
