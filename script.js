@@ -203,17 +203,17 @@ function filterShivrian() {
         const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isTalHelp = credits.includes("tal+") && category==("");
-        const isTaltHelp = credits.includes("tal+") && category==("");
+        const isTaltHelp = credits.includes("tal+") && category!=("");
         const isJakeHelp = credits.includes("jake+") && category==("");
-        const isJaltHelp = credits.includes("jake+") && category==("");
+        const isJaltHelp = credits.includes("jake+") && category!=("");
         const isShaneHelp = credits.includes("shane+") && category==("");
-        const isShaltHelp = credits.includes("shane+") && category==("");
+        const isShaltHelp = credits.includes("shane+") && category!=("");
         const isArielHelp = credits.includes("ariel+") && category==("");
-        const isArialtHelp = credits.includes("ariel+") && category==("");
+        const isArialtHelp = credits.includes("ariel+") && category!=("");
         const isIvriHelp = credits.includes("ivri+") && category==("");
-        const isIvraltHelp = credits.includes("ivri+") && category==("");
+        const isIvraltHelp = credits.includes("ivri+") && category!=("");
         const isAmoHelp = credits.includes("amo+") && category==("");
-        const isAmaltHelp = credits.includes("amo+") && category==("");
+        const isAmaltHelp = credits.includes("amo+") && categor!=("");
 
         const isCredit = credits.includes("+");
 
