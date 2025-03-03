@@ -1,3 +1,4 @@
+// Ariel Salama was here
 // Code from the fist script section
 function autoTriggerSearch() {
     const searchInput = document.getElementById("search");
@@ -810,3 +811,4 @@ function closeDetails() {
     }
 }
     displayShivrian();
+// Ariel Salama was also here
