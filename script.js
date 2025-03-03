@@ -214,6 +214,9 @@ function filterShivrian() {
         const isIvraltHelp = credits.includes("ivri+") && category!=("") ;
         const isAmoHelp = credits.includes("amo+") && category==("") ;
         const isAmaltHelp = credits.includes("amo+") && category!=("") ;
+
+        const isCredit = credits.includes("+");
+
         const isTals = artist == ("tal") && category==("") ; 
         const isTalts = artist == ("tal") && category!=("") ;
         const isJakes = artist == ("jake") && category==("") ;
@@ -383,9 +386,6 @@ function filterShivrian() {
             }
             return;
         } 
-        else{
-            card.style.display = "block";
-        }
         if (lastQuery.includes("tal+")) {
             if (Alt) {
                 card.style.display = isTaltHelp ? "block" : "none";
@@ -733,13 +733,23 @@ function filterShivrian() {
             document.body.style.backgroundColor = "#ED6942";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "black";
-            card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
+            if (!isCredit){
+                card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
+            }
+            else{
+
+            }
         } 
         else if (lastQuery === "frostbite") {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "Gray";
             card.style.border = "Gray";
-            card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
+            if (!isCredit){
+                card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
+            }
+            else{
+                
+            }
         } 
         else {
             document.body.style.backgroundColor = "";
