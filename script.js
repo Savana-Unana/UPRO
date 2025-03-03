@@ -200,7 +200,7 @@ function filterShivrian() {
         const artist = shivrian.artist ? shivrian.artist.toLowerCase() : "";
         const typings = shivrian.typings ? shivrian.typings.toLowerCase() : "";
         const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
-        const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt);
+        const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
 
         const isTalHelp = credits.includes("tal+") && category==("");
