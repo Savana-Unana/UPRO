@@ -213,7 +213,7 @@ function filterShivrian() {
         const isIvriHelp = credits.includes("ivri+") && category==("");
         const isIvraltHelp = credits.includes("ivri+") && category!=("");
         const isAmoHelp = credits.includes("amo+") && category==("");
-        const isAmaltHelp = credits.includes("amo+") && categor!=("");
+        const isAmaltHelp = credits.includes("amo+") && category!=("");
 
         const isCredit = credits.includes("+");
 
@@ -749,23 +749,13 @@ function filterShivrian() {
             document.body.style.backgroundColor = "#ED6942";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "black";
-            if (!isCredit){
-                card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
-            }
-            else{
-
-            }
+            card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
         } 
         else if (lastQuery === "frostbite") {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "Gray";
             card.style.border = "Gray";
-            if (!isCredit){
-                card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
-            }
-            else{
-                
-            }
+            card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
         } 
         else {
             document.body.style.backgroundColor = "";
