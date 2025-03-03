@@ -165,8 +165,8 @@ const defaultImage = 'images/MissingNo.png';
             {id: -1, name: "Glutacious", image: "images/MissingNo.png", description: "", typings: "", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+" },
             {id: -1, name: "Smellmer", image: "images/MissingNo.png", description: "", typings: "", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+" },
             {id: 1001, name: "Bill", image: "images/Bill.png", description: "", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+" },
-            {id: 1, name: "MC", image: "images/MissingNo.png", description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", typings: "Normal", paratypings: "", category: "NPC", artist: "", credits: "" },
-            {id: 2, name: "Randal Shivers", image: "images/MissingNo.png", description: "The Founder of Shiver Co. Descendent of Ronald Shivers, the Founding Father of Shivria.", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "" },
+            {id: 1, name: "MC", image: "images/MissingNo.png", description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", typings: "Normal", paratypings: "", category: "NPC", artist: "", credits: "Idea-Shane+" },
+            {id: 2, name: "Randal Shivers", image: "images/MissingNo.png", description: "The Founder of Shiver Co. Descendent of Ronald Shivers, the Founding Father of Shivria.", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+" },
         ];
         function displayShivrian() {
             const catalog = document.getElementById("catalog");
@@ -215,8 +215,7 @@ function filterShivrian() {
         const isIvraltHelp = credits.includes("ivri+") && category!=("");
         const isAmoHelp = credits.includes("amo+") && category==("");
         const isAmaltHelp = credits.includes("amo+") && category!=("");
-
-        const isTals = artist == ("tal") && category==("");
+        const isTals = artist == ("tal") && category==(""); 
         const isTalts = artist == ("tal") && category!=("");
         const isJakes = artist == ("jake") && category==("");
         const isJalts =  artist == ("jake") && category!=("");
@@ -312,10 +311,10 @@ function filterShivrian() {
         const isNPC = category.includes("npc");
         const isNPCAlt = category.includes("npca");
 
-        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
-        const isHalloweenAltMatch = category.includes("halloweenforme");
-        const isFrostbiteMatch = category.includes("frostbite");
-        const isFrostbiteAltMatch = category.includes("frozen");
+        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme") && !credits.includes("tal") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
+        const isHalloweenAltMatch = category.includes("halloweenforme") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
+        const isFrostbiteMatch = category.includes("frostbite") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
+        const isFrostbiteAltMatch = category.includes("frozen") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
         if (Alt) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
