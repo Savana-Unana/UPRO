@@ -203,30 +203,30 @@ function filterShivrian() {
         const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
 
-        const isTalHelp = credits.includes("tal+") && category==("");
-        const isTaltHelp = credits.includes("tal+") && category!=("");
-        const isJakeHelp = credits.includes("jake+") && category==("");
-        const isJaltHelp = credits.includes("jake+") && category!=("");
-        const isShaneHelp = credits.includes("shane+") && category==("");
-        const isShaltHelp = credits.includes("shane+") && category!=("");
-        const isArielHelp = credits.includes("ariel+") && category==("");
-        const isArialtHelp = credits.includes("ariel+") && category!=("");
-        const isIvriHelp = credits.includes("ivri+") && category==("");
-        const isIvraltHelp = credits.includes("ivri+") && category!=("");
-        const isAmoHelp = credits.includes("amo+") && category==("");
-        const isAmaltHelp = credits.includes("amo+") && category!=("");
-        const isTals = artist == ("tal") && category==(""); 
-        const isTalts = artist == ("tal") && category!=("");
-        const isJakes = artist == ("jake") && category==("");
-        const isJalts =  artist == ("jake") && category!=("");
-        const isShanes =  artist == ("shane") && category==("");
-        const isShalts =  artist == ("shane") && category!=("");
-        const isArialt =  artist == ("ivri") && category==("");
-        const isAriels =  artist == ("ivri") && category!=("");
-        const isIvris =  artist == ("ivri") && category==("");
-        const isIvralts = artist == ("ivri") && category!=("");
-        const isAmos =  artist == ("amo") && category==("");
-        const isAmalts =  artist == ("amo") && category!=("");
+        const isTalHelp = credits.includes("tal+") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isTaltHelp = credits.includes("tal+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isJakeHelp = credits.includes("jake+") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isJaltHelp = credits.includes("jake+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isShaneHelp = credits.includes("shane+") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isShaltHelp = credits.includes("shane+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isArielHelp = credits.includes("ariel+") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isArialtHelp = credits.includes("ariel+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isIvriHelp = credits.includes("ivri+") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isIvraltHelp = credits.includes("ivri+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isAmoHelp = credits.includes("amo+") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isAmaltHelp = credits.includes("amo+") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isTals = artist == ("tal") && category==("") || category.includes("halloween") || category.includes("frostbite"); 
+        const isTalts = artist == ("tal") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isJakes = artist == ("jake") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isJalts =  artist == ("jake") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isShanes =  artist == ("shane") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isShalts =  artist == ("shane") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isArialt =  artist == ("ivri") && category==("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isAriels =  artist == ("ivri") && category!=("") || category.includes("halloween") || category.includes("frostbite");
+        const isIvris =  artist == ("ivri") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isIvralts = artist == ("ivri") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
+        const isAmos =  artist == ("amo") && category==("") || category.includes("halloween") || category.includes("frostbite");
+        const isAmalts =  artist == ("amo") && category!=("") || category.includes("halloweenforme") || category.includes("frozen");
 
         const isFire = typings.includes("fire") && category == ("");
         const isWater = typings.includes("water") && category == ("");
@@ -311,10 +311,10 @@ function filterShivrian() {
         const isNPC = category.includes("npc");
         const isNPCAlt = category.includes("npca");
 
-        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme") && !credits.includes("tal") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
-        const isHalloweenAltMatch = category.includes("halloweenforme") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
-        const isFrostbiteMatch = category.includes("frostbite") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
-        const isFrostbiteAltMatch = category.includes("frozen") || (!category.includes("tal+") || !category.includes("jake+") || !category.includes("shane+") || !category.includes("ariel+")|| !category.includes("ivri+") || !category.includes("amo+"));
+        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme") && !credits.includes("tal");
+        const isHalloweenAltMatch = category.includes("halloweenforme");
+        const isFrostbiteMatch = category.includes("frostbite");
+        const isFrostbiteAltMatch = category.includes("frozen");
         if (Alt) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
