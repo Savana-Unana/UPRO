@@ -309,8 +309,8 @@ function filterShivrian() {
         const isParaNormalAlt = paratypings.includes("normal") && category != ("");
         const isParaLightAlt = paratypings.includes("light") && category != ("");
 
-        const isNPC = category.includes("NPC");
-        const isNPCAlt = category.includes("NPCA");
+        const isNPC = category.includes("npc");
+        const isNPCAlt = category.includes("npca");
 
         const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
         const isHalloweenAltMatch = category.includes("halloweenforme");
@@ -322,7 +322,7 @@ function filterShivrian() {
         else {
             card.style.display = isMatch ? "block" : "none";
         }
-        if (lastQuery === "NPC") {
+        if (lastQuery === "npc") {
             if (Alt) {
                 card.style.display = isNPCAlt ? "block" : "none";
             } 
