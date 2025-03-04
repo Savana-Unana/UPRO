@@ -146,6 +146,9 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Burking", image: "images/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: ""},
 
+            {id: 1000, name: "LED Burking", image: "images/L.Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake, Shane", credits: "Drawn-Jake+, Idea-Shane+", 
+            description: ""},
+
             {id: 1000, name: "Buntot Toasted Forme", image: "images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: ""},
 
@@ -209,7 +212,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Puppechu", image: "images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: ""},
 
-            {id: 1000, name: "Mockenyu", image: "images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Mockenyu", image: "images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "", credits: "Idea-Shane+", 
             description: ""},
 
             {id: 1000, name: "Sacred Mockenyu", image: "images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -245,13 +248,13 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Stwacha", image: "images/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: ""},
 
-            {id: 1000, name: "Blizard", image: "images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Blizard", image: "images/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
             description: ""},
 
-            {id: 1000, name: "Cryodon", image: "images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Cryodon", image: "images/Cryodon.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
             description: ""},
 
-            {id: 1000, name: "Reptundra", image: "images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Reptundra", image: "images/Reptundra.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
             description: ""},
 
             {id: 1000, name: "Sacred Blizard", image: "images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
