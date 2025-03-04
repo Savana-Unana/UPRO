@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Updated Code Heavily"
+git commit -m "Axail Fix"
 git push origin
 
 ```
