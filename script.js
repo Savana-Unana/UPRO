@@ -53,13 +53,13 @@ const defaultImage = 'images/MissingNo.png';
             {id: 4, name: "Sacred Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
-            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+Amo+",
+            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water, Ground", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+Amo+",
             description: ""},
 
-            {id: 6, name: "Sacred Axail", image: "images/Axail.png", typings: "Water", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+Amo+",
+            {id: 6, name: "Sacred Axail", image: "images/Axail.png", typings: "Water, Ground", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+Amo+",
             description: ""},
 
-            {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "", artist: "Jake", credits: "Idea-Shane+",
+            {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Ground", paratypings: "Fairy", category: "", artist: "Jake", credits: "Idea-Shane+",
             description: ""},
 
             {id: 6, name: "Sacred Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
