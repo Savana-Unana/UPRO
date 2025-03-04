@@ -67,13 +67,13 @@ const defaultImage = 'images/MissingNo.png';
             description: ""},
 
             {id: 1000, name: "Pretengerine", image: "images/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
-            description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree."}
+            description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree."},
 
             {id: 1000, name: "Sacred Pretengerine", image: "images/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "Tal", credits: "",
-            description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree."}
+            description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree."},
 
             {id: 1000, name: "Espiorange", image: "images/Espiorange.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
-            description: "A Pretengerine that grew alongside its tangerine seeds, Espiorange has upscaled the operation and is now in control of the entire tree. In order to reproduce, Espiorange leaves its larvae inside tangerines so they have something to eat as they grow."}
+            description: "A Pretengerine that grew alongside its tangerine seeds, Espiorange has upscaled the operation and is now in control of the entire tree. In order to reproduce, Espiorange leaves its larvae inside tangerines so they have something to eat as they grow."},
 
             {id: 1000, name: "Sacred Espiorange", image: "images/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "Tal", credits: "",
             description: ""},
