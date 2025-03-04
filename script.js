@@ -53,10 +53,10 @@ const defaultImage = 'images/MissingNo.png';
             {id: 4, name: "Sacred Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
-            {id: 5, name: "Axail", image: "images/Axel.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: ""},
 
-            {id: 5, nsetme: "Sacred Axail", image: "images/S.Axel.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 5, name: "Sacred Axail", image: "images/S.Axail.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
             {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
