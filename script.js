@@ -419,7 +419,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 0, name: "Cheetalon", image: "images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
             description: "YOU'RE TOO SLOW!"},
 
-            {id: -1, name: "Vigilith Revealed Forme", image: "images/MissingNo.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+", 
+            {id: -1, name: "Vigilith Revealed Forme", image: "images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "Shane", credits: "Idea-Shane+", 
             description: ""},
 
             {id: -1, name: "Vigilith Masked Forme", image: "images/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+", 
