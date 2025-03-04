@@ -47,19 +47,19 @@ const defaultImage = 'images/MissingNo.png';
             {id: 3, name: "Sacred Hileaph", image: "images/MissingNo.png", typings: "Grass, Ground", paratypings: "Rock", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
-            {id: 4, name: "Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 4, name: "Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
             description: ""},
 
             {id: 4, name: "Sacred Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
-            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+Amo+",
             description: ""},
 
-            {id: 5, name: "Sacred Axail", image: "images/S.Axail.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 5, name: "Sacred Axail", image: "images/S.Axail.png", typings: "Water", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+Amo+",
             description: ""},
 
-            {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "", artist: "Jake", credits: "Idea-Shane+",
             description: ""},
 
             {id: 6, name: "Sacred Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
