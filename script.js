@@ -65,6 +65,9 @@ const defaultImage = 'images/MissingNo.png';
             {id: 6, name: "Sacred Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
+            {id: 6, name: "Ace Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
+            description: ""},
+
             {id: 7, name: "Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: ""},
 
@@ -162,6 +165,9 @@ const defaultImage = 'images/MissingNo.png';
             description: ""},
 
             {id: 1000, name: "Sacred Frankfortress", image: "images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+            description: ""},
+
+            {id: 1000, name: "Ace Frankfortress", image: "images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: ""},
 
             {id: 1000, name: "Wyvearn", image: "images/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
