@@ -47,7 +47,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 3, name: "Sacred Hileaph", image: "images/MissingNo.png", typings: "Grass, Ground", paratypings: "Rock", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
-            {id: 4, name: "Axolitl", image: "images/MissingNo.png", typings: "Water, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 4, name: "Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: ""},
 
             {id: 4, name: "Sacred Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
@@ -63,6 +63,24 @@ const defaultImage = 'images/MissingNo.png';
             description: ""},
 
             {id: 6, name: "Sacred Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
+            description: ""},
+
+            {id: 7, name: "Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            description: ""},
+
+            {id: 7, name: "Sacred Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            description: ""},
+
+            {id: 8, name: "Furnacoon", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            description: ""},
+
+            {id: 8, name: "Sacred Furnacoon", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            description: ""},
+
+            {id: 9, name: "Blazuki", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            description: ""},
+
+            {id: 9, name: "Sacred Blazuki", image: "images/MissingNo.png", typings: "Water, Steel", paratypings: "Psychic", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: ""},
 
             {id: 1000, name: "Pretengerine", image: "images/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
