@@ -149,7 +149,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Burking", image: "images/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: ""},
 
-            {id: 1000, name: "LED Burking", image: "images/L.Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake, Shane", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "LED Burking", image: "images/L.Burking.png", typings: "Fairy", paratypings: "", category: "Alt", artist: "Jake, Shane", credits: "Drawn-Jake+, Idea-Shane+", 
             description: ""},
 
             {id: 1000, name: "Buntot Toasted Forme", image: "images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
