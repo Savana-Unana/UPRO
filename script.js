@@ -29,7 +29,6 @@ let Alt = false;
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png';
         const shivrianList = [
-
             {id: 1, name: "Erbacub", image: "images/Erbacub.png", typings: "Grass, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: ""},
 
@@ -466,7 +465,7 @@ const defaultImage = 'images/MissingNo.png';
             description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler."},
                 
             {id: 2, name: "Randal Shivers", image: "images/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+", 
-            description: "The Founder of Shiver Co. Descendent of Ronald Shivers, the Founding Father of Shivria."},        
+            description: "The Founder of Shiver Co. Descendent of Ronald Shivers, the Founding Father of Shivria."}  
         ];
         function displayShivrian() {
             const catalog = document.getElementById("catalog");
