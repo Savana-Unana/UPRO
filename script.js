@@ -48,7 +48,7 @@ const defaultImage = 'images/MissingNo.png';
             description: "", region: "Plains"},
 
             {id: 3, name: "Ace Hileaph", image: "images/MissingNo.png", typings: "Grass, Ground", paratypings: "Rock", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Ocean/Cruise"},
+            description: "", region: "Cruise"},
 
             {id: 4, name: "Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
             description: "", region: "Lake"},
@@ -69,7 +69,7 @@ const defaultImage = 'images/MissingNo.png';
             description: "", region: "Lake"},
 
             {id: 6, name: "Ace Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Ocean/Cruise"},
+            description: "", region: "Cruise"},
 
             {id: 7, name: "Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Forest"},
@@ -90,7 +90,7 @@ const defaultImage = 'images/MissingNo.png';
             description: "", region: "Forest"},
 
             {id: 9, name: "Ace Blazuki", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Ocean/Cruise"},
+            description: "", region: "Cruise"},
 
             {id: 1000, name: "Pretengerine", image: "images/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
             description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree.", region: "Forest"},
@@ -141,10 +141,10 @@ const defaultImage = 'images/MissingNo.png';
             description: "", region: "Volcano"},
 
             {id: 1000, name: "Blarb", image: "images/Blarb.png", typings: "Water, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
-            description: "", region: "Ocean/River"},
+            description: "", region: "River"},
 
             {id: 1000, name: "Sacred Blarb", image: "images/MissingNo.png", typings: "Water, Bug", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
-            description: "", region: "Ocean/River"},
+            description: "", region: "River"},
 
             {id: 1000, name: "Buntot", image: "images/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
@@ -408,28 +408,28 @@ const defaultImage = 'images/MissingNo.png';
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Shiver Jaws", image: "images/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Jaws V2.0", image: "images/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "Alt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Blades", image: "images/Shiver Blades.gif", typings: "Steel, Ice", paratypings: "Fire", category: "", artist: "Shane", credits: "Drawn-Shane+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Blades V2.0", image: "images/MissingNo.png", typings: "Steel, Ice", paratypings: "Fire", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Lights", image: "images/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Lights V2.0", image: "images/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Gogs", image: "images/Shiver Gogs.png", typings: "Electric, Light", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Shiver Gogs V2.0", image: "images/MissingNo.png", typings: "Electric, Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains/Shiver Co"},
+            description: "", region: "Shiver Co"},
 
             {id: 1000, name: "Exosteel", image: "images/Exosteel.png", typings: "Steel", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
             description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
@@ -501,7 +501,7 @@ const defaultImage = 'images/MissingNo.png';
             description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
                 
             {id: 2, name: "Randal Shivers", image: "images/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+", 
-            description: "The Founder of Shiver Co. Descendent of Ronald Shivers, the Founding Father of Shivria.", region: "Plains/Shiver Co"}  
+            description: "The Founder of Shiver Co. Descendent of Ronald Shivers, the Founding Father of Shivria.", region: "Shiver Co"}  
         ];
         function displayShivrian() {
             const catalog = document.getElementById("catalog");
