@@ -1200,7 +1200,7 @@ function filterShivrian() {
                 card.style.display = isIceCaps ? "block" : "none";
             }
         }
-        else if (lastQuery === "mountainrange" || "mountain range") {
+        else if (lastQuery === "mountainrange") {
             if (Alt) {
                 card.style.display = isMountainRangeAlt ? "block" : "none";
             } 
@@ -1208,7 +1208,7 @@ function filterShivrian() {
                 card.style.display = isMountainRange ? "block" : "none";
             }
         }
-        else if (lastQuery === "shiverco" || lastQuery ==="shiver co") {
+        else if (lastQuery === "shiverco") {
             if (Alt) {
                 card.style.display = isShiverCoAlt ? "block" : "none";
             } 
@@ -1224,7 +1224,7 @@ function filterShivrian() {
                 card.style.display = isCave ? "block" : "none";
             }
         } 
-        else if (lastQuery === "secretarea" || "secret area") {
+        else if (lastQuery === "secretarea") {
             if (Alt) {
                 card.style.display = isSecretAreaAlt ? "block" : "none";
             } 
@@ -1240,7 +1240,7 @@ function filterShivrian() {
                 card.style.display = isCafe ? "block" : "none";
             }
         } 
-        else if (lastQuery === "spookyfactory" || "spooky factory") {
+        else if (lastQuery === "spookyfactory") {
             if (Alt) {
                 card.style.display = isSpookyFactoryAlt ? "block" : "none";
             } 
@@ -1248,7 +1248,7 @@ function filterShivrian() {
                 card.style.display = isSpookyFactory ? "block" : "none";
             }
         }
-        else if (lastQuery === "spookyjungle" || "spooky jungle") {
+        else if (lastQuery === "spookyjungle") {
             if (Alt) {
                 card.style.display = isSpookyJungleAlt ? "block" : "none";
             } 
@@ -1256,7 +1256,7 @@ function filterShivrian() {
                 card.style.display = isSpookyJungle ? "block" : "none";
             }
         }
-        else if (lastQuery === "frozenwasteland" || "frozen wasteland") {
+        else if (lastQuery === "frozenwasteland") {
             if (Alt) {
                 card.style.display = isFrozenWastelandAlt ? "block" : "none";
             } 
