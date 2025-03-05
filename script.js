@@ -1120,7 +1120,7 @@ function filterShivrian() {
             }
         }
 
-        if (lastQuery === "plains") {
+        if (lastQuery.Contains("plains")) {
             if (Alt) {
                 card.style.display = isPlainsAlt ? "block" : "none";
             } 
@@ -1128,7 +1128,7 @@ function filterShivrian() {
                 card.style.display = isPlains ? "block" : "none";
             }
         } 
-        else if (lastQuery === "ocean") {
+        else if (lastQuery.Contains("ocean")) {
             if (Alt) {
                 card.style.display = isOceanAlt ? "block" : "none";
             } 
@@ -1136,7 +1136,7 @@ function filterShivrian() {
                 card.style.display = isOcean ? "block" : "none";
             }
         } 
-        else if (lastQuery === "cruise") {
+        else if (lastQuery.Contains("cruise")) {
             if (Alt) {
                 card.style.display = isCruiseAlt ? "block" : "none";
             } 
@@ -1144,7 +1144,7 @@ function filterShivrian() {
                 card.style.display = isCruise ? "block" : "none";
             }
         } 
-        else if (lastQuery === "lake") {
+        else if (lastQuery.Contains("lake")) {
             if (Alt) {
                 card.style.display = isLakeAlt ? "block" : "none";
             } 
@@ -1152,7 +1152,7 @@ function filterShivrian() {
                 card.style.display = isLake ? "block" : "none";
             }
         } 
-        else if (lastQuery === "forest") {
+        else if (lastQuery.Contains("forest")) {
             if (Alt) {
                 card.style.display = isForestAlt ? "block" : "none";
             } 
@@ -1160,7 +1160,7 @@ function filterShivrian() {
                 card.style.display = isForest ? "block" : "none";
             }
         } 
-        else if (lastQuery === "desert") {
+        else if (lastQuery.Contains("desert")) {
             if (Alt) {
                 card.style.display = isDesertAlt ? "block" : "none";
             } 
@@ -1168,7 +1168,7 @@ function filterShivrian() {
                 card.style.display = isDesert ? "block" : "none";
             }
         } 
-        else if (lastQuery === "volcano") {
+        else if (lastQuery.Contains("volcano")) {
             if (Alt) {
                 card.style.display = isVolcanoAlt ? "block" : "none";
             } 
@@ -1176,7 +1176,7 @@ function filterShivrian() {
                 card.style.display = isVolcano ? "block" : "none";
             }
         } 
-        else if (lastQuery === "river") {
+        else if (lastQuery.Contains("river")) {
             if (Alt) {
                 card.style.display = isRiverAlt ? "block" : "none";
             } 
@@ -1184,7 +1184,7 @@ function filterShivrian() {
                 card.style.display = isRiver ? "block" : "none";
             }
         } 
-        else if (lastQuery === "swamp") {
+        else if (lastQuery.Contains("swamp")) {
             if (Alt) {
                 card.style.display = isSwampAlt ? "block" : "none";
             } 
@@ -1192,7 +1192,7 @@ function filterShivrian() {
                 card.style.display = isSwamp ? "block" : "none";
             }
         } 
-        else if (lastQuery === "icecaps") {
+        else if (lastQuery.Contains("icecaps")) {
             if (Alt) {
                 card.style.display = isIceCapsAlt ? "block" : "none";
             } 
@@ -1200,7 +1200,7 @@ function filterShivrian() {
                 card.style.display = isIceCaps ? "block" : "none";
             }
         }
-        else if (lastQuery === "mountainrange") {
+        else if (lastQuery.Contains("mountainrange" || "mountain range")) {
             if (Alt) {
                 card.style.display = isMountainRangeAlt ? "block" : "none";
             } 
@@ -1208,7 +1208,7 @@ function filterShivrian() {
                 card.style.display = isMountainRange ? "block" : "none";
             }
         }
-        else if (lastQuery === "shiverco") {
+        else if (lastQuery.Contains("shiverco" || lastQuery === "shiver co")) {
             if (Alt) {
                 card.style.display = isShiverCoAlt ? "block" : "none";
             } 
@@ -1216,7 +1216,7 @@ function filterShivrian() {
                 card.style.display = isShiverCo ? "block" : "none";
             }
         } 
-        else if (lastQuery === "cave") {
+        else if (lastQuery.Contains("cave")) {
             if (Alt) {
                 card.style.display = isCaveAlt ? "block" : "none";
             } 
@@ -1224,7 +1224,7 @@ function filterShivrian() {
                 card.style.display = isCave ? "block" : "none";
             }
         } 
-        else if (lastQuery === "secretarea") {
+        else if (lastQuery.Contains("secretarea" || "secret area")) {
             if (Alt) {
                 card.style.display = isSecretAreaAlt ? "block" : "none";
             } 
@@ -1232,7 +1232,7 @@ function filterShivrian() {
                 card.style.display = isSecretArea ? "block" : "none";
             }
         } 
-        else if (lastQuery === "cafe") {
+        else if (lastQuery.Contains("cafe")) {
             if (Alt) {
                 card.style.display = isCafeAlt ? "block" : "none";
             } 
@@ -1240,7 +1240,7 @@ function filterShivrian() {
                 card.style.display = isCafe ? "block" : "none";
             }
         } 
-        else if (lastQuery === "spookyfactory") {
+        else if (lastQuery.Contains("spookyfactory" || "spooky factory")) {
             if (Alt) {
                 card.style.display = isSpookyFactoryAlt ? "block" : "none";
             } 
@@ -1248,7 +1248,7 @@ function filterShivrian() {
                 card.style.display = isSpookyFactory ? "block" : "none";
             }
         }
-        else if (lastQuery === "spookyjungle") {
+        else if (lastQuery.Contains("spookyjungle" || "spooky jungle")) {
             if (Alt) {
                 card.style.display = isSpookyJungleAlt ? "block" : "none";
             } 
@@ -1256,7 +1256,7 @@ function filterShivrian() {
                 card.style.display = isSpookyJungle ? "block" : "none";
             }
         }
-        else if (lastQuery === "frozenwasteland") {
+        else if (lastQuery.Contains("frozenwasteland" || "frozen wasteland")) {
             if (Alt) {
                 card.style.display = isFrozenWastelandAlt ? "block" : "none";
             } 
@@ -1264,7 +1264,7 @@ function filterShivrian() {
                 card.style.display = isFrozenWasteland ? "block" : "none";
             }
         }
-        else if (lastQuery === "unobtainable") {
+        else if (lastQuery.Contains("unobtainable")) {
             if (Alt) {
                 card.style.display = isUnobtainableAlt ? "block" : "none";
             } 
