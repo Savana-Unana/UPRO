@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Code from the second script section
 let Alt = false;
 
+
     function setAltTrue() {
         Alt = !Alt;
         autoTriggerSearch();
