@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Finally fixed Biomes"
+git commit -m "Attempt to fix the font"
 git push origin
 
 ```
