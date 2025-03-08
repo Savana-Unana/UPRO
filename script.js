@@ -28,7 +28,7 @@ let Alt = false;
     }
 
 // Code from the third script section
-const defaultImage = 'images/MissingNo.png';
+const defaultImage = 'images/MissingNo.png'; 
         const shivrianList = [
             {id: 0, name: "Capture Capsule", image: "images/CaptureCapsule.gif", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains"},
