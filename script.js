@@ -30,8 +30,8 @@ let Alt = false;
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png'; 
         const shivrianList = [
-            {id: 0, name: "Capture Capsule", image: "images/CaptureCapsule.gif", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Plains"},
+            {id: 0, name: "Capture Capsule", image: "images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
+            description: "ShiverCo", region: "Plains"},
 
             {id: 1, name: "Erbacub", image: "images/Erbacub.png", typings: "Grass, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Plains"},
