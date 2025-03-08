@@ -20,3 +20,9 @@ git commit -m "Capture Capsule"
 git push origin
 
 ```
+## If Someone has comitted pushed before you
+ 
+ ``` bash
+ git pull origin main --rebase
+ git push origin
+```

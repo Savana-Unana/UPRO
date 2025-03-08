@@ -1312,6 +1312,10 @@ function showDetails(shivrian) {
         imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
     }
+    else if (shivrian.name === "Capture Capsule") {
+        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
+        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+    }
     else {
         imageElement.style.width = (imageElement.naturalWidth * 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 2) + "px";
