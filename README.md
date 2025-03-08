@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Capture Capsule"
+git commit -m "Fixed Buttons"
 git push origin
 
 ```
