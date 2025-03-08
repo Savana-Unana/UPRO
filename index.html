@@ -5,16 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GET OUT</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh; /* Keeps image from overflowing */
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    
-    <h1>Main Menu</h1>
-
-    <a href="catalog.html">
-        <button>Catalog</button>
-      </a>
-    <a href="map.html">
-        <button>Map</button>
-      </a>
+    <img src="CaptureCapsule.png" alt="Capture Capsule">
+    <div class="buttons">
+        <a href="catalog.html"><button>Catalog</button></a>
+        <a href="map.html"><button>Map</button></a>
+    </div>
 </body>
 </html>

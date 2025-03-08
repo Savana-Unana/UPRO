@@ -30,6 +30,9 @@ let Alt = false;
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png';
         const shivrianList = [
+            {id: 0, name: "Capture Capsule", image: "images/CaptureCapsule.gif", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+            description: "", region: "Plains"},
+
             {id: 1, name: "Erbacub", image: "images/Erbacub.png", typings: "Grass, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Plains"},
 
@@ -453,10 +456,10 @@ const defaultImage = 'images/MissingNo.png';
             {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-            {id: 0, name: "Ariel Salama", image: "images/Oreo.PNG", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
+            {id: -0.5, name: "Ariel Salama", image: "images/Oreo.PNG", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
             description: "I fainted so really real picture", region: "Unobtainable"},
 
-            {id: 0, name: "Cheetalon", image: "images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: -0.5, name: "Cheetalon", image: "images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
             description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
 
             {id: -1, name: "Vigilith Revealed Forme", image: "images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "Shane", credits: "Idea-Shane+", 
