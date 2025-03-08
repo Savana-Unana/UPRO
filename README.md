@@ -20,3 +20,11 @@ git commit -m "Attempt to fix the font"
 git push origin
 
 ```
+
+## If Someone has comitted pushed before you
+
+``` bash
+git pull origin main --rebase
+git push origin
+
+```
