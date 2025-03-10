@@ -1300,7 +1300,9 @@ function showDetails(shivrian) {
     document.getElementById("catalog").style.display = "none";
     document.getElementById("shivrian-details").style.display = "block";
     document.getElementById("search").style.display = "none"; 
+    document.getElementById("search").style.display = "none"; 
     document.querySelector("button").style.display = "none";
+    document.getElementById("nav-buttons").style.display = "none";
     document.getElementById("shivrian-name").innerText = shivrian.name;
     let imageElement = document.getElementById("shivrian-image");
     imageElement.src = shivrian.image;
@@ -1327,6 +1329,7 @@ function showDetails(shivrian) {
 function closeDetails() {
     document.getElementById("catalog").style.display = "flex";
     document.getElementById("shivrian-details").style.display = "none";
+    document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
     searchBar.style.display = "block";
