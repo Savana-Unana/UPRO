@@ -3,7 +3,7 @@ const audioFiles = [
     { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", image: ".png", ost: 1000 },
     { name: "Hectic Electric", file: "ost/HecticElectric.mp3", image: ".png", ost: 1000 },
     { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", image: ".png", ost: 1000 },
-    { name: "Erectic Electric", file: "ost/ErectedElectric.mp3", image: ".png", ost: 1000 },
+    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", image: ".png", ost: 1000 },
     { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", image: ".png", ost: 1000 },
     { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", image: ".png", ost: 1000 }
 ];
