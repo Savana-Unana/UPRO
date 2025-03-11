@@ -456,7 +456,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-            {id: -0.5, name: "Ariel Salama", image: "images/Oreo.PNG", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
+            {id: -0.5, name: "Ariel Salama", image: "images/China.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
             description: "I fainted so really real picture", region: "Unobtainable"},
 
             {id: -0.5, name: "Cheetalon", image: "images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
