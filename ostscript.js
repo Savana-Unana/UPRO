@@ -1,11 +1,12 @@
 const audioFiles = [
-    { name: "Humble Ashore", file: "ost/HumbleAshore.mp3", image: ".png", ost: 1000 },
-    { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", image: ".png", ost: 1000 },
-    { name: "Hectic Electric", file: "ost/HecticElectric.mp3", image: ".png", ost: 1000 },
-    { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", image: ".png", ost: 1000 },
-    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", image: ".png", ost: 1000 },
-    { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", image: ".png", ost: 1000 },
-    { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", image: ".png", ost: 1000 }
+    { name: "Humble Ashore", file: "ost/HumbleAshore.mp3", image: ".png", ost: 1000, order: 6 },
+    { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", image: ".png", ost: 1000, order: 5 },
+    { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", image: ".png", ost: 1000, order: 7 },
+    { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", image: ".png", ost: 1000, order: 1 },
+    { name: "Hectic Electric", file: "ost/HecticElectric.mp3", image: ".png", ost: 1000, order: 2 },
+    { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", image: ".png", ost: 1000, order: 3 },
+    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", image: ".png", ost: 1000, order: 4 }
+
 ];
 
 const container = document.getElementById("cards-container");
@@ -103,4 +104,20 @@ function seekAudio(event, progressElement) {
     }
 }
 
-displaySongs(audioFiles);
+let sortByOrder = true;
+const sortButton = document.createElement("button");
+sortButton.textContent = "Sort by OST";
+sortButton.onclick = toggleSorting;
+document.body.insertBefore(sortButton, container);
+
+function toggleSorting() {
+    sortByOrder = !sortByOrder;
+    sortButton.textContent = sortByOrder ? "Sort by OST" : "Sort by Order of Cremation";
+    displaySongs(sortSongs(audioFiles));
+}
+
+function sortSongs(songs) {
+    return songs.slice().sort((a, b) => sortByOrder ? a.order - b.order : a.ost - b.ost);
+}
+
+displaySongs(sortSongs(audioFiles));
