@@ -1,8 +1,33 @@
-body { font-family: sans-serif; text-align: center; }
-    .shivrian-container { display: flex; flex-wrap: wrap; justify-content: center; }
-    .shivrian-card { border: 1px solid #ddd; border-radius: 10px; padding: 10px; margin: 10px; text-align: center; width: 150px; cursor: pointer; background-color: #f8f8f8; }
-    .shivrian-card img { width: 100px; height: 100px; }
-    #shivrian-details { display: none; margin-top: 15px; }
+body { 
+    font-family: sans-serif; 
+    text-align: center; 
+}
+    
+    .shivrian-container { 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+    }
+    
+    .shivrian-card { border: 1px solid #ddd; 
+        border-radius: 10px; 
+        padding: 10px; 
+        margin: 10px; 
+        text-align: center; 
+        width: 150px; 
+        cursor: pointer; 
+        background-color: #f8f8f8; 
+    }
+    
+    .shivrian-card img { 
+        width: 100px; 
+        height: 100px; 
+    }
+    
+    #shivrian-details { 
+        display: none; 
+        margin-top: 15px; 
+    }
 
     body {
         text-align: center;
@@ -60,3 +85,34 @@ body { font-family: sans-serif; text-align: center; }
         border-radius: 8px;
         cursor: pointer;
     }
+
+    #nav-buttons {
+        display: flex;
+        gap: 10px; /* Space between buttons */
+        margin-top: 20px;
+    }
+    
+    #nav-buttons a {
+        text-decoration: none; /* Remove underline */
+    }
+    
+    #nav-buttons button {
+        font-size: 20px; 
+        padding: 12px 20px; 
+        background-color: #f0f0f0; /* Light white shade */
+        color: #333; /* Dark text for contrast */
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    #nav-buttons button:hover {
+        background-color: #e0e0e0; /* Slightly darker on hover */
+        transform: scale(1.05);
+    }
+    
+    #nav-buttons button:active {
+        background-color: #d0d0d0; /* Darker when clicked */
+        transform: scale(0.95);
+    } 
