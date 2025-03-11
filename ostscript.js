@@ -1,12 +1,12 @@
 const audioFiles = [
-    { name: "Humble Ashore", file: "ost/HumbleAshore.mp3", ost: 1000, order: 6 },
-    { name: "Recharging", file: "ost/Recharging.mp3", ost: 1000, order: 8 },
-    { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", ost: 1000, order: 5 },
-    { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", ost: 1000, order: 7 },
-    { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", ost: 1000, order: 1 },
-    { name: "Hectic Electric", file: "ost/HecticElectric.mp3", ost: 1000, order: 2 },
-    { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", ost: 1000, order: 3 },
-    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", ost: 1000, order: 4 }
+    { name: "Humble Ashore", file: "ost/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", order: 6 },
+    { name: "Recharging", file: "ost/Recharging.mp3", ost: 1000, type: "Shop - Theme", order: 8 },
+    { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", order: 5 },
+    { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", order: 7 },
+    { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", order: 1 },
+    { name: "Hectic Electric", file: "ost/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", order: 2 },
+    { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", order: 3 },
+    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", order: 4 }
 ];
 
 const container = document.getElementById("cards-container");
@@ -28,9 +28,31 @@ let currentAudio = null;
 
 function displaySongs(filteredFiles) {
     container.innerHTML = "";
-    filteredFiles.forEach(({ name, file, ost }) => {
+    filteredFiles.forEach(({ name, file, ost, type }) => {
         const card = document.createElement("div");
         card.className = "card";
+
+        // Set background color based on type
+        if (type.includes("Theme")) {
+            if (type.includes(" Theme")) {
+                card.style.backgroundColor = "lightgray";
+            }
+            else if (type.includes("GauntTheme")) {
+                card.style.backgroundColor = "lightgreen";
+            }
+            else if (type.includes("BattleTheme")) {
+                card.style.backgroundColor = "yellow";
+            }
+            else if (type.includes("AceTheme")) {
+                card.style.backgroundColor = "lightcoral";
+            }
+            else if (type.includes("MemeTheme")) {
+                card.style.backgroundColor = "#90EE90";
+            }
+            else {
+                card.style.backgroundColor = "black";
+            }
+        }
 
         card.innerHTML = `
             <h3>${name}</h3>
@@ -61,6 +83,7 @@ function displaySongs(filteredFiles) {
         container.appendChild(card);
     });
 }
+
 
 function playAudio(button) {
     const card = button.parentElement;
