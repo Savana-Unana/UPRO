@@ -198,13 +198,13 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Plasttack", image: "images/MissingNo.png", typings: "Ghost", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Schuck", image: "images/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
+            {id: 1000, name: "Schuck", image: "images/Shuck.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Sacred Schuck", image: "images/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Thruck", image: "images/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
+            {id: 1000, name: "Thruck", image: "images/Thruck.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Sacred Thruck", image: "images/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
