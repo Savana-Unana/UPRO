@@ -11,48 +11,49 @@ const audioFiles = [
 const container = document.getElementById("cards-container");
 
 function displaySongs(filteredFiles) {
-container.innerHTML = "";
-filteredFiles.forEach(({ name, file, image }) => {
-const card = document.createElement("div");
-card.className = "card";
-card.setAttribute("data-name", name.toLowerCase());
+    container.innerHTML = "";
+    filteredFiles.forEach(({ name, file, image }) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.setAttribute("data-name", name.toLowerCase());
 
-card.innerHTML = `
-    <img src="${image}" alt="${name}" width="100%">
-    <h3>${name}</h3>
-    <button onclick="playAudio(this)">Play</button>
-    <div class="progress">
-        <div class="progress-bar"></div>
-    </div>
-    <p class="time-display">0:00 / 0:00</p>
-    <audio src="${file}" loop onloadedmetadata="updateTotalTime(this)" ontimeupdate="updateProgress(this)"></audio>
-`;
+        card.innerHTML = `
+            <img src="${image}" alt="${name}" width="100%">
+            <h3>${name}</h3>
+            <button onclick="playAudio(this)">Play</button>
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+            <p class="time-display">0:00 / 0:00</p>
+            <audio src="${file}" loop onloadedmetadata="updateTotalTime(this)" ontimeupdate="updateProgress(this)"></audio>
+        `;
 
-container.appendChild(card);
-});
+        const progress = card.querySelector(".progress");
+        let isDragging = false;
+
+        progress.addEventListener("mousedown", (event) => {
+            isDragging = true;
+            seekAudio(event, progress);
+        });
+
+        document.addEventListener("mousemove", (event) => {
+            if (isDragging) {
+                seekAudio(event, progress);
+            }
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+        });
+
+        document.addEventListener("mouseleave", () => {
+            isDragging = false;
+        });
+
+        container.appendChild(card);
+    });
 }
 
-function displaySongs(filteredFiles) {
-container.innerHTML = "";
-filteredFiles.forEach(({ name, file, image }) => {
-const card = document.createElement("div");
-card.className = "card";
-card.setAttribute("data-name", name.toLowerCase());
-
-card.innerHTML = `
-    <img src="${image}" alt="${name}" width="100%">
-    <h3>${name}</h3>
-    <button onclick="playAudio(this)">Play</button>
-    <div class="progress" onclick="seekAudio(event, this)">
-        <div class="progress-bar"></div>
-    </div>
-    <p class="time-display">0:00 / 0:00</p>
-    <audio src="${file}" loop onloadedmetadata="updateTotalTime(this)" ontimeupdate="updateProgress(this)"></audio>
-`;
-
-container.appendChild(card);
-});
-}
 function playAudio(button) {
     const card = button.parentElement;
     const audio = card.querySelector("audio");
@@ -95,7 +96,7 @@ function seekAudio(event, progressElement) {
     const audio = progressElement.parentElement.querySelector("audio");
     const rect = progressElement.getBoundingClientRect();
     const clickX = event.clientX - rect.left;
-    const percentage = clickX / rect.width;
+    const percentage = Math.min(Math.max(clickX / rect.width, 0), 1);
     
     if (!isNaN(audio.duration)) {
         audio.currentTime = percentage * audio.duration;
