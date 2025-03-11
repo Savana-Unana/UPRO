@@ -82,16 +82,28 @@
                 container.appendChild(card);
     });
 }
+        function displaySongs(filteredFiles) {
+            container.innerHTML = "";
+            filteredFiles.forEach(({ name, file, image }) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.setAttribute("data-name", name.toLowerCase());
 
-        function filterSongs() {
-            const searchValue = document.getElementById("search").value.toLowerCase();
-            const filteredFiles = audioFiles.filter(({ name, ost }) => 
-                name.toLowerCase().includes(searchValue) || ost.toString().includes(searchValue)
-            );
-            displaySongs(filteredFiles);
+                card.innerHTML = `
+                    <img src="${image}" alt="${name}" width="100%">
+                    <h3>${name}</h3>
+                    <button onclick="playAudio(this)">Play</button>
+                    <div class="progress" onclick="seekAudio(event, this)">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <audio src="${file}" loop ontimeupdate="updateProgress(this)"></audio>
+                `;
+
+                container.appendChild(card);
+            });
         }
 
-        function playAudio(button, file) {
+        function playAudio(button) {
             const card = button.parentElement;
             const audio = card.querySelector("audio");
 
@@ -110,6 +122,16 @@
             const progressBar = audio.parentElement.querySelector(".progress-bar");
             progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
         }
+
+        function seekAudio(event, progressElement) {
+            const audio = progressElement.parentElement.querySelector("audio");
+            const rect = progressElement.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const newTime = (clickX / rect.width) * audio.duration;
+            
+            audio.currentTime = newTime;
+        }
+
 
         displaySongs(audioFiles);
         
