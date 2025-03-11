@@ -77,12 +77,11 @@
                     <h3>${name}</h3>
                     <button onclick="playAudio(this, '${file}')">Play</button>
                     <div class="progress"><div class="progress-bar"></div></div>
-                    <audio src="${file}" ontimeupdate="updateProgress(this)"></audio>
+                    <audio src="${file}" loop ontimeupdate="updateProgress(this)"></audio>
                 `;
-
                 container.appendChild(card);
-            });
-        }
+    });
+}
 
         function filterSongs() {
             const searchValue = document.getElementById("search").value.toLowerCase();
