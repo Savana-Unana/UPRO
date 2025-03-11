@@ -53,7 +53,7 @@ body {
 
     .buttons {
         position: absolute;
-        top: 232px;
+        top: 236px;
         left: 69%;
         transform: translateX(-50%);
         display: grid;
@@ -64,10 +64,10 @@ body {
     
     button {
         font-size: 18px;
-        padding: 18px 23px;
+        padding: 22px 25px;
         margin: 0;
         cursor: pointer;
-        background-color: rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0.4);
         border: 0px solid #000;
         border-radius: 5px;
     }

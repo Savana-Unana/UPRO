@@ -118,15 +118,15 @@ function seekAudio(event, progressElement) {
     }
 }
 
-let sortByOrder = true;
+let sortByOrder = false;
 const sortButton = document.createElement("button");
-sortButton.textContent = "Sort by OST";
+sortButton.textContent = "Sort by Creation";
 sortButton.onclick = toggleSorting;
 document.body.insertBefore(sortButton, container);
 
 function toggleSorting() {
     sortByOrder = !sortByOrder;
-    sortButton.textContent = sortByOrder ? "Sort by OST" : "Sort by Order";
+    sortButton.textContent = sortByOrder ? "Sort by OST" : "Sort by Creation";
     displaySongs(sortSongs(audioFiles));
 }
 
