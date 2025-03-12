@@ -28,6 +28,7 @@ let currentAudio = null;
 
 function displaySongs(filteredFiles) {
     container.innerHTML = "";
+    filteredFiles = filterSongsList(filteredFiles); 
     filteredFiles.forEach(({ name, file, ost, type }) => {
         const card = document.createElement("div");
         card.className = "card";
@@ -155,6 +156,40 @@ function toggleSorting() {
 
 function sortSongs(songs) {
     return songs.slice().sort((a, b) => sortByOrder ? a.order - b.order : a.ost - b.ost);
+}
+const filters = {};
+const filterContainer = document.createElement("div");
+filterContainer.id = "filter-container";
+document.body.insertBefore(filterContainer, container);
+
+const categories = [" Theme", "GauntTheme", "BattleTheme", "AceTheme", "MemeTheme"];
+categories.forEach(category => {
+    filters[category] = "neutral";
+    const filterLabel = document.createElement("label");
+    filterLabel.className = "filter-label";
+    
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.dataset.category = category;
+    checkbox.addEventListener("change", () => toggleFilter(category, checkbox));
+    
+    filterLabel.appendChild(checkbox);
+    filterLabel.appendChild(document.createTextNode(category));
+    filterContainer.appendChild(filterLabel);
+});
+
+function toggleFilter(category, checkbox) {
+    filters[category] = checkbox.checked ? "include" : "neutral";
+    displaySongs(sortSongs(audioFiles));
+}
+
+function filterSongsList(songs) {
+    let includeFilters = Object.keys(filters).filter(category => filters[category] === "include");
+    
+    return songs.filter(song => {
+        if (includeFilters.length > 0) return includeFilters.some(category => song.type.includes(category));
+        return true;
+    });
 }
 
 displaySongs(sortSongs(audioFiles));
