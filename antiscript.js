@@ -890,7 +890,7 @@ function showDetails(shivrian) {
     document.getElementById("shivrian-name").innerText = shivrian.name;
     let imageElement = document.getElementById("shivrian-image");
     imageElement.src = shivrian.image;
-    if (shivrian.name === "Ariel Salama") {
+    if (shivrian.name === "Anti-Oreo") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
     }  
