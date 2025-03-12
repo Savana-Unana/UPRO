@@ -33,7 +33,7 @@ const defaultImage = 'images/MissingNo.png';
                 {id: -0.5, name: "Capture Capsule", image: "images/Anti-Animated_Capsule.gif", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
                 description: "The Portal To This Other Realm Overloaded the Capture Capsule, And It Transformed Into Another Variant Of Itself.", region: ""},
 
-                {id: -0.5, name: "Anti-Oreo", image: "images/Oriel.PNG", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
+                {id: -0.5, name: "Anti-Oreo", image: "images/oriel.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
                 description: "", region: ""},
 
                 {id: 0, name: "Aurorial", image: "images/MissingNo.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
