@@ -95,6 +95,9 @@ const defaultImage = 'images/MissingNo.png';
     
                 {id: 9, name: "Sacred --", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
+
+                {id: 1000, name: "Placibial", image: "images/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                description: "", region: ""},
        
         ];
         function displayShivrian() {

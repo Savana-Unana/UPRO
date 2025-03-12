@@ -138,11 +138,14 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Charquid", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+, Idea-Shane+", 
             description: "", region: "Volcano"},
 
-            {id: 1000, name: "Ninignite", image: "images/Ninignite.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "Nonignite", image: "images/Nonignite.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Volcano"},
 
-            {id: 1000, name: "Sacred Ninignite", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Sacred Nonignite", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Volcano"},
+
+            {id: 1000, name: "Ace Nonignite", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "IceCaps"},
 
             {id: 1000, name: "Blarb", image: "images/Blarb.png", typings: "Water, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
             description: "", region: "River"},
@@ -441,11 +444,11 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Exosteel", image: "images/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
             description: "", region: "Plains/Cave"},
 
-            {id: 1000, name: "Dopplergrail", image: "images/MissingNo.png", typings: "Psychic, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
-            description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
-
-            {id: 1000, name: "Cuddol", image: "images/MissingNo.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Cuddol", image: "images/MissingNo.png", typings: "Psychic, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
+
+            {id: 1000, name: "Dopplergrail", image: "images/MissingNo.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
             {id: 1000, name: "Torterritory", image: "images/MissingNo.png", typings: "Ground", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
             description: "Carrying entire regions on its back, Torterritory is a colossal force to be reckoned with. It can only be caught using a ___ and has seven regional variants. This region’s Torterritories carry the entirety of Shiveria on their back.", region: "MountainRange"},
@@ -1294,7 +1297,7 @@ function filterShivrian() {
             document.body.style.backgroundColor = "";
             card.style.backgroundColor = "";
             card.style.border = "";
-            if (!isJakes && !isJalts && id!=-0.5 && id!=1001 || shivrian.name=="Prismite"|| shivrian.name=="Capture Capsule") {
+            if (!isJakes && !isJalts && id!=-0.5 && id!=1001 && id!=150 || shivrian.name=="Prismite"|| shivrian.name=="Capture Capsule") {
                 card.style.backgroundColor = "lightgray";
                 card.style.border = "black";
             }
