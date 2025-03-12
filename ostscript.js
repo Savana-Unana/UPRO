@@ -1,12 +1,12 @@
 const audioFiles = [
-    { name: "Humble Ashore", file: "ost/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", order: 6 },
-    { name: "Recharging", file: "ost/Recharging.mp3", ost: 1000, type: "Shop - Theme", order: 8 },
-    { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", order: 5 },
-    { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", order: 7 },
-    { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", order: 1 },
-    { name: "Hectic Electric", file: "ost/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", order: 2 },
-    { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", order: 3 },
-    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", order: 4 }
+    { name: "Humble Ashore", file: "ost/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 6 },
+    { name: "Recharging", file: "ost/Recharging.mp3", ost: 1000, type: "Shop - Theme", typing: "Normal", order: 8 },
+    { name: "Distant Rumbles", file: "ost/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", typing: "Poison", order: 5 },
+    { name: "Tumbling Rumbles", file: "ost/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", typing: "Ground", order: 7 },
+    { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
+    { name: "Hectic Electric", file: "ost/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
+    { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
+    { name: "Erectic Electric", file: "ost/ErecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 }
 ];
 
 const container = document.getElementById("cards-container");
@@ -28,32 +28,39 @@ let currentAudio = null;
 
 function displaySongs(filteredFiles) {
     container.innerHTML = "";
-    filteredFiles.forEach(({ name, file, ost, type }) => {
+    filteredFiles = filterSongsList(filteredFiles); 
+    filteredFiles.forEach(({ name, file, ost, type, typing }) => {
         const card = document.createElement("div");
         card.className = "card";
-
-        // Set background color based on type
-        if (type.includes("Theme")) {
-            if (type.includes(" Theme")) {
-                card.style.backgroundColor = "lightgray";
-            }
-            else if (type.includes("GauntTheme")) {
-                card.style.backgroundColor = "lightgreen";
-            }
-            else if (type.includes("BattleTheme")) {
-                card.style.backgroundColor = "yellow";
-            }
-            else if (type.includes("AceTheme")) {
-                card.style.backgroundColor = "lightcoral";
-            }
-            else if (type.includes("MemeTheme")) {
-                card.style.backgroundColor = "#90EE90";
-            }
-            else {
-                card.style.backgroundColor = "black";
-            }
-        }
-
+        
+        const typingcolors = {
+            "Normal": "LightGray",
+            "Fire": "OrangeRed",
+            "Water": "LightBlue",
+            "Electric": "Gold",
+            "Grass": "LimeGreen",
+            "Ice": "LightCyan",
+            "Fighting": "Chocolate",
+            "Poison": "Violet",
+            "Ground": "BurlyWood",
+            "Flying": "Lavender",
+            "Psychic": "HotPink",
+            "Bug": "OliveDrab",
+            "Rock": "DarkKhaki",
+            "Ghost": "SlateBlue",
+            "Dragon": "Red",
+            "Dark": "DarkGray",
+            "Steel": "LightSlateGray",
+            "Fairy": "Pink",
+            "Light": "White",
+            "Artillery": "Black",
+        };
+        
+        if (typing in typingcolors) {
+            card.style.backgroundColor = typingcolors[typing];
+        } else {
+            card.style.backgroundColor = "White";
+        }        
         card.innerHTML = `
             <h3>${name}</h3>
             <p>OST: ${ost}</p>
@@ -155,6 +162,46 @@ function toggleSorting() {
 
 function sortSongs(songs) {
     return songs.slice().sort((a, b) => sortByOrder ? a.order - b.order : a.ost - b.ost);
+}
+const filters = {};
+const filterContainer = document.createElement("div");
+filterContainer.id = "filter-container";
+filterContainer.style.display = "flex";
+filterContainer.style.flexDirection = "column";
+filterContainer.style.alignItems = "flex-start";
+document.body.insertBefore(filterContainer, container);
+
+const categories = [" Theme", "GauntTheme", "BattleTheme", "AceTheme", "MemeTheme"];
+categories.forEach(category => {
+    filters[category] = "neutral";
+    const filterLabel = document.createElement("label");
+    filterLabel.className = "filter-label";
+    filterLabel.style.display = "flex";
+    filterLabel.style.alignItems = "center";
+    filterLabel.style.marginBottom = "5px";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.dataset.category = category;
+    checkbox.addEventListener("change", () => toggleFilter(category, checkbox));
+
+    filterLabel.appendChild(checkbox);
+    filterLabel.appendChild(document.createTextNode(category));
+    filterContainer.appendChild(filterLabel);
+});
+
+function toggleFilter(category, checkbox) {
+    filters[category] = checkbox.checked ? "include" : "neutral";
+    displaySongs(sortSongs(audioFiles));
+}
+
+function filterSongsList(songs) {
+    let includeFilters = Object.keys(filters).filter(category => filters[category] === "include");
+    
+    return songs.filter(song => {
+        if (includeFilters.length > 0) return includeFilters.some(category => song.type.includes(category));
+        return true;
+    });
 }
 
 displaySongs(sortSongs(audioFiles));

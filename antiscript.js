@@ -33,7 +33,7 @@ const defaultImage = 'images/MissingNo.png';
                 {id: -0.5, name: "Capture Capsule", image: "images/Anti-Animated_Capsule.gif", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
                 description: "The Portal To This Other Realm Overloaded the Capture Capsule, And It Transformed Into Another Variant Of Itself.", region: ""},
 
-                {id: -0.5, name: "Anti-Oreo", image: "images/Oriel.PNG", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
+                {id: -0.5, name: "Anti-Oreo", image: "images/oriel.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
                 description: "", region: ""},
 
                 {id: 0, name: "Aurorial", image: "images/MissingNo.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
@@ -94,6 +94,9 @@ const defaultImage = 'images/MissingNo.png';
                 description: "", region: ""},
     
                 {id: 9, name: "Sacred --", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                description: "", region: ""},
+
+                {id: 1000, name: "Placibial", image: "images/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
        
         ];
@@ -890,7 +893,7 @@ function showDetails(shivrian) {
     document.getElementById("shivrian-name").innerText = shivrian.name;
     let imageElement = document.getElementById("shivrian-image");
     imageElement.src = shivrian.image;
-    if (shivrian.name === "Ariel Salama") {
+    if (shivrian.name === "Anti-Oreo") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
     }  
