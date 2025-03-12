@@ -66,7 +66,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 5, name: "Sacred Axail", image: "images/Axail.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+Amo+",
             description: "", region: "Lake"},
 
-            {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "", artist: "Jake", credits: "Idea-Shane+",
+            {id: 6, name: "Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "", artist: "", credits: "Idea-Shane+",
             description: "", region: "Lake"},
 
             {id: 6, name: "Sacred Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
@@ -75,19 +75,19 @@ const defaultImage = 'images/MissingNo.png';
             {id: 6, name: "Ace Alloyxel", image: "images/MissingNo.png", typings: "Water, Rock", paratypings: "Fairy", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
-            {id: 7, name: "Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 7, name: "Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
             {id: 7, name: "Sacred Charcoon", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 8, name: "Furnacoon", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 8, name: "Furnacoon", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Forest"},
 
             {id: 8, name: "Sacred Furnacoon", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Blazuki", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 9, name: "Blazuki", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "", artist: "", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Forest"},
 
             {id: 9, name: "Sacred Blazuki", image: "images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Alt", artist: "", credits: "Idea-Shane+",
@@ -99,25 +99,25 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Pretengerine", image: "images/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
             description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree.", region: "Forest"},
 
-            {id: 1000, name: "Sacred Pretengerine", image: "images/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "Tal", credits: "",
+            {id: 1000, name: "Sacred Pretengerine", image: "images/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
             description: "", region: "Forest"},
 
             {id: 1000, name: "Espiorange", image: "images/Espiorange.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
             description: "A Pretengerine that grew alongside its tangerine seeds, Espiorange has upscaled the operation and is now in control of the entire tree. In order to reproduce, Espiorange leaves its larvae inside tangerines so they have something to eat as they grow.", region: "Forest"},
 
-            {id: 1000, name: "Sacred Espiorange", image: "images/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "Tal", credits: "",
+            {id: 1000, name: "Sacred Espiorange", image: "images/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
             description: "", region: "Forest"},
 
             {id: 1000, name: "Tumblseed", image: "images/Tumblseed.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "Desert"},
 
-            {id: 1000, name: "Sacred Tumblseed", image: "images/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "Tal", credits: "Idea-Tal+", 
+            {id: 1000, name: "Sacred Tumblseed", image: "images/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "Desert"},
 
             {id: 1000, name: "Cacculent", image: "images/Cacculent.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "Desert"},
 
-            {id: 1000, name: "Sacred Cacculent", image: "images/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "Tal", credits: "Idea-Tal+", 
+            {id: 1000, name: "Sacred Cacculent", image: "images/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "Desert"},
 
             {id: 1000, name: "Bakunbush", image: "images/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
@@ -183,13 +183,13 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Wyvearn", image: "images/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Sacred Wyvearn", image: "images/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "Tal", credits: "Idea-Tal+", 
+            {id: 1000, name: "Sacred Wyvearn", image: "images/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Wyrachnos", image: "images/Wyrachnos.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Sacred Wyrachnos", image: "images/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "Tal", credits: "Idea-Tal+", 
+            {id: 1000, name: "Sacred Wyrachnos", image: "images/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Plasttack", image: "images/MissingNo.png", typings: "Ghost", paratypings: "Normal", category: "", artist: "", credits: "Drawn-Shane+", 
@@ -228,7 +228,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Puppechu", image: "images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Mockenyu", image: "images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Mockenyu", image: "images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Sacred Mockenyu", image: "images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -264,13 +264,13 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Stwacha", image: "images/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Blizard", image: "images/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Blizard", image: "images/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "IceCaps"},
 
-            {id: 1000, name: "Cryodon", image: "images/Cryodon.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Cryodon", image: "images/Cryodon.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "IceCaps"},
 
-            {id: 1000, name: "Reptundra", image: "images/Reptundra.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Reptundra", image: "images/Reptundra.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "IceCaps"},
 
             {id: 1000, name: "Sacred Blizard", image: "images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
@@ -285,7 +285,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Relion", image: "images/Relion.png", typings: "Light", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "MountainRange"},
 
-            {id: 1000, name: "Sacred Relion", image: "images/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "Tal", credits: "Idea-Tal+", 
+            {id: 1000, name: "Sacred Relion", image: "images/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
 
             {id: 1000, name: "Meepu", image: "images/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
@@ -462,7 +462,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: -0.5, name: "Cheetalon", image: "images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
             description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
 
-            {id: -1, name: "Vigilith Revealed Forme", image: "images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "Shane", credits: "Idea-Shane+", 
+            {id: -1, name: "Vigilith Revealed Forme", image: "images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Factory"},
 
             {id: -1, name: "Toumern", image: "images/MissingNo.png", typings: "", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
@@ -1277,6 +1277,7 @@ function filterShivrian() {
             }
         }
 
+
         if (lastQuery === "halloween") {
             document.body.style.backgroundColor = "#ED6942";
             card.style.backgroundColor = "#8B5CF6";
@@ -1293,6 +1294,10 @@ function filterShivrian() {
             document.body.style.backgroundColor = "";
             card.style.backgroundColor = "";
             card.style.border = "";
+            if (!isJakes && !isJalts && id!=-0.5 && id!=1001 || shivrian.name=="Prismite"|| shivrian.name=="Capture Capsule") {
+                card.style.backgroundColor = "lightgray";
+                card.style.border = "black";
+            }
         }
     });
 }
