@@ -54,13 +54,13 @@ const defaultImage = 'images/MissingNo.png';
             {id: 3, name: "Ace Hileaph", image: "images/MissingNo.png", typings: "Grass, Ground", paratypings: "Rock", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
-            {id: 4, name: "Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+            {id: 4, name: "Axolitl", image: "images/Axolitl.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Lake"},
 
             {id: 4, name: "Sacred Axolitl", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Lake"},
 
-            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water, Rock", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+Amo+",
+            {id: 5, name: "Axail", image: "images/Axail.png", typings: "Water, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Amo+",
             description: "", region: "Lake"},
 
             {id: 5, name: "Sacred Axail", image: "images/Axail.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+Amo+",
