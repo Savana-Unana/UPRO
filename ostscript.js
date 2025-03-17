@@ -6,7 +6,8 @@ const audioFiles = [
     { name: "Skeptic Electric", file: "ost/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
     { name: "Hectic Electric", file: "ost/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
     { name: "Circuit Breaker", file: "ost/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
-    { name: "Skibidi Electric", file: "ost/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 }
+    { name: "Skibidi Electric", file: "ost/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
+    { name: "Carpet", file: "ost/Carpet.mp3", ost: 1000, type: "Home - MemeTheme", typing: "Normal", order: 9 }
 ];
 
 const container = document.getElementById("cards-container");
