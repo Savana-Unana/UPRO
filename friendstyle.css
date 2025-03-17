@@ -1,0 +1,89 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+/* Heading styling */
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.buttons {
+    position: absolute;
+    top: 236px;
+    left: 69%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    z-index: 10;
+}
+
+button {
+    font-size: 18px;
+    padding: 22px 25px;
+    margin: 0;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 0px solid #000;
+    border-radius: 5px;
+}
+
+.extra-button {
+    position: absolute;
+    top: 595px;
+    left: 217%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    padding: 15px 25px;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#nav-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+#nav-buttons a {
+    text-decoration: none; /* Remove underline */
+}
+
+#nav-buttons button {
+    font-size: 20px; 
+    padding: 12px 20px; 
+    background-color: #f0f0f0; /* Light white shade */
+    color: #333; /* Dark text for contrast */
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#nav-buttons button:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+    transform: scale(1.05);
+}
+
+#nav-buttons button:active {
+    background-color: #d0d0d0; /* Darker when clicked */
+    transform: scale(0.95);
+} 
