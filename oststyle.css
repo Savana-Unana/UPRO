@@ -34,47 +34,25 @@ body {
     align-items: center;
 }   
 
-.buttons {
-    margin-top: 20px;
-    text-align: center;
-}
-.buttons a {
-    text-decoration: none;
-    margin: 0 10px;
-}
-.buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#nav-buttons {
-    display: flex;
-    gap: 10px; /* Space between buttons */
-    margin-top: 20px;
-}
-
-#nav-buttons a {
-    text-decoration: none; /* Remove underline */
-}
-
 #nav-buttons button {
     font-size: 20px; 
-    padding: 12px 20px; 
-    background-color: #f0f0f0; /* Light white shade */
-    color: #333; /* Dark text for contrast */
+    padding: 14px 28px; 
+    background: linear-gradient(135deg, #4a8cb3, #5bfa98);
+    color: #fff; 
     border: none; 
-    border-radius: 8px; 
+    border-radius: 12px; 
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 #nav-buttons button:hover {
-    background-color: #e0e0e0; /* Slightly darker on hover */
+    background: linear-gradient(135deg, #407ea2, #4bde83);
     transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
 #nav-buttons button:active {
-    background-color: #d0d0d0; /* Darker when clicked */
     transform: scale(0.95);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
