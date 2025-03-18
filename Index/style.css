@@ -53,23 +53,23 @@ img {
 
 .buttons {
     position: absolute;
-    top: 236px;
-    left: 69%;
-    transform: translateX(-50%);
+    top: 66.5%;  /* Center vertically */
+    left: 69%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position */
+    
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    z-index: 10;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 15px; /* Space between buttons */
+    width: 109px; /* Fixed width for button area */
 }
 
 button {
     font-size: 18px;
-    padding: 22px 25px;
-    margin: 0;
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 0px solid #000;
-    border-radius: 5px;
 }
 
 .extra-button {
