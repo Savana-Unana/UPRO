@@ -26,23 +26,23 @@ let Alt = false;
     }
 
 // Code from the third script section
-const defaultImage = 'images/MissingNo.png';
+const defaultImage = '../images/MissingNo.png';
         const shivrianList = [
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY"},
                 
         ];
