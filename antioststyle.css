@@ -1,0 +1,94 @@
+body { 
+    font-family: sans-serif; 
+    text-align: center; 
+    background-color: #222; /* Dark background */
+    color: #fff; /* Light text */
+    margin: 0;
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}   
+
+.card {
+    border: 1px solid #555; /* Darker border */
+    background-color: #333; /* Dark card background */
+    color: #fff; /* Light text */
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+    display: inline-block;
+}
+
+.progress {
+    width: 100%;
+    height: 5px;
+    background: #555; /* Darker progress background */
+    margin-top: 10px;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background: #FF5722; /* Bright progress bar */
+    position: absolute;
+}
+
+.buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.buttons a {
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #444; /* Dark button background */
+    color: #fff; /* Light text */
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttons button:hover {
+    background-color: #555; /* Slightly lighter hover */
+    transform: scale(1.05);
+}
+
+#nav-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+#nav-buttons a {
+    text-decoration: none; /* Remove underline */
+}
+
+#nav-buttons button {
+    font-size: 20px; 
+    padding: 12px 20px; 
+    background-color: #444; /* Darker button */
+    color: #818181; /* Light text */
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#nav-buttons button:hover {
+    background-color: #666; /* Slightly lighter on hover */
+    transform: scale(1.05);
+}
+
+#nav-buttons button:active {
+    background-color: #777; /* Even lighter when clicked */
+    transform: scale(0.95);
+}
