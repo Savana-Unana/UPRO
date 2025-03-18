@@ -30,73 +30,73 @@ let Alt = false;
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png'; 
         const shivrianList = [
-                {id: -0.5, name: "Capture Capsule", image: "images/Anti-Animated_Capsule.gif", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
+                {id: -0.5, name: "Capture Capsule", image: "../images/Anti-Animated_Capsule.gif", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
                 description: "The Portal To This Other Realm Overloaded the Capture Capsule, And It Transformed Into Another Variant Of Itself.", region: ""},
 
-                {id: -0.5, name: "Anti-Oreo", image: "images/oriel.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
+                {id: -0.5, name: "Anti-Oreo", image: "../images/oriel.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
                 description: "", region: ""},
 
-                {id: 0, name: "Aurorial", image: "images/MissingNo.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
+                {id: 0, name: "Aurorial", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 0, name: "--", image: "images/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+",
+                {id: 0, name: "--", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 1, name: "--", image: "images/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 1, name: "--", image: "../images/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 1, name: "Sacred --", image: "images/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 1, name: "Sacred --", image: "../images/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 2, name: "--", image: "images/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 2, name: "--", image: "../images/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 2, name: "Sacred --", image: "images/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 2, name: "Sacred --", image: "../images/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 3, name: "--", image: "images/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 3, name: "--", image: "../images/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 3, name: "Sacred --", image: "images/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 3, name: "Sacred --", image: "../images/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 4, name: "Hooglet", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 4, name: "Hooglet", image: "../images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 4, name: "Sacred Hooglet", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 4, name: "Sacred Hooglet", image: "../images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 5, name: "Owlquava", image: "images/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+",
+                {id: 5, name: "Owlquava", image: "../images/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 5, name: "Sacred Owlquava", image: "images/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+",
+                {id: 5, name: "Sacred Owlquava", image: "../images/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 6, name: "--", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 6, name: "--", image: "../images/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 6, name: "Sacred --", image: "images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "Alt", credits: "Idea-Shane+",
+                {id: 6, name: "Sacred --", image: "../images/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "Alt", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 7, name: "Pythra", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 7, name: "Pythra", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 7, name: "Sacred Pythra", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 7, name: "Sacred Pythra", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 8, name: "--", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 8, name: "--", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 8, name: "Sacred --", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 8, name: "Sacred --", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 9, name: "--", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 9, name: "--", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 9, name: "Sacred --", image: "images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 9, name: "Sacred --", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 1000, name: "Placibial", image: "images/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 1000, name: "Placibial", image: "../images/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
        
         ];
