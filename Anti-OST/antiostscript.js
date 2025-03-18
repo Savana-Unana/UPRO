@@ -1,5 +1,5 @@
 const audioFiles = [
-    { name: "Voodoo", file: "ost/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 0 }
+    { name: "Voodoo", file: "../Songs/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 0 }
 ];
 
 const container = document.getElementById("cards-container");

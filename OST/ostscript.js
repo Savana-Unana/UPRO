@@ -1,13 +1,13 @@
 const audioFiles = [
-    { name: "Humble Ashore", file: "Songs/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 6 },
-    { name: "Calm After The Storm", file: "Songs/CalmAfterTheStorm.mp3", ost: 1000, type: "Shop - Theme", typing: "Normal", order: 8 },
-    { name: "Distant Rumbles", file: "Songs/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", typing: "Poison", order: 5 },
-    { name: "Tumbling Rumbles", file: "Songs/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", typing: "Ground", order: 7 },
-    { name: "Skeptic Electric", file: "Songs/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
-    { name: "Hectic Electric", file: "Songs/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
-    { name: "Circuit Breaker", file: "Songs/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
-    { name: "Skibidi Electric", file: "Songs/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
-    { name: "Carpet", file: "Songs/Carpet.mp3", ost: 1000, type: "Home - MemeTheme", typing: "Normal", order: 9 }
+    { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 6 },
+    { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, type: "Shop - Theme", typing: "Normal", order: 8 },
+    { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", typing: "Poison", order: 5 },
+    { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", typing: "Ground", order: 7 },
+    { name: "Skeptic Electric", file: "../Songs/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
+    { name: "Hectic Electric", file: "../Songs/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
+    { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
+    { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
+    { name: "Carpet", file: "../Songs/Carpet.mp3", ost: 1000, type: "Home - MemeTheme", typing: "Normal", order: 9 }
 ];
 
 const container = document.getElementById("cards-container");
