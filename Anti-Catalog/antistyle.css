@@ -1,0 +1,51 @@
+body { 
+    font-family: sans-serif; 
+    text-align: center; 
+    background-color: black; 
+    color: white; /* Ensures text remains visible */
+}
+
+.shivrian-container { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+}
+
+.shivrian-card { 
+    border: 1px solid #444; /* Darker border for contrast */
+    border-radius: 10px; 
+    padding: 10px; 
+    margin: 10px; 
+    text-align: center; 
+    width: 150px; 
+    cursor: pointer; 
+    background-color: #222; /* Darker card background */
+    color: white; /* Ensure text is readable */
+}
+
+.shivrian-card img { 
+    width: 100px; 
+    height: 100px; 
+}
+
+#shivrian-details { 
+    display: none; 
+    margin-top: 15px; 
+    background-color: #333; /* Darker details background */
+    padding: 20px; 
+    border-radius: 10px;
+}
+
+button { 
+    background-color: #555; /* Darker button background */
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+}
+
+button:hover { 
+    background-color: #777; 
+}
