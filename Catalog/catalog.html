@@ -10,8 +10,12 @@
     <script src="../Catalog/script.js" defer></script>    
     
     <h1>The Catalog</h1>
-    <input type="text" id="search" placeholder="Search by name or number..." oninput="filterShivrian()">
-    <button onclick="setAltTrue()">Activate Alt</button>
+    
+    <!-- search and alt -->
+    <div class="search-alt-container">
+        <input type="text" id="search" placeholder="Search by name or number..." oninput="filterShivrian()">
+        <button class="Alt" onclick="setAltTrue()"><span>Activate Alt</span><i></i></button>
+    </div>
     
     <script src="../Catalog/script.js"></script>
     
