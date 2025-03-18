@@ -108,7 +108,7 @@ button {
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-#nav-buttons button:hover {
+#nav-buttons button:hover {  /*hooooooooooover */
     background: linear-gradient(135deg, #4fd1c5, #8e9de5); /* deeper mint + purple on hover */
     transform: translateY(-2px) scale(1.03);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
