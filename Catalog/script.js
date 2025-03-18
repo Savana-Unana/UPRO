@@ -285,6 +285,9 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Reptundra", image: "../images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
             description: "", region: "IceCaps"},
 
+            {id: 1000, name: "Ace Reptundra", image: "../images/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "IceCaps"},
+
             {id: 1000, name: "Relion", image: "../images/Relion.png", typings: "Light", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "MountainRange"},
 
