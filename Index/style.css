@@ -126,7 +126,7 @@ button {
 }
 
 .Friends:hover {
-    background: linear-gradient(135deg, #0faeae, #d72020);
+    background: linear-gradient(135deg, #0faeae, #d72020, #d3ea22);
     transform: translateX(-50%) scale(1.05);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
