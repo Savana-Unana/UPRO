@@ -47,7 +47,7 @@ body {
 }
 
 #nav-buttons button:hover {
-    background: linear-gradient(135deg, #407ea2, #4bde83);
+    background: linear-gradient(135deg, #407ea2, #4bde83, #5c4bde);
     transform: scale(1.05);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
