@@ -1300,7 +1300,7 @@ function filterShivrian() {
             document.body.style.backgroundColor = "";
             card.style.backgroundColor = "";
             card.style.border = "";
-            if (!isJakes && !isJalts && id!=-0.5 && id!=1001 && id!=150 || shivrian.name=="Prismite"|| shivrian.name=="Capture Capsule") {
+            if (!isJakes && !isJalts && !isShalts && id!=-0.5 && id!=1001 && id!=150 || shivrian.name=="Prismite"|| shivrian.name=="Capture Capsule") {
                 card.style.backgroundColor = "lightgray";
                 card.style.border = "black";
             }
