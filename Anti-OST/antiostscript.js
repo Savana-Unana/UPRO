@@ -1,6 +1,7 @@
 const audioFiles = [
-    { name: "Voodoo", file: "../Songs/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 0 },
-    { name: "Greatest", file: "../Songs/Greatest.mp3", ost: 666, type: "Greatest - MemeTheme", typing: "Dark", order: 1 }
+    {name: "Voodoo", file: "../Songs/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 1 },
+    {name: "Greatest", file: "../Songs/Greatest.mp3", ost: 666, type: "Greatest - MemeTheme", typing: "Dark", order: 2 },
+    {name: "Carpet", file: "../Songs/Carpet.mp3", ost: 1000, type: "Home - MemeTheme", typing: "Normal", order: 0 }
 
 ];
 

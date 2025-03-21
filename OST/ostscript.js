@@ -8,8 +8,7 @@ const audioFiles = [
     { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
     { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
     { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10},
-    { name: "---", file: "../Songs/---.mp3", ost: 1000, type: "??? - Theme", typing: "Normal", order: 11},
-    { name: "Carpet", file: "../Songs/Carpet.mp3", ost: 1000, type: "Home - MemeTheme", typing: "Normal", order: 9 }
+    { name: "---", file: "../Songs/---.mp3", ost: 1000, type: "??? - Theme", typing: "Normal", order: 11}
 ];
 
 const container = document.getElementById("cards-container");
