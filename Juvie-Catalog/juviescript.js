@@ -30,7 +30,7 @@ let Alt = false;
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png'; 
         const shivrianList = [
-            {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
+            {id: 0, name: "Capture Capsule", image: "../images/Juvie-CaptureCapsule.png", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
             {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -1324,10 +1324,6 @@ function showDetails(shivrian) {
     else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
         imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
-    }
-    else if (shivrian.name === "Capture Capsule") {
-        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
     else {
         imageElement.style.width = (imageElement.naturalWidth * 2) + "px";

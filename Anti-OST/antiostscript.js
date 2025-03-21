@@ -1,5 +1,7 @@
 const audioFiles = [
-    { name: "Voodoo", file: "../Songs/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 0 }
+    { name: "Voodoo", file: "../Songs/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 0 },
+    { name: "Greatest", file: "../Songs/Greatest.mp3", ost: 666, type: "Greatest - MemeTheme", typing: "Dark", order: 1 }
+
 ];
 
 const container = document.getElementById("cards-container");
