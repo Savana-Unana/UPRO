@@ -66,7 +66,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 5, name: "Sacred Axolote", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Amo+",
             description: "", region: "Lake"},
 
-            {id: 6, name: "Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "", credits: "Idea-Shane+",
+            {id: 6, name: "Axolarg", image: "../images/Axolarg.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Lake"},
 
             {id: 6, name: "Sacred Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
