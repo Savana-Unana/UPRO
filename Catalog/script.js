@@ -156,25 +156,31 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Buntot", image: "../images/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Birthday Buntot", image: "../images/BD. Buntot.png", typings: "Fairy, Fire", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+", 
-                description: "", region: "Plains"},
+            {id: 1000, name: "Buntot Toasted Forme", image: "../images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            description: "", region: "Plains"},
 
             {id: 1000, name: "Challadin", image: "../images/Challadin.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Burking", image: "../images/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "LED Burking", image: "../images/L.Burking.png", typings: "Fairy", paratypings: "", category: "Alt", artist: "Jake, Shane", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Buntot Toasted Forme", image: "../images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Challadin Toasted Forme", image: "../images/ChalladinTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
+            {id: 1000, name: "Burking", image: "../images/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            description: "", region: "Plains"},
+    
             {id: 1000, name: "Burking Toasted Forme", image: "../images/BurkingTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            description: "", region: "Plains"},
+
+            {id: 1000, name: "Birthday Buntot", image: "../images/BD.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+", 
+            description: "", region: "Plains"},
+
+            {id: 1000, name: "Hero Challadin", image: "../images/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            description: "", region: "Plains"},
+    
+            {id: 1000, name: "LED Challadin", image: "../images/L.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            description: "", region: "Plains"},
+
+            {id: 1000, name: "LED Burking", image: "../images/L.Burking.png", typings: "Fairy", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Frankfortress", image: "../images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Tal+Jake+", 
