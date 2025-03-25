@@ -30,7 +30,7 @@ let Alt = false;
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png'; 
         const shivrianList = [
-            {id: 0, name: "Capture Capsule", image: "../images/Juvie-CaptureCapsule.png", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
+            {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
             {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -66,7 +66,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 5, name: "Sacred Axolote", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Amo+",
             description: "", region: "Lake"},
 
-            {id: 6, name: "Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "", credits: "Idea-Shane+",
+            {id: 6, name: "Axolarg", image: "../images/Axolarg.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Lake"},
 
             {id: 6, name: "Sacred Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
@@ -155,6 +155,9 @@ const defaultImage = 'images/MissingNo.png';
 
             {id: 1000, name: "Buntot", image: "../images/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
+
+            {id: 1000, name: "Birthday Buntot", image: "../images/BD. Buntot.png", typings: "Fairy, Fire", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+", 
+                description: "", region: "Plains"},
 
             {id: 1000, name: "Challadin", image: "../images/Challadin.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
@@ -1324,6 +1327,10 @@ function showDetails(shivrian) {
     else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
         imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
+    }
+    else if (shivrian.name === "Capture Capsule") {
+        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
+        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
     else {
         imageElement.style.width = (imageElement.naturalWidth * 2) + "px";

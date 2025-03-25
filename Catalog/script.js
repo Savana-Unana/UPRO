@@ -156,6 +156,9 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Buntot", image: "../images/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
+            {id: 1000, name: "Birthday Buntot", image: "../images/BD. Buntot.png", typings: "Fairy, Fire", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+", 
+                description: "", region: "Plains"},
+
             {id: 1000, name: "Challadin", image: "../images/Challadin.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
