@@ -426,7 +426,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Elixion Rip Forme", image: "../images/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Shiver Jaws", image: "../images/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
+            {id: 1000, name: "Shiver Jaws", image: "../images/Shiver Jaws.png", typings: "Electric, Ground", paratypings: "Water", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+, Help-Ariel+", 
             description: "", region: "ShiverCo"},
 
             {id: 1000, name: "Shiver Jaws V2.0", image: "../images/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "Alt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
