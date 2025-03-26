@@ -177,6 +177,9 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Hero Challadin", image: "../images/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
     
+            {id: 1000, name: "LED Buntot", image: "../images/L.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            description: "", region: "Plains"},
+
             {id: 1000, name: "LED Challadin", image: "../images/L.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
 
