@@ -176,6 +176,9 @@ const defaultImage = 'images/MissingNo.png';
 
             {id: 1000, name: "Hero Challadin", image: "../images/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
+
+            {id: 1000, name: "Mashed Burking", image: "../images/M.Burking.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            description: "", region: "Plains"},
     
             {id: 1000, name: "LED Buntot", image: "../images/L.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
@@ -354,7 +357,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Alliminiyum", image: "../images/MissingNo.png", typings: "Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Ivri+", 
             description: "", region: "MountainRange"},
 
-            {id: 1000, name: "Vigilith", image: "../images/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Vigilith", image: "../images/Vigilith.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Desert/Temple"},
 
             {id: 77, name: "Chancey", image: "../images/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
@@ -480,7 +483,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: -0.5, name: "Cheetalon", image: "../images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
             description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
 
-            {id: -1, name: "Vigilith Revealed Forme", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+            {id: -1, name: "Vigilith Revealed Forme", image: "../images/VigilithRF.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Spooky Factory"},
 
             {id: -1, name: "Toumern", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
