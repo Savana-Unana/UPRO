@@ -1,5 +1,6 @@
 const audioFiles = [
     { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 6 },
+    { name: "Sigma Ashore", file: "../Songs/SigmaAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 12},
     { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, type: "Shop - Theme", typing: "Normal", order: 8 },
     { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", typing: "Poison", order: 5 },
     { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", typing: "Ground", order: 7 },
@@ -8,8 +9,7 @@ const audioFiles = [
     { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
     { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
     { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10},
-    { name: "---", file: "../Songs/---.mp3", ost: 1000, type: "??? - Theme", typing: "Normal", order: 11},
-    { name: "Sigma Ashore", file: "../Songs/SigmaAshore.mp3", ost: 1000, type: "??? - Theme", typing: "Normal", order: 12}
+    { name: "---", file: "../Songs/---.mp3", ost: 1000, type: "??? - Theme", typing: "Normal", order: 11}
 ];
 
 const container = document.getElementById("cards-container");
