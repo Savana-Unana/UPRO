@@ -1309,7 +1309,7 @@ function filterShivrian() {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "Gray";
             card.style.border = "Gray";
-            card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
+            card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
         } 
         else {
             document.body.style.backgroundColor = "";
@@ -1343,6 +1343,10 @@ function showDetails(shivrian) {
     else if (shivrian.name === "Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+    }
+    else if (shivrian.name === "Cheetalon") {
+        imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
+        imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
     }
     else {
         imageElement.style.width = (imageElement.naturalWidth * 2) + "px";
