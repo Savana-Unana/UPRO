@@ -519,9 +519,6 @@ const defaultImage = 'images/MissingNo.png';
             {id: -1, name: "Smellmer", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
             description: "", region: "FrozenWasteland"},
 
-            {id: 1001, name: "Bill", image: "../images/Bill.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+", 
-            description: "", region: "Unobtainable"},
-
             {id: 1, name: "MC", image: "../images/MissingNo.png", typings: "Normal", paratypings: "", category: "NPC", artist: "", credits: "Idea-Shane+", 
             description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
                 
