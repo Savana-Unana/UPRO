@@ -36,9 +36,14 @@ const shivrianList = [
     {id: 1000, name: "Cruise Ship", theme: "Water, Fire, Grass", category: "Gauntlet", Opposition: "", Region: "Ocean", Enemies: "", Ace: "Hileaph, Axolarg, Blazuki"},
     {id: 1000, name: "Charquid Games", theme: "Fire", category: "Gauntlet", Opposition: "", Region: "Ice-Caps", Enemies: "", Ace: "Nonignite"},
     {id: 1000, name: "Radioactive Randal", theme: "Steel, Electric", category: "Single", Opposition: "Radioactive Randal", Region: "Plains", Enemies: "", Ace: ""},
-    {id: 1000, name: "Dopplergrail", theme: "Psychic", category: "Single", Opposition: "Dopplergrail", Region: "Secret Area", Enemies: "", Ace: "Dopplergrail"},
-    {id: 1000, name: "Radioactive Ronald", theme: "Ice", category: "Single", Opposition: "Radioactive Ronald", Region: "Frozen Wasteland", Enemies: "", Ace: ""}
-
+    {id: 1000, name: "Operation Pseudo Gauntlet", theme: "Psychic", category: "Gauntlet", Opposition: "Operation Pseudo", Region: "Secret Area", Enemies: "", Ace: ""},
+    {id: 1000, name: "Dopplegrail", theme: "Psychic", category: "Single", Opposition: "Dopplergrail", Region: "Secret Area", Enemies: "", Ace: "Dopplegrail"},
+    {id: 1000, name: "Radioactive Ronald", theme: "Ice", category: "Single", Opposition: "Radioactive Ronald", Region: "Frozen Wasteland", Enemies: "", Ace: ""},
+    {id: 1000, name: "Credits Gauntlet", theme: "Normal", category: "Gauntlet", Opposition: "Creators", Region: "Secret Area", Enemies: "", Ace: ""},
+    {id: 1000, name: "Operation Pseudo Juvie Gauntlet", theme: "Steel", category: "Gauntlet", Opposition: "Capture Capsule", Region: "Secret Area", Enemies: "", Ace: "Capture Capsule, Dopplegrail"},
+    {id: 1000, name: "JaviorDaSavior", theme: "Fighting", category: "Single, Juvie", Opposition: "Jake", Region: "Secret Area", Enemies: "JaviorDaSavior", Ace: ""},
+    {id: 1000, name: "Tal", theme: "Fighting", category: "Single, Juvie", Opposition: "Tal", Region: "Secret Area", Enemies: "Tal", Ace: ""},
+    {id: 1000, name: "BloxxyMech", theme: "Fighting", category: "Single, Juvie", Opposition: "Shane", Region: "Secret Area", Enemies: "BloxxyMech", Ace: ""}
 ];
 
 let lastQuery = "";
@@ -52,8 +57,10 @@ function displayShivrian() {
         card.className = "shivrian-card";
         card.setAttribute("data-id", shivrian.id);
         card.innerHTML = `
-            <h3>${shivrian.name}</h3>
-        `;
+            <h3>${shivrian.name}</h3>`;
+        if (shivrian.category ==="Juvie") {
+            card.style.filter = "invert(1)";
+        }
         card.onclick = () => showDetails(shivrian);
         catalog.appendChild(card);
     });
