@@ -228,7 +228,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Thruck", image: "../images/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Thrack", image: "../images/MissingNo.png", typings: "Normal, Rock", paratypings: "Fire", category: "", artist: "", credits: "Idea-Shane+Jake+", 
+            {id: 1000, name: "Thrack", image: "../images/Thrack.png", typings: "Normal, Rock", paratypings: "Fire", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Sacred Thrack", image: "../images/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
