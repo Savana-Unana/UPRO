@@ -98,6 +98,12 @@ const defaultImage = 'images/MissingNo.png';
 
                 {id: 1000, name: "Placibial", image: "../images/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
+
+                {id: 1000, name: "Sacred Placibial", image: "../images/MissingNo.png", typings: "Psychic, Ghost", paratypings: "Alt", category: "", artist: "", credits: "Idea-Shane+",
+                description: "", region: ""},
+
+                {id: 1000, name: "Disalit", image: "../images/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                description: "", region: ""}
        
         ];
         function displayShivrian() {

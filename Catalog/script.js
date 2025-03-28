@@ -1346,8 +1346,8 @@ function showDetails(shivrian) {
         imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
     }
     else {
-        imageElement.style.width = (imageElement.naturalWidth * 2) + "px";
-        imageElement.style.height = (imageElement.naturalHeight * 2) + "px";
+        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
+        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
     document.getElementById("shivrian-description").innerText = shivrian.description;
     document.body.style.backgroundColor = "gray";
