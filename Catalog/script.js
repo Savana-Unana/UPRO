@@ -240,10 +240,10 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Fumerey", image: "../images/MissingNo.png", typings: "Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Puppechu", image: "../images/Puppechu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "Puppechyu", image: "../images/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Sacred Puppechu", image: "../images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Sacred Puppechyu", image: "../images/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Mockenyu", image: "../images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
