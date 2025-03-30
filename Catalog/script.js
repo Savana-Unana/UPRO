@@ -75,7 +75,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 6, name: "Ace Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
-            {id: 7, name: "Charcoon", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+            {id: 7, name: "Charcoon", image: "../images/Charcoon.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+",
             description: "", region: "Forest"},
 
             {id: 7, name: "Sacred Charcoon", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
