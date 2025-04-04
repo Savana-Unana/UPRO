@@ -57,28 +57,41 @@ img {
 
 .buttons {
     position: absolute;
-    top: 66.5%;  /* Center vertically */
-    left: 69%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust position */
-    
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    gap: 15px; /* Space between buttons */
-    width: 109px; /* Fixed width for button area */
+    top: 115%; /* Adjust this value */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
 
-button {
-    font-size: 18px;
-    padding: 15px 20px;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    border-radius: 8px;
+
+.buttons a button {
+    font-size: 16px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #e0e0e0, #ffffff);
+    border: 2px solid #000;
+    border-radius: 10px;
+    color: #000;
     cursor: pointer;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+    min-width: 140px;
 }
+
+.buttons a button:hover {
+    background: linear-gradient(135deg, #c9c9c9, #f0f0f0);
+    transform: scale(1.03);
+}
+
+.buttons a button:active {
+    transform: scale(0.97);
+}
+
 
 .extra-button {
     position: absolute;
-    top: 595px;
+    top: 585px;
     left: 217%;
     transform: translateX(-50%);
     font-size: 20px;
@@ -86,13 +99,13 @@ button {
     background-color: rgba(0, 0, 0, 1);
     color: rgb(0, 0, 0);
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     cursor: pointer;
 }
 
 /* Navbar container */
 #nav-buttons {
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     gap: 12px; /* Small gap between buttons */
@@ -126,19 +139,13 @@ button {
 
 .Friends {
     position: absolute;
-    top: 500px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 22px;
-    padding: 15px 35px;
-    background: linear-gradient(135deg, #11cbcb, #fc2525);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    font-size: 18px; /* Reduce font size */
+    padding: 12px 28px;
 }
+
 
 .Friends:hover {
     background: linear-gradient(135deg, #0faeae, #d72020, #d3ea22);
@@ -153,7 +160,7 @@ button {
 
 .search-alt-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 25px; /* this creates space between the input and button */
     margin-bottom: 20px;

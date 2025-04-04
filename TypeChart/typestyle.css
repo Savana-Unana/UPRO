@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    overflow-x: auto;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+    min-width: 50px;
+}
+
+th {
+    background-color: #eee;
+    position: sticky;
+    top: 0;
+}
+
+.type {
+    font-weight: bold;
+}
+
+.super {
+    background-color: #aaffaa;
+}
+
+.notvery {
+    background-color: #ffcccc;
+}
+
+.noeffect {
+    background-color: #ccccff;
+}
+
+.neutral {
+    background-color: #ffffff;
+}
+
+.buttons {
+    position: absolute;
+    top: 66.5%;  /* Center vertically */
+    left: 69%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position */
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 15px; /* Space between buttons */
+    width: 109px; /* Fixed width for button area */
+}
+
+button {
+    font-size: 18px;
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.extra-button {
+    position: absolute;
+    top: 595px;
+    left: 217%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    padding: 15px 25px;
+    background-color: rgba(0, 0, 0, 1);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Navbar container */
+#nav-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* Small gap between buttons */
+    flex-wrap: wrap;
+}
+
+/* Navbar buttons */
+#nav-buttons button {
+    font-size: 18px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* mint to soft purple */
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#nav-buttons button:hover {  /*hooooooooooover */
+    background: linear-gradient(135deg, #4fd1c5, #8e9de5); /* deeper mint + purple on hover */
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+#nav-buttons button:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+

@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Multi-Song"
+git commit -m "Added Type Chart and Fixed Buttons"
 git push origin 
 
 ```
