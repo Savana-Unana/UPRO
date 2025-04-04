@@ -99,7 +99,7 @@ function playAudio(button) {
     const card = button.parentElement;
     const audio = card.querySelector("audio");
 
-    if (currentAudio && currentAudio !== audio) {
+    if (coincidencePlay && currentAudio && currentAudio !== audio) {
         currentAudio.pause();
         currentAudio.parentElement.querySelector("button").textContent = "Play";
     }
@@ -113,7 +113,12 @@ function playAudio(button) {
         button.textContent = "Play";
     }
 
-    audio.onended = () => { button.textContent = "Play"; };
+    audio.onended = () => {
+        button.textContent = "Play";
+        if (coincidencePlay && currentAudio === audio) {
+            currentAudio = null;
+        }
+    };
 }
 
 function updateProgress(audio) {
@@ -206,5 +211,35 @@ function filterSongsList(songs) {
         return true;
     });
 }
+let coincidencePlay = true;
+
+const toggleCoincidenceButton = document.createElement("button");
+toggleCoincidenceButton.textContent = "Single-Songs: ON";
+toggleCoincidenceButton.style.position = "fixed";
+toggleCoincidenceButton.style.top = "10px";
+toggleCoincidenceButton.style.right = "10px";
+toggleCoincidenceButton.style.zIndex = "1000";
+toggleCoincidenceButton.style.padding = "5px 10px";
+toggleCoincidenceButton.style.fontSize = "12px";
+
+toggleCoincidenceButton.onclick = () => {
+    coincidencePlay = !coincidencePlay;
+    toggleCoincidenceButton.textContent = `Single-Songs: ${coincidencePlay ? "ON" : "OFF"}`;
+
+    if (coincidencePlay && currentAudio) {
+        // Stop all other audio elements except the current one
+        const allAudios = document.querySelectorAll("audio");
+        allAudios.forEach(audio => {
+            if (audio !== currentAudio) {
+                audio.pause();
+                const btn = audio.parentElement.querySelector("button");
+                if (btn) btn.textContent = "Play";
+            }
+        });
+    }
+};
+
+document.body.appendChild(toggleCoincidenceButton);
+
 
 displaySongs(sortSongs(audioFiles));
