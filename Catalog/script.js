@@ -19,18 +19,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Code from the second script section
 let Alt = false;
-
-
+let Ace = false;
+let NCanon = false;
     function setAltTrue() {
         Alt = !Alt;
         autoTriggerSearch();
         console.log("Alt is now:", Alt);
+    }
+    function setAceTrue() {
+        Ace = !Ace;
+        autoTriggerSearch();
+        console.log("Ace is now:", Ace);
+    }
+    function setNCanonTrue() {
+        NCanon = !NCanon;
+        autoTriggerSearch();
+        console.log("NCanon is now:", NCanon);
     }
 
 // Code from the third script section
 const defaultImage = 'images/MissingNo.png'; 
         const shivrianList = [
             {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
+            description: "", region: "Plains/ShiverCo"},
+
+            {id: 0, name: "Juvie Capture Capsule", image: "../images/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
             {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass, ", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -51,7 +64,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 3, name: "Sacred Hileaph", image: "../images/MissingNo.png", typings: "Grass, Ground", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains"},
 
-            {id: 3, name: "Ace Hileaph", image: "../images/MissingNo.png", typings: "Grass, Ground", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 3, name: "Ace Hileaph", image: "../images/MissingNo.png", typings: "Grass, Ground", paratypings: "Normal", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
             {id: 4, name: "Axolitl", image: "../images/Axolitl.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -72,7 +85,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 6, name: "Sacred Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Lake"},
 
-            {id: 6, name: "Ace Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 6, name: "Ace Axolarg", image: "../images/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
             {id: 7, name: "Charcoon", image: "../images/Charcoon.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+",
@@ -93,7 +106,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 9, name: "Sacred Furnacoon", image: "../images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Ace Furnacoon", image: "../images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 9, name: "Ace Furnacoon", image: "../images/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
             {id: 1000, name: "Pretengerine", image: "../images/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
@@ -144,7 +157,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Nonignite", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Volcano"},
 
-            {id: 1000, name: "Ace Nonignite", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Ace Nonignite", image: "../images/MissingNo.png", typings: "Fire", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+", 
             description: "", region: "IceCaps"},
 
             {id: 1000, name: "Blarb", image: "../images/Blarb.png", typings: "Water, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
@@ -171,22 +184,22 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Burking Toasted Forme", image: "../images/BurkingTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Birthday Buntot", image: "../images/BD.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+", 
+            {id: 1000, name: "Birthday Buntot", image: "../images/BD.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Hero Challadin", image: "../images/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            {id: 1000, name: "Hero Challadin", image: "../images/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Mashed Burking", image: "../images/M.Burking.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            {id: 1000, name: "Mashed Burking", image: "../images/M.Burking.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
     
-            {id: 1000, name: "LED Buntot", image: "../images/L.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            {id: 1000, name: "LED Buntot", image: "../images/L.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "LED Challadin", image: "../images/L.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Idea-Shane+", 
+            {id: 1000, name: "LED Challadin", image: "../images/L.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "LED Burking", image: "../images/L.Burking.png", typings: "Fairy", paratypings: "", category: "Alt", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "LED Burking", image: "../images/L.Burking.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Frankfortress", image: "../images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Tal+Jake+", 
@@ -195,7 +208,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Frankfortress", image: "../images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Ace Frankfortress", image: "../images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+            {id: 1000, name: "Ace Frankfortress", image: "../images/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Wyvearn", image: "../images/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -300,7 +313,7 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Reptundra", image: "../images/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
             description: "", region: "IceCaps"},
 
-            {id: 1000, name: "Ace Reptundra", image: "../images/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Ace Reptundra", image: "../images/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Ace", artist: "", credits: "Idea-Shane+", 
             description: "", region: "IceCaps"},
 
             {id: 1000, name: "Relion", image: "../images/Relion.png", typings: "Light", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -345,10 +358,10 @@ const defaultImage = 'images/MissingNo.png';
             {id: 1000, name: "Sacred Prismoth", image: "../images/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Gobligo", image: "../images/Gobligo.png", typings: "Water", paratypings: "", category: "", artist: "Ivri", credits: "Drawn-Ivri+", 
+            {id: 1000, name: "Thoot", image: "../images/Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "Drawn-Ivri+", 
             description: "", region: "Desert"},
 
-            {id: 1000, name: "Sacred Gobligo", image: "../images/S.Gobligo.png", typings: "Water", paratypings: "", category: "Alt", artist: "Ivri", credits: "IDrawn-Ivri+", 
+            {id: 1000, name: "Sacred Gobligo", image: "../images/S.Gobligo.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
             description: "", region: "Desert"},
 
             {id: 1000, name: "Alliminiyum", image: "../images/MissingNo.png", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+", 
@@ -477,25 +490,25 @@ const defaultImage = 'images/MissingNo.png';
             {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-            {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
+            {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
             description: "I fainted so really real picture", region: "Unobtainable"},
 
-            {id: -0.5, name: "Cheetalon", image: "../images/Cheetalon.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: -0.5, name: "Cheetalon", image: "../images/Cheetalon.png", typings: "Normal", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
             description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
 
-            {id: -1, name: "Vigilith Revealed Forme", image: "../images/VigilithRF.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: -1, name: "Vigilith Revealed Forme", image: "../images/VigilithRF.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Spooky Factory"},
 
-            {id: -1, name: "Toumern", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
+            {id: -1, name: "Toumern", image: "../images/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "Halloween", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Jungle"},
 
-            {id: -1, name: "Sacred Toumern", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+            {id: -1, name: "Sacred Toumern", image: "../images/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Jungle"},
 
-            {id: -1, name: "Shiver Slimes", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
+            {id: -1, name: "Shiver Slimes", image: "../images/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Factory"},
 
-            {id: -1, name: "Shiver Slimes V2.0", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+            {id: -1, name: "Shiver Slimes V2.0", image: "../images/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Factory"},
 
             {id: -1, name: "Pythog", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
@@ -517,6 +530,12 @@ const defaultImage = 'images/MissingNo.png';
             description: "", region: "FrozenWasteland"},
 
             {id: -1, name: "Smellmer", image: "../images/MissingNo.png", typings: "", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "FrozenWasteland"},
+
+            {id: -1, name: "Shiver Craze", image: "../images/MissingNo.png", typings: "Psychic", paratypings: "", category: "Solstice", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "FrozenWasteland"},
+
+            {id: -1, name: "Shiver Craze V2.0", image: "../images/MissingNo.png", typings: "Psychic", paratypings: "", category: "SolsticeOther", artist: "", credits: "Idea-Shane+", 
             description: "", region: "FrozenWasteland"},
 
             {id: 1, name: "MC", image: "../images/MissingNo.png", typings: "Normal", paratypings: "", category: "NPC", artist: "", credits: "Idea-Shane+", 
@@ -558,8 +577,10 @@ function filterShivrian() {
         const typings = shivrian.typings ? shivrian.typings.toLowerCase() : "";
         const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
         const region = shivrian.region ? shivrian.region.toLowerCase() : "";
-        const isMatch = (name.includes(lastQuery) || lastQuery === id) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt");
+        const isMatch = (name.includes(lastQuery) || lastQuery === id) && (!category.includes("ace") || Ace) && (!category.includes("ncanon") || Ace) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt") && !category.includes("solstice");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
+        const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
+        const isNCanonMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ncanon"));
         const isTalHelp = credits.includes("tal+") && category==("");
         const isTaltHelp = credits.includes("tal+") && category!=("");
         const isJakeHelp = credits.includes("jake+") && category==("");
@@ -711,13 +732,22 @@ function filterShivrian() {
 
         const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
         const isHalloweenAltMatch = category.includes("halloweenforme");
-        const isFrostbiteMatch = category.includes("frostbite");
+        const isFrostbiteMatch = category.includes("frostbite") && !category.includes("frozen");
         const isFrostbiteAltMatch = category.includes("frozen");
+        const isSolsticeMatch = category.includes("solstice") && !category.includes("solsticeother");
+        const isSolsticeAltMatch = category.includes("solsticeother");
+
 
         if (Alt) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
-        else {
+        if (Ace){
+            card.style.display = isAceMatch ? "block" : "none";
+        }
+        if (NCanon){
+            card.style.display = isNCanonMatch ? "block" : "none";
+        }
+        if (!Alt && !Ace && !NCanon) {
             card.style.display = isMatch ? "block" : "none";
         }
         if (lastQuery === "npc") {
@@ -1308,6 +1338,12 @@ function filterShivrian() {
             card.style.border = "Gray";
             card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
         } 
+        else if (lastQuery === "solstice") {
+            document.body.style.backgroundColor = "Aqua";
+            card.style.backgroundColor = "#8B5CF6";
+            card.style.border = "White";
+            card.style.display = Alt ? (isSolsticeAltMatch ? "block" : "none") : (isSolsticeMatch ? "block" : "none");
+        } 
         else {
             document.body.style.backgroundColor = "";
             card.style.backgroundColor = "";
@@ -1359,12 +1395,16 @@ function closeDetails() {
     document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
+    let aceButton = document.querySelector("button");
     searchBar.style.display = "block";
     searchBar.style.margin = "0 auto";
     searchBar.style.textAlign = "center";
     altButton.style.display = "block";
     altButton.style.margin = "0 auto";
     altButton.style.textAlign = "center";
+    aceButton.style.display = "block";
+    aceButton.style.margin = "0 auto";
+    aceButton.style.textAlign = "center";
     if (lastQuery === "frostbite") {
         document.body.style.backgroundColor = "Aqua";
     } 

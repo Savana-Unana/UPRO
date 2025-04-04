@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "LED Challadin"
+git commit -m "Major Catalog Organization Update"
 git push origin 
 
 ```
