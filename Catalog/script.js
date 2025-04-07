@@ -397,9 +397,6 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 79, name: "Gamblanguin", image: "../lostimages/Gamblanguin.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "A severe gambling addict, this creature had all of it’s assets frozen by the IRS and is constantly on the run from the police. It creates loaded dice to try to alter it’s odds of winning.", region: "Forest"},
 
-            {id: 79, name: "Sacred Gamblanguin", image: "../lostimages/S.Gamblanguin.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
             {id: 78, name: "Gamblanguin (Jake's Take)", image: "../lostimages/JT.Gamblanguin.png", description: "", typings: "Ice", paratypings: "", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "Forest"},
 
@@ -413,6 +410,9 @@ const defaultImage = '../lostimages/MissingNo.png';
             description: "After growing a twin, Perchancey’s twin is completely incinerated by the fire.", region: "Forest"},
 
             {id: 81, name: "Sacred Perchancey", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+            description: "", region: "Forest"},
+
+            {id: 81, name: "Perchancey (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "Forest"},
 
             {id: 82, name: "Perchancealot", image: "../lostimages/Perchancealot.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
