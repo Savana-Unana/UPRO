@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Battles Now Have Images"
+git commit -m "Minor Update to All Images"
 git push origin 
 
 ```
