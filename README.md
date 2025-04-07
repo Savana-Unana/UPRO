@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Added Type Chart and Fixed Buttons"
+git commit -m "Battles Now Have Images"
 git push origin 
 
 ```
