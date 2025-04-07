@@ -397,9 +397,6 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 79, name: "Gamblanguin", image: "../lostimages/Gamblanguin.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "A severe gambling addict, this creature had all of it’s assets frozen by the IRS and is constantly on the run from the police. It creates loaded dice to try to alter it’s odds of winning.", region: "Forest"},
 
-            {id: 78, name: "Gamblanguin (Jake's Take)", image: "../lostimages/JT.Gamblanguin.png", description: "", typings: "Ice", paratypings: "", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "Forest"},
-
             {id: 80, name: "Predadventure", image: "../lostimages/Predadventure.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
             description: "An icy bird, Predadventure constantly sheds it’s icicle feathers, so watch out for falling ice spikes when you’re in icy terrain. This creature Lives in the frozen tundras of __ to maintain it’s low body temperature. The clover leaves on its body have slowly been freezing for generations.", region: "Forest"},
 
