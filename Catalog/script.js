@@ -364,7 +364,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Thoot", image: "../images/Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "Drawn-Ivri+", 
             description: "", region: "Desert"},
 
-            {id: 1000, name: "Sacred Gobligo", image: "../images/S.Gobligo.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
+            {id: 1000, name: "Sacred Thoot", image: "../images/S.Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
             description: "", region: "Desert"},
 
             {id: 1000, name: "Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+", 
@@ -579,6 +579,7 @@ function filterShivrian() {
         const shivrian = shivrianList[index];
         const name = shivrian.name.toLowerCase();
         const id = shivrian.id.toString().toLowerCase();
+        const image = shivrian.image ? shivrian.image.toLowerCase() : "";
         const category = shivrian.category ? shivrian.category.toLowerCase() : "";
         const credits = shivrian.credits ? shivrian.credits.toLowerCase() : "";
         const artist = shivrian.artist ? shivrian.artist.toLowerCase() : "";
@@ -737,6 +738,8 @@ function filterShivrian() {
 
         const isNPC = category.includes("npc");
         const isNPCAlt = category.includes("npca");
+
+        const lostimages = image.includes("lostimage");
 
         const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
         const isHalloweenAltMatch = category.includes("halloweenforme");
@@ -1356,7 +1359,7 @@ function filterShivrian() {
             document.body.style.backgroundColor = "";
             card.style.backgroundColor = "";
             card.style.border = "";
-            if (!isJakes && !isJalts && !isShalts && id!=-0.5 && id!=1001 && id!=150 || shivrian.name=="Capture Capsule") {
+            if (lostimages) {
                 card.style.backgroundColor = "lightgray";
                 card.style.border = "black";
             }
@@ -1384,6 +1387,10 @@ function showDetails(shivrian) {
     else if (shivrian.name === "Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+    }
+    else if (shivrian.name === "Juvie Capture Capsule") {
+        imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
+        imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
     }
     else if (shivrian.name === "Cheetalon") {
         imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
