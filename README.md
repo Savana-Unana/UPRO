@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "TypeChart"
+git commit -m "Updated Credits and Dooties"
 git push origin 
 
 ```
