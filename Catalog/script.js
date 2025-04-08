@@ -202,13 +202,13 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "LED Burking", image: "../lostimages/L.Burking.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+            {id: 1000, name: "Frankfortress", image: "../lostimages/Frankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Sacred Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Ace Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+            {id: 1000, name: "Ace Frankfortress", image: "../lostimages/AceFrankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Wyvearn", image: "../lostimages/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -484,16 +484,22 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
             description: "", region: "Plains/Cave"},
 
-            {id: 1000, name: "Cuddol", image: "../lostimages/MissingNo.png", typings: "Psychic, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Cuddol", image: "../lostimages/Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
 
-            {id: 1000, name: "Dopplegrail", image: "../lostimages/MissingNo.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Sacred Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            description: "", region: "Desert/SecretArea"},
+
+            {id: 1000, name: "Dopplegrail", image: "../lostimages/MissingNo.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
             {id: 1000, name: "Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
             description: "Carrying entire regions on its back, Torterritory is a colossal force to be reckoned with. It can only be caught using a ___ and has seven regional variants. This region’s Torterritories carry the entirety of Shiveria on their back.", region: "MountainRange"},
 
             {id: 1000, name: "Sacred Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+            description: "", region: "MountainRange"},
+
+            {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
 
             {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 

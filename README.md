@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Used LostImages and Images for a reason"
+git commit -m "Added New Sprites"
 git push origin 
 
 ```
