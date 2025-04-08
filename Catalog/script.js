@@ -42,7 +42,6 @@ function setNCanonTrue() {
     autoTriggerSearch();
     console.log("NCanon is now:", NCanon);
 }
-
 // Code from the third script section
 const defaultImage = '../lostimages/MissingNo.png'; 
         const shivrianList = [
@@ -400,7 +399,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 77, name: "Chancey", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
             description: "", region: "Forest"},
 
-            {id: 77, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Fire, Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+            {id: 77, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "Forest"},
 
             {id: 77, name: "Chancey (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
@@ -460,22 +459,22 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Pydromaglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Volcano"},
 
-            {id: 1000, name: "Elixion", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Elixion", image: "../lostimages/Elixion.png", typings: "Normal, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Elixion Blip Forme", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Elixion Blip Forme", image: "../lostimages/BF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Elixion Skip Forme", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Elixion Skip Forme", image: "../lostimages/SF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Elixion Trip Forme", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Elixion Trip Forme", image: "../lostimages/TF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Elixion Lip Forme", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Elixion Lip Forme", image: "../lostimages/LF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/RF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Shiver Jaws", image: "../images/Shiver Jaws.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+, Help-Ariel+", 
@@ -526,7 +525,10 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
 
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 1000, name: "Sacred Cosmicanine", image: "../lostimages/MissingNo.png", typings: "Dark, Light", paratypings: "Psychic", category: "LegendaryAlt", artist: "", credits: "Idea-Tal+", 
+            description: "", region: "MountainRange"},
+
+            {id: 1500, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
             {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
@@ -633,6 +635,7 @@ function filterShivrian() {
         const isIvraltHelp = credits.includes("ivri+") && category!=("");
         const isAmoHelp = credits.includes("amo+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isAmaltHelp = credits.includes("amo+") && category!=("");
+        
         const isTaceHelp = credits.includes("tal") && category.includes("ace"); 
         const isJaceHelp = credits.includes("jake") && category.includes("ace");
         const isShaceHelp = credits.includes("shane") && category.includes("ace");
@@ -1710,7 +1713,7 @@ function filterShivrian() {
             document.body.style.backgroundColor = "";
             card.style.backgroundColor = "";
             card.style.border = "";
-            if (lostimages) {
+            if (lostimages && !NCanon) {
                 card.style.backgroundColor = "lightgray";
                 card.style.border = "black";
             }
