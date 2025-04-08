@@ -21,21 +21,27 @@ document.addEventListener("DOMContentLoaded", () => {
 let Alt = false;
 let Ace = false;
 let NCanon = false;
-    function setAltTrue() {
-        Alt = !Alt;
-        autoTriggerSearch();
-        console.log("Alt is now:", Alt);
-    }
-    function setAceTrue() {
-        Ace = !Ace;
-        autoTriggerSearch();
-        console.log("Ace is now:", Ace);
-    }
-    function setNCanonTrue() {
-        NCanon = !NCanon;
-        autoTriggerSearch();
-        console.log("NCanon is now:", NCanon);
-    }
+
+function setAltTrue() {
+    Alt = !Alt;
+    document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
+    autoTriggerSearch();
+    console.log("Alt is now:", Alt);
+}
+
+function setAceTrue() {
+    Ace = !Ace;
+    document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
+    autoTriggerSearch();
+    console.log("Ace is now:", Ace);
+}
+
+function setNCanonTrue() {
+    NCanon = !NCanon;
+    document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
+    autoTriggerSearch();
+    console.log("NCanon is now:", NCanon);
+}
 
 // Code from the third script section
 const defaultImage = '../lostimages/MissingNo.png'; 
@@ -44,6 +50,9 @@ const defaultImage = '../lostimages/MissingNo.png';
             description: "", region: "Plains/ShiverCo"},
 
             {id: 0, name: "Juvie Capture Capsule", image: "../images/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            description: "", region: "Plains/ShiverCo"},
+
+            {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
             {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -139,6 +148,12 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Bakunbush", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Forest"},
 
+            {id: 1000, name: "Spongus", image: "../lostimages/Spongus.png", typings: "Normal, Psychic", paratypings: "Poison", category: "", artist: "Shane", credits: "Drawn, Idea-Shane+", 
+            description: "", region: "Forest"},
+    
+            {id: 1000, name: "Sacred Spongus", image: "../lostimages/MissingNo.png", typings: "Normal, Psychic", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "Forest"},
+
             {id: 1000, name: "Pigturee", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Forest"},
 
@@ -202,13 +217,16 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "LED Burking", image: "../lostimages/L.Burking.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Frankfortress", image: "../lostimages/Frankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+            {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
+            description: "", region: "Plains"},
+
+            {id: 1000, name: "Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Sacred Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Ace Frankfortress", image: "../lostimages/AceFrankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+            {id: 1000, name: "Ace Frankfortress", image: "../lostimages/AceFrankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Wyvearn", image: "../lostimages/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -254,6 +272,9 @@ const defaultImage = '../lostimages/MissingNo.png';
             description: "", region: "Forest"},
 
             {id: 1000, name: "Puppechyu", image: "../images/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            description: "", region: "Swamp"},
+
+            {id: 1000, name: "Puppechu", image: "../lostimages/OGPuppechu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Sacred Puppechyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -454,55 +475,55 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/MissingNo.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Shiver Jaws", image: "../images/Shiver Jaws.png", typings: "Electric, Ground", paratypings: "Water", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+, Help-Ariel+", 
+            {id: 1000, name: "Shiver Jaws", image: "../images/Shiver Jaws.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+, Help-Ariel+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Jaws V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "Alt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
+            {id: 1000, name: "Shiver Jaws V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "ModernizedAlt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Blades", image: "../images/Shiver Blades.gif", typings: "Steel, Ice", paratypings: "Fire", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 1000, name: "Shiver Blades", image: "../images/Shiver Blades.gif", typings: "Steel, Ice", paratypings: "Fire", category: "Modernized", artist: "Shane", credits: "Drawn-Shane+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Blades V2.0", image: "../lostimages/MissingNo.png", typings: "Steel, Ice", paratypings: "Fire", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Shiver Blades V2.0", image: "../lostimages/MissingNo.png", typings: "Steel, Ice", paratypings: "Fire", category: "ModernizedAlt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Lights", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Shiver Lights", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Lights V2.0", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Shiver Lights V2.0", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "ModernizedAlt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Gogs", image: "../images/Shiver Gogs.png", typings: "Electric, Light", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "Shiver Gogs", image: "../images/Shiver Gogs.png", typings: "Electric, Light", paratypings: "", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Shiver Gogs V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Shiver Gogs V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Light", paratypings: "", category: "ModernizedAlt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "ShiverCo"},
 
-            {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
+            {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
             description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
 
-            {id: 1000, name: "Sacred Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
+            {id: 1000, name: "Sacred Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "LegendaryAlt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
             description: "", region: "Plains/Cave"},
 
-            {id: 1000, name: "Cuddol", image: "../lostimages/Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Cuddol", image: "../lostimages/Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Legendary", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
 
-            {id: 1000, name: "Sacred Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Sacred Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "LegendaryAlt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
 
-            {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "LegendaryAce", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
-            {id: 1000, name: "Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+            {id: 1000, name: "Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Legendary", artist: "", credits: "Idea-Tal+", 
             description: "Carrying entire regions on its back, Torterritory is a colossal force to be reckoned with. It can only be caught using a ___ and has seven regional variants. This region’s Torterritories carry the entirety of Shiveria on their back.", region: "MountainRange"},
 
-            {id: 1000, name: "Sacred Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+            {id: 1000, name: "Sacred Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "LegendaryAlt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
 
-            {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "", artist: "", credits: "Idea-Tal+", 
+            {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
 
-            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 150, name: "TwoMew.jpeg.png.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
             {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
@@ -550,7 +571,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: -1, name: "Shiver Craze", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Solstice", artist: "", credits: "Idea-Shane+", 
             description: "", region: "FrozenWasteland"},
 
-            {id: -1, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "SolsticeOther", artist: "", credits: "Idea-Shane+", 
+            {id: -1, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "ModernizedSolsticeOther", artist: "", credits: "Idea-Shane+", 
             description: "", region: "FrozenWasteland"},
 
             {id: 1, name: "MC", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "NPC", artist: "", credits: "Idea-Shane+", 
@@ -596,169 +617,235 @@ function filterShivrian() {
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
         const isNCanonMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ncanon"));
-        const isTalHelp = credits.includes("tal+") && category==("");
+
+        const isTalHelp = credits.includes("tal+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isTaltHelp = credits.includes("tal+") && category!=("");
-        const isJakeHelp = credits.includes("jake+") && category==("");
+        const isJakeHelp = credits.includes("jake+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isJaltHelp = credits.includes("jake+") && category!=("");
-        const isShaneHelp = credits.includes("shane+") && category==("");
+        const isShaneHelp = credits.includes("shane+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isShaltHelp = credits.includes("shane+") && category!=("");
-        const isArielHelp = credits.includes("ariel+") && category==("");
+        const isArielHelp = credits.includes("ariel+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isArialtHelp = credits.includes("ariel+") && category!=("");
-        const isIvriHelp = credits.includes("ivri+") && category==("");
+        const isIvriHelp = credits.includes("ivri+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isIvraltHelp = credits.includes("ivri+") && category!=("");
-        const isAmoHelp = credits.includes("amo+") && category==("");
+        const isAmoHelp = credits.includes("amo+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isAmaltHelp = credits.includes("amo+") && category!=("");
+        const isTaceHelp = credits.includes("tal") && category.includes("ace"); 
+        const isJaceHelp = credits.includes("jake") && category.includes("ace");
+        const isShaceHelp = credits.includes("shane") && category.includes("ace");
+        const isAraceHelp = credits.includes("ariel") && category.includes("ace");
+        const isIvaceHelp = credits.includes("ivri") && category.includes("ace");
+        const isAmaceHelp = credits.includes("amo") && category.includes("ace");
 
-        const isTals = artist == ("tal") && category==("") ; 
-        const isTalts = artist == ("tal") && category!=("") ;
-        const isJakes = artist == ("jake") && category==("") ;
-        const isJalts =  artist == ("jake") && category!=("") ;
-        const isShanes =  artist == ("shane") && category==("") ;
-        const isShalts =  artist == ("shane") && category!=("") ;
-        const isArialt =  artist == ("ariel") && category!=("") ;
-        const isAriels =  artist == ("ariel") && category==("") ;
-        const isIvris =  artist == ("ivri") && category==("") ;
-        const isIvralts = artist == ("ivri") && category!=("") ;
-        const isAmos =  artist == ("amo") && category==("") ;
-        const isAmalts =  artist == ("amo") && category!=("") ;
+        const isTace = artist.includes("tal") && category.includes("ace"); 
+        const isJace = artist.includes("jake") && category.includes("ace");
+        const isShace =  artist.includes("shane") && category.includes("ace");
+        const isArace =  artist.includes("ariel") && category.includes("ace");
+        const isIvace =  artist.includes("ivri") && category.includes("ace");
+        const isAmace =  artist.includes("amo") && category.includes("ace");
+        
+        const isTals = artist.includes("tal") && !(category.includes("alt") && category.includes("forme") && category.includes("solstice") && category.includes("ncanon") && category.includes("ace")); 
+        const isJakes = artist.includes("jake") && !(category.includes("alt") && category.includes("forme") && category.includes("solstice") && category.includes("ncanon") && category.includes("ace"));
+        const isShanes =  artist.includes("shane") && !(category.includes("alt") && category.includes("forme") && category.includes("solstice") && category.includes("ncanon") && category.includes("ace"));
+        const isAriels =  artist.includes("ariel") && !(category.includes("alt") && category.includes("forme") && category.includes("solstice") && category.includes("ncanon") && category.includes("ace"));
+        const isIvris =  artist.includes("ivri") && !(category.includes("alt") && category.includes("forme") && category.includes("solstice") && category.includes("ncanon") && category.includes("ace"));
+        const isAmos =  artist.includes("amo") && !(category.includes("alt") && category.includes("forme") && category.includes("solstice") && category.includes("ncanon") && category.includes("ace"));
+        
+        const isTalts = artist.includes("tal") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isJalts =  artist.includes("jake") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isShalts =  artist.includes("shane")  && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isArialts =  artist.includes("ariel")  && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isIvralts = artist.includes("ivri") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isAmalts =  artist.includes("amo") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
 
-        const isFire = typings.includes("fire") && category == ("");
-        const isWater = typings.includes("water") && category == ("");
-        const isGrass = typings.includes("grass") && category == ("");
-        const isElectric = typings.includes("electric") && category == ("");
-        const isIce = typings.includes("ice") && category == ("");
-        const isFighting = typings.includes("fighting") && category == ("");
-        const isPoison = typings.includes("poison") && category == ("");
-        const isGround = typings.includes("ground") && category == ("");
-        const isFlying = typings.includes("flying") && category == ("");
-        const isPsychic = typings.includes("psychic") && category == ("");
-        const isBug = typings.includes("bug") && category == ("");
-        const isRock = typings.includes("rock") && category == ("");
-        const isGhost = typings.includes("ghost") && category == ("");
-        const isDragon = typings.includes("dragon") && category == ("");
-        const isDark = typings.includes("dark") && category == ("");
-        const isSteel = typings.includes("steel") && category == ("");
-        const isFairy = typings.includes("fairy") && category == ("");
-        const isNormal = typings.includes("normal") && category == ("");
-        const isLight = typings.includes("light") && category == ("");
+        const isFire = typings.includes("fire") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isWater = typings.includes("water") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isGrass = typings.includes("grass") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isElectric = typings.includes("electric") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isIce = typings.includes("ice") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isFighting = typings.includes("fighting") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isPoison = typings.includes("poison") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isGround = typings.includes("ground") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isFlying = typings.includes("flying") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isPsychic = typings.includes("psychic") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isBug = typings.includes("bug") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isRock = typings.includes("rock") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isGhost = typings.includes("ghost") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isDragon = typings.includes("dragon") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isDark = typings.includes("dark") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isSteel = typings.includes("steel") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isFairy = typings.includes("fairy") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isNormal = typings.includes("normal") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isLight = typings.includes("light") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
 
-        const isFireAlt = typings.includes("fire") && category != ("");
-        const isWaterAlt = typings.includes("water") && category != ("");
-        const isGrassAlt = typings.includes("grass") && category != ("");
-        const isElectricAlt = typings.includes("electric") && category != ("");
-        const isIceAlt = typings.includes("ice") && category != ("");
-        const isFightingAlt = typings.includes("fighting") && category != ("");
-        const isPoisonAlt = typings.includes("poison") && category != ("");
-        const isGroundAlt = typings.includes("ground") && category != ("");
-        const isFlyingAlt = typings.includes("flying") && category != ("");
-        const isPsychicAlt = typings.includes("psychic") && category != ("");
-        const isBugAlt = typings.includes("bug") && category != ("");
-        const isRockAlt = typings.includes("rock") && category != ("");
-        const isGhostAlt = typings.includes("ghost") && category != ("");
-        const isDragonAlt = typings.includes("dragon") && category != ("");
-        const isDarkAlt = typings.includes("dark") && category != ("");
-        const isSteelAlt = typings.includes("steel") && category != ("");
-        const isFairyAlt = typings.includes("fairy") && category != ("");
-        const isNormalAlt = typings.includes("normal") && category != ("");
-        const isLightAlt = typings.includes("light") && category != ("");
+        const isFireAlt = typings.includes("fire") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isWaterAlt = typings.includes("water") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isGrassAlt = typings.includes("grass") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isElectricAlt = typings.includes("electric") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isIceAlt = typings.includes("ice") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isFightingAlt = typings.includes("fighting") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isPoisonAlt = typings.includes("poison") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isGroundAlt = typings.includes("ground") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isFlyingAlt = typings.includes("flying") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isPsychicAlt = typings.includes("psychic") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isBugAlt = typings.includes("bug") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isRockAlt = typings.includes("rock") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isGhostAlt = typings.includes("ghost") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isDragonAlt = typings.includes("dragon") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isDarkAlt = typings.includes("dark") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isSteelAlt = typings.includes("steel") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isFairyAlt = typings.includes("fairy") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isNormalAlt = typings.includes("normal") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isLightAlt = typings.includes("light") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
 
-        const isParaFire = paratypings.includes("fire") && category == ("");
-        const isParaWater = paratypings.includes("water") && category == ("");
-        const isParaGrass = paratypings.includes("grass") && category == ("");
-        const isParaElectric = paratypings.includes("electric") && category == ("");
-        const isParaIce = paratypings.includes("ice") && category == ("");
-        const isParaFighting = paratypings.includes("fighting") && category == ("");
-        const isParaPoison = paratypings.includes("poison") && category == ("");
-        const isParaGround = paratypings.includes("ground") && category == ("");
-        const isParaFlying = paratypings.includes("flying") && category == ("");
-        const isParaPsychic = paratypings.includes("psychic") && category == ("");
-        const isParaBug = paratypings.includes("bug") && category == ("");
-        const isParaRock = paratypings.includes("rock") && category == ("");
-        const isParaGhost = paratypings.includes("ghost") && category == ("");
-        const isParaDragon = paratypings.includes("dragon") && category == ("");
-        const isParaDark = paratypings.includes("dark") && category == ("");
-        const isParaSteel = paratypings.includes("steel") && category == ("");
-        const isParaFairy = paratypings.includes("fairy") && category == ("");
-        const isParaNormal = paratypings.includes("normal") && category == ("");
-        const isParaLight = paratypings.includes("light") && category == ("");
+        const isFireAce = typings.includes("fire") && category.includes("ace");
+        const isWaterAce = typings.includes("water") && category.includes("ace");
+        const isGrassAce = typings.includes("grass") && category.includes("ace");
+        const isElectricAce = typings.includes("electric") && category.includes("ace");
+        const isIceAce = typings.includes("ice") && category.includes("ace");
+        const isFightingAce = typings.includes("fighting") && category.includes("ace");
+        const isPoisonAce = typings.includes("poison") && category.includes("ace");
+        const isGroundAce = typings.includes("ground") && category.includes("ace");
+        const isFlyingAce = typings.includes("flying") && category.includes("ace");
+        const isPsychicAce = typings.includes("psychic") && category.includes("ace");
+        const isBugAce = typings.includes("bug") && category.includes("ace");
+        const isRockAce = typings.includes("rock") && category.includes("ace");
+        const isGhostAce = typings.includes("ghost") && category.includes("ace");
+        const isDragonAce = typings.includes("dragon") && category.includes("ace");
+        const isDarkAce = typings.includes("dark") && category.includes("ace");
+        const isSteelAce = typings.includes("steel") && category.includes("ace");
+        const isFairyAce = typings.includes("fairy") && category.includes("ace");
+        const isNormalAce = typings.includes("normal") && category.includes("ace");
+        const isLightAce = typings.includes("light") && category.includes("ace");
 
-        const isParaFireAlt = paratypings.includes("fire") && category != ("");
-        const isParaWaterAlt = paratypings.includes("water") && category != ("");
-        const isParaGrassAlt = paratypings.includes("grass") && category != ("");
-        const isParaElectricAlt = paratypings.includes("electric") && category != ("");
-        const isParaIceAlt = paratypings.includes("ice") && category != ("");
-        const isParaFightingAlt = paratypings.includes("fighting") && category != ("");
-        const isParaPoisonAlt = paratypings.includes("poison") && category != ("");
-        const isParaGroundAlt = paratypings.includes("ground") && category != ("");
-        const isParaFlyingAlt = paratypings.includes("flying") && category != ("");
-        const isParaPsychicAlt = paratypings.includes("psychic") && category != ("");
-        const isParaBugAlt = paratypings.includes("bug") && category != ("");
-        const isParaRockAlt = paratypings.includes("rock") && category != ("");
-        const isParaGhostAlt = paratypings.includes("ghost") && category != ("");
-        const isParaDragonAlt = paratypings.includes("dragon") && category != ("");
-        const isParaDarkAlt = paratypings.includes("dark") && category != ("");
-        const isParaSteelAlt = paratypings.includes("steel") && category != ("");
-        const isParaFairyAlt = paratypings.includes("fairy") && category != ("");
-        const isParaNormalAlt = paratypings.includes("normal") && category != ("");
-        const isParaLightAlt = paratypings.includes("light") && category != ("");
+        const isParaFire = paratypings.includes("fire") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaWater = paratypings.includes("water") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaGrass = paratypings.includes("grass") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaElectric = paratypings.includes("electric") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaIce = paratypings.includes("ice") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaFighting = paratypings.includes("fighting") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaPoison = paratypings.includes("poison") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaGround = paratypings.includes("ground") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaFlying = paratypings.includes("flying") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaPsychic = paratypings.includes("psychic") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaBug = paratypings.includes("bug") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaRock = paratypings.includes("rock") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaGhost = paratypings.includes("ghost") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaDragon = paratypings.includes("dragon") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaDark = paratypings.includes("dark") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaSteel = paratypings.includes("steel") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaFairy = paratypings.includes("fairy") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaNormal = paratypings.includes("normal") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isParaLight = paratypings.includes("light") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
 
-        const isPlains = region.includes("plains") && category == ("");
-        const isOcean = region.includes("ocean") && category == ("");
-        const isCruise = region.includes("cruise") && category == ("");
-        const isLake = region.includes("lake") && category == ("");
-        const isForest = region.includes("forest") && category == ("");
-        const isDesert = region.includes("desert") && category == ("");
-        const isVolcano = region.includes("volcano") && category == ("");
-        const isRiver = region.includes("river") && category == ("");
-        const isSwamp = region.includes("swamp") && category == ("");
-        const isIceCaps = region.includes("icecaps") && category == ("");
-        const isMountainRange = region.includes("mountainrange") && category == ("");
-        const isShiverCo = region.includes("shiverco") && category == ("");
-        const isCave = region.includes("cave") && category == ("");
-        const isSecretArea = region.includes("secretarea") && category == ("");
-        const isCafe = region.includes("cafe") && category == ("");
-        const isSpookyFactory = region.includes("spookyfactory") && category == ("");
-        const isSpookyJungle = region.includes("spookyjungle") && category == ("");
-        const isFrozenWasteland = region.includes("frozenwasteland") && category == ("");
-        const isUnobtainable = region.includes("unobtainable") && category == ("");
+        const isParaFireAlt = paratypings.includes("fire") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaWaterAlt = paratypings.includes("water") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaGrassAlt = paratypings.includes("grass") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaElectricAlt = paratypings.includes("electric") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaIceAlt = paratypings.includes("ice") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaFightingAlt = paratypings.includes("fighting") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaPoisonAlt = paratypings.includes("poison") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaGroundAlt = paratypings.includes("ground") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaFlyingAlt = paratypings.includes("flying") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaPsychicAlt = paratypings.includes("psychic") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaBugAlt = paratypings.includes("bug") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaRockAlt = paratypings.includes("rock") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaGhostAlt = paratypings.includes("ghost") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaDragonAlt = paratypings.includes("dragon") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaDarkAlt = paratypings.includes("dark") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaSteelAlt = paratypings.includes("steel") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaFairyAlt = paratypings.includes("fairy") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaNormalAlt = paratypings.includes("normal") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaLightAlt = paratypings.includes("light") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
 
-        const isPlainsAlt = region.includes("plains") && category != ("");
-        const isOceanAlt = region.includes("ocean") && category != ("");
-        const isCruiseAlt = region.includes("cruise") && category != ("");
-        const isLakeAlt = region.includes("lake") && category != ("");
-        const isForestAlt = region.includes("forest") && category != ("");
-        const isDesertAlt = region.includes("desert") && category != ("");
-        const isVolcanoAlt = region.includes("volcano") && category != ("");
-        const isRiverAlt = region.includes("river") && category != ("");
-        const isSwampAlt = region.includes("swamp") && category != ("");
-        const isIceCapsAlt = region.includes("icecaps") && category != ("");
-        const isMountainRangeAlt = region.includes("mountainrange") && category != ("");
-        const isShiverCoAlt = region.includes("shiverco") && category != ("");
-        const isCaveAlt = region.includes("cave") && category != ("");
-        const isSecretAreaAlt = region.includes("secretarea") && category != ("");
-        const isCafeAlt = region.includes("cafe") && category != ("");
-        const isSpookyFactoryAlt = region.includes("spookyfactory") && category != ("");
-        const isSpookyJungleAlt = region.includes("spookyjungle") && category != ("");
-        const isFrozenWastelandAlt = region.includes("frozenwasteland") && category != ("");
-        const isUnobtainableAlt = region.includes("unobtainable") && category != ("");
+        const isParaFireAce = paratypings.includes("fire") && category.includes("ace");
+        const isParaWaterAce = paratypings.includes("water") && category.includes("ace");
+        const isParaGrassAce = paratypings.includes("grass") && category.includes("ace");
+        const isParaElectricAce = paratypings.includes("electric") && category.includes("ace");
+        const isParaIceAce = paratypings.includes("ice") && category.includes("ace");
+        const isParaFightingAce = paratypings.includes("fighting") && category.includes("ace");
+        const isParaPoisonAce = paratypings.includes("poison") && category.includes("ace");
+        const isParaGroundAce = paratypings.includes("ground") && category.includes("ace");
+        const isParaFlyingAce = paratypings.includes("flying") && category.includes("ace");
+        const isParaPsychicAce = paratypings.includes("psychic") && category.includes("ace");
+        const isParaBugAce = paratypings.includes("bug") && category.includes("ace");
+        const isParaRockAce = paratypings.includes("rock") && category.includes("ace");
+        const isParaGhostAce = paratypings.includes("ghost") && category.includes("ace");
+        const isParaDragonAce = paratypings.includes("dragon") && category.includes("ace");
+        const isParaDarkAce = paratypings.includes("dark") && category.includes("ace");
+        const isParaSteelAce = paratypings.includes("steel") && category.includes("ace");
+        const isParaFairyAce = paratypings.includes("fairy") && category.includes("ace");
+        const isParaNormalAce = paratypings.includes("normal") && category.includes("ace");
+        const isParaLightAce = paratypings.includes("light") && category.includes("ace");
+
+        const isPlains = region.includes("plains") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isOcean = region.includes("ocean") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isCruise = region.includes("cruise") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isLake = region.includes("lake") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isForest = region.includes("forest") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isDesert = region.includes("desert") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isVolcano = region.includes("volcano") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isRiver = region.includes("river") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isSwamp = region.includes("swamp") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isIceCaps = region.includes("icecaps") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isMountainRange = region.includes("mountainrange") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isCave = region.includes("cave") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isSecretArea = region.includes("secretarea") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isCafe = region.includes("cafe") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isSpookyFactory = region.includes("spookyfactory") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isSpookyJungle = region.includes("spookyjungle") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isFrozenWasteland = region.includes("frozenwasteland") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+        const isUnobtainable = region.includes("unobtainable") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
+
+        const isPlainsAlt = region.includes("plains") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isOceanAlt = region.includes("ocean") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isCruiseAlt = region.includes("cruise") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isLakeAlt = region.includes("lake") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isForestAlt = region.includes("forest") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isDesertAlt = region.includes("desert") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isVolcanoAlt = region.includes("volcano") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isRiverAlt = region.includes("river") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isSwampAlt = region.includes("swamp") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isIceCapsAlt = region.includes("icecaps") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isMountainRangeAlt = region.includes("mountainrange") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isShiverCoAlt = region.includes("shiverco") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isCaveAlt = region.includes("cave") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isSecretAreaAlt = region.includes("secretarea") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isCafeAlt = region.includes("cafe") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isSpookyFactoryAlt = region.includes("spookyfactory") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isSpookyJungleAlt = region.includes("spookyjungle") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isFrozenWastelandAlt = region.includes("frozenwasteland") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isUnobtainableAlt = region.includes("unobtainable") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+
+        const isPlainsAce = region.includes("plains") && category.includes("ace");
+        const isOceanAce = region.includes("ocean") && category.includes("ace");
+        const isCruiseAce = region.includes("cruise") && category.includes("ace");
+        const isLakeAce = region.includes("lake") && category.includes("ace");
+        const isForestAce = region.includes("forest") && category.includes("ace");
+        const isDesertAce = region.includes("desert") && category.includes("ace");
+        const isVolcanoAce = region.includes("volcano") && category.includes("ace");
+        const isRiverAce = region.includes("river") && category.includes("ace");
+        const isSwampAce = region.includes("swamp") && category.includes("ace");
+        const isIceCapsAce = region.includes("icecaps") && category.includes("ace");
+        const isMountainRangeAce = region.includes("mountainrange") && category.includes("ace");
+        const isShiverCoAce = region.includes("shiverco") && category.includes("ace");
+        const isCaveAce = region.includes("cave") && category.includes("ace");
+        const isSecretAreaAce = region.includes("secretarea") && category.includes("ace");
+        const isCafeAce = region.includes("cafe") && category.includes("ace");
+        const isSpookyFactoryAce = region.includes("spookyfactory") && category.includes("ace");
+        const isSpookyJungleAce = region.includes("spookyjungle") && category.includes("ace");
+        const isFrozenWastelandAce = region.includes("frozenwasteland") && category.includes("ace");
+        const isUnobtainableAce = region.includes("unobtainable") && category.includes("ace");
 
         const isNPC = category.includes("npc");
         const isNPCAlt = category.includes("npca");
 
         const lostimages = image.includes("lostimage");
 
-        const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
-        const isHalloweenAltMatch = category.includes("halloweenforme");
-        const isFrostbiteMatch = category.includes("frostbite") && !category.includes("frozen");
-        const isFrostbiteAltMatch = category.includes("frozen");
-        const isSolsticeMatch = category.includes("solstice") && !category.includes("solsticeother");
-        const isSolsticeAltMatch = category.includes("solsticeother");
-
-
-        if (Alt) {
+        if (Alt && !Ace) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
-        if (Ace){
+        if (Ace && !Alt){
             card.style.display = isAceMatch ? "block" : "none";
         }
         if (NCanon){
@@ -768,7 +855,7 @@ function filterShivrian() {
             card.style.display = isMatch ? "block" : "none";
         }
         if (lastQuery === "npc") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isNPCAlt ? "block" : "none";
             } 
             else {
@@ -777,8 +864,11 @@ function filterShivrian() {
             return;
         } 
         if (lastQuery === "tal") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isTalts ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isTace ? "block" : "none";
             } 
             else {
                 card.style.display = isTals ? "block" : "none";
@@ -786,8 +876,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "jake") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isJalts ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isJace ? "block" : "none";
             } 
             else {
                 card.style.display = isJakes ? "block" : "none";
@@ -795,8 +888,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "shane") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isShalts ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isShace ? "block" : "none";
             } 
             else {
                 card.style.display = isShanes ? "block" : "none";
@@ -804,8 +900,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "ariel") {
-            if (Alt) {
-                card.style.display = isArialt ? "block" : "none";
+            if (Alt && !Ace) {
+                card.style.display = isArialts ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isArace ? "block" : "none";
             } 
             else {
                 card.style.display = isAriels ? "block" : "none";
@@ -813,8 +912,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "ivri") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isIvralts ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isIvace ? "block" : "none";
             } 
             else {
                 card.style.display = isIvris ? "block" : "none";
@@ -822,8 +924,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "amo" || lastQuery === "amorayah") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isAmalts ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isAmace ? "block" : "none";
             } 
             else {
                 card.style.display = isAmos ? "block" : "none";
@@ -831,8 +936,11 @@ function filterShivrian() {
             return;
         } 
         if (lastQuery.includes("tal+")) {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isTaltHelp ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isTaceHelp ? "block" : "none";
             } 
             else {
                 card.style.display = isTalHelp ? "block" : "none";
@@ -840,8 +948,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("jake+")) {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isJaltHelp ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isJaceHelp ? "block" : "none";
             } 
             else {
                 card.style.display = isJakeHelp ? "block" : "none";
@@ -849,8 +960,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("shane+")) {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isShaltHelp ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isShaceHelp ? "block" : "none";
             } 
             else {
                 card.style.display = isShaneHelp ? "block" : "none";
@@ -858,8 +972,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("ariel+")) {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isArialtHelp ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isAraceHelp ? "block" : "none";
             } 
             else {
                 card.style.display = isArielHelp ? "block" : "none";
@@ -867,8 +984,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("ivri+")) {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isIvraltHelp ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isIvaceHelp ? "block" : "none";
             } 
             else {
                 card.style.display = isIvriHelp ? "block" : "none";
@@ -876,8 +996,11 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("amo+") || lastQuery.includes("amorayah+")) {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isAmaltHelp ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isAmaceHelp ? "block" : "none";
             } 
             else {
                 card.style.display = isAmoHelp ? "block" : "none";
@@ -885,304 +1008,418 @@ function filterShivrian() {
             return;
         } 
         if (lastQuery === "fire") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isFireAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isFireAce ? "block" : "none";
             } 
             else {
                 card.style.display = isFire ? "block" : "none";
             }
         } 
         else if (lastQuery === "water") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isWaterAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isWaterAce ? "block" : "none";
             } 
             else {
                 card.style.display = isWater ? "block" : "none";
             }
         } 
         else if (lastQuery === "grass") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isGrassAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isGrassAce ? "block" : "none";
             } 
             else {
                 card.style.display = isGrass ? "block" : "none";
             }
         } 
         else if (lastQuery === "electric") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isElectricAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isElectricAce ? "block" : "none";
             } 
             else {
                 card.style.display = isElectric ? "block" : "none";
             }
         } 
         else if (lastQuery === "ice") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isIceAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isIceAce ? "block" : "none";
             } 
             else {
                 card.style.display = isIce ? "block" : "none";
             }
         } 
         else if (lastQuery === "fighting") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isFightingAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isFightingAce ? "block" : "none";
             } 
             else {
                 card.style.display = isFighting ? "block" : "none";
             }
         } 
         else if (lastQuery === "poison") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isPoisonAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isPoisonAce ? "block" : "none";
             } 
             else {
                 card.style.display = isPoison ? "block" : "none";
             }
         } 
         else if (lastQuery === "ground") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isGroundAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isGroundAce ? "block" : "none";
             } 
             else {
                 card.style.display = isGround ? "block" : "none";
             }
         } 
         else if (lastQuery === "flying") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isFlyingAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isFlyingAce ? "block" : "none";
             } 
             else {
                 card.style.display = isFlying ? "block" : "none";
             }
         } 
         else if (lastQuery === "psychic") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isPsychicAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isPsychicAce ? "block" : "none";
             } 
             else {
                 card.style.display = isPsychic ? "block" : "none";
             }
         } 
         else if (lastQuery === "bug") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isBugAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isBugAce ? "block" : "none";
             } 
             else {
                 card.style.display = isBug ? "block" : "none";
             }
         } 
         else if (lastQuery === "rock") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isRockAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isRockAce ? "block" : "none";
             } 
             else {
                 card.style.display = isRock ? "block" : "none";
             }
         } 
         else if (lastQuery === "ghost") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isGhostAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isGhostAce ? "block" : "none";
             } 
             else {
                 card.style.display = isGhost ? "block" : "none";
             }
         } 
         else if (lastQuery === "dragon") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isDragonAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isDragonAce ? "block" : "none";
             } 
             else {
                 card.style.display = isDragon ? "block" : "none";
             }
         } 
         else if (lastQuery === "dark") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isDarkAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isDarkAce ? "block" : "none";
             } 
             else {
                 card.style.display = isDark ? "block" : "none";
             }
         } 
         else if (lastQuery === "steel") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isSteelAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isSteelAce ? "block" : "none";
             } 
             else {
                 card.style.display = isSteel ? "block" : "none";
             }
         } 
         else if (lastQuery === "fairy") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isFairyAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isFairyAce ? "block" : "none";
             } 
             else {
                 card.style.display = isFairy ? "block" : "none";
             }
         } 
         else if (lastQuery === "normal") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isNormalAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isNormalAce ? "block" : "none";
             } 
             else {
                 card.style.display = isNormal ? "block" : "none";
             }
         }
         else if (lastQuery === "light") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isLightAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isLightAce ? "block" : "none";
             } 
             else {
                 card.style.display = isLight ? "block" : "none";
             }
         }
         if (lastQuery === "fire+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaFireAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaFireAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaFire ? "block" : "none";
             }
         } 
         else if (lastQuery === "water+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaWaterAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaWaterAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaWater ? "block" : "none";
             }
         } 
         else if (lastQuery === "grass+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaGrassAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaGrassAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaGrass ? "block" : "none";
             }
         } 
         else if (lastQuery === "electric+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaElectricAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaElectricAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaElectric ? "block" : "none";
             }
         } 
         else if (lastQuery === "ice+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaIceAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaIceAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaIce ? "block" : "none";
             }
         } 
         else if (lastQuery === "fighting+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaFightingAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaFightingAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaFighting ? "block" : "none";
             }
         } 
         else if (lastQuery === "poison+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaPoisonAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaPoisonAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaPoison ? "block" : "none";
             }
         } 
         else if (lastQuery === "ground+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaGroundAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaGrassAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaGround ? "block" : "none";
             }
         } 
         else if (lastQuery === "flying+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaFlyingAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaFlyingAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaFlying ? "block" : "none";
             }
         } 
         else if (lastQuery === "psychic+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaPsychicAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaPsychicAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaPsychic ? "block" : "none";
             }
         } 
         else if (lastQuery === "bug+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaBugAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaBugAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaBug ? "block" : "none";
             }
         } 
         else if (lastQuery === "rock+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaRockAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaRockAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaRock ? "block" : "none";
             }
         } 
         else if (lastQuery === "ghost+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaGhostAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaGhostAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaGhost ? "block" : "none";
             }
         } 
         else if (lastQuery === "dragon+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaDragonAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaDragonAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaDragon ? "block" : "none";
             }
         } 
         else if (lastQuery === "dark+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaDarkAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaDarkAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaDark ? "block" : "none";
             }
         } 
         else if (lastQuery === "steel+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaSteelAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaSteelAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaSteel ? "block" : "none";
             }
         } 
         else if (lastQuery === "fairy+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaFairyAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaFairyAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaFairy ? "block" : "none";
             }
         } 
         else if (lastQuery === "normal+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaNormalAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaNormalAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaNormal ? "block" : "none";
             }
         }
         else if (lastQuery === "light+") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isParaLightAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isParaLightAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaLight ? "block" : "none";
@@ -1190,95 +1427,131 @@ function filterShivrian() {
         }
 
         if (lastQuery === "plains") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isPlainsAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isPlainsAce ? "block" : "none";
             } 
             else {
                 card.style.display = isPlains ? "block" : "none";
             }
         } 
         else if (lastQuery === "ocean") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isOceanAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isOceanAce ? "block" : "none";
             } 
             else {
                 card.style.display = isOcean ? "block" : "none";
             }
         } 
         else if (lastQuery === "cruise") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isCruiseAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isCruiseAce ? "block" : "none";
             } 
             else {
                 card.style.display = isCruise ? "block" : "none";
             }
         } 
         else if (lastQuery === "lake") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isLakeAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isLakeAce ? "block" : "none";
             } 
             else {
                 card.style.display = isLake ? "block" : "none";
             }
         } 
         else if (lastQuery === "forest") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isForestAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isForestAce ? "block" : "none";
             } 
             else {
                 card.style.display = isForest ? "block" : "none";
             }
         } 
         else if (lastQuery === "desert") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isDesertAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isDesertAce ? "block" : "none";
             } 
             else {
                 card.style.display = isDesert ? "block" : "none";
             }
         } 
         else if (lastQuery === "volcano") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isVolcanoAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isVolcanoAce ? "block" : "none";
             } 
             else {
                 card.style.display = isVolcano ? "block" : "none";
             }
         } 
         else if (lastQuery === "river") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isRiverAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isRiverAce ? "block" : "none";
             } 
             else {
                 card.style.display = isRiver ? "block" : "none";
             }
         } 
         else if (lastQuery === "swamp") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isSwampAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isSwampAce ? "block" : "none";
             } 
             else {
                 card.style.display = isSwamp ? "block" : "none";
             }
         } 
         else if (lastQuery === "icecaps") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isIceCapsAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isIceCapsAce ? "block" : "none";
             } 
             else {
                 card.style.display = isIceCaps ? "block" : "none";
             }
         }
         else if (lastQuery === "mountainrange") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isMountainRangeAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isMountainRangeAce ? "block" : "none";
             } 
             else {
                 card.style.display = isMountainRange ? "block" : "none";
             }
         }
         else if (lastQuery === "shiverco") {
-            if (Alt) {
+            if (Alt && !Ace) {
+                card.style.display = isShiverCoAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
                 card.style.display = isShiverCoAlt ? "block" : "none";
             } 
             else {
@@ -1286,80 +1559,149 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "cave") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isCaveAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isCaveAce ? "block" : "none";
             } 
             else {
                 card.style.display = isCave ? "block" : "none";
             }
         } 
         else if (lastQuery === "secretarea") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isSecretAreaAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isSecretAreaAce ? "block" : "none";
             } 
             else {
                 card.style.display = isSecretArea ? "block" : "none";
             }
         } 
         else if (lastQuery === "cafe") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isCafeAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isCafeAce ? "block" : "none";
             } 
             else {
                 card.style.display = isCafe ? "block" : "none";
             }
         } 
         else if (lastQuery === "spookyfactory") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isSpookyFactoryAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isSpookyFactoryAce ? "block" : "none";
             } 
             else {
                 card.style.display = isSpookyFactory ? "block" : "none";
             }
         }
         else if (lastQuery === "spookyjungle") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isSpookyJungleAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isSpookyJungleAce ? "block" : "none";
             } 
             else {
                 card.style.display = isSpookyJungle ? "block" : "none";
             }
         }
         else if (lastQuery === "frozenwasteland") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isFrozenWastelandAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isFrozenWastelandAce ? "block" : "none";
             } 
             else {
                 card.style.display = isFrozenWasteland ? "block" : "none";
             }
         }
         else if (lastQuery === "unobtainable") {
-            if (Alt) {
+            if (Alt && !Ace) {
                 card.style.display = isUnobtainableAlt ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isUnobtainableAce ? "block" : "none";
             } 
             else {
                 card.style.display = isUnobtainable ? "block" : "none";
             }
         }
+        else if (lastQuery === "modernized") {
+            if (Alt && !Ace) {
+                card.style.display = isModernizedAltMatch ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isModernizedAceMatch ? "block" : "none";
+            } 
+            else {
+                card.style.display = isModernizedMatch ? "block" : "none";
+            }
+            return;
+        } 
+        else if (lastQuery === "legendary") {
+            if (Alt && !Ace) {
+                card.style.display = isLegendaryAltMatch ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isLegendaryAceMatch ? "block" : "none";
+            } 
+            else {
+                card.style.display = isLegendaryMatch ? "block" : "none";
+            }
+            return;
+        } 
 
 
         if (lastQuery === "halloween") {
             document.body.style.backgroundColor = "#ED6942";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "black";
-            card.style.display = Alt ? (isHalloweenAltMatch ? "block" : "none") : (isHalloweenMatch ? "block" : "none");
+            if (Alt && !Ace) {
+                card.style.display = isHalloweenAltMatch ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isHalloweenAceMatch ? "block" : "none";
+            } 
+            else {
+                card.style.display = isHalloweenMatch ? "block" : "none";
+            }        
         } 
         else if (lastQuery === "frostbite") {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "Gray";
             card.style.border = "Gray";
-            card.style.display = Alt ? (isFrostbiteAltMatch ? "block" : "none") : (isFrostbiteMatch ? "block" : "none");
+            if (Alt && !Ace) {
+                card.style.display = isFrostbiteAltMatch ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isFrostbiteAceMatch ? "block" : "none";
+            } 
+            else {
+                card.style.display = isFrostbiteMatch ? "block" : "none";
+            }        
         } 
         else if (lastQuery === "solstice") {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "White";
-            card.style.display = Alt ? (isSolsticeAltMatch ? "block" : "none") : (isSolsticeMatch ? "block" : "none");
+            if (Alt && !Ace) {
+                card.style.display = isSolsticeAltMatch ? "block" : "none";
+            } 
+            else if (Ace && !Alt) {
+                card.style.display = isSolsticeAceMatch ? "block" : "none";
+            } 
+            else {
+                card.style.display = isSolsticeMatch ? "block" : "none";
+            }        
         } 
         else {
             document.body.style.backgroundColor = "";

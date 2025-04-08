@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Added New Sprites"
+git commit -m "Major revamped Catalog Code and New Images"
 git push origin 
 
 ```

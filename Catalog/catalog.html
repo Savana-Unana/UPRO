@@ -14,10 +14,20 @@
     <!-- search and alt -->
     <div class="search-alt-container">
         <input type="text" id="search" placeholder="Search by name or number..." oninput="filterShivrian()">
-        <button class="Alt" onclick="setAltTrue()"><span>Activate Alt</span><i></i></button>
-        <button class="Alt" onclick="setAceTrue()"><span>Activate Ace</span><i></i></button>
-        <button class="Alt" onclick="setNCanonTrue()"><span>Activate NCanon</span><i></i></button>
+        
+        <button class="Alt" id="altButton" onclick="setAltTrue()">
+            <span id="altLabel">Activate Alt</span><i></i>
+        </button>
+    
+        <button class="Alt" id="aceButton" onclick="setAceTrue()">
+            <span id="aceLabel">Activate Ace</span><i></i>
+        </button>
+    
+        <button class="Alt" id="nCanonButton" onclick="setNCanonTrue()">
+            <span id="nCanonLabel">Activate NCanon</span><i></i>
+        </button>
     </div>
+    
     
     <script src="../Catalog/script.js"></script>
     
