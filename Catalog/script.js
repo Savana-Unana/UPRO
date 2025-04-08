@@ -94,16 +94,16 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 7, name: "Sacred Charcoon", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 8, name: "Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "", artist: "", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 8, name: "Blazuki", image: "../images/Blazuki.png", typings: "Fire, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 8, name: "Sacred Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 8, name: "Sacred Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "", artist: "", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 9, name: "Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "", artist: "", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
             {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Ace", artist: "", credits: "Idea-Shane+",
