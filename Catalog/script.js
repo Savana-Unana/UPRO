@@ -490,7 +490,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
 
-            {id: 1000, name: "Dopplegrail", image: "../lostimages/MissingNo.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
             {id: 1000, name: "Torterritory", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
