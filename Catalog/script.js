@@ -24,20 +24,32 @@ let NCanon = false;
 
 function setAltTrue() {
     Alt = !Alt;
+    Ace = false;
+    NCanon = false;
     document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
+    document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
+    document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
     autoTriggerSearch();
     console.log("Alt is now:", Alt);
 }
 
 function setAceTrue() {
     Ace = !Ace;
+    Alt = false;
+    NCanon = false;
+    document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
     document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
+    document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
     autoTriggerSearch();
     console.log("Ace is now:", Ace);
 }
 
 function setNCanonTrue() {
     NCanon = !NCanon;
+    Alt = false;
+    Ace = false;
+    document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
+    document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
     document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
     autoTriggerSearch();
     console.log("NCanon is now:", NCanon);
@@ -635,7 +647,7 @@ function filterShivrian() {
         const isIvraltHelp = credits.includes("ivri+") && category!=("");
         const isAmoHelp = credits.includes("amo+") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice") || category.includes("ncanon") || category.includes("ace"));
         const isAmaltHelp = credits.includes("amo+") && category!=("");
-        
+
         const isTaceHelp = credits.includes("tal") && category.includes("ace"); 
         const isJaceHelp = credits.includes("jake") && category.includes("ace");
         const isShaceHelp = credits.includes("shane") && category.includes("ace");
@@ -848,7 +860,7 @@ function filterShivrian() {
 
         const lostimages = image.includes("lostimage");
 
-        if (Alt && !Ace) {
+        if (Alt) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
         if (Ace && !Alt){
@@ -861,7 +873,7 @@ function filterShivrian() {
             card.style.display = isMatch ? "block" : "none";
         }
         if (lastQuery === "npc") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isNPCAlt ? "block" : "none";
             } 
             else {
@@ -870,10 +882,10 @@ function filterShivrian() {
             return;
         } 
         if (lastQuery === "tal") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isTalts ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isTace ? "block" : "none";
             } 
             else {
@@ -882,10 +894,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "jake") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isJalts ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isJace ? "block" : "none";
             } 
             else {
@@ -894,10 +906,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "shane") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isShalts ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isShace ? "block" : "none";
             } 
             else {
@@ -906,10 +918,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "ariel") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isArialts ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isArace ? "block" : "none";
             } 
             else {
@@ -918,10 +930,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "ivri") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isIvralts ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isIvace ? "block" : "none";
             } 
             else {
@@ -930,10 +942,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "amo" || lastQuery === "amorayah") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isAmalts ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isAmace ? "block" : "none";
             } 
             else {
@@ -942,10 +954,10 @@ function filterShivrian() {
             return;
         } 
         if (lastQuery.includes("tal+")) {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isTaltHelp ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isTaceHelp ? "block" : "none";
             } 
             else {
@@ -954,10 +966,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("jake+")) {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isJaltHelp ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isJaceHelp ? "block" : "none";
             } 
             else {
@@ -966,10 +978,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("shane+")) {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isShaltHelp ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isShaceHelp ? "block" : "none";
             } 
             else {
@@ -978,10 +990,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("ariel+")) {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isArialtHelp ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isAraceHelp ? "block" : "none";
             } 
             else {
@@ -990,10 +1002,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("ivri+")) {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isIvraltHelp ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isIvaceHelp ? "block" : "none";
             } 
             else {
@@ -1002,10 +1014,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery.includes("amo+") || lastQuery.includes("amorayah+")) {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isAmaltHelp ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isAmaceHelp ? "block" : "none";
             } 
             else {
@@ -1014,10 +1026,10 @@ function filterShivrian() {
             return;
         } 
         if (lastQuery === "fire") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isFireAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isFireAce ? "block" : "none";
             } 
             else {
@@ -1025,10 +1037,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "water") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isWaterAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isWaterAce ? "block" : "none";
             } 
             else {
@@ -1036,10 +1048,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "grass") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isGrassAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isGrassAce ? "block" : "none";
             } 
             else {
@@ -1047,10 +1059,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "electric") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isElectricAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isElectricAce ? "block" : "none";
             } 
             else {
@@ -1058,10 +1070,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ice") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isIceAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isIceAce ? "block" : "none";
             } 
             else {
@@ -1069,10 +1081,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "fighting") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isFightingAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isFightingAce ? "block" : "none";
             } 
             else {
@@ -1080,10 +1092,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "poison") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isPoisonAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isPoisonAce ? "block" : "none";
             } 
             else {
@@ -1091,10 +1103,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ground") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isGroundAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isGroundAce ? "block" : "none";
             } 
             else {
@@ -1102,10 +1114,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "flying") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isFlyingAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isFlyingAce ? "block" : "none";
             } 
             else {
@@ -1113,10 +1125,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "psychic") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isPsychicAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isPsychicAce ? "block" : "none";
             } 
             else {
@@ -1124,10 +1136,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "bug") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isBugAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isBugAce ? "block" : "none";
             } 
             else {
@@ -1135,10 +1147,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "rock") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isRockAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isRockAce ? "block" : "none";
             } 
             else {
@@ -1146,10 +1158,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ghost") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isGhostAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isGhostAce ? "block" : "none";
             } 
             else {
@@ -1157,10 +1169,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "dragon") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isDragonAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isDragonAce ? "block" : "none";
             } 
             else {
@@ -1168,10 +1180,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "dark") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isDarkAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isDarkAce ? "block" : "none";
             } 
             else {
@@ -1179,10 +1191,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "steel") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isSteelAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isSteelAce ? "block" : "none";
             } 
             else {
@@ -1190,10 +1202,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "fairy") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isFairyAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isFairyAce ? "block" : "none";
             } 
             else {
@@ -1201,10 +1213,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "normal") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isNormalAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isNormalAce ? "block" : "none";
             } 
             else {
@@ -1212,10 +1224,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "light") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isLightAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isLightAce ? "block" : "none";
             } 
             else {
@@ -1223,10 +1235,10 @@ function filterShivrian() {
             }
         }
         if (lastQuery === "fire+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaFireAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaFireAce ? "block" : "none";
             } 
             else {
@@ -1234,10 +1246,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "water+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaWaterAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaWaterAce ? "block" : "none";
             } 
             else {
@@ -1245,10 +1257,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "grass+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaGrassAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaGrassAce ? "block" : "none";
             } 
             else {
@@ -1256,10 +1268,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "electric+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaElectricAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaElectricAce ? "block" : "none";
             } 
             else {
@@ -1267,10 +1279,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ice+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaIceAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaIceAce ? "block" : "none";
             } 
             else {
@@ -1278,10 +1290,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "fighting+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaFightingAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaFightingAce ? "block" : "none";
             } 
             else {
@@ -1289,10 +1301,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "poison+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaPoisonAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaPoisonAce ? "block" : "none";
             } 
             else {
@@ -1300,21 +1312,21 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ground+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaGroundAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
-                card.style.display = isParaGrassAce ? "block" : "none";
+            if (Ace) {
+                card.style.display = isParaGroundAce ? "block" : "none";
             } 
             else {
                 card.style.display = isParaGround ? "block" : "none";
             }
         } 
         else if (lastQuery === "flying+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaFlyingAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaFlyingAce ? "block" : "none";
             } 
             else {
@@ -1322,10 +1334,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "psychic+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaPsychicAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaPsychicAce ? "block" : "none";
             } 
             else {
@@ -1333,10 +1345,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "bug+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaBugAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaBugAce ? "block" : "none";
             } 
             else {
@@ -1344,10 +1356,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "rock+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaRockAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaRockAce ? "block" : "none";
             } 
             else {
@@ -1355,10 +1367,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ghost+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaGhostAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaGhostAce ? "block" : "none";
             } 
             else {
@@ -1366,10 +1378,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "dragon+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaDragonAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaDragonAce ? "block" : "none";
             } 
             else {
@@ -1377,10 +1389,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "dark+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaDarkAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaDarkAce ? "block" : "none";
             } 
             else {
@@ -1388,10 +1400,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "steel+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaSteelAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaSteelAce ? "block" : "none";
             } 
             else {
@@ -1399,10 +1411,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "fairy+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaFairyAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaFairyAce ? "block" : "none";
             } 
             else {
@@ -1410,10 +1422,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "normal+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaNormalAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaNormalAce ? "block" : "none";
             } 
             else {
@@ -1421,10 +1433,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "light+") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isParaLightAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isParaLightAce ? "block" : "none";
             } 
             else {
@@ -1433,10 +1445,10 @@ function filterShivrian() {
         }
 
         if (lastQuery === "plains") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isPlainsAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isPlainsAce ? "block" : "none";
             } 
             else {
@@ -1444,10 +1456,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "ocean") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isOceanAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isOceanAce ? "block" : "none";
             } 
             else {
@@ -1455,10 +1467,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "cruise") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isCruiseAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isCruiseAce ? "block" : "none";
             } 
             else {
@@ -1466,10 +1478,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "lake") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isLakeAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isLakeAce ? "block" : "none";
             } 
             else {
@@ -1477,10 +1489,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "forest") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isForestAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isForestAce ? "block" : "none";
             } 
             else {
@@ -1488,10 +1500,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "desert") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isDesertAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isDesertAce ? "block" : "none";
             } 
             else {
@@ -1499,10 +1511,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "volcano") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isVolcanoAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isVolcanoAce ? "block" : "none";
             } 
             else {
@@ -1510,10 +1522,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "river") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isRiverAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isRiverAce ? "block" : "none";
             } 
             else {
@@ -1521,10 +1533,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "swamp") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isSwampAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isSwampAce ? "block" : "none";
             } 
             else {
@@ -1532,10 +1544,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "icecaps") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isIceCapsAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isIceCapsAce ? "block" : "none";
             } 
             else {
@@ -1543,10 +1555,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "mountainrange") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isMountainRangeAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isMountainRangeAce ? "block" : "none";
             } 
             else {
@@ -1554,10 +1566,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "shiverco") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isShiverCoAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isShiverCoAlt ? "block" : "none";
             } 
             else {
@@ -1565,10 +1577,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "cave") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isCaveAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isCaveAce ? "block" : "none";
             } 
             else {
@@ -1576,10 +1588,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "secretarea") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isSecretAreaAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isSecretAreaAce ? "block" : "none";
             } 
             else {
@@ -1587,10 +1599,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "cafe") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isCafeAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isCafeAce ? "block" : "none";
             } 
             else {
@@ -1598,10 +1610,10 @@ function filterShivrian() {
             }
         } 
         else if (lastQuery === "spookyfactory") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isSpookyFactoryAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isSpookyFactoryAce ? "block" : "none";
             } 
             else {
@@ -1609,10 +1621,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "spookyjungle") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isSpookyJungleAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isSpookyJungleAce ? "block" : "none";
             } 
             else {
@@ -1620,10 +1632,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "frozenwasteland") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isFrozenWastelandAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isFrozenWastelandAce ? "block" : "none";
             } 
             else {
@@ -1631,10 +1643,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "unobtainable") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isUnobtainableAlt ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isUnobtainableAce ? "block" : "none";
             } 
             else {
@@ -1642,10 +1654,10 @@ function filterShivrian() {
             }
         }
         else if (lastQuery === "modernized") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isModernizedAltMatch ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isModernizedAceMatch ? "block" : "none";
             } 
             else {
@@ -1654,10 +1666,10 @@ function filterShivrian() {
             return;
         } 
         else if (lastQuery === "legendary") {
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isLegendaryAltMatch ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isLegendaryAceMatch ? "block" : "none";
             } 
             else {
@@ -1666,15 +1678,14 @@ function filterShivrian() {
             return;
         } 
 
-
-        if (lastQuery === "halloween") {
+        else if (lastQuery === "halloween") {
             document.body.style.backgroundColor = "#ED6942";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "black";
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isHalloweenAltMatch ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isHalloweenAceMatch ? "block" : "none";
             } 
             else {
@@ -1685,10 +1696,10 @@ function filterShivrian() {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "Gray";
             card.style.border = "Gray";
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isFrostbiteAltMatch ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isFrostbiteAceMatch ? "block" : "none";
             } 
             else {
@@ -1699,10 +1710,10 @@ function filterShivrian() {
             document.body.style.backgroundColor = "Aqua";
             card.style.backgroundColor = "#8B5CF6";
             card.style.border = "White";
-            if (Alt && !Ace) {
+            if (Alt) {
                 card.style.display = isSolsticeAltMatch ? "block" : "none";
             } 
-            else if (Ace && !Alt) {
+            if (Ace) {
                 card.style.display = isSolsticeAceMatch ? "block" : "none";
             } 
             else {
