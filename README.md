@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Return of the Hi"
+git commit -m "My Final Message"
 git push origin 
 
 ```
