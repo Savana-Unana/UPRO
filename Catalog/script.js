@@ -561,7 +561,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-            {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary-Alt", artist: "Shane", credits: "Drawn-Shane+", 
+            {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../lostimages/MissingNo", typings: "", paratypings: "", category: "Legendary-Alt", artist: "Shane", credits: "Drawn-Shane+", 
             description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
             {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
