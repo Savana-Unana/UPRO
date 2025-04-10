@@ -135,7 +135,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 10, name: "Sacred Dribsom", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
             description: "", region: ""},
 
-            {id: 10, name: "Dribtar", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Idea-Jake+Shane+",
+            {id: 10, name: "Dribtar", image: "../images/Dribtar.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Idea-Jake+Shane+",
             description: "", region: ""},
 
             {id: 10, name: "Sacred Dribtar", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
