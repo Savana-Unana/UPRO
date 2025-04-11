@@ -81,10 +81,10 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 3, name: "Hileaph", image: "../images/Hileaph.png", typings: "Grass, Fighting", paratypings: "Ground", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
             description: "", region: "Plains"},
 
-            {id: 3, name: "Sacred Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Ground", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 3, name: "Sacred Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains"},
 
-            {id: 3, name: "Ace Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Ground", paratypings: "Normal", category: "Ace", artist: "", credits: "Idea-Shane+",
+            {id: 3, name: "Ace Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
 
             {id: 4, name: "Axolitl", image: "../images/Axolitl.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -282,10 +282,10 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Thruck", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Thrack", image: "../images/Thrack.png", typings: "Normal, Rock", paratypings: "Fire", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
+            {id: 1000, name: "Thrack", image: "../images/Thrack.png", typings: "Normal, Rock", paratypings: "Artillery", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Sacred Thrack", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+            {id: 1000, name: "Sacred Thrack", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "Artillery", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
@@ -543,7 +543,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Doppe-Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
 
-            {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy", category: "Legendary-Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy, Artillery", category: "Legendary-Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
             {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Legendary", artist: "Tal", credits: "Idea-Tal+", 
