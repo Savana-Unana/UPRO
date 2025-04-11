@@ -528,7 +528,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Harmanbloon/Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
@@ -549,7 +549,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Legendary", artist: "Tal", credits: "Idea-Tal+", 
             description: "Carrying entire regions on its back, Torterritory is a colossal force to be reckoned with. It can only be caught using a ___ and has seven regional variants. This region’s Torterritories carry the entirety of Shiveria on their back.", region: "MountainRange"},
 
-            {id: 1000, name: "Sacred Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
+            {id: 1000, name: "Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
 
             {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary", artist: "Tal", credits: "Artist+Idea-Tal+", 
