@@ -547,7 +547,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
             {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Legendary", artist: "Tal", credits: "Idea-Tal+", 
-            description: "Carrying entire regions on its back, Torterritory is a colossal force to be reckoned with. It can only be caught using a ___ and has seven regional variants. This region’s Torterritories carry the entirety of Shiveria on their back.", region: "MountainRange"},
+            description: "Torterritory is a colossal force to be reckoned with. It can only be caught using a very large Capture Capsule This Torterritories of Shivria carry an exact copy of Shivria on their back, only smaller. Legends say that the real Shivria is on a giant Torterritory, and that's why it moves.", region: "MountainRange"},
 
             {id: 1000, name: "Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "MountainRange"},
