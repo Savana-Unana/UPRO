@@ -126,7 +126,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Steel", paratypings: "Psychic", category: "Ace", artist: "", credits: "Idea-Shane+",
+            {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Cruise"},
             
             {id: 10, name: "Dribsom", image: "../images/Dribsom.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+",
