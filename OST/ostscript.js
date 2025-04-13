@@ -211,7 +211,9 @@ function filterSongsList(songs) {
         return true;
     });
 }
+
 let coincidencePlay = true;
+let currentAudio = null; // Make sure this gets set when a song is played
 
 const toggleCoincidenceButton = document.createElement("button");
 toggleCoincidenceButton.textContent = "Single-Songs: ON";
@@ -227,7 +229,7 @@ toggleCoincidenceButton.onclick = () => {
     toggleCoincidenceButton.textContent = `Single-Songs: ${coincidencePlay ? "ON" : "OFF"}`;
 
     if (coincidencePlay && currentAudio) {
-        // Stop all other audio elements except the current one
+        // Pause all other audio except the current one
         const allAudios = document.querySelectorAll("audio");
         allAudios.forEach(audio => {
             if (audio !== currentAudio) {
@@ -237,19 +239,27 @@ toggleCoincidenceButton.onclick = () => {
             }
         });
     }
+};
+
 const toggleMassButton = document.createElement("button");
 toggleMassButton.textContent = "Mass Play";
-if (coincidencePlay && currentAudio) {
+toggleMassButton.style.position = "fixed";
+toggleMassButton.style.top = "50px";
+toggleMassButton.style.right = "10px";
+toggleMassButton.style.zIndex = "1000";
+toggleMassButton.style.padding = "5px 10px";
+toggleMassButton.style.fontSize = "12px";
+
+toggleMassButton.onclick = () => {
     const allAudios = document.querySelectorAll("audio");
     allAudios.forEach(audio => {
         audio.play();
         const btn = audio.parentElement.querySelector("button");
         if (btn) btn.textContent = "Pause";
     });
-}
 };
 
 document.body.appendChild(toggleCoincidenceButton);
+document.body.appendChild(toggleMassButton);
 
-
-displaySongs(sortSongs(audioFiles));
+displaySongs(sortSongs(audioFiles)); // Assuming these functions exist and work
