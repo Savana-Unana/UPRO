@@ -237,6 +237,16 @@ toggleCoincidenceButton.onclick = () => {
             }
         });
     }
+const toggleMassButton = document.createElement("button");
+toggleMassButton.textContent = "Mass Play";
+if (coincidencePlay && currentAudio) {
+    const allAudios = document.querySelectorAll("audio");
+    allAudios.forEach(audio => {
+        audio.play();
+        const btn = audio.parentElement.querySelector("button");
+        if (btn) btn.textContent = "Pause";
+    });
+}
 };
 
 document.body.appendChild(toggleCoincidenceButton);
