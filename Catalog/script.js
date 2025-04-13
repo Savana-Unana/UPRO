@@ -35,7 +35,7 @@ function setAltTrue() {
 }
 function setMadeTrue() {
     Made = !Made;
-    document.getElementById('madelabel').textContent = Made ? "Deactivate Made" : "Activate Made";
+    document.getElementById('madeLabel').textContent = Made ? "Deactivate Made" : "Activate Made";
     autoTriggerSearch();
     console.log("Made is now:", Made);
 }
