@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 let Alt = false;
 let Ace = false;
 let NCanon = false;
+let Made = false;
 
 function setAltTrue() {
     Alt = !Alt;
@@ -31,6 +32,12 @@ function setAltTrue() {
     document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
     autoTriggerSearch();
     console.log("Alt is now:", Alt);
+}
+function setMadeTrue() {
+    Made = !Made;
+    document.getElementById('madelabel').textContent = Made ? "Deactivate Made" : "Activate Made";
+    autoTriggerSearch();
+    console.log("Made is now:", Made);
 }
 
 function setAceTrue() {
@@ -880,6 +887,7 @@ function filterShivrian() {
         const isNPCAlt = category.includes("npca");
 
         const lostimages = image.includes("lostimage");
+        const normimages = !image.includes("lostimage");
 
         const isLegendaryMatch = category.includes("legendary") && !category.includes("-");
         const isLegendaryAltMatch = category.includes("legendary-") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -1767,6 +1775,9 @@ function filterShivrian() {
                 card.style.backgroundColor = "lightgray";
                 card.style.border = "black";
             }
+        }
+        if (Made) {
+            card.style.display = normimages ? "block" : "none";
         }
     });
 }
