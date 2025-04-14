@@ -1,6 +1,7 @@
 const audioFiles = [
+    {name: "Interstellar Ascension", file: "../Songs/InterstellarAscension.mp3", ost: 101, type: "Interstellar Ascension - AceTheme", typing: "Psychic", order: 3 },
     {name: "Voodoo", file: "../Songs/static.mp3", ost: 666, type: "Dead Doll Island - Theme", typing: "Dark", order: 1 },
-    {name: "Greatest", file: "../Songs/Greatest.mp3", ost: 666, type: "Greatest - MemeTheme", typing: "Dark", order: 2 },
+    {name: "Greatest", file: "../Songs/Greatest.mp3", ost: 13, type: "Greatest - MemeTheme", typing: "Steel", order: 2 },
     {name: "Carpet", file: "../Songs/Carpet.mp3", ost: 1000, type: "Home - MemeTheme", typing: "Normal", order: 0 }
 
 ];
