@@ -1787,6 +1787,8 @@ function showDetails(shivrian) {
     document.getElementById("search").style.display = "none"; 
     document.getElementById("search").style.display = "none"; 
     document.querySelector("button").style.display = "none";
+    document.querySelector("acebutton").style.display = "none";
+    document.querySelector("ncanonbutton").style.display = "none";
     document.getElementById("nav-buttons").style.display = "none";
     document.getElementById("shivrian-name").innerText = shivrian.name;
     let imageElement = document.getElementById("shivrian-image");
@@ -1825,13 +1827,17 @@ function closeDetails() {
     document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
-    let aceButton = document.querySelector("button");
+    let aceButton = document.querySelector("acebutton");
+    let ncanonButton = document.querySelector("ncanonbutton");
     searchBar.style.display = "block";
     searchBar.style.margin = "0 auto";
     searchBar.style.textAlign = "center";
     altButton.style.display = "block";
     altButton.style.margin = "0 auto";
     altButton.style.textAlign = "center";
+    aceButton.style.display = "block";
+    aceButton.style.margin = "0 auto";
+    aceButton.style.textAlign = "center";
     aceButton.style.display = "block";
     aceButton.style.margin = "0 auto";
     aceButton.style.textAlign = "center";
