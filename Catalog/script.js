@@ -1827,8 +1827,8 @@ function closeDetails() {
     document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
-    let aceButton = document.querySelector("acebutton");
-    let ncanonButton = document.querySelector("ncanonbutton");
+    let aceButton = document.querySelector("button");
+    let ncanonButton = document.querySelector("button");
     searchBar.style.display = "block";
     searchBar.style.margin = "0 auto";
     searchBar.style.textAlign = "center";
