@@ -544,7 +544,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Proto-Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary-Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
             description: "", region: "Plains/Cave"},
 
-            {id: 1000, name: "Cuddol", image: "../images/Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Legendary", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+            {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Legendary", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
             description: "", region: "Desert/SecretArea"},
 
             {id: 1000, name: "Doppe-Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
