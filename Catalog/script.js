@@ -271,7 +271,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Wyrachnos", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Plasttack", image: "../lostimages/MissingNo.png", typings: "Ghost", paratypings: "Normal", category: "", artist: "", credits: "Drawn-Shane+", 
+            {id: 1000, name: "Plasttack", image: "../images/Plasttack.png", typings: "Ghost", paratypings: "Normal", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+", 
             description: "", region: "Swamp"},
     
             {id: 1000, name: "Sacred Plasttack", image: "../lostimages/MissingNo.png", typings: "Ghost", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+", 
