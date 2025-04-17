@@ -154,7 +154,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 15, name: "Sacred Bakunbush", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
-            {id: 16, name: "Pigturee", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 16, name: "Pigturee", image: "../images/Pigturee.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
             description: "", region: "Forest"},
  
             {id: 16, name: "Sacred Pigturee", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
