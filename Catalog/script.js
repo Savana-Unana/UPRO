@@ -73,25 +73,25 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
-            {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
             description: "", region: "Plains"},
 
-            {id: 1, name: "Sacred Erbacub", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 1, name: "Sacred Erbacub", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+",
             description: "", region: "Plains"},
 
-            {id: 2, name: "Bearosion", image: "../images/Bearosion.png", typings: "Grass, Fighting", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 2, name: "Bearosion", image: "../images/Bearosion.png", typings: "Grass, Fighting", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
             description: "", region: "Plains"},
 
-            {id: 2, name: "Sacred Bearosion", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 2, name: "Sacred Bearosion", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+",
             description: "", region: "Plains"},
 
-            {id: 3, name: "Hileaph", image: "../images/Hileaph.png", typings: "Grass, Fighting", paratypings: "Ground", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 3, name: "Hileaph", image: "../images/Hileaph.png", typings: "Grass, Fighting", paratypings: "Ground", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
             description: "", region: "Plains"},
 
-            {id: 3, name: "Sacred Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 3, name: "Sacred Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Alt", artist: "", credits: "Idea-Jake+",
             description: "", region: "Plains"},
 
-            {id: 3, name: "Ace Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Ace", artist: "", credits: "Idea-Shane+",
+            {id: 3, name: "Ace Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Ace", artist: "", credits: "Idea-Jake+",
             description: "", region: "Cruise"},
 
             {id: 4, name: "Axolitl", image: "../images/Axolitl.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -121,19 +121,19 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 7, name: "Sacred Charcoon", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Forest"},
 
-            {id: 8, name: "Blazuki", image: "../images/Blazuki.png", typings: "Fire, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 8, name: "Blazuki", image: "../images/Blazuki.png", typings: "Fire, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+",
             description: "", region: "Forest"},
 
-            {id: 8, name: "Sacred Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 8, name: "Sacred Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "", artist: "", credits: "Drawn-Jake+Idea-Shane+",
+            {id: 9, name: "Furnacoon", image: "../images/Furnacoon.png", typings: "Fire, Flying", paratypings: "Steel", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Alt", artist: "", credits: "Idea-Shane+Jake+",
             description: "", region: "Forest"},
 
-            {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Ace", artist: "", credits: "Idea-Shane+",
+            {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Ace", artist: "", credits: "Idea-Shane+Jake+",
             description: "", region: "Cruise"},
 
             {id: 10, name: "Pretengerine", image: "../lostimages/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
