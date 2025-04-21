@@ -295,7 +295,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Thrack", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "Artillery", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
-            {id: 1000, name: "Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Fumerey", image: "../images/Fumerey.png", typings: "Poison", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
             description: "", region: "Forest"},
 
             {id: 1000, name: "Sacred Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
