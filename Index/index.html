@@ -8,15 +8,16 @@
 </head>
 <script>
     let switcherooActive = false;
-    function triggerSwitcheroo() {
+    function triggerSwitcheroo() 
+    {
         switcherooActive = !switcherooActive;
-        const configs = switcherooActive? 
+        const configs = switcherooActive ? 
         [
             { id: "btn1", text: "Type Chart", href: "../TypeChart/typechart.html", bg: "linear-gradient(135deg, #c084fc, #7c3aed)" },
             { id: "btn2", text: "Credits", href: "../Credits/credits.html", bg: "linear-gradient(135deg, #d6b39c, #8b5e3c)" },
             { id: "btn3", text: "Dooties", href: "../Credits/dootie.html", bg: "linear-gradient(135deg, #aaa, #444)" },
             { id: "btn4", text: "???", href: "#", bg: "linear-gradient(135deg, #ffffff, #ffffff)" }
-        ]: 
+        ] : 
         [
             { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
             { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
@@ -25,14 +26,17 @@
         ];
         configs.forEach(config => {
             const btn = document.getElementById(config.id);
+            const anchor = btn.parentElement;
             btn.textContent = config.text;
             btn.style.background = config.bg;
+            anchor.href = config.href;
         });
         for (let i = 1; i <= 4; i++) {
             const screen = document.getElementById(`screen${i}`);
             screen.href = configs[i - 1].href;
         }
     }
+
     window.onload = function() {
         const initialConfigs = [
             { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #95fdd9, #32e5a6)" },
