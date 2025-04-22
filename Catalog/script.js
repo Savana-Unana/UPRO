@@ -235,10 +235,10 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Challadin Toasted Forme", image: "../images/ChalladinTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Burking", image: "../images/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "Burking", image: "../lostimages/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
     
-            {id: 1000, name: "Burking Toasted Forme", image: "../images/BurkingTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "Burking Toasted Forme", image: "../lostimages/BurkingTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Birthday Buntot", image: "../lostimages/BD.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane", credits: "Idea-Shane+", 
@@ -346,7 +346,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Dressiani", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Plains"},
 
-            {id: 1000, name: "Strawngle", image: "../lostimages/Strawngle.png", typings: "Normal", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Strawngle", image: "../images/Strawngle.png", typings: "Normal", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Sacred Strawngle", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
