@@ -79,7 +79,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
-            {id: 0, name: "Juvie Capture Capsule", image: "../images/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+            {id: 0, name: "Juvie Capture Capsule", image: "../lostimages/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
             {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+",
@@ -223,7 +223,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water, Bug", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
             description: "", region: "River"},
 
-            {id: 1000, name: "Buntot", image: "../images/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+            {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
             description: "", region: "Plains"},
 
             {id: 1000, name: "Buntot Toasted Forme", image: "../images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
@@ -358,7 +358,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Stwacha", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Blizard", image: "../images/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Blizard", image: "../lostimages/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "IceCaps"},
 
             {id: 1000, name: "Cryodon", image: "../images/Cryodon.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
@@ -403,7 +403,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Ampede", image: "../lostimages/MissingNo.png", typings: "Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+, Idea-Shane+", 
             description: "", region: "MountainRange"},
 
-            {id: 1000, name: "Prismite", image: "../images/Prismite.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+            {id: 1000, name: "Prismite", image: "../lostimages/Prismite.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
             description: "", region: "Swamp"},
 
             {id: 1000, name: "Sacred Prismite", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -424,10 +424,10 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Mos", image: "../lostimages/Mos.png", typings: "Ghost, Normal", paratypings: "", category: "NCanon", artist: "Jake", credits: "Draw-Jake+", 
             description: "", region: "Desert"},
 
-            {id: 1000, name: "Thoot", image: "../images/Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "Drawn-Ivri+", 
+            {id: 1000, name: "Thoot", image: "../lostimages/Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "Drawn-Ivri+", 
             description: "", region: "Desert"},
 
-            {id: 1000, name: "Sacred Thoot", image: "../images/S.Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
+            {id: 1000, name: "Sacred Thoot", image: "../lostimages/S.Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
             description: "", region: "Desert"},
 
             {id: 1000, name: "Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+", 
