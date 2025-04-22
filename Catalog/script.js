@@ -35,12 +35,12 @@ function setAltTrue() {
     console.log("Alt is now:", Alt);
 }
 function setMadeTrue() {
-    if (Made == true && UnMade = false;){
+    if (Made == true && UnMade == false){
         Made = false;
         UnMade = true;
         document.getElementById('madeLabel').textContent = "Deactivate UnMade";
     }
-    else if (Made == false && UnMade = true){
+    else if (Made == false && UnMade == true){
         UnMade = false;
         document.getElementById('madeLabel').textContent = "Deactivate UnMade";
     }
