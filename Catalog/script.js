@@ -1797,6 +1797,9 @@ function filterShivrian() {
         if (Made) {
             card.style.display = normimages ? "block" : "none";
         }
+        else if (UnMade) {
+            card.style.display = lostimages ? "block" : "none";
+        }
     });
 }
 function showDetails(shivrian) {
