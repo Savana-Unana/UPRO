@@ -544,6 +544,12 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Shiver Gogs V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Light", paratypings: "", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
             description: "", region: "ShiverCo"},
 
+            {id: 1000, name: "Shiver Pests", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "Desert"},
+
+            {id: -1, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
+            description: "", region: "Spooky Factory"},
+
             {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Forest"},
 
@@ -597,12 +603,6 @@ const defaultImage = '../lostimages/MissingNo.png';
 
             {id: -1, name: "Sacred Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Jungle"},
-
-            {id: 1000, name: "Shiver Pests", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Desert"},
-
-            {id: -1, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Spooky Factory"},
 
             {id: -1, name: "Shiver Slimes", image: "../lostimages/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
             description: "", region: "Spooky Factory"},
