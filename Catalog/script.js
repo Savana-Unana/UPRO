@@ -22,6 +22,7 @@ let Alt = false;
 let Ace = false;
 let NCanon = false;
 let Made = false;
+let UnMade = false;
 
 function setAltTrue() {
     Alt = !Alt;
@@ -34,10 +35,22 @@ function setAltTrue() {
     console.log("Alt is now:", Alt);
 }
 function setMadeTrue() {
-    Made = !Made;
-    document.getElementById('madeLabel').textContent = Made ? "Deactivate Made" : "Activate Made";
+    if (Made == true && UnMade = false;){
+        Made = false;
+        UnMade = true;
+        document.getElementById('madeLabel').textContent = "Deactivate UnMade";
+    }
+    else if (Made == false && UnMade = true){
+        UnMade = false;
+        document.getElementById('madeLabel').textContent = "Deactivate UnMade";
+    }
+    else{
+        Made = true;
+        document.getElementById('madeLabel').textContent = "Activate UnMade";
+    }
     autoTriggerSearch();
     console.log("Made is now:", Made);
+    console.log("UnMade is now:", UnMade);
 }
 
 function setAceTrue() {
