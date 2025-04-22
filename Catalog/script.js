@@ -79,6 +79,9 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 
+            {id: 0, name: "Old Main Menu Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "", paratypings: "", category: "NCanon", artist: "Jake", credits: "Idea-Shane+",
+            description: "", region: "Plains/ShiverCo"},
+
             {id: 0, name: "Juvie Capture Capsule", image: "../lostimages/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
             description: "", region: "Plains/ShiverCo"},
 

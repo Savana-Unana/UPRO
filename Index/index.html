@@ -6,21 +6,73 @@
     <title>Erm Ma Ha Sigma</title>
     <link rel="stylesheet" href="../Index/style.css">
 </head>
+<script>
+    let switcherooActive = false;
+    function triggerSwitcheroo() {
+        switcherooActive = !switcherooActive;
+        const configs = switcherooActive? 
+        [
+            { id: "btn1", text: "Type Chart", href: "../TypeChart/typechart.html", bg: "linear-gradient(135deg, #c084fc, #7c3aed)" },
+            { id: "btn2", text: "Credits", href: "../Credits/credits.html", bg: "linear-gradient(135deg, #d6b39c, #8b5e3c)" },
+            { id: "btn3", text: "Dooties", href: "../Credits/dootie.html", bg: "linear-gradient(135deg, #aaa, #444)" },
+            { id: "btn4", text: "???", href: "#", bg: "linear-gradient(135deg, #ffffff, #ffffff)" }
+        ]: 
+        [
+            { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
+            { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
+            { id: "btn3", text: "Battle", href: "../Battles/battle.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
+            { id: "btn4", text: "Map", href: "../Map/map.html", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" }
+        ];
+        configs.forEach(config => {
+            const btn = document.getElementById(config.id);
+            btn.textContent = config.text;
+            btn.style.background = config.bg;
+        });
+        for (let i = 1; i <= 4; i++) {
+            const screen = document.getElementById(`screen${i}`);
+            screen.href = configs[i - 1].href;
+        }
+    }
+    window.onload = function() {
+        const initialConfigs = [
+            { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #95fdd9, #32e5a6)" },
+            { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #fd9595, #f94f35)" },
+            { id: "btn3", text: "Battle", href: "../Battles/battle.html", bg: "linear-gradient(135deg, #fff9a5, #f9eb35)" },
+            { id: "btn4", text: "Map", href: "../Map/map.html", bg: "linear-gradient(135deg, #9ee5ff, #35c5f9)" }
+        ];
+        initialConfigs.forEach(config => {
+            const btn = document.getElementById(config.id);
+            btn.textContent = config.text;
+            btn.style.background = config.bg;
+        });
+        for (let i = 1; i <= 4; i++) {
+            const screen = document.getElementById(`screen${i}`);
+            screen.href = initialConfigs[i - 1].href;
+        }
+    };
+</script>
 <body>
     <h1>Main Menu</h1>
+    <div class="capsule-container">
+        <img src="../otherimages/Animated_Capsule.gif" alt="Capture Capsule">
+        <a id="screen1" class="screen-button" href="#"><button>Screen 1</button></a>
+        <a id="screen2" class="screen-button" href="#"><button>Screen 2</button></a>
+        <a id="screen3" class="screen-button" href="#"><button>Screen 3</button></a>
+        <a id="screen4" class="screen-button" href="#"><button>Screen 4</button></a>
+    </div>
     <div class="image-container">
-        <img src="../images/Animated_Capsule.gif" alt="Capture Capsule">
-        <div class="buttons">
-            <div class="buttons">
-                <a href="../Map/map.html"><button>Map</button></a>
-                <a href="../Catalog/catalog.html"><button>Catalog</button></a>
-                <a href="../Battles/battle.html"><button>Battle</button></a>
-                <a href="../OST/ost.html"><button>OST</button></a>
-                <a href="../TypeChart/typechart.html"><button>Type Chart</button></a>
-            </div>            
-        </div>
-        <a href="../Credits/credits.html"><button class="Credits">Credits</button></a>
-        <a href="../FriendInus/friendinus.html"><button class="Friends">FRIENDS</button></a>
+        <div class="buttons" id="button-set">
+            <a href="../Catalog/catalog.html"><button id="btn1">Catalog</button></a>
+            <a href="../OST/ost.html"><button id="btn2">OST</button></a>
+            <a href="../Battles/battle.html"><button id="btn3">Battle</button></a>
+            <a href="../Map/map.html"><button id="btn4">Map</button></a>
+    </div>
+    <div style="text-align: center; margin-top: 10px;">
+        <img src="../otherimages/Switcheroo.png" 
+        alt="Switcheroo" 
+        onclick="triggerSwitcheroo()" 
+        style="width: 110px; height: auto; cursor: pointer;">
+    </div>
         <a href="../Anti-Index/antindex.html"><button class="extra-button"></button></a>
     </div>
 </body>
