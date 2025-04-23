@@ -499,7 +499,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: 1000, name: "Sacred Soothspheer", image: "../lostimages/S.Soothspheer.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
             description: "", region: "Swamp"},
 
-            {id: 1000, name: "Pydromaglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "", artist: "", credits: "Idea-Shane+", 
+            {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
             description: "", region: "Volcano"},
 
             {id: 1000, name: "Sacred Pydromaglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Alt", artist: "", credits: "Idea-Shane+", 
