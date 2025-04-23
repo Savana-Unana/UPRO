@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Under Construction</title>
+  <style>
+    body {
+      background-color: #111;
+      color: red;
+      font-family: papyrus;
+      font-size: 3rem;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  Under Construction
+
+  <audio id="bg-audio" loop>
+    <source src="../Songs/construction.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bg-audio');
+
+    let musicStarted = false;
+
+    function tryPlayMusic() {
+      if (!musicStarted) {
+        audio.play().then(() => {
+          musicStarted = true;
+          document.removeEventListener('mousemove', tryPlayMusic);
+        }).catch(() => {
+        });
+      }
+    }
+
+    // Try on load
+    window.addEventListener('load', () => {
+      audio.play().catch(() => {
+        // If blocked, wait for mouse movement
+        document.addEventListener('mousemove', tryPlayMusic);
+      });
+    });
+  </script>
+</body>
+</html>
