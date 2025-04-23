@@ -8,61 +8,69 @@
 </head>
 <script>
     let switcherooActive = false;
-    function triggerSwitcheroo() 
-    {
+    function triggerSwitcheroo() {
         switcherooActive = !switcherooActive;
+        const capsuleImg = document.getElementById("capsule-img");
+        capsuleImg.src = switcherooActive ? "../otherimages/Animated_Capsule_Back.gif" : "../otherimages/Animated_Capsule.gif";
+
         const configs = switcherooActive ? 
         [
-            { id: "btn1", text: "Type Chart", href: "../TypeChart/typechart.html", bg: "linear-gradient(135deg, #c084fc, #7c3aed)" },
-            { id: "btn2", text: "Credits", href: "../Credits/credits.html", bg: "linear-gradient(135deg, #d6b39c, #8b5e3c)" },
-            { id: "btn3", text: "Dooties", href: "../Credits/dootie.html", bg: "linear-gradient(135deg, #aaa, #444)" },
-            { id: "btn4", text: "???", href: "#", bg: "linear-gradient(135deg, #ffffff, #ffffff)" }
+            { id: "btn1", text: "Type Chart", href: "../TypeChart/typechart.html", bg: "linear-gradient(135deg, #e48dff, #c300ff)", pos: { top: "30%", left: "22%" } },
+            { id: "btn2", text: "Story/Lore", href: "../Credits/story.html", bg: "linear-gradient(135deg, #eaa78f, #c96e4e)", pos: { top: "30%", left: "39%" } },
+            { id: "btn3", text: "Dooties", href: "../Credits/dootie.html", bg: "linear-gradient(135deg, #ffbc62, #ff9200)", pos: { top: "45%", left: "20%" } },
+            { id: "btn4", text: "Credits", href: "../Credits/credits.html", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)", pos: { top: "45%", left: "39%" } }
         ] : 
         [
-            { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
-            { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
-            { id: "btn3", text: "Battle", href: "../Battles/battle.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
-            { id: "btn4", text: "Map", href: "../Map/map.html", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" }
+            { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)", pos: { top: "30%", left: "44%" } },
+            { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)", pos: { top: "30%", left: "63%" } },
+            { id: "btn3", text: "Battle", href: "../Battles/battle.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)", pos: { top: "45%", left: "45%" } },
+            { id: "btn4", text: "Map", href: "../Map/map.html", bg: "linear-gradient(135deg, #93c5fd, #2563eb)", pos: { top: "45%", left: "64%" } }
         ];
-        configs.forEach(config => {
+
+        configs.forEach((config, index) => {
             const btn = document.getElementById(config.id);
             const anchor = btn.parentElement;
             btn.textContent = config.text;
             btn.style.background = config.bg;
             anchor.href = config.href;
-        });
-        for (let i = 1; i <= 4; i++) {
-            const screen = document.getElementById(`screen${i}`);
-            screen.href = configs[i - 1].href;
-        }
-    }
 
-    window.onload = function() {
-        const initialConfigs = [
-            { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #95fdd9, #32e5a6)" },
-            { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #fd9595, #f94f35)" },
-            { id: "btn3", text: "Battle", href: "../Battles/battle.html", bg: "linear-gradient(135deg, #fff9a5, #f9eb35)" },
-            { id: "btn4", text: "Map", href: "../Map/map.html", bg: "linear-gradient(135deg, #9ee5ff, #35c5f9)" }
-        ];
-        initialConfigs.forEach(config => {
-            const btn = document.getElementById(config.id);
-            btn.textContent = config.text;
-            btn.style.background = config.bg;
+            const screen = document.getElementById(`screen${index + 1}`);
+            screen.href = config.href;
+            screen.style.top = config.pos.top;
+            screen.style.left = config.pos.left;
         });
-        for (let i = 1; i <= 4; i++) {
-            const screen = document.getElementById(`screen${i}`);
-            screen.href = initialConfigs[i - 1].href;
-        }
-    };
+    }
+    window.onload = () => {
+    // simulate initial button setup using the same config as switcherooActive = false
+    const configs = [
+        { id: "btn1", text: "Catalog", href: "../Catalog/catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)", pos: { top: "30%", left: "44%" } },
+        { id: "btn2", text: "OST", href: "../OST/ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)", pos: { top: "30%", left: "63%" } },
+        { id: "btn3", text: "Battle", href: "../Battles/battle.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)", pos: { top: "45%", left: "45%" } },
+        { id: "btn4", text: "Map", href: "../Map/map.html", bg: "linear-gradient(135deg, #93c5fd, #2563eb)", pos: { top: "45%", left: "64%" } }
+    ];
+
+    configs.forEach((config, index) => {
+        const btn = document.getElementById(config.id);
+        const anchor = btn.parentElement;
+        btn.textContent = config.text;
+        btn.style.background = config.bg;
+        anchor.href = config.href;
+
+        const screen = document.getElementById(`screen${index + 1}`);
+        screen.href = config.href;
+        screen.style.top = config.pos.top;
+        screen.style.left = config.pos.left;
+    });
+};
 </script>
 <body>
     <h1>Main Menu</h1>
     <div class="capsule-container">
-        <img src="../otherimages/Animated_Capsule.gif" alt="Capture Capsule">
-        <a id="screen1" class="screen-button" href="#"><button>Screen 1</button></a>
-        <a id="screen2" class="screen-button" href="#"><button>Screen 2</button></a>
-        <a id="screen3" class="screen-button" href="#"><button>Screen 3</button></a>
-        <a id="screen4" class="screen-button" href="#"><button>Screen 4</button></a>
+        <img id="capsule-img" src="../otherimages/Animated_Capsule.gif" alt="Capture Capsule">
+        <a id="screen1" class="screen-button" href="../Catalog/catalog.html"><button>Screen 1</button></a>
+        <a id="screen2" class="screen-button" href="../OST/ost.html"><button>Screen 2</button></a>
+        <a id="screen3" class="screen-button" href="../Battles/battle.html"><button>Screen 3</button></a>
+        <a id="screen4" class="screen-button" href="../Map/map.html"><button>Screen 4</button></a>
     </div>
     <div class="image-container">
         <div class="buttons" id="button-set">
