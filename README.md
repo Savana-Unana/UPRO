@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Construction"
+git commit -m "Added More Made Stuff"
 git push origin 
 
 ```

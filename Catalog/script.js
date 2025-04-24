@@ -23,6 +23,8 @@ let Ace = false;
 let NCanon = false;
 let Made = false;
 let UnMade = false;
+let Concepted = false;
+let Unconcepted = false;
 
 function setAltTrue() {
     Alt = !Alt;
@@ -35,17 +37,50 @@ function setAltTrue() {
     console.log("Alt is now:", Alt);
 }
 function setMadeTrue() {
-    if (Made === true && UnMade === false) {
+    if (Made) 
+    {
+        // Made → UnMade
         Made = false;
         UnMade = true;
-        document.getElementById('madeLabel').textContent = "Deactivate UnMade";
-    } else if (Made === false && UnMade === true) {
+        Concepted = false;
+        Unconcepted = false;
+        document.getElementById('madeLabel').textContent = "Switch to Concepted";
+    } 
+    else if (UnMade) 
+    {
+        // UnMade → Concepted
+        Made = false;
         UnMade = false;
-        document.getElementById('madeLabel').textContent = "Activate Made";
-    } else {
+        Concepted = true;
+        Unconcepted = false;
+        document.getElementById('madeLabel').textContent = "Switch to Unconcepted";
+    } 
+    else if (Concepted) 
+    {
+        // Concepted → Unconcepted
+        Made = false;
+        UnMade = false;
+        Concepted = false;
+        Unconcepted = true;
+        document.getElementById('madeLabel').textContent = "Switch to None";
+    } 
+    else if (Unconcepted) 
+    {
+        // Unconcepted → None
+        Made = false;
+        UnMade = false;
+        Concepted = false;
+        Unconcepted = false;
+        document.getElementById('madeLabel').textContent = "Switch to Made";
+    } 
+    else 
+    {
+        // None → Made
         Made = true;
         UnMade = false;
-        document.getElementById('madeLabel').textContent = "Activate UnMade";
+        Concepted = false;
+        Unconcepted = false;
+        document.getElementById('madeLabel').textContent = "Switch to UnMade";
     }
     autoTriggerSearch();
     console.log("Made is now:", Made);
@@ -909,6 +944,8 @@ function filterShivrian() {
 
         const lostimages = image.includes("lostimage");
         const normimages = !image.includes("lostimage");
+        const conceptedimages = image.includes("missingno") && image.includes("lostimage");
+        const unconceptedimages = !image.includes("missingno") && image.includes("lostimage");
 
         const isLegendaryMatch = category.includes("legendary") && !category.includes("-");
         const isLegendaryAltMatch = category.includes("legendary-") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -1802,6 +1839,12 @@ function filterShivrian() {
         }
         else if (UnMade) {
             card.style.display = lostimages ? "block" : "none";
+        }
+        else if (Concepted){
+            card.style.display = conceptedimages ? "block" : "none";
+        }
+        else if (Unconcepted){
+            card.style.display = unconceptedimages ? "block" : "none";        
         }
     });
 }
