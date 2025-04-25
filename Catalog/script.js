@@ -675,7 +675,7 @@ const defaultImage = '../lostimages/MissingNo.png';
             {id: -1, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Modernized-SolsticeOther", artist: "", credits: "Idea-Shane+", 
             description: "", region: "FrozenWasteland"},
 
-            {id: 1, name: "MC", image: "../images/Skip.png", typings: "Normal", paratypings: "", category: "NPC", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
+            {id: 1, name: "MC", image: "../images/Skip.gif", typings: "Normal", paratypings: "", category: "NPC", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
             description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
                 
             {id: 2, name: "Randal Shivers", image: "../lostimages/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+", 
