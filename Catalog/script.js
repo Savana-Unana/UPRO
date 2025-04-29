@@ -1,5 +1,8 @@
 // Ariel Salama was here
 // Code from the fist script section
+
+let currentShiverianIndex = 0;
+
 function autoTriggerSearch() {
     const searchInput = document.getElementById("search");
     const originalValue = searchInput.value;
@@ -142,592 +145,619 @@ function setNPCsTrue() {
 
 // Code from the third script section
 const defaultImage = '../lostimages/MissingNo.png'; 
-        const shivrianList = [
-            {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
-            description: "", region: "Plains/ShiverCo"},
+    const shivrianList = [
+        {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "", artist: "Jake", credits: "Idea-Shane+",
+        description: "", region: "Plains/ShiverCo"},
 
-            {id: 0, name: "Old Main Menu Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "", paratypings: "", category: "NCanon", artist: "Jake", credits: "Idea-Shane+",
-            description: "", region: "Plains/ShiverCo"},
+        {id: 0, name: "Old Main Menu Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "", paratypings: "", category: "NCanon", artist: "Jake", credits: "Idea-Shane+",
+        description: "", region: "Plains/ShiverCo"},
 
-            {id: 0, name: "Juvie Capture Capsule", image: "../lostimages/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Plains/ShiverCo"},
+        {id: 0, name: "Juvie Capture Capsule", image: "../lostimages/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+        description: "", region: "Plains/ShiverCo"},
 
-            {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Plains/ShiverCo"},
+        {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+",
+        description: "", region: "Plains/ShiverCo"},
 
-            {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
-            description: "", region: "Plains"},
+        {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
+        description: "", region: "Plains"},
 
-            {id: 1, name: "Sacred Erbacub", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+",
-            description: "", region: "Plains"},
+        {id: 1, name: "Sacred Erbacub", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+",
+        description: "", region: "Plains"},
 
-            {id: 2, name: "Bearosion", image: "../images/Bearosion.png", typings: "Grass, Fighting", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
-            description: "", region: "Plains"},
+        {id: 2, name: "Bearosion", image: "../images/Bearosion.png", typings: "Grass, Fighting", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
+        description: "", region: "Plains"},
 
-            {id: 2, name: "Sacred Bearosion", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+",
-            description: "", region: "Plains"},
+        {id: 2, name: "Sacred Bearosion", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+",
+        description: "", region: "Plains"},
 
-            {id: 3, name: "Hileaph", image: "../images/Hileaph.png", typings: "Grass, Fighting", paratypings: "Ground", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
-            description: "", region: "Plains"},
+        {id: 3, name: "Hileaph", image: "../images/Hileaph.png", typings: "Grass, Fighting", paratypings: "Ground", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
+        description: "", region: "Plains"},
 
-            {id: 3, name: "Sacred Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Alt", artist: "", credits: "Idea-Jake+",
-            description: "", region: "Plains"},
+        {id: 3, name: "Sacred Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Alt", artist: "", credits: "Idea-Jake+",
+        description: "", region: "Plains"},
 
-            {id: 3, name: "Ace Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Ace", artist: "", credits: "Idea-Jake+",
-            description: "", region: "Cruise"},
+        {id: 3, name: "Ace Hileaph", image: "../lostimages/MissingNo.png", typings: "Grass, Fighting", paratypings: "Ground", category: "Ace", artist: "", credits: "Idea-Jake+",
+        description: "", region: "Cruise"},
 
-            {id: 4, name: "Axolitl", image: "../images/Axolitl.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
-            description: "", region: "Lake"},
+        {id: 4, name: "Axolitl", image: "../images/Axolitl.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+        description: "", region: "Lake"},
 
-            {id: 4, name: "Sacred Axolitl", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Lake"},
+        {id: 4, name: "Sacred Axolitl", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+        description: "", region: "Lake"},
 
-            {id: 5, name: "Axolote", image: "../images/Axail.png", typings: "Water, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Amo+",
-            description: "", region: "Lake"},
+        {id: 5, name: "Axolote", image: "../images/Axail.png", typings: "Water, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Amo+",
+        description: "", region: "Lake"},
 
-            {id: 5, name: "Sacred Axolote", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Amo+",
-            description: "", region: "Lake"},
+        {id: 5, name: "Sacred Axolote", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Amo+",
+        description: "", region: "Lake"},
 
-            {id: 6, name: "Axolarg", image: "../images/Axolarg.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
-            description: "", region: "Lake"},
+        {id: 6, name: "Axolarg", image: "../images/Axolarg.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
+        description: "", region: "Lake"},
 
-            {id: 6, name: "Sacred Axolarg", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Lake"},
+        {id: 6, name: "Sacred Axolarg", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+",
+        description: "", region: "Lake"},
 
-            {id: 6, name: "Ace Axolarg", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Ace", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Cruise"},
+        {id: 6, name: "Ace Axolarg", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "Poison", category: "Ace", artist: "", credits: "Idea-Shane+",
+        description: "", region: "Cruise"},
 
-            {id: 7, name: "Charcoon", image: "../images/Charcoon.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+",
-            description: "", region: "Forest"},
+        {id: 7, name: "Charcoon", image: "../images/Charcoon.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+",
+        description: "", region: "Forest"},
 
-            {id: 7, name: "Sacred Charcoon", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
-            description: "", region: "Forest"},
+        {id: 7, name: "Sacred Charcoon", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+        description: "", region: "Forest"},
 
-            {id: 8, name: "Blazuki", image: "../images/Blazuki.png", typings: "Fire, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+",
-            description: "", region: "Forest"},
+        {id: 8, name: "Blazuki", image: "../images/Blazuki.png", typings: "Fire, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+",
+        description: "", region: "Forest"},
 
-            {id: 8, name: "Sacred Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+",
-            description: "", region: "Forest"},
+        {id: 8, name: "Sacred Blazuki", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+",
+        description: "", region: "Forest"},
 
-            {id: 9, name: "Furnacoon", image: "../images/Furnacoon.png", typings: "Fire, Flying", paratypings: "Steel", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+",
-            description: "", region: "Forest"},
+        {id: 9, name: "Furnacoon", image: "../images/Furnacoon.png", typings: "Fire, Flying", paratypings: "Steel", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+",
+        description: "", region: "Forest"},
 
-            {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Alt", artist: "", credits: "Idea-Shane+Jake+",
-            description: "", region: "Forest"},
+        {id: 9, name: "Sacred Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Alt", artist: "", credits: "Idea-Shane+Jake+",
+        description: "", region: "Forest"},
 
-            {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Ace", artist: "", credits: "Idea-Shane+Jake+",
-            description: "", region: "Cruise"},
+        {id: 9, name: "Ace Furnacoon", image: "../lostimages/MissingNo.png", typings: "Fire, Flying", paratypings: "Steel", category: "Ace", artist: "", credits: "Idea-Shane+Jake+",
+        description: "", region: "Cruise"},
 
-            {id: 10, name: "Pretengerine", image: "../lostimages/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
-            description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree.", region: "Forest"},
+        {id: 10, name: "Pretengerine", image: "../lostimages/Pretengerine.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
+        description: "This worm hides among tangerines to get away from predators. It has a parasitic relationship with the tangerines until one day it gets too large and falls off the tree.", region: "Forest"},
 
-            {id: 10, name: "Sacred Pretengerine", image: "../lostimages/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
-            description: "", region: "Forest"},
+        {id: 10, name: "Sacred Pretengerine", image: "../lostimages/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
+        description: "", region: "Forest"},
 
-            {id: 11, name: "Espiorange", image: "../lostimages/Espiorange.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
-            description: "A Pretengerine that grew alongside its tangerine seeds, Espiorange has upscaled the operation and is now in control of the entire tree. In order to reproduce, Espiorange leaves its larvae inside tangerines so they have something to eat as they grow.", region: "Forest"},
+        {id: 11, name: "Espiorange", image: "../lostimages/Espiorange.png", typings: "Bug", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+",
+        description: "A Pretengerine that grew alongside its tangerine seeds, Espiorange has upscaled the operation and is now in control of the entire tree. In order to reproduce, Espiorange leaves its larvae inside tangerines so they have something to eat as they grow.", region: "Forest"},
 
-            {id: 11, name: "Sacred Espiorange", image: "../lostimages/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
-            description: "", region: "Forest"},
-    
-            {id: 15, name: "Bakunbush", image: "../images/Bakunbush.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
+        {id: 11, name: "Sacred Espiorange", image: "../lostimages/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
+        description: "", region: "Forest"},
 
-            {id: 15, name: "Sacred Bakunbush", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
+        {id: 15, name: "Bakunbush", image: "../images/Bakunbush.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
 
-            {id: 16, name: "Pigturee", image: "../images/Pigturee.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
- 
-            {id: 16, name: "Sacred Pigturee", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Forest"},
+        {id: 15, name: "Sacred Bakunbush", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 16, name: "Pigturee", image: "../images/Pigturee.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 16, name: "Sacred Pigturee", image: "../lostimages/MissingNo.png", typings: "Normal, Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+        
+        {id: 17, name: "Dribsom", image: "../images/Dribsom.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+",
+        description: "", region: ""},
+
+        {id: 17, name: "Sacred Dribsom", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
+        description: "", region: ""},
+
+        {id: 18, name: "Dribtar", image: "../images/Dribtar.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Idea-Jake+Shane+",
+        description: "", region: ""},
+
+        {id: 18, name: "Sacred Dribtar", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
+        description: "", region: ""},
+        
+        {id: 1000, name: "Tumblseed", image: "../lostimages/Tumblseed.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Sacred Tumblseed", image: "../lostimages/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Cacculent", image: "../lostimages/Cacculent.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Sacred Cacculent", image: "../lostimages/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Spongus", image: "../lostimages/Spongus.png", typings: "Normal, Psychic", paratypings: "Poison", category: "", artist: "Shane", credits: "Drawn, Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Spongus", image: "../lostimages/MissingNo.png", typings: "Normal, Psychic", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Charquid", image: "../images/Charquid.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, OGDesign-Ivri+Amo+, Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Sacred Charquid", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+, Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Nonignite", image: "../images/Nonignite.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Sacred Nonignite", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Ace Nonignite", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Blarb", image: "../images/Blarb.png", typings: "Water, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water, Bug", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Buntot Toasted Forme", image: "../images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Challadin", image: "../images/Challadin.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Challadin Toasted Forme", image: "../images/ChalladinTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Burking", image: "../lostimages/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Burking Toasted Forme", image: "../lostimages/BurkingTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Birthday Buntot", image: "../lostimages/BD.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Hero Challadin", image: "../lostimages/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Mashed Burking", image: "../lostimages/M.Burking.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "LED Buntot", image: "../lostimages/L.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "LED Challadin", image: "../lostimages/L.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "LED Burking", image: "../lostimages/L.Burking.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Sacred Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Ace Frankfortress", image: "../lostimages/AceFrankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Wyvearn", image: "../lostimages/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Wyvearn", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Wyrachnos", image: "../lostimages/Wyrachnos.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Wyrachnos", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Plasttack", image: "../images/Plasttack.png", typings: "Ghost", paratypings: "Normal", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Plasttack", image: "../lostimages/MissingNo.png", typings: "Ghost", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Schuck", image: "../images/Shuck.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Schuck", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Thruck", image: "../images/Thruck.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Thruck", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Thrack", image: "../images/Thrack.png", typings: "Normal, Rock", paratypings: "Artillery", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Thrack", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "Artillery", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Fumerey", image: "../images/Fumerey.png", typings: "Poison", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Puppechyu", image: "../images/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Puppechu", image: "../lostimages/OGPuppechu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Puppechyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Mockenyu", image: "../images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Mockenyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Paranger", image: "../images/Paranger.png", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Fonceer", image: "../images/Fonceer.png", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Dressiani", image: "../images/Dressiani.gif", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Sacred Paranger", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Sacred Fonceer", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Sacred Dressiani", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "Strawngle", image: "../images/Strawngle.png", typings: "Normal", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Strawngle", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Stwacha", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Stwacha", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Blizard", image: "../lostimages/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Cryodon", image: "../images/Cryodon.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Reptundra", image: "../images/Reptundra.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Blizard", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Cryodon", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Ace Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Ace", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Relion", image: "../lostimages/Relion.png", typings: "Light", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Sacred Relion", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Brroil", image: "../lostimages/MissingNo.png", typings: "Ice, Poison", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Brroil", image: "../lostimages/MissingNo.png", typings: "Ice, Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Ampede", image: "../images/Ampede.png", typings: "Electric", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Sacred Ampede", image: "../lostimages/MissingNo.png", typings: "Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+, Idea-Shane+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Prismite", image: "../images/Prismite.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Prismite", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Duochrom", image: "../images/Duochrom.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Duochrom", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Prismoth", image: "../lostimages/Prismoth.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Name-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Prismoth", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Mos", image: "../lostimages/Mos.png", typings: "Ghost, Normal", paratypings: "", category: "NCanon", artist: "Jake", credits: "Draw-Jake+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Thoot", image: "../lostimages/Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "Drawn-Ivri+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Sacred Thoot", image: "../lostimages/S.Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
+        description: "", region: "Desert"},
+
+        {id: 1000, name: "Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Sacred Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Ivri+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Vigilith", image: "../images/Vigilith.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Desert/Temple"},
+
+        {id: 77, name: "Chancey", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
+        description: "", region: "Forest"},
+
+        {id: 77, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 77, name: "Chancey (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        description: "", region: "Forest"},
+
+        {id: 78, name: "Maychancey", image: "../lostimages/Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "This creature is empty inside, and completely overtaken by the cold. It’s limbs have started to freeze, but it no longer cares.", region: "Forest"},
+
+        {id: 78, name: "Sacred Maychancey", image: "../lostimages/S.Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 78, name: "MayChancey (Jake's Take)", image: "../lostimages/JT.Maychancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 79, name: "Gamblanguin", image: "../lostimages/Gamblanguin.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "A severe gambling addict, this creature had all of it’s assets frozen by the IRS and is constantly on the run from the police. It creates loaded dice to try to alter it’s odds of winning.", region: "Forest"},
+
+        {id: 79, name: "Sacred Gamblanguin", image: "../lostimages/S.Gamblanguin.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 80, name: "Predadventure", image: "../lostimages/Predadventure.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "An icy bird, Predadventure constantly sheds it’s icicle feathers, so watch out for falling ice spikes when you’re in icy terrain. This creature Lives in the frozen tundras of __ to maintain it’s low body temperature. The clover leaves on its body have slowly been freezing for generations.", region: "Forest"},
+
+        {id: 80, name: "Sacred Predadventure", image: "../lostimages/S.Predadventure.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 81, name: "Perchancey", image: "../lostimages/Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "After growing a twin, Perchancey’s twin is completely incinerated by the fire.", region: "Forest"},
+
+        {id: 81, name: "Sacred Perchancey", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 81, name: "Perchancey (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 82, name: "Perchancealot", image: "../lostimages/Perchancealot.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "A noble knight of the order of the Charmey, Perchancalot overcame the fire of its childhood by adopting a symbiotic relationship with the mighty Exosteel. Perchancalot was deemed worthy and now wields the power of fire. It carries it’s dead twin around as a shield to protect it from harm.", region: "Forest"},
+
+        {id: 82, name: "Sacred Perchancealot", image: "../lostimages/S.Perchancealot.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 83, name: "Possibilitor", image: "../lostimages/Possibilitor.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "Possibilitor emerges when Perchancey is completely consumed by fire. It is a powerful evil mage made up of thorny dead shrubbery and hatred. Possibilitor spent years searching the lands for spells to help it feel again. It discovered the ability to alter outcomes.", region: "Forest"},
+
+        {id: 83, name: "Sacred Possibilitor", image: "../lostimages/S.Possibilitor.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Soothspheer", image: "../lostimages/Soothspheer.png", typings: "Psychic", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: ""},
+
+        {id: 1000, name: "Sacred Soothspheer", image: "../lostimages/S.Soothspheer.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Sacred Pydromaglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Elixion", image: "../lostimages/Elixion.png", typings: "Normal, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Elixion Blip Forme", image: "../lostimages/BF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Elixion Skip Forme", image: "../lostimages/SF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Elixion Trip Forme", image: "../lostimages/TF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Elixion Lip Forme", image: "../lostimages/LF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/RF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Shiver Jaws", image: "../images/Shiver Jaws.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+, Help-Ariel+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Jaws V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Blades", image: "../lostimages/Shiver Blades.gif", typings: "Steel, Ice", paratypings: "Fire", category: "Modernized", artist: "Shane", credits: "Drawn-Shane+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Blades V2.0", image: "../lostimages/MissingNo.png", typings: "Steel, Ice", paratypings: "Fire", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Lights", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Lights V2.0", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Gogs", image: "../images/Shiver Gogs.png", typings: "Electric, Light", paratypings: "", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Gogs V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Light", paratypings: "", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Pests", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Desert"},
+
+        {id: -1, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Spooky Factory"},
+
+        {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
+        description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
+
+        {id: 1000, name: "Proto-Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary-Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
+        description: "", region: "Plains/Cave"},
+
+        {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Legendary", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+        description: "", region: "Desert/SecretArea"},
+
+        {id: 1000, name: "Doppe-Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+        description: "", region: "Desert/SecretArea"},
+
+        {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy, Artillery", category: "Legendary-Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+        description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
+
+        {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Legendary", artist: "Tal", credits: "Idea-Tal+", 
+        description: "Torterritory is a colossal force to be reckoned with. It can only be caught using a very large Capture Capsule This Torterritories of Shivria carry an exact copy of Shivria on their back, only smaller. Legends say that the real Shivria is on a giant Torterritory, and that's why it moves.", region: "MountainRange"},
+
+        {id: 1000, name: "Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary", artist: "Tal", credits: "Artist+Idea-Tal+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1000, name: "Eclipsicanine", image: "../lostimages/MissingNo.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "MountainRange"},
+
+        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary", artist: "Shane", credits: "Drawn-Shane+", 
+        description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
+
+        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "", paratypings: "", category: "Legendary-Alt", artist: "Shane", credits: "Drawn-Shane+", 
+        description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
+
+        {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
+        description: "I fainted so really real picture", region: "Unobtainable"},
+
+        {id: -0.5, name: "Cheetalon", image: "../lostimages/Cheetalon.png", typings: "Normal", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
+        description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
+
+        {id: -1, name: "Vigilith Revealed Forme", image: "../images/VigilithRF.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Spooky Factory"},
+
+        {id: -1, name: "Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "Halloween", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Spooky Jungle"},
+
+        {id: -1, name: "Sacred Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Spooky Jungle"},
+
+        {id: -1, name: "Shiver Slimes", image: "../lostimages/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Spooky Factory"},
+
+        {id: -1, name: "Shiver Slimes V2.0", image: "../lostimages/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Spooky Factory"},
+
+        {id: -1, name: "Pythog", image: "../lostimages/MissingNo.png", typings: "Electric", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Stimpale", image: "../lostimages/MissingNo.png", typings: "Ice, Ghost", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Jjinngore", image: "../lostimages/MissingNo.png", typings: "Fire, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Grimloin", image: "../lostimages/MissingNo.png", typings: "Fairy, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Londalot", image: "../lostimages/MissingNo.png", typings: "Steel, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Glutacious", image: "../lostimages/MissingNo.png", typings: "Normal, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Smellmer", image: "../lostimages/MissingNo.png", typings: "Fairy, Ghost", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Shiver Craze", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "ModernizedSolstice", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: -1, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Modernized-SolsticeOther", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "FrozenWasteland"},
+
+        {id: 1, name: "Skip", image: "../images/Skip.gif", typings: "Normal", paratypings: "", category: "NPC", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
+        description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
             
-            {id: 17, name: "Dribsom", image: "../images/Dribsom.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+",
-            description: "", region: ""},
-
-            {id: 17, name: "Sacred Dribsom", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
-            description: "", region: ""},
-
-            {id: 18, name: "Dribtar", image: "../images/Dribtar.png", typings: "Normal, Flying", paratypings: "", category: "", artist: "Jake", credits: "Idea-Jake+Shane+",
-            description: "", region: ""},
-
-            {id: 18, name: "Sacred Dribtar", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
-            description: "", region: ""},
-            
-            {id: 1000, name: "Tumblseed", image: "../lostimages/Tumblseed.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Sacred Tumblseed", image: "../lostimages/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Cacculent", image: "../lostimages/Cacculent.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Sacred Cacculent", image: "../lostimages/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Spongus", image: "../lostimages/Spongus.png", typings: "Normal, Psychic", paratypings: "Poison", category: "", artist: "Shane", credits: "Drawn, Idea-Shane+", 
-            description: "", region: "Forest"},
-   
-            {id: 1000, name: "Sacred Spongus", image: "../lostimages/MissingNo.png", typings: "Normal, Psychic", paratypings: "Poison", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Charquid", image: "../images/Charquid.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, OGDesign-Ivri+Amo+, Idea-Shane+", 
-            description: "", region: "Volcano"},
-
-            {id: 1000, name: "Sacred Charquid", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+, Idea-Shane+", 
-            description: "", region: "Volcano"},
-
-            {id: 1000, name: "Nonignite", image: "../images/Nonignite.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Volcano"},
-
-            {id: 1000, name: "Sacred Nonignite", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Volcano"},
-
-            {id: 1000, name: "Ace Nonignite", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Blarb", image: "../images/Blarb.png", typings: "Water, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
-            description: "", region: "River"},
-
-            {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water, Bug", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
-            description: "", region: "River"},
-
-            {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Buntot Toasted Forme", image: "../images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Challadin", image: "../images/Challadin.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Challadin Toasted Forme", image: "../images/ChalladinTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Burking", image: "../lostimages/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-    
-            {id: 1000, name: "Burking Toasted Forme", image: "../lostimages/BurkingTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Birthday Buntot", image: "../lostimages/BD.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Hero Challadin", image: "../lostimages/H.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Mashed Burking", image: "../lostimages/M.Burking.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-    
-            {id: 1000, name: "LED Buntot", image: "../lostimages/L.Buntot.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "LED Challadin", image: "../lostimages/L.Challadin.png", typings: "Fairy, Light", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "LED Burking", image: "../lostimages/L.Burking.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Sacred Frankfortress", image: "../lostimages/MissingNo.png", typings: "Normal, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+Jake+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Ace Frankfortress", image: "../lostimages/AceFrankfortress.png", typings: "Normal, Fairy", paratypings: "", category: "Ace", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Wyvearn", image: "../lostimages/Wyvearn.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Wyvearn", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Wyrachnos", image: "../lostimages/Wyrachnos.png", typings: "Bug, Dragon", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Wyrachnos", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Plasttack", image: "../images/Plasttack.png", typings: "Ghost", paratypings: "Normal", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+", 
-            description: "", region: "Swamp"},
-    
-            {id: 1000, name: "Sacred Plasttack", image: "../lostimages/MissingNo.png", typings: "Ghost", paratypings: "Normal", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Schuck", image: "../images/Shuck.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Sacred Schuck", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Thruck", image: "../images/Thruck.png", typings: "Normal, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Sacred Thruck", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Thrack", image: "../images/Thrack.png", typings: "Normal, Rock", paratypings: "Artillery", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Sacred Thrack", image: "../lostimages/MissingNo.png", typings: "Normal, Rock", paratypings: "Artillery", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Fumerey", image: "../images/Fumerey.png", typings: "Poison", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Sacred Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Puppechyu", image: "../images/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Puppechu", image: "../lostimages/OGPuppechu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Puppechyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Mockenyu", image: "../images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Mockenyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Paranger", image: "../images/Paranger.png", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Fonceer", image: "../images/Fonceer.png", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Dressiani", image: "../images/Dressiani.gif", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Sacred Paranger", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Sacred Fonceer", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Sacred Dressiani", image: "../lostimages/MissingNo.png", typings: "Light, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Plains"},
-
-            {id: 1000, name: "Strawngle", image: "../images/Strawngle.png", typings: "Normal", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Strawngle", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Stwacha", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Stwacha", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Blizard", image: "../lostimages/Blizard.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Cryodon", image: "../images/Cryodon.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Reptundra", image: "../images/Reptundra.png", typings: "Ice, Dragon", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Sacred Blizard", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Sacred Cryodon", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Sacred Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Ace Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Ace", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Relion", image: "../lostimages/Relion.png", typings: "Light", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Sacred Relion", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Sacred Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Brroil", image: "../lostimages/MissingNo.png", typings: "Ice, Poison", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Sacred Brroil", image: "../lostimages/MissingNo.png", typings: "Ice, Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "IceCaps"},
-
-            {id: 1000, name: "Ampede", image: "../images/Ampede.png", typings: "Electric", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Sacred Ampede", image: "../lostimages/MissingNo.png", typings: "Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+, Idea-Shane+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Prismite", image: "../images/Prismite.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Prismite", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Duochrom", image: "../images/Duochrom.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Duochrom", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Prismoth", image: "../lostimages/Prismoth.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Name-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Sacred Prismoth", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Mos", image: "../lostimages/Mos.png", typings: "Ghost, Normal", paratypings: "", category: "NCanon", artist: "Jake", credits: "Draw-Jake+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Thoot", image: "../lostimages/Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "Drawn-Ivri+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Sacred Thoot", image: "../lostimages/S.Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
-            description: "", region: "Desert"},
-
-            {id: 1000, name: "Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Sacred Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Ivri+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Vigilith", image: "../images/Vigilith.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Desert/Temple"},
-
-            {id: 77, name: "Chancey", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
-            description: "", region: "Forest"},
-
-            {id: 77, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 77, name: "Chancey (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
-            description: "", region: "Forest"},
-
-            {id: 78, name: "Maychancey", image: "../lostimages/Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "This creature is empty inside, and completely overtaken by the cold. It’s limbs have started to freeze, but it no longer cares.", region: "Forest"},
-
-            {id: 78, name: "Sacred Maychancey", image: "../lostimages/S.Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 78, name: "MayChancey (Jake's Take)", image: "../lostimages/JT.Maychancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 79, name: "Gamblanguin", image: "../lostimages/Gamblanguin.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "A severe gambling addict, this creature had all of it’s assets frozen by the IRS and is constantly on the run from the police. It creates loaded dice to try to alter it’s odds of winning.", region: "Forest"},
-
-            {id: 79, name: "Sacred Gamblanguin", image: "../lostimages/S.Gamblanguin.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 80, name: "Predadventure", image: "../lostimages/Predadventure.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "An icy bird, Predadventure constantly sheds it’s icicle feathers, so watch out for falling ice spikes when you’re in icy terrain. This creature Lives in the frozen tundras of __ to maintain it’s low body temperature. The clover leaves on its body have slowly been freezing for generations.", region: "Forest"},
-
-            {id: 80, name: "Sacred Predadventure", image: "../lostimages/S.Predadventure.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 81, name: "Perchancey", image: "../lostimages/Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "After growing a twin, Perchancey’s twin is completely incinerated by the fire.", region: "Forest"},
-
-            {id: 81, name: "Sacred Perchancey", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 81, name: "Perchancey (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
-            description: "", region: "Forest"},
-
-            {id: 82, name: "Perchancealot", image: "../lostimages/Perchancealot.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "A noble knight of the order of the Charmey, Perchancalot overcame the fire of its childhood by adopting a symbiotic relationship with the mighty Exosteel. Perchancalot was deemed worthy and now wields the power of fire. It carries it’s dead twin around as a shield to protect it from harm.", region: "Forest"},
-
-            {id: 82, name: "Sacred Perchancealot", image: "../lostimages/S.Perchancealot.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 83, name: "Possibilitor", image: "../lostimages/Possibilitor.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "Possibilitor emerges when Perchancey is completely consumed by fire. It is a powerful evil mage made up of thorny dead shrubbery and hatred. Possibilitor spent years searching the lands for spells to help it feel again. It discovered the ability to alter outcomes.", region: "Forest"},
-
-            {id: 83, name: "Sacred Possibilitor", image: "../lostimages/S.Possibilitor.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Soothspheer", image: "../lostimages/Soothspheer.png", typings: "Psychic", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: ""},
-
-            {id: 1000, name: "Sacred Soothspheer", image: "../lostimages/S.Soothspheer.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
-            description: "", region: "Volcano"},
-
-            {id: 1000, name: "Sacred Pydromaglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Volcano"},
-
-            {id: 1000, name: "Elixion", image: "../lostimages/Elixion.png", typings: "Normal, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Elixion Blip Forme", image: "../lostimages/BF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Elixion Skip Forme", image: "../lostimages/SF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Elixion Trip Forme", image: "../lostimages/TF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Elixion Lip Forme", image: "../lostimages/LF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/RF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Swamp"},
-
-            {id: 1000, name: "Shiver Jaws", image: "../images/Shiver Jaws.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+, Help-Ariel+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Jaws V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Blades", image: "../lostimages/Shiver Blades.gif", typings: "Steel, Ice", paratypings: "Fire", category: "Modernized", artist: "Shane", credits: "Drawn-Shane+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Blades V2.0", image: "../lostimages/MissingNo.png", typings: "Steel, Ice", paratypings: "Fire", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Lights", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Lights V2.0", image: "../lostimages/MissingNo.png", typings: "Dark, Ghost", paratypings: "", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Gogs", image: "../images/Shiver Gogs.png", typings: "Electric, Light", paratypings: "", category: "Modernized", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Gogs V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Light", paratypings: "", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "ShiverCo"},
-
-            {id: 1000, name: "Shiver Pests", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Desert"},
-
-            {id: -1, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Spooky Factory"},
-
-            {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Forest"},
-
-            {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
-            description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
-
-            {id: 1000, name: "Proto-Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Legendary-Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
-            description: "", region: "Plains/Cave"},
-
-            {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Legendary", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
-            description: "", region: "Desert/SecretArea"},
-
-            {id: 1000, name: "Doppe-Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
-            description: "", region: "Desert/SecretArea"},
-
-            {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy, Artillery", category: "Legendary-Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
-            description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
-
-            {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Legendary", artist: "Tal", credits: "Idea-Tal+", 
-            description: "Torterritory is a colossal force to be reckoned with. It can only be caught using a very large Capture Capsule This Torterritories of Shivria carry an exact copy of Shivria on their back, only smaller. Legends say that the real Shivria is on a giant Torterritory, and that's why it moves.", region: "MountainRange"},
-
-            {id: 1000, name: "Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary", artist: "Tal", credits: "Artist+Idea-Tal+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1000, name: "Eclipsicanine", image: "../lostimages/MissingNo.png", typings: "Dark, Light", paratypings: "Psychic", category: "Legendary-Alt", artist: "", credits: "Idea-Tal+", 
-            description: "", region: "MountainRange"},
-
-            {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Legendary", artist: "Shane", credits: "Drawn-Shane+", 
-            description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
-
-            {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "", paratypings: "", category: "Legendary-Alt", artist: "Shane", credits: "Drawn-Shane+", 
-            description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
-
-            {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
-            description: "I fainted so really real picture", region: "Unobtainable"},
-
-            {id: -0.5, name: "Cheetalon", image: "../lostimages/Cheetalon.png", typings: "Normal", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 
-            description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
-
-            {id: -1, name: "Vigilith Revealed Forme", image: "../images/VigilithRF.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
-            description: "", region: "Spooky Factory"},
-
-            {id: -1, name: "Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "Halloween", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Spooky Jungle"},
-
-            {id: -1, name: "Sacred Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Spooky Jungle"},
-
-            {id: -1, name: "Shiver Slimes", image: "../lostimages/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "Halloween", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Spooky Factory"},
-
-            {id: -1, name: "Shiver Slimes V2.0", image: "../lostimages/MissingNo.png", typings: "Poison, Normal", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "Spooky Factory"},
-
-            {id: -1, name: "Pythog", image: "../lostimages/MissingNo.png", typings: "Electric", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Stimpale", image: "../lostimages/MissingNo.png", typings: "Ice, Ghost", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Jjinngore", image: "../lostimages/MissingNo.png", typings: "Fire, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Grimloin", image: "../lostimages/MissingNo.png", typings: "Fairy, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Londalot", image: "../lostimages/MissingNo.png", typings: "Steel, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Glutacious", image: "../lostimages/MissingNo.png", typings: "Normal, Ice", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Smellmer", image: "../lostimages/MissingNo.png", typings: "Fairy, Ghost", paratypings: "", category: "Frostbite", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Shiver Craze", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "ModernizedSolstice", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: -1, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Modernized-SolsticeOther", artist: "", credits: "Idea-Shane+", 
-            description: "", region: "FrozenWasteland"},
-
-            {id: 1, name: "Skip", image: "../images/Skip.gif", typings: "Normal", paratypings: "", category: "NPC", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
-            description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
-                
-            {id: 2, name: "Randal Shivers", image: "../lostimages/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+", 
-            description: "The Founder of ShiverCo. Descendent of Ronald Shivers, the Founding Father of Shivria.", region: "ShiverCo"}  
-        ];
-        function displayShivrian() {
-            const catalog = document.getElementById("catalog");
-            catalog.innerHTML = ""; 
-            shivrianList.sort((a, b) => a.id - b.id);
-            shivrianList.forEach(shivrian => {
-                const card = document.createElement("div");
-                card.className = "shivrian-card";
-                card.setAttribute("data-id", shivrian.id);
-                card.innerHTML = `
-                    <img src="${shivrian.image}" alt="${shivrian.name}">
-                    <h3>${shivrian.name}</h3>                `;
-                card.onclick = () => showDetails(shivrian);
-                catalog.appendChild(card);
-            });
+        {id: 2, name: "Randal Shivers", image: "../lostimages/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+", 
+        description: "The Founder of ShiverCo. Descendent of Ronald Shivers, the Founding Father of Shivria.", region: "ShiverCo"}  
+    ];
+    function displayShivrian() {
+        const catalog = document.getElementById("catalog");
+        catalog.innerHTML = ""; 
+        shivrianList.sort((a, b) => a.id - b.id);
+        shivrianList.forEach(shivrian => {
+            const card = document.createElement("div");
+            card.className = "shivrian-card";
+            card.setAttribute("data-id", shivrian.id);
+            card.innerHTML = `
+                <img src="${shivrian.image}" alt="${shivrian.name}">
+                <h3>${shivrian.name}</h3>                `;
+            card.onclick = () => showDetails(shivrian);
+            catalog.appendChild(card);
+        });
+    }
+
+    function addVisCard() {
+        if (currentShiverianIndex < shivrianList.length - 1) {
+            currentShiverianIndex += 1;
+            showDetails(shivrianList[currentShiverianIndex]);
         }
+        // currentShiverianId +=1;
+        // const nextShiverian = shivrianList.find(s => s.id === currentShiverianId);
+        // if (nextShiverian) {
+        //     showDetails(currentShiverianId);
+        // } else {
+        //     currentShiverianId -= 1;  // revert if out of bounds
+        // }
+    }
+    function minusVisCard() {
+        if (currentShiverianIndex > 0) {
+            currentShiverianIndex -= 1;
+            showDetails(shivrianList[currentShiverianIndex]);
+        }
+        // currentShiverianId -=1;
+        // const nextShiverian = shivrianList.find(s => s.id === currentShiverianId);
+        // if (nextShiverian) {
+        //     showDetails(currentShiverianId);
+        // } else {
+        //     currentShiverianId += 1;  // revert if out of bounds
+        // }
+    }
 
 let lastQuery = "";
 function filterShivrian() {
@@ -1876,6 +1906,7 @@ function filterShivrian() {
     });
 }
 function showDetails(shivrian) {
+    currentShiverianId = shivrian.id;
     document.getElementById("catalog").style.display = "none";
     document.getElementById("shivrian-details").style.display = "block";
     document.getElementById("search").style.display = "none"; 
@@ -1884,6 +1915,34 @@ function showDetails(shivrian) {
     document.getElementById("nav-buttons").style.display = "none";
     document.getElementById("shivrian-name").innerText = shivrian.name;
     let imageElement = document.getElementById("shivrian-image");
+    
+    imageElement.onload = () => {
+        if (shivrian.name === "Ariel Salama") {
+            imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
+            imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
+        }  
+        else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
+            imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
+            imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
+        }
+        else if (shivrian.name === "Capture Capsule") {
+            imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
+            imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+        }
+        else if (shivrian.name === "Juvie Capture Capsule") {
+            imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
+            imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
+        }
+        else if (shivrian.name === "Cheetalon") {
+            imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
+            imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
+        }
+        else {
+            imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
+            imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+        }
+    };
+    
     imageElement.src = shivrian.image;
     if (shivrian.name === "Ariel Salama") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
@@ -1937,4 +1996,3 @@ function closeDetails() {
 }
     displayShivrian();
 // Ariel Salama was also here
-
