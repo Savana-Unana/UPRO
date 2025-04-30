@@ -733,9 +733,11 @@ const defaultImage = '../lostimages/MissingNo.png';
     }
 
     function addVisCard() {
-        if (currentShiverianIndex < shivrianList.length - 1) {
-            currentShiverianIndex += 1;
+        if (currentShiverianIndex < shivrianList.length) {
+            console.log(currentShiverianIndex);
+            currentShiverianIndex ++;
             showDetails(shivrianList[currentShiverianIndex]);
+            console.log(currentShiverianIndex);
         }
         // currentShiverianId +=1;
         // const nextShiverian = shivrianList.find(s => s.id === currentShiverianId);
@@ -747,8 +749,9 @@ const defaultImage = '../lostimages/MissingNo.png';
     }
     function minusVisCard() {
         if (currentShiverianIndex > 0) {
-            currentShiverianIndex -= 1;
+            currentShiverianIndex --;
             showDetails(shivrianList[currentShiverianIndex]);
+            console.log(currentShiverianIndex);
         }
         // currentShiverianId -=1;
         // const nextShiverian = shivrianList.find(s => s.id === currentShiverianId);
@@ -1906,7 +1909,8 @@ function filterShivrian() {
     });
 }
 function showDetails(shivrian) {
-    currentShiverianId = shivrian.id;
+    currentShiverianIndex = shivrianList.findIndex(s => s.id === shivrian.id);
+    console.log(currentShiverianIndex);
     document.getElementById("catalog").style.display = "none";
     document.getElementById("shivrian-details").style.display = "block";
     document.getElementById("search").style.display = "none"; 
