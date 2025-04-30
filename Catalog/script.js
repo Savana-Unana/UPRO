@@ -49,7 +49,7 @@ function setMadeTrue() {
         UnMade = true;
         Concepted = false;
         Unconcepted = false;
-        document.getElementById('madeLabel').textContent = "Switch to Concepted";
+        document.getElementById('madeLabel').textContent = "Switch to Unconcepted";
     } 
     else if (UnMade) 
     {
@@ -58,7 +58,7 @@ function setMadeTrue() {
         UnMade = false;
         Concepted = true;
         Unconcepted = false;
-        document.getElementById('madeLabel').textContent = "Switch to Unconcepted";
+        document.getElementById('madeLabel').textContent = "Switch to Concepted";
     } 
     else if (Concepted) 
     {

@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Paragons + Category Fix"
+git commit -m "Switch"
 git push origin 
 
 ```
