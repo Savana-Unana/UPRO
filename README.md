@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Switch"
+git commit -m "Moderate Update To Arros"
 git push origin 
 
 ```

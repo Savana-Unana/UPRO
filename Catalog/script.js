@@ -233,6 +233,24 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 11, name: "Sacred Espiorange", image: "../lostimages/MissingNo.png", typings: "Bug", paratypings: "", category: "Alt", artist: "", credits: "",
         description: "", region: "Forest"},
 
+        {id: 12, name: "Dog #1", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "",
+        description: "", region: "Forest"},
+    
+        {id: 12, name: "Sacred Dog #1", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "",
+        description: "", region: "Forest"},
+
+        {id: 13, name: "Dog #2", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "",
+        description: "", region: "Forest"},
+    
+        {id: 13, name: "Sacred Dog #2", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "",
+        description: "", region: "Forest"},
+
+        {id: 14, name: "Dog #3", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "",
+        description: "", region: "Forest"},
+    
+        {id: 14, name: "Sacred Dog #3", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "",
+        description: "", region: "Forest"},
+
         {id: 15, name: "Bakunbush", image: "../images/Bakunbush.png", typings: "Normal, Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
         description: "", region: "Forest"},
 
