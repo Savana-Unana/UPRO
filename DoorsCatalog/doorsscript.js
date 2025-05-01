@@ -88,8 +88,9 @@ function setNPCsTrue() {
 // Code from the third script section
 const defaultImage = "../lostimages/MissingNo.png"; 
         const shivrianList = [
-            {id: 1000, name: "Rush", image: "../doorsimages/rush.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
-            {id: 1000, name: "Ambush", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "", description: "", region: ""},
+            {id: 1000, name: "Nonignite StarLight Costume", image: "../doorsimages/NonigniteCurious.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
+            {id: 1000, name: "Pydromaglar Seek Costume", image: "../doorsimages/PydromaglarSeek.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
+            {id: 1000, name: "Rush", image: "../doorsimages/Rush.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},            {id: 1000, name: "Ambush", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "", description: "", region: ""},
             {id: 1000, name: "Seek", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
             {id: 1000, name: "Dam Seek", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Ace", artist: "", credits: "", description: "", region: ""},
             {id: 1000, name: "Giggle", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
