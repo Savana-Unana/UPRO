@@ -737,39 +737,28 @@ const defaultImage = '../lostimages/MissingNo.png';
             card.innerHTML = `
                 <img src="${shivrian.image}" alt="${shivrian.name}">
                 <h3>${shivrian.name}</h3>                `;
-            card.onclick = () => showDetails(shivrian);
+            card.onclick = () => {
+                const index = shivrianList.findIndex(s => s.id === shivrian.id);
+                showDetails(shivrian, index);
+            };
             catalog.appendChild(card);
         });
     }
 
     function addVisCard() {
-        if (currentShiverianIndex < shivrianList.length) {
+        if (currentShiverianIndex < shivrianList.length - 1) {
             console.log(currentShiverianIndex);
             currentShiverianIndex ++;
-            showDetails(shivrianList[currentShiverianIndex]);
+            showDetails(shivrianList[currentShiverianIndex], currentShiverianIndex);
             console.log(currentShiverianIndex);
         }
-        // currentShiverianId +=1;
-        // const nextShiverian = shivrianList.find(s => s.id === currentShiverianId);
-        // if (nextShiverian) {
-        //     showDetails(currentShiverianId);
-        // } else {
-        //     currentShiverianId -= 1;  // revert if out of bounds
-        // }
     }
     function minusVisCard() {
         if (currentShiverianIndex > 0) {
             currentShiverianIndex --;
-            showDetails(shivrianList[currentShiverianIndex]);
+            showDetails(shivrianList[currentShiverianIndex], currentShiverianIndex);
             console.log(currentShiverianIndex);
         }
-        // currentShiverianId -=1;
-        // const nextShiverian = shivrianList.find(s => s.id === currentShiverianId);
-        // if (nextShiverian) {
-        //     showDetails(currentShiverianId);
-        // } else {
-        //     currentShiverianId += 1;  // revert if out of bounds
-        // }
     }
 
 let lastQuery = "";
@@ -1973,7 +1962,10 @@ function filterShivrian() {
         }
     });
 }
-function showDetails(shivrian) {
+function showDetails(shivrian, index = null) {
+    if (index !== null) {
+        currentShiverianIndex = index;
+    }
     currentShiverianIndex = shivrianList.findIndex(s => s.id === shivrian.id);
     console.log(currentShiverianIndex);
     document.getElementById("catalog").style.display = "none";
