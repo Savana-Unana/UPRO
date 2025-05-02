@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 let Alt = false;
 let Ace = false;
 let NCanon = false;
-let NPCs = false;
 let Made = false;
 let UnMade = false;
 let Concepted = false;
@@ -34,7 +33,6 @@ function setAltTrue() {
     Alt = !Alt;
     Ace = false;
     NCanon = false;
-    NPCs = false;
     document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
     document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
     document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
@@ -96,11 +94,9 @@ function setAceTrue() {
     Ace = !Ace;
     Alt = false;
     NCanon = false;
-    NPCs = false;
     document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
     document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
     document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
-    document.getElementById('npcLabel').textContent = NPCs ? "Hide Characters" : "Show Characters";
     autoTriggerSearch();
     console.log("Ace is now:", Ace);
 }
@@ -109,11 +105,9 @@ function setAceTrue() {
     Ace = !Ace;
     Alt = false;
     NCanon = false;
-    NPCs = false;
     document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
     document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
     document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
-    document.getElementById('npcLabel').textContent = NPCs ? "Hide Characters" : "Show Characters";
     autoTriggerSearch();
     console.log("Ace is now:", Ace);
 }
@@ -122,40 +116,26 @@ function setNCanonTrue() {
     NCanon = !NCanon;
     Alt = false;
     Ace = false;
-    NPCs = false;
     document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
     document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
     document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
-    document.getElementById('npcLabel').textContent = NPCs ? "Hide Characters" : "Show Characters";
     autoTriggerSearch();
     console.log("NCanon is now:", NCanon);
-}
-function setNPCsTrue() {
-    NPCs = !NPCs;
-    Alt = false;
-    Ace = false;
-    NCanon = false;
-    document.getElementById('altLabel').textContent = Alt ? "Deactivate Alt" : "Activate Alt";
-    document.getElementById('aceLabel').textContent = Ace ? "Deactivate Ace" : "Activate Ace";
-    document.getElementById('nCanonLabel').textContent = NCanon ? "Deactivate NCanon" : "Activate NCanon";
-    document.getElementById('npcLabel').textContent = NPCs ? "Hide Characters" : "Show Characters";
-    autoTriggerSearch();
-    console.log("NPCs is now:", NCanon);
 }
 
 // Code from the third script section
 const defaultImage = '../lostimages/MissingNo.png'; 
     const shivrianList = [
-        {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "", paratypings: "", category: "Modernized", artist: "Jake", credits: "Idea-Shane+",
+        {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized", artist: "Jake", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
-        {id: 0, name: "Old Main Menu Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "", paratypings: "", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
+        {id: 0, name: "Old Main Menu Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
-        {id: 0, name: "Juvie Capture Capsule", image: "../lostimages/J.CaptureCapsule.png", typings: "", paratypings: "", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+",
+        {id: 0, name: "Juvie Capture Capsule", image: "../lostimages/J.CaptureCapsule.png", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
-        {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Modernized-Ace", artist: "", credits: "Idea-Shane+",
+        {id: 0, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-Ace", artist: "", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
         {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
@@ -185,10 +165,16 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 4, name: "Sacred Axolitl", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
         description: "", region: "Lake"},
 
-        {id: 5, name: "Axolote", image: "../images/Axail.png", typings: "Water, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Amo+",
+        {id: 5, name: "Axolote", image: "../images/Axolote.png", typings: "Water, Rock", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Amo+",
         description: "", region: "Lake"},
 
         {id: 5, name: "Sacred Axolote", image: "../lostimages/MissingNo.png", typings: "Water, Rock", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Amo+",
+        description: "", region: "Lake"},
+
+        {id: 5, name: "Axail", image: "../lostimages/Axail.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Amo", credits: "Drawn-Jake+Idea-Shane+Amo+",
+        description: "", region: "Lake"},
+    
+        {id: 5, name: "Sacred Axail", image: "../lostimages/S.Axail.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Amo", credits: "Idea-Shane+Amo+",
         description: "", region: "Lake"},
 
         {id: 6, name: "Axolarg", image: "../images/Axolarg.png", typings: "Water, Rock", paratypings: "Poison", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+",
@@ -308,10 +294,10 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Ace Nonignite", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Blarb", image: "../images/Blarb.png", typings: "Water, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        {id: 1000, name: "Blarb", image: "../images/Blarb.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "River"},
 
-        {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water, Bug", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
+        {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
         description: "", region: "River"},
 
         {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
@@ -324,6 +310,12 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "", region: "Plains"},
 
         {id: 1000, name: "Challadin Toasted Forme", image: "../images/ChalladinTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "OG Challadin", image: "../lostimages/OGChalladin.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Plains"},
+
+        {id: 1000, name: "OG Challadin Toasted Forme", image: "../lostimages/OGChalladinTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Plains"},
 
         {id: 1000, name: "Burking", image: "../lostimages/Burking.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
@@ -404,7 +396,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
 
-        {id: 1000, name: "Puppechyu", image: "../images/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        {id: 1000, name: "Puppechyu", image: "../lostimages/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Puppechu", image: "../lostimages/OGPuppechu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
@@ -470,10 +462,10 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Ace Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Ace", artist: "", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Relion", image: "../lostimages/Relion.png", typings: "Light", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 1000, name: "Relion", image: "../lostimages/Relion.png", typings: "Light", paratypings: "", category: "NCanon", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "MountainRange"},
 
-        {id: 1000, name: "Sacred Relion", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        {id: 1000, name: "Sacred Relion", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "NCanon", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "MountainRange"},
 
         {id: 1000, name: "Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
@@ -500,10 +492,16 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Prismite", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
+        {id: 1000, name: "OG Prismite", image: "../lostimages/OGPrismite.png", typings: "Light, Bug", paratypings: "", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        description: "", region: "Swamp"},
+
         {id: 1000, name: "Duochrom", image: "../images/Duochrom.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Sacred Duochrom", image: "../lostimages/MissingNo.png", typings: "Light, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "OG Duochrom", image: "../lostimages/OGDuochrom.png", typings: "Light, Bug", paratypings: "", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Prismoth", image: "../lostimages/Prismoth.png", typings: "Light, Bug", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Name-Shane+", 
@@ -651,7 +649,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
 
         //{id: 1000, name: "Proto-Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon-Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
-        //description: "", region: "Plains/Cave"},
+
 
         {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Paragon", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
         description: "", region: "Desert/SecretArea"},
@@ -674,10 +672,10 @@ const defaultImage = '../lostimages/MissingNo.png';
         //{id: 1000, name: "Eclipsicanine", image: "../lostimages/MissingNo.png", typings: "Dark, Light", paratypings: "Psychic", category: "Paragon-Alt", artist: "", credits: "Idea-Tal+", 
         //description: "", region: "MountainRange"},
 
-        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "", paratypings: "", category: "Paragon", artist: "Shane", credits: "Drawn-Shane+", 
+        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "Lucid", paratypings: "", category: "Paragon", artist: "Shane", credits: "Drawn-Shane+", 
         description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "", paratypings: "", category: "Paragon-Alt", artist: "Shane", credits: "Drawn-Shane+", 
+        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "Lucid", paratypings: "", category: "Paragon-Alt", artist: "Shane", credits: "Drawn-Shane+", 
         description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
         {id: -0.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
@@ -727,12 +725,6 @@ const defaultImage = '../lostimages/MissingNo.png';
 
         {id: -1, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Modernized-SolsticeOther", artist: "", credits: "Idea-Shane+", 
         description: "", region: "FrozenWasteland"},
-
-        {id: 1, name: "Skip", image: "../images/Skip.gif", typings: "Normal", paratypings: "", category: "NPC", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
-        description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
-            
-        {id: 2, name: "Randal Shivers", image: "../lostimages/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "NPC", artist: "", credits: "Idea-Shane+", 
-        description: "The Founder of ShiverCo. Descendent of Ronald Shivers, the Founding Father of Shivria.", region: "ShiverCo"}  
     ];
     function displayShivrian() {
         const catalog = document.getElementById("catalog");
@@ -797,11 +789,10 @@ function filterShivrian() {
         const typings = shivrian.typings ? shivrian.typings.toLowerCase() : "";
         const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
         const region = shivrian.region ? shivrian.region.toLowerCase() : "";
-        const isMatch = (name.includes(lastQuery) || lastQuery === id) && (!category.includes("ace") || Ace) && (!category.includes("ncanon") || Ace) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt") && !category.includes("solstice");
+        const isMatch = (name.includes(lastQuery) || lastQuery === id) && (!category.includes("ace") || Ace) && (!category.includes("ncanon") || Ace) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("solstice");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
         const isNCanonMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ncanon"));
-        const isNPCsMatch = category === ("npc");
 
         const isTalHelp = credits.includes("tal+") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isTaltHelp = credits.includes("tal+") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -863,6 +854,9 @@ function filterShivrian() {
         const isFairy = typings.includes("fairy") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isNormal = typings.includes("normal") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isLight = typings.includes("light") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
+        const isArtillery = typings.includes("artillery") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
+        const isLucid = typings.includes("lucid") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
+
 
         const isFireAlt = typings.includes("fire") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isWaterAlt = typings.includes("water") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -883,6 +877,8 @@ function filterShivrian() {
         const isFairyAlt = typings.includes("fairy") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isNormalAlt = typings.includes("normal") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isLightAlt = typings.includes("light") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isArtilleryAlt = typings.includes("artillery") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isLucidAlt = typings.includes("lucid") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
 
         const isFireAce = typings.includes("fire") && category.includes("ace");
         const isWaterAce = typings.includes("water") && category.includes("ace");
@@ -903,6 +899,8 @@ function filterShivrian() {
         const isFairyAce = typings.includes("fairy") && category.includes("ace");
         const isNormalAce = typings.includes("normal") && category.includes("ace");
         const isLightAce = typings.includes("light") && category.includes("ace");
+        const isArtilleryAce = typings.includes("artillery") && category.includes("ace");
+        const isLucidAce = typings.includes("lucid") && category.includes("ace");
 
         const isParaFire = paratypings.includes("fire") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isParaWater = paratypings.includes("water") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
@@ -923,6 +921,8 @@ function filterShivrian() {
         const isParaFairy = paratypings.includes("fairy") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isParaNormal = paratypings.includes("normal") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isParaLight = paratypings.includes("light") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
+        const isParaArtillery = paratypings.includes("artillery") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
+        const isParaLucid = paratypings.includes("lucid") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
 
         const isParaFireAlt = paratypings.includes("fire") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isParaWaterAlt = paratypings.includes("water") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -943,6 +943,8 @@ function filterShivrian() {
         const isParaFairyAlt = paratypings.includes("fairy") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isParaNormalAlt = paratypings.includes("normal") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isParaLightAlt = paratypings.includes("light") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaArtilleryAlt = paratypings.includes("artillery") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isParaLucidAlt = paratypings.includes("lucid") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
 
         const isParaFireAce = paratypings.includes("fire") && category.includes("ace");
         const isParaWaterAce = paratypings.includes("water") && category.includes("ace");
@@ -963,6 +965,8 @@ function filterShivrian() {
         const isParaFairyAce = paratypings.includes("fairy") && category.includes("ace");
         const isParaNormalAce = paratypings.includes("normal") && category.includes("ace");
         const isParaLightAce = paratypings.includes("light") && category.includes("ace");
+        const isParaArtilleryAce = paratypings.includes("artillery") && category.includes("ace");
+        const isParaLucidAce = paratypings.includes("lucid") && category.includes("ace");
 
         const isPlains = region.includes("plains") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isOcean = region.includes("ocean") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
@@ -1049,6 +1053,9 @@ function filterShivrian() {
         if (lastQuery == "doors") {
             window.location.href = "../DoorsCatalog/doorscatalog.html";
         }
+        if (lastQuery == "characters") {
+            window.location.href = "../Characters/characterscatalog.html";
+        }
         if (Alt) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
@@ -1058,10 +1065,7 @@ function filterShivrian() {
         if (NCanon){
             card.style.display = isNCanonMatch ? "block" : "none";
         }
-        if (NPCs){
-            card.style.display = isNPCsMatch ? "block" : "none";
-        }
-        if (!Alt && !Ace && !NCanon && !NPCs) {
+        if (!Alt && !Ace && !NCanon) {
             card.style.display = isMatch ? "block" : "none";
         }
         if (lastQuery === "tal") {
@@ -1417,6 +1421,28 @@ function filterShivrian() {
                 card.style.display = isLight ? "block" : "none";
             }
         }
+        else if (lastQuery === "artillery") {
+            if (Alt) {
+                card.style.display = isArtilleryAlt ? "block" : "none";
+            } 
+            else if (Ace) {
+                card.style.display = isArtilleryAce ? "block" : "none";
+            } 
+            else {
+                card.style.display = isArtillery ? "block" : "none";
+            }
+        }
+        else if (lastQuery === "lucid") {
+            if (Alt) {
+                card.style.display = isLucidAlt ? "block" : "none";
+            } 
+            else if (Ace) {
+                card.style.display = isLucidAce ? "block" : "none";
+            } 
+            else {
+                card.style.display = isLucid ? "block" : "none";
+            }
+        }
         if (lastQuery === "fire+") {
             if (Alt) {
                 card.style.display = isParaFireAlt ? "block" : "none";
@@ -1626,7 +1652,28 @@ function filterShivrian() {
                 card.style.display = isParaLight ? "block" : "none";
             }
         }
-
+        else if (lastQuery === "lucid+") {
+            if (Alt) {
+                card.style.display = isParaLucidAlt ? "block" : "none";
+            } 
+            else if (Ace) {
+                card.style.display = isParaLucidAce ? "block" : "none";
+            } 
+            else {
+                card.style.display = isParaLucid ? "block" : "none";
+            }
+        }
+        else if (lastQuery === "artillery+") {
+            if (Alt) {
+                card.style.display = isParaArtilleryAlt ? "block" : "none";
+            } 
+            else if (Ace) {
+                card.style.display = isParaArtilleryAce ? "block" : "none";
+            } 
+            else {
+                card.style.display = isParaArtillery ? "block" : "none";
+            }
+        }
         if (lastQuery === "plains") {
             if (Alt) {
                 card.style.display = isPlainsAlt ? "block" : "none";
@@ -1947,6 +1994,10 @@ function showDetails(shivrian) {
             imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
         }
+        else if (shivrian.name === "Skip") {
+            imageElement.style.width = (imageElement.naturalWidth / 1.1) + "px";
+            imageElement.style.height = (imageElement.naturalWidth / 1.2) + "px";
+        }
         else if (shivrian.name === "Capture Capsule") {
             imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
             imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
@@ -1960,8 +2011,8 @@ function showDetails(shivrian) {
             imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
         }
         else {
-            imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-            imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+            imageElement.style.width = (imageElement.naturalWidth * 3) + "px";
+            imageElement.style.height = (imageElement.naturalHeight * 3) + "px";
         }
     };
     

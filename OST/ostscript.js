@@ -1,15 +1,16 @@
 const audioFiles = [
-    { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 6 },
-    { name: "Sigma Ashore", file: "../Songs/SigmaAshore.mp3", ost: 1000, type: "Lake - Theme", typing: "Water", order: 12 },
-    { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, type: "Shop - Theme", typing: "Normal", order: 8 },
-    { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, type: "Fordes - Theme", typing: "Poison", order: 5 },
-    { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, type: "Desert - Theme", typing: "Ground", order: 7 },
-    { name: "Skeptic Electric", file: "../Songs/SkepticElectric.mp3", ost: 1000, type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
-    { name: "Hectic Electric", file: "../Songs/HecticElectric.mp3", ost: 1000, type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
-    { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
-    { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
-    { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10 },
-    { name: "---", file: "../Songs/---.mp3", ost: 1000, type: "??? - Theme", typing: "Normal", order: 11 }
+    { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 6 },
+    { name: "Sigma Ashore", file: "../Songs/SigmaAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 12 },
+    { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
+    { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Poison", order: 5 },
+    { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, composer: "Michael", type: "Desert - Theme", typing: "Ground", order: 7 },
+    { name: "Skeptic Electric", file: "../Songs/SkepticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
+    { name: "Hectic Electric", file: "../Songs/HecticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
+    { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
+    { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
+    { name: "Underground", file: "../Songs/Underground.mp3", ost: 1000, composer: "Ari", type: "Underground - Theme", typing: "Ground", order: 13 },
+    { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10 },
+    { name: "---", file: "../Songs/---.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 11 }
 ];
 
 let coincidencePlay = true;
@@ -93,7 +94,7 @@ function displaySongs(filteredFiles) {
     container.innerHTML = "";
     filteredFiles = filterSongsList(filteredFiles);
 
-    filteredFiles.forEach(({ name, file, ost, type, typing }) => {
+    filteredFiles.forEach(({ name, file, ost, composer, type, typing }) => {
         const card = document.createElement("div");
         card.className = "card";
 
@@ -112,6 +113,7 @@ function displaySongs(filteredFiles) {
         card.innerHTML = `
             <h3>${name}</h3>
             <p>OST: ${ost}</p>
+            <p>Composer: ${composer}</p>
             <button onclick="playAudio(this)">Play</button>
             <div class="progress"><div class="progress-bar"></div></div>
             <p class="time-display">0:00 / 0:00</p>
