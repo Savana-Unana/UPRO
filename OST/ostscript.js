@@ -8,7 +8,7 @@ const audioFiles = [
     { name: "Hectic Electric", file: "../Songs/HecticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - BattleTheme", typing: "Electric", order: 2 },
     { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
     { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
-    { name: "Underground", file: "../Songs/Underground.mp3", ost: 1000, composer: "Ari", type: "Underground - Theme", typing: "Ground", order: 13 },
+    { name: "Crystaline Caverns", file: "../Songs/CrystalineCaverns.mp3", ost: 1000, composer: "Ari", type: "Caverns - Theme", typing: "Ground", order: 13 },
     { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10 },
     { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 }
 ];
