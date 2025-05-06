@@ -307,6 +307,18 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
         description: "", region: "River"},
 
+        {id: 1000, name: "Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Sacred Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Sacred Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
+        description: "", region: "River"},
+
         {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Plains"},
 
@@ -372,6 +384,24 @@ const defaultImage = '../lostimages/MissingNo.png';
 
         {id: 1000, name: "Sacred Wyrachnos", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Swamp"},
+
+        {id: 1000, name: "Aestereg", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Aestereg", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Moteeph", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Moteeph", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Reverense", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Sacred Reverense", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "Flying", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
 
         {id: 1000, name: "Plasttack", image: "../images/Plasttack.png", typings: "Ghost", paratypings: "Normal", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+Shane+", 
         description: "", region: "Swamp"},

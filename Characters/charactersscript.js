@@ -18,7 +18,9 @@ function autoTriggerSearch() {
 document.addEventListener("DOMContentLoaded", () => {
     displayShivrian();
     autoTriggerSearch();
+    document.getElementById("search").addEventListener("input", filterShivrian);
 });
+
 
 // Code from the second script section
 let Main = true;
@@ -63,24 +65,28 @@ function filterShivrian() {
     lastQuery = searchInput.value.toLowerCase().trim();
     const catalog = document.getElementById("catalog");
     const cards = catalog.getElementsByClassName("shivrian-card");
+
     Array.from(cards).forEach((card, index) => {
         const shivrian = shivrianList[index];
         const name = shivrian.name.toLowerCase();
-        const isMatch = name.includes(lastQuery);
         const category = shivrian.category ? shivrian.category.toLowerCase() : "";
-        const isJuvieMatch = category.includes("juvie");
-        const isMainMatch = !category.includes("juvie");
 
-        if (lastQuery == "return") {
+        const isNameMatch = name.includes(lastQuery);
+        const isJuvieMatch = category.includes("juvie");
+        const isMainMatch = !isJuvieMatch;
+
+        let shouldDisplay = isNameMatch;
+
+        if (shouldDisplay) {
+            if (Juvie && !isJuvieMatch) shouldDisplay = false;
+            if (Main && !isMainMatch) shouldDisplay = false;
+        }
+
+        if (lastQuery === "return") {
             window.location.href = "../Catalog/catalog.html";
-        } 
-        card.style.display = isMatch ? "block" : "none";
-        if (Juvie) {
-            card.style.display = isJuvieMatch ? "block" : "none";
         }
-        else if (Main) {
-            card.style.display = isMainMatch ? "block" : "none";
-        }
+
+        card.style.display = shouldDisplay ? "block" : "none";
     });
 }
 function showDetails(shivrian) {

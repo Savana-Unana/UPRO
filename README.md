@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Songs"
+git commit -m "Stoff"
 git push origin 
 
 ```

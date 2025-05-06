@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battles of UPRO</title>
+    <title>GET OUT</title>
     <link rel="stylesheet" href="../Index/style.css">
-    <script src="../Battles/battlescript.js" defer></script> <!-- Ensure script loads after HTML -->
 </head>
 <body>
+    <script src="../Battles/battlescript.js" defer></script>    
     
-    <h1>Battles of UPRO</h1>
-    
-    <input type="text" id="search" placeholder="Search by name or number..." oninput="filterShivrian()">
-    <button onclick="setAltTrue()">Activate Alt</button>
+    <h1>Battles Of UPRO</h1>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Battles." oninput="filterShivrian()">
+    </div> 
+    <div class="alt-buttons-container">
+        <button class="Alt" id="altButton" onclick="setRoute()">
+            <span id="routeLabel">Juvie Route</span><i></i>
+        </button>
+        <button class="Alt" id="altButton" onclick="setEvent()">
+            <span id="eventLabel">Events</span><i></i>
+        </button>
+    </div>
     
     <div class="shivrian-container" id="catalog"></div>
     
-    <div id="shivrian-details" style="display: none;">
+    <div id="shivrian-details">
         <h2 id="shivrian-name"></h2>
+        <img id="shivrian-image" src="" alt="Shivrian Image">
         <p id="shivrian-description"></p>
-        <p id="shivrian-opposition"></p>
-        <p id="shivrian-ace"></p>
         <button onclick="closeDetails()">Back</button>
     </div>
     
     <div id="nav-buttons">
         <a href="../Index/index.html">
-            <button>Main Menu</button>
-        </a>
-        <a href="../Catalog/catalog.html">
-            <button>Catalog</button>
-        </a>
-        <a href="../Map/map.html">
-            <button>Map</button>
-        </a>
-        <a href="../OST/ost.html">
-            <button>OST</button>
-        </a>
-        <a href="../TypeChart/typechart.html">
-            <button>Type Chart</button>
+            <button>Return</button>
         </a>
     </div>
-    
+    <!-- <script src="../Catalog/script.js"></script> -->
 </body>
 </html>

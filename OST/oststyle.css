@@ -35,24 +35,24 @@ body {
 }   
 
 #nav-buttons button {
-    font-size: 20px; 
-    padding: 14px 28px; 
-    background: linear-gradient(135deg, #4a8cb3, #5bfa98);
-    color: #fff; 
-    border: none; 
-    border-radius: 12px; 
+    font-size: 18px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* mint to soft purple */
+    color: #333;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-#nav-buttons button:hover {
-    background: linear-gradient(135deg, #407ea2, #4bde83, #5c4bde);
-    transform: scale(1.05);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+#nav-buttons button:hover {  /*hooooooooooover */
+    background: linear-gradient(135deg, #4fd1c5, #8e9de5); /* deeper mint + purple on hover */
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
 #nav-buttons button:active {
-    transform: scale(0.95);
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
