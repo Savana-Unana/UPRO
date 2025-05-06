@@ -10,8 +10,8 @@ const audioFiles = [
     { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
     { name: "Crystaline Caverns", file: "../Songs/CrystalineCaverns.mp3", ost: 1000, composer: "Ari", type: "Caverns - Theme", typing: "Ground", order: 13 },
     { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10 },
-    { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 }
-    { name: "The Song that Stayed", file: "../Songs/TheSongThatStayed.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 12 },
+    { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 },
+    { name: "The Song that Stayed", file: "../Songs/TheSongThatStayed.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 }
 ];
 
 let coincidencePlay = true;
