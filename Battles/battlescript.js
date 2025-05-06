@@ -25,123 +25,123 @@ document.addEventListener("DOMContentLoaded", () => {
 // Code from the second script section
 let Main = true;
 let Juvie = false;
-let Events = false;
+let Secrets = false;
 
-function setEvent() {
+function setSecret() {
     Main = !Main;
     Juvie = false;
-    Events = !Events;
-    document.getElementById('eventLabel').textContent = Events ? "Normal Game" : "Events";
+    Secrets = !Secrets;
+    document.getElementById('secretLabel').textContent = Secrets ? "Normal Game" : "Secrets";
     document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
     autoTriggerSearch();
-    console.log("Event Condition is now:", Main);
+    console.log("Secret Condition is now:", Main);
 }
 
 function setRoute() {
     Main = !Main;
     Juvie = !Juvie;
-    Events = false;
+    Secrets = false;
     document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
-    document.getElementById('eventLabel').textContent = Events ? "Normal Game" : "Events";
+    document.getElementById('secretLabel').textContent = Secrets ? "Normal Game" : "Secrets";
     autoTriggerSearch();
     console.log("Main Route is now:", Main);
 }
     const shivrianList = [
-        {name: "Starter Jump", region: "", typings: "Grass, Water, Fire", category: "Gauntlet", helpers: "",
+        {name: "Starter Jump", region: "", typings: "Grass, Water, Fire", category: "Gauntlet",
         description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
 
-        {name: "Water Gauntlet", region: "", typings: "Water", category: "Gauntlet", helpers: "",
+        {name: "Reposition Rally", region: "", typings: "Grass, Bug", category: "Single",
+        description: "Rally happening the in the SpawnPoint Town."},
+
+        {name: "Water Gauntlet", region: "", typings: "Water", category: "Gauntlet",
         description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
 
-        {name: "Demolition Lake Helicopter", region: "", typings: "Artillery, Water", category: "Single", helpers: "",
+        {name: "Demolition Helicopter", region: "", typings: "Artillery, Water", category: "Double",
         description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
 
-        {name: "Bug Gauntlet", region: "", typings: "Bug", category: "Gauntlet", helpers: "",
+        {name: "Ecological Dead Zone", region: "", typings: "Artillery, Water", category: "Secret",
+        description: "Under the Water Gauntlet during its repairs."},
+
+        {name: "Bug Gauntlet", region: "", typings: "Bug", category: "Gauntlet",
         description: "Bug-type themed. Gauntlet. located in the Swamp."},
 
-        {name: "Dark Gauntlet", region: "", typings: "Dark", category: "Gauntlet", helpers: "",
+        {name: "Dark Gauntlet", region: "", typings: "Dark", category: "Gauntlet",
         description: "Dark-type themed. Gauntlet."},
 
-        {name: "Dragon Gauntlet", region: "", typings: "Dragon", category: "Gauntlet", helpers: "",
+        {name: "Dragon Gauntlet", region: "", typings: "Dragon", category: "Gauntlet",
         description: "Dragon-type themed. Gauntlet."},
 
-        {name: "Fairy Gauntlet", region: "", typings: "Fairy", category: "Gauntlet", helpers: "",
+        {name: "Fairy Gauntlet", region: "", typings: "Fairy", category: "Gauntlet",
         description: "Fairy-type themed. Gauntlet. led by Chef. Ace is Frankfortress."},
 
-        {name: "Fighting Gauntlet", region: "", typings: "Fighting", category: "Gauntlet", helpers: "",
+        {name: "Fighting Gauntlet", region: "", typings: "Fighting", category: "Gauntlet",
         description: "Fighting-type themed. Gauntlet."},
 
-        {name: "Fire Gauntlet", region: "", typings: "Fire", category: "Gauntlet", helpers: "",
+        {name: "Fire Gauntlet", region: "", typings: "Fire", category: "Gauntlet",
         description: "Fire-type themed. Gauntlet. located in the Volcano. Ace is Pydromaglar."},
 
-        {name: "Flying Gauntlet", region: "", typings: "Flying", category: "Gauntlet", helpers: "",
+        {name: "Flying Gauntlet", region: "", typings: "Flying", category: "Gauntlet",
         description: "Flying-type themed. Gauntlet."},
 
-        {name: "Ghost Gauntlet", region: "", typings: "Ghost", category: "Gauntlet", helpers: "",
+        {name: "Ghost Gauntlet", region: "", typings: "Ghost", category: "Gauntlet",
         description: "Ghost-type themed. Gauntlet."},
 
-        {name: "Grass Gauntlet", region: "", typings: "Grass", category: "Gauntlet", helpers: "",
+        {name: "Empire Vigilith", region: "", typings: "Stone, Ghost", category: "Single",
+        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+
+        {name: "Grass Gauntlet", region: "", typings: "Grass", category: "Gauntlet",
         description: "Grass-type themed. Gauntlet."},
 
-        {name: "Ground Gauntlet", region: "", typings: "Ground", category: "Gauntlet", helpers: "",
+        {name: "Ground Gauntlet", region: "", typings: "Ground", category: "Gauntlet",
         description: "Ground-type themed. Gauntlet."},
 
-        {name: "Ice Gauntlet", region: "", typings: "Ice", category: "Gauntlet", helpers: "",
+        {name: "Ice Gauntlet", region: "", typings: "Ice", category: "Gauntlet",
         description: "Ice-type themed. Gauntlet. located in the Ice-Caps. Ace is Reptundra."},
 
-        {name: "Normal Gauntlet", region: "", typings: "Normal", category: "Gauntlet", helpers: "",
+        {name: "Normal Gauntlet", region: "", typings: "Normal", category: "Gauntlet",
         description: "Normal-type themed. Gauntlet."},
 
-        {name: "Poison Gauntlet", region: "", typings: "Poison", category: "Gauntlet", helpers: "",
+        {name: "Poison Gauntlet", region: "", typings: "Poison", category: "Gauntlet",
         description: "Poison-type themed. Gauntlet."},
 
-        {name: "Psychic Gauntlet", region: "", typings: "Psychic", category: "Gauntlet", helpers: "",
+        {name: "Psychic Gauntlet", region: "", typings: "Psychic", category: "Gauntlet",
         description: "Psychic-type themed. Gauntlet."},
 
-        {name: "Rock Gauntlet", region: "", typings: "Rock", category: "Gauntlet", helpers: "",
+        {name: "Rock Gauntlet", region: "", typings: "Rock", category: "Gauntlet",
         description: "Rock-type themed. Gauntlet."},
 
-        {name: "Steel Gauntlet", region: "", typings: "Steel", category: "Gauntlet", helpers: "",
+        {name: "Steel Gauntlet", region: "", typings: "Steel", category: "Gauntlet",
         description: "Steel-type themed. Gauntlet."},
 
-        {name: "Light Gauntlet", region: "", typings: "Light", category: "Gauntlet", helpers: "",
+        {name: "Light Gauntlet", region: "", typings: "Light", category: "Gauntlet",
         description: "Light-type themed. Gauntlet."},
 
-        {name: "Artillery Gauntlet", region: "", typings: "Artillery", category: "Gauntlet", helpers: "",
+        {name: "Artillery Gauntlet", region: "", typings: "Artillery", category: "Gauntlet",
         description: "Artillery-type themed. Gauntlet."},
 
-        {name: "Cruise Ship", region: "", typings: "Water, Fire, Grass", category: "Gauntlet", helpers: "",
+        {name: "Cruise Ship", region: "", typings: "Water, Fire, Grass", category: "Gauntlet",
         description: "Water, Fire, Grass-type themed. Gauntlet. located in the Ocean. Ace is Hileaph, Axolarg, Blazuki."},
 
-        {name: "Charquid Games", region: "", typings: "Fire", category: "Gauntlet", helpers: "",
+        {name: "Charquid Games", region: "", typings: "Fire", category: "Gauntlet",
         description: "Fire-type themed. Gauntlet. located in the Ice-Caps. Ace is Nonignite."},
 
-        {name: "Radioactive Randal", region: "", typings: "Steel, Electric", category: "Single", helpers: "",
+        {name: "Radioactive Randal", region: "", typings: "Steel, Electric", category: "Single",
         description: "Steel, Electric-type themed. Single. located in the Plains. led by Radioactive Randal."},
 
-        {name: "Operation Pseudo Gauntlet", region: "", typings: "Psychic", category: "Gauntlet", helpers: "",
+        {name: "Operation Pseudo Gauntlet", region: "", typings: "Psychic", category: "Gauntlet",
         description: "Psychic-type themed. Gauntlet. located in the Secret Area. led by Operation Pseudo."},
 
-        {name: "Dopplergrail", region: "", typings: "Psychic", category: "Single", helpers: "",
+        {name: "Dopplergrail", region: "", typings: "Psychic", category: "Single",
         description: "Psychic-type themed. Single. located in the Secret Area. led by Dopplergrail. Ace is Dopplegrail."},
 
-        {name: "Radioactive Ronald", region: "", typings: "Ice", category: "Single, Event", helpers: "",
+        {name: "Radioactive Ronald", region: "", typings: "Ice", category: "Single, Secret",
         description: "Ice-type themed. Single. located in the Frozen Wasteland. led by Radioactive Ronald."},
 
-        {name: "Credits Gauntlet", region: "", typings: "Normal", category: "Gauntlet", helpers: "",
+        {name: "Credits Gauntlet", region: "", typings: "Normal", category: "Gauntlet",
         description: "Normal-type themed. Gauntlet. located in the Secret Area. led by Creators."},
 
-        {name: "Operation Pseudo Juvie Gauntlet", region: "", typings: "Steel", category: "Gauntlet, Juvie", helpers: "",
+        {name: "Operation Judgement Gauntlet", region: "", typings: "Steel", category: "Gauntlet, Juvie",
         description: "Steel-type themed. Gauntlet. located in the Secret Area. led by Capture Capsule. Ace is Capture Capsule, Dopplegrail."},
-
-        {name: "JaviorDaSavior", region: "", typings: "Fighting", category: "Single, Juvie", helpers: "",
-        description: "Fighting-type themed. Single, Juvie. located in the Secret Area. led by Jake."},
-
-        {name: "Tal", region: "", typings: "Fighting", category: "Single, Juvie", helpers: "",
-        description: "Fighting-type themed. Single, Juvie. located in the Secret Area. led by Tal."},
-
-        {name: "BloxxyMech", region: "", typings: "Fighting", category: "Single, Juvie", helpers: "",
-        description: "Fighting-type themed. Single, Juvie. located in the Secret Area. led by Shane."},
     ];
     function displayShivrian() {
         const catalog = document.getElementById("catalog");
@@ -150,13 +150,27 @@ function setRoute() {
         shivrianList.forEach(shivrian => {
             const card = document.createElement("div");
             card.className = "shivrian-card";
+    
+            const category = shivrian.category.toLowerCase();
+            if (category.includes("gauntlet")) {
+                card.classList.add("gauntlet");
+            } 
+            else if (category.includes("single")) {
+                card.classList.add("single");
+            } 
+            else if (category.includes("double")) {
+                card.classList.add("double");
+            } 
+            else {
+                card.classList.add("other");
+            }
+    
             card.setAttribute("data-id", shivrian.id);
-            card.innerHTML = `
-                <h3>${shivrian.name}</h3>                `;
+            card.innerHTML = `<h3>${shivrian.name}</h3>`;
             card.onclick = () => showDetails(shivrian);
             catalog.appendChild(card);
         });
-    }
+    }    
 
 let lastQuery = "";
 function filterShivrian() {
@@ -172,8 +186,8 @@ function filterShivrian() {
 
         const isNameMatch = name.includes(lastQuery);
         const isJuvie = category.includes("juvie");
-        const isEvent = category.includes("event");
-        const isMain = !isJuvie && !isEvent;
+        const isSecret = category.includes("secret");
+        const isMain = !isJuvie && !isSecret;
 
         let shouldDisplay = isNameMatch;
 
@@ -181,7 +195,7 @@ function filterShivrian() {
         if (shouldDisplay) {
             if (Juvie && !isJuvie) shouldDisplay = false;
             if (Main && !isMain) shouldDisplay = false;
-            if (typeof Events !== 'undefined' && Events && !isEvent) shouldDisplay = false;
+            if (typeof Secrets !== 'undefined' && Secrets && !isSecret) shouldDisplay = false;
         }
 
         // Special return command
