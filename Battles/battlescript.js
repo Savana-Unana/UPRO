@@ -32,8 +32,9 @@ function setEvent() {
     Juvie = false;
     Events = !Events;
     document.getElementById('eventLabel').textContent = Events ? "Normal Game" : "Events";
+    document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
     autoTriggerSearch();
-    console.log("Main Route is now:", Main);
+    console.log("Event Condition is now:", Main);
 }
 
 function setRoute() {
@@ -41,98 +42,105 @@ function setRoute() {
     Juvie = !Juvie;
     Events = false;
     document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
+    document.getElementById('eventLabel').textContent = Events ? "Normal Game" : "Events";
     autoTriggerSearch();
     console.log("Main Route is now:", Main);
 }
-
-// Code from the third script section
-const defaultImage = '../lostimages/MissingNo.png'; 
     const shivrianList = [
-        {name: "Water Gauntlet", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Starter Jump", region: "", typings: "Grass, Water, Fire", category: "Gauntlet", helpers: "",
         description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
 
-        {name: "Bug Gauntlet", image: "../lostimages/MissingNo.png", typings: "Bug", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Water Gauntlet", region: "", typings: "Water", category: "Gauntlet", helpers: "",
+        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+
+        {name: "Demolition Lake Helicopter", region: "", typings: "Artillery, Water", category: "Single", helpers: "",
+        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+
+        {name: "Bug Gauntlet", region: "", typings: "Bug", category: "Gauntlet", helpers: "",
         description: "Bug-type themed. Gauntlet. located in the Swamp."},
 
-        {name: "Dark Gauntlet", image: "../lostimages/MissingNo.png", typings: "Dark", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Dark Gauntlet", region: "", typings: "Dark", category: "Gauntlet", helpers: "",
         description: "Dark-type themed. Gauntlet."},
 
-        {name: "Dragon Gauntlet", image: "../lostimages/MissingNo.png", typings: "Dragon", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Dragon Gauntlet", region: "", typings: "Dragon", category: "Gauntlet", helpers: "",
         description: "Dragon-type themed. Gauntlet."},
 
-        {name: "Fairy Gauntlet", image: "../lostimages/MissingNo.png", typings: "Fairy", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Fairy Gauntlet", region: "", typings: "Fairy", category: "Gauntlet", helpers: "",
         description: "Fairy-type themed. Gauntlet. led by Chef. Ace is Frankfortress."},
 
-        {name: "Fighting Gauntlet", image: "../lostimages/MissingNo.png", typings: "Fighting", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Fighting Gauntlet", region: "", typings: "Fighting", category: "Gauntlet", helpers: "",
         description: "Fighting-type themed. Gauntlet."},
 
-        {name: "Fire Gauntlet", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Fire Gauntlet", region: "", typings: "Fire", category: "Gauntlet", helpers: "",
         description: "Fire-type themed. Gauntlet. located in the Volcano. Ace is Pydromaglar."},
 
-        {name: "Flying Gauntlet", image: "../lostimages/MissingNo.png", typings: "Flying", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Flying Gauntlet", region: "", typings: "Flying", category: "Gauntlet", helpers: "",
         description: "Flying-type themed. Gauntlet."},
 
-        {name: "Ghost Gauntlet", image: "../lostimages/MissingNo.png", typings: "Ghost", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Ghost Gauntlet", region: "", typings: "Ghost", category: "Gauntlet", helpers: "",
         description: "Ghost-type themed. Gauntlet."},
 
-        {name: "Grass Gauntlet", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Grass Gauntlet", region: "", typings: "Grass", category: "Gauntlet", helpers: "",
         description: "Grass-type themed. Gauntlet."},
 
-        {name: "Ground Gauntlet", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Ground Gauntlet", region: "", typings: "Ground", category: "Gauntlet", helpers: "",
         description: "Ground-type themed. Gauntlet."},
 
-        {name: "Ice Gauntlet", image: "../lostimages/MissingNo.png", typings: "Ice", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Ice Gauntlet", region: "", typings: "Ice", category: "Gauntlet", helpers: "",
         description: "Ice-type themed. Gauntlet. located in the Ice-Caps. Ace is Reptundra."},
 
-        {name: "Normal Gauntlet", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Normal Gauntlet", region: "", typings: "Normal", category: "Gauntlet", helpers: "",
         description: "Normal-type themed. Gauntlet."},
 
-        {name: "Poison Gauntlet", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Poison Gauntlet", region: "", typings: "Poison", category: "Gauntlet", helpers: "",
         description: "Poison-type themed. Gauntlet."},
 
-        {name: "Psychic Gauntlet", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Psychic Gauntlet", region: "", typings: "Psychic", category: "Gauntlet", helpers: "",
         description: "Psychic-type themed. Gauntlet."},
 
-        {name: "Rock Gauntlet", image: "../lostimages/MissingNo.png", typings: "Rock", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Rock Gauntlet", region: "", typings: "Rock", category: "Gauntlet", helpers: "",
         description: "Rock-type themed. Gauntlet."},
 
-        {name: "Steel Gauntlet", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Steel Gauntlet", region: "", typings: "Steel", category: "Gauntlet", helpers: "",
         description: "Steel-type themed. Gauntlet."},
 
-        {name: "Light Gauntlet", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Light Gauntlet", region: "", typings: "Light", category: "Gauntlet", helpers: "",
         description: "Light-type themed. Gauntlet."},
 
-        {name: "Cruise Ship", image: "../lostimages/MissingNo.png", typings: "Water, Fire, Grass", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Artillery Gauntlet", region: "", typings: "Artillery", category: "Gauntlet", helpers: "",
+        description: "Artillery-type themed. Gauntlet."},
+
+        {name: "Cruise Ship", region: "", typings: "Water, Fire, Grass", category: "Gauntlet", helpers: "",
         description: "Water, Fire, Grass-type themed. Gauntlet. located in the Ocean. Ace is Hileaph, Axolarg, Blazuki."},
 
-        {name: "Charquid Games", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Charquid Games", region: "", typings: "Fire", category: "Gauntlet", helpers: "",
         description: "Fire-type themed. Gauntlet. located in the Ice-Caps. Ace is Nonignite."},
 
-        {name: "Radioactive Randal", image: "../lostimages/MissingNo.png", typings: "Steel, Electric", paratypings: "", category: "Single", artist: "", credits: "",
+        {name: "Radioactive Randal", region: "", typings: "Steel, Electric", category: "Single", helpers: "",
         description: "Steel, Electric-type themed. Single. located in the Plains. led by Radioactive Randal."},
 
-        {name: "Operation Pseudo Gauntlet", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Operation Pseudo Gauntlet", region: "", typings: "Psychic", category: "Gauntlet", helpers: "",
         description: "Psychic-type themed. Gauntlet. located in the Secret Area. led by Operation Pseudo."},
 
-        {name: "Dopplegrail", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Single", artist: "", credits: "",
+        {name: "Dopplergrail", region: "", typings: "Psychic", category: "Single", helpers: "",
         description: "Psychic-type themed. Single. located in the Secret Area. led by Dopplergrail. Ace is Dopplegrail."},
 
-        {name: "Radioactive Ronald", image: "../lostimages/MissingNo.png", typings: "Ice", paratypings: "", category: "Single", artist: "", credits: "",
+        {name: "Radioactive Ronald", region: "", typings: "Ice", category: "Single, Event", helpers: "",
         description: "Ice-type themed. Single. located in the Frozen Wasteland. led by Radioactive Ronald."},
 
-        {name: "Credits Gauntlet", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Gauntlet", artist: "", credits: "",
+        {name: "Credits Gauntlet", region: "", typings: "Normal", category: "Gauntlet", helpers: "",
         description: "Normal-type themed. Gauntlet. located in the Secret Area. led by Creators."},
 
-        {name: "Operation Pseudo Juvie Gauntlet", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Gauntlet, Juvie", artist: "", credits: "",
+        {name: "Operation Pseudo Juvie Gauntlet", region: "", typings: "Steel", category: "Gauntlet, Juvie", helpers: "",
         description: "Steel-type themed. Gauntlet. located in the Secret Area. led by Capture Capsule. Ace is Capture Capsule, Dopplegrail."},
 
-        {name: "JaviorDaSavior", image: "../lostimages/MissingNo.png", typings: "Fighting", paratypings: "", category: "Single, Juvie", artist: "", credits: "",
+        {name: "JaviorDaSavior", region: "", typings: "Fighting", category: "Single, Juvie", helpers: "",
         description: "Fighting-type themed. Single, Juvie. located in the Secret Area. led by Jake."},
 
-        {name: "Tal", image: "../lostimages/MissingNo.png", typings: "Fighting", paratypings: "", category: "Single, Juvie", artist: "", credits: "",
+        {name: "Tal", region: "", typings: "Fighting", category: "Single, Juvie", helpers: "",
         description: "Fighting-type themed. Single, Juvie. located in the Secret Area. led by Tal."},
 
-        {name: "BloxxyMech", image: "../lostimages/MissingNo.png", typings: "Fighting", paratypings: "", category: "Single, Juvie", artist: "", credits: "",
+        {name: "BloxxyMech", region: "", typings: "Fighting", category: "Single, Juvie", helpers: "",
         description: "Fighting-type themed. Single, Juvie. located in the Secret Area. led by Shane."},
     ];
     function displayShivrian() {
@@ -144,7 +152,6 @@ const defaultImage = '../lostimages/MissingNo.png';
             card.className = "shivrian-card";
             card.setAttribute("data-id", shivrian.id);
             card.innerHTML = `
-                <img src="${shivrian.image}" alt="${shivrian.name}">
                 <h3>${shivrian.name}</h3>                `;
             card.onclick = () => showDetails(shivrian);
             catalog.appendChild(card);
@@ -196,64 +203,6 @@ function showDetails(shivrian) {
     document.querySelector("button").style.display = "none";
     document.getElementById("nav-buttons").style.display = "none";
     document.getElementById("shivrian-name").innerText = shivrian.name;
-    let imageElement = document.getElementById("shivrian-image");
-    
-    imageElement.onload = () => {
-        if (shivrian.name === "Ariel Salama") {
-            imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
-        }  
-        else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
-            imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
-        }
-        else if (shivrian.name === "Skip") {
-            imageElement.style.width = (imageElement.naturalWidth / 1.1) + "px";
-            imageElement.style.height = (imageElement.naturalWidth / 1.2) + "px";
-        }
-        else if (shivrian.name === "Capture Capsule") {
-            imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-            imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
-        }
-        else if (shivrian.name === "Juvie Capture Capsule") {
-            imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
-        }
-        else if (shivrian.name === "Cheetalon") {
-            imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
-        }
-        else {
-            imageElement.style.width = (imageElement.naturalWidth * 3) + "px";
-            imageElement.style.height = (imageElement.naturalHeight * 3) + "px";
-        }
-    };
-    
-    imageElement.src = shivrian.image;
-    if (shivrian.name === "Ariel Salama") {
-        imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
-    }  
-    else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
-        imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
-    }
-    else if (shivrian.name === "Capture Capsule") {
-        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
-    }
-    else if (shivrian.name === "Juvie Capture Capsule") {
-        imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
-    }
-    else if (shivrian.name === "Cheetalon") {
-        imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
-    }
-    else {
-        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
-    }
     document.getElementById("shivrian-description").innerText = shivrian.description;
     document.body.style.backgroundColor = "gray";
 }

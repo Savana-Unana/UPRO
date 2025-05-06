@@ -20,7 +20,7 @@ body {
     margin: 10px;
     text-align: center;
     width: 160px; /* set a fixed width */
-    height: 220px; /* set a fixed height */
+    height: 120px; /* set a fixed height */
     cursor: pointer;
     background-color: #f8f8f8;
     display: flex;
