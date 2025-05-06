@@ -322,7 +322,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Plains"},
 
-        {id: 1000, name: "Buntot Toasted Forme", image: "../images/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        {id: 1000, name: "Buntot Toasted Forme", image: "../lostimages/BuntotTF.png", typings: "Fairy, Fire", paratypings: "Poison", category: "Alt", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Plains"},
 
         {id: 1000, name: "Challadin", image: "../images/Challadin.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
