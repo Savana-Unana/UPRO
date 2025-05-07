@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const detailsBox = document.getElementById("shivrian-details");
-    const nameBox = document.getElementById("shivrian-name");
-    const imgBox = document.getElementById("shivrian-image");
-    const descBox = document.getElementById("shivrian-description");
+    const detailsBox = document.getElementById("location-details");
+    const nameBox = document.getElementById("location-name");
+    const imgBox = document.getElementById("location-image");
+    const descBox = document.getElementById("location-description");
   
     const magnifier = document.createElement("div");
     magnifier.className = "magnifier";
@@ -10,26 +10,23 @@ document.addEventListener("DOMContentLoaded", () => {
   
     let activeAlt = false;
   
-    // Sample data — replace with your own
     const regionData = {
       region1: {
-        name: "North Peak",
-        image: "images/northpeak.png",
-        description: "Snowy cliffs where rare Shivrians live."
+        name: "Home",
+        image: "../lostimages/MissingNo.png",
+        description: "Where Skip and his family live."
       },
       region2: {
-        name: "Lake Shivra",
-        image: "images/lakeshivra.png",
+        name: "Homegrounds",
+        image: "../lostimages/MissingNo.png",
         description: "Deep waters hiding ancient creatures."
       },
       region3: {
-        name: "Volcanic Crater",
-        image: "images/volcano.png",
-        description: "Hot zone, known for fire-type Shivrians."
+        name: "Lake Shivra",
+        image: "../lostimages/MissingNo.png",
+        description: "Deep waters. Great for fishing!"
       }
     };
-  
-    // Handle region clicks
     document.querySelectorAll("svg [id]").forEach(region => {
       region.addEventListener("click", () => {
         const id = region.id;
@@ -42,19 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   
-    // Close details popup
     window.closeDetails = function () {
       detailsBox.style.display = "none";
     };
   
-    // Optional: ALT mode toggle
-    window.setAltTrue = function () {
-      activeAlt = !activeAlt;
-      alert("Alt mode is now " + (activeAlt ? "ON" : "OFF"));
-    };
-  
-    // Search by name or ID
-    window.filterShivrian = function () {
+    window.filterLocation = function () {
       const input = document.getElementById("search").value.toLowerCase();
       document.querySelectorAll("svg [id]").forEach(region => {
         const data = regionData[region.id];
@@ -65,8 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     };
-  
-    // Magnifier logic
     const mapImg = document.getElementById("map");
     mapImg.addEventListener("mousemove", e => {
       const rect = mapImg.getBoundingClientRect();

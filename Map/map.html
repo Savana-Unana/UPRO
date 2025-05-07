@@ -4,41 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shivria Map</title>
-    <link rel="stylesheet" href="../Map/mapstyle.css"> <!-- External stylesheet for styles -->
+    <link rel="stylesheet" href="../Map/mapstyle.css">
 </head> 
 <body>
-    <!-- Main Title -->
-    <h1>Shivria Map</h1>
-
-    <!-- Search Input for filtering map areas -->
-    <input type="text" id="search" placeholder="Search by name or number..." oninput="filterMap()">
-
-    <!-- Div to hold the map content -->
+    <h1>Shiverica Map</h1>
+    <input type="text" id="search" placeholder="Type Location (Under-Construction)" oninput="filterMap()">
     <div id="map-container">
-        <!-- SVG map with clickable regions -->
         <svg id="map" viewBox="0 0 500 500">
-            <!-- Example clickable regions (rectangles, circles, etc.) -->
-            <rect id="region1" x="50" y="50" width="100" height="100" fill="lightblue" />
-            <circle id="region2" cx="300" cy="300" r="50" fill="lightgreen" />
+            <rect id="region1" x="0" y="400" width="25" height="25" fill="brown" />
+            <rect id="region2" x="0" y="425" width="25" height="25" fill="green" />
+            <rect id="region3" x="25" y="400" width="25" height="25" fill="blue" />
         </svg>
     </div>
-
-    <!-- Details popup (hidden by default) -->
-    <div id="shivrian-details" class="hidden">
-        <h2 id="shivrian-name"></h2>
-        <img id="shivrian-image" src="" alt="Shivrian Image">
-        <p id="shivrian-description"></p>
+    <div id="location-details" class="hidden">
+        <h2 id="location-name"></h2>
+        <img id="location-image" src="" alt="Location Image">
+        <p id="location-description"></p>
         <button onclick="closeDetails()">Back</button>
     </div>
-
-    <!-- Navigation buttons -->
     <div id="nav-buttons">
         <a href="../Index/index.html">
             <button>Return</button>
         </a>
     </div>
-
-    <!-- External script to handle map interactivity -->
     <script src="../Map/mapscript.js" defer></script>
 </body>
 </html>

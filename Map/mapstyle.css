@@ -1,4 +1,3 @@
-/* Base font & layout */
 body {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -13,7 +12,6 @@ body {
   align-items: center;
 }
 
-/* Map container */
 #map-container {
   position: relative;
   margin: 20px auto;
@@ -22,27 +20,13 @@ body {
   height: auto;
 }
 
-/* SVG map fills its container */
 #map {
-  width: 100%;
+  width: 105%;
   height: auto;
   cursor: crosshair;
 }
 
-/* Magnifier (hidden by default) */
-.magnifier {
-  position: absolute;
-  border: 3px solid #333;
-  border-radius: 50%;
-  pointer-events: none;
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  display: none;
-}
-
-/* Details popup */
-#shivrian-details {
+#location-details {
   display: none;
   position: fixed;
   top: 60px;
@@ -54,14 +38,13 @@ body {
   z-index: 10;
   text-align: left;
 }
-#shivrian-details img {
+#location-details img {
   max-width: 100%;
   height: auto;
   display: block;
   margin-bottom: 10px;
 }
 
-/* Search + Alt container */
 .search-alt-container {
   display: flex;
   gap: 15px;
@@ -69,7 +52,6 @@ body {
   margin: 20px 0;
 }
 
-/* Search input */
 input#search {
   padding: 12px;
   width: 300px;
@@ -84,7 +66,6 @@ input#search:focus {
   outline: none;
 }
 
-/* “Activate Alt” button */
 button.Alt {
   background: #333;
   color: #fff;
@@ -105,7 +86,6 @@ button.Alt:hover {
   border-color: #00ba32;
 }
 
-/* Nav buttons */
 #nav-buttons {
   margin: 20px 0;
   display: flex;
