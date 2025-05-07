@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       region2: {
         name: "Homegrounds",
         image: "../lostimages/MissingNo.png",
-        description: "Deep waters hiding ancient creatures."
+        description: "Ariel Salama is here."
       },
       region3: {
         name: "Lake Shivra",
