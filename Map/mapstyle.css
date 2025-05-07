@@ -1,0 +1,134 @@
+/* Base font & layout */
+body {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: 0;
+  padding: 0;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+               Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  word-wrap: break-word;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Map container */
+#map-container {
+  position: relative;
+  margin: 20px auto;
+  width: 60vh;
+  max-width: 100%;
+  height: auto;
+}
+
+/* SVG map fills its container */
+#map {
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+}
+
+/* Magnifier (hidden by default) */
+.magnifier {
+  position: absolute;
+  border: 3px solid #333;
+  border-radius: 50%;
+  pointer-events: none;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  display: none;
+}
+
+/* Details popup */
+#shivrian-details {
+  display: none;
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 250px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 10;
+  text-align: left;
+}
+#shivrian-details img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Search + Alt container */
+.search-alt-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* Search input */
+input#search {
+  padding: 12px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+input#search:focus {
+  border-color: #4824f8;
+  box-shadow: 0 0 8px rgba(46,46,46,0.6);
+  outline: none;
+}
+
+/* “Activate Alt” button */
+button.Alt {
+  background: #333;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  padding: 12px 30px;
+  border: 3px solid #00a2ff;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.5s;
+}
+button.Alt:hover {
+  letter-spacing: 0.2em;
+  background: #555;
+  border-color: #00ba32;
+}
+
+/* Nav buttons */
+#nav-buttons {
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+#nav-buttons button {
+  font-size: 18px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+#nav-buttons button:hover {
+  background: linear-gradient(135deg, #4fd1c5, #8e9de5);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+}
+#nav-buttons button:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
