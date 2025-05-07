@@ -569,52 +569,52 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 77, name: "Chancey", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "Forest"},
 
-        {id: 77, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 77.5, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 77, name: "Chancey (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        {id: 77.6, name: "Chancey (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "Forest"},
 
         {id: 78, name: "Maychancey", image: "../lostimages/Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "This creature is empty inside, and completely overtaken by the cold. It’s limbs have started to freeze, but it no longer cares.", region: "Forest"},
 
-        {id: 78, name: "Sacred Maychancey", image: "../lostimages/S.Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 78.5, name: "Sacred Maychancey", image: "../lostimages/S.Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 78, name: "MayChancey (Jake's Take)", image: "../lostimages/JT.Maychancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        {id: 78.6, name: "MayChancey (Jake's Take)", image: "../lostimages/JT.Maychancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
         description: "", region: "Forest"},
 
         {id: 79, name: "Gamblanguin", image: "../lostimages/Gamblanguin.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "A severe gambling addict, this creature had all of it’s assets frozen by the IRS and is constantly on the run from the police. It creates loaded dice to try to alter it’s odds of winning.", region: "Forest"},
 
-        {id: 79, name: "Sacred Gamblanguin", image: "../lostimages/S.Gamblanguin.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 79.5, name: "Sacred Gamblanguin", image: "../lostimages/S.Gamblanguin.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
         {id: 80, name: "Predadventure", image: "../lostimages/Predadventure.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "An icy bird, Predadventure constantly sheds it’s icicle feathers, so watch out for falling ice spikes when you’re in icy terrain. This creature Lives in the frozen tundras of __ to maintain it’s low body temperature. The clover leaves on its body have slowly been freezing for generations.", region: "Forest"},
 
-        {id: 80, name: "Sacred Predadventure", image: "../lostimages/S.Predadventure.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 80.5, name: "Sacred Predadventure", image: "../lostimages/S.Predadventure.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
         {id: 81, name: "Perchancey", image: "../lostimages/Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "After growing a twin, Perchancey’s twin is completely incinerated by the fire.", region: "Forest"},
 
-        {id: 81, name: "Sacred Perchancey", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 81.5, name: "Sacred Perchancey", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 81, name: "Perchancey (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        {id: 81.6, name: "Perchancey (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
         description: "", region: "Forest"},
 
         {id: 82, name: "Perchancealot", image: "../lostimages/Perchancealot.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "A noble knight of the order of the Charmey, Perchancalot overcame the fire of its childhood by adopting a symbiotic relationship with the mighty Exosteel. Perchancalot was deemed worthy and now wields the power of fire. It carries it’s dead twin around as a shield to protect it from harm.", region: "Forest"},
 
-        {id: 82, name: "Sacred Perchancealot", image: "../lostimages/S.Perchancealot.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 82.5, name: "Sacred Perchancealot", image: "../lostimages/S.Perchancealot.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
         {id: 83, name: "Possibilitor", image: "../lostimages/Possibilitor.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "Possibilitor emerges when Perchancey is completely consumed by fire. It is a powerful evil mage made up of thorny dead shrubbery and hatred. Possibilitor spent years searching the lands for spells to help it feel again. It discovered the ability to alter outcomes.", region: "Forest"},
 
-        {id: 83, name: "Sacred Possibilitor", image: "../lostimages/S.Possibilitor.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 83.5, name: "Sacred Possibilitor", image: "../lostimages/S.Possibilitor.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
         {id: 1000, name: "Soothspheer", image: "../lostimages/Soothspheer.png", typings: "Psychic", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -674,7 +674,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Shiver Pests", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Desert"},
 
-        {id: -1, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        {id: -1000, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Spooky Factory"},
 
         {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon", artist: "", credits: "Idea-Shane+", 

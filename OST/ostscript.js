@@ -1,4 +1,5 @@
 const audioFiles = [
+    { name: "Familiarity", file: "../Songs/Familiarity.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 },
     { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 6 },
     { name: "Modest Ashore", file: "../Songs/ModestAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 12 },
     { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
@@ -10,8 +11,7 @@ const audioFiles = [
     { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
     { name: "Crystaline Caverns", file: "../Songs/CrystalineCaverns.mp3", ost: 1000, composer: "Ari", type: "Caverns - Theme", typing: "Ground", order: 13 },
     { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10 },
-    { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 },
-    { name: "Familiarity", file: "../Songs/Familiarity.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 }
+    { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 }
 ];
 
 let coincidencePlay = true;
