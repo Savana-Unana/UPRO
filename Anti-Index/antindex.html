@@ -3,19 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erm Ma Ha Sigma</title>
+    <title>Forgotten</title>
     <link rel="stylesheet" href="../Anti-Index/antinstyle.css">
 </head>
+<script>
+    let switcherooActive = false;
+    function triggerSwitcheroo() {
+    switcherooActive = !switcherooActive;
+    const capsuleImg = document.getElementById("capsule-img");
+    const switchImg = document.querySelector('img[alt="Switcheroo"]');
+
+    capsuleImg.src = switcherooActive
+        ? "../otherimages/Anti-Animated_Capsule_Back.gif"
+        : "../otherimages/Anti-Animated_Capsule.gif";
+
+    switchImg.src = switcherooActive
+        ? "../otherimages/BadSwitch.png"
+        : "../otherimages/WorseSwitch.png";
+
+    const configs = switcherooActive ?
+    [
+        { id: "btn1", text: "Type Chart", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #84499d, #000000)", pos: { top: "12%", left: "10%" } },
+        { id: "btn2", text: "Story/Lore", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #915b4c, #000000)", pos: { top: "12%", left: "35%" } },
+        { id: "btn3", text: "Dooties", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #a36f30, #000000)", pos: { top: "40%", left: "7%" } },
+        { id: "btn4", text: "Credits", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #a57777, #000000)", pos: { top: "40%", left: "33%" } }
+    ] : 
+    [
+        { id: "btn1", text: "Catalog", href: "../Anti-Catalog/anticatalog.html", bg: "linear-gradient(135deg, #5a741b, #000000)", pos: { top: "7%", left: "42%" } },
+        { id: "btn2", text: "OST", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #a53f3f, #000000)", pos: { top: "38%", left: "43%" } },
+        { id: "btn3", text: "Battle", href: "../Anti-OST/antiost.html", bg: "linear-gradient(135deg, #a08d3f, #000000)", pos: { top: "8%", left: "67%" } },
+        { id: "btn4", text: "Map", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #4a77a8, #000000)", pos: { top: "38%", left: "70%" } }
+    ];
+
+    configs.forEach((config, index) => {
+        const btn = document.getElementById(config.id);
+        const anchor = btn.parentElement;
+        btn.textContent = config.text;
+        btn.style.background = config.bg;
+        anchor.href = config.href;
+
+        const screen = document.getElementById(`screen${index + 1}`);
+        screen.href = config.href;
+        screen.style.top = config.pos.top;
+        screen.style.left = config.pos.left;
+    });
+}
+    window.onload = () => {
+    const configs = [
+        { id: "btn1", text: "Catalog", href: "../Anti-Catalog/anticatalog.html", bg: "linear-gradient(135deg, #5a741b, #000000)", pos: { top: "7%", left: "42%" } },
+        { id: "btn2", text: "OST", href: "../Anti-OST/antiost.html", bg: "linear-gradient(135deg, #a53f3f, #000000)", pos: { top: "38%", left: "43%" } },
+        { id: "btn3", text: "Battle", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #a08d3f, #000000)", pos: { top: "8%", left: "67%" } },
+        { id: "btn4", text: "Map", href: "../Anti-Index/antindex.html", bg: "linear-gradient(135deg, #4a77a8, #000000)", pos: { top: "38%", left: "70%" } }
+    ];
+
+    configs.forEach((config, index) => {
+        const btn = document.getElementById(config.id);
+        const anchor = btn.parentElement;
+        btn.textContent = config.text;
+        btn.style.background = config.bg;
+        anchor.href = config.href;
+
+        const screen = document.getElementById(`screen${index + 1}`);
+        screen.href = config.href;
+        screen.style.top = config.pos.top;
+        screen.style.left = config.pos.left;
+    });
+};
+</script>
 <body>
-    <h1>M̶̢̨̧̢̛̛̱̝̲̩̺͉͔̾̈̈̾̂͑̌́͗͗̌̇̿̍̏̚͝͠a̶̫̬̮̤̺̰͎͕͗͛̇̐̋͋͂̉̂̅͑̕͝į̶̢̨̨̨̳͓̤̭̗̯̦̟͇͚̯̥̬͉̰̻͉̅͌̽̈̇̓̄̈́̓̏̋̈́̋̓̚͘͘͝ͅͅǹ̴̨̖̜̣̜̦̯̼̦̫̝̙̗̘̝̦͉̤̫̯̜͍͎͇̯̋́̓̅͛̐ ̶̡̢̨̝͖͉͈̜̩̩͍̗͕̗̜̝̗̿̀̉̇̇͘̚M̷̟̦̠͎͓̖̜̖͎̮̗̐͂̏̅̄͗̑͊͛̚͜e̶̡̢̛̜͈̝͍̗̠̖̰̤͉̺̣̼̻̿͆̾̉̌̎͂̉͆̒̃̽̓̾̅͘͘̕͜n̵̨̲͖̘͉͇̩͎̤̺͎̩̱̞̱̺̦̗̭̻̰̞̿̌͒̏̀̇̉̉͊̃̽̊̾͋͆̍́͘͘͜ṳ̵̢̡̨̡̢̙̹̟̝͉͍̯̰͔̱͖̗͎͙̥͉̗̌͐̂̀͜͠ͅ</h1>
+    <h1>Main Menu</h1>
+    <div class="capsule-container">
+        <img id="capsule-img" src="../otherimages/Anti-Animated_Capsule.gif" alt="Capture Capsule">
+        <a id="screen1" class="screen-button" href="../Anti-Catalog/anticatalog.html"><button>Screen 1</button></a>
+        <a id="screen2" class="screen-button" href="../Anti-Index/antindex.html"><button>Screen 2</button></a>
+        <a id="screen3" class="screen-button" href="../Anti-Index/antindex.html"><button>Screen 3</button></a>
+        <a id="screen4" class="screen-button" href="../Anti-Index/antindex.html"><button>Screen 4</button></a>
+        
+    </div>
     <div class="image-container">
-        <img src="../otherimages/Anti-Animated_Capsule.gif" alt="Capture Capsule">
-        <div class="buttons">
-            <a href="../Anti-Catalog/anticatalog.html"><button></button></a>
-            <a href="../Anti-Index/antindex.html"><button></button></a>
-            <a href="../Anti-OST/antiost.html"><button></button></a>
-            <a href="../Anti-Index/antindex.html"><button></button></a>
-        </div>
+        <div class="buttons" id="button-set">
+            <a href="../Anti-Catalog/anticatalog.html"><button id="btn1">Catalog</button></a>
+            <a href="../Anti-Index/antindex.html"><button id="btn2">Battle</button></a>
+            <a href="../Anti-OST/antiost.html"><button id="btn3">OST</button></a>
+            <a href="../Anti-Index/antindex.html"><button id="btn4">Map</button></a>
+    </div>
+    <div style="text-align: center; margin-top: 10px;">
+        <img src="../otherimages/WorseSwitch.png" 
+        alt="Switcheroo" 
+        onclick="triggerSwitcheroo()" 
+        style="width: 110px; height: auto; cursor: pointer;">
+    </div>
         <a href="../Index/index.html"><button class="extra-button"></button></a>
     </div>
 </body>

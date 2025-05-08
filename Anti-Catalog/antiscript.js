@@ -129,76 +129,76 @@ const defaultImage = '../lostimages/MissingNo.png';
                 {id: -0.5, name: "Capture Capsule", image: "../otherimages/Anti-Animated_Capsule.gif", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
                 description: "The Portal To This Other Realm Overloaded the Capture Capsule, And It Transformed Into Another Variant Of Itself.", region: ""},
 
-                {id: -0.5, name: "Anti-Oreo", image: "../images/oriel.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+, Credits-Ariel+",
-                description: "", region: ""},
+                {id: -1, name: "Oriel Slimei", image: "../lostimages/Oriel.png", typings: "Lucid, Water", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
+                description: "I fainted so really real picture", region: "Unobtainable"},
 
                 {id: 0, name: "Aurorial", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "", artist: "Shane", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 0, name: "--", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+",
+                {id: 0.5, name: "--", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "Shane", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 1, name: "--", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 1, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 1.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 2, name: "--", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 2, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 2.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 3, name: "--", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 3, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 3.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Grass", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 4, name: "Hooglet", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 4, name: "Sacred Hooglet", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 4.5, name: "Sacred Hooglet", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 5, name: "Owlquava", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "", artist: "Amo", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 5, name: "Sacred Owlquava", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+",
+                {id: 5.5, name: "Sacred Owlquava", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "Amo", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 6, name: "--", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 6, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "Alt", credits: "Idea-Shane+",
+                {id: 6.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "Alt", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 7, name: "Pythra", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 7, name: "Sacred Pythra", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 7.5, name: "Sacred Pythra", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 8, name: "--", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 8, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 8.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
                 {id: 9, name: "--", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
     
-                {id: 9, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 9.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 1000, name: "Placibial", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 80, name: "Placibial", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 1000, name: "Sacred Placibial", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
+                {id: 80.5, name: "Sacred Placibial", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
-                {id: 1000, name: "Disalit", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 81, name: "Disalit", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""}
        
         ];
@@ -517,13 +517,13 @@ function filterShiverican() {
         if (Alt) {
             card.style.display = isAltMatch ? "block" : "none";
         } 
-        if (Ace && !Alt){
+        else if (Ace && !Alt){
             card.style.display = isAceMatch ? "block" : "none";
         }
-        if (NCanon){
+        else if (NCanon){
             card.style.display = isNCanonMatch ? "block" : "none";
         }
-        if (!Alt && !Ace && !NCanon) {
+        else if (!Alt && !Ace && !NCanon) {
             card.style.display = isMatch ? "block" : "none";
         }
         if (lastQuery === "tal") {
@@ -1413,8 +1413,8 @@ function filterShiverican() {
             card.style.backgroundColor = "";
             card.style.border = "";
             if (lostimages && !NCanon) {
-                card.style.backgroundColor = rgb(34, 34, 34);
-                card.style.border = "white";
+                card.style.backgroundColor = "Black";
+                card.style.border = "Black";
             }
         }
         if (Made) {
@@ -1447,67 +1447,23 @@ function showDetails(shiverican, index = null) {
     let imageElement = document.getElementById("shiverican-image");
     
     imageElement.onload = () => {
-        if (shiverican.name === "Ariel Salama") {
-            imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
+        if (shiverican.name === "") {
+            imageElement.style.width = (imageElement.naturalWidth) + "px";
+            imageElement.style.height = (imageElement.naturalHeight) + "px";
         }  
-        else if (shiverican.name === "Oriel Slimei") {
-            imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
-        }  
-        else if (shiverican.name === "TwoMew.jpeg.png.gif.webp.jif") {
-            imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
-        }
-        else if (shiverican.name === "Skip") {
-            imageElement.style.width = (imageElement.naturalWidth / 1.1) + "px";
-            imageElement.style.height = (imageElement.naturalWidth / 1.2) + "px";
-        }
-        else if (shiverican.name === "Capture Capsule") {
-            imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-            imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
-        }
-        else if (shiverican.name === "Juvie Capture Capsule") {
-            imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
-        }
-        else if (shiverican.name === "Cheetalon") {
-            imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
-            imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
-        }
-        else {
-            imageElement.style.width = (imageElement.naturalWidth * 3) + "px";
-            imageElement.style.height = (imageElement.naturalHeight * 3) + "px";
-        }
     };
     
     imageElement.src = shiverican.image;
-    if (shiverican.name === "Ariel Salama") {
-        imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
+    if (shiverican.name === "Capture Capsule") {
+        imageElement.style.width = (imageElement.naturalWidth) + "px";
+        imageElement.style.height = (imageElement.naturalHeight) + "px";
     }  
-    else if (shiverican.name === "TwoMew.jpeg.png.gif.webp.jif") {
-        imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
-    }
-    else if (shiverican.name === "Capture Capsule") {
-        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
-    }
-    else if (shiverican.name === "Juvie Capture Capsule") {
-        imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
-    }
-    else if (shiverican.name === "Cheetalon") {
-        imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
-    }
     else {
-        imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
-        imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
+        imageElement.style.width = (imageElement.naturalWidth * 3) + "px";
+        imageElement.style.height = (imageElement.naturalHeight * 3) + "px";
     }
     document.getElementById("shiverican-description").innerText = shiverican.description;
-    document.body.style.backgroundColor = "gray";
+    document.body.style.backgroundColor = "Black";
 }
 
 function closeDetails() {

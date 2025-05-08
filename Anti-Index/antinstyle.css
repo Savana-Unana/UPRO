@@ -24,35 +24,134 @@ img {
 
 .buttons {
     position: absolute;
-    top: 232px;
-    left: 69%;
-    transform: translateX(-50%);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    z-index: 10;
+    top: 115%; /* Adjust this value */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    
 }
 
-button {
-    font-size: 18px;
-    padding: 18px 23px;
-    margin: 0;
+
+.buttons a button {
+    font-size: 16px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #e0e0e0, #ffffff);
+    border: 2px solid #000;
+    border-radius: 10px;
+    color: #c9c9c9;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0);
-    border: 0px solid #000;
-    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.buttons a button:hover {
+    background: linear-gradient(135deg, #c9c9c9, #f0f0f0);
+    transform: scale(1.03);
+}
+
+.buttons a button:active {
+    transform: scale(0.97);
+}
+
+#capsule-img {
+    width: 375px;
+    height: auto;
+    display: block;
+    margin: 0 10;
+    transition: opacity 0.3s ease;
+}
+
+#screen1 { top: 30%; left: 44%; }
+#screen2 { top: 30%; left: 63%; }
+#screen3 { top: 45%; left: 45%; }
+#screen4 { top: 45%; left: 64%; }
+
+.screen-button {
+    display: inline-block;
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    margin: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 2;
+}
+.screen-button button {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.capsule-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-top: 15px;
+}
+.capsule-container img {
+    max-width: 100%;
+}
+xr
+.buttons {
+    margin: 10px 0;
+    text-align: center;
+}
+img[alt="Switcheroo"] {
+    margin-top: 10px;
+    width: 110px;
+    height: auto;
+    cursor: pointer;
 }
 
 .extra-button {
-    position: absolute;
-    top: 595px;
-    left: 217%;
+    position: relative;
+    top: 183px;
+    left: 675px;
     transform: translateX(-50%);
     font-size: 20px;
     padding: 15px 25px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(34, 34, 34);
     color: rgb(0, 0, 0);
     border: none;
-    border-radius: 8px;
+    border-radius: 0px;
     cursor: pointer;
+}
+
+/* Navbar container */
+#nav-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* Small gap between buttons */
+    flex-wrap: wrap;
+}
+
+/* Navbar buttons */
+#nav-buttons button {
+    font-size: 18px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* mint to soft purple */
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+#nav-buttons button:hover {  /*hooooooooooover */
+    background: linear-gradient(135deg, #4fd1c5, #8e9de5); /* deeper mint + purple on hover */
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+#nav-buttons button:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.15)
 }

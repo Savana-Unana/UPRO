@@ -139,7 +139,10 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 0.9, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-Ace", artist: "", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
-        {id: 0.6, name: "Old Main Menu Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
+        {id: 0.6, name: "Old Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
+        description: "", region: "Plains/ShiverCo"},
+
+        {id: 0.61, name: "Old Anti Capture Capsule", image: "../images/Anti-CaptureCapsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
         {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
@@ -748,10 +751,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "Lucid", paratypings: "", category: "Paragon-Alt", artist: "Shane", credits: "Drawn-Shane+", 
         description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-        {id: -1.6, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
-        description: "I fainted so really real picture", region: "Unobtainable"},
-
-        {id: -1.5, name: "Oriel Slimei", image: "../lostimages/Oriel.png", typings: "Lucid, Water", paratypings: "", category: "NCanon", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
+        {id: -1.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 
         description: "I fainted so really real picture", region: "Unobtainable"},
 
         {id: -1, name: "Cheetalon", image: "../lostimages/Cheetalon.png", typings: "Normal", paratypings: "", category: "Alt", artist: "Shane", credits: "Drawn-Shane+", 

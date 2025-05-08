@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "Slight Update to the Anti Pages"
+git commit -m "When The Anti-Stuff Is Hours Of Work:"
 git push origin 
 
 ```
