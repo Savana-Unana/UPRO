@@ -7,13 +7,13 @@ body {
     word-wrap:break-word
 }
     
-.shivrian-container { 
+.shiverican-container { 
     display: flex; 
     flex-wrap: wrap; 
     justify-content: center; 
 }
 
-.shivrian-card {
+.shiverican-card {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 10px;
@@ -48,7 +48,7 @@ body {
 }
 
 
-#shivrian-details { 
+#shiverican-details { 
     display: none; 
     margin-top: 15px; 
 }

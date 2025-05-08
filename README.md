@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "New Mons"
+git commit -m "Slight Update to the Anti Pages"
 git push origin 
 
 ```

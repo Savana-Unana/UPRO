@@ -16,9 +16,9 @@ function autoTriggerSearch() {
     closeDetails();
 }
 document.addEventListener("DOMContentLoaded", () => {
-    displayShivrian();
+    displayShiverican();
     autoTriggerSearch();
-    document.getElementById("search").addEventListener("input", filterShivrian);
+    document.getElementById("search").addEventListener("input", filterShiverican);
 });
 
 
@@ -46,7 +46,7 @@ function setRoute() {
     autoTriggerSearch();
     console.log("Main Route is now:", Main);
 }
-    const shivrianList = [
+    const shivericanList = [
         {name: "Starter Jump", region: "", typings: "Grass, Water, Fire", category: "Gauntlet",
         description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
 
@@ -143,15 +143,15 @@ function setRoute() {
         {name: "Operation Judgement Gauntlet", region: "", typings: "Steel", category: "Gauntlet, Juvie",
         description: "Steel-type themed. Gauntlet. located in the Secret Area. led by Capture Capsule. Ace is Capture Capsule, Dopplegrail."},
     ];
-    function displayShivrian() {
+    function displayShiverican() {
         const catalog = document.getElementById("catalog");
         catalog.innerHTML = ""; 
-        shivrianList.sort((a, b) => a.id - b.id);
-        shivrianList.forEach(shivrian => {
+        shivericanList.sort((a, b) => a.id - b.id);
+        shivericanList.forEach(shiverican => {
             const card = document.createElement("div");
-            card.className = "shivrian-card";
+            card.className = "shiverican-card";
     
-            const category = shivrian.category.toLowerCase();
+            const category = shiverican.category.toLowerCase();
             if (category.includes("gauntlet")) {
                 card.classList.add("gauntlet");
             } 
@@ -165,24 +165,24 @@ function setRoute() {
                 card.classList.add("other");
             }
     
-            card.setAttribute("data-id", shivrian.id);
-            card.innerHTML = `<h3>${shivrian.name}</h3>`;
-            card.onclick = () => showDetails(shivrian);
+            card.setAttribute("data-id", shiverican.id);
+            card.innerHTML = `<h3>${shiverican.name}</h3>`;
+            card.onclick = () => showDetails(shiverican);
             catalog.appendChild(card);
         });
     }    
 
 let lastQuery = "";
-function filterShivrian() {
+function filterShiverican() {
     const searchInput = document.getElementById("search");
     lastQuery = searchInput.value.toLowerCase().trim();
     const catalog = document.getElementById("catalog");
-    const cards = catalog.getElementsByClassName("shivrian-card");
+    const cards = catalog.getElementsByClassName("shiverican-card");
 
     Array.from(cards).forEach((card, index) => {
-        const shivrian = shivrianList[index];
-        const name = shivrian.name.toLowerCase();
-        const category = shivrian.category ? shivrian.category.toLowerCase() : "";
+        const shiverican = shivericanList[index];
+        const name = shiverican.name.toLowerCase();
+        const category = shiverican.category ? shiverican.category.toLowerCase() : "";
 
         const isNameMatch = name.includes(lastQuery);
         const isJuvie = category.includes("juvie");
@@ -207,23 +207,23 @@ function filterShivrian() {
     });
 }
 
-function showDetails(shivrian) {
-    currentShiverianIndex = shivrianList.findIndex(s => s.id === shivrian.id);
+function showDetails(shiverican) {
+    currentShiverianIndex = shivericanList.findIndex(s => s.id === shiverican.id);
     console.log(currentShiverianIndex);
     document.getElementById("catalog").style.display = "none";
-    document.getElementById("shivrian-details").style.display = "block";
+    document.getElementById("shiverican-details").style.display = "block";
     document.getElementById("search").style.display = "none"; 
     document.getElementById("search").style.display = "none"; 
     document.querySelector("button").style.display = "none";
     document.getElementById("nav-buttons").style.display = "none";
-    document.getElementById("shivrian-name").innerText = shivrian.name;
-    document.getElementById("shivrian-description").innerText = shivrian.description;
+    document.getElementById("shiverican-name").innerText = shiverican.name;
+    document.getElementById("shiverican-description").innerText = shiverican.description;
     document.body.style.backgroundColor = "gray";
 }
 
 function closeDetails() {
     document.getElementById("catalog").style.display = "flex";
-    document.getElementById("shivrian-details").style.display = "none";
+    document.getElementById("shiverican-details").style.display = "none";
     document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let routebutton = document.querySelector("button");
@@ -235,5 +235,5 @@ function closeDetails() {
     routebutton.style.textAlign = "center";
     document.body.style.backgroundColor = "White";
 }
-    displayShivrian();
+    displayShiverican();
 // Ariel Salama was also here

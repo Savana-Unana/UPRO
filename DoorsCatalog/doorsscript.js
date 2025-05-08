@@ -11,7 +11,7 @@ function autoTriggerSearch() {
     closeDetails();
 }
 document.addEventListener("DOMContentLoaded", () => {
-    displayShivrian();
+    displayShiverican();
     autoTriggerSearch();
 });
 let Alt = false;
@@ -87,7 +87,7 @@ function setNPCsTrue() {
 
 // Code from the third script section
 const defaultImage = "../lostimages/MissingNo.png"; 
-        const shivrianList = [
+        const shivericanList = [
             {id: 1000, name: "Nonignite StarLight Costume", image: "../doorsimages/NonigniteCurious.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
             {id: 1000, name: "Pydromaglar Seek Costume", image: "../doorsimages/PydromaglarSeek.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
             {id: 1000, name: "Rush", image: "../doorsimages/Rush.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},            {id: 1000, name: "Ambush", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "Alt", artist: "", credits: "", description: "", region: ""},
@@ -115,39 +115,39 @@ const defaultImage = "../lostimages/MissingNo.png";
             {id: 1000, name: "Louie", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},        
             {id: 1000, name: "Louie", image: "../lostimages/MissingNo.png", typings: "", paratypings: "", category: "", artist: "", credits: "", description: "", region: ""},
         ];
-        function displayShivrian() {
+        function displayShiverican() {
             const catalog = document.getElementById("catalog");
             catalog.innerHTML = ""; 
-            shivrianList.sort((a, b) => a.id - b.id);
-            shivrianList.forEach(shivrian => {
+            shivericanList.sort((a, b) => a.id - b.id);
+            shivericanList.forEach(shiverican => {
                 const card = document.createElement("div");
-                card.className = "shivrian-card";
-                card.setAttribute("data-id", shivrian.id);
+                card.className = "shiverican-card";
+                card.setAttribute("data-id", shiverican.id);
                 card.innerHTML = `
-                    <img src="${shivrian.image}" alt="${shivrian.name}">
-                    <h3>${shivrian.name}</h3>                `;
-                card.onclick = () => showDetails(shivrian);
+                    <img src="${shiverican.image}" alt="${shiverican.name}">
+                    <h3>${shiverican.name}</h3>                `;
+                card.onclick = () => showDetails(shiverican);
                 catalog.appendChild(card);
             });
         }
 
 let lastQuery = "";
-function filterShivrian() {
+function filterShiverican() {
     const searchInput = document.getElementById("search");
     lastQuery = searchInput.value.toLowerCase().trim();
     const catalog = document.getElementById("catalog");
-    const cards = catalog.getElementsByClassName("shivrian-card");
+    const cards = catalog.getElementsByClassName("shiverican-card");
     Array.from(cards).forEach((card, index) => {
-        const shivrian = shivrianList[index];
-        const name = shivrian.name.toLowerCase();
-        const id = shivrian.id.toString().toLowerCase();
-        const image = shivrian.image ? shivrian.image.toLowerCase() : "";
-        const category = shivrian.category ? shivrian.category.toLowerCase() : "";
-        const credits = shivrian.credits ? shivrian.credits.toLowerCase() : "";
-        const artist = shivrian.artist ? shivrian.artist.toLowerCase() : "";
-        const typings = shivrian.typings ? shivrian.typings.toLowerCase() : "";
-        const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
-        const region = shivrian.region ? shivrian.region.toLowerCase() : "";
+        const shiverican = shivericanList[index];
+        const name = shiverican.name.toLowerCase();
+        const id = shiverican.id.toString().toLowerCase();
+        const image = shiverican.image ? shiverican.image.toLowerCase() : "";
+        const category = shiverican.category ? shiverican.category.toLowerCase() : "";
+        const credits = shiverican.credits ? shiverican.credits.toLowerCase() : "";
+        const artist = shiverican.artist ? shiverican.artist.toLowerCase() : "";
+        const typings = shiverican.typings ? shiverican.typings.toLowerCase() : "";
+        const paratypings = shiverican.paratypings ? shiverican.paratypings.toLowerCase() : "";
+        const region = shiverican.region ? shiverican.region.toLowerCase() : "";
         const isMatch = (name.includes(lastQuery) || lastQuery === id) && (!category.includes("ace") || Ace) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("npc") && !category.includes("npcalt") && !category.includes("solstice");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
@@ -1239,33 +1239,33 @@ function filterShivrian() {
 
     });
 }
-function showDetails(shivrian) {
+function showDetails(shiverican) {
     document.getElementById("catalog").style.display = "none";
-    document.getElementById("shivrian-details").style.display = "block";
+    document.getElementById("shiverican-details").style.display = "block";
     document.getElementById("search").style.display = "none"; 
     document.getElementById("search").style.display = "none"; 
     document.querySelector("button").style.display = "none";
     document.getElementById("nav-buttons").style.display = "none";
-    document.getElementById("shivrian-name").innerText = shivrian.name;
-    let imageElement = document.getElementById("shivrian-image");
-    imageElement.src = shivrian.image;
-    if (shivrian.name === "Ariel Salama") {
+    document.getElementById("shiverican-name").innerText = shiverican.name;
+    let imageElement = document.getElementById("shiverican-image");
+    imageElement.src = shiverican.image;
+    if (shiverican.name === "Ariel Salama") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
     }  
-    else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
+    else if (shiverican.name === "TwoMew.jpeg.png.gif.webp.jif") {
         imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
     }
-    else if (shivrian.name === "Capture Capsule") {
+    else if (shiverican.name === "Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
-    else if (shivrian.name === "Juvie Capture Capsule") {
+    else if (shiverican.name === "Juvie Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
     }
-    else if (shivrian.name === "Cheetalon") {
+    else if (shiverican.name === "Cheetalon") {
         imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
     }
@@ -1273,13 +1273,13 @@ function showDetails(shivrian) {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
-    document.getElementById("shivrian-description").innerText = shivrian.description;
+    document.getElementById("shiverican-description").innerText = shiverican.description;
     document.body.style.backgroundColor = "gray";
 }
 
 function closeDetails() {
     document.getElementById("catalog").style.display = "flex";
-    document.getElementById("shivrian-details").style.display = "none";
+    document.getElementById("shiverican-details").style.display = "none";
     document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
@@ -1292,4 +1292,4 @@ function closeDetails() {
     let glitchInterval;
     document.body.style.backgroundColor = "rgb(123, 63, 0)";
 }
-    displayShivrian();
+    displayShiverican();

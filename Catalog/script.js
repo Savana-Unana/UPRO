@@ -16,7 +16,7 @@ function autoTriggerSearch() {
     closeDetails();
 }
 document.addEventListener("DOMContentLoaded", () => {
-    displayShivrian();
+    displayShiverican();
     autoTriggerSearch();
 });
 
@@ -129,7 +129,7 @@ const defaultImage = '../lostimages/MissingNo.png';
 // .5s are Alts
 // .9s are Aces
 // .6s are NCanons
-    const shivrianList = [
+    const shivericanList = [
         {id: 0, name: "Capture Capsule", image: "../images/CaptureCapsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized", artist: "Jake", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
@@ -805,58 +805,58 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: -11, name: "Shiver Craze V2.0", image: "../lostimages/MissingNo.png", typings: "Psychic", paratypings: "", category: "Modernized-SolsticeOther", artist: "", credits: "Idea-Shane+", 
         description: "", region: "FrozenWasteland"},
     ];
-    function displayShivrian() {
+    function displayShiverican() {
         const catalog = document.getElementById("catalog");
         catalog.innerHTML = ""; 
-        shivrianList.sort((a, b) => a.id - b.id);
-        shivrianList.forEach(shivrian => {
+        shivericanList.sort((a, b) => a.id - b.id);
+        shivericanList.forEach(shiverican => {
             const card = document.createElement("div");
-            card.className = "shivrian-card";
-            card.setAttribute("data-id", shivrian.id);
+            card.className = "shiverican-card";
+            card.setAttribute("data-id", shiverican.id);
             card.innerHTML = `
-                <img src="${shivrian.image}" alt="${shivrian.name}">
-                <h3>${shivrian.name}</h3>                `;
+                <img src="${shiverican.image}" alt="${shiverican.name}">
+                <h3>${shiverican.name}</h3>                `;
             card.onclick = () => {
-                const index = shivrianList.findIndex(s => s.id === shivrian.id);
-                showDetails(shivrian, index);
+                const index = shivericanList.findIndex(s => s.id === shiverican.id);
+                showDetails(shiverican, index);
             };
             catalog.appendChild(card);
         });
     }
 
     function addVisCard() {
-        if (currentShiverianIndex < shivrianList.length - 1) {
+        if (currentShiverianIndex < shivericanList.length - 1) {
             console.log(currentShiverianIndex);
             currentShiverianIndex ++;
-            showDetails(shivrianList[currentShiverianIndex], currentShiverianIndex);
+            showDetails(shivericanList[currentShiverianIndex], currentShiverianIndex);
             console.log(currentShiverianIndex);
         }
     }
     function minusVisCard() {
         if (currentShiverianIndex > 0) {
             currentShiverianIndex --;
-            showDetails(shivrianList[currentShiverianIndex], currentShiverianIndex);
+            showDetails(shivericanList[currentShiverianIndex], currentShiverianIndex);
             console.log(currentShiverianIndex);
         }
     }
 
 let lastQuery = "";
-function filterShivrian() {
+function filterShiverican() {
     const searchInput = document.getElementById("search");
     lastQuery = searchInput.value.toLowerCase().trim();
     const catalog = document.getElementById("catalog");
-    const cards = catalog.getElementsByClassName("shivrian-card");
+    const cards = catalog.getElementsByClassName("shiverican-card");
     Array.from(cards).forEach((card, index) => {
-        const shivrian = shivrianList[index];
-        const name = shivrian.name.toLowerCase();
-        const id = Math.floor(shivrian.id).toString();
-        const image = shivrian.image ? shivrian.image.toLowerCase() : "";
-        const category = shivrian.category ? shivrian.category.toLowerCase() : "";
-        const credits = shivrian.credits ? shivrian.credits.toLowerCase() : "";
-        const artist = shivrian.artist ? shivrian.artist.toLowerCase() : "";
-        const typings = shivrian.typings ? shivrian.typings.toLowerCase() : "";
-        const paratypings = shivrian.paratypings ? shivrian.paratypings.toLowerCase() : "";
-        const region = shivrian.region ? shivrian.region.toLowerCase() : "";
+        const shiverican = shivericanList[index];
+        const name = shiverican.name.toLowerCase();
+        const id = Math.floor(shiverican.id).toString();
+        const image = shiverican.image ? shiverican.image.toLowerCase() : "";
+        const category = shiverican.category ? shiverican.category.toLowerCase() : "";
+        const credits = shiverican.credits ? shiverican.credits.toLowerCase() : "";
+        const artist = shiverican.artist ? shiverican.artist.toLowerCase() : "";
+        const typings = shiverican.typings ? shiverican.typings.toLowerCase() : "";
+        const paratypings = shiverican.paratypings ? shiverican.paratypings.toLowerCase() : "";
+        const region = shiverican.region ? shiverican.region.toLowerCase() : "";
         const isMatch = (name.includes(lastQuery) || lastQuery === id) && (!category.includes("ace") || Ace) && (!category.includes("ncanon") || Ace) && !category.includes("halloween") && !category.includes("frostbite") && (!category.includes("alt") || Alt) && !category.includes("solstice");
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
@@ -2041,47 +2041,47 @@ function filterShivrian() {
         }
     });
 }
-function showDetails(shivrian, index = null) {
+function showDetails(shiverican, index = null) {
     if (index !== null) {
         currentShiverianIndex = index;
     }
-    currentShiverianIndex = shivrianList.findIndex(s => s.id === shivrian.id);
+    currentShiverianIndex = shivericanList.findIndex(s => s.id === shiverican.id);
     console.log(currentShiverianIndex);
     document.getElementById("catalog").style.display = "none";
-    document.getElementById("shivrian-details").style.display = "block";
+    document.getElementById("shiverican-details").style.display = "block";
     document.getElementById("search").style.display = "none"; 
     document.getElementById("search").style.display = "none"; 
     document.querySelector("button").style.display = "none";
     document.getElementById("nav-buttons").style.display = "none";
-    document.getElementById("shivrian-name").innerText = shivrian.name;
-    let imageElement = document.getElementById("shivrian-image");
+    document.getElementById("shiverican-name").innerText = shiverican.name;
+    let imageElement = document.getElementById("shiverican-image");
     
     imageElement.onload = () => {
-        if (shivrian.name === "Ariel Salama") {
+        if (shiverican.name === "Ariel Salama") {
             imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
         }  
-        else if (shivrian.name === "Oriel Slimei") {
+        else if (shiverican.name === "Oriel Slimei") {
             imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
         }  
-        else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
+        else if (shiverican.name === "TwoMew.jpeg.png.gif.webp.jif") {
             imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
         }
-        else if (shivrian.name === "Skip") {
+        else if (shiverican.name === "Skip") {
             imageElement.style.width = (imageElement.naturalWidth / 1.1) + "px";
             imageElement.style.height = (imageElement.naturalWidth / 1.2) + "px";
         }
-        else if (shivrian.name === "Capture Capsule") {
+        else if (shiverican.name === "Capture Capsule") {
             imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
             imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
         }
-        else if (shivrian.name === "Juvie Capture Capsule") {
+        else if (shiverican.name === "Juvie Capture Capsule") {
             imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
         }
-        else if (shivrian.name === "Cheetalon") {
+        else if (shiverican.name === "Cheetalon") {
             imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
         }
@@ -2091,24 +2091,24 @@ function showDetails(shivrian, index = null) {
         }
     };
     
-    imageElement.src = shivrian.image;
-    if (shivrian.name === "Ariel Salama") {
+    imageElement.src = shiverican.image;
+    if (shiverican.name === "Ariel Salama") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
     }  
-    else if (shivrian.name === "TwoMew.jpeg.png.gif.webp.jif") {
+    else if (shiverican.name === "TwoMew.jpeg.png.gif.webp.jif") {
         imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
     }
-    else if (shivrian.name === "Capture Capsule") {
+    else if (shiverican.name === "Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
-    else if (shivrian.name === "Juvie Capture Capsule") {
+    else if (shiverican.name === "Juvie Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth / 0.9) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 0.9) + "px";
     }
-    else if (shivrian.name === "Cheetalon") {
+    else if (shiverican.name === "Cheetalon") {
         imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
     }
@@ -2116,13 +2116,13 @@ function showDetails(shivrian, index = null) {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
     }
-    document.getElementById("shivrian-description").innerText = shivrian.description;
+    document.getElementById("shiverican-description").innerText = shiverican.description;
     document.body.style.backgroundColor = "gray";
 }
 
 function closeDetails() {
     document.getElementById("catalog").style.display = "flex";
-    document.getElementById("shivrian-details").style.display = "none";
+    document.getElementById("shiverican-details").style.display = "none";
     document.getElementById("nav-buttons").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
@@ -2142,5 +2142,5 @@ function closeDetails() {
         document.body.style.backgroundColor = "White";
     }
 }
-    displayShivrian();
+    displayShiverican();
 // Ariel Salama was also here
