@@ -565,6 +565,14 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Vigilith", image: "../images/Vigilith.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Desert/Temple"},
 
+        {id: 1000, name: "Empire Vigilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "Ace", artist: "ake", credits: "Idea-Shane+", 
+        description: "", region: "IceCaps"},
+
+        {id: 1000, name: "Agilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Desert/Temple"},
+
+        {id: 1000, name: "Fortilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Desert/Temple"},
 
         {id: 77, name: "Chancey", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "Forest"},
@@ -726,6 +734,12 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "YOU'RE TOO SLOW!", region: "Unobtainable"},
 
         {id: 1000, name: "Vigilith Revealed Forme", image: "../images/VigilithRF.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Spooky Factory"},
+
+        {id: 1000, name: "Agilith Revealed Forme", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Spooky Factory"},
+
+        {id: 1000, name: "Fortilith Revealed Forme", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Spooky Factory"},
 
         {id: -2.5, name: "Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "Halloween", artist: "", credits: "Idea-Shane+", 

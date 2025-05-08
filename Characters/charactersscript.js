@@ -39,9 +39,12 @@ const defaultImage = '../lostimages/MissingNo.png';
     const shivrianList = [
         {name: "Skip", image: "../images/Skip.gif", typings: "Normal", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+Jake+", 
         description: "The Main Character of the Game. Is a 17 year old that wants to be a very good capsuler.", region: "Plains"},
+
+        {name: "Sheriff Stanford", image: "../lostimages/MissingNo.png", typings: "Normal, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "The Sheriff. Ground Gauntlet leader, but gives the CC Upgrade for helping him catch some bandits.", region: "Desert"},
             
         {name: "Randal Shivers", image: "../lostimages/MissingNo.png", typings: "Normal, Poison", paratypings: "Fighting", category: "", artist: "", credits: "Idea-Shane+", 
-        description: "The Founder of ShiverCo. Descendent of Ronald Shivers, the Founding Father of Shivria.", region: "ShiverCo"}  
+        description: "The Founder of ShiverCo. Descendent, more specifically the grandson, of Ronald Shivers, the Founding Father of Shiverica.", region: "ShiverCo"}  
     ];
     function displayShivrian() {
         const catalog = document.getElementById("catalog");
