@@ -397,13 +397,13 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Wyrachnos", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Beit", image: "../lostimages/Wyvearn.png", typings: "Ghost, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Beit", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Sacred Beit", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Pirotte", image: "../lostimages/Wyvearn.png", typings: "Ghost, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Pirotte", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Sacred Pirotte", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
