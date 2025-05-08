@@ -307,16 +307,28 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
         description: "", region: "River"},
 
-        {id: 1000, name: "Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        {id: 1000, name: "Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Idea-Jake+", 
         description: "", region: "River"},
 
-        {id: 1000, name: "Sacred Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
+        {id: 1000, name: "Sacred Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
         description: "", region: "River"},
 
-        {id: 1000, name: "Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        {id: 1000, name: "Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
         description: "", region: "River"},
 
-        {id: 1000, name: "Sacred Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
+        {id: 1000, name: "Sacred Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Fizzlin", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Sacred Fizzlin", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Fizzik", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "River"},
+
+        {id: 1000, name: "Sacred Fizzik", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
         description: "", region: "River"},
 
         {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
@@ -383,6 +395,18 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Sacred Wyrachnos", image: "../lostimages/MissingNo.png", typings: "Bug, Dragon", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Beit", image: "../lostimages/Wyvearn.png", typings: "Ghost, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Beit", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Pirotte", image: "../lostimages/Wyvearn.png", typings: "Ghost, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Pirotte", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Aestereg", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
