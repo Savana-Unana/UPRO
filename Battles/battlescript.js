@@ -189,23 +189,52 @@ function filterShiverican() {
         const isSecret = category.includes("secret");
         const isMain = !isJuvie && !isSecret;
 
-        let shouldDisplay = isNameMatch;
-
-        // Filter by route if name matches
-        if (shouldDisplay) {
-            if (Juvie && !isJuvie) shouldDisplay = false;
-            if (Main && !isMain) shouldDisplay = false;
-            if (typeof Secrets !== 'undefined' && Secrets && !isSecret) shouldDisplay = false;
+        // For Juvie Route
+        if (Juvie) {
+            card.style.display = isJuvie && isNameMatch ? "block" : "none";
+        } 
+        // For Secret Route
+        else if (Secrets) {
+            card.style.display = isSecret && isNameMatch ? "block" : "none";
+        } 
+        // For Main Route
+        else if (Main) {
+            card.style.display = isMain && isNameMatch ? "block" : "none";
+        } else {
+            card.style.display = isNameMatch ? "block" : "none";
         }
 
-        // Special return command
+        // Special case for the "return" query
         if (lastQuery === "return") {
             window.location.href = "../Catalog/catalog.html";
         }
-
-        card.style.display = shouldDisplay ? "block" : "none";
     });
 }
+
+// When toggling the Secret state
+function setSecret() {
+    Main = !Main;
+    Juvie = false;
+    Secrets = !Secrets;
+    document.getElementById('secretLabel').textContent = Secrets ? "Normal Game" : "Secrets";
+    document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
+    autoTriggerSearch();  // Re-trigger the search to apply the new filter
+    console.log("Secret Condition is now:", Secrets);
+    filterShiverican();  // Apply filter after route change
+}
+
+// When toggling the Route state
+function setRoute() {
+    Main = !Main;
+    Juvie = !Juvie;
+    Secrets = false;
+    document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
+    document.getElementById('secretLabel').textContent = Secrets ? "Normal Game" : "Secrets";
+    autoTriggerSearch();  // Re-trigger the search to apply the new filter
+    console.log("Main Route is now:", Main);
+    filterShiverican();  // Apply filter after route change
+}
+
 
 function showDetails(shiverican) {
     currentShiverianIndex = shivericanList.findIndex(s => s.id === shiverican.id);
