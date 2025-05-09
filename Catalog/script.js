@@ -280,12 +280,6 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Cacculent", image: "../lostimages/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Desert"},
 
-        {id: 1000, name: "Spongus", image: "../lostimages/Spongus.png", typings: "Grass, Poison", paratypings: "Psychic", category: "Modernized", artist: "Shane", credits: "Drawn, Idea-Shane+", 
-        description: "", region: "Forest"},
-
-        {id: 1000, name: "Sacred Spongus", image: "../lostimages/MissingNo.png", typings: "Grass, Poison", paratypings: "Psychic", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
-        description: "", region: "Forest"},
-
         {id: 1000, name: "Polhand", image: "../lostimages/Polhand.png", typings: "Grass, Psychic", paratypings: "", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
         description: "", region: "Forest"},
 
@@ -460,19 +454,19 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Fumerey", image: "../lostimages/MissingNo.png", typings: "Poison", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
 
-        {id: 1000, name: "Puppechyu", image: "../lostimages/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        {id: 1000, name: "Puppechyu", image: "../lostimages/Puppechyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Dop", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Puppechu", image: "../lostimages/OGPuppechu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Sacred Puppechyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Sacred Puppechyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt-Dop", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Mockenyu", image: "../images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        {id: 1000, name: "Mockenyu", image: "../images/Mockenyu.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Dop", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Sacred Mockenyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Sacred Mockenyu", image: "../lostimages/MissingNo.png", typings: "Ghost, Fairy", paratypings: "Electric", category: "Alt-Dop", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
         {id: 1000, name: "Paranger", image: "../images/Paranger.png", typings: "Light, Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
@@ -658,12 +652,6 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Soothspheer", image: "../lostimages/S.Soothspheer.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
-        description: "", region: "Volcano"},
-
-        {id: 1000, name: "Sacred Pydromaglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Alt", artist: "", credits: "Idea-Shane+", 
-        description: "", region: "Volcano"},
-
         {id: 1000, name: "Elixion", image: "../lostimages/Elixion.png", typings: "Normal, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
@@ -711,6 +699,12 @@ const defaultImage = '../lostimages/MissingNo.png';
 
         {id: -1000, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Spooky Factory"},
+        
+        {id: 1000, name: "Spongus", image: "../lostimages/Spongus.png", typings: "Grass, Poison", paratypings: "Psychic", category: "Modernized", artist: "Shane", credits: "Drawn, Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Spongus", image: "../lostimages/MissingNo.png", typings: "Grass, Poison", paratypings: "Psychic", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
 
         {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
@@ -718,19 +712,21 @@ const defaultImage = '../lostimages/MissingNo.png';
         //{id: 1000, name: "Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon-Alt", artist: "", credits: "Idea-Shane+", 
         //description: "", region: "Forest"},
 
+        {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Paragon-Dop", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
+        description: "", region: "Volcano"},
+        
         {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
         description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
 
         //{id: 1000, name: "Proto-Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon-Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
 
-
-        {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Paragon", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+        {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Paragon-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
         description: "", region: "Desert/SecretArea"},
 
         //{id: 1000, name: "Doppe-Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Paragon-Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
         //description: "", region: "Desert/SecretArea"},
 
-        {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy, Artillery", category: "Paragon-Ace", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+        {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy, Artillery", category: "Paragon-Ace-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
         description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
 
         {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Paragon", artist: "Tal", credits: "Idea-Tal+", 
@@ -861,6 +857,10 @@ function filterShiverican() {
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
         const isNCanonMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ncanon"));
+
+        const isDoppler = category.includes("dop") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice")) && !category.includes("ace");
+        const isDopplerAlt = category.includes("dop") && (category.includes("alt") || category.includes("forme") || category.includes("solstice")); 
+        const isDopplerAce = category.includes("dop") && category.includes("ace"); 
 
         const isTalHelp = credits.includes("tal+") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isTaltHelp = credits.includes("tal+") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -1229,6 +1229,18 @@ function filterShiverican() {
             } 
             else {
                 card.style.display = isJakeHelp ? "block" : "none";
+            }
+            return;
+        } 
+        else if (lastQuery.includes("dop")) {
+            if (Alt) {
+                card.style.display = isDopplerAlt ? "block" : "none";
+            } 
+            else if (Ace) {
+                card.style.display = isDopplerAce ? "block" : "none";
+            } 
+            else {
+                card.style.display = isDoppler ? "block" : "none";
             }
             return;
         } 

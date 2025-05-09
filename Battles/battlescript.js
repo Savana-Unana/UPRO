@@ -34,6 +34,7 @@ function setSecret() {
     document.getElementById('secretLabel').textContent = Secrets ? "Normal Game" : "Secrets";
     document.getElementById('routeLabel').textContent = Juvie ? "Main Route" : "Juvie Route";
     autoTriggerSearch();
+    console.log("Main Route is now:", Main);
     console.log("Secret Condition is now:", Main);
 }
 
@@ -45,6 +46,7 @@ function setRoute() {
     document.getElementById('secretLabel').textContent = Secrets ? "Normal Game" : "Secrets";
     autoTriggerSearch();
     console.log("Main Route is now:", Main);
+    console.log("Secret Condition is now:", Main);
 }
     const shivericanList = [
         {name: "Starter Jump", region: "", typings: "Grass, Water, Fire", category: "Gauntlet",
