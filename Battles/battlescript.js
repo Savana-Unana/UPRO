@@ -50,100 +50,100 @@ function setRoute() {
 }
     const shivericanList = [
         {name: "Starter Jump", region: "", typings: "Grass, Water, Fire", category: "Gauntlet",
-        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+        description: ""},
 
         {name: "Reposition Rally", region: "", typings: "Grass, Bug", category: "Single",
-        description: "Rally happening the in the SpawnPoint Town."},
+        description: ""},
 
         {name: "Water Gauntlet", region: "", typings: "Water", category: "Gauntlet",
-        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+        description: ""},
 
         {name: "Demolition Helicopter", region: "", typings: "Artillery, Water", category: "Double",
-        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+        description: ""},
 
         {name: "Ecological Dead Zone", region: "", typings: "Artillery, Water", category: "Secret",
-        description: "Under the Water Gauntlet during its repairs."},
+        description: ""},
 
         {name: "Bug Gauntlet", region: "", typings: "Bug", category: "Gauntlet",
-        description: "Bug-type themed. Gauntlet. located in the Swamp."},
+        description: ""},
 
         {name: "Dark Gauntlet", region: "", typings: "Dark", category: "Gauntlet",
-        description: "Dark-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Dragon Gauntlet", region: "", typings: "Dragon", category: "Gauntlet",
-        description: "Dragon-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Fairy Gauntlet", region: "", typings: "Fairy", category: "Gauntlet",
-        description: "Fairy-type themed. Gauntlet. led by Chef. Ace is Frankfortress."},
+        description: ""},
 
         {name: "Fighting Gauntlet", region: "", typings: "Fighting", category: "Gauntlet",
-        description: "Fighting-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Fire Gauntlet", region: "", typings: "Fire", category: "Gauntlet",
-        description: "Fire-type themed. Gauntlet. located in the Volcano. Ace is Pydromaglar."},
+        description: ""},
 
         {name: "Flying Gauntlet", region: "", typings: "Flying", category: "Gauntlet",
-        description: "Flying-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Ghost Gauntlet", region: "", typings: "Ghost", category: "Gauntlet",
-        description: "Ghost-type themed. Gauntlet."},
-
-        {name: "Empire Vigilith", region: "", typings: "Stone, Ghost", category: "Single",
-        description: "Water-type themed. Gauntlet. located in the Lake. led by Arlan."},
+        description: ""},
 
         {name: "Grass Gauntlet", region: "", typings: "Grass", category: "Gauntlet",
-        description: "Grass-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Ground Gauntlet", region: "", typings: "Ground", category: "Gauntlet",
-        description: "Ground-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Ice Gauntlet", region: "", typings: "Ice", category: "Gauntlet",
-        description: "Ice-type themed. Gauntlet. located in the Ice-Caps. Ace is Reptundra."},
+        description: ""},
 
         {name: "Normal Gauntlet", region: "", typings: "Normal", category: "Gauntlet",
-        description: "Normal-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Poison Gauntlet", region: "", typings: "Poison", category: "Gauntlet",
-        description: "Poison-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Psychic Gauntlet", region: "", typings: "Psychic", category: "Gauntlet",
-        description: "Psychic-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Rock Gauntlet", region: "", typings: "Rock", category: "Gauntlet",
-        description: "Rock-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Steel Gauntlet", region: "", typings: "Steel", category: "Gauntlet",
-        description: "Steel-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Light Gauntlet", region: "", typings: "Light", category: "Gauntlet",
-        description: "Light-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Artillery Gauntlet", region: "", typings: "Artillery", category: "Gauntlet",
-        description: "Artillery-type themed. Gauntlet."},
+        description: ""},
 
         {name: "Cruise Ship", region: "", typings: "Water, Fire, Grass", category: "Gauntlet",
-        description: "Water, Fire, Grass-type themed. Gauntlet. located in the Ocean. Ace is Hileaph, Axolarg, Blazuki."},
+        description: ""},
 
         {name: "Charquid Games", region: "", typings: "Fire", category: "Gauntlet",
-        description: "Fire-type themed. Gauntlet. located in the Ice-Caps. Ace is Nonignite."},
+        description: ""},
 
         {name: "Radioactive Randal", region: "", typings: "Steel, Electric", category: "Single",
-        description: "Steel, Electric-type themed. Single. located in the Plains. led by Radioactive Randal."},
+        description: ""},
 
         {name: "Operation Pseudo Gauntlet", region: "", typings: "Psychic", category: "Gauntlet",
-        description: "Psychic-type themed. Gauntlet. located in the Secret Area. led by Operation Pseudo."},
+        description: ""},
 
         {name: "Dopplergrail", region: "", typings: "Psychic", category: "Single",
-        description: "Psychic-type themed. Single. located in the Secret Area. led by Dopplergrail. Ace is Dopplegrail."},
+        description: ""},
 
-        {name: "Radioactive Ronald", region: "", typings: "Ice", category: "Single, Secret",
-        description: "Ice-type themed. Single. located in the Frozen Wasteland. led by Radioactive Ronald."},
+        {name: "Radioactive Randy", region: "", typings: "Ice", category: "Single, Secret",
+        description: ""},
+
+        {name: "Radioactive Ronald", region: "", typings: "Ice, Fighting", category: "Single, Juvie, Secret",
+        description: ""},
 
         {name: "Credits Gauntlet", region: "", typings: "Normal", category: "Gauntlet",
-        description: "Normal-type themed. Gauntlet. located in the Secret Area. led by Creators."},
+        description: ""},
 
         {name: "Operation Judgement Gauntlet", region: "", typings: "Steel", category: "Gauntlet, Juvie",
-        description: "Steel-type themed. Gauntlet. located in the Secret Area. led by Capture Capsule. Ace is Capture Capsule, Dopplegrail."},
+        description: ""},
     ];
     function displayShiverican() {
         const catalog = document.getElementById("catalog");
