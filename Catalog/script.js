@@ -714,6 +714,18 @@ const defaultImage = '../lostimages/MissingNo.png';
 
         {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Paragon-Dop", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
         description: "", region: "Volcano"},
+
+        {id: 1000, name: "Ace Pydromaglar (Fire)", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "Water, Electric, Light", category: "Ace-Paragon-Dop", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Ace Pydromaglar (Electric)", image: "../lostimages/MissingNo.png", typings: "Electric", paratypings: "Fire, Water, Light", category: "Ace-Paragon-Dop", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Ace Pydromaglar (Light)", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "Fire, Water, Electric", category: "Ace-Paragon-Dop", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Ace Pydromaglar (Water)", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "Fire, Electric, Light", category: "Ace-Paragon-Dop", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Volcano"},
         
         {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
         description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},

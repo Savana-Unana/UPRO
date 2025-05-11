@@ -198,6 +198,12 @@ const defaultImage = '../lostimages/MissingNo.png';
                 {id: 80.5, name: "Sacred Placibial", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
+                {id: 80.51, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Paragon-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+                description: "", region: ""},
+
+                {id: 80.6, name: "Replitorne", image: "../lostimages/MissingNo.png", typings: "Psychic, Dark", paratypings: "", category: "Ace-Paragon-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
+                description: "", region: ""},
+
                 {id: 81, name: "Disalit", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""}
        
@@ -258,6 +264,10 @@ function filterShiverican() {
         const isAltMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("alt"));
         const isAceMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ace"));
         const isNCanonMatch = (name.includes(lastQuery) || lastQuery === id) && (category.includes("ncanon"));
+
+        const isDoppler = category.includes("dop") && !(category.includes("alt") || category.includes("forme") || category.includes("solstice")) && !category.includes("ace");
+        const isDopplerAlt = category.includes("dop") && (category.includes("alt") || category.includes("forme") || category.includes("solstice")); 
+        const isDopplerAce = category.includes("dop") && category.includes("ace"); 
 
         const isTalHelp = credits.includes("tal+") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isTaltHelp = credits.includes("tal+") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -619,6 +629,18 @@ function filterShiverican() {
             } 
             else {
                 card.style.display = isJakeHelp ? "block" : "none";
+            }
+            return;
+        } 
+        else if (lastQuery.includes("dop")) {
+            if (Alt) {
+                card.style.display = isDopplerAlt ? "block" : "none";
+            } 
+            else if (Ace) {
+                card.style.display = isDopplerAce ? "block" : "none";
+            } 
+            else {
+                card.style.display = isDoppler ? "block" : "none";
             }
             return;
         } 
