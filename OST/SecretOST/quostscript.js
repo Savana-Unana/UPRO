@@ -18,6 +18,7 @@ if (performance.navigation.type !== performance.navigation.TYPE_RELOAD) {
 
 const audioFiles = [
     { name: "Snowscape", file: "../../Songs/Snowscape.mp3", ost: 0, composer: "Skiehie", type: "Frostbite:Juvie - Theme", typing: "Ice, Ghost", order: 0 },
+    { name: "Barracuda", file: "../../Songs/Barracuda.mp3", ost: 0, composer: "NoiseStorm", type: "Psychic Gauntlet - AceTheme", typing: "Ice, Ghost", order: 1 },
 ];
 
 const secretSequence = [""];
