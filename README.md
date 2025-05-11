@@ -16,7 +16,7 @@ git pull origin
 
 ```bash
 git add -A 
-git commit -m "When The Anti-Stuff Is Hours Of Work:"
+git commit -m "Hardly Workin or Workin Unbarebly Hard Please Help"
 git push origin 
 
 ```

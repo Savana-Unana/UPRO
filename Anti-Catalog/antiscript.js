@@ -1443,6 +1443,7 @@ function showDetails(shiverican, index = null) {
     document.getElementById("search").style.display = "none"; 
     document.querySelector("button").style.display = "none";
     document.getElementById("nav-buttons").style.display = "none";
+    document.getElementById("alt-buttons-container").style.display = "none";
     document.getElementById("shiverican-name").innerText = shiverican.name;
     let imageElement = document.getElementById("shiverican-image");
     
@@ -1470,6 +1471,7 @@ function closeDetails() {
     document.getElementById("catalog").style.display = "flex";
     document.getElementById("shiverican-details").style.display = "none";
     document.getElementById("nav-buttons").style.display = "block";
+    document.getElementById("alt-buttons-container").style.display = "block";
     let searchBar = document.getElementById("search");
     let altButton = document.querySelector("button");
     searchBar.style.display = "block";

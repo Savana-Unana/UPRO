@@ -1,29 +1,45 @@
+if (performance.navigation.type !== performance.navigation.TYPE_RELOAD) {
+    if (document.referrer) {
+        console.log("User came from: " + document.referrer);
+        if (document.referrer.includes("/OST/ost.html")) {
+        } else {
+            if (!localStorage.getItem("redirected")) {
+                localStorage.setItem("redirected", "true");
+                window.location.href = "../../Index/index.html";
+            }
+        }
+    } else {
+        console.log("No referrer information available.");
+        window.location.href = "../../Index/index.html";
+    }
+}
+
+
+
 const audioFiles = [
     {name: "Interstellar Ascension", file: "../Songs/InterstellarAscension.mp3", ost: 101, composer: "The Winterer", type: "Interstellar Ascension - AceTheme", typing: "Psychic", order: 3 },
     {name: "Voodoo", file: "../Songs/static.mp3", ost: 666, composer: "Shane", type: "Dead Doll Island - Theme", typing: "Dark", order: 1 },
     {name: "Greatest", file: "../Songs/Greatest.mp3", ost: 13, composer: "Chezzar", type: "Greatest - MemeTheme", typing: "Steel", order: 2 },
     {name: "Carpet", file: "../Songs/Carpet.mp3", ost: 1000, composer: "Toby Fox", type: "Home - MemeTheme", typing: "Normal", order: 0 }
-
 ];
+
+const secretSequence = [""];
+let playHistory = [];
 
 let coincidencePlay = true;
 let currentAudio = null;
+let massPlayActive = false;
+let sortByOrder = false;
+let secretButtonDisplayed = false;
+
+
 
 const container = document.getElementById("cards-container");
 
-// Search bar
-const searchInput = document.createElement("input");
-searchInput.type = "text";
-searchInput.placeholder = "Search for a song...";
-searchInput.id = "search-bar";
+let searchInput = document.getElementById("search");
 searchInput.addEventListener("input", filterSongs);
-document.body.insertBefore(searchInput, container);
 
-// Sort button
-let sortByOrder = false;
-const sortButton = document.createElement("button");
-sortButton.textContent = "Sort by Creation";
-sortButton.onclick = toggleSorting;
+let sortButton = document.getElementById("button");
 document.body.insertBefore(sortButton, container);
 
 function toggleSorting() {
@@ -36,7 +52,6 @@ function sortSongs(songs) {
     return songs.slice().sort((a, b) => sortByOrder ? a.order - b.order : a.ost - b.ost);
 }
 
-// Filters
 const filters = {};
 const filterContainer = document.createElement("div");
 filterContainer.id = "filter-container";
@@ -79,9 +94,11 @@ function filterSongsList(songs) {
 
 function filterSongs() {
     const query = searchInput.value.toLowerCase();
-    const filteredFiles = audioFiles.filter(song => song.name.toLowerCase().includes(query));
-    displaySongs(sortSongs(filteredFiles));
+    const searchedSongs = audioFiles.filter(song => song.name.toLowerCase().includes(query));
+    const sortedAndFiltered = sortSongs(searchedSongs);
+    displaySongs(sortedAndFiltered);
 }
+
 
 function displaySongs(filteredFiles) {
     container.innerHTML = "";
@@ -114,6 +131,7 @@ function displaySongs(filteredFiles) {
             "Artillery": "White",
         };   
 
+
         card.style.backgroundColor = typingcolors[typing] || "White";
 
         card.innerHTML = `
@@ -145,23 +163,39 @@ function displaySongs(filteredFiles) {
     });
 }
 
-// Play/pause toggle
 function playAudio(button) {
     const card = button.parentElement;
     const audio = card.querySelector("audio");
 
-    if (coincidencePlay && currentAudio && currentAudio !== audio) {
-        currentAudio.pause();
-        currentAudio.parentElement.querySelector("button").textContent = "Play";
+    if (coincidencePlay) {
+        const allAudios = document.querySelectorAll("audio");
+        allAudios.forEach(a => {
+            if (a !== audio && !a.paused) {
+                a.pause();
+                const btn = a.parentElement.querySelector("button");
+                if (btn) btn.textContent = "Play";
+            }
+        });
     }
 
     if (audio.paused) {
         audio.play();
+        if (coincidencePlay) {
+            const name = card.querySelector("h3").textContent;
+            playHistory.push(name);
+            if (playHistory.length > secretSequence.length) {
+                playHistory.shift();
+            }
+            if (!secretButtonDisplayed && JSON.stringify(playHistory) === JSON.stringify(secretSequence)) {
+                secretButtonDisplayed = true;
+            }
+        }        
         button.textContent = "Pause";
         currentAudio = audio;
     } else {
         audio.pause();
         button.textContent = "Play";
+        if (currentAudio === audio) currentAudio = null;
     }
 
     audio.onended = () => {
@@ -170,7 +204,6 @@ function playAudio(button) {
     };
 }
 
-// Progress bar update
 function updateProgress(audio) {
     if (!audio.duration) return;
     const progressBar = audio.parentElement.querySelector(".progress-bar");
@@ -203,7 +236,8 @@ function seekAudio(event, progressElement) {
     if (!isNaN(audio.duration)) audio.currentTime = percentage * audio.duration;
 }
 
-// Button: Single-Song Toggle
+
+
 const toggleCoincidenceButton = document.createElement("button");
 toggleCoincidenceButton.textContent = "Single-Songs: ON";
 toggleCoincidenceButton.style.position = "fixed";
@@ -216,7 +250,6 @@ toggleCoincidenceButton.style.fontSize = "12px";
 toggleCoincidenceButton.onclick = () => {
     coincidencePlay = !coincidencePlay;
     toggleCoincidenceButton.textContent = `Single-Songs: ${coincidencePlay ? "ON" : "OFF"}`;
-
     if (coincidencePlay && currentAudio) {
         const allAudios = document.querySelectorAll("audio");
         allAudios.forEach(audio => {
@@ -229,7 +262,8 @@ toggleCoincidenceButton.onclick = () => {
     }
 };
 
-// Button: Mass Play
+document.body.appendChild(toggleCoincidenceButton);
+
 const toggleMassButton = document.createElement("button");
 toggleMassButton.textContent = "Mass Play";
 toggleMassButton.style.position = "fixed";
@@ -242,15 +276,19 @@ toggleMassButton.style.fontSize = "12px";
 toggleMassButton.onclick = () => {
     const allAudios = document.querySelectorAll("audio");
     allAudios.forEach(audio => {
-        audio.play();
         const btn = audio.parentElement.querySelector("button");
-        if (btn) btn.textContent = "Pause";
+        if (massPlayActive) {
+            audio.pause();
+            if (btn) btn.textContent = "Play";
+        } else {
+            audio.play();
+            if (btn) btn.textContent = "Pause";
+        }
     });
+    massPlayActive = !massPlayActive;
+    toggleMassButton.textContent = massPlayActive ? "Mass Pause" : "Mass Play";
 };
 
-// Add buttons to the page
-document.body.appendChild(toggleCoincidenceButton);
 document.body.appendChild(toggleMassButton);
 
-// Initial render
 displaySongs(sortSongs(audioFiles));

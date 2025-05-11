@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpet</title>
     <link rel="stylesheet" href="../OST/oststyle.css">
-    <div class="alt-buttons-container">
-        <button class="Alt" id="altButton" onclick="setAltTrue()">
-            <span id="altLabel">Activate Alt</span><i></i>
-        </button>
-    </div>
 </head>
 <body>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for a song..." oninput="filterShiverican()">
+    </div> 
+    <div id="alt-buttons-container">
+        <button class="Alt" id="button" onclick="toggleSorting()">
+            <span id="button">Sort By Creation</span><i></i>
+        </button>
+    </div> 
     <div id="cards-container"></div>
     <div id="nav-buttons">
         <a href="../Index/index.html">

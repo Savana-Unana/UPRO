@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Cards</title>
+    <title>Carpet</title>
     <link rel="stylesheet" href="../Anti-OST/antioststyle.css">
 </head>
 <body>
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search for a song..." oninput="filterShiverican()">
+    </div> 
+    <div id="alt-buttons-container">
+        <button class="Alt" id="button" onclick="toggleSorting()">
+            <span id="button">Sort By Creation</span><i></i>
+        </button>
+    </div> 
     <div id="cards-container"></div>
-    <div id="nav-buttons" class="buttons">
-        <a href="../Anti-Index/antindex.html"><button>Return</button></a>
+    <div id="nav-buttons">
+        <a href="../Anti-Index/antindex.html">
+            <button>Return</button>
+        </a>
     </div>
+
     <script src="../Anti-OST/antiostscript.js"></script>
 </body>
 </html>
