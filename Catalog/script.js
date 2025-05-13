@@ -139,10 +139,10 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 0.9, name: "Ace Capture Capsule", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-Ace", artist: "", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
-        {id: 0.6, name: "Old Capture Capsule", image: "../images/OldAnimated_Capsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
+        {id: 0.6, name: "Old Capture Capsule", image: "../lostimages/OldAnimated_Capsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
-        {id: 0.61, name: "Old Anti Capture Capsule", image: "../images/Anti-CaptureCapsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
+        {id: 0.61, name: "Old Anti Capture Capsule", image: "../lostimages/Anti-CaptureCapsule.gif", typings: "Steel", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Psychic, Fairy, Dark, Light, Artillery", category: "Modernized-NCanon", artist: "Jake", credits: "Idea-Shane+",
         description: "", region: "Plains/ShiverCo"},
 
         {id: 1, name: "Erbacub", image: "../images/Erbacub.png", typings: "Grass", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+Idea-Jake+",
@@ -370,6 +370,9 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "LED Burking", image: "../lostimages/L.Burking.png", typings: "Fairy", paratypings: "", category: "NCanon", artist: "Shane, Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Plains"},
 
+        {id: 1000, name: "Borgo Slor", image: "../lostimages/Salam.png", typings: "Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
         {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
         description: "", region: "Plains"},
 
@@ -595,22 +598,22 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Fortilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Desert/Temple"},
 
-        {id: 77, name: "Chancey", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
+        {id: 77, name: "Chancix", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "Forest"},
 
-        {id: 77.5, name: "Sacred Chancey", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 77.5, name: "Sacred Chancix", image: "../lostimages/S.Chancey.png", typings: "Grass", paratypings: "Fire, Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 77.6, name: "Chancey (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
+        {id: 77.6, name: "Chancix (Jake's Take)", image: "../lostimages/JT.Chancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "Forest"},
 
-        {id: 78, name: "Maychancey", image: "../lostimages/Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 78, name: "Maychancix", image: "../lostimages/Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
         description: "This creature is empty inside, and completely overtaken by the cold. It’s limbs have started to freeze, but it no longer cares.", region: "Forest"},
 
-        {id: 78.5, name: "Sacred Maychancey", image: "../lostimages/S.Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 78.5, name: "Sacred Maychancix", image: "../lostimages/S.Maychancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 78.6, name: "MayChancey (Jake's Take)", image: "../lostimages/JT.Maychancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        {id: 78.6, name: "Maychancix (Jake's Take)", image: "../lostimages/JT.Maychancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
         description: "", region: "Forest"},
 
         {id: 79, name: "Gamblanguin", image: "../lostimages/Gamblanguin.png", typings: "Ice", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -625,13 +628,13 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 80.5, name: "Sacred Predadventure", image: "../lostimages/S.Predadventure.png", typings: "Ice", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 81, name: "Perchancey", image: "../lostimages/Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-        description: "After growing a twin, Perchancey’s twin is completely incinerated by the fire.", region: "Forest"},
+        {id: 81, name: "Perchancix", image: "../lostimages/Perchancey.png", typings: "Grass", paratypings: "Fire", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        description: "After growing a twin, Perchancix's twin is completely incinerated by the fire.", region: "Forest"},
 
-        {id: 81.5, name: "Sacred Perchancey", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice, Fire", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 81.5, name: "Sacred Perchancix", image: "../lostimages/S.Perchancey.png", typings: "Grass", paratypings: "Ice", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
 
-        {id: 81.6, name: "Perchancey (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
+        {id: 81.6, name: "Perchancix (Jake's Take)", image: "../lostimages/JT.Perchancey.png", description: "", typings: "Grass", paratypings: "Ice, Fire", category: "NCanon", artist: "Jake", credits: "Drawn-Jake+", 
         description: "", region: "Forest"},
 
         {id: 82, name: "Perchancealot", image: "../lostimages/Perchancealot.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -641,7 +644,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "", region: "Forest"},
 
         {id: 83, name: "Possibilitor", image: "../lostimages/Possibilitor.png", typings: "Fire", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
-        description: "Possibilitor emerges when Perchancey is completely consumed by fire. It is a powerful evil mage made up of thorny dead shrubbery and hatred. Possibilitor spent years searching the lands for spells to help it feel again. It discovered the ability to alter outcomes.", region: "Forest"},
+        description: "Possibilitor emerges when Perchancix is completely consumed by fire. It is a powerful evil mage made up of thorny dead shrubbery and hatred. Possibilitor spent years searching the lands for spells to help it feel again. It discovered the ability to alter outcomes.", region: "Forest"},
 
         {id: 83.5, name: "Sacred Possibilitor", image: "../lostimages/S.Possibilitor.png", typings: "Fire", paratypings: "", category: "Alt", artist: "Tal", credits: "Drawn-Tal+", 
         description: "", region: "Forest"},
@@ -697,7 +700,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Shiver Pests", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Modernized", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Desert"},
 
-        {id: -1000, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Shiver Pests V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Psychic", category: "Modernized-HalloweenForme", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Spooky Factory"},
         
         {id: 1000, name: "Spongus", image: "../lostimages/Spongus.png", typings: "Grass, Poison", paratypings: "Psychic", category: "Modernized", artist: "Shane", credits: "Drawn, Idea-Shane+", 
@@ -832,21 +835,57 @@ const defaultImage = '../lostimages/MissingNo.png';
         });
     }
 
-    function addVisCard() {
-        if (currentShiverianIndex < shivericanList.length - 1) {
+function isCardVisible(category, image) {
+    const lowerImage = image ? image.toLowerCase() : "";
+    const lostimages = lowerImage.includes("lostimage");
+    const normimages = !lostimages;
+    const conceptedimages = lowerImage.includes("missingno") && lostimages;
+    const unconceptedimages = !lowerImage.includes("missingno") && lostimages;
+
+    const isAlt = category.includes("alt");
+    const isAce = category.includes("ace");
+    const isNCanon = category.includes("ncanon");
+    const isBoring = !isAlt && !isAce && !isNCanon;
+
+    if (Made && normimages) return true;
+    if (Concepted && conceptedimages) return true;
+    if (Unconcepted && unconceptedimages) return true;
+    if (UnMade && lostimages) return true;
+
+    if ((Alt && isAlt) || (Ace && isAce) || (NCanon && isNCanon)) return true;
+    if (isBoring) return true;
+
+    return false;
+}
+
+function addVisCard() {
+    while (currentShiverianIndex < shivericanList.length - 1) {
+        currentShiverianIndex++;
+        const shiverican = shivericanList[currentShiverianIndex];
+        const category = shiverican.category ? shiverican.category.toLowerCase() : "";
+        if (isCardVisible(category, shiverican.image)) {
+            showDetails(shiverican, currentShiverianIndex);
             console.log(currentShiverianIndex);
-            currentShiverianIndex ++;
-            showDetails(shivericanList[currentShiverianIndex], currentShiverianIndex);
-            console.log(currentShiverianIndex);
+            break;
         }
     }
-    function minusVisCard() {
-        if (currentShiverianIndex > 0) {
-            currentShiverianIndex --;
-            showDetails(shivericanList[currentShiverianIndex], currentShiverianIndex);
+}
+
+function minusVisCard() {
+    while (currentShiverianIndex > 0) {
+        currentShiverianIndex--;
+        const shiverican = shivericanList[currentShiverianIndex];
+        const category = shiverican.category ? shiverican.category.toLowerCase() : "";
+        if (isCardVisible(category, shiverican.image)) {            
+            showDetails(shiverican, currentShiverianIndex);
             console.log(currentShiverianIndex);
+            break;
         }
     }
+}
+
+
+
 
 let lastQuery = "";
 function filterShiverican() {
@@ -1118,7 +1157,6 @@ function filterShiverican() {
         const isModernizedMatch = category.includes("modernized") && !category.includes("-");
         const isModernizedAltMatch = category.includes("modernized-") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isModernizedAceMatch = category.includes("modernized-") && category.includes("ace");
-
 
         const isHalloweenMatch = category.includes("halloween") && !category.includes("halloweenforme");
         const isHalloweenAltMatch = category.includes("halloweenforme");
