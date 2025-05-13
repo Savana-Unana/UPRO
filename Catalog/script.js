@@ -715,9 +715,6 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
 
-        //{id: 1000, name: "Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon-Alt", artist: "", credits: "Idea-Shane+", 
-        //description: "", region: "Forest"},
-
         {id: 1000, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Paragon-Dop", artist: "Jake", credits: "Drawn-Jake+Idea-Shane+", 
         description: "", region: "Volcano"},
 
@@ -736,13 +733,8 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
         description: "A sentient suit of armor that can only be worn by those who are worthy. This XXXXXX is often found in symbiosis with other XXXXX.", region: "Plains/Cave"},
 
-        //{id: 1000, name: "Proto-Exosteel", image: "../lostimages/S.Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon-Alt", artist: "Tal", credits: "Drawn-Tal+, Idea-Shane+Tal+", 
-
         {id: 1000, name: "Cuddol", image: "../images/Cuddol.gif", typings: "Psychic, Dark", paratypings: "", category: "Paragon-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
         description: "", region: "Desert/SecretArea"},
-
-        //{id: 1000, name: "Doppe-Cuddol", image: "../lostimages/S.Cuddol.png", typings: "Psychic, Dark", paratypings: "", category: "Paragon-Alt", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
-        //description: "", region: "Desert/SecretArea"},
 
         {id: 1000, name: "Dopplergrail", image: "../lostimages/Dopplergrail.png", typings: "Psychic, Dark", paratypings: "Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Bug, Rock, Ghost, Dragon, Steel, Fairy, Artillery", category: "Paragon-Ace-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
         description: "The Mastermind Behind All. His Legs Were Disconnected, So He Uses A Machine To Hold Himself Up, Created By ShiverCo.", region: "Desert/SecretArea"},
@@ -750,19 +742,13 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Paragon", artist: "Tal", credits: "Idea-Tal+", 
         description: "Torterritory is a colossal force to be reckoned with. It can only be caught using a very large Capture Capsule This Torterritories of Shivria carry an exact copy of Shivria on their back, only smaller. Legends say that the real Shivria is on a giant Torterritory, and that's why it moves.", region: "MountainRange"},
 
-        //{id: 1000, name: "Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Paragon-Alt", artist: "", credits: "Idea-Tal+", 
-        //description: "", region: "MountainRange"},
-
         {id: 1000, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Paragon", artist: "Tal", credits: "Artist+Idea-Tal+", 
         description: "", region: "MountainRange"},
-
-        //{id: 1000, name: "Eclipsicanine", image: "../lostimages/MissingNo.png", typings: "Dark, Light", paratypings: "Psychic", category: "Paragon-Alt", artist: "", credits: "Idea-Tal+", 
-        //description: "", region: "MountainRange"},
 
         {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "Lucid", paratypings: "", category: "Paragon", artist: "Shane", credits: "Drawn-Shane+", 
         description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
-        {id: 1500, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "Lucid", paratypings: "", category: "Paragon-Alt", artist: "Shane", credits: "Drawn-Shane+", 
+        {id: 1500.5, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "Lucid", paratypings: "", category: "Paragon-Alt", artist: "Shane", credits: "Drawn-Shane+", 
         description: "WALK INTO MY MYSTERY", region: "Swamp/Cafe"},
 
         {id: -1.5, name: "Ariel Salama", image: "../images/China.png", typings: "Normal, Fire", paratypings: "", category: "", artist: "Shane", credits: "Drawn-Shane+, Credits-Ariel+", 

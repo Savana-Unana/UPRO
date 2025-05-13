@@ -192,6 +192,24 @@ const defaultImage = '../lostimages/MissingNo.png';
                 {id: 9.5, name: "Sacred --", image: "../lostimages/MissingNo.png", typings: "Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
+                {id: 77, name: "Lemody", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon", artist: "", credits: "Idea-Shane+", 
+                description: "", region: "Forest"},
+
+                {id: 77.5, name: "Lemodine", image: "../lostimages/MissingNo.png", typings: "Grass, Fairy", paratypings: "Psychic", category: "Paragon-Alt", artist: "", credits: "Idea-Shane+", 
+                description: "", region: ""},
+
+                {id: 78, name: "Pydromaglar", image: "../images/Pydromaglar.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Paragon-Dop", artist: "Jake", credits: "Idea-Shane+", 
+                description: "", region: ""},
+
+                {id: 78.5, name: "Pydromaxiglar", image: "../lostimages/MissingNo.png", typings: "Fire, Water", paratypings: "Electric, Light", category: "Paragon-Alt-Dop", artist: "Jake", credits: "Idea-Shane+", 
+                description: "", region: ""},
+                
+                {id: 79, name: "Exosteel", image: "../lostimages/Exosteel.png", typings: "Steel", paratypings: "", category: "Paragon", artist: "Tal", credits: "Idea-Shane+Tal+", 
+                description: "", region: "Plains/Cave"},
+
+                {id: 79.5, name: "Proto-Exosteel", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Paragon-Alt", artist: "Tal", credits: "Idea-Shane+Tal+", 
+                description: "", region: ""},
+
                 {id: 80, name: "Placibial", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
                 description: "", region: ""},
 
@@ -204,7 +222,25 @@ const defaultImage = '../lostimages/MissingNo.png';
                 {id: 80.6, name: "Replitorne", image: "../lostimages/MissingNo.png", typings: "Psychic, Dark", paratypings: "", category: "Ace-Paragon-Dop", artist: "", credits: "Idea-Shane+, Concept-Design-Shane+", 
                 description: "", region: ""},
 
-                {id: 81, name: "Disalit", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                {id: 81, name: "Torterritory", image: "../lostimages/Torterritory.png", typings: "Ground", paratypings: "", category: "Paragon", artist: "Tal", credits: "Idea-Tal+", 
+                description: "", region: ""},
+
+                {id: 81.5, name: "Torteraerthy", image: "../lostimages/MissingNo.png", typings: "Ground", paratypings: "", category: "Paragon-Alt", artist: "", credits: "Idea-Tal+", 
+                description: "", region: ""},
+
+                {id: 82, name: "Cosmicanine", image: "../lostimages/Cosmicanine.png", typings: "Dark, Light", paratypings: "Psychic", category: "Paragon", artist: "Tal", credits: "Artist+Idea-Tal+", 
+                description: "", region: ""},
+
+                {id: 82.5, name: "Eclipsicanine", image: "../lostimages/MissingNo.png", typings: "Dark, Light", paratypings: "Psychic", category: "Paragon-Alt", artist: "", credits: "Idea-Tal+", 
+                description: "", region: ""},
+
+                {id: 83, name: "Disalit", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+",
+                description: "", region: ""},
+
+                {id: 1500, name: "TwoMew.png.jpeg.gif.webp.jif", image: "../images/TwoMew.jpeg.png.gif.webp.jif.png", typings: "Lucid", paratypings: "", category: "Paragon", artist: "Shane", credits: "Drawn-Shane+", 
+                description: "", region: ""},
+
+                {id: 1500.5, name: "TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif", image: "../images/TwoMew.png.jpeg.gif.webp.cs.html.css.js.raw.mp4.mp3.piskel.zip.jif.png", typings: "Lucid", paratypings: "", category: "Paragon-Alt", artist: "Shane", credits: "Drawn-Shane+", 
                 description: "", region: ""}
        
         ];
