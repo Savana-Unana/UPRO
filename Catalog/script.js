@@ -824,7 +824,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         });
     }
 
-function isCardVisible(category, image) {
+function isCardVisible(category, name, id, image, credits, artist, typings, paratypings, region) {
     const lowerImage = image ? image.toLowerCase() : "";
     const lostimages = lowerImage.includes("lostimage");
     const normimages = !lostimages;
@@ -834,20 +834,45 @@ function isCardVisible(category, image) {
     const isAlt = category.includes("alt");
     const isAce = category.includes("ace");
     const isNCanon = category.includes("ncanon");
-    const isBoring = !isAlt && !isAce && !isNCanon;
 
-    if (Made && normimages) return true;
-    if (Concepted && conceptedimages) return true;
-    if (Unconcepted && unconceptedimages) return true;
-    if (UnMade && lostimages) return true;
+    const isHalloween = category.includes("halloween");
+    const isFrostbite = category.includes("frostbite");
+    const isSolstice = category.includes("solstice");
 
-    if ((Alt && isAlt) || (Ace && isAce) || (NCanon && isNCanon)) return true;
+    const noHalloween = !isHalloween;
+    const noFrostbite = !isFrostbite;
+    const noSolstice = !isSolstice;
+    const noHoly = noHalloween && noFrostbite && noSolstice;
 
-    const noFiltersOn = !Made && !UnMade && !Concepted && !Unconcepted && !Alt && !Ace && !NCanon;
-    if (isBoring && noFiltersOn) return true;
+    const isMatch = name.includes(lastQuery) || id==(lastQuery) || credits==(lastQuery) ||
+    artist==(lastQuery) || typings==(lastQuery) ||
+    paratypings==(lastQuery) || region==(lastQuery);
 
-    return false;
+    const filtersActive = Made || Concepted || Unconcepted || UnMade || Alt || Ace || NCanon;
+    const searchActive = lastQuery && lastQuery.trim() !== "";
+
+    let passesFilter = false;
+
+    if (Made && normimages) passesFilter = true;
+    if (Concepted && conceptedimages) passesFilter = true;
+    if (Unconcepted && unconceptedimages) passesFilter = true;
+    if (UnMade && lostimages) passesFilter = true;
+
+    if (Alt && isAlt) passesFilter = true;
+    if (Ace && isAce) passesFilter = true;
+    if (NCanon && isNCanon) passesFilter = true;
+
+    if (searchActive && filtersActive) {
+        return isMatch && passesFilter;
+    } else if (searchActive) {
+        return isMatch;
+    } else if (filtersActive) {
+        return passesFilter;
+    } else {
+        return !filtersActive && noHoly && !isAlt && !isAce && !isNCanon;
+    }
 }
+
 
 
 function addVisCard() {
@@ -855,7 +880,15 @@ function addVisCard() {
         currentShiverianIndex++;
         const shiverican = shivericanList[currentShiverianIndex];
         const category = shiverican.category ? shiverican.category.toLowerCase() : "";
-        if (isCardVisible(category, shiverican.image)) {
+        const name = shiverican.name.toLowerCase();
+        const id = Math.floor(shiverican.id).toString();
+        const image = shiverican.image ? shiverican.image.toLowerCase() : "";
+        const credits = shiverican.credits ? shiverican.credits.toLowerCase() : "";
+        const artist = shiverican.artist ? shiverican.artist.toLowerCase() : "";
+        const typings = shiverican.typings ? shiverican.typings.toLowerCase() : "";
+        const paratypings = shiverican.paratypings ? shiverican.paratypings.toLowerCase() : "";
+        const region = shiverican.region ? shiverican.region.toLowerCase() : "";
+        if (isCardVisible(category, name, id, image, credits, artist, typings, paratypings, region)) {            
             showDetails(shiverican, currentShiverianIndex);
             console.log(currentShiverianIndex);
             break;
@@ -868,7 +901,15 @@ function minusVisCard() {
         currentShiverianIndex--;
         const shiverican = shivericanList[currentShiverianIndex];
         const category = shiverican.category ? shiverican.category.toLowerCase() : "";
-        if (isCardVisible(category, shiverican.image)) {            
+        const name = shiverican.name.toLowerCase();
+        const id = Math.floor(shiverican.id).toString();
+        const image = shiverican.image ? shiverican.image.toLowerCase() : "";
+        const credits = shiverican.credits ? shiverican.credits.toLowerCase() : "";
+        const artist = shiverican.artist ? shiverican.artist.toLowerCase() : "";
+        const typings = shiverican.typings ? shiverican.typings.toLowerCase() : "";
+        const paratypings = shiverican.paratypings ? shiverican.paratypings.toLowerCase() : "";
+        const region = shiverican.region ? shiverican.region.toLowerCase() : "";
+        if (isCardVisible(category, name, id, image, credits, artist, typings, paratypings, region)) {            
             showDetails(shiverican, currentShiverianIndex);
             console.log(currentShiverianIndex);
             break;
