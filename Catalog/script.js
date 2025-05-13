@@ -373,6 +373,9 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Borgo Slor", image: "../lostimages/Salam.png", typings: "Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Jake+", 
         description: "", region: "Forest"},
 
+        {id: 1000, name: "Sacred Borgo Slor", image: "../lostimages/Salam.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
+        description: "", region: "Forest"},
+
         {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
         description: "", region: "Plains"},
 
