@@ -856,10 +856,13 @@ function isCardVisible(category, image) {
     if (UnMade && lostimages) return true;
 
     if ((Alt && isAlt) || (Ace && isAce) || (NCanon && isNCanon)) return true;
-    if (isBoring) return true;
+
+    const noFiltersOn = !Made && !UnMade && !Concepted && !Unconcepted && !Alt && !Ace && !NCanon;
+    if (isBoring && noFiltersOn) return true;
 
     return false;
 }
+
 
 function addVisCard() {
     while (currentShiverianIndex < shivericanList.length - 1) {
