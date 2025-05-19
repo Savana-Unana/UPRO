@@ -2,6 +2,7 @@ const audioFiles = [
     { name: "Familiarity", file: "../Songs/Familiarity.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 },
     { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 6 },
     { name: "Modest Ashore", file: "../Songs/ModestAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 12 },
+    { name: "Town Theme", file: "../Songs/Town Theme.mp3", ost: 1000, composer: "Michael", type: "Town - Theme", typing: "Normal", order: 15 },
     { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
     { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Poison", order: 5 },
     { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, composer: "Michael", type: "Desert - Theme", typing: "Ground", order: 7 },
@@ -14,7 +15,7 @@ const audioFiles = [
     { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 }
 ];
 
-const secretSequence = ["Familiarity", "Circuit Breaker", "Tumbling Rumbles", "Crystaline Caverns"];
+const secretSequence = ["Fury", "Town Theme"];
 let playHistory = [];
 
 let coincidencePlay = true;
