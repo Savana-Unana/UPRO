@@ -1,6 +1,7 @@
 const audioFiles = [
     { name: "Familiarity", file: "../Songs/Familiarity.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 },
     { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 6 },
+    { name: "Humble Ashore Short Acapella", file: "../Songs/HumbleAshoreAcapella.mp4", ost: 1000, composer: "Michael", type: "Lake - AcapellaTheme", typing: "Normal", order: 15 },
     { name: "Modest Ashore", file: "../Songs/ModestAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 12 },
     { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
     { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Poison", order: 5 },
@@ -14,7 +15,7 @@ const audioFiles = [
     { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 }
 ];
 
-const secretSequence = ["Familiarity", "Circuit Breaker", "Tumbling Rumbles", "Crystaline Caverns"];
+const secretSequence = ["Humble Ashore", "Modest Ashore", "Humble Ashore Short Acapella"];
 let playHistory = [];
 
 let coincidencePlay = true;
@@ -51,7 +52,7 @@ filterContainer.style.flexDirection = "column";
 filterContainer.style.alignItems = "flex-start";
 document.body.insertBefore(filterContainer, container);
 
-const categories = [" Theme", "GauntTheme", "BattleTheme", "AceTheme", "MemeTheme"];
+const categories = [" Theme", "GauntTheme", "BattleTheme", "AceTheme", "MemeTheme", "AcapellaTheme"];
 categories.forEach(category => {
     filters[category] = "neutral";
     const filterLabel = document.createElement("label");
