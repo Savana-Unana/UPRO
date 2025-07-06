@@ -22,7 +22,7 @@ const audioFiles = [
     { name: "Despair", file: "../Songs/Despair.mp3", ost: 1000, composer: "Michael", type: "Team Demolition Base - Theme", typing: "Normal", order: 100 },
     { name: "Standstill", file: "../Songs/Standstill.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 100 }
 ];
-const secretSequence = ["Humble Ashore", "Modest Ashore", "Humble Ashore Short Acapella"];
+const secretSequence = ["Desecration", "Sparks of Hope", "Despair"];
 
 let playHistory = [];
 
