@@ -17,8 +17,9 @@ if (performance.navigation.type !== performance.navigation.TYPE_RELOAD) {
 
 
 const audioFiles = [
-    { name: "Snowscape", file: "../../Songs/Snowscape.mp3", ost: 0, composer: "Skiehie", type: "Frostbite:Juvie - Theme", typing: "Ice, Ghost", order: 0 },
-    { name: "Barracuda", file: "../../Songs/Barracuda.mp3", ost: 1, composer: "NoiseStorm", type: "Psychic Gauntlet - AceTheme", typing: "Psychic", order: 1 },
+    { name: "Snowscape", file: "../../Songs/Snowscape.mp3", ost: 0, composer: "Skiehie", type: "Frostbite:Juvie - Theme", typing: "Ice, Ghost", order: 1 },
+    { name: "Barracuda", file: "../../Songs/Barracuda.mp3", ost: 1, composer: "NoiseStorm", type: "Psychic Gauntlet - AceTheme", typing: "Psychic", order: 0 },
+    { name: "Desecration [Chiptune Remix]", file: "../Songs/DesecrationCT.mp3", ost: 1000, composer: "Jimm560", type: "Team Demolition - BattleTheme Chiptune Remix", typing: "Normal", order: 2 },
 ];
 
 const secretSequence = [""];
