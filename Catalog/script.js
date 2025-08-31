@@ -268,13 +268,13 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 18.5, name: "Sacred Dribtar", image: "../lostimages/MissingNo.png", typings: "Normal, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Shane+",
         description: "", region: ""},
 
-        {id: 1000, name: "Starpod", image: "../images/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "", artist: "", credits: "Idea-Jake+Tal+",
+        {id: 1000, name: "Starpod", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "", artist: "", credits: "Idea-Jake+Tal+",
         description: "", region: ""},
         
         {id: 1000, name: "Sacred Starpod", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Tal+",
         description: "", region: ""},
 
-        {id: 1000, name: "Ghouliath", image: "../images/MissingNo.png", typings: "Ghost, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Ghouliath", image: "../lostimages/MissingNo.png", typings: "Ghost, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Ghouliath", image: "../lostimages/MissingNo.png", typings: "Ghost, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -394,7 +394,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Borgo Slor", image: "../lostimages/Salam.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
         description: "", region: "Forest"},
 
-        {id: 1000, name: "Buzzibee", image: "../images/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Buzzibee", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
 
         {id: 1000, name: "Sacred Buzzibee", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -460,19 +460,19 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Reverense", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "Flying", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Bombabeak", image: "../images/MissingNo.png", typings: "Steel, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Amo+", 
+        {id: 1000, name: "Bombabeak", image: "../lostimages/MissingNo.png", typings: "Steel, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Amo+", 
         description: "", region: "SecretArea"},
 
         {id: 1000, name: "Sacred Bombabeak", image: "../lostimages/MissingNo.png", typings: "Steel, Artillery", paratypings: "", category: "Alt", artist: "", credits: "Idea-Amo+", 
         description: "", region: "SecretArea"},
         
-        {id: 1000, name: "Lambabeem", image: "../images/MissingNo.png", typings: "Light", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Lambabeem", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Plains"},
 
         {id: 1000, name: "Sacred Lambabeem", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Plains"},
 
-        {id: 1000, name: "Lumilox", image: "../images/MissingNo.png", typings: "Light", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        {id: 1000, name: "Lumilox", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
         description: "", region: "SecretArea"},
 
         {id: 1000, name: "Sacred Lumilox", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
@@ -574,7 +574,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Ace Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Ace", artist: "", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Shadasnow", image: "../images/MissingNo.png", typings: "Ice, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Shadasnow", image: "../lostimages/MissingNo.png", typings: "Ice, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Shadasnow", image: "../lostimages/MissingNo.png", typings: "Ice, Dark", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -733,7 +733,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/RF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Sapphae", image: "../images/MissingNo.png", typings: "Steel, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Sapphae", image: "../lostimages/MissingNo.png", typings: "Steel, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Sapphae", image: "../lostimages/MissingNo.png", typings: "Steel, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
