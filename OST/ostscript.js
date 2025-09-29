@@ -7,6 +7,7 @@ const audioFiles = [
     { name: "Town Theme", file: "../Songs/Town Theme.mp3", ost: 1000, composer: "Michael", type: "Town - Theme", typing: "Normal", order: 15 },
     { name: "Reminiscence", file: "../Songs/Reminiscence.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 100 },   
     { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
+    { name: "Bait", file: "../Songs/Bait.mp3", ost: 1000, composer: "Michael", type: "Water Gauntlet - BattleTheme", typing: "Water", order: 100 },    
     { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Poison", order: 5 },
     { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, composer: "Michael", type: "Desert - Theme", typing: "Ground", order: 7 },
     { name: "Frenzy Ashore", file: "../Songs/FrenzyAshore.mp3", ost: 1000, composer: "Michael", type: "Shiver Club - Theme", typing: "Electric", order: 100 },
@@ -22,7 +23,7 @@ const audioFiles = [
     { name: "Despair", file: "../Songs/Despair.mp3", ost: 1000, composer: "Michael", type: "Team Demolition Base - Theme", typing: "Normal", order: 100 },
     { name: "Standstill", file: "../Songs/Standstill.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 100 }
 ];
-const secretSequence = ["Desecration", "Sparks of Hope", "Despair"];
+const secretSequence = ["Bait"];
 
 let playHistory = [];
 
