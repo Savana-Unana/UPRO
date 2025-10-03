@@ -400,6 +400,12 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Buzzibee", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
 
+        {id: 1000, name: "Wasniach", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Wasniach", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
         {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
         description: "", region: "Plains"},
 
