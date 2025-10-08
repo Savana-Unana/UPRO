@@ -1298,7 +1298,6 @@ function filterShiverican() {
         const isForest = region.includes("forest") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isDesert = region.includes("desert") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isVolcano = region.includes("volcano") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
-        const isLake = region.includes("Lake") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isSwamp = region.includes("swamp") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isIceCaps = region.includes("icecaps") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isMountainRange = region.includes("mountainrange") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
@@ -1317,7 +1316,6 @@ function filterShiverican() {
         const isForestAlt = region.includes("forest") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isDesertAlt = region.includes("desert") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isVolcanoAlt = region.includes("volcano") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
-        const isLakeAlt = region.includes("lake") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isSwampAlt = region.includes("swamp") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isIceCapsAlt = region.includes("icecaps") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isMountainRangeAlt = region.includes("mountainrange") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -1337,7 +1335,6 @@ function filterShiverican() {
         const isForestAce = region.includes("forest") && category.includes("ace");
         const isDesertAce = region.includes("desert") && category.includes("ace");
         const isVolcanoAce = region.includes("volcano") && category.includes("ace");
-        const isLakeAce = region.includes("Lake") && category.includes("ace");
         const isSwampAce = region.includes("swamp") && category.includes("ace");
         const isIceCapsAce = region.includes("icecaps") && category.includes("ace");
         const isMountainRangeAce = region.includes("mountainrange") && category.includes("ace");
