@@ -1317,7 +1317,7 @@ function filterShiverican() {
         const isForestAlt = region.includes("forest") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isDesertAlt = region.includes("desert") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isVolcanoAlt = region.includes("volcano") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
-        const isLakeAlt = region.includes("Lake") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isLakeAlt = region.includes("lake") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isSwampAlt = region.includes("swamp") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isIceCapsAlt = region.includes("icecaps") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isMountainRangeAlt = region.includes("mountainrange") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
