@@ -2349,6 +2349,10 @@ function showDetails(shiverican, index = null) {
             imageElement.style.width = (imageElement.naturalWidth / 4) + "px";
             imageElement.style.height = (imageElement.naturalHeight / 4) + "px";
         }
+        else if (shiverican.name === "Cartilicht" || "Sapphae" || "Mayfly" || "A.Meepu" || "Volcannon" || "Agilith" || "Shadasnow" || "Cordal" || "Alliminiyum" || "Krasbopper" || "Fortilith" || "Lurkest" || "Twynami" || "Confished" || "Smell.Elixion" || "Sound.Elixion" || "Taste.Elixion" || "Irecencaat" || "Ballijawlent" || "Meepu" || "Sight.Elixion") {
+        imageElement.style.width = "600px";
+        imageElement.style.height = "600px";
+        }  
         else {
             imageElement.style.width = (imageElement.naturalWidth * 3) + "px";
             imageElement.style.height = (imageElement.naturalHeight * 3) + "px";
