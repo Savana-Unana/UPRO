@@ -274,12 +274,6 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Starpod", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Tal+",
         description: "", region: ""},
 
-        {id: 1000, name: "Harp", image: "../lostimages/MissingNo.png", typings: "Water, Light", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
-        description: "", region: "Lake"},
-
-        {id: 1000, name: "Sacred Harp", image: "../lostimages/MissingNo.png", typings: "Water, Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
-        description: "", region: "Lake"},
-
         {id: 1000, name: "Twynami", image: "../lostimages/Tynami.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
         description: "", region: "Lake"},
 
