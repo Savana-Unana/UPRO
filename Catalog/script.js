@@ -316,13 +316,13 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Polhand", image: "../lostimages/Polhand.png", typings: "Grass, Psychic", paratypings: "", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
         description: "", region: "Forest"},
         
-        {id: 1000, name: "MayFly", image: "../images/Mayfly.png", typings: "Flying, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        {id: 1000, name: "MayFly", image: "../lostimages/Mayfly.png", typings: "Flying, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Volcano"},
 
         {id: 1000, name: "Sacred Mayfly", image: "../lostimages/MissingNo.png", typings: "Flying, Artillery", paratypings: "", category: "Alt", artist: "", credits: ", Idea-Shane+", 
         description: "", region: "Volcano"},
 
-        {id: 1000, name: "Volcannon", image: "../images/Volcannon.png", typings: "Ground, Artillery", paratypings: "Fire", category: "", artist: "", credits: ", , Idea-Tal+", 
+        {id: 1000, name: "Volcannon", image: "../lostimages/Volcannon.png", typings: "Ground, Artillery", paratypings: "Fire", category: "", artist: "", credits: ", , Idea-Tal+", 
         description: "", region: "Volcano"},
 
         {id: 1000, name: "Sacred Volcannon", image: "../lostimages/MissingNo.png", typings: "Ground, Artillery", paratypings: "Fire", category: "Alt", artist: "", credits: ", Idea-Shane+", 
