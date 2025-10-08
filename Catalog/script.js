@@ -274,16 +274,43 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Starpod", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Tal+",
         description: "", region: ""},
 
+        {id: 1000, name: "Harp", image: "../lostimages/MissingNo.png", typings: "Water, Light", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Harp", image: "../lostimages/MissingNo.png", typings: "Water, Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Twynami", image: "../lostimages/Tynami.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Twynami", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Confished", image: "../lostimages/Confished.png", typings: "Water, Light", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Confished", image: "../lostimages/MissingNo.png", typings: "Water, Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Cartilicht", image: "../lostimages/Cartilicht.png", typings: "Water, Light", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Cartilicht", image: "../lostimages/MissingNo.png", typings: "Water, Light", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Ballijawlent", image: "../lostimages/Ballijawlent.png", typings: "Water, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Shane+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Ballijawlent", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Shane+", 
+        description: "", region: "Lake"},
+
         {id: 1000, name: "Ghouliath", image: "../lostimages/MissingNo.png", typings: "Ghost, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Lake"},
-
-        {id: 1000, name: "Sacred Ghouliath", image: "../lostimages/MissingNo.png", typings: "Ghost, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
-        description: "", region: "Lake"},
         
-        {id: 1000, name: "Tumblseed", image: "../lostimages/Tumblseed.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
+        {id: 1000, name: "Tumball", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Desert"},
 
-        {id: 1000, name: "Sacred Tumblseed", image: "../lostimages/MissingNo.png", typings: "Grass, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        {id: 1000, name: "Sacred Tumball", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Desert"},
 
         {id: 1000, name: "Cacculent", image: "../lostimages/Cacculent.png", typings: "Grass, Flying", paratypings: "", category: "", artist: "Tal", credits: "Drawn-Tal+", 
@@ -294,6 +321,18 @@ const defaultImage = '../lostimages/MissingNo.png';
 
         {id: 1000, name: "Polhand", image: "../lostimages/Polhand.png", typings: "Grass, Psychic", paratypings: "", category: "NCanon", artist: "Shane", credits: "Drawn, Idea-Shane+", 
         description: "", region: "Forest"},
+        
+        {id: 1000, name: "MayFly", image: "../images/Mayfly.png", typings: "Flying, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Sacred Mayfly", image: "../lostimages/MissingNo.png", typings: "Flying, Artillery", paratypings: "", category: "Alt", artist: "", credits: ", Idea-Shane+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Volcannon", image: "../images/Volcannon.png", typings: "Ground, Artillery", paratypings: "Fire", category: "", artist: "", credits: ", , Idea-Tal+", 
+        description: "", region: "Volcano"},
+
+        {id: 1000, name: "Sacred Volcannon", image: "../lostimages/MissingNo.png", typings: "Ground, Artillery", paratypings: "Fire", category: "Alt", artist: "", credits: ", Idea-Shane+", 
+        description: "", region: "Volcano"},
 
         {id: 1000, name: "Charquid", image: "../images/Charquid.png", typings: "Fire", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, OGDesign-Ivri+Amo+, Idea-Shane+", 
         description: "", region: "Volcano"},
@@ -311,40 +350,76 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "", region: "IceCaps"},
 
         {id: 1000, name: "Blarb", image: "../images/Blarb.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Ivri+, OGDesign-Amo+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Blarb", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "OGDesign-Amo+Ivri+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "Jake", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Bowlfish", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Tankfish", image: "../lostimages/MissingNo.png", typings: "Water, Artillery", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Fizzlin", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Fizzlin", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Fizzik", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Fizzik", image: "../lostimages/MissingNo.png", typings: "Water, Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Quubbly", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Quubbly", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Quontoon", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Quontoon", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Honckraft", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Honckraft", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+        
+        {id: 1000, name: "Cordal", image: "../lostimages/Cordal.png", typings: "Water, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Cordal", image: "../lostimages/MissingNo.png", typings: "Water, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Gastrover", image: "../lostimages/MissingNo.png", typings: "Bug, Fire", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Gastrover", image: "../lostimages/MissingNo.png", typings: "Bug, Fire", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Jake+", 
-        description: "", region: "River"},
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Krat", image: "../lostimages/MissingNo.png", typings: "Normal, Fighting", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Krat", image: "../lostimages/MissingNo.png", typings: "Normal, Fighting", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+        
+        {id: 1000, name: "Kroxer", image: "../lostimages/MissingNo.png", typings: "Normal, Fighting", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Kroxer", image: "../lostimages/MissingNo.png", typings: "Normal, Fighting", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Buntot", image: "../lostimages/Buntot.png", typings: "Fairy", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Plains"},
@@ -394,6 +469,18 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Borgo Slor", image: "../lostimages/Salam.png", typings: "Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Jake+", 
         description: "", region: "Forest"},
 
+        {id: 1000, name: "Krasbopper", image: "../lostimages/Krasbopper.png", typings: "Fighting, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Krasbopper", image: "../lostimages/MissingNo.png", typings: "Fighting, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Lurkest", image: "../lostimages/Lurkest.png", typings: "Fighting, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Lurkest", image: "../lostimages/MissingNo.png", typings: "Fighting, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Forest"},
+
         {id: 1000, name: "Buzzibee", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Forest"},
 
@@ -404,6 +491,12 @@ const defaultImage = '../lostimages/MissingNo.png';
         description: "", region: "Forest"},
 
         {id: 1000, name: "Sacred Wasniach", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Ircencaat", image: "../lostimages/Ircencaat.png", typings: "Steel, Bug", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
+        description: "", region: "Forest"},
+
+        {id: 1000, name: "Sacred Ircencaat", image: "../lostimages/MissingNo.png", typings: "Steel, Bug", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Jake+", 
         description: "", region: "Forest"},
 
         {id: 1000, name: "Frankyurt (Tal Concept)", image: "../lostimages/Frankyurt.png", typings: "Normal, Fairy", paratypings: "", category: "NCanon", artist: "Tal", credits: "Idea-Shane+Tal+Jake+", 
@@ -580,7 +673,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Ace Reptundra", image: "../lostimages/MissingNo.png", typings: "Ice, Dragon", paratypings: "Flying", category: "Ace", artist: "", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Shadasnow", image: "../lostimages/MissingNo.png", typings: "Ice, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Shadasnow", image: "../lostimages/Shadasnow.png", typings: "Ice, Dark", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Shadasnow", image: "../lostimages/MissingNo.png", typings: "Ice, Dark", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -592,13 +685,13 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Relion", image: "../lostimages/MissingNo.png", typings: "Light", paratypings: "NCanon", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "MountainRange"},
 
-        {id: 1000, name: "Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Meepu", image: "../lostimages/Meepu.png", typings: "Ice, Electric", paratypings: "", category: "", artist: "", credits: "Idea-Shane+Tal+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Sacred Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Sacred Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+Tal+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Ace Meepu", image: "../lostimages/MissingNo.png", typings: "Ice, Electric", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Ace Meepu", image: "../lostimages/A.Meepu.png", typings: "Ice, Electric", paratypings: "", category: "Ace", artist: "", credits: "Idea-Shane+Tal+", 
         description: "", region: "IceCaps"},
 
         {id: 1000, name: "Brroil", image: "../lostimages/MissingNo.png", typings: "Ice, Poison", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
@@ -646,10 +739,10 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Thoot", image: "../lostimages/S.Thoot.png", typings: "Water", paratypings: "", category: "NCanon", artist: "Ivri", credits: "IDrawn-Ivri+", 
         description: "", region: "Desert"},
 
-        {id: 1000, name: "Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "", artist: "", credits: "Idea-Ivri+", 
+        {id: 1000, name: "Alliminiyum", image: "../lostimages/Alliminiyum.png", typings: "Steel, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Shane+", 
         description: "", region: "MountainRange"},
 
-        {id: 1000, name: "Sacred Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "", category: "Alt", artist: "", credits: "Idea-Ivri+", 
+        {id: 1000, name: "Sacred Alliminiyum", image: "../lostimages/MissingNo.png", typings: "Steel, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Shane+", 
         description: "", region: "MountainRange"},
 
         {id: 1000, name: "Vigilith", image: "../images/Vigilith.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
@@ -658,11 +751,20 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Empire Vigilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "Ace", artist: "ake", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
-        {id: 1000, name: "Agilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        {id: 1000, name: "Fortilith", image: "../lostimages/Fortilth.png", typings: "Rock, Ghost", paratypings: "", category: "NCanon", artist: "", credits: "Idea-Shane+Tal+", 
         description: "", region: "Desert/Temple"},
 
-        {id: 1000, name: "Fortilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        {id: 1000, name: "Agilith", image: "../lostimages/Agilith.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
         description: "", region: "Desert/Temple"},
+
+        {id: 1000, name: "Signilith", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "", artist: "Jake", credits: "Drawn-Jake+, Idea-Shane+", 
+        description: "", region: "Desert/Temple"},
+
+        {id: 1000, name: "Enchrancess", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Sacred Enchrancess", image: "../lostimages/MissingNo.png", typings: "Psychic, Ghost", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
+        description: "", region: "Lake"},
 
         {id: 77, name: "Chancix", image: "../lostimages/Chancey.png", description: "An ordinary clover that grows on the border of really hot and really cold places.", typings: "Grass", paratypings: "Ice, Fire", category: "", artist: "Tal", credits: "Drawn-Tal+, Idea-Ivri+, OGDesign-Amo+", 
         description: "", region: "Forest"},
@@ -724,22 +826,22 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Elixion", image: "../lostimages/Elixion.png", typings: "Normal, Water", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Elixion Blip Forme", image: "../lostimages/BF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Elixion Taste Forme", image: "../lostimages/Taste.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Elixion Skip Forme", image: "../lostimages/SF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Elixion Touch Forme", image: "../lostimages/Touch.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Elixion Trip Forme", image: "../lostimages/TF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Elixion Smell Forme", image: "../lostimages/Smell.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Elixion Lip Forme", image: "../lostimages/LF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Elixion Sound Forme", image: "../lostimages/Sound.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Elixion Rip Forme", image: "../lostimages/RF.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Elixion Sight Forme", image: "../lostimages/Sight.Elixion.png", typings: "Normal, Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
-        {id: 1000, name: "Sapphae", image: "../lostimages/MissingNo.png", typings: "Steel, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Sapphae", image: "../lostimages/Sapphae.png", typings: "Steel, Fairy", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Sapphae", image: "../lostimages/MissingNo.png", typings: "Steel, Fairy", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
@@ -750,6 +852,12 @@ const defaultImage = '../lostimages/MissingNo.png';
 
         {id: 1000, name: "Shiver Jaws V2.0", image: "../lostimages/MissingNo.png", typings: "Electric, Ground", paratypings: "Water", category: "Modernized-Alt", artist: "", credits: "Idea-Shane+, Help-Ariel+", 
         description: "", region: "ShiverCo"},
+
+        {id: 1000, name: "Shiver Vlogs", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Light", category: "", artist: "", credits: "Idea-Ariel+", 
+        description: "", region: "Lake"},
+
+        {id: 1000, name: "Shiver Vlogs V2.0", image: "../lostimages/MissingNo.png", typings: "Steel", paratypings: "Light", category: "Alt", artist: "", credits: "Idea-Ariel+", 
+        description: "", region: "Lake"},
 
         {id: 1000, name: "Shiver Blades", image: "../lostimages/Shiver Blades.gif", typings: "Steel, Ice", paratypings: "Fire", category: "Modernized", artist: "Shane", credits: "Drawn-Shane+", 
         description: "", region: "ShiverCo"},
@@ -832,7 +940,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Agilith Revealed Forme", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Spooky Factory"},
 
-        {id: 1000, name: "Fortilith Revealed Forme", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
+        {id: 1000, name: "Signilith Revealed Forme", image: "../lostimages/MissingNo.png", typings: "Rock, Ghost", paratypings: "", category: "HalloweenForme", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Spooky Factory"},
 
         {id: -2.5, name: "Toumern", image: "../lostimages/MissingNo.png", typings: "Ground, Dark", paratypings: "Ghost", category: "Halloween", artist: "", credits: "Idea-Shane+", 
@@ -1196,7 +1304,7 @@ function filterShiverican() {
         const isForest = region.includes("forest") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isDesert = region.includes("desert") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isVolcano = region.includes("volcano") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
-        const isRiver = region.includes("river") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
+        const isLake = region.includes("Lake") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isSwamp = region.includes("swamp") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isIceCaps = region.includes("icecaps") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
         const isMountainRange = region.includes("mountainrange") && (category == ("")  || category == ("paragon") || category == ("modernized") || category==("halloween") || category==("frostbite") || category==("solstice"));
@@ -1215,7 +1323,7 @@ function filterShiverican() {
         const isForestAlt = region.includes("forest") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isDesertAlt = region.includes("desert") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isVolcanoAlt = region.includes("volcano") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
-        const isRiverAlt = region.includes("river") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
+        const isLakeAlt = region.includes("Lake") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isSwampAlt = region.includes("swamp") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isIceCapsAlt = region.includes("icecaps") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isMountainRangeAlt = region.includes("mountainrange") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
@@ -1235,7 +1343,7 @@ function filterShiverican() {
         const isForestAce = region.includes("forest") && category.includes("ace");
         const isDesertAce = region.includes("desert") && category.includes("ace");
         const isVolcanoAce = region.includes("volcano") && category.includes("ace");
-        const isRiverAce = region.includes("river") && category.includes("ace");
+        const isLakeAce = region.includes("Lake") && category.includes("ace");
         const isSwampAce = region.includes("swamp") && category.includes("ace");
         const isIceCapsAce = region.includes("icecaps") && category.includes("ace");
         const isMountainRangeAce = region.includes("mountainrange") && category.includes("ace");
@@ -1983,15 +2091,15 @@ function filterShiverican() {
                 card.style.display = isVolcano ? "block" : "none";
             }
         } 
-        else if (lastQuery === "river") {
+        else if (lastQuery === "Lake") {
             if (Alt) {
-                card.style.display = isRiverAlt ? "block" : "none";
+                card.style.display = isLakeAlt ? "block" : "none";
             } 
             else if (Ace) {
-                card.style.display = isRiverAce ? "block" : "none";
+                card.style.display = isLakeAce ? "block" : "none";
             } 
             else {
-                card.style.display = isRiver ? "block" : "none";
+                card.style.display = isLake ? "block" : "none";
             }
         } 
         else if (lastQuery === "swamp") {
