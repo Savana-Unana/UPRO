@@ -535,6 +535,12 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Pirotte", image: "../lostimages/MissingNo.png", typings: "Ghost, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
         description: "", region: "Swamp"},
 
+        {id: 1000, name: "Pocube", image: "../lostimages/MissingNo.png", typings: "Dark, Psychic", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
+        {id: 1000, name: "Sacred Pocube", image: "../lostimages/MissingNo.png", typings: "Dark, Psychic", paratypings: "", category: "Alt", artist: "", credits: "Idea-Shane+", 
+        description: "", region: "Swamp"},
+
         {id: 1000, name: "Aestereg", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Shane+", 
         description: "", region: "IceCaps"},
 
