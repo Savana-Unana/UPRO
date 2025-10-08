@@ -2356,7 +2356,7 @@ function showDetails(shiverican, index = null) {
     };
     
     imageElement.src = shiverican.image;
-    if (shiverican.name === "Ariel Salama"") {
+    if (shiverican.name === "Ariel Salama") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
     }  
