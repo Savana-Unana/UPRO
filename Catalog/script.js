@@ -274,7 +274,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Starpod", image: "../lostimages/MissingNo.png", typings: "Water, Flying", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+Tal+",
         description: "", region: ""},
 
-        {id: 1000, name: "Twynami", image: "../lostimages/Tynami.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
+        {id: 1000, name: "Twynami", image: "../lostimages/Twynami.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Tal+Jake+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Twynami", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+Jake+", 
@@ -2356,7 +2356,7 @@ function showDetails(shiverican, index = null) {
     };
     
     imageElement.src = shiverican.image;
-    if (shiverican.name === "Ariel Salama") {
+    if (shiverican.name === "Ariel Salama"") {
         imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 12) + "px";
     }  
@@ -2364,6 +2364,10 @@ function showDetails(shiverican, index = null) {
         imageElement.style.width = (imageElement.naturalWidth / 2) + "px";
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
     }
+    else if (shiverican.name === "Cartilicht" || "Sapphae" || "Mayfly" || "A.Meepu" || "Volcannon" || "Agilith" || "Shadasnow" || "Cordal" || "Alliminiyum" || "Krasbopper" || "Fortilith" || "Lurkest" || "Twynami" || "Confished" || "Smell.Elixion" || "Sound.Elixion" || "Taste.Elixion" || "Irecencaat" || "Ballijawlent" || "Meepu" || "Sight.Elixion") {
+        imageElement.style.width = (imageElement.naturalWidth / 3) + "px";
+        imageElement.style.height = (imageElement.naturalHeight / 3) + "px";
+    }  
     else if (shiverican.name === "Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
         imageElement.style.height = (imageElement.naturalHeight * 4) + "px";
