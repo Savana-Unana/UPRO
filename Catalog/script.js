@@ -2365,8 +2365,8 @@ function showDetails(shiverican, index = null) {
         imageElement.style.height = (imageElement.naturalHeight / 2) + "px";
     }
     else if (shiverican.name === "Cartilicht" || "Sapphae" || "Mayfly" || "A.Meepu" || "Volcannon" || "Agilith" || "Shadasnow" || "Cordal" || "Alliminiyum" || "Krasbopper" || "Fortilith" || "Lurkest" || "Twynami" || "Confished" || "Smell.Elixion" || "Sound.Elixion" || "Taste.Elixion" || "Irecencaat" || "Ballijawlent" || "Meepu" || "Sight.Elixion") {
-        imageElement.style.width = (imageElement.naturalWidth / 12) + "px";
-        imageElement.style.height = (imageElement.naturalHeight / 5) + "px";
+        imageElement.style.width = "600px";
+        imageElement.style.height = "600px";
     }  
     else if (shiverican.name === "Capture Capsule") {
         imageElement.style.width = (imageElement.naturalWidth * 4) + "px";
