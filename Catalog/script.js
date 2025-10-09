@@ -303,6 +303,9 @@ const defaultImage = '../lostimages/MissingNo.png';
         
         {id: 1000, name: "Tumball", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Desert"},
+        
+        {id: 1000, name: "Tumblweed", image: "../lostimages/MissingNo.png", typings: "Grass, Ghost", paratypings: "", category: "NCanon", artist: "", credits: "Idea-Tal+", 
+        description: "", region: "Desert"},
 
         {id: 1000, name: "Sacred Tumball", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "Idea-Tal+", 
         description: "", region: "Desert"},
@@ -385,7 +388,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 1000, name: "Sacred Quontoon", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
         description: "", region: "Lake"},
 
-        {id: 1000, name: "Honckraft", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
+        {id: 1000, name: "Honkraft", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "", artist: "", credits: "Idea-Jake+", 
         description: "", region: "Lake"},
 
         {id: 1000, name: "Sacred Honckraft", image: "../lostimages/MissingNo.png", typings: "Water", paratypings: "", category: "Alt", artist: "", credits: "Idea-Jake+", 
