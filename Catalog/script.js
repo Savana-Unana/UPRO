@@ -238,7 +238,7 @@ const defaultImage = '../lostimages/MissingNo.png';
         {id: 13.5, name: "Sacred Duadog", image: "../lostimages/MissingNo.png", typings: "Normal", paratypings: "", category: "Alt", artist: "", credits: "",
         description: "", region: "Forest"},
 
-        {id: 14, name: "Dodecadaog", image: "../lostimages/MissingNo.png", typings: "Normal, Psychic", paratypings: "", category: "", artist: "", credits: "",
+        {id: 14, name: "Dodecadog", image: "../lostimages/MissingNo.png", typings: "Normal, Psychic", paratypings: "", category: "", artist: "", credits: "",
         description: "", region: "Forest"},
     
         {id: 14.5, name: "Sacred Dodecadog", image: "../lostimages/MissingNo.png", typings: "Normal, Psychic", paratypings: "", category: "Alt", artist: "", credits: "",
