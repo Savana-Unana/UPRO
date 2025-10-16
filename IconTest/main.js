@@ -55,7 +55,9 @@ function setActive(id) {
   const c = getActiveCard(); if (!c) return;
   speakerInput.value = c.speaker || "";
   dialogueInput.value = c.text || "";
-  saveState(); syncThumbnailsToActive();
+  saveState();
+  // Sync thumbs/tabs ONLY when switching active card
+  syncThumbnailsToActive();
 }
 
 function selectThumb(container, src) {
@@ -66,12 +68,17 @@ function selectThumb(container, src) {
 }
 function syncThumbnailsToActive() {
   const c = getActiveCard(); if (!c) return;
+
+  // Switch tabs to the card's saved tabs
   if (c.boxTab && boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`)) {
-    boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`).click();
+    boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`).classList.add("active");
+    displayBoxCategory(c.boxTab, BOXES[c.boxTab]);
   }
   if (c.iconTab && iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`)) {
-    iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`).click();
+    iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`).classList.add("active");
+    displayIconCategory(c.iconTab, ICONS[c.iconTab]);
   }
+  // Highlight current selections
   selectThumb(boxOptions, c.boxSrc);
   selectThumb(iconOptions, c.iconSrc);
 }
@@ -138,73 +145,120 @@ function getFirstIconSrc() {
   return list.length ? `icons/${list[0].file}` : "";
 }
 
-// Tabs: Boxes
+// ====== Tabs: Boxes ======
 function setupBoxTabs(boxes) {
+  // clear active class first
+  boxTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
+
   boxTabContainer.querySelectorAll(".tabBtn").forEach(tab => {
     tab.addEventListener("click", () => {
       boxTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
+      // Show the category the user clicked
       displayBoxCategory(tab.dataset.type, boxes[tab.dataset.type]);
       localStorage.setItem(LS_KEYS.BOX_TAB, tab.dataset.type);
-      syncThumbnailsToActive();
+      // NOTE: DO NOT call syncThumbnailsToActive() here (prevents click being undone)
     });
   });
-  const saved = localStorage.getItem(LS_KEYS.BOX_TAB);
-  (saved ? boxTabContainer.querySelector(`.tabBtn[data-type="${saved}"]`) : boxTabContainer.querySelector(".tabBtn"))?.click();
+
+  // initial: use saved tab or first button
+  const savedTab = localStorage.getItem(LS_KEYS.BOX_TAB);
+  const firstTab = savedTab 
+    ? boxTabContainer.querySelector(`.tabBtn[data-type="${savedTab}"]`)
+    : boxTabContainer.querySelector(".tabBtn");
+  if (firstTab) {
+    firstTab.classList.add("active");
+    displayBoxCategory(firstTab.dataset.type, boxes[firstTab.dataset.type]);
+  }
 }
+
 function displayBoxCategory(cat, files) {
   boxOptions.innerHTML = "";
   files.forEach(file => {
     const img = document.createElement("img");
-    img.src = `boxes/${file}`; img.className = "thumb"; img.dataset.file = file;
+    img.src = `boxes/${file}`;
+    img.className = "thumb";
+    img.setAttribute("data-file", file);
     img.addEventListener("click", () => {
       boxOptions.querySelectorAll(".thumb").forEach(t => t.classList.remove("selected"));
       img.classList.add("selected");
       const c = getActiveCard(); if (!c) return;
-      c.boxSrc = img.src; c.boxTab = cat; saveState(); patchActiveCardDOM();
+      c.boxSrc = img.src;
+      c.boxTab = cat;
+      saveState();
+      patchActiveCardDOM();
     });
     boxOptions.appendChild(img);
   });
 }
 
-// Tabs: Icons
+// ====== Tabs: Icons ======
 function setupIconTabs(icons) {
-  iconTabContainer.innerHTML = ""; iconOptions.innerHTML = "";
+  iconTabContainer.innerHTML = "";
+  iconOptions.innerHTML = "";
+
   for (const cat in icons) {
     const btn = document.createElement("button");
-    btn.textContent = cat; btn.className = "tabBtn"; btn.dataset.type = cat;
+    btn.textContent = cat;
+    btn.className = "tabBtn";
+    btn.dataset.type = cat;
+
     btn.addEventListener("click", () => {
       iconTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
       btn.classList.add("active");
+      // Show the category the user clicked
       displayIconCategory(cat, icons[cat]);
       localStorage.setItem(LS_KEYS.ICON_TAB, cat);
-      syncThumbnailsToActive();
+      // NOTE: DO NOT call syncThumbnailsToActive() here (prevents click being undone)
     });
+
     iconTabContainer.appendChild(btn);
   }
-  const saved = localStorage.getItem(LS_KEYS.ICON_TAB);
-  (saved ? iconTabContainer.querySelector(`.tabBtn[data-type="${saved}"]`) : iconTabContainer.querySelector(".tabBtn"))?.click();
+
+  // initial: use saved tab or first
+  const savedIconTab = localStorage.getItem(LS_KEYS.ICON_TAB);
+  const first = savedIconTab 
+    ? iconTabContainer.querySelector(`.tabBtn[data-type="${savedIconTab}"]`)
+    : iconTabContainer.querySelector(".tabBtn");
+  if (first) {
+    first.classList.add("active");
+    displayIconCategory(first.dataset.type, icons[first.dataset.type]);
+  }
 }
+
 function displayIconCategory(cat, files) {
   iconOptions.innerHTML = "";
   files.forEach(obj => {
     const img = document.createElement("img");
-    img.src = `icons/${obj.file}`; img.className = "thumb"; img.dataset.file = obj.file;
+    img.src = `icons/${obj.file}`;
+    img.className = "thumb";
+    img.setAttribute("data-file", obj.file);
+
     img.addEventListener("click", () => {
       iconOptions.querySelectorAll(".thumb").forEach(t => t.classList.remove("selected"));
       img.classList.add("selected");
       const c = getActiveCard(); if (!c) return;
-      c.iconSrc = img.src; c.iconTab = cat; saveState(); patchActiveCardDOM();
+      c.iconSrc = img.src;
+      c.iconTab = cat;
+      saveState();
+      patchActiveCardDOM();
     });
+
     iconOptions.appendChild(img);
   });
 }
 
-// Inputs
-speakerInput.addEventListener("input", () => { const c = getActiveCard(); if (!c) return; c.speaker = speakerInput.value; saveState(); patchActiveCardDOM(); });
-dialogueInput.addEventListener("input", () => { const c = getActiveCard(); if (!c) return; c.text = dialogueInput.value; saveState(); patchActiveCardDOM(); });
+// ====== Inputs ======
+speakerInput.addEventListener("input", () => {
+  const c = getActiveCard(); if (!c) return;
+  c.speaker = speakerInput.value; saveState(); patchActiveCardDOM();
+});
+dialogueInput.addEventListener("input", () => {
+  const c = getActiveCard(); if (!c) return;
+  c.text = dialogueInput.value; saveState(); patchActiveCardDOM();
+});
 
-// Spacing slider (live, supports negative for overlap)
+// ====== Spacing slider ======
 function applySpacing(px) {
   document.documentElement.style.setProperty("--card-gap", `${px}px`);
   spacingVal.textContent = `${px}px`;
@@ -212,20 +266,18 @@ function applySpacing(px) {
 }
 spacingSlider.addEventListener("input", () => applySpacing(Number(spacingSlider.value)));
 
-// Scale slider (export only)
+// ====== Scale slider ======
 function applyScale(v) {
   scaleVal.textContent = `×${v}`;
   localStorage.setItem(LS_KEYS.SCALE, String(v));
 }
 scaleSlider.addEventListener("input", () => applyScale(Number(scaleSlider.value)));
 
-// Buttons
+// ====== Buttons ======
 nextBtn.addEventListener("click", createCardFromCurrent);
 
 exportAllBtn.addEventListener("click", async () => {
   const scale = Number(localStorage.getItem(LS_KEYS.SCALE)) || DEFAULTS.scale;
-
-  // Hide selection outline so it won't appear
   const actives = [...cardsContainer.querySelectorAll(".dialogue-card.active")];
   actives.forEach(el => el.classList.remove("active"));
 
@@ -241,24 +293,22 @@ exportAllBtn.addEventListener("click", async () => {
 
 resetBtn.addEventListener("click", () => {
   Object.values(LS_KEYS).forEach(k => localStorage.removeItem(k));
-  // Reset sliders to defaults
-  spacingSlider.value = DEFAULTS.spacing;
-  applySpacing(DEFAULTS.spacing);
-  scaleSlider.value = DEFAULTS.scale;
-  applyScale(DEFAULTS.scale);
+  spacingSlider.value = DEFAULTS.spacing; applySpacing(DEFAULTS.spacing);
+  scaleSlider.value = DEFAULTS.scale; applyScale(DEFAULTS.scale);
 
   cards = []; activeId = null; cardsContainer.innerHTML = "";
   const first = { id: uid(), speaker: "", text: "", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };
   cards.push(first); renderAllCards(); setActive(first.id);
 });
 
-// Boot
+// ====== Boot ======
 Promise.all([ fetch("boxes.json").then(r=>r.json()), fetch("icons.json").then(r=>r.json()) ])
 .then(([boxes, icons]) => {
   BOXES = boxes; ICONS = icons;
-  setupBoxTabs(BOXES); setupIconTabs(ICONS);
+  setupBoxTabs(BOXES);
+  setupIconTabs(ICONS);
 
-  // init slider defaults / restore
+  // init sliders
   const savedSpacing = Number(localStorage.getItem(LS_KEYS.SPACING));
   const spacing = Number.isFinite(savedSpacing) ? savedSpacing : DEFAULTS.spacing;
   spacingSlider.value = spacing; applySpacing(spacing);
@@ -272,5 +322,8 @@ Promise.all([ fetch("boxes.json").then(r=>r.json()), fetch("icons.json").then(r=
     const first = { id: uid(), speaker: localStorage.getItem("dialogue_speaker") || "", text: localStorage.getItem("dialogue_text") || "", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };
     cards.push(first); activeId = first.id;
   }
-  renderAllCards(); setActive(activeId); syncThumbnailsToActive();
+  renderAllCards();
+  setActive(activeId);
+  // one-time sync at boot so tabs match the first card
+  syncThumbnailsToActive();
 });
