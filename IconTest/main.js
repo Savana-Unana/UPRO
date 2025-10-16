@@ -84,21 +84,17 @@ function syncThumbnailsToActive() {
   const c = getActiveCard();
   if (!c) return;
 
-  // box tab
   if (c.boxTab && boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`)) {
     boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`).click();
   }
-  // icon tab
   if (c.iconTab && iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`)) {
     iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`).click();
   }
-
-  // select thumbs
   selectThumb(boxOptions, c.boxSrc);
   selectThumb(iconOptions, c.iconSrc);
 }
 
-// ====== Rendering Cards ======
+// ====== Rendering ======
 function renderAllCards() {
   cardsContainer.innerHTML = "";
   cards.forEach(renderCard);
@@ -109,15 +105,10 @@ function renderCard(card) {
   const node = cardTemplate.content.firstElementChild.cloneNode(true);
   node.dataset.id = card.id;
 
-  const boxImg = node.querySelector(".boxImage");
-  const iconImg = node.querySelector(".iconImage");
-  const speakerSpan = node.querySelector(".speaker");
-  const dialogueP = node.querySelector(".dialogue");
-
-  boxImg.src = card.boxSrc || "";
-  iconImg.src = card.iconSrc || "";
-  speakerSpan.textContent = card.speaker || "";
-  dialogueP.textContent = card.text || "";
+  node.querySelector(".boxImage").src = card.boxSrc || "";
+  node.querySelector(".iconImage").src = card.iconSrc || "";
+  node.querySelector(".speaker").textContent = card.speaker || "";
+  node.querySelector(".dialogue").textContent = card.text || "";
 
   node.addEventListener("click", () => setActive(card.id));
   node.addEventListener("keydown", (e) => {
@@ -130,7 +121,6 @@ function renderCard(card) {
   cardsContainer.appendChild(node);
 }
 
-// Update a single card DOM when editing
 function patchActiveCardDOM() {
   const c = getActiveCard();
   if (!c) return;
@@ -161,27 +151,22 @@ function createCardFromCurrent() {
   setActive(card.id);
 }
 
-// Helpers for defaults
+// Defaults
 function getFirstBoxTabKey() {
-  // Use the currently selected tab if any
   const activeBtn = boxTabContainer.querySelector(".tabBtn.active");
   if (activeBtn) return activeBtn.dataset.type;
-  // else first key
   return Object.keys(BOXES || { DialogueBox: [] })[0] || "DialogueBox";
 }
-
 function getFirstIconTabKey() {
   const activeBtn = iconTabContainer.querySelector(".tabBtn.active");
   if (activeBtn) return activeBtn.dataset.type;
   return Object.keys(ICONS || {})[0] || "";
 }
-
 function getFirstBoxSrc() {
   const tab = getFirstBoxTabKey();
   const list = (BOXES && BOXES[tab]) || [];
   return list.length ? `boxes/${list[0]}` : "";
 }
-
 function getFirstIconSrc() {
   const tab = getFirstIconTabKey();
   const list = (ICONS && ICONS[tab]) || [];
@@ -189,21 +174,20 @@ function getFirstIconSrc() {
 }
 
 // ====== Tabs: Boxes ======
-function setupBoxTabs(boxes, restore = false) {
+function setupBoxTabs(boxes) {
   boxTabContainer.querySelectorAll(".tabBtn").forEach(tab => {
     tab.addEventListener("click", () => {
       boxTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
       displayBoxCategory(tab.dataset.type, boxes[tab.dataset.type]);
       localStorage.setItem(LS_KEYS.BOX_TAB, tab.dataset.type);
-      // When switching tab, try to match selection to active card
       syncThumbnailsToActive();
     });
   });
 
   const savedTab = localStorage.getItem(LS_KEYS.BOX_TAB);
-  const firstTab = savedTab 
-    ? boxTabContainer.querySelector(`.tabBtn[data-type="${savedTab}"]`) 
+  const firstTab = savedTab
+    ? boxTabContainer.querySelector(`.tabBtn[data-type="${savedTab}"]`)
     : boxTabContainer.querySelector(".tabBtn");
   if (firstTab) firstTab.click();
 }
@@ -253,8 +237,8 @@ function setupIconTabs(icons) {
   }
 
   const savedIconTab = localStorage.getItem(LS_KEYS.ICON_TAB);
-  const first = savedIconTab 
-    ? iconTabContainer.querySelector(`.tabBtn[data-type="${savedIconTab}"]`) 
+  const first = savedIconTab
+    ? iconTabContainer.querySelector(`.tabBtn[data-type="${savedIconTab}"]`)
     : iconTabContainer.querySelector(".tabBtn");
   if (first) first.click();
 }
@@ -282,7 +266,7 @@ function displayIconCategory(cat, files) {
   });
 }
 
-// ====== Text Inputs ======
+// ====== Inputs ======
 speakerInput.addEventListener("input", () => {
   const c = getActiveCard();
   if (!c) return;
@@ -305,8 +289,19 @@ nextBtn.addEventListener("click", () => {
 });
 
 exportAllBtn.addEventListener("click", async () => {
-  // Export the stacked container at 3x
-  const canvas = await html2canvas(cardsContainer, { scale: 3, backgroundColor: null, useCORS: true });
+  // Temporarily remove selection outline so it doesn't appear in export
+  const activeEls = [...cardsContainer.querySelectorAll(".dialogue-card.active")];
+  activeEls.forEach(el => el.classList.remove("active"));
+
+  const canvas = await html2canvas(cardsContainer, {
+    scale: 3,
+    backgroundColor: null,
+    useCORS: true
+  });
+
+  // Restore outlines
+  highlightActiveCard();
+
   const link = document.createElement("a");
   link.download = "dialogues.png";
   link.href = canvas.toDataURL("image/png");
@@ -314,12 +309,10 @@ exportAllBtn.addEventListener("click", async () => {
 });
 
 resetBtn.addEventListener("click", () => {
-  // Clear only our keys
   Object.values(LS_KEYS).forEach(k => localStorage.removeItem(k));
   cards = [];
   activeId = null;
   cardsContainer.innerHTML = "";
-  // Create fresh card
   const first = {
     id: uid(),
     speaker: "",
@@ -342,10 +335,9 @@ Promise.all([
   BOXES = boxes;
   ICONS = icons;
 
-  setupBoxTabs(BOXES, true);
-  setupIconTabs(ICONS, true);
+  setupBoxTabs(BOXES);
+  setupIconTabs(ICONS);
 
-  // Restore cards if any
   loadState();
   if (cards.length === 0) {
     const first = {
@@ -363,7 +355,5 @@ Promise.all([
 
   renderAllCards();
   setActive(activeId);
-
-  // Sync initial selection highlights
   syncThumbnailsToActive();
 });
