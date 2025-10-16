@@ -48,48 +48,52 @@ body {
   gap: 8px;
 }
 
-/* Stacked cards container */
+/* TIGHT STACK — no gap at all */
 #cardsContainer {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;            /* << no space between cards */
   max-height: 80vh;
   overflow: auto;
-  padding-right: 6px;
+  padding: 0;        /* no padding */
+  margin: 0;         /* no margin */
 }
 
-/* Single dialogue card */
+/* Each card should not add space on its own */
 .dialogue-card {
   outline: none;
-  border-radius: 8px;
-  transition: transform 0.06s ease, box-shadow 0.06s ease, border-color 0.06s ease;
-  border: 2px solid transparent;
-}
-.dialogue-card:hover {
-  transform: translateY(-1px);
-}
-.dialogue-card.active {
-  border-color: yellowgreen;
-  box-shadow: 0 0 0 3px rgba(154, 205, 50, 0.25);
+  border: 0;               /* no border so layout doesn't grow */
+  margin: 0;               /* zero margin */
+  padding: 0;              /* zero padding */
 }
 
-/* The preview box (same size as before) */
+/* Only show selection via outline (doesn't affect layout)
+   and we temporarily remove it during export */
+.dialogue-card.active {
+  outline: 3px solid yellowgreen;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Preview box size */
 .preview-box {
   position: relative;
   width: 400px;
   height: 200px;
   background: #000;
-  border: 10px solid black;
+  border: 10px solid black;   /* keeps your look */
   overflow: hidden;
+  display: block;
+  margin: 0;                  /* no extra space */
 }
 
-/* SPEAKER BOX */
+/* ===== Name area (nudged up) ===== */
 .nameBox {
   position: absolute;
-  top: 57.8px;
+  top: 53px;                 /* moved up from ~58px */
   left: 8px;
   width: 220px;
-  height: 30px;             /* prevent clipping */
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -103,11 +107,11 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-left: 5px;
-  padding-bottom: 2px;
+  padding-bottom: 0;         /* remove extra downward nudge */
   font-weight: bold;
 }
 
-/* DIALOGUE BOX */
+/* Dialogue block */
 .dialogueBox {
   position: absolute;
   bottom: 34px;
@@ -123,8 +127,8 @@ body {
   font-size: 23px;
   line-height: 1.1;
   color: black;
-  white-space: pre-wrap;     /* preserve newlines */
-  overflow-wrap: anywhere;   /* nice wrapping */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   margin: 0;
   padding-left: 10px;
   margin-right: 34px;
@@ -132,7 +136,7 @@ body {
   font-weight: bold;
 }
 
-/* ICONS */
+/* Icon */
 .iconImage {
   position: absolute;
   bottom: 73px;
@@ -155,7 +159,7 @@ body {
   image-rendering: crisp-edges;
 }
 
-/* Tab Buttons */
+/* Tabs */
 .tabBtn {
   background: #333;
   font-family: 'UPRO', sans-serif;
