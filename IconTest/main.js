@@ -10,6 +10,10 @@ const cardTemplate = document.getElementById("cardTemplate");
 const nextBtn = document.getElementById("nextBtn");
 const exportAllBtn = document.getElementById("exportAllBtn");
 const resetBtn = document.getElementById("resetBtn");
+const spacingSlider = document.getElementById("spacingSlider");
+const spacingVal = document.getElementById("spacingVal");
+const scaleSlider = document.getElementById("scaleSlider");
+const scaleVal = document.getElementById("scaleVal");
 
 // ====== App State ======
 let BOXES = null, ICONS = null;
@@ -20,8 +24,13 @@ const LS_KEYS = {
   CARDS: "dialogue_cards_v2",
   ACTIVE: "dialogue_active_v2",
   BOX_TAB: "dialogue_box_tab",
-  ICON_TAB: "dialogue_icon_tab"
+  ICON_TAB: "dialogue_icon_tab",
+  SPACING: "dialogue_spacing_px_v1",
+  SCALE: "dialogue_export_scale_v1"
 };
+
+// Defaults:
+const DEFAULTS = { spacing: -20, scale: 5 };
 
 // ====== Utilities ======
 const uid = () => Math.random().toString(36).slice(2, 10);
@@ -195,25 +204,49 @@ function displayIconCategory(cat, files) {
 speakerInput.addEventListener("input", () => { const c = getActiveCard(); if (!c) return; c.speaker = speakerInput.value; saveState(); patchActiveCardDOM(); });
 dialogueInput.addEventListener("input", () => { const c = getActiveCard(); if (!c) return; c.text = dialogueInput.value; saveState(); patchActiveCardDOM(); });
 
+// Spacing slider (live, supports negative for overlap)
+function applySpacing(px) {
+  document.documentElement.style.setProperty("--card-gap", `${px}px`);
+  spacingVal.textContent = `${px}px`;
+  localStorage.setItem(LS_KEYS.SPACING, String(px));
+}
+spacingSlider.addEventListener("input", () => applySpacing(Number(spacingSlider.value)));
+
+// Scale slider (export only)
+function applyScale(v) {
+  scaleVal.textContent = `×${v}`;
+  localStorage.setItem(LS_KEYS.SCALE, String(v));
+}
+scaleSlider.addEventListener("input", () => applyScale(Number(scaleSlider.value)));
+
 // Buttons
 nextBtn.addEventListener("click", createCardFromCurrent);
+
 exportAllBtn.addEventListener("click", async () => {
+  const scale = Number(localStorage.getItem(LS_KEYS.SCALE)) || DEFAULTS.scale;
+
   // Hide selection outline so it won't appear
   const actives = [...cardsContainer.querySelectorAll(".dialogue-card.active")];
   actives.forEach(el => el.classList.remove("active"));
 
-  const canvas = await html2canvas(cardsContainer, { scale: 3, backgroundColor: null, useCORS: true });
+  const canvas = await html2canvas(cardsContainer, { scale, backgroundColor: null, useCORS: true });
 
-  // Restore outlines
-  setActive(activeId);
+  setActive(activeId); // restore outline
 
   const link = document.createElement("a");
   link.download = "dialogues.png";
   link.href = canvas.toDataURL("image/png");
   link.click();
 });
+
 resetBtn.addEventListener("click", () => {
   Object.values(LS_KEYS).forEach(k => localStorage.removeItem(k));
+  // Reset sliders to defaults
+  spacingSlider.value = DEFAULTS.spacing;
+  applySpacing(DEFAULTS.spacing);
+  scaleSlider.value = DEFAULTS.scale;
+  applyScale(DEFAULTS.scale);
+
   cards = []; activeId = null; cardsContainer.innerHTML = "";
   const first = { id: uid(), speaker: "", text: "", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };
   cards.push(first); renderAllCards(); setActive(first.id);
@@ -224,6 +257,16 @@ Promise.all([ fetch("boxes.json").then(r=>r.json()), fetch("icons.json").then(r=
 .then(([boxes, icons]) => {
   BOXES = boxes; ICONS = icons;
   setupBoxTabs(BOXES); setupIconTabs(ICONS);
+
+  // init slider defaults / restore
+  const savedSpacing = Number(localStorage.getItem(LS_KEYS.SPACING));
+  const spacing = Number.isFinite(savedSpacing) ? savedSpacing : DEFAULTS.spacing;
+  spacingSlider.value = spacing; applySpacing(spacing);
+
+  const savedScale = Number(localStorage.getItem(LS_KEYS.SCALE));
+  const scale = Number.isFinite(savedScale) ? savedScale : DEFAULTS.scale;
+  scaleSlider.value = scale; applyScale(scale);
+
   loadState();
   if (cards.length === 0) {
     const first = { id: uid(), speaker: localStorage.getItem("dialogue_speaker") || "", text: localStorage.getItem("dialogue_text") || "", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };
