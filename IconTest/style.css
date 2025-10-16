@@ -5,6 +5,9 @@
   font-style: normal;
 }
 
+/* CSS variable to control card spacing (can be negative for overlap) */
+:root { --card-gap: -20px; }  /* default 20px overlap */
+
 body {
   font-family: 'UPRO', sans-serif;
   font-weight: bold;
@@ -42,10 +45,10 @@ body {
 
 .buttons { display: flex; flex-wrap: wrap; gap: 8px; }
 
-/* ===== tight stack + 10px overlap ===== */
+/* ===== tight stack with slider-controlled gap/overlap ===== */
 #cardsContainer { display: block; padding: 0; margin: 0; }
 .dialogue-card { display: block; margin: 0; padding: 0; line-height: 0; border: 0; }
-.dialogue-card + .dialogue-card { margin-top: -10px; } /* overlap by 10px */
+.dialogue-card + .dialogue-card { margin-top: var(--card-gap); } /* negative = overlap */
 
 /* selection outline (not exported) */
 .dialogue-card.active { outline: 2px solid yellowgreen; outline-offset: 0; }
@@ -62,10 +65,10 @@ body {
   margin: 0;
 }
 
-/* ===== name area (moved up ~5px) ===== */
+/* ===== name area (2px down from previous) ===== */
 .nameBox {
   position: absolute;
-  top: 45px;           /* was 50px -> up by ~5 */
+  top: 47px;          /* was 45px -> down by 2px */
   left: 8px;
   width: 220px;
   height: 30px;
