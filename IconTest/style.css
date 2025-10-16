@@ -9,7 +9,7 @@
 /* General layout */
 body {
   font-family: 'UPRO', sans-serif;
-  font-weight: bold; /* ← make everything bold */
+  font-weight: bold;
   background: #1e1e1e;
   color: #f0f0f0;
   display: flex;
@@ -21,8 +21,9 @@ body {
 #editor {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .panel {
@@ -32,6 +33,47 @@ body {
   box-shadow: 0 0 10px #0005;
 }
 
+.panel:first-child {
+  border-right: 2px solid #555;
+  padding-right: 20px;
+  margin-right: 20px;
+  flex-shrink: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Stacked cards container */
+#cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 80vh;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* Single dialogue card */
+.dialogue-card {
+  outline: none;
+  border-radius: 8px;
+  transition: transform 0.06s ease, box-shadow 0.06s ease, border-color 0.06s ease;
+  border: 2px solid transparent;
+}
+.dialogue-card:hover {
+  transform: translateY(-1px);
+}
+.dialogue-card.active {
+  border-color: yellowgreen;
+  box-shadow: 0 0 0 3px rgba(154, 205, 50, 0.25);
+}
+
+/* The preview box (same size as before) */
 .preview-box {
   position: relative;
   width: 400px;
@@ -41,50 +83,32 @@ body {
   overflow: hidden;
 }
 
-#editor {
-  display: flex;
-  gap: 20px;
-  flex-wrap: nowrap; /* prevent wrapping to the bottom */
-  justify-content: flex-start;
-  align-items: flex-start; /* align both panels to top */
-}
-
-.panel:first-child {
-  border-right: 2px solid #555; /* border on the right of left panel */
-  padding-right: 20px;
-  margin-right: 20px;
-  flex-shrink: 0; /* don’t shrink when screen is narrow */
-  max-height: 100vh; /* let it grow vertically but not overflow */
-  overflow-y: auto; /* scroll if content is taller than viewport */
-}
-
-
 /* SPEAKER BOX */
-#nameBox {
+.nameBox {
   position: absolute;
   top: 57.8px;
   left: 8px;
   width: 220px;
-  height: 11.7px;
+  height: 30px;             /* prevent clipping */
   display: flex;
   align-items: center;
-  justify-content: flex; /* fixed here */
+  justify-content: flex-start;
   overflow: hidden;
-  /* border: 1px dashed red; */
 }
 
-#speaker {
+.speaker {
   font-size: 23px;
+  line-height: 23px;
   color: black;
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-left: 5px;
   padding-bottom: 2px;
-  font-weight: bold; /* ensure bold even if isolated */
+  font-weight: bold;
 }
 
 /* DIALOGUE BOX */
-#dialogueBox {
+.dialogueBox {
   position: absolute;
   bottom: 34px;
   left: 25px;
@@ -93,15 +117,14 @@ body {
   overflow: hidden;
   display: block;
   text-align: left;
-  /* border: 1px dashed cyan; */
 }
 
-#dialogue {
+.dialogue {
   font-size: 23px;
-  line-height: 1;
+  line-height: 1.1;
   color: black;
-  word-wrap: break-word;
-  white-space: normal;
+  white-space: pre-wrap;     /* preserve newlines */
+  overflow-wrap: anywhere;   /* nice wrapping */
   margin: 0;
   padding-left: 10px;
   margin-right: 34px;
@@ -110,10 +133,10 @@ body {
 }
 
 /* ICONS */
-#iconImage {
+.iconImage {
   position: absolute;
   bottom: 73px;
-  right: 11px; /* move closer or farther */
+  right: 11px;
   width: 100px;
   height: 100px;
   image-rendering: pixelated;
@@ -122,12 +145,11 @@ body {
 
 #iconOptions {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 icons per row */
+  grid-template-columns: repeat(5, 1fr);
   gap: 4px;
 }
 
-
-#iconImage,
+.iconImage,
 .preview-box img {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
@@ -145,11 +167,24 @@ body {
   padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
-  font-weight: bold;
 }
-
 .tabBtn.active {
   background: #0aa;
+}
+
+/* Thumbnails */
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid transparent;
+  background: #111;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+}
+.thumb.selected {
+  border-color: yellowgreen;
 }
 
 #iconTabs {
