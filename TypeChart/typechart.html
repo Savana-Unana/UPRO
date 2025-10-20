@@ -1,32 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>UPRO Type Chart</title>
-    <link rel="stylesheet" href="typestyle.css">
-</head>
-<body>
-    <h1>UPRO Type Chart</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Attack \ Defense</th>
-                <th>Normal</th> <th>Fire</th> <th>Water</th> <th>Grass</th> <th>Electric</th> <th>Ice</th>
-                <th>Fighting</th> <th>Poison</th> <th>Ground</th> <th>Flying</th> <th>Psychic</th> <th>Bug</th>
-                <th>Rock</th> <th>Ghost</th> <th>Dragon</th> <th>Dark</th> <th>Steel</th> 
-                <th>Fairy</th> <th>Light</th> <th>Artillery</th> <th>Lucid</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    
-    <div id="nav-buttons">
-        <a href="../Index/index.html">
-            <button>Return</button>
-        </a>
-    </div>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>UPRO Type Chart</title>
+        <link rel="stylesheet" href="typestyle.css">
+        <style>
+            html {
+                color: #FFFFFF;
+                background-color: #292929;
+                font-family: UPRO;
+                font-size: 15px;
+                line-height: 1.5;
+            }
 
-    <script src="typescript.js"></script>
-</body>
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+                margin: 0 auto 15px;
+                padding: 0;
+            }
+
+            .type-table th {
+                border: 2px solid #292929;
+                font-weight: normal;
+                padding: 0;
+            }
+
+            .type-table td {
+                border: 2px solid #292929;
+                padding: 0;
+            }
+
+            .type-table th a, .type-table td {
+                border-radius: 6px;
+            }
+
+            .cell-nano {
+                font-size: 19px;
+            }
+
+            .type-abbr {
+                background: #CCCCCC;
+                color: #292929;
+                display: inline-block;
+                font-size: 20px;
+                font-weight: bold;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                text-transform: uppercase;
+                width: 32px;
+            }
+
+            .type-icon-th {
+                background: #CCCCCC;
+                color: #292929;
+                float: left;
+                font-size: 20px;
+                font-weight: bold;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                text-transform: uppercase;
+                width: 54px;
+            }
+
+            .type-icon-th:first-child {
+                margin-left: 0;
+            }
+
+            .type-fx-cell {
+                color: #292929;
+                font-size: 24px;
+                font-weight: bold;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                width: 32px;
+            }
+
+            .type-fx-0 {
+                background-color: #4A4A4A;
+            }
+
+            .type-fx-50 {
+                background-color: #F2665C;
+            }
+
+            .type-fx-75 {
+                background-color: #F2665C;
+                font-size: 28px;
+            }
+
+            .type-fx-100 {
+                background-color: #bebebe;
+            }
+
+            .type-fx-150 {
+                background-color: #B1D490;
+                font-size: 28px;
+            }
+
+            .type-fx-200 {
+                background-color: #B1D490;
+            }
+
+            .type-normal {
+                background: black url("Normal.png") center no-repeat;
+            }
+
+            .type-plant {
+                background: black url("Plant.png") center no-repeat;
+            }
+
+            .type-water {
+                background: black url("Water.png") center no-repeat;
+            }
+
+            .type-fire {
+                background: black url("Fire.png") center no-repeat;
+            }
+
+            .type-earth {
+                background: black url("Earth.png") center no-repeat;
+            }
+
+            .type-ice {
+                background: black url("Ice.png") center no-repeat;
+            }
+
+            .type-air {
+                background: black url("Air.png") center no-repeat;
+            }
+
+            .type-metal {
+                background: black url("Metal.png") center no-repeat;
+            }
+
+            .type-electric {
+                background: black url("Electric.png") center no-repeat;
+            }
+
+            .type-light {
+                background: black url("Light.png") center no-repeat;
+            }
+
+            .type-dark {
+                background: black url("Dark.png") center no-repeat;
+            }
+
+            .type-savage {
+                background: black url("Savage.png") center no-repeat;
+            }
+
+            .type-mystic {
+                background: black url("Mystic.png") center no-repeat;
+            }
+
+            .type-gross {
+                background: black url("Gross.png") center no-repeat;
+            }
+
+            .type-spectral {
+                background: black url("Spectral.png") center no-repeat;
+            }
+
+            .type-artillery {
+                background: black url("Artillery.png") center no-repeat;
+            }
+
+            .type-lucid {
+                background: black url("Lucid.png") center no-repeat;
+            }
+        </style>
+    </head>
+    <body>
+    <table class="type-table">
+  <thead>
+    <tr id="typechart-head">
+      <th class="cell-nano">DEFEND&nbsp;→<br/>ATTACK&nbsp;↴</th>
+      <th>
+        <a class="type-abbr type-normal">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-plant">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-water">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-fire">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-earth">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-ice">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-air">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-metal">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-electric">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-light">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-dark">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-savage">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-mystic">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-gross">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-spectral">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-artillery">&nbsp;</a>
+      </th>
+      <th>
+        <a class="type-abbr type-lucid">&nbsp;</a>
+      </th>
+    </tr>
+  </thead>
+    <tbody id="typechart-body">
+            <tr id="Normal">
+            <th>
+                <a class="type-icon-th type-normal">&nbsp;</a>
+            </th>
+            <td id="Normal → Normal" class="type-fx-cell"></td>
+            <td id="Normal → Plant" class="type-fx-cell"></td>
+            <td id="Normal → Water" class="type-fx-cell"></td>
+            <td id="Normal → Fire" class="type-fx-cell"></td>
+            <td id="Normal → Earth" class="type-fx-cell"></td>
+            <td id="Normal → Ice" class="type-fx-cell"></td>
+            <td id="Normal → Air" class="type-fx-cell"></td>
+            <td id="Normal → Metal" class="type-fx-cell"></td>
+            <td id="Normal → Electric" class="type-fx-cell"></td>
+            <td id="Normal → Light" class="type-fx-cell"></td>
+            <td id="Normal → Dark" class="type-fx-cell"></td>
+            <td id="Normal → Savage" class="type-fx-cell"></td>
+            <td id="Normal → Mystic" class="type-fx-cell"></td>
+            <td id="Normal → Gross" class="type-fx-cell"></td>
+            <td id="Normal → Spectral" class="type-fx-cell"></td>
+            <td id="Normal → Artillery" class="type-fx-cell"></td>
+            <td id="Normal → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Plant">
+            <th>
+                <a class="type-icon-th type-plant">&nbsp;</a>
+            </th>
+            <td id="Plant → Normal" class="type-fx-cell"></td>
+            <td id="Plant → Plant" class="type-fx-cell"></td>
+            <td id="Plant → Water" class="type-fx-cell"></td>
+            <td id="Plant → Fire" class="type-fx-cell"></td>
+            <td id="Plant → Earth" class="type-fx-cell"></td>
+            <td id="Plant → Ice" class="type-fx-cell"></td>
+            <td id="Plant → Air" class="type-fx-cell"></td>
+            <td id="Plant → Metal" class="type-fx-cell"></td>
+            <td id="Plant → Electric" class="type-fx-cell"></td>
+            <td id="Plant → Light" class="type-fx-cell"></td>
+            <td id="Plant → Dark" class="type-fx-cell"></td>
+            <td id="Plant → Savage" class="type-fx-cell"></td>
+            <td id="Plant → Mystic" class="type-fx-cell"></td>
+            <td id="Plant → Gross" class="type-fx-cell"></td>
+            <td id="Plant → Spectral" class="type-fx-cell"></td>
+            <td id="Plant → Artillery" class="type-fx-cell"></td>
+            <td id="Plant → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Water">
+            <th>
+                <a class="type-icon-th type-water">&nbsp;</a>
+            </th>
+            <td id="Water → Normal" class="type-fx-cell"></td>
+            <td id="Water → Plant" class="type-fx-cell"></td>
+            <td id="Water → Water" class="type-fx-cell"></td>
+            <td id="Water → Fire" class="type-fx-cell"></td>
+            <td id="Water → Earth" class="type-fx-cell"></td>
+            <td id="Water → Ice" class="type-fx-cell"></td>
+            <td id="Water → Air" class="type-fx-cell"></td>
+            <td id="Water → Metal" class="type-fx-cell"></td>
+            <td id="Water → Electric" class="type-fx-cell"></td>
+            <td id="Water → Light" class="type-fx-cell"></td>
+            <td id="Water → Dark" class="type-fx-cell"></td>
+            <td id="Water → Savage" class="type-fx-cell"></td>
+            <td id="Water → Mystic" class="type-fx-cell"></td>
+            <td id="Water → Gross" class="type-fx-cell"></td>
+            <td id="Water → Spectral" class="type-fx-cell"></td>
+            <td id="Water → Artillery" class="type-fx-cell"></td>
+            <td id="Water → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Fire">
+            <th>
+                <a class="type-icon-th type-fire">&nbsp;</a>
+            </th>
+            <td id="Fire → Normal" class="type-fx-cell"></td>
+            <td id="Fire → Plant" class="type-fx-cell"></td>
+            <td id="Fire → Water" class="type-fx-cell"></td>
+            <td id="Fire → Fire" class="type-fx-cell"></td>
+            <td id="Fire → Earth" class="type-fx-cell"></td>
+            <td id="Fire → Ice" class="type-fx-cell"></td>
+            <td id="Fire → Air" class="type-fx-cell"></td>
+            <td id="Fire → Metal" class="type-fx-cell"></td>
+            <td id="Fire → Electric" class="type-fx-cell"></td>
+            <td id="Fire → Light" class="type-fx-cell"></td>
+            <td id="Fire → Dark" class="type-fx-cell"></td>
+            <td id="Fire → Savage" class="type-fx-cell"></td>
+            <td id="Fire → Mystic" class="type-fx-cell"></td>
+            <td id="Fire → Gross" class="type-fx-cell"></td>
+            <td id="Fire → Spectral" class="type-fx-cell"></td>
+            <td id="Fire → Artillery" class="type-fx-cell"></td>
+            <td id="Fire → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Earth">
+            <th>
+                <a class="type-icon-th type-earth">&nbsp;</a>
+            </th>
+            <td id="Earth → Normal" class="type-fx-cell"></td>
+            <td id="Earth → Plant" class="type-fx-cell"></td>
+            <td id="Earth → Water" class="type-fx-cell"></td>
+            <td id="Earth → Fire" class="type-fx-cell"></td>
+            <td id="Earth → Earth" class="type-fx-cell"></td>
+            <td id="Earth → Ice" class="type-fx-cell"></td>
+            <td id="Earth → Air" class="type-fx-cell"></td>
+            <td id="Earth → Metal" class="type-fx-cell"></td>
+            <td id="Earth → Electric" class="type-fx-cell"></td>
+            <td id="Earth → Light" class="type-fx-cell"></td>
+            <td id="Earth → Dark" class="type-fx-cell"></td>
+            <td id="Earth → Savage" class="type-fx-cell"></td>
+            <td id="Earth → Mystic" class="type-fx-cell"></td>
+            <td id="Earth → Gross" class="type-fx-cell"></td>
+            <td id="Earth → Spectral" class="type-fx-cell"></td>
+            <td id="Earth → Artillery" class="type-fx-cell"></td>
+            <td id="Earth → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Ice">
+            <th>
+                <a class="type-icon-th type-ice">&nbsp;</a>
+            </th>
+            <td id="Ice → Normal" class="type-fx-cell"></td>
+            <td id="Ice → Plant" class="type-fx-cell"></td>
+            <td id="Ice → Water" class="type-fx-cell"></td>
+            <td id="Ice → Fire" class="type-fx-cell"></td>
+            <td id="Ice → Earth" class="type-fx-cell"></td>
+            <td id="Ice → Ice" class="type-fx-cell"></td>
+            <td id="Ice → Air" class="type-fx-cell"></td>
+            <td id="Ice → Metal" class="type-fx-cell"></td>
+            <td id="Ice → Electric" class="type-fx-cell"></td>
+            <td id="Ice → Light" class="type-fx-cell"></td>
+            <td id="Ice → Dark" class="type-fx-cell"></td>
+            <td id="Ice → Savage" class="type-fx-cell"></td>
+            <td id="Ice → Mystic" class="type-fx-cell"></td>
+            <td id="Ice → Gross" class="type-fx-cell"></td>
+            <td id="Ice → Spectral" class="type-fx-cell"></td>
+            <td id="Ice → Artillery" class="type-fx-cell"></td>
+            <td id="Ice → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Air">
+            <th>
+                <a class="type-icon-th type-air">&nbsp;</a>
+            </th>
+            <td id="Air → Normal" class="type-fx-cell"></td>
+            <td id="Air → Plant" class="type-fx-cell"></td>
+            <td id="Air → Water" class="type-fx-cell"></td>
+            <td id="Air → Fire" class="type-fx-cell"></td>
+            <td id="Air → Earth" class="type-fx-cell"></td>
+            <td id="Air → Ice" class="type-fx-cell"></td>
+            <td id="Air → Air" class="type-fx-cell"></td>
+            <td id="Air → Metal" class="type-fx-cell"></td>
+            <td id="Air → Electric" class="type-fx-cell"></td>
+            <td id="Air → Light" class="type-fx-cell"></td>
+            <td id="Air → Dark" class="type-fx-cell"></td>
+            <td id="Air → Savage" class="type-fx-cell"></td>
+            <td id="Air → Mystic" class="type-fx-cell"></td>
+            <td id="Air → Gross" class="type-fx-cell"></td>
+            <td id="Air → Spectral" class="type-fx-cell"></td>
+            <td id="Air → Artillery" class="type-fx-cell"></td>
+            <td id="Air → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Metal">
+            <th>
+                <a class="type-icon-th type-metal">&nbsp;</a>
+            </th>
+            <td id="Metal → Normal" class="type-fx-cell"></td>
+            <td id="Metal → Plant" class="type-fx-cell"></td>
+            <td id="Metal → Water" class="type-fx-cell"></td>
+            <td id="Metal → Fire" class="type-fx-cell"></td>
+            <td id="Metal → Earth" class="type-fx-cell"></td>
+            <td id="Metal → Ice" class="type-fx-cell"></td>
+            <td id="Metal → Air" class="type-fx-cell"></td>
+            <td id="Metal → Metal" class="type-fx-cell"></td>
+            <td id="Metal → Electric" class="type-fx-cell"></td>
+            <td id="Metal → Light" class="type-fx-cell"></td>
+            <td id="Metal → Dark" class="type-fx-cell"></td>
+            <td id="Metal → Savage" class="type-fx-cell"></td>
+            <td id="Metal → Mystic" class="type-fx-cell"></td>
+            <td id="Metal → Gross" class="type-fx-cell"></td>
+            <td id="Metal → Spectral" class="type-fx-cell"></td>
+            <td id="Metal → Artillery" class="type-fx-cell"></td>
+            <td id="Metal → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Electric">
+            <th>
+                <a class="type-icon-th type-electric">&nbsp;</a>
+            </th>
+            <td id="Electric → Normal" class="type-fx-cell"></td>
+            <td id="Electric → Plant" class="type-fx-cell"></td>
+            <td id="Electric → Water" class="type-fx-cell"></td>
+            <td id="Electric → Fire" class="type-fx-cell"></td>
+            <td id="Electric → Earth" class="type-fx-cell"></td>
+            <td id="Electric → Ice" class="type-fx-cell"></td>
+            <td id="Electric → Air" class="type-fx-cell"></td>
+            <td id="Electric → Metal" class="type-fx-cell"></td>
+            <td id="Electric → Electric" class="type-fx-cell"></td>
+            <td id="Electric → Light" class="type-fx-cell"></td>
+            <td id="Electric → Dark" class="type-fx-cell"></td>
+            <td id="Electric → Savage" class="type-fx-cell"></td>
+            <td id="Electric → Mystic" class="type-fx-cell"></td>
+            <td id="Electric → Gross" class="type-fx-cell"></td>
+            <td id="Electric → Spectral" class="type-fx-cell"></td>
+            <td id="Electric → Artillery" class="type-fx-cell"></td>
+            <td id="Electric → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Light">
+            <th>
+                <a class="type-icon-th type-light">&nbsp;</a>
+            </th>
+            <td id="Light → Normal" class="type-fx-cell"></td>
+            <td id="Light → Plant" class="type-fx-cell"></td>
+            <td id="Light → Water" class="type-fx-cell"></td>
+            <td id="Light → Fire" class="type-fx-cell"></td>
+            <td id="Light → Earth" class="type-fx-cell"></td>
+            <td id="Light → Ice" class="type-fx-cell"></td>
+            <td id="Light → Air" class="type-fx-cell"></td>
+            <td id="Light → Metal" class="type-fx-cell"></td>
+            <td id="Light → Electric" class="type-fx-cell"></td>
+            <td id="Light → Light" class="type-fx-cell"></td>
+            <td id="Light → Dark" class="type-fx-cell"></td>
+            <td id="Light → Savage" class="type-fx-cell"></td>
+            <td id="Light → Mystic" class="type-fx-cell"></td>
+            <td id="Light → Gross" class="type-fx-cell"></td>
+            <td id="Light → Spectral" class="type-fx-cell"></td>
+            <td id="Light → Artillery" class="type-fx-cell"></td>
+            <td id="Light → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Dark">
+            <th>
+                <a class="type-icon-th type-dark">&nbsp;</a>
+            </th>
+            <td id="Dark → Normal" class="type-fx-cell"></td>
+            <td id="Dark → Plant" class="type-fx-cell"></td>
+            <td id="Dark → Water" class="type-fx-cell"></td>
+            <td id="Dark → Fire" class="type-fx-cell"></td>
+            <td id="Dark → Earth" class="type-fx-cell"></td>
+            <td id="Dark → Ice" class="type-fx-cell"></td>
+            <td id="Dark → Air" class="type-fx-cell"></td>
+            <td id="Dark → Metal" class="type-fx-cell"></td>
+            <td id="Dark → Electric" class="type-fx-cell"></td>
+            <td id="Dark → Light" class="type-fx-cell"></td>
+            <td id="Dark → Dark" class="type-fx-cell"></td>
+            <td id="Dark → Savage" class="type-fx-cell"></td>
+            <td id="Dark → Mystic" class="type-fx-cell"></td>
+            <td id="Dark → Gross" class="type-fx-cell"></td>
+            <td id="Dark → Spectral" class="type-fx-cell"></td>
+            <td id="Dark → Artillery" class="type-fx-cell"></td>
+            <td id="Dark → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Savage">
+            <th>
+                <a class="type-icon-th type-savage">&nbsp;</a>
+            </th>
+            <td id="Savage → Normal" class="type-fx-cell"></td>
+            <td id="Savage → Plant" class="type-fx-cell"></td>
+            <td id="Savage → Water" class="type-fx-cell"></td>
+            <td id="Savage → Fire" class="type-fx-cell"></td>
+            <td id="Savage → Earth" class="type-fx-cell"></td>
+            <td id="Savage → Ice" class="type-fx-cell"></td>
+            <td id="Savage → Air" class="type-fx-cell"></td>
+            <td id="Savage → Metal" class="type-fx-cell"></td>
+            <td id="Savage → Electric" class="type-fx-cell"></td>
+            <td id="Savage → Light" class="type-fx-cell"></td>
+            <td id="Savage → Dark" class="type-fx-cell"></td>
+            <td id="Savage → Savage" class="type-fx-cell"></td>
+            <td id="Savage → Mystic" class="type-fx-cell"></td>
+            <td id="Savage → Gross" class="type-fx-cell"></td>
+            <td id="Savage → Spectral" class="type-fx-cell"></td>
+            <td id="Savage → Artillery" class="type-fx-cell"></td>
+            <td id="Savage → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Mystic">
+            <th>
+                <a class="type-icon-th type-mystic">&nbsp;</a>
+            </th>
+            <td id="Mystic → Normal" class="type-fx-cell"></td>
+            <td id="Mystic → Plant" class="type-fx-cell"></td>
+            <td id="Mystic → Water" class="type-fx-cell"></td>
+            <td id="Mystic → Fire" class="type-fx-cell"></td>
+            <td id="Mystic → Earth" class="type-fx-cell"></td>
+            <td id="Mystic → Ice" class="type-fx-cell"></td>
+            <td id="Mystic → Air" class="type-fx-cell"></td>
+            <td id="Mystic → Metal" class="type-fx-cell"></td>
+            <td id="Mystic → Electric" class="type-fx-cell"></td>
+            <td id="Mystic → Light" class="type-fx-cell"></td>
+            <td id="Mystic → Dark" class="type-fx-cell"></td>
+            <td id="Mystic → Savage" class="type-fx-cell"></td>
+            <td id="Mystic → Mystic" class="type-fx-cell"></td>
+            <td id="Mystic → Gross" class="type-fx-cell"></td>
+            <td id="Mystic → Spectral" class="type-fx-cell"></td>
+            <td id="Mystic → Artillery" class="type-fx-cell"></td>
+            <td id="Mystic → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Gross">
+            <th>
+                <a class="type-icon-th type-gross">&nbsp;</a>
+            </th>
+            <td id="Gross → Normal" class="type-fx-cell"></td>
+            <td id="Gross → Plant" class="type-fx-cell"></td>
+            <td id="Gross → Water" class="type-fx-cell"></td>
+            <td id="Gross → Fire" class="type-fx-cell"></td>
+            <td id="Gross → Earth" class="type-fx-cell"></td>
+            <td id="Gross → Ice" class="type-fx-cell"></td>
+            <td id="Gross → Air" class="type-fx-cell"></td>
+            <td id="Gross → Metal" class="type-fx-cell"></td>
+            <td id="Gross → Electric" class="type-fx-cell"></td>
+            <td id="Gross → Light" class="type-fx-cell"></td>
+            <td id="Gross → Dark" class="type-fx-cell"></td>
+            <td id="Gross → Savage" class="type-fx-cell"></td>
+            <td id="Gross → Mystic" class="type-fx-cell"></td>
+            <td id="Gross → Gross" class="type-fx-cell"></td>
+            <td id="Gross → Spectral" class="type-fx-cell"></td>
+            <td id="Gross → Artillery" class="type-fx-cell"></td>
+            <td id="Gross → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Spectral">
+            <th>
+                <a class="type-icon-th type-spectral">&nbsp;</a>
+            </th>
+            <td id="Spectral → Normal" class="type-fx-cell"></td>
+            <td id="Spectral → Plant" class="type-fx-cell"></td>
+            <td id="Spectral → Water" class="type-fx-cell"></td>
+            <td id="Spectral → Fire" class="type-fx-cell"></td>
+            <td id="Spectral → Earth" class="type-fx-cell"></td>
+            <td id="Spectral → Ice" class="type-fx-cell"></td>
+            <td id="Spectral → Air" class="type-fx-cell"></td>
+            <td id="Spectral → Metal" class="type-fx-cell"></td>
+            <td id="Spectral → Electric" class="type-fx-cell"></td>
+            <td id="Spectral → Light" class="type-fx-cell"></td>
+            <td id="Spectral → Dark" class="type-fx-cell"></td>
+            <td id="Spectral → Savage" class="type-fx-cell"></td>
+            <td id="Spectral → Mystic" class="type-fx-cell"></td>
+            <td id="Spectral → Gross" class="type-fx-cell"></td>
+            <td id="Spectral → Spectral" class="type-fx-cell"></td>
+            <td id="Spectral → Artillery" class="type-fx-cell"></td>
+            <td id="Spectral → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Artillery">
+            <th>
+                <a class="type-icon-th type-artillery">&nbsp;</a>
+            </th>
+            <td id="Artillery → Normal" class="type-fx-cell"></td>
+            <td id="Artillery → Plant" class="type-fx-cell"></td>
+            <td id="Artillery → Water" class="type-fx-cell"></td>
+            <td id="Artillery → Fire" class="type-fx-cell"></td>
+            <td id="Artillery → Earth" class="type-fx-cell"></td>
+            <td id="Artillery → Ice" class="type-fx-cell"></td>
+            <td id="Artillery → Air" class="type-fx-cell"></td>
+            <td id="Artillery → Metal" class="type-fx-cell"></td>
+            <td id="Artillery → Electric" class="type-fx-cell"></td>
+            <td id="Artillery → Light" class="type-fx-cell"></td>
+            <td id="Artillery → Dark" class="type-fx-cell"></td>
+            <td id="Artillery → Savage" class="type-fx-cell"></td>
+            <td id="Artillery → Mystic" class="type-fx-cell"></td>
+            <td id="Artillery → Gross" class="type-fx-cell"></td>
+            <td id="Artillery → Spectral" class="type-fx-cell"></td>
+            <td id="Artillery → Artillery" class="type-fx-cell"></td>
+            <td id="Artillery → Lucid" class="type-fx-cell"></td>
+            </tr>
+            <tr id="Lucid">
+            <th>
+                <a class="type-icon-th type-lucid">&nbsp;</a>
+            </th>
+            <td id="Lucid → Normal" class="type-fx-cell"></td>
+            <td id="Lucid → Plant" class="type-fx-cell"></td>
+            <td id="Lucid → Water" class="type-fx-cell"></td>
+            <td id="Lucid → Fire" class="type-fx-cell"></td>
+            <td id="Lucid → Earth" class="type-fx-cell"></td>
+            <td id="Lucid → Ice" class="type-fx-cell"></td>
+            <td id="Lucid → Air" class="type-fx-cell"></td>
+            <td id="Lucid → Metal" class="type-fx-cell"></td>
+            <td id="Lucid → Electric" class="type-fx-cell"></td>
+            <td id="Lucid → Light" class="type-fx-cell"></td>
+            <td id="Lucid → Dark" class="type-fx-cell"></td>
+            <td id="Lucid → Savage" class="type-fx-cell"></td>
+            <td id="Lucid → Mystic" class="type-fx-cell"></td>
+            <td id="Lucid → Gross" class="type-fx-cell"></td>
+            <td id="Lucid → Spectral" class="type-fx-cell"></td>
+            <td id="Lucid → Artillery" class="type-fx-cell"></td>
+            <td id="Lucid → Lucid" class="type-fx-cell"></td>
+            </tr>
+        </tbody>
+        </table>
+        <script>
+            window.addEventListener("DOMContentLoaded", function () {
+                var typenames = [ "Normal"
+                                , "Plant"
+                                , "Water"
+                                , "Fire"
+                                , "Earth"
+                                , "Ice"
+                                , "Air"
+                                , "Metal"
+                                , "Electric"
+                                , "Light"
+                                , "Dark"
+                                , "Savage"
+                                , "Mystic"
+                                , "Gross"
+                                , "Spectral"
+                                , "Artillery"
+                                , "Lucid"
+                                ];
+
+                var typechartHead = document.getElementById("typechart-head");
+                var typechartBody = document.getElementById("typechart-body");
+                var typestatsHead = document.getElementById("typestats-head");
+
+                var typestatsOffense = document.getElementById("typestats-offense");
+                var typestatsDefense = document.getElementById("typestats-defense");
+                var typestatsOverall = document.getElementById("typestats-overall");
+
+                var typerows = typenames.map(getElementById);
+
+                var types = typenames.length;
+
+                var constant = types + 1;
+
+                var size = types * types;
+
+                var crumbs = new Array(size);
+
+                var index = 0;
+
+                for (var i = 0; i < types; i++) {
+                    for (var j = 0; j < types; j++) {
+                        var id = typenames[i] + " → " + typenames[j];
+                        crumbs[index++] = document.getElementById(id);
+                    }
+                }
+
+                var typestats = typenames.map(getStats);
+
+                hashUpdate();
+
+                crumbs.forEach(listen);
+
+                window.addEventListener("hashchange", hashUpdate, false);
+
+                function hashUpdate() {
+                    var data = window.location.hash || getHash();
+                    data = concat(data.slice(1).split("").map(parse));
+
+                    var length = Math.sqrt(data.length);
+                    var mod = length % 1;
+
+                    if (mod !== 0) {
+                        length -= mod;
+                        data.pop();
+                    }
+
+                    if (length === types) {
+                        data.forEach(updateCrumb);
+                        updateStats();
+                    } else if (length + 1 === types) {
+                        var i = length * length;
+
+                        while (i > 0) {
+                            data.splice(i, 0, 2);
+                            i -= length;
+                        }
+
+                        for (var i = 0; i < types; i++) data.push(2);
+
+                        var hash = "#", index = 0;
+
+                        while (index < size) {
+                            var a = data[index++];
+                            var b = data[index++] || 0;
+                            hash += (a << 2 | b).toString(16);
+                        }
+
+                        window.location.href = hash.toUpperCase();
+                    } else throw new Error("Unexpected error");
+                }
+
+                function getElementById(id) {
+                    return document.getElementById(id);
+                }
+
+                function getStats(name) {
+                    return {
+                        offense: document.getElementById("Offense " + name),
+                        defense: document.getElementById("Defense " + name),
+                        overall: document.getElementById("Overall " + name)
+                    };
+                }
+
+                function parse(x) {
+                    var y = parseInt(x, 16);
+                    if (isNaN(y)) throw new Error("Invalid data");
+                    return [y >>> 2, y & 3];
+                }
+
+                function concat(xs) {
+                    return Array.prototype.concat.apply(Array.prototype, xs);
+                }
+
+                function updateCrumb(value, index) {
+                    var crumb = crumbs[index];
+
+                    switch (value) {
+                    case 1:
+                        crumb.className = "type-fx-cell type-fx-50";
+                        crumb.innerHTML = ".5x";
+                        break;
+                    case 2:
+                        crumb.className = "type-fx-cell type-fx-100";
+                        crumb.innerHTML = "";
+                        break;
+                    case 3:
+                        crumb.className = "type-fx-cell type-fx-200";
+                        crumb.innerHTML = "2x";
+                        break;
+                    }
+                }
+
+                function updateStats() {
+                    var typechart = crumbs.map(getValue);
+
+                    var result = new Array(types);
+                    var attack = new Array(types);
+
+                    for (var i = 0; i < types; i++) {
+                        var sigmaSquare = 0;
+                        var sigmaAttack = 0;
+
+                        for (var j = 0; j < types; j++) {
+                            var offense  = typechart[i * types + j];
+                            sigmaSquare += offense * offense;
+                            sigmaAttack += offense;
+                        }
+
+                        result[i] = sigmaAttack * (sigmaAttack + 2) - sigmaSquare;
+                        attack[i] = sigmaAttack;
+                    }
+
+                    var average = {
+                        offense: 0,
+                        defense: 0,
+                        overall: 0
+                    };
+
+                    var stats = new Array(types);
+
+                    for (var i = 0; i < types; i++) {
+                        var sigmaDefense = 0;
+
+                        for (var j = 0; j < types; j++) {
+                            var defenses  = typechart[i + types * j];
+                            sigmaDefense += defenses * (attack[j] - defenses + 1);
+                        }
+
+                        var offense = result[i];
+                        var overall = Math.sqrt(types * offense / sigmaDefense / constant);
+
+                        var offenseValue = offense / types / constant;
+                        var defenseValue = size / sigmaDefense;
+                        var overallValue = overall;
+
+                        stats[i] = {
+                            offense: types * offenseValue,
+                            defense: types * defenseValue,
+                            overall: types * overallValue
+                        };
+
+                        average.offense += offenseValue;
+                        average.defense += defenseValue;
+                        average.overall += overallValue;
+                    }
+
+                    for (var i = 0; i < types; i++) {
+                        var typestat = typestats[i];
+
+                        var offenseValue = Math.log(stats[i].offense / average.offense);
+                        var defenseValue = Math.log(stats[i].defense / average.defense);
+                        var overallValue = Math.log(stats[i].overall / average.overall);
+
+                        updateValue(typestat.offense, 100 * offenseValue);
+                        updateValue(typestat.defense, 100 * defenseValue);
+                        updateValue(typestat.overall, 100 * overallValue);
+                    }
+
+                    window.location.hash = getHash();
+                }
+
+                function getHash() {
+                    var data = "#", index = 0;
+
+                    while (index < size) {
+                        var a = getIndex(crumbs[index++]);
+                        var b = getIndex(crumbs[index++]);
+                        data += (a << 2 | b).toString(16);
+                    }
+
+                    return data.toUpperCase();
+                }
+
+                function getValue(crumb) {
+                    switch (crumb.innerHTML) {
+                    case ".5x": return 1/2;
+                    case "":  return 1/1;
+                    case "2x": return 2/1;
+                    }
+                }
+
+                function getIndex(crumb) {
+                    if (crumb) {
+                        switch (crumb.innerHTML) {
+                        case ".5x": return 1;
+                        case "":  return 2;
+                        case "2x": return 3;
+                        }
+                    }
+
+                    return 0;
+                }
+
+                function updateValue(stat, value) {
+                    if (!stat) return;
+
+                    stat.className = value <= -0.01 ? "type-fx-cell type-fx-75" :
+                                     value >=  0.01 ? "type-fx-cell type-fx-150" :
+                                                      "type-fx-cell type-fx-0";
+
+                    if (stat.className === "type-fx-cell type-fx-0") value = 0;
+
+                    stat.innerHTML = value.toFixed(2);
+                }
+
+                function listen(crumb) {
+                    crumb.style.cursor = "pointer";
+
+                    crumb.addEventListener("mousedown", function (event) {
+                        event.preventDefault();
+
+                        switch (crumb.innerHTML) {
+                        case ".5x":
+                            crumb.className = "type-fx-cell type-fx-100";
+                            crumb.innerHTML = "";
+                            break;
+                        case "":
+                            crumb.className = "type-fx-cell type-fx-200";
+                            crumb.innerHTML = "2x";
+                            break;
+                        case "2x":
+                            crumb.className = "type-fx-cell type-fx-50";
+                            crumb.innerHTML = ".5x";
+                            break;
+                        }
+
+                        updateStats();
+                    }, false);
+                }
+            }, false);
+        </script>
+    </body>
 </html>

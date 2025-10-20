@@ -2,22 +2,22 @@ const audioFiles = [
     { name: "Familiarity", file: "../Songs/Familiarity.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 },
     { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 6 },
     { name: "Acapella Ashore", file: "../Songs/HumbleAshoreAcapella.mp3", ost: 1000, composer: "Michael", type: "Lake - AcapellaTheme", typing: "Normal", order: 15 },
-    { name: "Sussy Ashore", file: "../Songs/SussyAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - MemeTheme", typing: "Normal", order: 100 },
+    { name: "Sussy Ashore", file: "../Songs/SussyAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - MemeTheme", typing: "Metal", order: 100 },
     { name: "Modest Ashore", file: "../Songs/ModestAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 12 },
     { name: "Town Theme", file: "../Songs/Town Theme.mp3", ost: 1000, composer: "Michael", type: "Town - Theme", typing: "Normal", order: 15 },
     { name: "Reminiscence", file: "../Songs/Reminiscence.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 100 },   
     { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
     { name: "Bait", file: "../Songs/Bait.mp3", ost: 1000, composer: "Michael", type: "Water Gauntlet - BattleTheme", typing: "Water", order: 100 },    
-    { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Poison", order: 5 },
-    { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, composer: "Michael", type: "Desert - Theme", typing: "Ground", order: 7 },
+    { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Earth", order: 5 },
+    { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, composer: "Michael", type: "Desert - Theme", typing: "Earth", order: 7 },
     { name: "Frenzy Ashore", file: "../Songs/FrenzyAshore.mp3", ost: 1000, composer: "Michael", type: "Shiver Club - Theme", typing: "Electric", order: 100 },
     { name: "Skeptic Electric", file: "../Songs/SkepticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
     { name: "Hectic Electric", file: "../Songs/HecticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 2 },
     { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
     { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
-    { name: "Sparks of Hope", file: "../Songs/SparksOfHope.mp3", ost: 1000, composer: "Michael", type: "Caverns - Theme", typing: "Ground", order: 100 },
-    { name: "Crystaline Caverns", file: "../Songs/CrystalineCaverns.mp3", ost: 1000, composer: "Ari", type: "Caverns - Theme", typing: "Ground", order: 13 },
-    { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Dragon", order: 10 },
+    { name: "Sparks of Hope", file: "../Songs/SparksOfHope.mp3", ost: 1000, composer: "Michael", type: "Caverns - Theme", typing: "Earth", order: 100 },
+    { name: "Crystaline Caverns", file: "../Songs/CrystalineCaverns.mp3", ost: 1000, composer: "Ari", type: "Caverns - Theme", typing: "Earth", order: 13 },
+    { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Savage", order: 10 },
     { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 },
     { name: "Desecration", file: "../Songs/Desecration.mp3", ost: 1000, composer: "Michael", type: "Team Demolition - BattleTheme", typing: "Normal", order: 100 },
     { name: "Despair", file: "../Songs/Despair.mp3", ost: 1000, composer: "Michael", type: "Team Demolition Base - Theme", typing: "Normal", order: 100 },
@@ -110,13 +110,10 @@ function displaySongs(filteredFiles) {
         card.className = "card";
 
         const typingcolors = {
-            "Normal": "LightGray", "Fire": "OrangeRed", "Water": "LightBlue",
-            "Electric": "Gold", "Grass": "LimeGreen", "Ice": "LightCyan",
-            "Fighting": "Chocolate", "Poison": "Violet", "Ground": "BurlyWood",
-            "Flying": "Lavender", "Psychic": "HotPink", "Bug": "OliveDrab",
-            "Rock": "DarkKhaki", "Ghost": "SlateBlue", "Dragon": "Red",
-            "Dark": "DarkGray", "Steel": "LightSlateGray", "Fairy": "Pink",
-            "Light": "White", "Artillery": "Black"
+            "Normal":"#bebebe", "Plant": "Green", "Water": "Blue", "Fire": "Orange", "Earth": "Brown",
+            "Ice": "LightBlue", "Air": "Gray", "Metal": "#994a05", "Electric": "Yellow",
+            "Light": "LightOrange", "Dark": "DarkGray", "Savage": "Red", "Mystic": "Pink", "Gross": "#9ACD32", "Spectral": "Purple", "Artillery": "DarkGreen", "Lucid": "Violet"
+
         };
 
         card.style.backgroundColor = typingcolors[typing] || "White";
