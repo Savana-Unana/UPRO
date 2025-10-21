@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET OUT</title>
+    <link rel="stylesheet" href="../Index/style.css">
+</head>
+<body>
+    <script src="../Catalog/script.js" defer></script>    
+    
+    <h1>The Catalog</h1>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search by name or number..." oninput="filterShiverican()">
+    </div> 
+    <div id="alt-buttons-container">
+        <button class="Alt" id="altButton" onclick="setAltTrue()">
+            <span id="altLabel">Activate Alt</span><i></i>
+        </button>
+    
+        <button class="Alt" id="aceButton" onclick="setAceTrue()">
+            <span id="aceLabel">Activate Ace</span><i></i>
+        </button>
+    
+        <button class="Alt" id="nCanonButton" onclick="setNCanonTrue()">
+            <span id="nCanonLabel">Activate NCanon</span><i></i>
+        </button>
+
+        <button class="Alt" id="madeButton" onclick="setMadeTrue()">
+            <span id="madeLabel">Switch To Made</span><i></i>
+        </button>
+    </div>
+    
+    <div class="shiverican-container" id="catalog"></div>
+    
+    <div id="shiverican-details">
+        <h2 id="shiverican-name"></h2>
+        <img id="shiverican-image" src="" alt="Shiverican Image">
+        <p id="shiverican-description"></p>
+        <button onclick="minusVisCard()"><--</button>
+        <button onclick="closeDetails()">Back</button>
+        <button onclick="addVisCard()">--></button>
+    </div>
+    
+    <div id="nav-buttons">
+        <a href="../Index/index.html">
+            <button>Return</button>
+        </a>
+    </div>
+</body>
+</html>
