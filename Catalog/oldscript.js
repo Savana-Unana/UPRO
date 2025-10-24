@@ -1190,7 +1190,7 @@ function filterShiverican() {
 
 
         const isFireAlt = typings.includes("fire") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
-        const isWaterAlt = typings.includes("water") && (category.inclues("alt") || category.includes("forme") || category.includes("solstice"));
+        const isWaterAlt = typings.includes("water") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isPlantAlt = typings.includes("plant") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isElectricAlt = typings.includes("electric") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
         const isIceAlt = typings.includes("ice") && (category.includes("alt") || category.includes("forme") || category.includes("solstice"));
