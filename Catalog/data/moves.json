@@ -1,0 +1,8 @@
+[
+  {"name":"Thunder Pounce","type":"Electric","power":80,"accuracy":95,"category":"Physical","description":"Pounces with electric speed, shocking the opponent."},
+  {"name":"Gale Claw","type":"Air","power":75,"accuracy":100,"category":"Physical","description":"Cuts through the air with razor-like claws."},
+  {"name":"Wave Pulse","type":"Water","power":70,"accuracy":100,"category":"Special","description":"Unleashes a pulsing wave of water."},
+  {"name":"Mental Drift","type":"Lucid","power":60,"accuracy":100,"category":"Special","description":"Sends a psychic current to disrupt foes."},
+  {"name":"Flash Dash","type":"Electric","power":40,"accuracy":100,"category":"Status","description":"Quick dash that improves evasion."},
+  {"name":"Hydro Guard","type":"Water","power":0,"accuracy":100,"category":"Status","description":"Raises defenses using water currents."}
+]

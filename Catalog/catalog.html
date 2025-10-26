@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>The Catalog</h1>
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search..." />
+      <select id="typeFilter"><option value="">All Types</option></select>
+      <select id="typeFilter"><option value="">All Para-Types</option></select>
+      <div class="view-toggle">
+        <button id="gridView" class="active">Grid</button>
+        <button id="listView">List</button>
+      </div>
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="base">Base</button>
+        <button class="mode-btn" data-mode="sacred">Sacred</button>
+        <button class="mode-btn" data-mode="ace">Ace</button>
+        <button class="mode-btn" data-mode="ncanon">Non-Canon</button>
+        <button class="mode-btn" data-mode="event">Event</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="pokedex" class="grid"></main>
+
+  <!-- Details Modal -->
+  <div id="detailsModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+      <div class="modal-header">
+        <h2 id="monName"></h2>
+        <div class="types" id="monTypes"></div>
+      </div>
+      <div class="modal-body">
+        <div class="image-container">
+          <img id="monImage" alt="">
+        </div>
+
+        <div class="dex-tabs">
+          <button class="dex-tab active" data-entry="Discovered">Discovered</button>
+          <button class="dex-tab" data-entry="First Caught">First Caught</button>
+          <button class="dex-tab" data-entry="Experienced">Experienced</button>
+          <button class="dex-tab" data-entry="Reverence">Reverence</button>
+        </div>
+        <p id="monDexText"></p>
+
+        <div id="paraTypesContainer"></div>
+
+        <div id="evolutionsContainer"></div>
+        <div id="sacredContainer"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="prevMon" class="nav-btn">← Previous</button>
+        <button id="nextMon" class="nav-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

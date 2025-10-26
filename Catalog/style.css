@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'UPRO';
+  src: url('UPRO.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'UPRO', serif;
+  font-size:40px;
+  background: #0d0d0f;
+  color: #e0f0ff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  background: #111;
+  padding: 10px;
+  border-bottom: 2px solid #0ff;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+button, select, input {
+  background: #222;
+  color: #0ff;
+  font-family: 'UPRO', serif;
+  font-size: 30px;
+  border: 1px solid #0ff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover, select:hover {
+  background: #0ff;
+  color: #000;
+}
+
+.view-toggle button.active, .mode-btn.active {
+  background: #0ff;
+  color: #000;
+}
+
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 20px;
+}
+
+main.list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.card {
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  transition: 0.2s;
+}
+.card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 12px #0ff;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.types span {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 8px;
+  margin: 2px;
+  color: #000;
+  font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.modal.hidden { display: none; }
+
+/* --- Responsive Base Scaling --- */
+html {
+  /* Emulate your preferred 70% zoom without requiring browser zoom */
+  font-size: 70%;
+}
+
+/* You can tweak this slightly (65–75%) if you want smaller/larger overall sizing */
+
+/* --- Details Modal Scaling & Centering --- */
+.modal-content {
+  background: #121214;
+  border: 2px solid #0ff;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 95%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(1); /* base scale */
+  transition: transform 0.3s ease;
+}
+
+/* Make sure the modal always fits, even on mobile */
+@media (max-width: 768px) {
+  html {
+    font-size: 60%;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-width: 600px;
+  }
+
+  .modal-content img {
+    width: 150px !important;
+    height: 150px !important;
+  }
+}
+
+/* Make sure big screens use your “perfect” scaling */
+@media (min-width: 1200px) {
+  html {
+    font-size: 75%;
+  }
+
+  .modal-content {
+    transform: scale(1.05);
+  }
+}
+
+/* Image container scaling */
+.image-container img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.image-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Keep text and details responsive */
+.modal-body {
+  width: 100%;
+  text-align: center;
+}
+
+#monDexText {
+  font-size: 1.2em;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+/* Alternate forms section scrolls nicely if there are many forms */
+#sacredContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+
+.dex-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dex-tab {
+  font-size: clamp(14px, 2vw, 28px);
+  padding: 6px 12px;
+}
+.dex-tab.active {
+  background: #0ff;
+  color: #000;
+}
+
+.nav-btn {
+  margin: 10px;
+  background: #0ff;
+  color: #000;
+}
+
+#paraTypesContainer span {
+  border: 1px solid #0ff;
+  border-radius: 6px;
+  margin: 2px;
+  padding: 3px 6px;
+  display: inline-block;
+}
+
+#evolutionsContainer img, #sacredContainer img {
+  width: 80px;
+  cursor: pointer;
+  margin: 4px;
+}
