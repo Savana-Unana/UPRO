@@ -37,8 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
       fetch("data/base.json").then(r => r.json()),
       fetch("data/sacred.json").then(r => r.json()),
       fetch("data/ace.json").then(r => r.json()),
-    ]).then(([base, sacred, ace]) => {
-      allData = { base, sacred, ace};
+      fetch("data/ncanon.json").then(r => r.json()),
+      fetch("data/event.json").then(r => r.json()),
+    ]).then(([base, sacred, ace, ncanon, event]) => {
+      allData = { base, sacred, ace, ncanon, event };
       loadMode("base");
     });
   });
