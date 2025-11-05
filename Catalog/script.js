@@ -39,8 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
       fetch("data/ace.json").then(r => r.json()),
       fetch("data/ncanon.json").then(r => r.json()),
       fetch("data/event.json").then(r => r.json()),
-    ]).then(([base, sacred, ace, ncanon, event]) => {
-      allData = { base, sacred, ace, ncanon, event };
+      fetch("data/costumes.json").then(r => r.json()),
+    ]).then(([base, sacred, ace, ncanon, event, costumes]) => {
+      allData = { base, sacred, ace, ncanon, event, costumes};
       loadMode("base");
     });
   });
