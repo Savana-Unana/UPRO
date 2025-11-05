@@ -31,10 +31,8 @@
   {"id":15,"name":"OG Fonceer","types":["Light", "Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"","quest":""},"abilities":[],"moves":[],"image":"../lostimages/OGFonceer.png","description":""},
   {"id":16,"name":"Fortilith","types":["Earth", "Spectral"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"","quest":""},"abilities":[],"moves":[],"image":"../lostimages/Fortilith.png","description":""},
   {"id":17,"name":"Thoot","types":["Water"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"","quest":""},"abilities":[],"moves":[],"image":"../lostimages/Thoot.png","description":""},
-  {"id":18,"name":"Sacred Thoot","types":["Water"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"","quest":""},"abilities":[],"moves":[],"image":"../lostimages/S.Thoot.png","description":""}
-
-
-
-
-
+  {"id":18,"name":"Sacred Thoot","types":["Water"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"","quest":""},"abilities":[],"moves":[],"image":"../lostimages/S.Thoot.png","description":""},
+  {"id":19,"name":"OG Pretengerine","types":["Gross"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"Sacred Pretengerine","quest":""},"abilities":[],"moves":[],"image":"../lostimages/Pretengerine.png","description":""},
+  {"id":20,"name":"OG Espiorange","types":["Gross"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"Sacred Espiorange","quest":""},"abilities":[],"moves":[],"image":"../lostimages/Espiorange.png","description":""},
+  {"id":21,"name":"OG Wyvearn","types":["Gross","Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"sacredForme":{"name":"","quest":""},"abilities":[],"moves":[],"image":"../lostimages/Wyvearn.png","description":""}
 ]
