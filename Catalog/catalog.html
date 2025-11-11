@@ -8,23 +8,45 @@
 </head>
 <body>
   <header>
-  <div  style="display:flex;">
-    <div id="nav-btn">
+    <div style="display:flex;">
+      <div id="nav-btn">
         <a href="../Index/index.html">
-            <button>Main Menu</button>
+          <button>Main Menu</button>
         </a>
+      </div>
     </div>
-  </div>
     <h1>The Catalog</h1>
     <div class="controls">
       <input type="text" id="search" placeholder="Search..." />
-      <select id="typeFilter"><option value="">All Types</option></select>
-      <select id="typeFilter"><option value="">All Para-Types</option></select>
+
+      <!-- Custom checkbox-dropdown for Types -->
+      <div class="multi-filter" id="typeFilterWrapper">
+        <button class="filter-toggle" id="typeToggle">Types ▾</button>
+        <div class="filter-panel" id="typePanel" aria-hidden="true">
+          <div class="panel-actions">
+            <button id="clearTypes" class="clear-btn">Clear</button>
+          </div>
+          <div class="options" id="typeOptions"></div>
+        </div>
+      </div>
+
+      <!-- Custom checkbox-dropdown for Para Types -->
+      <div class="multi-filter" id="paraFilterWrapper">
+        <button class="filter-toggle" id="paraToggle">Para Types ▾</button>
+        <div class="filter-panel" id="paraPanel" aria-hidden="true">
+          <div class="panel-actions">
+            <button id="clearParas" class="clear-btn">Clear</button>
+          </div>
+          <div class="options" id="paraOptions"></div>
+        </div>
+      </div>
+
       <div class="view-toggle">
         <button id="gridView" class="active">Grid</button>
         <button id="listView">List</button>
       </div>
-      <div class="mode-switch">
+
+      <div class="mode-switch" id="modeSwitch">
         <button class="mode-btn active" data-mode="base">Base</button>
         <button class="mode-btn" data-mode="sacred">Sacred</button>
         <button class="mode-btn" data-mode="ace">Ace</button>
@@ -41,10 +63,13 @@
   <div id="detailsModal" class="modal hidden">
     <div class="modal-content">
       <button id="closeModal" class="close-btn">✕</button>
+
       <div class="modal-header">
         <h2 id="monName"></h2>
         <div class="types" id="monTypes"></div>
+        <div id="modeBadge" class="mode-badge"></div>
       </div>
+
       <div class="modal-body">
         <div class="image-container">
           <img id="monImage" alt="">
@@ -56,13 +81,15 @@
           <button class="dex-tab" data-entry="Experienced">Experienced</button>
           <button class="dex-tab" data-entry="Reverence">Reverence</button>
         </div>
+
         <p id="monDexText"></p>
 
+        <div id="abilityContainer"></div>
         <div id="paraTypesContainer"></div>
-
         <div id="evolutionsContainer"></div>
         <div id="sacredContainer"></div>
       </div>
+
       <div class="modal-footer">
         <button id="prevMon" class="nav-btn">← Previous</button>
         <button id="nextMon" class="nav-btn">Next →</button>
