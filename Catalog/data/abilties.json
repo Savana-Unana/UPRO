@@ -1,10 +1,7 @@
 [
-  {
-    "name": "Keen Sight",
-    "text": "Boosts accuracy of vision-based attacks; reveals hidden traits."
-  },
-  {
-    "name": "Aegis Guard",
-    "text": "Reduces damage taken from the first hit each battle by 20%."
-  }
+  {"name": "Lock In", "text": "When switching into this mon, it forces the opposing mon to only use moves that share it's typings."},
+  {"name": "Wonder Guard", "text": "This mon can only be damaged by super effective moves."},
+  {"name": "Hi", "text": ""},   
+  {"name": "Bye", "text": ""},
+  {"name": "Hello", "text": "Corn Ball"}
 ]
