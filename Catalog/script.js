@@ -217,19 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const dexText = mon.dexEntries ? (firstTab && mon.dexEntries[firstTab.dataset.entry]) || mon.description : mon.description;
     document.getElementById("monDexText").textContent = dexText || "";
 
-    // Ability display
     const abilityContainer = document.getElementById("abilityContainer");
     abilityContainer.innerHTML = "";
     if (mon.ability) {
       const ab = abilitiesData.find(a => a.name === mon.ability);
       if (ab) {
-        abilityContainer.innerHTML = `
-          <b>Ability:</b>
-          <div style="margin-top:6px;">
-            <strong>${escapeHtml(ab.name)}</strong><br>
-            <span style="font-size:0.9em;">${escapeHtml(ab.text)}</span>
-          </div>
-        `;
+        abilityContainer.innerHTML = `<b>Ability:</b><div style="margin-top:6px;"><strong>${escapeHtml(ab.name)}</strong> &mdash; ${escapeHtml(ab.text)}</div>`;
       } else {
         abilityContainer.innerHTML = `<b>Ability:</b><div style="margin-top:6px;">${escapeHtml(mon.ability)}</div>`;
       }
