@@ -1,7 +1,20 @@
 [
+  {"name": "Ordo Boost", "text": "If this mon uses a Normal type move, it increases it's Health stat by 3%."},   
+  {"name": "Pyro Boost", "text": "If this mon uses a Fire type move, it increases it's Melee Attack stat by 3%."},   
+  {"name": "Hydro Boost", "text": "If this mon uses a Water type move, it increases it's Ranged Attack stat by 3%."},   
+  {"name": "Bio Boost", "text": "If this mon uses a Plant type move, it increases it's Melee Defense stat by 3%."},   
+  {"name": "Electro Boost", "text": "If this mon uses a Electric type move, it increases it's Speed stat by 3%."},   
+  {"name": "Cryo Boost", "text": "If this mon uses a Ice type move, it increases it's Speed stat by 3%."},   
+  {"name": "Agro Boost", "text": "If this mon uses a Savage type move, it increases it's Health stat by 3%."},   
+  {"name": "Putro Boost", "text": "If this mon uses a Gross type move, it increases it's Melee Attack stat by 3%."},   
+  {"name": "Geo Boost", "text": "If this mon uses a Earth type move, it increases it's Melee Defense stat by 3%."},   
+  {"name": "Aero Boost", "text": "If this mon uses a Air type move, it increases it's Ranged Defense stat by 3%."},   
+  {"name": "Mytho Boost", "text": "If this mon uses a Mystic type move, it increases it's Ranged Defense stat by 3%."},   
+  {"name": "Photo Boost", "text": "If this mon uses a Light type move, it increases it's Speed stat by 3%."},   
+  {"name": "Umbro Boost", "text": "If this mon uses a Dark type move, it increases it's Melee Attack stat by 3%."},   
+  {"name": "Etho Boost", "text": "If this mon uses a Spectral type move, it increases it's Melee Defense stat by 3%."},   
+  {"name": "Techno Boost", "text": "If this mon uses a Metal type move, it increases it's Health stat by 3%."},   
+  {"name": "Armo Boost", "text": "If this mon uses a Artillery type move, it increases it's Ranged Attack stat by 3%."},   
   {"name": "Lock In", "text": "When switching into this mon, it forces the opposing mon to only use moves that share it's typings."},
-  {"name": "Wonder Guard", "text": "This mon can only be damaged by super effective moves."},
-  {"name": "Hi", "text": ""},   
-  {"name": "Bye", "text": ""},
-  {"name": "Hello", "text": "Corn Ball"}
+  {"name": "Wonder Guard", "text": "This mon can only be damaged by super effective moves."}
 ]
