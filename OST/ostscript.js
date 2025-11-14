@@ -1,28 +1,4 @@
-const audioFiles = [
-    { name: "Familiarity", file: "../Songs/Familiarity.m4a", ost: 1000, composer: "Ari", type: "Forest - Theme", typing: "Normal", order: 14 },
-    { name: "Humble Ashore", file: "../Songs/HumbleAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 6 },
-    { name: "Acapella Ashore", file: "../Songs/HumbleAshoreAcapella.mp3", ost: 1000, composer: "Michael", type: "Lake - AcapellaTheme", typing: "Normal", order: 15 },
-    { name: "Sussy Ashore", file: "../Songs/SussyAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - MemeTheme", typing: "Metal", order: 100 },
-    { name: "Modest Ashore", file: "../Songs/ModestAshore.mp3", ost: 1000, composer: "Michael", type: "Lake - Theme", typing: "Water", order: 12 },
-    { name: "Town Theme", file: "../Songs/Town Theme.mp3", ost: 1000, composer: "Michael", type: "Town - Theme", typing: "Normal", order: 15 },
-    { name: "Reminiscence", file: "../Songs/Reminiscence.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 100 },   
-    { name: "Calm After The Storm", file: "../Songs/CalmAfterTheStorm.mp3", ost: 1000, composer: "Michael", type: "Shop - Theme", typing: "Normal", order: 8 },
-    { name: "Bait", file: "../Songs/Bait.mp3", ost: 1000, composer: "Michael", type: "Water Gauntlet - BattleTheme", typing: "Water", order: 100 },    
-    { name: "Distant Rumbles", file: "../Songs/DistantRumbles.mp3", ost: 1000, composer: "Michael", type: "Fordes - Theme", typing: "Earth", order: 5 },
-    { name: "Tumbling Rumbles", file: "../Songs/TumblingRumbles.mp3", ost: 1000, composer: "Michael", type: "Desert - Theme", typing: "Earth", order: 7 },
-    { name: "Frenzy Ashore", file: "../Songs/FrenzyAshore.mp3", ost: 1000, composer: "Michael", type: "Shiver Club - Theme", typing: "Electric", order: 100 },
-    { name: "Skeptic Electric", file: "../Songs/SkepticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 1 },
-    { name: "Hectic Electric", file: "../Songs/HecticElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - GauntTheme", typing: "Electric", order: 2 },
-    { name: "Circuit Breaker", file: "../Songs/CircuitBreaker.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - AceTheme", typing: "Electric", order: 3 },
-    { name: "Skibidi Electric", file: "../Songs/SkibidiElectric.mp3", ost: 1000, composer: "Michael", type: "Electric Gauntlet - MemeTheme", typing: "Electric", order: 4 },
-    { name: "Sparks of Hope", file: "../Songs/SparksOfHope.mp3", ost: 1000, composer: "Michael", type: "Caverns - Theme", typing: "Earth", order: 100 },
-    { name: "Crystaline Caverns", file: "../Songs/CrystalineCaverns.mp3", ost: 1000, composer: "Ari", type: "Caverns - Theme", typing: "Earth", order: 13 },
-    { name: "Fury", file: "../Songs/Fury.mp3", ost: 1000, composer: "Michael", type: "Dragon Gauntlet - BattleTheme", typing: "Savage", order: 10 },
-    { name: "Relocation", file: "../Songs/Relocation.mp3", ost: 1000, composer: "Michael", type: "Team Reposition - BattleTheme", typing: "Normal", order: 11 },
-    { name: "Desecration", file: "../Songs/Desecration.mp3", ost: 1000, composer: "Michael", type: "Team Demolition - BattleTheme", typing: "Normal", order: 100 },
-    { name: "Despair", file: "../Songs/Despair.mp3", ost: 1000, composer: "Michael", type: "Team Demolition Base - Theme", typing: "Normal", order: 100 },
-    { name: "Standstill", file: "../Songs/Standstill.mp3", ost: 1000, composer: "Michael", type: "??? - Theme", typing: "Normal", order: 100 }
-];
+let audioFiles = []; // Initialize as an empty array
 const secretSequence = ["Bait"];
 
 let playHistory = [];
@@ -33,25 +9,9 @@ let massPlayActive = false;
 let sortByOrder = false;
 let secretButtonDisplayed = false;
 
-
-
 const container = document.getElementById("cards-container");
-
 let searchInput = document.getElementById("search");
-searchInput.addEventListener("input", filterSongs);
-
 let sortButton = document.getElementById("button");
-document.body.insertBefore(sortButton, container);
-
-function toggleSorting() {
-    sortByOrder = !sortByOrder;
-    sortButton.textContent = sortByOrder ? "Sort by OST" : "Sort by Creation";
-    displaySongs(sortSongs(audioFiles));
-}
-
-function sortSongs(songs) {
-    return songs.slice().sort((a, b) => sortByOrder ? a.order - b.order : a.ost - b.ost);
-}
 
 const filters = {};
 const filterContainer = document.createElement("div");
@@ -59,26 +19,63 @@ filterContainer.id = "filter-container";
 filterContainer.style.display = "flex";
 filterContainer.style.flexDirection = "column";
 filterContainer.style.alignItems = "flex-start";
-document.body.insertBefore(filterContainer, container);
 
-const categories = [" Theme", "GauntTheme", "BattleTheme", "AceTheme", "MemeTheme", "AcapellaTheme"];
-categories.forEach(category => {
-    filters[category] = "neutral";
-    const filterLabel = document.createElement("label");
-    filterLabel.className = "filter-label";
-    filterLabel.style.display = "flex";
-    filterLabel.style.alignItems = "center";
-    filterLabel.style.marginBottom = "5px";
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.dataset.category = category;
-    checkbox.addEventListener("change", () => toggleFilter(category, checkbox));
+// Function to fetch data and initialize the application
+async function initializeApp() {
+    try {
+        // Fetch the data from the JSON file
+        const response = await fetch('songs.json');
+        audioFiles = await response.json();
 
-    filterLabel.appendChild(checkbox);
-    filterLabel.appendChild(document.createTextNode(category));
-    filterContainer.appendChild(filterLabel);
-});
+        // After fetching, set up event listeners and display initial data
+        if (searchInput) searchInput.addEventListener("input", filterSongs);
+        if (sortButton) {
+            document.body.insertBefore(sortButton, container);
+            sortButton.addEventListener('click', toggleSorting);
+        }
+        
+        document.body.insertBefore(filterContainer, container);
+        setupFilters();
+        setupToggleButtons(); // Set up the fixed position buttons
+        displaySongs(sortSongs(audioFiles));
+
+    } catch (error) {
+        console.error("Error fetching audio files:", error);
+    }
+}
+
+function toggleSorting() {
+    sortByOrder = !sortByOrder;
+    if (sortButton) sortButton.textContent = sortByOrder ? "Sort by OST" : "Sort by Creation";
+    displaySongs(sortSongs(audioFiles));
+}
+
+function sortSongs(songs) {
+    return songs.slice().sort((a, b) => sortByOrder ? a.order - b.order : a.ost - b.ost);
+}
+
+function setupFilters() {
+    const categories = [" Theme", "GauntTheme", "BattleTheme", "AceTheme", "MemeTheme", "AcapellaTheme"];
+    categories.forEach(category => {
+        filters[category] = "neutral";
+        const filterLabel = document.createElement("label");
+        filterLabel.className = "filter-label";
+        filterLabel.style.display = "flex";
+        filterLabel.style.alignItems = "center";
+        filterLabel.style.marginBottom = "5px";
+        filterLabel.style.color = "white";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.dataset.category = category;
+        checkbox.addEventListener("change", () => toggleFilter(category, checkbox));
+
+        filterLabel.appendChild(checkbox);
+        filterLabel.appendChild(document.createTextNode(category));
+        filterContainer.appendChild(filterLabel);
+    });
+}
 
 function toggleFilter(category, checkbox) {
     filters[category] = checkbox.checked ? "include" : "neutral";
@@ -100,8 +97,8 @@ function filterSongs() {
     displaySongs(sortedAndFiltered);
 }
 
-
 function displaySongs(filteredFiles) {
+    if (!container) return;
     container.innerHTML = "";
     filteredFiles = filterSongsList(filteredFiles);
 
@@ -113,7 +110,6 @@ function displaySongs(filteredFiles) {
             "Normal":"#bebebe", "Plant": "Green", "Water": "Blue", "Fire": "Orange", "Earth": "Brown",
             "Ice": "LightBlue", "Air": "Gray", "Metal": "#994a05", "Electric": "Yellow",
             "Light": "LightOrange", "Dark": "DarkGray", "Savage": "Red", "Mystic": "Pink", "Gross": "#9ACD32", "Spectral": "Purple", "Artillery": "DarkGreen", "Lucid": "Violet"
-
         };
 
         card.style.backgroundColor = typingcolors[typing] || "White";
@@ -197,13 +193,13 @@ function updateProgress(audio) {
     const currentTime = formatTime(audio.currentTime);
     const totalTime = formatTime(audio.duration);
 
-    progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-    timeDisplay.textContent = `${currentTime} / ${totalTime}`;
+    if (progressBar) progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+    if (timeDisplay) timeDisplay.textContent = `${currentTime} / ${totalTime}`;
 }
 
 function updateTotalTime(audio) {
     const timeDisplay = audio.parentElement.querySelector(".time-display");
-    timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+    if (timeDisplay) timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
 }
 
 function formatTime(seconds) {
@@ -238,58 +234,60 @@ function displaySecretButton() {
     document.body.appendChild(button);
 }
 
+function setupToggleButtons() {
+    const toggleCoincidenceButton = document.createElement("button");
+    toggleCoincidenceButton.textContent = "Single-Songs: ON";
+    toggleCoincidenceButton.style.position = "fixed";
+    toggleCoincidenceButton.style.top = "10px";
+    toggleCoincidenceButton.style.right = "10px";
+    toggleCoincidenceButton.style.zIndex = "1000";
+    toggleCoincidenceButton.style.padding = "5px 10px";
+    toggleCoincidenceButton.style.fontSize = "12px";
 
-const toggleCoincidenceButton = document.createElement("button");
-toggleCoincidenceButton.textContent = "Single-Songs: ON";
-toggleCoincidenceButton.style.position = "fixed";
-toggleCoincidenceButton.style.top = "10px";
-toggleCoincidenceButton.style.right = "10px";
-toggleCoincidenceButton.style.zIndex = "1000";
-toggleCoincidenceButton.style.padding = "5px 10px";
-toggleCoincidenceButton.style.fontSize = "12px";
+    toggleCoincidenceButton.onclick = () => {
+        coincidencePlay = !coincidencePlay;
+        toggleCoincidenceButton.textContent = `Single-Songs: ${coincidencePlay ? "ON" : "OFF"}`;
+        if (coincidencePlay && currentAudio) {
+            const allAudios = document.querySelectorAll("audio");
+            allAudios.forEach(audio => {
+                if (audio !== currentAudio) {
+                    audio.pause();
+                    const btn = audio.parentElement.querySelector("button");
+                    if (btn) btn.textContent = "Play";
+                }
+            });
+        }
+    };
 
-toggleCoincidenceButton.onclick = () => {
-    coincidencePlay = !coincidencePlay;
-    toggleCoincidenceButton.textContent = `Single-Songs: ${coincidencePlay ? "ON" : "OFF"}`;
-    if (coincidencePlay && currentAudio) {
+    document.body.appendChild(toggleCoincidenceButton);
+
+    const toggleMassButton = document.createElement("button");
+    toggleMassButton.textContent = "Mass Play";
+    toggleMassButton.style.position = "fixed";
+    toggleMassButton.style.top = "50px";
+    toggleMassButton.style.right = "10px";
+    toggleMassButton.style.zIndex = "1000";
+    toggleMassButton.style.padding = "5px 10px";
+    toggleMassButton.style.fontSize = "12px";
+
+    toggleMassButton.onclick = () => {
         const allAudios = document.querySelectorAll("audio");
         allAudios.forEach(audio => {
-            if (audio !== currentAudio) {
+            const btn = audio.parentElement.querySelector("button");
+            if (massPlayActive) {
                 audio.pause();
-                const btn = audio.parentElement.querySelector("button");
                 if (btn) btn.textContent = "Play";
+            } else {
+                audio.play();
+                if (btn) btn.textContent = "Pause";
             }
         });
-    }
-};
+        massPlayActive = !massPlayActive;
+        toggleMassButton.textContent = massPlayActive ? "Mass Pause" : "Mass Play";
+    };
 
-document.body.appendChild(toggleCoincidenceButton);
+    document.body.appendChild(toggleMassButton);
+}
 
-const toggleMassButton = document.createElement("button");
-toggleMassButton.textContent = "Mass Play";
-toggleMassButton.style.position = "fixed";
-toggleMassButton.style.top = "50px";
-toggleMassButton.style.right = "10px";
-toggleMassButton.style.zIndex = "1000";
-toggleMassButton.style.padding = "5px 10px";
-toggleMassButton.style.fontSize = "12px";
-
-toggleMassButton.onclick = () => {
-    const allAudios = document.querySelectorAll("audio");
-    allAudios.forEach(audio => {
-        const btn = audio.parentElement.querySelector("button");
-        if (massPlayActive) {
-            audio.pause();
-            if (btn) btn.textContent = "Play";
-        } else {
-            audio.play();
-            if (btn) btn.textContent = "Pause";
-        }
-    });
-    massPlayActive = !massPlayActive;
-    toggleMassButton.textContent = massPlayActive ? "Mass Pause" : "Mass Play";
-};
-
-document.body.appendChild(toggleMassButton);
-
-displaySongs(sortSongs(audioFiles));
+// Call the initialization function when the script loads
+initializeApp();

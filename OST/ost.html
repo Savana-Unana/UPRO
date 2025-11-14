@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpet</title>
-    <link rel="stylesheet" href="../OST/oststyle.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body style="display: flex; flex-direction: column; align-items: center;">
+    <div id="nav-buttons">
+        <a href="../Index/index.html">
+            <button>Main Menu</button>
+        </a>
+    </div>
     <div class="search-container">
         <input type="text" id="search" placeholder="Search for a song..." oninput="filterShiverican()">
     </div> 
@@ -16,11 +21,6 @@
         </button>
     </div> 
     <div id="cards-container"></div>
-    <div id="nav-buttons">
-        <a href="../Index/index.html">
-            <button>Return</button>
-        </a>
-    </div>
 
     <script src="../OST/ostscript.js"></script>
 </body>
