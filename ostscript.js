@@ -113,7 +113,7 @@ function displaySongs(filteredFiles) {
         };
 
         card.style.backgroundColor = typingcolors[typing] || "White";
-
+            
         card.innerHTML = `
             <h3>${name}</h3>
             <p>OST: ${ost}</p>

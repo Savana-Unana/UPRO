@@ -60,6 +60,8 @@
   {"id":null,"name":"Mountains","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":127,"name":"Robenhoodie","types":["Flying", "Artillery"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":64,"name":"Bombabeak","types":["Metal","Artillery"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
+  {"id":140,"name":"Beakon","types":["Flying", "Artillery"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
+  {"id":141,"name":"Tralgon","types":["Flying", "Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
 
   
   {"id":null,"name":"Plains","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
@@ -107,6 +109,7 @@
   {"id":61,"name":"Aestereg","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":62,"name":"Moteeph","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":63,"name":"Reverense","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
+  {"id":139,"name":"Nolyph","types":["Spectral"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
 
 
   {"id":null,"name":"Ice-Caps","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
