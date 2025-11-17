@@ -2,6 +2,9 @@ let sortMode = "OST"; // or "Order"
 let playlistMode = false;
 let playlist = [];   // array of song objects or indexes
 let playlistIndex = 0;
+let playlistAudio = null;
+let playlistButton = null;
+let isPlaylistPlaying = false;
 
 let songs = [];
 const ostGrid = document.getElementById('ostGrid');
@@ -106,6 +109,13 @@ function renderSongs() {
     const audio = document.createElement("audio");
     audio.src = song.file;
     audio.preload = "metadata";
+    audio.onended = () => {
+        if (!playlistMode) {
+            audio.currentTime = 0;
+            audio.play();
+            if (currentButton) currentButton.textContent = "Pause";
+        }
+    };
     card.appendChild(audio);
 
     const title = document.createElement('h3'); title.textContent = song.name;
@@ -131,32 +141,29 @@ function renderSongs() {
 
     const playBtn = document.createElement('button'); playBtn.textContent = 'Play'; playBtn.classList.add('play-btn');
     playBtn.addEventListener('click', () => {
-        // If playlist mode ON → always start playlist from first song
-        if (playlistMode && playlist.length > 0) {
-            playlistIndex = 0;
-            playPlaylistSong();
-            return;
-        }
+    if (playlistMode && playlist.length > 0) {
+        // Toggle play/pause for playlist
+        playPlaylistSong(true);
+        return;
+    }
 
-        // --- Normal Play mode ---
-        // Pause any other audio
-        if (currentAudio && currentAudio !== audio) {
-            currentAudio.pause();
-            if (currentButton) currentButton.textContent = "Play";
-        }
+    // Normal single-song logic
+    if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        if(currentButton) currentButton.textContent="Play";
+    }
 
-        // Toggle play/pause on this audio
-        if (audio.paused) {
-            audio.play();
-            audio.addEventListener("timeupdate", updateProgress);
-            playBtn.textContent = "Pause";
-            currentAudio = audio;
-            currentButton = playBtn;
-        } else {
-            audio.pause();
-            playBtn.textContent = "Play";
-        }
-    });
+    if(audio.paused){
+        audio.play();
+        playBtn.textContent = "Pause";
+        currentAudio = audio;
+        currentButton = playBtn;
+    } else {
+        audio.pause();
+        playBtn.textContent = "Play";
+    }
+  });
+
 
     const timeDisplay = document.createElement('div'); timeDisplay.classList.add('time-display'); timeDisplay.textContent = '0:00 / 0:00';
 
@@ -313,27 +320,40 @@ document.getElementById('playlistModeBtn').addEventListener('click', () => {
   updatePlaylistUI();
 });
 
-
-function playPlaylistSong() {
+function playPlaylistSong(pauseToggle=false) {
     if (!playlistMode || playlist.length === 0) return;
 
     const song = playlist[playlistIndex];
-
     const card = document.querySelector(`.card[data-file="${song.file}"]`);
     if (!card) return;
 
     const audio = card.querySelector("audio");
     const btn = card.querySelector(".play-btn");
 
+    // Pause/resume toggle
+    if (pauseToggle && playlistAudio === audio) {
+        if (!audio.paused) {
+            audio.pause();
+            btn.textContent = "Play";
+            isPlaylistPlaying = false;
+        } else {
+            audio.play();
+            btn.textContent = "Pause";
+            isPlaylistPlaying = true;
+        }
+        return;
+    }
+
     // Stop all other audio
-    document.querySelectorAll('audio').forEach(a => {
-        if (a !== audio) a.pause();
-    });
+    document.querySelectorAll('audio').forEach(a => { if(a!==audio) a.pause(); });
 
     audio.currentTime = 0;
     audio.play();
-    audio.addEventListener("timeupdate", updateProgress);
     btn.textContent = "Pause";
+
+    playlistAudio = audio;
+    playlistButton = btn;
+    isPlaylistPlaying = true;
 
     audio.onended = () => {
         if (!playlistMode) return;

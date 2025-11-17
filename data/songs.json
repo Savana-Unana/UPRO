@@ -23,11 +23,11 @@
 
   { "name": "Frenzy Ashore", "file": "../Songs/FrenzyAshore.mp3", "ost": 1000, "composer": "Michael", "area": "Shiver Club", "theme": "Theme", "typing": "Electric", "order": 100 },
 
-  { "name": "Skeptic Electric", "file": "../Songs/SkepticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "Theme", "typing": "Electric", "order": 1 },
+  { "name": "Skeptic Electric", "file": "../Songs/SkepticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 1 },
 
-  { "name": "Hectic Electric", "file": "../Songs/HecticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "Theme", "typing": "Electric", "order": 2 },
+  { "name": "Hectic Electric", "file": "../Songs/HecticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 2 },
 
-  { "name": "Circuit Breaker", "file": "../Songs/CircuitBreaker.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "Theme", "typing": "Electric", "order": 3 },
+  { "name": "Circuit Breaker", "file": "../Songs/CircuitBreaker.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 3 },
 
   { "name": "Skibidi Electric", "file": "../Songs/SkibidiElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "MemeTheme", "typing": "Electric", "order": 4 },
 
@@ -35,13 +35,18 @@
 
   { "name": "Crystaline Caverns", "file": "../Songs/CrystalineCaverns.mp3", "ost": 1000, "composer": "Ari", "area": "Caverns", "theme": "Theme", "typing": "Earth", "order": 13 },
 
-  { "name": "Fury", "file": "../Songs/Fury.mp3", "ost": 1000, "composer": "Michael", "area": "Dragon Gauntlet", "theme": "Theme", "typing": "Savage", "order": 10 },
+  { "name": "Fury", "file": "../Songs/Fury.mp3", "ost": 1000, "composer": "Michael", "area": "Dragon Gauntlet", "theme": "GauntTheme", "typing": "Savage", "order": 10 },
 
   { "name": "Relocation", "file": "../Songs/Relocation.mp3", "ost": 1000, "composer": "Michael", "area": "Team Reposition", "theme": "Theme", "typing": "Normal", "order": 11 },
 
-  { "name": "Desecration", "file": "../Songs/Desecration.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition", "theme": "Theme", "typing": "Normal", "order": 100 },
+  { "name": "Desecration", "file": "../Songs/Desecration.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition", "theme": "Theme", "typing": "Savage", "order": 100 },
 
-  { "name": "Despair", "file": "../Songs/Despair.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Normal", "order": 100 },
+  { "name": "Desecration Chiptune", "file": "../Songs/DesecrationCT.mp3", "ost": 1000, "composer": "Jimm560", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },
 
-  { "name": "Standstill", "file": "../Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 }
+  { "name": "Despair", "file": "../Songs/Despair.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },  
+
+  { "name": "Standstill", "file": "../Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 },
+
+  { "name": "Snowscape", "file": "../Songs/Snowscape.mp3", "ost": 1000, "composer": "Skiehie", "area": "Frostbite", "theme": "Theme", "typing": "Ice", "order": 100 }
+
 ]
