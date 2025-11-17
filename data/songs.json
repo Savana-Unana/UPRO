@@ -47,6 +47,13 @@
 
   { "name": "Standstill", "file": "../Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 },
 
-  { "name": "Snowscape", "file": "../Songs/Snowscape.mp3", "ost": 1000, "composer": "Skiehie", "area": "Frostbite", "theme": "Theme", "typing": "Ice", "order": 100 }
+  { "name": "Snowscape", "file": "../Songs/Snowscape.mp3", "ost": 1000, "composer": "Skiehie", "area": "Frostbite", "theme": "MemeTheme", "typing": "Ice", "order": 100 },
 
+  { "name": "Interstellar Ascension", "file": "../Songs/InterstellarAscension.mp3", "ost": 1000, "composer": "The Winterer", "area": "???", "theme": "MemeTheme", "typing": "Air", "order": 100 },
+
+  { "name": "The Greatest", "file": "../Songs/Greatest.mp3", "ost": 1000, "composer": "Chezzar", "area": "???", "theme": "MemeTheme", "typing": "Mystic", "order": 100 },
+
+  { "name": "Carpet", "file": "../Songs/Carpet.mp3", "ost": 1000, "composer": "Toby Fox", "area": "???", "theme": "MemeTheme", "typing": "Normal", "order": 100 },
+
+  { "name": "static", "file": "../Songs/static.mp3", "ost": 1000, "composer": "Cran_Bot", "area": "???", "theme": "MemeTheme", "typing": "Lucid", "order": 100 }
 ]
