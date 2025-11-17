@@ -57,7 +57,7 @@ function splitTypeField(t) {
 }
 
 // Load songs
-fetch('../sData/songs.json')
+fetch('../Data/songs.json')
   .then(res => res.json())
   .then(data => {
     // normalize each song: ensure typing is array, extract area/theme from "type" if needed
