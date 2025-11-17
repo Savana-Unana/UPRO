@@ -43,14 +43,17 @@
     <div class="options" id="areaOptions"></div>
   </div>
 </div>
-<button class="filter-toggle" id="songTypeToggle">Song Type ▾</button>
+
+<div class="multi-filter" id="songTypeWrapper">
+  <button class="filter-toggle" id="songTypeToggle">Song Type ▾</button>
   <div class="filter-panel" id="songTypePanel">
     <div class="panel-actions">
       <button id="clearSongTypes" class="clear-btn">Clear</button>
     </div>
     <div class="options" id="songTypeOptions"></div>
   </div>
-</button>
+</div>
+
 
   </header>
 
@@ -79,14 +82,5 @@
 
   <!-- JS -->
   <script src="JSs/ostscript.js"></script>
-  <script>
-  document.getElementById('typeToggle').addEventListener('click', () => {
-    document.getElementById('typePanel').classList.toggle('open');
-  });
-
-  document.getElementById('areaToggle').addEventListener('click', () => {
-    document.getElementById('areaPanel').classList.toggle('open');
-  });
-</script>
 </body>
 </html>
