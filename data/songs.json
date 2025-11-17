@@ -1,0 +1,47 @@
+[
+  { "name": "Familiarity", "file": "Songs/Familiarity.m4a", "ost": 1000, "composer": "Ari", "area": "Forest", "theme": "Theme", "typing": "Normal", "order": 14 },
+
+  { "name": "Humble Ashore", "file": "Songs/HumbleAshore.mp3", "ost": 1000, "composer": "Michael", "area": "Lake", "theme": "Theme", "typing": "Water", "order": 6 },
+
+  { "name": "Acapella Ashore", "file": "Songs/HumbleAshoreAcapella.mp3", "ost": 1000, "composer": "Michael", "area": "Lake", "theme": "AcapellaTheme", "typing": "Normal", "order": 15 },
+
+  { "name": "Sussy Ashore", "file": "Songs/SussyAshore.mp3", "ost": 1000, "composer": "Michael", "area": "Lake", "theme": "MemeTheme", "typing": "Metal", "order": 100 },
+
+  { "name": "Modest Ashore", "file": "Songs/ModestAshore.mp3", "ost": 1000, "composer": "Michael", "area": "Lake", "theme": "Theme", "typing": "Water", "order": 12 },
+
+  { "name": "Town Theme", "file": "Songs/Town Theme.mp3", "ost": 1000, "composer": "Michael", "area": "Town", "theme": "Theme", "typing": "Normal", "order": 15 },
+
+  { "name": "Reminiscence", "file": "Songs/Reminiscence.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 },
+
+  { "name": "Calm After The Storm", "file": "Songs/CalmAfterTheStorm.mp3", "ost": 1000, "composer": "Michael", "area": "Shop", "theme": "Theme", "typing": "Normal", "order": 8 },
+
+  { "name": "Bait", "file": "Songs/Bait.mp3", "ost": 1000, "composer": "Michael", "area": "Water Gauntlet", "theme": "Theme", "typing": "Water", "order": 100 },
+
+  { "name": "Distant Rumbles", "file": "Songs/DistantRumbles.mp3", "ost": 1000, "composer": "Michael", "area": "Fordes", "theme": "Theme", "typing": "Earth", "order": 5 },
+
+  { "name": "Tumbling Rumbles", "file": "Songs/TumblingRumbles.mp3", "ost": 1000, "composer": "Michael", "area": "Desert", "theme": "Theme", "typing": "Earth", "order": 7 },
+
+  { "name": "Frenzy Ashore", "file": "Songs/FrenzyAshore.mp3", "ost": 1000, "composer": "Michael", "area": "Shiver Club", "theme": "Theme", "typing": "Electric", "order": 100 },
+
+  { "name": "Skeptic Electric", "file": "Songs/SkepticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "Theme", "typing": "Electric", "order": 1 },
+
+  { "name": "Hectic Electric", "file": "Songs/HecticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "Theme", "typing": "Electric", "order": 2 },
+
+  { "name": "Circuit Breaker", "file": "Songs/CircuitBreaker.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "Theme", "typing": "Electric", "order": 3 },
+
+  { "name": "Skibidi Electric", "file": "Songs/SkibidiElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "MemeTheme", "typing": "Electric", "order": 4 },
+
+  { "name": "Sparks of Hope", "file": "Songs/SparksOfHope.mp3", "ost": 1000, "composer": "Michael", "area": "Caverns", "theme": "Theme", "typing": "Earth", "order": 100 },
+
+  { "name": "Crystaline Caverns", "file": "Songs/CrystalineCaverns.mp3", "ost": 1000, "composer": "Ari", "area": "Caverns", "theme": "Theme", "typing": "Earth", "order": 13 },
+
+  { "name": "Fury", "file": "Songs/Fury.mp3", "ost": 1000, "composer": "Michael", "area": "Dragon Gauntlet", "theme": "Theme", "typing": "Savage", "order": 10 },
+
+  { "name": "Relocation", "file": "Songs/Relocation.mp3", "ost": 1000, "composer": "Michael", "area": "Team Reposition", "theme": "Theme", "typing": "Normal", "order": 11 },
+
+  { "name": "Desecration", "file": "Songs/Desecration.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition", "theme": "Theme", "typing": "Normal", "order": 100 },
+
+  { "name": "Despair", "file": "Songs/Despair.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Normal", "order": 100 },
+
+  { "name": "Standstill", "file": "Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 }
+]

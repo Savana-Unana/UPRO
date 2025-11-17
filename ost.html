@@ -1,27 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpet</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OST Catalog</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="display: flex; flex-direction: column; align-items: center;">
-    <div id="nav-buttons">
-        <a href="../Index/index.html">
-            <button>Main Menu</button>
-        </a>
+<body>
+  <header>
+    <div style="display:flex; justify-content:center; margin-bottom:10px;">
+      <a href="index.html"><button>Main Menu</button></a>
     </div>
-    <div class="search-container">
-        <input type="text" id="search" placeholder="Search for a song..." oninput="filterShiverican()">
-    </div> 
-    <div id="alt-buttons-container">
-        <button class="Alt" id="button" onclick="toggleSorting()">
-            <span id="button">Sort By Creation</span><i></i>
-        </button>
-    </div> 
-    <div id="cards-container"></div>
+    <h1>OST Catalog</h1>
 
-    <script src="../OST/ostscript.js"></script>
+    <!-- Search bar -->
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search Songs..." />
+    </div>
+
+    <div class="controls">
+  <button id="sortToggle">Sort: OST</button>
+</div>
+
+    <!-- Type filters -->
+    <div class="controls">
+      <div class="multi-filter" id="typeFilterWrapper">
+        <button class="filter-toggle" id="typeToggle">Typing ▾</button>
+        <div class="filter-panel" id="typePanel">
+          <div class="panel-actions">
+            <button id="clearTypes" class="clear-btn">Clear</button>
+          </div>
+          <div class="options" id="typeOptions"></div>
+        </div>
+      </div>
+
+      <div class="multi-filter" id="areaWrapper">
+  <button class="filter-toggle" id="areaToggle">Area ▾</button>
+  <div class="filter-panel" id="areaPanel">
+    <div class="panel-actions">
+      <button id="clearAreas" class="clear-btn">Clear</button>
+    </div>
+    <div class="options" id="areaOptions"></div>
+  </div>
+</div>
+
+  </header>
+
+  <!-- OST grid -->
+  <main id="ostGrid"></main>
+
+  <!-- Optional Player Modal -->
+  <div id="playerModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+      <div class="modal-header">
+        <h2 id="songName"></h2>
+        <p id="songComposer"></p>
+      </div>
+      <div class="modal-body">
+        <audio id="songAudio" controls></audio>
+        <div class="progress-container">
+          <div id="songProgress" class="progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="multi-filter">
+  <button class="filter-toggle" id="songTypeToggle">Song Type ▾</button>
+  <div class="filter-panel" id="songTypePanel">
+    <div class="panel-actions">
+      <button id="clearSongTypes" class="clear-btn">Clear</button>
+    </div>
+    <div class="options" id="songTypeOptions"></div>
+  </div>
+</div>
+
+
+  <!-- JS -->
+  <script src="JSs/ostscript.js"></script>
+  <script>
+  document.getElementById('typeToggle').addEventListener('click', () => {
+    document.getElementById('typePanel').classList.toggle('open');
+  });
+
+  document.getElementById('areaToggle').addEventListener('click', () => {
+    document.getElementById('areaPanel').classList.toggle('open');
+  });
+</script>
 </body>
 </html>
