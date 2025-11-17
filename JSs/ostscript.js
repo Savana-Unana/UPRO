@@ -1,4 +1,7 @@
 let sortMode = "OST"; // or "Order"
+let playlistMode = false;
+let playlist = [];   // array of song objects or indexes
+let playlistIndex = 0;
 
 let songs = [];
 const ostGrid = document.getElementById('ostGrid');
@@ -95,12 +98,15 @@ function renderSongs() {
   filtered.forEach(song => {
     const card = document.createElement('div');
     card.classList.add('card');
+    card.dataset.file = song.file;
 
     const songTyping = Array.isArray(song.typing) ? song.typing : [song.typing || 'Unknown'];
     card.style.border = `4px solid ${typeColors[songTyping[0]] || "#0ff"}`;
 
-    const audio = new Audio(song.file);
-    audio.preload = 'metadata';
+    const audio = document.createElement("audio");
+    audio.src = song.file;
+    audio.preload = "metadata";
+    card.appendChild(audio);
 
     const title = document.createElement('h3'); title.textContent = song.name;
     const composer = document.createElement('p'); composer.className = 'composer'; composer.textContent = `Composer: ${song.composer || 'Unknown'}`;
@@ -111,13 +117,45 @@ function renderSongs() {
     const themeEl = document.createElement('div'); themeEl.className = 'types';
     const themeSpan = document.createElement('span'); themeSpan.textContent = song.theme || 'Theme'; themeEl.appendChild(themeSpan);
 
+    const selectBtn = document.createElement('button');
+    selectBtn.textContent = playlistMode ? 'Add to Playlist' : '';
+    selectBtn.classList.add('playlist-btn');
+
+    selectBtn.addEventListener('click', () => {
+        if (!playlist.includes(song)) {
+            playlist.push(song);
+            updatePlaylistUI();
+            selectBtn.textContent = 'Added ✓';
+        }
+    });
+
     const playBtn = document.createElement('button'); playBtn.textContent = 'Play'; playBtn.classList.add('play-btn');
     playBtn.addEventListener('click', () => {
-      if (currentAudio && currentAudio !== audio) {
-        currentAudio.pause(); if (currentButton) currentButton.textContent = 'Play';
-      }
-      if (audio.paused) { audio.play(); playBtn.textContent = 'Pause'; currentAudio = audio; currentButton = playBtn; }
-      else { audio.pause(); playBtn.textContent = 'Play'; if (currentAudio === audio) { currentAudio=null; currentButton=null; } }
+        // If playlist mode ON → always start playlist from first song
+        if (playlistMode && playlist.length > 0) {
+            playlistIndex = 0;
+            playPlaylistSong();
+            return;
+        }
+
+        // --- Normal Play mode ---
+        // Pause any other audio
+        if (currentAudio && currentAudio !== audio) {
+            currentAudio.pause();
+            if (currentButton) currentButton.textContent = "Play";
+        }
+
+        // Toggle play/pause on this audio
+        if (audio.paused) {
+            audio.play();
+            audio.addEventListener("timeupdate", updateProgress);
+            playBtn.textContent = "Pause";
+            currentAudio = audio;
+            currentButton = playBtn;
+        } else {
+            audio.pause();
+            playBtn.textContent = "Play";
+        }
     });
 
     const timeDisplay = document.createElement('div'); timeDisplay.classList.add('time-display'); timeDisplay.textContent = '0:00 / 0:00';
@@ -133,7 +171,7 @@ function renderSongs() {
     }
 
     audio.addEventListener('loadedmetadata', updateProgress);
-    audio.ontimeupdate = updateProgress;
+    audio.addEventListener("timeupdate", updateProgress);
 
     let dragging = false;
     handle.addEventListener('pointerdown', ev => { ev.preventDefault(); dragging=true; handle.setPointerCapture(ev.pointerId); if (!audio.paused) audio.pause(); });
@@ -152,7 +190,11 @@ function renderSongs() {
       let newPercent = ((ev.clientX - rect.left)/rect.width); newPercent = Math.max(0, Math.min(1,newPercent));
       if (audio.duration) audio.currentTime = newPercent*audio.duration;
       if (currentAudio && currentAudio !== audio) { currentAudio.pause(); if(currentButton) currentButton.textContent='Play'; }
-      audio.play(); currentAudio=audio; currentButton=playBtn; playBtn.textContent='Pause';
+      audio.play();
+      audio.addEventListener("timeupdate", updateProgress);
+      currentAudio = audio;
+      currentButton = playBtn;
+      playBtn.textContent = 'Pause';
     });
 
     progressContainer.addEventListener('click', e => {
@@ -161,11 +203,16 @@ function renderSongs() {
       const newPercent = Math.max(0, Math.min(1, clickX/rect.width));
       if(audio.duration) audio.currentTime = newPercent*audio.duration; updateProgress();
       if(currentAudio && currentAudio !== audio){ currentAudio.pause(); if(currentButton) currentButton.textContent='Play'; }
-      audio.play(); currentAudio=audio; currentButton=playBtn; playBtn.textContent='Pause';
+      audio.play();
+      audio.addEventListener("timeupdate", updateProgress);
+      currentAudio = audio;
+      currentButton = playBtn;
+      playBtn.textContent = 'Pause';
     });
 
     card.appendChild(title); card.appendChild(composer); card.appendChild(areaEl); card.appendChild(themeEl);
     card.appendChild(playBtn); card.appendChild(timeDisplay); card.appendChild(progressContainer);
+    card.appendChild(selectBtn);
     ostGrid.appendChild(card);
   });
 }
@@ -235,4 +282,116 @@ function initFilters() {
   addToggle('typeToggle','typePanel');
   addToggle('areaToggle','areaPanel');
   addToggle('songTypeToggle','songTypePanel');
+}
+document.getElementById('playAllBtn').addEventListener('click', () => {
+  document.querySelectorAll('audio').forEach(a => a.play());
+});
+
+document.getElementById('pauseAllBtn').addEventListener('click', () => {
+  document.querySelectorAll('audio').forEach(a => {
+    a.pause();
+    a.currentTime = 0;
+  });
+  if (currentButton) currentButton.textContent = 'Play';
+});
+
+document.getElementById('playlistModeBtn').addEventListener('click', () => {
+  playlistMode = !playlistMode;
+
+  // Update toggle button text
+  document.getElementById('playlistModeBtn').textContent =
+    `Playlist Mode: ${playlistMode ? 'ON' : 'OFF'}`;
+
+  // CSS handles visibility
+  document.body.classList.toggle("playlist-mode", playlistMode);
+
+  // Update text only
+  document.querySelectorAll('.playlist-btn').forEach(btn => {
+    btn.textContent = playlistMode ? "Add to Playlist" : "";
+  });
+
+  updatePlaylistUI();
+});
+
+
+function playPlaylistSong() {
+    if (!playlistMode || playlist.length === 0) return;
+
+    const song = playlist[playlistIndex];
+
+    const card = document.querySelector(`.card[data-file="${song.file}"]`);
+    if (!card) return;
+
+    const audio = card.querySelector("audio");
+    const btn = card.querySelector(".play-btn");
+
+    // Stop all other audio
+    document.querySelectorAll('audio').forEach(a => {
+        if (a !== audio) a.pause();
+    });
+
+    audio.currentTime = 0;
+    audio.play();
+    audio.addEventListener("timeupdate", updateProgress);
+    btn.textContent = "Pause";
+
+    audio.onended = () => {
+        if (!playlistMode) return;
+        playlistIndex = (playlistIndex + 1) % playlist.length;
+        playPlaylistSong();
+    };
+}
+
+
+function updatePlaylistUI() {
+    const panel = document.getElementById('playlistPanel');
+    const list = document.getElementById('playlistList');
+
+    // Show panel if playlist has items
+    panel.style.display = playlist.length > 0 ? 'block' : 'none';
+
+    list.innerHTML = "";
+
+    playlist.forEach((song, index) => {
+        const li = document.createElement('li');
+        li.style.display = "flex";
+        li.style.justifyContent = "space-between";
+        li.style.alignItems = "center";
+        li.style.marginBottom = "6px";
+
+        li.innerHTML = `
+            <span>${index + 1}. ${song.name}</span>
+            <button data-index="${index}" style="
+                background:#333;
+                color:white;
+                border:none;
+                padding:3px 7px;
+                cursor:pointer;
+                border-radius:5px;
+            ">X</button>
+        `;
+
+        list.appendChild(li);
+    });
+
+    // Removal functionality
+    document.querySelectorAll('#playlistList button').forEach(btn => {
+        btn.addEventListener('click', () => {
+        const removeIndex = Number(btn.dataset.index);
+        const removedSong = playlist[removeIndex];
+
+        // Remove from playlist
+        playlist.splice(removeIndex, 1);
+
+        // Reset Add button on its card
+        const card = document.querySelector(`.card[data-file="${removedSong.file}"]`);
+        if (card) {
+            const addBtn = card.querySelector('.playlist-btn');
+            if (addBtn) addBtn.textContent = "Add to Playlist";
+        }
+
+        playlistIndex = 0;
+        updatePlaylistUI();
+    });
+  });
 }

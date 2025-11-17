@@ -571,3 +571,15 @@ input#search:focus {
 .progress-handle:hover {
   background: lightgray;
 }
+
+.playlist-btn {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.playlist-mode .playlist-btn {
+  display: block;
+}

@@ -18,9 +18,32 @@
       <input type="text" id="search" placeholder="Search Songs..." />
     </div>
 
-    <div class="controls">
-  <button id="sortToggle">Sort: OST</button>
+    <div id="playlistPanel" style="
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #111;
+    border: 2px solid #444;
+    padding: 15px;
+    width: 260px;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    display: none;
+">
+    <h3 style="margin-top:0;">Playlist</h3>
+    <ul id="playlistList" style="list-style:none; padding:0; margin:0;"></ul>
 </div>
+
+
+    <div class="controls">
+      <button id="sortToggle">Sort: OST</button>
+      <button id="playAllBtn">Play All</button>
+      <button id="pauseAllBtn">Pause All</button>
+      <button id="playlistModeBtn">Playlist Mode: OFF</button>
+    </div>
 
     <!-- Type filters -->
     <div class="controls">
