@@ -59,7 +59,7 @@ document.addEventListener('click', ev => {
 });
 
 // Load songs
-fetch('Data/songs.json')
+fetch('data/songs.json')
   .then(res => res.json())
   .then(data => {
     songs = data.map(s => {
