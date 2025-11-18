@@ -55,5 +55,5 @@
 
   { "name": "Carpet", "file": "Songs/Carpet.mp3", "ost": 1000, "composer": "Toby Fox", "area": "???", "theme": "MemeTheme", "typing": "Normal", "order": 100 },
 
-  { "name": "static", "file": "Songs/static.mp3", "ost": 1000, "composer": "Cran_Bot", "area": "???", "theme": "MemeTheme", "typing": "Lucid", "order": 100 }
+  { "name": "Voodoo", "file": "Songs/static.mp3", "ost": 1000, "composer": "Cran_Bot", "area": "???", "theme": "MemeTheme", "typing": "Lucid", "order": 100 }
 ]
