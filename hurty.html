@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moves & Abilities</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div style="display:flex;">
+      <div id="nav-btn">
+        <a href="index.html"><button>Main Menu</button></a>
+      </div>
+    </div>
+
+    <h1>Moves & Abilities</h1>
+
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search...">
+
+      <!-- Type filter -->
+      <div class="multi-filter" id="typeFilterWrapper">
+        <button class="filter-toggle" id="typeToggle">Types ▾</button>
+        <div class="filter-panel" id="typePanel" aria-hidden="true">
+          <div class="panel-actions">
+            <button id="clearTypes" class="clear-btn">Clear</button>
+          </div>
+          <div class="options" id="typeOptions"></div>
+        </div>
+      </div>
+
+      <!-- Move category filter -->
+      <div id="moveTypeWrapper" style="display:none;">
+        <select id="moveTypeSelect">
+          <option value="">All Categories</option>
+          <option value="Melee">Melee</option>
+          <option value="Ranged">Ranged</option>
+          <option value="Status">Status</option>
+        </select>
+      </div>
+
+      <!-- Grid / List toggle -->
+      <div class="view-toggle">
+        <button id="gridView" class="active">Grid</button>
+        <button id="listView">List</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="mode-switch">
+        <button class="dex-tab active" data-tab="abilities">Abilities</button>
+        <button class="dex-tab" data-tab="moves">Moves</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="pokedex" class="grid"></main>
+
+  <!-- Modal -->
+  <div id="detailsModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+
+      <div class="modal-header">
+        <h2 id="itemName"></h2>
+        <div id="itemTypes"></div>
+      </div>
+
+      <div class="modal-body">
+        <p id="itemText"></p>
+        <div id="extraStats"></div>
+
+        <!-- NEW: Visual list of mons that learn/use this item (non-clickable cards) -->
+        <div id="monUsers" style="margin-top:12px;">
+        </div>
+      </div>
+at
+      <div class="modal-footer">
+        <button id="prevItem" class="nav-btn">← Previous</button>
+        <button id="nextItem" class="nav-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="JSs/hurtyscript.js"></script>
+</body>
+</html>

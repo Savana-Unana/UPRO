@@ -1,20 +1,93 @@
 [
-  {"name": "Ordo Boost", "text": "If this mon uses a Normal type move, it increases it's Health stat by 3%."},   
-  {"name": "Pyro Boost", "text": "If this mon uses a Fire type move, it increases it's Melee Attack stat by 3%."},   
-  {"name": "Hydro Boost", "text": "If this mon uses a Water type move, it increases it's Ranged Attack stat by 3%."},   
-  {"name": "Bio Boost", "text": "If this mon uses a Plant type move, it increases it's Melee Defense stat by 3%."},   
-  {"name": "Electro Boost", "text": "If this mon uses a Electric type move, it increases it's Speed stat by 3%."},   
-  {"name": "Cryo Boost", "text": "If this mon uses a Ice type move, it increases it's Speed stat by 3%."},   
-  {"name": "Agro Boost", "text": "If this mon uses a Savage type move, it increases it's Health stat by 3%."},   
-  {"name": "Putro Boost", "text": "If this mon uses a Gross type move, it increases it's Melee Attack stat by 3%."},   
-  {"name": "Geo Boost", "text": "If this mon uses a Earth type move, it increases it's Melee Defense stat by 3%."},   
-  {"name": "Aero Boost", "text": "If this mon uses a Air type move, it increases it's Ranged Defense stat by 3%."},   
-  {"name": "Mytho Boost", "text": "If this mon uses a Mystic type move, it increases it's Ranged Defense stat by 3%."},   
-  {"name": "Photo Boost", "text": "If this mon uses a Light type move, it increases it's Speed stat by 3%."},   
-  {"name": "Umbro Boost", "text": "If this mon uses a Dark type move, it increases it's Melee Attack stat by 3%."},   
-  {"name": "Etho Boost", "text": "If this mon uses a Spectral type move, it increases it's Melee Defense stat by 3%."},   
-  {"name": "Techno Boost", "text": "If this mon uses a Metal type move, it increases it's Health stat by 3%."},   
-  {"name": "Armo Boost", "text": "If this mon uses a Artillery type move, it increases it's Ranged Attack stat by 3%."},   
-  {"name": "Lock In", "text": "When switching into this mon, it forces the opposing mon to only use moves that share it's typings."},
-  {"name": "Wonder Guard", "text": "This mon can only be damaged by super effective moves."}
+  {
+    "name": "Ordo Boost",
+    "type": "Normal",
+    "text": "If this mon uses a Normal type move, it increases it's Health stat by 3%."
+  },
+  {
+    "name": "Pyro Boost",
+    "type": "Fire",
+    "text": "If this mon uses a Fire type move, it increases it's Melee Attack stat by 3%."
+  },
+  {
+    "name": "Hydro Boost",
+    "type": "Water",
+    "text": "If this mon uses a Water type move, it increases it's Ranged Attack stat by 3%."
+  },
+  {
+    "name": "Bio Boost",
+    "type": "Plant",
+    "text": "If this mon uses a Plant type move, it increases it's Melee Defense stat by 3%."
+  },
+  {
+    "name": "Electro Boost",
+    "type": "Electric",
+    "text": "If this mon uses a Electric type move, it increases it's Speed stat by 3%."
+  },
+  {
+    "name": "Cryo Boost",
+    "type": "Ice",
+    "text": "If this mon uses a Ice type move, it increases it's Speed stat by 3%."
+  },
+  {
+    "name": "Agro Boost",
+    "type": "Savage",
+    "text": "If this mon uses a Savage type move, it increases it's Health stat by 3%."
+  },
+  {
+    "name": "Putro Boost",
+    "type": "Gross",
+    "text": "If this mon uses a Gross type move, it increases it's Melee Attack stat by 3%."
+  },
+  {
+    "name": "Geo Boost",
+    "type": "Earth",
+    "text": "If this mon uses a Earth type move, it increases it's Melee Defense stat by 3%."
+  },
+  {
+    "name": "Aero Boost",
+    "type": "Air",
+    "text": "If this mon uses a Air type move, it increases it's Ranged Defense stat by 3%."
+  },
+  {
+    "name": "Mytho Boost",
+    "type": "Mystic",
+    "text": "If this mon uses a Mystic type move, it increases it's Ranged Defense stat by 3%."
+  },
+  {
+    "name": "Photo Boost",
+    "type": "Light",
+    "text": "If this mon uses a Light type move, it increases it's Speed stat by 3%."
+  },
+  {
+    "name": "Umbro Boost",
+    "type": "Dark",
+    "text": "If this mon uses a Dark type move, it increases it's Melee Attack stat by 3%."
+  },
+  {
+    "name": "Etho Boost",
+    "type": "Spectral",
+    "text": "If this mon uses a Spectral type move, it increases it's Melee Defense stat by 3%."
+  },
+  {
+    "name": "Techno Boost",
+    "type": "Metal",
+    "text": "If this mon uses a Metal type move, it increases it's Health stat by 3%."
+  },
+  {
+    "name": "Armo Boost",
+    "type": "Artillery",
+    "text": "If this mon uses a Artillery type move, it increases it's Ranged Attack stat by 3%."
+  },
+
+  {
+    "name": "Lock In",
+    "type": "Mystic",
+    "text": "When switching into this mon, it forces the opposing mon to only use moves that share it's typings."
+  },
+  {
+    "name": "Wonder Guard",
+    "type": "Spectral",
+    "text": "This mon can only be damaged by super effective moves."
+  }
 ]

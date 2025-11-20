@@ -50,7 +50,7 @@ function updateButtons() {
     : [
         { text: "Catalog", href: "catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
         { text: "OST", href: "ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
-        { text: "Battle", href: "construction.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
+        { text: "Battle", href: "battle.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
         { text: "Map", href: "construction.html", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" }
       ];
 

@@ -1,4 +1,38 @@
 [
-
-  {"name":"","type":"Water","power":0,"accuracy":0, "ep":0,"category":"","description":""}
+  {
+    "name": "Flame Burst",
+    "type": "Fire",
+    "category": "Ranged",
+    "power": 60,
+    "accuracy": 95,
+    "ep": 10,
+    "description": "A burst of fire damages the target."
+  },
+  {
+    "name": "Mind Pierce",
+    "type": "Lucid",
+    "category": "Melee",
+    "power": 80,
+    "accuracy": 100,
+    "ep": 5,
+    "description": "A focused psychic strike."
+  },
+  {
+    "name": "Vine Grasp",
+    "type": "Plant",
+    "category": "Melee",
+    "power": 40,
+    "accuracy": 100,
+    "ep": 20,
+    "description": "Constricts the target with vines."
+  },
+  {
+    "name": "Calm Breeze",
+    "type": "Air",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 0,
+    "ep": 15,
+    "description": "Raises the user's evasion."
+  }
 ]
