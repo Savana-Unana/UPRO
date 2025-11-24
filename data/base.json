@@ -21,7 +21,7 @@
   {"id":18,"name":"Dribtar","types":["Normal","Air"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Dribtar.png","ability": ""},
   {"id":53,"name":"Ircencaat","types":["Dark"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Ircencaat.png","ability": ""},
   {"id":19,"name":"Starpod","types":["Water","Air"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Starpod.png","ability": ""},
-  {"id":42,"name":"Gastrover","types":["Gross","Fire"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
+  {"id":42,"name":"Gastrover","types":["Gross","Fire"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Gastrover.png","ability": ""},
   {"id":132,"name":"Zantifeeld","types":["Plant"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
 
 
