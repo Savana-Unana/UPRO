@@ -41,13 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // load abilities and all mode JSONs
       return Promise.all([
-        fetch("data/abilities.json").then(r => r.json()).catch(() => []),
-        fetch("data/base.json").then(r => r.json()).catch(() => []),
-        fetch("data/sacred.json").then(r => r.json()).catch(() => []),
-        fetch("data/ace.json").then(r => r.json()).catch(() => []),
-        fetch("data/ncanon.json").then(r => r.json()).catch(() => []),
-        fetch("data/event.json").then(r => r.json()).catch(() => []),
-        fetch("data/costumes.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/abilities.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/base.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/sacred.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/ace.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/ncanon.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/event.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/costumes.json").then(r => r.json()).catch(() => []),
       ]);
     })
     .then(([abilities, base, sacred, ace, ncanon, event, costumes]) => {
