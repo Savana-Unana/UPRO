@@ -48,7 +48,7 @@
   {"id":43,"name":"Krat","types":["Normal","Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Krat.png","ability": ""},
   {"id":44,"name":"Kroxer","types":["Normal","Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Kroxer.png","ability": ""},
   {"id":148,"name":"Pupuff","types":["Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Kroxer.png","ability": ""},
-  {"id":148,"name":"Dusterror","types":["Earth", "Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Kroxer.png","ability": ""},
+  {"id":149,"name":"Dusterror","types":["Earth", "Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Kroxer.png","ability": ""},
   
 
   {"id":null,"name":"Jungle","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
