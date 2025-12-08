@@ -16,6 +16,7 @@
     {"name":"Plumber Skip", "desc":"???", "quest":"???", "reference":"Mario Bros."},
     {"name":"Mono Skip", "desc":"???", "quest":"???", "reference":"Little Nightmares 2"},
     {"name":"Scout Skip", "desc":"???", "quest":"???", "reference":null},
+    {"name":"Slime Skip", "desc":"???", "quest":"???", "reference":"SFAWTDE"},
 
     {"name":"Capture Capsule", "desc":"The normal sprites.", "quest":"Unlocked by playing the game.", "reference":null},
     {"name":"Speaker Box Capture Capsule", "desc":"???", "quest":"???", "reference":"Battle For Dream Island"},
@@ -28,6 +29,7 @@
     {"name":"Evil Dirtbag With Chainsaw Kal", "desc":"", "quest":"", "reference":"FNAF: The Musical"},
     {"name":"Actor Kal", "desc":"", "quest":"", "reference":null},
     {"name":"Human Flame Kal", "desc":"", "quest":"", "reference":"The Fanstastic Four"},
+    {"name":"Golden Gladiator Kal", "desc":"", "quest":"", "reference":"SFAWTDE"},
 
     {"name":"Chip", "desc":"The normal sprites.", "quest":"Unlocked when Chip joins the party.", "reference":null},
     {"name":"Fate", "desc":"???", "quest":"???", "reference":"Monument Mythos"},
