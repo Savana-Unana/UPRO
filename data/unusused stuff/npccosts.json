@@ -39,6 +39,11 @@
     {"name":"Cyborg Chip", "desc":"???", "quest":"Beat Chip in the Lab", "reference":"Megaman"},
     {"name":"Plumber Chip", "desc":"???", "quest":"???", "reference":"Mario Bros."},
     {"name":"Randy Cosplay Chip", "desc":"???", "quest":"???", "reference":"Radioactive Ronald"},
+    {"name":"Waiter Chip", "desc":"???", "quest":"???", "reference":null},
+    {"name":"Cult Chip", "desc":"???", "quest":"???", "reference":null},
+    {"name":"Scuba Chip", "desc":"???", "quest":"???", "reference":null},
+    {"name":"Poker Chip", "desc":"???", "quest":"???", "reference":null},
+    {"name":"Lord of Flames Chip", "desc":"???", "quest":"???", "reference":null},
     {"name":"", "desc":"", "quest":"", "reference":""},
 
     {"name":"Maya", "desc":"The normal sprites.", "quest":"Unlocked when Maya joins the party.", "reference":null},
