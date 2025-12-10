@@ -65,7 +65,7 @@
   {"id":140,"name":"Beakon","types":["Air", "Artillery"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":141,"name":"Tralgon","types":["Air", "Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":153,"name":"Cuputrid","types":["Gross", "Air"],"paraTypes":["Mystic"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
-
+  {"id":156,"name":"Babahl","types":["Normal", "Earth"],"paraTypes":[],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   
   {"id":null,"name":"Plains","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":58,"name":"Beit","types":["Spectral","Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
@@ -79,7 +79,7 @@
   {"id":145,"name":"Cogulata","types":["Earth", "Metal"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":146,"name":"Splinky","types":["Light", "Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":147,"name":"Quillcoil","types":["Metal"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
-
+  {"id":154,"name":"Walmare","types":["Normal"],"paraTypes":[],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
 
   {"id":null,"name":"Borgo Slor","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":45,"name":"Buntot","types":["Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Buntot.png","ability": ""},
@@ -87,8 +87,9 @@
   {"id":47,"name":"Burking","types":["Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Burking.png","ability": ""},
   {"id":54,"name":"Frankyurt","types":["Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Frankyurt.png","ability": ""},
   {"id":55,"name":"Frankfortress","types":["Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
+  {"id":158,"name":"Flapdrag","types":["Savage", "Air"],"paraTypes":["Mystic"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":48,"name":"Borgo Slor","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Salam.png","ability": ""},
-  
+
 
   {"id":null,"name":"Alcatraz","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":151,"name":"Rosophagus","types":["Plant", "Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
@@ -116,7 +117,7 @@
   {"id":137,"name":"Caraptor","types":["Metal", "Normal"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":139,"name":"Nolyph","types":["Spectral"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
   {"id":116,"name":"Spongus","types":["Plant","Gross"],"paraTypes":["Mystic"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Spongus.png","description":""},
-
+  {"id":157,"name":"Flexoform","types":["Metal"],"paraTypes":[],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
 
   {"id":null,"name":"Ice-Caps","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":79,"name":"Blizard","types":["Ice","Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Blizard.png","ability": ""},
@@ -137,7 +138,7 @@
   {"id":30,"name":"Volcannon","types":["Earth","Artillery"],"paraTypes":["Fire"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Volcannon.png","ability": ""},
   {"id":31,"name":"Charquid","types":["Fire"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Charquid.png","ability": ""},
   {"id":32,"name":"Nonignite","types":["Fire"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Nonignite.png","ability": ""},
-
+  {"id":155,"name":"Acorgin","types":["Normal"],"paraTypes":["Gross"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
 
   {"id":null,"name":"Caverns","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":104,"name":"Rebble","types":["Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
@@ -175,7 +176,6 @@
   {"id":98,"name":"Perchancealot","types":["Fire"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Perchancealot.png","ability": ""},
   {"id":99,"name":"Possibilitor","types":["Fire"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Possibilitor.png","ability": ""},
   {"id":130,"name":"Cuggaeous","types":["Mystic","Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
-
 
   {"id":null,"name":"Shivers+Paragons","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverence":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png","ability": ""},
   {"id":110,"name":"Shiver Jaws","types":["Electric","Earth"],"paraTypes":["Water"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverence":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Shiver Jaws.png","ability": ""},
