@@ -1,38 +1,65 @@
 [
   {
-    "name": "Flame Burst",
-    "type": "Fire",
-    "category": "Ranged",
-    "power": 60,
-    "accuracy": 95,
-    "ep": 10,
-    "description": "A burst of fire damages the target."
-  },
-  {
-    "name": "Mind Pierce",
-    "type": "Lucid",
-    "category": "Melee",
-    "power": 80,
+    "name": "Banana",
+    "type": "Normal",
+    "category": "Status",
+    "power": 0,
     "accuracy": 100,
-    "ep": 5,
-    "description": "A focused psychic strike."
+    "ep": 2,
+    "description": "Eats a banana for 10% HP heal."
   },
   {
-    "name": "Vine Grasp",
-    "type": "Plant",
+    "name": "Focus",
+    "type": "Mystic",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 100,
+    "ep": 2,
+    "description": "Increases all accuracy by 15% for all moves done this turn."
+  },
+  {
+    "name": "Flame Whip",
+    "type": "Fire",
+    "category": "Melee",
+    "power": 50,
+    "accuracy": 90,
+    "ep": 1,
+    "description": "Spins and does fire damage. 15% chance of inflicting Burn."
+  },
+  {
+    "name": "Scratch",
+    "type": "Normal",
     "category": "Melee",
     "power": 40,
     "accuracy": 100,
-    "ep": 20,
-    "description": "Constricts the target with vines."
+    "ep": 1,
+    "description": "Scratch."
   },
   {
-    "name": "Calm Breeze",
-    "type": "Air",
+    "name": "Infernal Takedown",
+    "type": "Fire",
+    "category": "Status",
+    "power": 90,
+    "accuracy": 90,
+    "ep": 4,
+    "description": "Flies and dives into opponent. 50% chance of inflicted burn to all opposing mons."
+  },
+  {
+    "name": "Bubble Barrier",
+    "type": "Water",
     "category": "Status",
     "power": 0,
-    "accuracy": 0,
-    "ep": 15,
-    "description": "Raises the user's evasion."
+    "accuracy": 100,
+    "ep": 5,
+    "description": "Summons a barrier that blocks the first offensive move used on this mon. Also removes the burn effect."
+  },
+  {
+    "name": "Focus",
+    "type": "Mystic",
+    "category": "Status",
+    "power": 0,
+    "accuracy": 100,
+    "ep": 2,
+    "description": ""
   }
 ]
