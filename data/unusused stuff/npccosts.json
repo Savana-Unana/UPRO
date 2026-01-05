@@ -17,12 +17,15 @@
     {"name":"Mono Skip", "desc":"???", "quest":"???", "reference":"Little Nightmares 2"},
     {"name":"Scout Skip", "desc":"???", "quest":"???", "reference":null},
     {"name":"Slime Skip", "desc":"???", "quest":"???", "reference":"SFAWTDE"},
+    {"name":"Merry Skip", "desc":"???", "quest":"???", "reference":"SFAWTDE"},
 
     {"name":"Capture Capsule", "desc":"The normal sprites.", "quest":"Unlocked by playing the game.", "reference":null},
     {"name":"Speaker Box Capture Capsule", "desc":"???", "quest":"???", "reference":"Battle For Dream Island"},
     {"name":"Cult Capture Capsule", "desc":"A ketchup covered Capture Capsule.", "quest":"Beat the Fairy Gauntlet.", "reference":null},
     {"name":"IFO Capture Capsule", "desc":"AHHHHH A UFO!!!!!", "quest":"???", "reference":null},
     {"name":"Defective Capture Capsule", "desc":"A broken Capture Capsule", "quest":"???", "reference":null},
+    {"name":"Frozen Capture Capsule", "desc":"A broken Capture Capsule", "quest":"???", "reference":null},
+    {"name":"Sleigh Capture Capsule", "desc":"A broken Capture Capsule", "quest":"???", "reference":null},
     
     {"name":"Kal", "desc":"The normal sprites.", "quest":"Unlocked when Kal joins the party.", "reference":null},
     {"name":"Flaminstein’s Monster Kal", "desc":"", "quest":"", "reference":"Frankenstein Story"},
@@ -30,6 +33,7 @@
     {"name":"Actor Kal", "desc":"", "quest":"", "reference":null},
     {"name":"Human Flame Kal", "desc":"", "quest":"", "reference":"The Fanstastic Four"},
     {"name":"Golden Gladiator Kal", "desc":"", "quest":"", "reference":"SFAWTDE"},
+    {"name":"Elf Kal", "desc":"", "quest":"", "reference":"SFAWTDE"},
 
     {"name":"Chip", "desc":"The normal sprites.", "quest":"Unlocked when Chip joins the party.", "reference":null},
     {"name":"Fate", "desc":"???", "quest":"???", "reference":"Monument Mythos"},
@@ -44,6 +48,7 @@
     {"name":"Scuba Chip", "desc":"???", "quest":"???", "reference":null},
     {"name":"Poker Chip", "desc":"???", "quest":"???", "reference":null},
     {"name":"Lord of Flames Chip", "desc":"???", "quest":"???", "reference":null},
+    {"name":"Grinch Chip", "desc":"???", "quest":"???", "reference":null},
     {"name":"", "desc":"", "quest":"", "reference":""},
 
     {"name":"Maya", "desc":"The normal sprites.", "quest":"Unlocked when Maya joins the party.", "reference":null},
