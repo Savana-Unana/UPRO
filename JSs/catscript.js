@@ -41,18 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // load abilities and all mode JSONs
       return Promise.all([
-        fetch("data/mons/abilities.json").then(r => r.json()).catch(() => []),
+        fetch("data/abilities.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/base.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/sacred.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/ace.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/ncanon.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/event.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/costumes.json").then(r => r.json()).catch(() => []),
+        fetch("data/mons/npc.json").then(r => r.json()).catch(() => []),
       ]);
     })
-    .then(([abilities, base, sacred, ace, ncanon, event, costumes]) => {
+    .then(([abilities, base, sacred, ace, ncanon, event, costumes, npc]) => {
       abilitiesData = abilities || [];
-      allData = { base: base || [], sacred: sacred || [], ace: ace || [], ncanon: ncanon || [], event: event || [], costumes: costumes || [] };
+      allData = { base: base || [], sacred: sacred || [], ace: ace || [], ncanon: ncanon || [], event: event || [], costumes: costumes || [], npc: npc || [] };
       loadMode("base");
     })
     .catch(err => {
@@ -206,54 +207,98 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateDetails(mon) {
     document.getElementById("monName").textContent = mon.name || "";
     document.getElementById("monImage").src = mon.image || "";
-    document.getElementById("monTypes").innerHTML = (mon.types || []).map(t => typeTag(t)).join("");
 
-    // Reset dex tabs immediately and show first tab text
-    const tabs = Array.from(document.querySelectorAll(".dex-tab"));
-    tabs.forEach(t => t.classList.remove("active"));
-    const firstTab = tabs[0];
-    if (firstTab) firstTab.classList.add("active");
+    // Types (hide for NPCs)
+    document.getElementById("monTypes").innerHTML = currentMode !== "npc"
+      ? (mon.types || []).map(t => typeTag(t)).join("")
+      : "";
 
-    const dexText = mon.dexEntries ? (firstTab && mon.dexEntries[firstTab.dataset.entry]) || mon.description : mon.description;
-    document.getElementById("monDexText").textContent = dexText || "";
+    // Tabs
+    const tabsContainer = document.querySelector(".dex-tabs");
+    tabsContainer.innerHTML = "";
 
-    const abilityContainer = document.getElementById("abilityContainer");
-    abilityContainer.innerHTML = "";
-    if (mon.ability) {
-      const ab = abilitiesData.find(a => a.name === mon.ability);
-      if (ab) {
-        abilityContainer.innerHTML = `<b>Ability:</b><div style="margin-top:6px;"><strong>${escapeHtml(ab.name)}</strong> &mdash; ${escapeHtml(ab.text)}</div>`;
-      } else {
-        abilityContainer.innerHTML = `<b>Ability:</b><div style="margin-top:6px;">${escapeHtml(mon.ability)}</div>`;
+    if (currentMode === "npc") {
+      document.getElementById("abilityContainer").innerHTML = "";
+      document.getElementById("paraTypesContainer").innerHTML = "";
+      document.getElementById("evolutionsContainer").innerHTML = "";
+      const tabsContainer = document.querySelector(".dex-tabs");
+      tabsContainer.innerHTML = "";
+      const npcHtml = `
+          <div><strong>Description: </strong>${escapeHtml(mon.Description || "None")}</div>
+          <div><strong>Quest:</strong> ${escapeHtml(mon.quest || "None")}</div>
+          <div><strong>Reference:</strong> ${escapeHtml(mon.reference || "None")}</div>
+      `;
+      document.getElementById("monDexText").innerHTML = npcHtml;
+    }
+    else {
+      let tabNames = ["Discovered", "First Caught", "Experienced", "Reverense"];
+      if (currentMode === "costumes") tabNames = ["Store", "Catalog", "Reverense"];
+
+      tabNames.forEach((name, idx) => {
+        const tabBtn = document.createElement("button");
+        tabBtn.className = "dex-tab";
+        if (idx === 0) tabBtn.classList.add("active");
+        tabBtn.dataset.entry = name;
+        tabBtn.textContent = name;
+
+        tabBtn.onclick = () => {
+          document.querySelectorAll(".dex-tab").forEach(t => t.classList.remove("active"));
+          tabBtn.classList.add("active");
+
+          let text = "";
+          if (currentMode === "costumes") {
+            if (name === "Store") text = mon.store || "No entry yet.";
+            else if (name === "Catalog") text = mon.catalog || mon.description || "No entry yet.";
+            else text = mon.reverense || "No entry yet";
+          } else {
+            text = mon.dexEntries ? (mon.dexEntries[name] || mon.description) : mon.description;
+          }
+
+          document.getElementById("monDexText").textContent = text;
+        };
+
+        tabsContainer.appendChild(tabBtn);
+      });
+
+      // show first tab content immediately
+      tabsContainer.querySelector(".dex-tab").click();
+
+      // Abilities container
+      const abilityContainer = document.getElementById("abilityContainer");
+      abilityContainer.innerHTML = "";
+      if (mon.ability) {
+        const ab = abilitiesData.find(a => a.name === mon.ability);
+        abilityContainer.innerHTML = ab
+          ? `<b>Ability:</b><div style="margin-top:6px;"><strong>${escapeHtml(ab.name)}</strong> &mdash; ${escapeHtml(ab.text)}</div>`
+          : `<b>Ability:</b> <div>${escapeHtml(mon.ability)}</div>`;
+      }
+
+      // Para types
+      const paraContainer = document.getElementById("paraTypesContainer");
+      paraContainer.innerHTML = mon.paraTypes ? `<b>Para Types:</b> ${mon.paraTypes.map(p => typeTag(p)).join("")}` : "";
+
+      // Evolutions
+      const evoC = document.getElementById("evolutionsContainer");
+      evoC.innerHTML = "";
+      if (mon.evolvesTo && mon.evolvesTo.length) {
+        evoC.innerHTML = "<b>Evolutions:</b><br>";
+        mon.evolvesTo.forEach(e => {
+          const allFormsFlat = Object.values(allData).flat();
+          const evo = allFormsFlat.find(x => x.name === e.name);
+          if (evo) {
+            const img = document.createElement("img");
+            img.src = evo.image || "";
+            img.title = `${e.name} (Lvl ${e.level})`;
+            img.onclick = () => openDetails(evo);
+            evoC.appendChild(img);
+          }
+        });
       }
     }
 
-    // Para types
-    const paraContainer = document.getElementById("paraTypesContainer");
-    paraContainer.innerHTML = mon.paraTypes ? `<b>Para Types:</b> ${mon.paraTypes.map(p => typeTag(p)).join("")}` : "";
-
-    // Evolutions (search across allData)
-    const evoC = document.getElementById("evolutionsContainer");
-    evoC.innerHTML = "";
-    if (mon.evolvesTo && mon.evolvesTo.length) {
-      evoC.innerHTML = "<b>Evolutions:</b><br>";
-      mon.evolvesTo.forEach(e => {
-        const allFormsFlat = Object.values(allData).flat();
-        const evo = allFormsFlat.find(x => x.name === e.name);
-        if (evo) {
-          const img = document.createElement("img");
-          img.src = evo.image || "";
-          img.title = `${e.name} (Lvl ${e.level})`;
-          img.onclick = () => openDetails(evo);
-          evoC.appendChild(img);
-        }
-      });
-    }
-
-    // Alternate forms
+    // Alternate forms still shown for both NPCs and non-NPCs
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
-
     const allForms = Object.entries(allData).flatMap(([mode, mons]) => mons.map(m => ({ ...m, mode })));
     const sameSpecies = mon.id ? allForms.filter(f => f.id === mon.id) : allForms.filter(f => f.name === mon.name);
     const otherForms = sameSpecies.filter(f => !(f.name === mon.name && f.mode === (mon.mode || currentMode)));
@@ -264,36 +309,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const img = document.createElement("img");
         img.src = form.image || "";
         img.title = `${form.name} (${form.mode})`;
-        img.onclick = () => {
-          // when clicking alternate form: immediately show that form, update badge and mode button
-          openDetails(form);
-        };
+        img.onclick = () => openDetails(form);
         img.style.width = "80px";
         img.style.margin = "4px";
         img.style.border = "2px solid #0ff";
         img.style.borderRadius = "10px";
         img.style.cursor = "pointer";
         sacredC.appendChild(img);
-
-        if (form.mode === "sacred" && form.quest) {
-          const questDiv = document.createElement("div");
-          questDiv.innerHTML = `<div style="margin-top:4px; font-size:0.9em; color:#0ff;">Quest: ${escapeHtml(form.quest)}</div>`;
-          sacredC.appendChild(questDiv);
-        }
       });
     }
-
-    // (re)bind dex-tab clicks to the current mon reference
-    document.querySelectorAll(".dex-tab").forEach(tab => {
-      tab.onclick = () => {
-        document.querySelectorAll(".dex-tab").forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        const entry = tab.dataset.entry;
-        const newText = mon.dexEntries ? (mon.dexEntries[entry] || mon.description) : mon.description;
-        document.getElementById("monDexText").textContent = newText || "";
-      };
-    });
   }
+
 
   // Mode badge + auto-activate mode button
   function setModeBadge(mode) {

@@ -89,27 +89,56 @@ main.list {
     justify-items: center;
 }
 
-/* LIST VIEW */
-#pokedex.list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 90%;
-    max-width: 900px;
-    margin: 0 auto;
+/* ---------- POKEMON CARD FIX ---------- */
+#pokedex .card {
+  display: flex;
+  flex-direction: column; /* stack image, name, types */
+  align-items: center;
+  justify-content: flex-start; /* don't force spacing */
+  width: 200px; 
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  transition: 0.2s;
 }
 
-#pokedex.list .card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
+#pokedex .card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 8px;
 }
 
-#pokedex.list .card img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
+#pokedex .card h3 {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 4px 0;
+  line-height: 1.2em;
+  word-break: break-word; /* wrap long names */
+  overflow: visible;      /* allow growing */
+  max-height: none;       /* remove 2-line clamp */
+}
+
+#pokedex .card .types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 4px;
+  max-height: none;       /* allow multiple lines */
+  overflow: visible;      /* don't cut off types */
+}
+
+#pokedex .card .types span {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #0ff;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.9em; /* scale down slightly if needed */
 }
 
 /* ---------- CARD ---------- */
