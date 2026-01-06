@@ -26,6 +26,8 @@
   { "name": "Skeptic Electric", "file": "Songs/SkepticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 1 },
 
   { "name": "Hectic Electric", "file": "Songs/HecticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 2 },
+  
+  { "name": "Haptic Electric", "file": "Songs/HapticElectric.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 100 },
 
   { "name": "Circuit Breaker", "file": "Songs/CircuitBreaker.mp3", "ost": 1000, "composer": "Michael", "area": "Electric Gauntlet", "theme": "GauntTheme", "typing": "Electric", "order": 3 },
 
@@ -44,6 +46,8 @@
   { "name": "Desecration Chiptune", "file": "Songs/DesecrationCT.mp3", "ost": 1000, "composer": "Jimm560", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },
 
   { "name": "Despair", "file": "Songs/Despair.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },  
+
+  { "name": "Demo", "file": "Songs/Demo.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },
 
   { "name": "Standstill", "file": "Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 },
 
