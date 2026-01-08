@@ -1,6 +1,6 @@
 [
     {"name":"Skip", "image":"nimages/Skip.gif", "quest":"Unlocked by playing the game.", "reference":null, "Description":"The normal sprites."},
-    {"name":"Noob", "image":"nimages/YouKnowWhoIAm.gif", "quest":"Complete the Limbo minigame.", "reference":"Roblox", "Description":"A yellow, blue, and green humanoid. Is from another world, and has unique voicelines."},
+    {"name":"Noob", "image":"nimages/Noob.gif", "quest":"Complete the Limbo minigame.", "reference":"Roblox", "Description":"A yellow, blue, and green humanoid. Is from another world, and has unique voicelines."},
     {"name":"Infested Skip", "image":"nimages/YouKnowWhoIAm.gif", "quest":"Use an Ace Axolarg.", "reference":"Axolarg", "Description":"Skip but controlled by Axo-Shards."},
     {"name":"Trashcan Skip", "image":"nimages/YouKnowWhoIAm.gif", "quest":"Interact with everything at Homegrounds.", "reference":"Chip", "Description":"Skip that looks like Chip."},
     {"name":"Dark Skip", "image":"nimages/YouKnowWhoIAm.gif", "quest":"Play UPRO Pokeless Version.", "reference":"Deltarune", "Description":"A color-altered Skip, with a Sheriff outfit."},
@@ -26,7 +26,7 @@
     {"name":"Frozen Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet"},
     {"name":"Sleigh Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet"},
     
-    {"name":"Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"Unlocked when Kal joins the party.", "reference":null, "Description":"The normal sprites."},
+    {"name":"Kal", "image":"nimages/Kal.gif", "quest":"Unlocked when Kal joins the party.", "reference":null, "Description":"The normal sprites."},
     {"name":"Flaminstein's Monster Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"Frankenstein Story", "Description":"No entry yet"},
     {"name":"Evil Dirtbag With Chainsaw Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"FNAF: The Musical", "Description":"No entry yet"},
     {"name":"Actor Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":null, "Description":"No entry yet"},
