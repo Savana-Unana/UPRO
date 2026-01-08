@@ -48,7 +48,7 @@ function updateButtons() {
         { text: "Credits", href: "friend.html", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)" }
       ]
     : [
-        { text: "Catalog", href: "catalog.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
+        { text: "Animatrix", href: "animatrix.html", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
         { text: "OST", href: "ost.html", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
         { text: "Battle", href: "construction.html", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
         { text: "Map", href: "construction.html", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" }
