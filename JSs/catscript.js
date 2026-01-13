@@ -46,16 +46,38 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("data/mons/sacred.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/ace.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/ncanon.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/event.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/costumes.json").then(r => r.json()).catch(() => []),
         fetch("data/mons/npc.json").then(r => r.json()).catch(() => []),
       ]);
     })
-    .then(([abilities, base, sacred, ace, ncanon, event, costumes, npc]) => {
-      abilitiesData = abilities || [];
-      allData = { base: base || [], sacred: sacred || [], ace: ace || [], ncanon: ncanon || [], event: event || [], costumes: costumes || [], npc: npc || [] };
-      loadMode("base");
-    })
+    .then(([abilities, base, sacred, ace, ncanon, costumes, npc]) => {
+        abilitiesData = abilities || [];
+        allData = { 
+          base: base || [], 
+          sacred: sacred || [], 
+          ace: ace || [], 
+          ncanon: ncanon || [], 
+          costumes: costumes || [],
+          npc: npc || [],
+          event: [] // initialize event
+        };
+
+        // now safe to filter and push to event
+        Object.entries(allData).forEach(([mode, mons]) => {
+          if (mode === "event") return; // skip event itself
+          allData[mode] = mons.filter(mon => {
+            if (mon.event !== undefined && mon.event !== null) {
+              mon.mode = "event";       // mark it as event
+              allData.event.push(mon);  // add to event list
+              return false;             // remove from original mode
+            }
+            return true; // keep in this mode
+          });
+        });
+
+        loadMode("base");
+      })
+
     .catch(err => {
       console.error("Failed to load JSON data", err);
     });
@@ -155,17 +177,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedParas.length) {
           if (!mon.paraTypes || !intersects(selectedParas, mon.paraTypes)) return false;
         }
+        if (currentMode === "npc" && mon.cosmark === "Y") return false;
         return true;
       })
       .forEach(mon => {
         const card = document.createElement("div");
         card.className = "card";
+        applyMonStyle(card, mon);
+        // Border color based on primary typing
+        const primaryType = (mon.types && mon.types[0]) || null;
+        const typeObj = typesData.find(t => t.name === primaryType);
+
+
+        // Inner HTML for the card
         card.innerHTML = `
           <img src="${escapeHtml(mon.image || '')}" alt="${escapeHtml(mon.name)}">
           <h3>${escapeHtml(mon.name)}</h3>
-          <div class="types">${(mon.types || []).map(t => typeTag(t)).join("")}</div>
-          ${(mon.paraTypes || []).length ? `<div class="types">${mon.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+          ${(mon.event === "fools") ? "" : `
+            <div class="types">${(mon.types || []).map(t => typeTag(t)).join("")}</div>
+            ${(mon.paraTypes || []).length ? `<div class="types">${mon.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+          `}
         `;
+
         card.addEventListener("click", () => openDetails(mon));
         pokedex.appendChild(card);
       });
@@ -204,7 +237,42 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("hidden");
   }
 
+  function applyMonStyle(el, mon) {
+    if (!el) return;
+
+    // reset
+    el.style.backgroundColor = "";
+    el.style.color = "";
+    el.style.fontFamily = "";
+    el.style.border = "";
+
+    // event styles
+    if (mon.event === "halloween") {
+      el.style.backgroundColor = "#4B0082";
+      el.style.color = "#ff6c1c";
+    } 
+    else if (mon.event === "winter") {
+      el.style.backgroundColor = "#001f4d";
+      el.style.color = "#cce6ff";
+    } 
+    else if (mon.event === "fools") {
+      el.style.backgroundColor = "#fff";
+      el.style.color = "#000";
+      el.style.fontFamily = "Arial, sans-serif";
+    }
+
+    // primary type border
+    const primaryType = mon.types?.[0];
+    const typeObj = typesData.find(t => t.name === primaryType);
+    el.style.border = `3px solid ${typeObj ? typeObj.color : "#ccc"}`;
+  }
+
+
   function updateDetails(mon) {
+    const modalContent =
+    document.querySelector("#detailsModal .modal-content") ||
+    document.getElementById("detailsModal");
+    applyMonStyle(modalContent, mon);
     document.getElementById("monName").textContent = mon.name || "";
     document.getElementById("monImage").src = mon.image || "";
 
