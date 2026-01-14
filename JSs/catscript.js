@@ -1,12 +1,12 @@
 let currentMode = "base";
-let pokedexData = [];
+let animatrixData = [];
 let allData = {}; // store all JSON data for cross-referencing
 let typesData = [];
 let abilitiesData = [];
-let currentMonIndex = 0;
+let currentMateIndex = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const pokedex = document.getElementById("pokedex");
+  const animatrix = document.getElementById("animatrix");
   const gridView = document.getElementById("gridView");
   const listView = document.getElementById("listView");
   const search = document.getElementById("search");
@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const modal = document.getElementById("detailsModal");
   const closeModal = document.getElementById("closeModal");
-  const nextMon = document.getElementById("nextMon");
-  const prevMon = document.getElementById("prevMon");
+  const nextMate = document.getElementById("nextMate");
+  const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
 
   // mode buttons
@@ -42,12 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // load abilities and all mode JSONs
       return Promise.all([
         fetch("data/abilities.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/base.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/sacred.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/ace.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/ncanon.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/costumes.json").then(r => r.json()).catch(() => []),
-        fetch("data/mons/npc.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/npc.json").then(r => r.json()).catch(() => []),
       ]);
     })
     .then(([abilities, base, sacred, ace, ncanon, costumes, npc]) => {
@@ -63,12 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // now safe to filter and push to event
-        Object.entries(allData).forEach(([mode, mons]) => {
+        Object.entries(allData).forEach(([mode, mates]) => {
           if (mode === "event") return; // skip event itself
-          allData[mode] = mons.filter(mon => {
-            if (mon.event !== undefined && mon.event !== null) {
-              mon.mode = "event";       // mark it as event
-              allData.event.push(mon);  // add to event list
+          allData[mode] = mates.filter(mate => {
+            if (mate.event !== undefined && mate.event !== null) {
+              mate.mode = "event";       // mark it as event
+              allData.event.push(mate);  // add to event list
               return false;             // remove from original mode
             }
             return true; // keep in this mode
@@ -81,6 +81,136 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => {
       console.error("Failed to load JSON data", err);
     });
+
+    const statsBtn = document.getElementById("statsBtn");
+    const statsModal = document.getElementById("statsModal");
+    const closeStats = document.getElementById("closeStats");
+    const statsContent = document.getElementById("statsContent");
+
+    statsBtn.onclick = () => {
+      buildStats();
+      statsModal.classList.remove("hidden");
+    };
+
+    closeStats.onclick = () => statsModal.classList.add("hidden");
+
+    function buildStats() {
+      const allMons = Object.entries(allData).flatMap(
+        ([mode, mons]) => mons.map(m => ({ ...m, mode }))
+      );
+
+      const isMate = m => m.mode !== "npc";
+      const isNPC = m => m.mode === "npc";
+
+      // ---------- UNIQUE HELPERS ----------
+      const uniqueByIdOrName = mons => {
+        const map = new Map();
+        mons.forEach(m => {
+          const key = m.id ?? `name:${m.name}`;
+          if (!map.has(key)) map.set(key, m);
+        });
+        return [...map.values()];
+      };
+
+      // ---------- UNIQUE MATES BY MODE ----------
+      const uniqueBase = uniqueByIdOrName(allData.base || []);
+      const uniqueSacred = uniqueByIdOrName(allData.sacred || []);
+      const uniqueAce = uniqueByIdOrName(allData.ace || []);
+      const uniqueNCanon = uniqueByIdOrName(allData.ncanon || []);
+      const uniqueNPCs = uniqueByIdOrName(allData.npc || []);
+
+      // ---------- BASE-ONLY TYPING STATS ----------
+      const typeCount = {};
+      const paraTypeCount = {};
+      const primaryTypeCount = {};
+
+      (allData.base || []).forEach(mon => {
+        const types = mon.types?.length ? mon.types : ["null"];
+        const paras = mon.paraTypes?.length ? mon.paraTypes : ["null"];
+
+        types.forEach(t => {
+          typeCount[t] = (typeCount[t] || 0) + 1;
+        });
+
+        paras.forEach(p => {
+          paraTypeCount[p] = (paraTypeCount[p] || 0) + 1;
+        });
+
+        const primary = types[0] ?? "null";
+        primaryTypeCount[primary] = (primaryTypeCount[primary] || 0) + 1;
+      });
+
+      // ---------- IMAGE STATS ----------
+      let fromImages = 0;
+      let fromLost = 0;
+      let missingNo = 0;
+      let costumed = 0;
+
+      allMons.filter(isMate).forEach(mon => {
+        const img = mon.image || "";
+
+        if (img.includes("MissingNo") || img.includes("L.MissingNo")) {
+          missingNo++;
+          return;
+        }
+
+        if (img.includes("cimages")) {
+          costumed++;
+          return;
+        }
+
+        if (img.includes("lostimages")) {
+          fromLost++;
+          return;
+        }
+
+        if (img.includes("images")) {
+          fromImages++;
+        }
+      });
+
+      // ---------- OUTPUT ----------
+      statsContent.innerHTML = `
+        <h3>Unique Mates by Mode</h3>
+        <ul>
+          <li><b>Base:</b> ${uniqueBase.length}</li>
+          <li><b>Sacred:</b> ${uniqueSacred.length}</li>
+          <li><b>Ace:</b> ${uniqueAce.length}</li>
+          <li><b>Non-Canon:</b> ${uniqueNCanon.length}</li>
+          <li><b>NPCs:</b> ${uniqueNPCs.length}</li>
+        </ul>
+
+        <h3>Base-Only Typing Stats</h3>
+        <h4>All Types</h4>
+        ${renderCounts(typeCount)}
+
+        <h4>Para-Types</h4>
+        ${renderCounts(paraTypeCount)}
+
+        <h4>Primary Types</h4>
+        ${renderCounts(primaryTypeCount)}
+
+        <h3>Image Sources</h3>
+        <ul>
+          <li><b>Images tab:</b> ${fromImages}</li>
+          <li><b>Lostimages (not MissingNo):</b> ${fromLost}</li>
+          <li><b>Costumed (cimages):</b> ${costumed}</li>
+          <li><b>MissingNo (all variants):</b> ${missingNo}</li>
+        </ul>
+      `;
+    }
+
+function renderCounts(obj) {
+  if (!Object.keys(obj).length) return "<i>None</i>";
+  return `
+    <ul>
+      ${Object.entries(obj)
+        .sort((a, b) => b[1] - a[1])
+        .map(([k, v]) => `<li>${escapeHtml(k)}: ${v}</li>`)
+        .join("")}
+    </ul>
+  `;
+}
 
   // Build checkbox list for a panel
   function populateFilterOptions(types, container) {
@@ -133,16 +263,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Clear buttons
   clearTypes.addEventListener("click", () => {
     clearCheckboxes(typeOptionsEl);
-    renderPokedex();
+    renderAnimatrix();
   });
   clearParas.addEventListener("click", () => {
     clearCheckboxes(paraOptionsEl);
-    renderPokedex();
+    renderAnimatrix();
   });
 
   // Wire checkbox changes to re-render
-  typeOptionsEl.addEventListener("change", renderPokedex);
-  paraOptionsEl.addEventListener("change", renderPokedex);
+  typeOptionsEl.addEventListener("change", renderAnimatrix);
+  paraOptionsEl.addEventListener("change", renderAnimatrix);
 
   // Mode switching
   modeButtons.forEach(btn => {
@@ -155,52 +285,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadMode(mode) {
     currentMode = mode;
-    pokedexData = Array.isArray(allData[mode]) ? allData[mode] : [];
-    renderPokedex();
+    animatrixData = Array.isArray(allData[mode]) ? allData[mode] : [];
+    renderAnimatrix();
   }
 
-  function renderPokedex() {
-    pokedex.innerHTML = "";
+  function renderAnimatrix() {
+    animatrix.innerHTML = "";
     const term = (search.value || "").trim().toLowerCase();
     const selectedTypes = getCheckedValues(typeOptionsEl);
     const selectedParas = getCheckedValues(paraOptionsEl);
 
     const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
 
-    pokedexData
-      .filter(mon => {
-        if (!mon) return false;
-        if (term && !(mon.name || "").toLowerCase().includes(term)) return false;
+    animatrixData
+      .filter(mate => {
+        if (!mate) return false;
+        if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
         if (selectedTypes.length) {
-          if (!mon.types || !intersects(selectedTypes, mon.types)) return false;
+          if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
         }
         if (selectedParas.length) {
-          if (!mon.paraTypes || !intersects(selectedParas, mon.paraTypes)) return false;
+          if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
         }
-        if (currentMode === "npc" && mon.cosmark === "Y") return false;
+        if (currentMode === "npc" && mate.cosmark === "Y") return false;
         return true;
       })
-      .forEach(mon => {
+      .forEach(mate => {
         const card = document.createElement("div");
         card.className = "card";
-        applyMonStyle(card, mon);
+        applyMateStyle(card, mate);
         // Border color based on primary typing
-        const primaryType = (mon.types && mon.types[0]) || null;
+        const primaryType = (mate.types && mate.types[0]) || null;
         const typeObj = typesData.find(t => t.name === primaryType);
 
 
         // Inner HTML for the card
         card.innerHTML = `
-          <img src="${escapeHtml(mon.image || '')}" alt="${escapeHtml(mon.name)}">
-          <h3>${escapeHtml(mon.name)}</h3>
-          ${(mon.event === "fools") ? "" : `
-            <div class="types">${(mon.types || []).map(t => typeTag(t)).join("")}</div>
-            ${(mon.paraTypes || []).length ? `<div class="types">${mon.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+          <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
+          <h3>${escapeHtml(mate.name)}</h3>
+          ${(mate.event === "fools") ? "" : `
+            <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
+            ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
           `}
         `;
 
-        card.addEventListener("click", () => openDetails(mon));
-        pokedex.appendChild(card);
+        card.addEventListener("click", () => openDetails(mate));
+        animatrix.appendChild(card);
       });
   }
 
@@ -212,32 +342,32 @@ document.addEventListener("DOMContentLoaded", () => {
   gridView.addEventListener("click", () => {
     gridView.classList.add("active");
     listView.classList.remove("active");
-    pokedex.className = "grid";
+    animatrix.className = "grid";
   });
   listView.addEventListener("click", () => {
     listView.classList.add("active");
     gridView.classList.remove("active");
-    pokedex.className = "list";
+    animatrix.className = "list";
   });
 
-  search.addEventListener("input", renderPokedex);
+  search.addEventListener("input", renderAnimatrix);
 
   // Details modal logic
-  function openDetails(mon) {
+  function openDetails(mate) {
     // set mode badge and activate mode button if possible
-    const monMode = mon.mode || currentMode;
-    setModeBadge(monMode);
-    activateModeButton(monMode);
+    const mateMode = mate.mode || currentMode;
+    setModeBadge(mateMode);
+    activateModeButton(mateMode);
 
-    // set currentMonIndex to the index within the current filtered pokedexData, if present
-    const idx = pokedexData.findIndex(m => m.name === mon.name && (m.id === mon.id || !mon.id));
-    currentMonIndex = idx >= 0 ? idx : 0;
+    // set currentMateIndex to the index within the current filtered animatrixData, if present
+    const idx = animatrixData.findIndex(m => m.name === mate.name && (m.id === mate.id || !mate.id));
+    currentMateIndex = idx >= 0 ? idx : 0;
 
-    updateDetails(mon);
+    updateDetails(mate);
     modal.classList.remove("hidden");
   }
 
-  function applyMonStyle(el, mon) {
+  function applyMateStyle(el, mate) {
     if (!el) return;
 
     // reset
@@ -247,38 +377,38 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.border = "";
 
     // event styles
-    if (mon.event === "halloween") {
+    if (mate.event === "halloween") {
       el.style.backgroundColor = "#4B0082";
       el.style.color = "#ff6c1c";
     } 
-    else if (mon.event === "winter") {
+    else if (mate.event === "winter") {
       el.style.backgroundColor = "#001f4d";
       el.style.color = "#cce6ff";
     } 
-    else if (mon.event === "fools") {
+    else if (mate.event === "fools") {
       el.style.backgroundColor = "#fff";
       el.style.color = "#000";
       el.style.fontFamily = "Arial, sans-serif";
     }
 
     // primary type border
-    const primaryType = mon.types?.[0];
+    const primaryType = mate.types?.[0];
     const typeObj = typesData.find(t => t.name === primaryType);
     el.style.border = `3px solid ${typeObj ? typeObj.color : "#ccc"}`;
   }
 
 
-  function updateDetails(mon) {
+  function updateDetails(mate) {
     const modalContent =
     document.querySelector("#detailsModal .modal-content") ||
     document.getElementById("detailsModal");
-    applyMonStyle(modalContent, mon);
-    document.getElementById("monName").textContent = mon.name || "";
-    document.getElementById("monImage").src = mon.image || "";
+    applyMateStyle(modalContent, mate);
+    document.getElementById("mateName").textContent = mate.name || "";
+    document.getElementById("mateImage").src = mate.image || "";
 
     // Types (hide for NPCs)
-    document.getElementById("monTypes").innerHTML = currentMode !== "npc"
-      ? (mon.types || []).map(t => typeTag(t)).join("")
+    document.getElementById("mateTypes").innerHTML = currentMode !== "npc"
+      ? (mate.types || []).map(t => typeTag(t)).join("")
       : "";
 
     // Tabs
@@ -292,11 +422,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const tabsContainer = document.querySelector(".dex-tabs");
       tabsContainer.innerHTML = "";
       const npcHtml = `
-          <div><strong>Description: </strong>${escapeHtml(mon.Description || "None")}</div>
-          <div><strong>Quest:</strong> ${escapeHtml(mon.quest || "None")}</div>
-          <div><strong>Reference:</strong> ${escapeHtml(mon.reference || "None")}</div>
+          <div><strong>Description: </strong>${escapeHtml(mate.Description || "None")}</div>
+          <div><strong>Quest:</strong> ${escapeHtml(mate.quest || "None")}</div>
+          <div><strong>Reference:</strong> ${escapeHtml(mate.reference || "None")}</div>
       `;
-      document.getElementById("monDexText").innerHTML = npcHtml;
+      document.getElementById("mateDexText").innerHTML = npcHtml;
     }
     else {
       let tabNames = ["Discovered", "First Caught", "Experienced", "Reverense"];
@@ -315,14 +445,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
           let text = "";
           if (currentMode === "costumes") {
-            if (name === "Store") text = mon.store || "No entry yet.";
-            else if (name === "Catalog") text = mon.catalog || mon.description || "No entry yet.";
-            else text = mon.reverense || "No entry yet";
+            if (name === "Store") text = mate.store || "No entry yet.";
+            else if (name === "Catalog") text = mate.catalog || mate.description || "No entry yet.";
+            else text = mate.reverense || "No entry yet";
           } else {
-            text = mon.dexEntries ? (mon.dexEntries[name] || mon.description) : mon.description;
+            text = mate.dexEntries ? (mate.dexEntries[name] || mate.description) : mate.description;
           }
 
-          document.getElementById("monDexText").textContent = text;
+          document.getElementById("mateDexText").textContent = text;
         };
 
         tabsContainer.appendChild(tabBtn);
@@ -334,23 +464,23 @@ document.addEventListener("DOMContentLoaded", () => {
       // Abilities container
       const abilityContainer = document.getElementById("abilityContainer");
       abilityContainer.innerHTML = "";
-      if (mon.ability) {
-        const ab = abilitiesData.find(a => a.name === mon.ability);
+      if (mate.ability) {
+        const ab = abilitiesData.find(a => a.name === mate.ability);
         abilityContainer.innerHTML = ab
           ? `<b>Ability:</b><div style="margin-top:6px;"><strong>${escapeHtml(ab.name)}</strong> &mdash; ${escapeHtml(ab.text)}</div>`
-          : `<b>Ability:</b> <div>${escapeHtml(mon.ability)}</div>`;
+          : `<b>Ability:</b> <div>${escapeHtml(mate.ability)}</div>`;
       }
 
       // Para types
       const paraContainer = document.getElementById("paraTypesContainer");
-      paraContainer.innerHTML = mon.paraTypes ? `<b>Para Types:</b> ${mon.paraTypes.map(p => typeTag(p)).join("")}` : "";
+      paraContainer.innerHTML = mate.paraTypes ? `<b>Para Types:</b> ${mate.paraTypes.map(p => typeTag(p)).join("")}` : "";
 
       // Evolutions
       const evoC = document.getElementById("evolutionsContainer");
       evoC.innerHTML = "";
-      if (mon.evolvesTo && mon.evolvesTo.length) {
+      if (mate.evolvesTo && mate.evolvesTo.length) {
         evoC.innerHTML = "<b>Evolutions:</b><br>";
-        mon.evolvesTo.forEach(e => {
+        mate.evolvesTo.forEach(e => {
           const allFormsFlat = Object.values(allData).flat();
           const evo = allFormsFlat.find(x => x.name === e.name);
           if (evo) {
@@ -367,9 +497,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Alternate forms still shown for both NPCs and non-NPCs
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
-    const allForms = Object.entries(allData).flatMap(([mode, mons]) => mons.map(m => ({ ...m, mode })));
-    const sameSpecies = mon.id ? allForms.filter(f => f.id === mon.id) : allForms.filter(f => f.name === mon.name);
-    const otherForms = sameSpecies.filter(f => !(f.name === mon.name && f.mode === (mon.mode || currentMode)));
+    const allForms = Object.entries(allData).flatMap(([mode, mates]) => mates.map(m => ({ ...m, mode })));
+    const sameSpecies = mate.id ? allForms.filter(f => f.id === mate.id) : allForms.filter(f => f.name === mate.name);
+    const otherForms = sameSpecies.filter(f => !(f.name === mate.name && f.mode === (mate.mode || currentMode)));
 
     if (otherForms.length) {
       sacredC.innerHTML = "<b>Alternate Forms:</b><br>";
@@ -404,15 +534,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeModal.onclick = () => modal.classList.add("hidden");
 
-  nextMon.onclick = () => {
-    if (!pokedexData || pokedexData.length === 0) return;
-    currentMonIndex = (currentMonIndex + 1) % pokedexData.length;
-    updateDetails(pokedexData[currentMonIndex]);
+  nextMate.onclick = () => {
+    if (!animatrixData || animatrixData.length === 0) return;
+    currentMateIndex = (currentMateIndex + 1) % animatrixData.length;
+    updateDetails(animatrixData[currentMateIndex]);
   };
-  prevMon.onclick = () => {
-    if (!pokedexData || pokedexData.length === 0) return;
-    currentMonIndex = (currentMonIndex - 1 + pokedexData.length) % pokedexData.length;
-    updateDetails(pokedexData[currentMonIndex]);
+  prevMate.onclick = () => {
+    if (!animatrixData || animatrixData.length === 0) return;
+    currentMateIndex = (currentMateIndex - 1 + animatrixData.length) % animatrixData.length;
+    updateDetails(animatrixData[currentMateIndex]);
   };
 
   // small HTML escape

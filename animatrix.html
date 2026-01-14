@@ -14,6 +14,7 @@
           <button>Main Menu</button>
         </a>
       </div>
+      <button id="statsBtn">Stats</button>
     </div>
     <h1>The Animatrix</h1>
     <div class="controls">
@@ -58,7 +59,7 @@
     </div>
   </header>
 
-  <main id="pokedex" class="grid"></main>
+  <main id="animatrix" class="grid"></main>
 
   <!-- Details Modal -->
   <div id="detailsModal" class="modal hidden">
@@ -66,14 +67,14 @@
       <button id="closeModal" class="close-btn">✕</button>
 
       <div class="modal-header">
-        <h2 id="monName"></h2>
-        <div class="types" id="monTypes"></div>
+        <h2 id="mateName"></h2>
+        <div class="types" id="mateTypes"></div>
         <div id="modeBadge" class="mode-badge"></div>
       </div>
 
       <div class="modal-body">
         <div class="image-container">
-          <img id="monImage" alt="">
+          <img id="mateImage" alt="">
         </div>
 
         <div class="dex-tabs">
@@ -83,7 +84,7 @@
           <button class="dex-tab" data-entry="Reverence">Reverence</button>
         </div>
 
-        <p id="monDexText"></p>
+        <p id="mateDexText"></p>
 
         <div id="abilityContainer"></div>
         <div id="paraTypesContainer"></div>
@@ -92,11 +93,19 @@
       </div>
 
       <div class="modal-footer">
-        <button id="prevMon" class="nav-btn">← Previous</button>
-        <button id="nextMon" class="nav-btn">Next →</button>
+        <button id="prevMate" class="nav-btn">← Previous</button>
+        <button id="nextMate" class="nav-btn">Next →</button>
       </div>
     </div>
   </div>
+  <div id="statsModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeStats" class="close-btn">✕</button>
+      <h2>Animatrix Statistics</h2>
+      <div id="statsContent"></div>
+    </div>
+  </div>
+
 
   <script src="JSs/catscript.js"></script>
 </body>
