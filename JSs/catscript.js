@@ -352,6 +352,42 @@ function renderCounts(obj) {
 
   search.addEventListener("input", renderAnimatrix);
 
+
+  const randomMateBtn = document.getElementById("randomMateBtn");
+
+  randomMateBtn.addEventListener("click", () => {
+    if (!animatrixData || animatrixData.length === 0) return;
+
+    // Rebuild the currently visible list using the same filters
+    const term = (search.value || "").trim().toLowerCase();
+    const selectedTypes = getCheckedValues(typeOptionsEl);
+    const selectedParas = getCheckedValues(paraOptionsEl);
+
+    const intersects = (a, b) =>
+      Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
+
+    const visibleMates = animatrixData.filter(mate => {
+      if (!mate) return false;
+      if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
+      if (selectedTypes.length) {
+        if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
+      }
+      if (selectedParas.length) {
+        if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
+      }
+      if (currentMode === "npc" && mate.cosmark === "Y") return false;
+      return true;
+    });
+
+    if (!visibleMates.length) return;
+
+    const randomIndex = Math.floor(Math.random() * visibleMates.length);
+    currentMateIndex = randomIndex;
+
+    openDetails(visibleMates[randomIndex]);
+  });
+
+
   // Details modal logic
   function openDetails(mate) {
     // set mode badge and activate mode button if possible
