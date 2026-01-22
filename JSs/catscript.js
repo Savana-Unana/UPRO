@@ -99,118 +99,128 @@ document.addEventListener("DOMContentLoaded", () => {
         ([mode, mons]) => mons.map(m => ({ ...m, mode }))
       );
 
-      const isMate = m => m.mode !== "npc";
-      const isNPC = m => m.mode === "npc";
-
-      // ---------- UNIQUE HELPERS ----------
-      const uniqueByIdOrName = mons => {
-        const map = new Map();
-        mons.forEach(m => {
-          const key = m.id ?? `name:${m.name}`;
-          if (!map.has(key)) map.set(key, m);
-        });
-        return [...map.values()];
+      const isMissingNo = m =>
+        (m.image || "").includes("MissingNo") || (m.image || "").includes("L.MissingNo");
+      const isOnes = m => m.name === "Ones";
+      const isSpecial = m => isMissingNo(m) || isOnes(m);
+      const isDesigned = m => !isMissingNo(m) && !isOnes(m);
+      const hasImage = m => {
+        if (!m.image) return false;
+        const path = m.image.toLowerCase();
+        return path.startsWith("images/") || path.startsWith("./images/") || path.includes("/images/");
       };
 
-      // ---------- UNIQUE MATES BY MODE ----------
-      const uniqueBase = uniqueByIdOrName(allData.base || []);
-      const uniqueSacred = uniqueByIdOrName(allData.sacred || []);
-      const uniqueAce = uniqueByIdOrName(allData.ace || []);
-      const uniqueNCanon = uniqueByIdOrName(allData.ncanon || []);
-      const uniqueNPCs = uniqueByIdOrName(allData.npc || []);
+      // -------------------- MODE STATS --------------------
+      const modeList = ["base", "sacred", "ace", "event", "costumes", "npc"];
+      let modeHtml = `<section class="stats-section">
+        <h2>Mode Stats</h2>
+        <div class="mode-stats">`;
 
-      // ---------- BASE-ONLY TYPING STATS ----------
-      const typeCount = {};
-      const paraTypeCount = {};
-      const primaryTypeCount = {};
+        modeList.forEach(mode => {
+          const mons = allData[mode] || [];
+          const finalCount = mons.filter(hasImage).length; // only images from 'images/' folder
+          const designedCount = mons.filter(isDesigned).length; // not MissingNo
 
-      (allData.base || []).forEach(mon => {
-        const types = mon.types?.length ? mon.types : ["null"];
-        const paras = mon.paraTypes?.length ? mon.paraTypes : ["null"];
+        modeHtml += `<div class="mode-item">
+          <span class="mode-name"><b>${mode.charAt(0).toUpperCase() + mode.slice(1)}</b></span>
+          <div class="mode-counts">
+            <span>Final: ${finalCount}/${mons.length}</span> |
+            <span>Designed: ${designedCount}/${mons.length}</span>
+          </div>
+        </div>`;
+      });
 
-        types.forEach(t => {
-          typeCount[t] = (typeCount[t] || 0) + 1;
+      modeHtml += `</div></section>`;
+
+      // -------------------- MISSINGNO COUNT (all modes except NPC) --------------------
+      const nonNpcMons = allMons.filter(m => m.mode !== "npc");
+      const missingNoMons = nonNpcMons.filter(isMissingNo);
+      const missingNoHtml = `<section class="stats-section">
+        <p>Total MissingNo: ${missingNoMons.length}/${nonNpcMons.length}</p>
+      </section><hr>`;
+
+      // -------------------- TYPING STATS (BASE) --------------------
+      const baseMons = allData.base || [];
+      const typeMap = {};
+
+      // First pass: numerators exclude MissingNo, L.MissingNo, Ones
+      baseMons.forEach(m => {
+        if (!hasImage(m) || isSpecial(m)) return;
+
+        const types = Array.isArray(m.types) ? m.types.filter(t => t) : [];
+        const paras = Array.isArray(m.paraTypes) ? m.paraTypes.filter(p => p) : [];
+
+        // Count only primary + secondary types for "All"
+        types.forEach((t, i) => {
+          if (!typeMap[t]) typeMap[t] = { all: 0, primary: 0, para: 0, allDen: 0, primaryDen: 0, paraDen: 0 };
+          typeMap[t].all += 1;
+          if (i === 0) typeMap[t].primary += 1;
         });
 
+        // Count Para separately
         paras.forEach(p => {
-          paraTypeCount[p] = (paraTypeCount[p] || 0) + 1;
+          if (!typeMap[p]) typeMap[p] = typeMap[p] || { all: 0, primary: 0, para: 0, allDen: 0, primaryDen: 0, paraDen: 0 };
+          typeMap[p].para += 1;
         });
-
-        const primary = types[0] ?? "null";
-        primaryTypeCount[primary] = (primaryTypeCount[primary] || 0) + 1;
       });
 
-      // ---------- IMAGE STATS ----------
-      let fromImages = 0;
-      let fromLost = 0;
-      let missingNo = 0;
-      let costumed = 0;
+      // Second pass: denominators
+      Object.keys(typeMap).forEach(type => {
+        typeMap[type].allDen = baseMons.filter(m => {
+          const types = Array.isArray(m.types) ? m.types.filter(t => t) : [];
+          return types.includes(type);
+        }).length;
 
-      allMons.filter(isMate).forEach(mon => {
-        const img = mon.image || "";
+        typeMap[type].primaryDen = baseMons.filter(m => {
+          const types = Array.isArray(m.types) ? m.types.filter(t => t) : [];
+          return types[0] === type;
+        }).length;
 
-        if (img.includes("MissingNo") || img.includes("L.MissingNo")) {
-          missingNo++;
-          return;
-        }
-
-        if (img.includes("cimages")) {
-          costumed++;
-          return;
-        }
-
-        if (img.includes("lostimages")) {
-          fromLost++;
-          return;
-        }
-
-        if (img.includes("images")) {
-          fromImages++;
-        }
+        typeMap[type].paraDen = baseMons.filter(m => {
+          const paras = Array.isArray(m.paraTypes) ? m.paraTypes.filter(p => p) : [];
+          return paras.includes(type);
+        }).length;
       });
 
-      // ---------- OUTPUT ----------
-      statsContent.innerHTML = `
-        <h3>Unique Mates by Mode</h3>
-        <ul>
-          <li><b>Base:</b> ${uniqueBase.length}</li>
-          <li><b>Sacred:</b> ${uniqueSacred.length}</li>
-          <li><b>Ace:</b> ${uniqueAce.length}</li>
-          <li><b>Non-Canon:</b> ${uniqueNCanon.length}</li>
-          <li><b>NPCs:</b> ${uniqueNPCs.length}</li>
-        </ul>
+      // Sort types by 'all' descending
+      const sortedTypes = Object.keys(typeMap).sort((a, b) => {
+        if (typeMap[b].all !== typeMap[a].all) return typeMap[b].all - typeMap[a].all;
+        return typeMap[b].allDen - typeMap[a].allDen; // tie-breaker
+      });
 
-        <h3>Base-Only Typing Stats</h3>
-        <h4>All Types</h4>
-        ${renderCounts(typeCount)}
+      let typeHtml = `<section class="stats-section">
+        <h2>Typing Stats (Base)</h2>
+        <div class="typing-stats">`;
 
-        <h4>Para-Types</h4>
-        ${renderCounts(paraTypeCount)}
+      sortedTypes.forEach(type => {
+        const t = typeMap[type];
+        typeHtml += `<div class="type-item">
+          <span class="type-name"><b>${type}</b></span>
+          <div class="type-counts">
+            <span>All: ${t.all}/${t.allDen}</span> |
+            <span>Primary: ${t.primary}/${t.primaryDen}</span> |
+            <span>Para: ${t.para}/${t.paraDen}</span>
+          </div>
+        </div>`;
+      });
 
-        <h4>Primary Types</h4>
-        ${renderCounts(primaryTypeCount)}
+      typeHtml += `</div></section>`;
 
-        <h3>Image Sources</h3>
-        <ul>
-          <li><b>Images tab:</b> ${fromImages}</li>
-          <li><b>Lostimages (not MissingNo):</b> ${fromLost}</li>
-          <li><b>Costumed (cimages):</b> ${costumed}</li>
-          <li><b>MissingNo (all variants):</b> ${missingNo}</li>
-        </ul>
-      `;
+      statsContent.innerHTML = modeHtml + missingNoHtml + typeHtml;
     }
 
-function renderCounts(obj) {
-  if (!Object.keys(obj).length) return "<i>None</i>";
-  return `
-    <ul>
-      ${Object.entries(obj)
-        .sort((a, b) => b[1] - a[1])
-        .map(([k, v]) => `<li>${escapeHtml(k)}: ${v}</li>`)
-        .join("")}
-    </ul>
-  `;
-}
+  function renderCounts(obj, missingCount) {
+    if (!obj) return "";
+
+    return Object.entries(obj)
+      .filter(([key, value]) => key && key !== "null" && value > 0)
+      .sort((a, b) => b[1] - a[1])
+      .map(([key, value]) => {
+        const max = value + missingCount;
+        return `<p><b>${escapeHtml(key)}:</b> ${value}/${max}</p>`;
+      })
+      .join("");
+  }
 
   // Build checkbox list for a panel
   function populateFilterOptions(types, container) {
