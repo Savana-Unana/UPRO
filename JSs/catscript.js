@@ -98,46 +98,88 @@ document.addEventListener("DOMContentLoaded", () => {
       const allMons = Object.entries(allData).flatMap(
         ([mode, mons]) => mons.map(m => ({ ...m, mode }))
       );
-
       const isMissingNo = m =>
-        (m.image || "").includes("MissingNo") || (m.image || "").includes("L.MissingNo");
+        m.mode !== "npc" &&
+        (
+          m.name === "MissingNo" ||
+          m.name === "L.MissingNo" ||
+          (m.image || "").includes("MissingNo")
+        );
       const isOnes = m => m.name === "Ones";
       const isSpecial = m => isMissingNo(m) || isOnes(m);
-      const isDesigned = m => !isMissingNo(m) && !isOnes(m);
+      const usesNimage = m =>
+        /(^|\/)nimages\//i.test(m.image || "");
+      const isNpcPlaceholder = m =>
+        usesNimage(m) && (m.image || "").toLowerCase().includes("youknowwhoiam");
+      const isNpcCreated = m =>
+        usesNimage(m) && !isNpcPlaceholder(m);
+      const isFinalized = m =>
+        hasImage(m) && !isSpecial(m);
+      const isDesigned = m =>
+        m.mode !== "npc" &&
+        !isMissingNo(m) &&
+        !isOnes(m);
       const hasImage = m => {
-        if (!m.image) return false;
-        const path = m.image.toLowerCase();
-        return path.startsWith("images/") || path.startsWith("./images/") || path.includes("/images/");
+        const imgPath = m.image;
+        if (!imgPath) return false;
+
+        const path = imgPath.toLowerCase();
+
+        if (m.mode === "npc") {
+          return path.includes("/nimages/") && !path.includes("youknowwhoiam");
+        }
+
+        return (
+          path.startsWith("images/") ||
+          path.startsWith("./images/") ||
+          path.includes("/images/")
+        );
       };
 
       // -------------------- MODE STATS --------------------
-      const modeList = ["base", "sacred", "ace", "event", "costumes", "npc"];
+      const modeList = ["base", "sacred", "ace", "ncanon", "event", "costumes", "npc"];
       let modeHtml = `<section class="stats-section">
         <h2>Mode Stats</h2>
         <div class="mode-stats">`;
 
         modeList.forEach(mode => {
-          const mons = allData[mode] || [];
-          const finalCount = mons.filter(hasImage).length; // only images from 'images/' folder
-          const designedCount = mons.filter(isDesigned).length; // not MissingNo
+          const mons = (allData[mode] || []).map(m => ({ ...m, mode }));
+          let createdCount;
+          let finalizedCount;
+          let totalCount = mons.length;
 
+          if (mode === "npc") {
+            const npcMons = mons.filter(m => m.image);
+            createdCount = npcMons.filter(isNpcCreated).length;
+            totalCount = npcMons.length;
+          } else {
+            createdCount = mons.filter(isDesigned).length;
+            finalizedCount = mons.filter(isFinalized).length;
+          }
         modeHtml += `<div class="mode-item">
           <span class="mode-name"><b>${mode.charAt(0).toUpperCase() + mode.slice(1)}</b></span>
           <div class="mode-counts">
-            <span>Final: ${finalCount}/${mons.length}</span> |
-            <span>Designed: ${designedCount}/${mons.length}</span>
+            <span>
+            ${mode === "npc"
+              ? `Created: ${createdCount}/${totalCount}`
+              : `Designed: ${createdCount}/${mons.length}, Finalized: ${finalizedCount}/${mons.length}`
+            }
+          </span>
           </div>
         </div>`;
       });
 
       modeHtml += `</div></section>`;
 
-      // -------------------- MISSINGNO COUNT (all modes except NPC) --------------------
-      const nonNpcMons = allMons.filter(m => m.mode !== "npc");
-      const missingNoMons = nonNpcMons.filter(isMissingNo);
-      const missingNoHtml = `<section class="stats-section">
-        <p>Total MissingNo: ${missingNoMons.length}/${nonNpcMons.length}</p>
-      </section><hr>`;
+    // -------------------- MISSINGNO COUNT (all modes except NPC) --------------------
+    const nonNpcMons = Object.values(allData)
+      .flat()
+      .filter(m => m.mode !== "npc"); // includes event now
+
+    const missingNoMons = nonNpcMons.filter(isMissingNo);
+    const missingNoHtml = `<section class="stats-section">
+      <p>Total MissingNo: ${missingNoMons.length}/${nonNpcMons.length}</p>
+    </section><hr>`;
 
       // -------------------- TYPING STATS (BASE) --------------------
       const baseMons = allData.base || [];
@@ -306,7 +348,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedParas = getCheckedValues(paraOptionsEl);
 
     const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
-
     animatrixData
       .filter(mate => {
         if (!mate) return false;
@@ -324,18 +365,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.className = "card";
         applyMateStyle(card, mate);
-        // Border color based on primary typing
-        const primaryType = (mate.types && mate.types[0]) || null;
-        const typeObj = typesData.find(t => t.name === primaryType);
 
+        // Determine if it uses lostimages
+        const lostImage = mate.image && mate.image.toLowerCase().includes("lostimages");
+        const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
 
         // Inner HTML for the card
         card.innerHTML = `
           <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
-          <h3>${escapeHtml(mate.name)}</h3>
+          <h3>${displayName}</h3>
           ${(mate.event === "fools") ? "" : `
             <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
-            ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+            ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""} 
           `}
         `;
 

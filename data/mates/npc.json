@@ -28,6 +28,10 @@
     {"id":"CC", "name":"Defective Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif",  "quest":"???", "reference":null, "Description":"A broken Capture Capsule.", "cosmark":"Y"},
     {"id":"CC", "name":"Frozen Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
     {"id":"CC", "name":"Sleigh Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"CC", "name":"Brick Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":"Lego", "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"CC", "name":"Wind Up Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":"Mockenyu", "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"CC", "name":"Cart Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"CC", "name":"Backwards Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
     
     {"id":"Kal", "name":"Kal", "image":"nimages/Kal.gif", "quest":"Unlocked when Kal joins the party.", "reference":null, "Description":"The normal sprites.", "cosmark":"N"},
     {"id":"Kal", "name":"Flaminstein's Monster Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"Frankenstein Story", "Description":"No entry yet", "cosmark":"Y"},
