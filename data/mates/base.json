@@ -63,7 +63,7 @@
   {"id":35,"name":"Tankfish","types":["Water","Artillery"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Tankfish.png","ability": ""},
   {"id":36,"name":"Fizzlet","types":["Water","Metal"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Fizzlet.png","ability": ""},
   {"id":37,"name":"Fizzik","types":["Water","Metal"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Fizzik.png","ability": ""},
-  {"id":41,"name":"Cordal","types":["Water","Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Cordial.png","ability": ""},
+  {"id":41,"name":"Chordal","types":["Water","Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Chordal.png","ability": ""},
   {"id":22,"name":"Cartilicht","types":["Water","Light"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Cartilicht.png","ability": ""},
   {"id":33,"name":"Blarb","types":["Water"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Blarb.png","ability": ""},
   {"id":160,"name":"Beabar","types":["Normal", "Water"],"paraTypes":["Earth"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png","ability": ""},
@@ -236,7 +236,3 @@
   {"id":122,"name":"Cosmicanine","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Cosmicanine.png","ability": ""},
   {"id":123,"name":"TwoMew.png.jpeg.gif.webp.jif","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/TwoMew.jpeg.png.gif.webp.jif.png","ability": ""}
 ]
-
-
-
-
