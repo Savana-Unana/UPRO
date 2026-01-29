@@ -9,13 +9,17 @@
 
   { "name": "Modest Ashore", "file": "Songs/ModestAshore.mp3", "ost": 1000, "composer": "Michael", "area": "Forest", "theme": "Theme", "typing": "Water", "order": 12 },
 
-  { "name": "Town Theme", "file": "Songs/Town Theme.mp3", "ost": 1000, "composer": "Michael", "area": "Town", "theme": "Theme", "typing": "Normal", "order": 15 },
+  { "name": "Call of the Wild", "file": "Songs/CalloftheWild.mp3", "ost": 1000, "composer": "Michael", "area": "Forest", "theme": "BattleTheme", "typing": "Water", "order": 100 },
+
+  { "name": "Spawn Point", "file": "Songs/SpawnPoint.mp3", "ost": 1000, "composer": "Michael", "area": "Town", "theme": "Theme", "typing": "Normal", "order": 15 },
+
+  { "name": "Dawn Point", "file": "Songs/DawnPoint.mp3", "ost": 1000, "composer": "Michael", "area": "Town", "theme": "Theme", "typing": "Normal", "order": 100 },
 
   { "name": "Reminiscence", "file": "Songs/Reminiscence.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 },
 
-  { "name": "Calm After The Storm", "file": "Songs/CalmAfterTheStorm.mp3", "ost": 1000, "composer": "Michael", "area": "Shop", "theme": "Theme", "typing": "Normal", "order": 8 },
+  { "name": "Calm After The Storm", "file": "Songs/CalmAfterTheStorm.mp3", "ost": 1000, "composer": "Michael", "area": "Shop", "theme": "ShopTheme", "typing": "Normal", "order": 8 },
 
-  { "name": "Bait", "file": "Songs/Bait.mp3", "ost": 1000, "composer": "Michael", "area": "Water Gauntlet", "theme": "Theme", "typing": "Water", "order": 100 },
+  { "name": "Bait", "file": "Songs/Bait.mp3", "ost": 1000, "composer": "Michael", "area": "Water Gauntlet", "theme": "GauntTheme", "typing": "Water", "order": 100 },
 
   { "name": "Distant Rumbles", "file": "Songs/DistantRumbles.mp3", "ost": 1000, "composer": "Michael", "area": "Desert", "theme": "Theme", "typing": "Earth", "order": 5 },
 
@@ -39,17 +43,21 @@
 
   { "name": "Fury", "file": "Songs/Fury.mp3", "ost": 1000, "composer": "Michael", "area": "Dragon Gauntlet", "theme": "GauntTheme", "typing": "Savage", "order": 10 },
 
-  { "name": "Relocation", "file": "Songs/Relocation.mp3", "ost": 1000, "composer": "Michael", "area": "Team Reposition", "theme": "Theme", "typing": "Normal", "order": 11 },
+  { "name": "Relocation", "file": "Songs/Relocation.mp3", "ost": 1000, "composer": "Michael", "area": "Team Reposition", "theme": "BattleTheme", "typing": "Normal", "order": 11 },
 
-  { "name": "Desecration", "file": "Songs/Desecration.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition", "theme": "Theme", "typing": "Savage", "order": 100 },
+  { "name": "Relinquish", "file": "Songs/Relinquish.mp3", "ost": 1000, "composer": "Michael", "area": "Team Reposition", "theme": "BattleTheme", "typing": "Normal", "order": 100 },
 
-  { "name": "Desecration Chiptune", "file": "Songs/DesecrationCT.mp3", "ost": 1000, "composer": "Jimm560", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },
+  { "name": "Desecration", "file": "Songs/Desecration.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition", "theme": "BattleTheme", "typing": "Savage", "order": 100 },
+
+  { "name": "Desecration Chiptune", "file": "Songs/DesecrationCT.mp3", "ost": 1000, "composer": "Jimm560", "area": "Team Demolition Base", "theme": "BattleTheme", "typing": "Savage", "order": 100 },
 
   { "name": "Despair", "file": "Songs/Despair.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },  
 
   { "name": "Demo", "file": "Songs/Demo.mp3", "ost": 1000, "composer": "Michael", "area": "Team Demolition Base", "theme": "Theme", "typing": "Savage", "order": 100 },
 
-  { "name": "Standstill", "file": "Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "Theme", "typing": "Normal", "order": 100 },
+  { "name": "Haven", "file": "Songs/Haven.mp3", "ost": 1000, "composer": "Jake", "area": "Haven Horn Hideout", "theme": "Theme", "typing": "Spectral", "order": 100 },
+
+  { "name": "Standstill", "file": "Songs/Standstill.mp3", "ost": 1000, "composer": "Michael", "area": "???", "theme": "BattleTheme", "typing": "Normal", "order": 100 },
 
   { "name": "Snowscape", "file": "Songs/Snowscape.mp3", "ost": 1000, "composer": "Skiehie", "area": "Frostbite", "theme": "MemeTheme", "typing": "Ice", "order": 100 },
 
