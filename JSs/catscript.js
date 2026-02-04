@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closeStats.onclick = () => statsModal.classList.add("hidden");
 
     function buildStats() {
+      const hasValidId = m => m && m.id !== null;
       const allMons = Object.entries(allData).flatMap(
         ([mode, mons]) => mons.map(m => ({ ...m, mode }))
       );
@@ -144,17 +145,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         modeList.forEach(mode => {
           const mons = (allData[mode] || []).map(m => ({ ...m, mode }));
+          const statsMons = mons.filter(hasValidId);
           let createdCount;
           let finalizedCount;
-          let totalCount = mons.length;
+          let totalCount = statsMons.length;
 
           if (mode === "npc") {
-            const npcMons = mons.filter(m => m.image);
+            const npcMons = statsMons.filter(m => m.image);
             createdCount = npcMons.filter(isNpcCreated).length;
             totalCount = npcMons.length;
           } else {
-            createdCount = mons.filter(isDesigned).length;
-            finalizedCount = mons.filter(isFinalized).length;
+            createdCount = statsMons.filter(isDesigned).length;
+            finalizedCount = statsMons.filter(isFinalized).length;
           }
         modeHtml += `<div class="mode-item">
           <span class="mode-name"><b>${mode.charAt(0).toUpperCase() + mode.slice(1)}</b></span>
@@ -162,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>
             ${mode === "npc"
               ? `Created: ${createdCount}/${totalCount}`
-              : `Designed: ${createdCount}/${mons.length}, Finalized: ${finalizedCount}/${mons.length}`
+              : `Designed: ${createdCount}/${totalCount}, Finalized: ${finalizedCount}/${totalCount}`
             }
           </span>
           </div>
@@ -174,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------- MISSINGNO COUNT (all modes except NPC) --------------------
     const nonNpcMons = Object.values(allData)
       .flat()
-      .filter(m => m.mode !== "npc"); // includes event now
+      .filter(m => m.mode !== "npc" && hasValidId(m)); // includes event now
 
     const missingNoMons = nonNpcMons.filter(isMissingNo);
     const missingNoHtml = `<section class="stats-section">
@@ -182,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </section><hr>`;
 
       // -------------------- TYPING STATS (BASE) --------------------
-      const baseMons = allData.base || [];
+      const baseMons = (allData.base || []).filter(hasValidId);
       const typeMap = {};
 
       // First pass: numerators exclude MissingNo, L.MissingNo, Ones
