@@ -35,6 +35,7 @@
     {"id":"CC", "name":"Cart Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
     {"id":"CC", "name":"Backwards Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
     {"id":"CC", "name":"Lucky Block Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":"Mario Bros.", "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"CC", "name":"Origin Capture Capsule", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":"Ghostbusters", "Description":"No entry yet", "cosmark":"Y"},
     
     {"id":"Kal", "name":"Kal", "image":"nimages/Kal.gif", "quest":"Unlocked when Kal joins the party.", "reference":null, "Description":"The Normal sprites.", "cosmark":"N"},
     {"id":"Kal", "name":"Flaminstein's Monster Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"Frankenstein Story", "Description":"No entry yet", "cosmark":"Y"},
