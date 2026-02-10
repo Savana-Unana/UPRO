@@ -51,7 +51,7 @@
   {"id":41,"name":"Chordal","types":["Water","Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Chordal.png"},
   {"id":22,"name":"Cartilicht","types":["Water","Light"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Cartilicht.png"},
   {"id":33,"name":"Blarb","types":["Water"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Blarb.png"},
-  {"id":160,"name":"Beabar","types":["Normal", "Water"],"paraTypes":["Earth"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png"},
+  {"id":160,"name":"Beabar","types":["Normal", "Water"],"paraTypes":["Earth"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Beabar.png"},
   {"id":24,"name":"Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Ghouliath.png"},
   
 
