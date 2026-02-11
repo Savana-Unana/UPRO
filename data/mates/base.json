@@ -73,7 +73,7 @@
 
 
   {"id":null,"name":"Jungle","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverense":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png"},
-  {"id":68,"name":"Schuck","types":["Normal","Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Shuck.png"},
+  {"id":68,"name":"Schuck","types":["Normal","Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/Schuck.png"},
   {"id":69,"name":"Thruck","types":["Normal","Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Thruck.png"},
   {"id":70,"name":"Thrack","types":["Normal","Earth"],"paraTypes":["Artillery"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Thrack.png"},
   {"id":134,"name":"Grraft","types":["Normal","Artillery"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png"},
