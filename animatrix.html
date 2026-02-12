@@ -43,6 +43,35 @@
         </div>
       </div>
 
+      <!-- Status filter -->
+      <div class="multi-filter" id="statusFilterWrapper">
+        <button class="filter-toggle" id="statusToggle">Status ▾</button>
+        <div class="filter-panel" id="statusPanel" aria-hidden="true">
+          <div class="options" id="statusOptions">
+            <label class="opt">
+              <input type="radio" name="statusFilter" value="all" checked>
+              <span>All</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="statusFilter" value="missingno">
+              <span>MissingNos</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="statusFilter" value="designed">
+              <span>Designed</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="statusFilter" value="nonfinalized">
+              <span>Non-Finalized</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="statusFilter" value="finalized">
+              <span>Finalized</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div class="view-toggle">
         <button id="gridView" class="active">Grid</button>
         <button id="listView">List</button>

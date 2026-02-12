@@ -21,12 +21,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const paraPanel = document.getElementById("paraPanel");
   const paraOptionsEl = document.getElementById("paraOptions");
   const clearParas = document.getElementById("clearParas");
+  const statusToggle = document.getElementById("statusToggle");
+  const statusPanel = document.getElementById("statusPanel");
+  const statusOptionsEl = document.getElementById("statusOptions");
 
   const modal = document.getElementById("detailsModal");
   const closeModal = document.getElementById("closeModal");
   const nextMate = document.getElementById("nextMate");
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
+
+  const isMissingNo = m =>
+    m.mode !== "npc" &&
+    (
+      m.name === "MissingNo" ||
+      m.name === "L.MissingNo" ||
+      (m.image || "").includes("MissingNo")
+    );
+  const isOnes = m => m.name === "Ones";
+  const isSpecial = m => isMissingNo(m) || isOnes(m);
+  const usesNimage = m => /(^|\/)nimages\//i.test(m.image || "");
+  const isNpcPlaceholder = m =>
+    usesNimage(m) && (m.image || "").toLowerCase().includes("youknowwhoiam");
+  const isNpcCreated = m =>
+    usesNimage(m) && !isNpcPlaceholder(m);
+  const hasImage = m => {
+    const imgPath = m.image;
+    if (!imgPath) return false;
+
+    const path = imgPath.toLowerCase();
+
+    if (m.mode === "npc") {
+      return path.includes("/nimages/") && !path.includes("youknowwhoiam");
+    }
+
+    return (
+      path.startsWith("images/") ||
+      path.startsWith("./images/") ||
+      path.includes("/images/")
+    );
+  };
+  const isDesigned = m =>
+    m.mode !== "npc" &&
+    !isMissingNo(m) &&
+    !isOnes(m);
+  const isFinalized = m =>
+    hasImage(m) && !isSpecial(m);
 
   // mode buttons
   const modeButtons = Array.from(document.querySelectorAll(".mode-btn"));
@@ -99,43 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const allMons = Object.entries(allData).flatMap(
         ([mode, mons]) => mons.map(m => ({ ...m, mode }))
       );
-      const isMissingNo = m =>
-        m.mode !== "npc" &&
-        (
-          m.name === "MissingNo" ||
-          m.name === "L.MissingNo" ||
-          (m.image || "").includes("MissingNo")
-        );
-      const isOnes = m => m.name === "Ones";
-      const isSpecial = m => isMissingNo(m) || isOnes(m);
-      const usesNimage = m =>
-        /(^|\/)nimages\//i.test(m.image || "");
-      const isNpcPlaceholder = m =>
-        usesNimage(m) && (m.image || "").toLowerCase().includes("youknowwhoiam");
-      const isNpcCreated = m =>
-        usesNimage(m) && !isNpcPlaceholder(m);
-      const isFinalized = m =>
-        hasImage(m) && !isSpecial(m);
-      const isDesigned = m =>
-        m.mode !== "npc" &&
-        !isMissingNo(m) &&
-        !isOnes(m);
-      const hasImage = m => {
-        const imgPath = m.image;
-        if (!imgPath) return false;
-
-        const path = imgPath.toLowerCase();
-
-        if (m.mode === "npc") {
-          return path.includes("/nimages/") && !path.includes("youknowwhoiam");
-        }
-
-        return (
-          path.startsWith("images/") ||
-          path.startsWith("./images/") ||
-          path.includes("/images/")
-        );
-      };
 
       // -------------------- MODE STATS --------------------
       const modeList = ["base", "sacred", "ace", "ncanon", "event", "costumes", "npc"];
@@ -313,6 +316,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupToggle(typeToggle, typePanel);
   setupToggle(paraToggle, paraPanel);
+  setupToggle(statusToggle, statusPanel);
+
+  function getStatusFilterValue() {
+    const checked = statusOptionsEl.querySelector('input[name="statusFilter"]:checked');
+    return checked ? checked.value : "all";
+  }
+
+  function statusPassesFilter(mate) {
+    const filter = getStatusFilterValue();
+    if (filter === "all") return true;
+
+    const mateWithMode = { ...mate, mode: mate.mode || currentMode };
+    if (mateWithMode.mode === "npc") return true;
+
+    if (filter === "missingno") return isMissingNo(mateWithMode);
+    if (filter === "designed") return isDesigned(mateWithMode);
+    if (filter === "nonfinalized") return isDesigned(mateWithMode) && !isFinalized(mateWithMode);
+    if (filter === "finalized") return isFinalized(mateWithMode);
+    return true;
+  }
 
   // Clear buttons
   clearTypes.addEventListener("click", () => {
@@ -327,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Wire checkbox changes to re-render
   typeOptionsEl.addEventListener("change", renderAnimatrix);
   paraOptionsEl.addEventListener("change", renderAnimatrix);
+  statusOptionsEl.addEventListener("change", renderAnimatrix);
 
   // Mode switching
   modeButtons.forEach(btn => {
@@ -360,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedParas.length) {
           if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
         }
+        if (!statusPassesFilter(mate)) return false;
         if (currentMode === "npc" && mate.cosmark === "Y") return false;
         return true;
       })
@@ -428,6 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedParas.length) {
         if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
       }
+      if (!statusPassesFilter(mate)) return false;
       if (currentMode === "npc" && mate.cosmark === "Y") return false;
       return true;
     });
