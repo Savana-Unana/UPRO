@@ -88,7 +88,7 @@
   {"id":141,"name":"Tralgon","types":["Air", "Savage"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png"},
   {"id":153,"name":"Cuputrid","types":["Gross", "Air"],"paraTypes":["Mystic"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png"},
   {"id":156,"name":"Babahl","types":["Normal", "Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png"},
-  
+  {"id":121,"name":"Torterritory","types":["Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Torterritory.png"},
 
   {"id":null,"name":"Plains","types":[""],"paraTypes":[""],"dexEntries":{"Discovered":"","First Caught":"","Experienced":"","Reverense":""},"evolvesTo":[],"abilities":[],"moves":[],"image":"cimages/L.MissingNo.png"},
   {"id":58,"name":"Beit","types":["Spectral","Mystic"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/MissingNo.png"},
@@ -236,7 +236,6 @@
   {"id":118,"name":"Pydromaglar","types":["Fire"],"paraTypes":["Water","Electric","Light"],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Pydromaglar.png"},
   {"id":119,"name":"Exosteel","types":["Metal"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Exosteel.png"},
   {"id":120,"name":"Cuddol","types":["Mystic","Dark"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Cuddol.gif"},
-  {"id":121,"name":"Torterritory","types":["Earth"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Torterritory.png"},
   {"id":122,"name":"Cosmicanine","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"lostimages/Cosmicanine.png"},
   {"id":123,"name":"TwoMew.png.jpeg.gif.webp.jif","types":["Lucid"],"paraTypes":[""],"dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"image":"images/TwoMew.jpeg.png.gif.webp.jif.png"}
 ]
