@@ -94,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
     !isOnes(m);
   const isFinalized = m =>
     hasImage(m) && !isSpecial(m);
+  const isConceptualized = m =>
+    /(^|\/)lostimages\//i.test(m.image || "");
 
   // mode buttons
   const modeButtons = Array.from(document.querySelectorAll(".mode-btn"));
@@ -360,6 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (filter === "missingno") return isMissingNo(mateWithMode);
     if (filter === "designed") return isDesigned(mateWithMode);
     if (filter === "nonfinalized") return isDesigned(mateWithMode) && !isFinalized(mateWithMode);
+    if (filter === "conceptualized") return isConceptualized(mateWithMode);
     if (filter === "finalized") return isFinalized(mateWithMode);
     return true;
   }
