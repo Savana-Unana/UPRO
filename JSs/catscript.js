@@ -30,6 +30,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextMate = document.getElementById("nextMate");
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
+  const allowedRarities = new Set(["Normal", "BaseForme", "Shiver", "Paragon"]);
+
+  function getRarities(mate) {
+    const raw = mate?.rarity;
+    let list = [];
+
+    if (Array.isArray(raw)) {
+      list = raw;
+    } else if (typeof raw === "string") {
+      list = raw.split(/[,+|/]/g).map(x => x.trim()).filter(Boolean);
+    } else if (raw !== undefined && raw !== null) {
+      list = [String(raw).trim()];
+    }
+
+    const normalized = [];
+    list.forEach(r => {
+      if (allowedRarities.has(r) && !normalized.includes(r)) normalized.push(r);
+    });
+
+    if (!normalized.length) return ["Normal"];
+    if (normalized.length > 1) return normalized.filter(r => r !== "Normal");
+    return normalized;
+  }
+  const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);
+  const isBaseForme = mate => hasRarity(mate, "BaseForme");
+  const isShiver = mate => hasRarity(mate, "Shiver");
+  const isParagon = mate => hasRarity(mate, "Paragon");
 
   const isMissingNo = m =>
     m.mode !== "npc" &&
@@ -363,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadMode(mode) {
     currentMode = mode;
-    animatrixData = Array.isArray(allData[mode]) ? allData[mode] : [];
+    animatrixData = (Array.isArray(allData[mode]) ? allData[mode] : []).filter(mate => !isBaseForme(mate));
     renderAnimatrix();
   }
 
@@ -377,6 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animatrixData
       .filter(mate => {
         if (!mate) return false;
+        if (isBaseForme(mate)) return false;
         if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
         if (selectedTypes.length) {
           if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -391,14 +419,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .forEach(mate => {
         const card = document.createElement("div");
         card.className = "card";
+        if (isParagon(mate)) card.classList.add("rarity-paragon");
         applyMateStyle(card, mate);
 
         // Determine if it uses lostimages
         const lostImage = mate.image && mate.image.toLowerCase().includes("lostimages");
         const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
+        const shiverBadge = isShiver(mate)
+          ? `<img class="rarity-shiver-badge" src="webimages/Shiver.png" alt="Shiver" title="Shiver">`
+          : "";
 
         // Inner HTML for the card
         card.innerHTML = `
+          ${shiverBadge}
           <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
           <h3>${displayName}</h3>
           ${(mate.event === "fools") ? "" : `
@@ -415,6 +448,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function typeTag(typeName) {
     const t = typesData.find(x => x.name === typeName);
     return `<span style="background:${t ? t.color : '#ccc'}">${escapeHtml(typeName)}</span>`;
+  }
+
+  function mateVitalsHtml(mate) {
+    const height = escapeHtml(mate.height || "Unknown");
+    const color = escapeHtml(mate.color || "Unknown");
+    return `<div class="mate-meta"><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
   }
 
   gridView.addEventListener("click", () => {
@@ -446,6 +485,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const visibleMates = animatrixData.filter(mate => {
       if (!mate) return false;
+      if (isBaseForme(mate)) return false;
       if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
       if (selectedTypes.length) {
         if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -471,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openDetails(mate) {
     // set mode badge and activate mode button if possible
     const mateMode = mate.mode || currentMode;
-    setModeBadge(mateMode);
+    setModeBadge(mateMode, mate);
     activateModeButton(mateMode);
 
     // set currentMateIndex to the index within the current filtered animatrixData, if present
@@ -490,6 +530,7 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.color = "";
     el.style.fontFamily = "";
     el.style.border = "";
+    el.style.removeProperty("--outline-color");
 
     // event styles
     if (mate.event === "halloween") {
@@ -509,7 +550,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // primary type border
     const primaryType = mate.types?.[0];
     const typeObj = typesData.find(t => t.name === primaryType);
-    el.style.border = `3px solid ${typeObj ? typeObj.color : "#ccc"}`;
+    const outlineColor = typeObj ? typeObj.color : "#ccc";
+    el.style.setProperty("--outline-color", outlineColor);
+    el.style.border = `3px solid ${outlineColor}`;
   }
 
 
@@ -518,8 +561,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#detailsModal .modal-content") ||
     document.getElementById("detailsModal");
     applyMateStyle(modalContent, mate);
+    setModeBadge(mate.mode || currentMode, mate);
     document.getElementById("mateName").textContent = mate.name || "";
     document.getElementById("mateImage").src = mate.image || "";
+    document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
 
     // Types (hide for NPCs)
     document.getElementById("mateTypes").innerHTML = currentMode !== "npc"
@@ -609,7 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Alternate forms still shown for both NPCs and non-NPCs
+    // Alternate forms (existing behavior): same species across all modes
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
     const allForms = Object.entries(allData).flatMap(([mode, mates]) => mates.map(m => ({ ...m, mode })));
@@ -631,12 +676,42 @@ document.addEventListener("DOMContentLoaded", () => {
         sacredC.appendChild(img);
       });
     }
+
+    // Separate BaseForme-linked forms section: same mode + same id, only if BaseForme exists
+    const baseFormeC = document.getElementById("baseFormeContainer");
+    baseFormeC.innerHTML = "";
+    const mateMode = mate.mode || currentMode;
+    const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
+    const hasValidId = mate.id !== undefined && mate.id !== null;
+
+    if (hasValidId) {
+      const sameSpeciesSameMode = modeForms.filter(f => f.id === mate.id);
+      const hasBaseForme = sameSpeciesSameMode.some(f => hasRarity(f, "BaseForme"));
+      const otherModeForms = sameSpeciesSameMode.filter(f => !(f.name === mate.name && f.image === mate.image));
+
+      if (hasBaseForme && otherModeForms.length) {
+        baseFormeC.innerHTML = "<b>Alternates:</b><br>";
+        otherModeForms.forEach(form => {
+          const img = document.createElement("img");
+          img.src = form.image || "";
+          img.title = `${form.name} (${form.mode})`;
+          img.onclick = () => openDetails(form);
+          img.style.width = "80px";
+          img.style.margin = "4px";
+          img.style.border = "2px solid #0ff";
+          img.style.borderRadius = "10px";
+          img.style.cursor = "pointer";
+          baseFormeC.appendChild(img);
+        });
+      }
+    }
   }
 
 
   // Mode badge + auto-activate mode button
-  function setModeBadge(mode) {
-    modeBadge.textContent = mode ? mode.toUpperCase() : "";
+  function setModeBadge(mode, mate) {
+    const rarityText = getRarities(mate).join("+");
+    modeBadge.textContent = mode ? `${mode.toUpperCase()} | ${rarityText}` : rarityText;
   }
   function activateModeButton(mode) {
     const match = modeButtons.find(b => b.dataset.mode === mode);

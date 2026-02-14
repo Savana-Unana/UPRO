@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Toy Box",
+    "animates": ["Quubbly","Limirail", "Beit", "Pocube", "Puppechyu", "Mockenyu", "Verdaermy", "Berdminton", "Masqulpt", "Acorgin", "Cuddol", "Wind Up CC"]
+  },
+  {
+    "name": "Corrupted",
+    "animates": ["Axolitl", "Axolote", "Axolarg", "Garbajool", "Trashure", "Infested Skip"]
+  },
+  {
+    "name": "Ghouliath Reverenses",
+    "animates": ["Ircencaat", "Hexkwet", "Vultumbra", "Ghouliath"]
+  },
+  {
+    "name": "Food Chain",
+    "animates": ["Pretengerine", "Espiorange","Bakunbush", "Pigturee", "Fizzlet", "Fizzik", "Torterritory", "Buntot", "Challadin", "Bagueezer", "Frankyurt", "Frankfortress", "Flapdrag","Strawngle", "Slurpent", "Spongus", "Eternip", "Pumpkadav","Cheorie", "Aestereg", "Rice Gerrindamo"]
+  },
+  {
+    "name": "Dopplergrail Reverenses",
+    "animates": ["Dodecadog", "Aestereg","Pydromaglar", "Cuddol", "Dopplergrail", "Sewn Skip"]
+  },
+  {
+    "name": "Shiver Co. Creations",
+    "animates": ["Capture Capsule", "Vigilith", "Empire Vigilith", "Agilith", "Signilith", "Walmare", "Flexoform", "Shiver Jaws", "Shiver Vlogs", "Shiver Blades", "Shiver Screens", "Shiver Gogs", "Shiver Pests", "Ace Spongus", "Shiver Molds", "Shiver Dupes"]
+  },
+  {
+    "name": "Gorls",
+    "animates": ["Capture Capsule", "Cuputrid", "Torterritory", "Dressiani", "Sapphae", "Enchrancess", "Wyrachnos", "Lemody"]
+  },
+  {
+    "name": "Oh Boiis",
+    "animates": ["Blarb", "Ghouliath", "Ampede", "Buntot", "Challadin", "Bagueezer", "Bewag", "Fonceer", "Spongus", "Cuddol", "TwoMew.png.jpeg.gif.webp.jif"]
+  },
+  {
+    "name": "Roadblocksica",
+    "animates": ["Noob", "Guest", "Binary Axolarg"]
+  }, 
+  {
+    "name": "Cosplayers",
+    "animates": ["Trashcan Skip", "Athlete Skip", "Swimmer Skip", "Bedtime Skip", "Sewn Skip", "Liberty Skip", "Scout Skip", "Placeholder", "The Rodent", "Randy Cosplay Chip", "Waiter Chip", "Cult Chip", "Scuba Chip", "Poker Chip", "Lord of Flames Chip", "Haven Cosplay Maya", "Zantifeeld Espiorange Forme", "Buffet Verdaermy", "Radioactive Cuddol"]
+  },
+  {
+    "name": "OGs",
+    "animates": ["OG Prismite", "Origin CC", "Mysterious Trader", "Burning Bakunbush", "Origin Blarb", "Dreidel Beit", "Origin Prismite", "Phage Shiver Jaws"]
+  }, 
+  {
+    "name": "Minecrap",
+    "animates": ["Slime Skip", "Golden Gladiator Kal", "Blood King Bakunbush", "Yellow King Bewag"]
+  }, 
+  {
+    "name": "End of the World",
+    "animates": ["Apocalypse Bearosion", "Apocalypse Axolote", "Apocalypse Blazuki", "Apocalypse Thrack", "Apocalypse Elixion", "Apocalypse Caraptor", "Apocalypse Caraptor Feral Forme"]
+  },   
+  {
+    "name": "Merry Crew",
+    "animates": ["Merry Skip", "Frozen CC", "Sleigh CC", "Elf Kal", "Grinch Chip", "Chilly Bakunbush", "Ornament Zantifeeld", "Nutcracker Ircencaat", "Present Puppechyu", "Krampus Bewag", "Snow Angel Cuputrid", "Countdown Babahl", "Elf Cuddol"]
+  }
+]
