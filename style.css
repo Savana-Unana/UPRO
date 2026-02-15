@@ -354,7 +354,7 @@ main.list {
   overflow-x: auto;
   padding-bottom: 6px;
 }
-#baseFormeContainer {
+#ModeContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -388,7 +388,7 @@ main.list {
 
 #evolutionsContainer img,
 #sacredContainer img,
-#baseFormeContainer img {
+#ModeContainer img {
   width: 80px;
   cursor: pointer;
   margin: 4px;
