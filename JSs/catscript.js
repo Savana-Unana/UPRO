@@ -164,7 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
     closeStats.onclick = () => statsModal.classList.add("hidden");
 
     function buildStats() {
-      const hasValidId = m => m && m.id !== null;
+      const hasValidId = m =>
+        m &&
+        m.id !== null &&
+        m.id !== undefined &&
+        m.id !== "null";
       const allMons = Object.entries(allData).flatMap(
         ([mode, mons]) => mons.map(m => ({ ...m, mode }))
       );
