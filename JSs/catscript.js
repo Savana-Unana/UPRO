@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextMate = document.getElementById("nextMate");
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
-  const allowedRarities = new Set(["Normal", "BaseForme", "Shiver", "Paragon"]);
+  const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
 
   function getRarities(mate) {
     const raw = mate?.rarity;
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return normalized;
   }
   const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);
-  const isBaseForme = mate => hasRarity(mate, "BaseForme");
+  const isMode = mate => hasRarity(mate, "Mode");
   const isShiver = mate => hasRarity(mate, "Shiver");
   const isParagon = mate => hasRarity(mate, "Paragon");
 
@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function loadMode(mode) {
     currentMode = mode;
-    animatrixData = (Array.isArray(allData[mode]) ? allData[mode] : []).filter(mate => !isBaseForme(mate));
+    animatrixData = (Array.isArray(allData[mode]) ? allData[mode] : []).filter(mate => !isMode(mate));
     renderAnimatrix();
   }
 
@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animatrixData
       .filter(mate => {
         if (!mate) return false;
-        if (isBaseForme(mate)) return false;
+        if (isMode(mate)) return false;
         if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
         if (selectedTypes.length) {
           if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -488,7 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const visibleMates = animatrixData.filter(mate => {
       if (!mate) return false;
-      if (isBaseForme(mate)) return false;
+      if (isMode(mate)) return false;
       if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
       if (selectedTypes.length) {
         if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -663,7 +663,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const allForms = Object.entries(allData).flatMap(([mode, mates]) => mates.map(m => ({ ...m, mode })));
     const hasValidId = mate.id !== undefined && mate.id !== null;
     const sameSpecies = hasValidId ? allForms.filter(f => f.id === mate.id) : allForms.filter(f => f.name === mate.name);
-    const otherForms = sameSpecies.filter(f => !(f.name === mate.name && f.mode === (mate.mode || currentMode)));
+    const otherForms = sameSpecies.filter(f => {
+      if (f.name === mate.name && f.mode === (mate.mode || currentMode)) return false;
+      if ((f.mode || "") !== (mate.mode || currentMode) && isMode(f)) return false;
+      return true;
+    });
 
     if (otherForms.length) {
       sacredC.innerHTML = "<b>Alternate Forms:</b><br>";
@@ -681,18 +685,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Separate BaseForme-linked forms section: same mode + same id, only if BaseForme exists
-    const baseFormeC = document.getElementById("baseFormeContainer");
-    baseFormeC.innerHTML = "";
+    // Separate Mode-linked forms section: same mode + same id, only if Mode exists
+    const ModeC = document.getElementById("ModeContainer");
+    ModeC.innerHTML = "";
     const mateMode = mate.mode || currentMode;
     const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
     if (hasValidId) {
       const sameSpeciesSameMode = modeForms.filter(f => f.id === mate.id);
-      const hasBaseForme = sameSpeciesSameMode.some(f => hasRarity(f, "BaseForme"));
+      const hasMode = sameSpeciesSameMode.some(f => hasRarity(f, "Mode"));
       const otherModeForms = sameSpeciesSameMode.filter(f => !(f.name === mate.name && f.image === mate.image));
 
-      if (hasBaseForme && otherModeForms.length) {
-        baseFormeC.innerHTML = "<b>Alternates:</b><br>";
+      if (hasMode && otherModeForms.length) {
+        ModeC.innerHTML = "<b>Alternates:</b><br>";
         otherModeForms.forEach(form => {
           const img = document.createElement("img");
           img.src = form.image || "";
@@ -703,7 +707,7 @@ document.addEventListener("DOMContentLoaded", () => {
           img.style.border = "2px solid #0ff";
           img.style.borderRadius = "10px";
           img.style.cursor = "pointer";
-          baseFormeC.appendChild(img);
+          ModeC.appendChild(img);
         });
       }
     }

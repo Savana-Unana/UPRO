@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextMate = document.getElementById("nextMate");
   const prevMate = document.getElementById("prevMate");
 
-  const allowedRarities = new Set(["Normal", "BaseForme", "Shiver", "Paragon"]);
+  const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
   function getRarities(mate) {
     const raw = mate?.rarity;
     let list = [];
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);
-  const isBaseForme = mate => hasRarity(mate, "BaseForme");
+  const isMode = mate => hasRarity(mate, "Mode");
   const isShiver = mate => hasRarity(mate, "Shiver");
   const isParagon = mate => hasRarity(mate, "Paragon");
 
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const filtered = deduped.filter(mate => {
         if (!mate) return false;
-        if (isBaseForme(mate)) return false;
+        if (isMode(mate)) return false;
         if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
         return true;
       });
@@ -250,7 +250,11 @@ document.addEventListener("DOMContentLoaded", () => {
     sacredC.innerHTML = "";
     const allForms = Object.entries(allData).flatMap(([mode, mates]) => mates.map(m => ({ ...m, mode })));
     const sameSpecies = mate.id ? allForms.filter(f => f.id === mate.id) : allForms.filter(f => f.name === mate.name);
-    const otherForms = sameSpecies.filter(f => !(f.name === mate.name && f.mode === mateMode));
+    const otherForms = sameSpecies.filter(f => {
+      if (f.name === mate.name && f.mode === mateMode) return false;
+      if ((f.mode || "") !== mateMode && isMode(f)) return false;
+      return true;
+    });
     if (otherForms.length) {
       sacredC.innerHTML = "<b>Alternate Forms:</b><br>";
       otherForms.forEach(form => {
@@ -262,22 +266,22 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    const baseFormeC = document.getElementById("baseFormeContainer");
-    baseFormeC.innerHTML = "";
+    const ModeC = document.getElementById("ModeContainer");
+    ModeC.innerHTML = "";
     const hasValidId = mate.id !== undefined && mate.id !== null;
     if (hasValidId) {
       const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
       const sameSpeciesSameMode = modeForms.filter(f => f.id === mate.id);
-      const hasBase = sameSpeciesSameMode.some(f => hasRarity(f, "BaseForme"));
+      const hasBase = sameSpeciesSameMode.some(f => hasRarity(f, "Mode"));
       const otherModeForms = sameSpeciesSameMode.filter(f => !(f.name === mate.name && f.image === mate.image));
       if (hasBase && otherModeForms.length) {
-        baseFormeC.innerHTML = "<b>Base Forme Set:</b><br>";
+        ModeC.innerHTML = "<b>Base Forme Set:</b><br>";
         otherModeForms.forEach(form => {
           const img = document.createElement("img");
           img.src = form.image || "";
           img.title = `${form.name} (${form.mode})`;
           img.onclick = () => openDetails(form);
-          baseFormeC.appendChild(img);
+          ModeC.appendChild(img);
         });
       }
     }
