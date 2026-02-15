@@ -657,47 +657,53 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Alternate forms (existing behavior): same species across all modes
+    // Alternate Forms: same id across all tabs, excluding Mode entries
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
-    const allForms = Object.entries(allData).flatMap(([mode, mates]) => mates.map(m => ({ ...m, mode })));
-    const hasValidId = mate.id !== undefined && mate.id !== null;
-    const sameSpecies = hasValidId ? allForms.filter(f => f.id === mate.id) : allForms.filter(f => f.name === mate.name);
-    const otherForms = sameSpecies.filter(f => {
-      if (f.name === mate.name && f.mode === (mate.mode || currentMode)) return false;
-      if ((f.mode || "") !== (mate.mode || currentMode) && isMode(f)) return false;
-      return true;
-    });
-
-    if (otherForms.length) {
-      sacredC.innerHTML = "<b>Alternate Forms:</b><br>";
-      otherForms.forEach(form => {
-        const img = document.createElement("img");
-        img.src = form.image || "";
-        img.title = `${form.name} (${form.mode})`;
-        img.onclick = () => openDetails(form);
-        img.style.width = "80px";
-        img.style.margin = "4px";
-        img.style.border = "2px solid #0ff";
-        img.style.borderRadius = "10px";
-        img.style.cursor = "pointer";
-        sacredC.appendChild(img);
-      });
-    }
-
-    // Separate Mode-linked forms section: same mode + same id, only if Mode exists
-    const ModeC = document.getElementById("ModeContainer");
-    ModeC.innerHTML = "";
     const mateMode = mate.mode || currentMode;
     const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
+    const hasValidId = mate.id !== undefined && mate.id !== null;
+    if (hasValidId) {
+      const allForms = Object.entries(allData).flatMap(([mode, mates]) => (mates || []).map(m => ({ ...m, mode })));
+      const sameSpeciesAllTabs = allForms.filter(f => f.id === mate.id);
+      const alternateForms = sameSpeciesAllTabs.filter(f => {
+        if (f.name === mate.name && f.mode === mateMode) return false;
+        if (isMode(f)) return false;
+        if (isMode(mate) && (f.mode || "") === mateMode) return false;
+        return true;
+      });
+
+      if (alternateForms.length) {
+        sacredC.innerHTML = "<b>Alternate Forms:</b><br>";
+        alternateForms.forEach(form => {
+          const img = document.createElement("img");
+          img.src = form.image || "";
+          img.title = `${form.name} (${form.mode})`;
+          img.onclick = () => openDetails(form);
+          img.style.width = "80px";
+          img.style.margin = "4px";
+          img.style.border = "2px solid #0ff";
+          img.style.borderRadius = "10px";
+          img.style.cursor = "pointer";
+          sacredC.appendChild(img);
+        });
+      }
+    }
+
+    // Alternates: same tab + same id, Mode entries only
+    const ModeC = document.getElementById("ModeContainer");
+    ModeC.innerHTML = "";
     if (hasValidId) {
       const sameSpeciesSameMode = modeForms.filter(f => f.id === mate.id);
-      const hasMode = sameSpeciesSameMode.some(f => hasRarity(f, "Mode"));
-      const otherModeForms = sameSpeciesSameMode.filter(f => !(f.name === mate.name && f.image === mate.image));
+      const modeOnlyForms = sameSpeciesSameMode.filter(f => {
+        if (f.name === mate.name && f.image === mate.image) return false;
+        if (isMode(mate)) return true;
+        return isMode(f);
+      });
 
-      if (hasMode && otherModeForms.length) {
+      if (modeOnlyForms.length) {
         ModeC.innerHTML = "<b>Alternates:</b><br>";
-        otherModeForms.forEach(form => {
+        modeOnlyForms.forEach(form => {
           const img = document.createElement("img");
           img.src = form.image || "";
           img.title = `${form.name} (${form.mode})`;
