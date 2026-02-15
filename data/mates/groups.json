@@ -54,5 +54,17 @@
   {
     "name": "Merry Crew",
     "animates": ["Merry Skip", "Frozen CC", "Sleigh CC", "Elf Kal", "Grinch Chip", "Chilly Bakunbush", "Ornament Zantifeeld", "Nutcracker Ircencaat", "Present Puppechyu", "Krampus Bewag", "Snow Angel Cuputrid", "Countdown Babahl", "Elf Cuddol"]
+  },
+  {
+    "name": "Dance Dance Dance",
+    "animates": ["Sacred Dribsom", "Sacred Dribtar", "Chordal", "Tweedle", "Hayvian", "Nightingbale", "Signilith", "Masqulpt", "Acorgin", "Enchrancess", "Moteeph", "Bansheep", "Lemody"]
+  },
+  {
+    "name": "Awarded Fighters",
+    "animates": ["Kroxer", "Thrack", "Grraft", "Lurkest"]
+  },
+  {
+    "name": "This...is...UPRO!",
+    "animates": [""]
   }
 ]
