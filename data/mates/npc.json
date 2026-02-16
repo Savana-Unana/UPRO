@@ -43,7 +43,8 @@
     {"id":"Kal", "name":"Actor Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
     {"id":"Kal", "name":"Human Flame Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"The Fantastic Four", "Description":"No entry yet", "cosmark":"Y"},
     {"id":"Kal", "name":"Golden Gladiator Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"SFAWTDE", "Description":"No entry yet", "cosmark":"Y"},
-    {"id":"Kal", "name":"Elf Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"SFAWTDE", "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"Kal", "name":"Elf Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":null, "Description":"No entry yet", "cosmark":"Y"},
+    {"id":"Kal", "name":"Founding Father Kal", "image":"nimages/YouKnowWhoIAm.gif", "quest":"", "reference":"Monument Mythos", "Description":"No entry yet", "cosmark":"Y"},
 
     {"id":"Chip", "name":"Chip", "image":"nimages/YouKnowWhoIAm.gif", "quest":"Unlocked when Chip joins the party.", "reference":null, "Description":"The Normal sprites.", "cosmark":"N"},
     {"id":"Chip", "name":"Fate", "image":"nimages/YouKnowWhoIAm.gif", "quest":"???", "reference":"Monument Mythos", "Description":"No entry yet", "cosmark":"Y"},

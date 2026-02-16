@@ -64,6 +64,18 @@
     "animates": ["Kroxer", "Thrack", "Grraft", "Lurkest"]
   },
   {
+    "name": "The Hell is That?",
+    "animates": ["Ghouliath", "Borgo Slor", "Bewag", "Scregling", "Cuggaeous"]
+  },
+  {
+    "name": "The History Channel",
+    "animates": ["Vigilith", "Agilith", "Wonderland Ghouliath", "Monument Ohmelisk", "Special Tree Espiorange", "Liberty Skip", "Fate", ""]
+  },
+  {
+    "name": "I <3 Humanitarian Destruction",
+    "animates": ["Beit", "Pirotte", "Bewag", "Puppechyu", "Mockenyu","Fortome", "Chloomacrab", "Alliminiyum", "Myte", "Masqulpt", "Enchrancess", "Meducap"]
+  },
+  {
     "name": "This...is...UPRO!",
     "animates": [""]
   }
