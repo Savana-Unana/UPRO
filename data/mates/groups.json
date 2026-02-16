@@ -36,8 +36,20 @@
     "animates": ["Noob", "Guest", "Binary Axolarg"]
   }, 
   {
+    "name": "The Word",
+    "animates": ["Dribsom", "Dribtar", "Quubly", "Quontoon", "Honkraft", "Robenhoodie", "Bombabeak", "Beakon", "Hexkwet", "Vultumbra", "Tralgon", "Tweedle", "Hayvian", "Nightingbale", "Clokoo", "Clawkwalk", "Berdminton", "Gamblanguin", "Plagorovid"]
+  }, 
+  {
+    "name": "Beans",
+    "animates": ["Statipillar", "Blarb", "Krat", "Kroxer", "Buntot", "Mockenyu", "Elixion"]
+  }, 
+  {
+    "name": "The Little Guys",
+    "animates": ["Pretengerine", "Bakunbush", "Statipillar", "Quubly", "Bowlfish", "Buntot", "Paranger", "Prismite", "Chancix", "Puffle", "Murchan"]
+  }, 
+  {
     "name": "Cosplayers",
-    "animates": ["Trashcan Skip", "Athlete Skip", "Swimmer Skip", "Bedtime Skip", "Sewn Skip", "Liberty Skip", "Scout Skip", "Placeholder", "The Rodent", "Randy Cosplay Chip", "Waiter Chip", "Cult Chip", "Scuba Chip", "Poker Chip", "Lord of Flames Chip", "Haven Cosplay Maya", "Zantifeeld Espiorange Forme", "Buffet Verdaermy", "Radioactive Cuddol"]
+    "animates": ["Trashcan Skip", "Athlete Skip", "Swimmer Skip", "Bedtime Skip", "Sewn Skip", "Liberty Skip", "Scout Skip", "Placeholder", "The Rodent", "Randy Cosplay Chip", "Waiter Chip", "Cult Chip", "Scuba Chip", "Poker Chip", "Lord of Flames Chip", "Haven Cosplay Maya", "Ranger Erbacub", "Plague Ircencaat", "Zantifeeld Espiorange Forme", "Buffet Verdaermy", "Radioactive Cuddol"]
   },
   {
     "name": "OGs",
@@ -69,7 +81,7 @@
   },
   {
     "name": "The History Channel",
-    "animates": ["Vigilith", "Agilith", "Wonderland Ghouliath", "Monument Ohmelisk", "Special Tree Espiorange", "Liberty Skip", "Fate", ""]
+    "animates": ["Vigilith", "Agilith", "Wonderland Ghouliath", "Monument Ohmelisk", "Special Tree Espiorange", "Liberty Skip", "Fate"]
   },
   {
     "name": "I <3 Humanitarian Destruction",
