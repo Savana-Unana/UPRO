@@ -195,6 +195,15 @@ main.list {
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: rgba(0, 0, 0, 0.35);
 }
+.card .card-id {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  color: #e0f0ff;
+  font-size: 0.62em;
+  line-height: 1.1;
+  z-index: 2;
+}
 .card.rarity-paragon,
 .card.rarity-paragon:hover {
   box-shadow:
@@ -392,6 +401,65 @@ main.list {
   width: 80px;
   cursor: pointer;
   margin: 4px;
+}
+
+#evolutionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+}
+
+.evo-line {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  min-width: max-content;
+  margin: 4px 0;
+}
+
+.evo-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 84px;
+}
+
+.evo-node.current img {
+  outline: 2px solid #0ff;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.evo-name {
+  margin-top: 2px;
+  font-size: 0.95em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.evo-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  margin-top: 14px;
+}
+
+.evo-arrow {
+  line-height: 1;
+}
+
+.evo-level {
+  font-size: 0.75em;
+  margin-top: 2px;
+  line-height: 1.1;
 }
 
 /* ---------- FILTER LABEL (MERGED) ---------- */

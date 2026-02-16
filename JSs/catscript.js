@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
   const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
+  const databaseModes = ["base", "sacred", "ace", "ncanon", "event"];
+  const databaseModeRank = { base: 0, sacred: 1, ace: 2, ncanon: 3, event: 4 };
 
   function getRarities(mate) {
     const raw = mate?.rarity;
@@ -136,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (mode === "event") return; // skip event itself
           allData[mode] = mates.filter(mate => {
             if (mate.event !== undefined && mate.event !== null) {
+              mate.sourceMode = mode;    // preserve original tab for event-specific logic
               mate.mode = "event";       // mark it as event
               allData.event.push(mate);  // add to event list
               return false;             // remove from original mode
@@ -395,9 +398,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  function hasUsableId(mate) {
+    return mate && mate.id !== null && mate.id !== undefined && mate.id !== "null";
+  }
+
+  function compareByIdThenName(a, b) {
+    const aHasId = hasUsableId(a);
+    const bHasId = hasUsableId(b);
+
+    if (aHasId && bHasId) {
+      const aId = Number(a.id);
+      const bId = Number(b.id);
+      if (aId !== bId) return aId - bId;
+    } else if (aHasId !== bHasId) {
+      return aHasId ? -1 : 1; // keep null/undefined ids at the end
+    }
+
+    const aRank = databaseModeRank[a.mode] ?? 999;
+    const bRank = databaseModeRank[b.mode] ?? 999;
+    if (aRank !== bRank) return aRank - bRank;
+
+    return String(a.name || "").localeCompare(String(b.name || ""));
+  }
+
+  function getDatabaseMates() {
+    return databaseModes.flatMap(mode =>
+      (allData[mode] || []).map(mate => ({ ...mate, mode }))
+    );
+  }
+
   function loadMode(mode) {
     currentMode = mode;
-    animatrixData = (Array.isArray(allData[mode]) ? allData[mode] : []).filter(mate => !isMode(mate));
+    const sourceData = mode === "database"
+      ? getDatabaseMates()
+      : (Array.isArray(allData[mode]) ? allData[mode] : []);
+    animatrixData = sourceData.filter(mate => !isMode(mate));
+    if (mode === "database") {
+      animatrixData = animatrixData.sort(compareByIdThenName);
+    }
     renderAnimatrix();
   }
 
@@ -432,12 +470,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Determine if it uses lostimages
         const lostImage = mate.image && mate.image.toLowerCase().includes("lostimages");
         const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
+        const idText = (mate.id === null || mate.id === undefined || mate.id === "null") ? "?" : String(mate.id);
         const shiverBadge = isShiver(mate)
           ? `<img class="rarity-shiver-badge" src="webimages/Shiver.png" alt="Shiver" title="Shiver">`
           : "";
 
         // Inner HTML for the card
         card.innerHTML = `
+          <div class="card-id">${escapeHtml(idText)}</div>
           ${shiverBadge}
           <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
           <h3>${displayName}</h3>
@@ -450,6 +490,14 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener("click", () => openDetails(mate));
         animatrix.appendChild(card);
       });
+  }
+
+  function getMateModePool(mate) {
+    const mode = mate?.mode || currentMode;
+    if (mode === "event") {
+      return (allData.event || []).map(m => ({ ...m, mode: "event", sourceMode: m.sourceMode }));
+    }
+    return (allData[mode] || []).map(m => ({ ...m, mode }));
   }
 
   function typeTag(typeName) {
@@ -519,7 +567,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // set mode badge and activate mode button if possible
     const mateMode = mate.mode || currentMode;
     setModeBadge(mateMode, mate);
-    activateModeButton(mateMode);
+    if (currentMode !== "database") {
+      activateModeButton(mateMode);
+    }
 
     // set currentMateIndex to the index within the current filtered animatrixData, if present
     const idx = animatrixData.findIndex(m => m.name === mate.name && (m.id === mate.id || !mate.id));
@@ -642,21 +692,127 @@ document.addEventListener("DOMContentLoaded", () => {
       const paraContainer = document.getElementById("paraTypesContainer");
       paraContainer.innerHTML = mate.paraTypes ? `<b>Para Types:</b> ${mate.paraTypes.map(p => typeTag(p)).join("")}` : "";
 
-      // Evolutions
+      // Evolution line (previous + current + next, same mode)
       const evoC = document.getElementById("evolutionsContainer");
       evoC.innerHTML = "";
-      if (mate.evolvesTo && mate.evolvesTo.length) {
-        evoC.innerHTML = "<b>Evolutions:</b><br>";
-        mate.evolvesTo.forEach(e => {
-          const allFormsFlat = Object.values(allData).flat();
-          const evo = allFormsFlat.find(x => x.name === e.name);
-          if (evo) {
-            const img = document.createElement("img");
-            img.src = evo.image || "";
-            img.title = `${e.name} (Lvl ${e.level})`;
-            img.onclick = () => openDetails(evo);
-            evoC.appendChild(img);
+      const mateMode = mate.mode || currentMode;
+      const modeForms = getMateModePool(mate);
+      const byName = new Map(modeForms.map(m => [m.name, m]));
+      if (!byName.has(mate.name)) byName.set(mate.name, mate);
+
+      const outgoing = new Map();
+      const incoming = new Map();
+      modeForms.forEach(m => {
+        (m.evolvesTo || []).forEach(e => {
+          if (!e || !e.name) return;
+          if (!outgoing.has(m.name)) outgoing.set(m.name, []);
+          outgoing.get(m.name).push({ to: e.name, level: e.level });
+
+          if (!incoming.has(e.name)) incoming.set(e.name, []);
+          incoming.get(e.name).push({ from: m.name, level: e.level });
+        });
+      });
+
+      function collectReachableAncestors(startName) {
+        const seen = new Set();
+        const stack = [startName];
+        while (stack.length) {
+          const node = stack.pop();
+          if (seen.has(node)) continue;
+          seen.add(node);
+          const parents = incoming.get(node) || [];
+          parents.forEach(p => stack.push(p.from));
+        }
+        return seen;
+      }
+
+      function findCandidateRoots(startName) {
+        const ancestorSet = collectReachableAncestors(startName);
+        const roots = [...ancestorSet].filter(name => !(incoming.get(name) || []).length);
+        return roots.length ? roots : [startName];
+      }
+
+      function buildAllPathsFrom(rootName) {
+        const paths = [];
+        function dfs(nodeName, names, levels, seen) {
+          const edges = outgoing.get(nodeName) || [];
+          if (!edges.length) {
+            paths.push({ names: [...names], levels: [...levels] });
+            return;
           }
+          let progressed = false;
+          edges.forEach(edge => {
+            if (!edge || !edge.to || seen.has(edge.to)) return;
+            progressed = true;
+            names.push(edge.to);
+            levels.push(edge.level);
+            seen.add(edge.to);
+            dfs(edge.to, names, levels, seen);
+            seen.delete(edge.to);
+            names.pop();
+            levels.pop();
+          });
+          if (!progressed) {
+            paths.push({ names: [...names], levels: [...levels] });
+          }
+        }
+        dfs(rootName, [rootName], [], new Set([rootName]));
+        return paths;
+      }
+
+      const allLines = findCandidateRoots(mate.name)
+        .flatMap(root => buildAllPathsFrom(root))
+        .filter(path => path.names.includes(mate.name));
+      const seenPathKeys = new Set();
+      const lines = allLines.filter(path => {
+        const key = path.names.join("->");
+        if (seenPathKeys.has(key)) return false;
+        seenPathKeys.add(key);
+        return true;
+      });
+      const shouldShowLine = lines.length > 0 && (incoming.has(mate.name) || outgoing.has(mate.name) || lines.some(l => l.names.length > 1));
+
+      if (shouldShowLine) {
+        evoC.innerHTML = "<b>Evolution Line:</b><br>";
+        lines.forEach(line => {
+          const lineEl = document.createElement("div");
+          lineEl.className = "evo-line";
+
+          line.names.forEach((name, idx) => {
+            const nodeMate = byName.get(name);
+            const node = document.createElement("div");
+            node.className = "evo-node" + (name === mate.name ? " current" : "");
+
+            const img = document.createElement("img");
+            img.src = (nodeMate && nodeMate.image) || "";
+            img.alt = name;
+            img.title = name;
+            if (nodeMate) img.onclick = () => openDetails(nodeMate);
+
+            const label = document.createElement("div");
+            label.className = "evo-name";
+            label.textContent = name;
+
+            node.appendChild(img);
+            node.appendChild(label);
+            lineEl.appendChild(node);
+
+            if (idx < line.names.length - 1) {
+              const link = document.createElement("div");
+              link.className = "evo-link";
+              const arrow = document.createElement("div");
+              arrow.className = "evo-arrow";
+              arrow.textContent = "→";
+              const lvl = document.createElement("div");
+              lvl.className = "evo-level";
+              lvl.textContent = line.levels[idx] == null || line.levels[idx] === "" ? "Level" : `Lvl ${line.levels[idx]}`;
+              link.appendChild(arrow);
+              link.appendChild(lvl);
+              lineEl.appendChild(link);
+            }
+          });
+
+          evoC.appendChild(lineEl);
         });
       }
     }
@@ -665,7 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
     const mateMode = mate.mode || currentMode;
-    const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
+    const modeForms = getMateModePool(mate);
     const hasValidId = mate.id !== undefined && mate.id !== null;
     if (hasValidId) {
       const allForms = Object.entries(allData).flatMap(([mode, mates]) => (mates || []).map(m => ({ ...m, mode })));
