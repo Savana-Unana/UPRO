@@ -16,11 +16,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const typePanel = document.getElementById("typePanel");
   const typeOptionsEl = document.getElementById("typeOptions");
   const clearTypes = document.getElementById("clearTypes");
+  const type2Toggle = document.getElementById("type2Toggle");
+  const type2Panel = document.getElementById("type2Panel");
+  const type2OptionsEl = document.getElementById("type2Options");
+  const clearTypes2 = document.getElementById("clearTypes2");
 
   const paraToggle = document.getElementById("paraToggle");
   const paraPanel = document.getElementById("paraPanel");
   const paraOptionsEl = document.getElementById("paraOptions");
   const clearParas = document.getElementById("clearParas");
+  const biomeFilterWrapper = document.getElementById("biomeFilterWrapper");
+  const biomeToggle = document.getElementById("biomeToggle");
+  const biomePanel = document.getElementById("biomePanel");
+  const biomeOptionsEl = document.getElementById("biomeOptions");
+  const clearBiomes = document.getElementById("clearBiomes");
   const statusToggle = document.getElementById("statusToggle");
   const statusPanel = document.getElementById("statusPanel");
   const statusOptionsEl = document.getElementById("statusOptions");
@@ -33,6 +42,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
   const databaseModes = ["base", "sacred", "ace", "ncanon", "event"];
   const databaseModeRank = { base: 0, sacred: 1, ace: 2, ncanon: 3, event: 4 };
+  const biomeOptions = [
+    "Lake",
+    "Forest",
+    "Desert",
+    "River",
+    "Mountains",
+    "Plains",
+    "Circus",
+    "Ice-Caps",
+    "Volcano",
+    "Alcatraz",
+    "Jungle",
+    "Borgo Slor",
+    "Big City",
+    "Ocean",
+    "Caverns",
+    "Swamp",
+    "Shiver Co.",
+    "I'eland",
+    "Factory"
+  ];
 
   function getRarities(mate) {
     const raw = mate?.rarity;
@@ -108,7 +138,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(types => {
       typesData = types || [];
       populateFilterOptions(typesData, typeOptionsEl);
+      populateFilterOptions(typesData, type2OptionsEl);
       populateFilterOptions(typesData, paraOptionsEl);
+      populateFilterOptions(biomeOptions, biomeOptionsEl);
 
       // load abilities and all mode JSONs
       return Promise.all([
@@ -309,9 +341,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function populateFilterOptions(types, container) {
     container.innerHTML = "";
     types.forEach(t => {
+      const label = typeof t === "string" ? t : t?.name;
+      if (!label) return;
       const row = document.createElement("label");
       row.className = "opt";
-      row.innerHTML = `<input type="checkbox" value="${escapeHtml(t.name)}"> <span>${escapeHtml(t.name)}</span>`;
+      row.innerHTML = `<input type="checkbox" value="${escapeHtml(label)}"> <span>${escapeHtml(label)}</span>`;
       container.appendChild(row);
     });
   }
@@ -351,7 +385,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   setupToggle(typeToggle, typePanel);
+  setupToggle(type2Toggle, type2Panel);
   setupToggle(paraToggle, paraPanel);
+  setupToggle(biomeToggle, biomePanel);
   setupToggle(statusToggle, statusPanel);
 
   function getStatusFilterValue() {
@@ -379,14 +415,24 @@ document.addEventListener("DOMContentLoaded", () => {
     clearCheckboxes(typeOptionsEl);
     renderAnimatrix();
   });
+  clearTypes2.addEventListener("click", () => {
+    clearCheckboxes(type2OptionsEl);
+    renderAnimatrix();
+  });
   clearParas.addEventListener("click", () => {
     clearCheckboxes(paraOptionsEl);
+    renderAnimatrix();
+  });
+  clearBiomes.addEventListener("click", () => {
+    clearCheckboxes(biomeOptionsEl);
     renderAnimatrix();
   });
 
   // Wire checkbox changes to re-render
   typeOptionsEl.addEventListener("change", renderAnimatrix);
+  type2OptionsEl.addEventListener("change", renderAnimatrix);
   paraOptionsEl.addEventListener("change", renderAnimatrix);
+  biomeOptionsEl.addEventListener("change", renderAnimatrix);
   statusOptionsEl.addEventListener("change", renderAnimatrix);
 
   // Mode switching
@@ -427,8 +473,42 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  function modeSupportsBiomes(mode) {
+    return mode === "base" || mode === "event";
+  }
+
+  function setBiomeFilterVisibility(mode) {
+    const showBiomes = modeSupportsBiomes(mode);
+    if (biomeFilterWrapper) biomeFilterWrapper.style.display = showBiomes ? "inline-block" : "none";
+    if (!showBiomes) {
+      biomePanel.classList.remove("open");
+      biomePanel.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  function getMateBiomes(mate) {
+    if (!mate) return [];
+    if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
+    if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
+    if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
+    if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
+    return [];
+  }
+
+  function biomesPassFilter(mateBiomes, selectedBiomes) {
+    if (!Array.isArray(selectedBiomes) || !selectedBiomes.length) return true;
+    const biomes = Array.isArray(mateBiomes) ? mateBiomes.filter(Boolean) : [];
+    return selectedBiomes.some(b => biomes.includes(b));
+  }
+
+  function biomeImagePath(biomeName) {
+    if (!biomeName) return "";
+    return `webimages/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
+  }
+
   function loadMode(mode) {
     currentMode = mode;
+    setBiomeFilterVisibility(mode);
     const sourceData = mode === "database"
       ? getDatabaseMates()
       : (Array.isArray(allData[mode]) ? allData[mode] : []);
@@ -443,7 +523,9 @@ document.addEventListener("DOMContentLoaded", () => {
     animatrix.innerHTML = "";
     const term = (search.value || "").trim().toLowerCase();
     const selectedTypes = getCheckedValues(typeOptionsEl);
+    const selectedTypes2 = getCheckedValues(type2OptionsEl);
     const selectedParas = getCheckedValues(paraOptionsEl);
+    const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
 
     const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
     animatrixData
@@ -454,8 +536,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedTypes.length) {
           if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
         }
+        if (selectedTypes2.length) {
+          if (!mate.types || !intersects(selectedTypes2, mate.types)) return false;
+        }
         if (selectedParas.length) {
           if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
+        }
+        if (modeSupportsBiomes(currentMode)) {
+          const mateBiomes = getMateBiomes(mate);
+          if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
         }
         if (!statusPassesFilter(mate)) return false;
         if (currentMode === "npc" && mate.cosmark === "Y") return false;
@@ -465,6 +554,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.className = "card";
         if (isParagon(mate)) card.classList.add("rarity-paragon");
+        const firstBiome = getMateBiomes(mate)[0];
+        if (firstBiome) {
+          card.classList.add("biome-bg");
+          card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
+        }
         applyMateStyle(card, mate);
 
         // Determine if it uses lostimages
@@ -506,9 +600,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mateVitalsHtml(mate) {
+    const biomes = getMateBiomes(mate);
+    const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
     const height = escapeHtml(mate.height || "Unknown");
     const color = escapeHtml(mate.color || "Unknown");
-    return `<div class="mate-meta"><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+    return `<div class="mate-meta"><p><b>Biomes:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
   }
 
   gridView.addEventListener("click", () => {
@@ -535,7 +631,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Rebuild the currently visible list using the same filters
     const term = (search.value || "").trim().toLowerCase();
     const selectedTypes = getCheckedValues(typeOptionsEl);
+    const selectedTypes2 = getCheckedValues(type2OptionsEl);
     const selectedParas = getCheckedValues(paraOptionsEl);
+    const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
+    
 
     const intersects = (a, b) =>
       Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
@@ -547,8 +646,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedTypes.length) {
         if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
       }
+      if (selectedTypes2.length) {
+        if (!mate.types || !intersects(selectedTypes2, mate.types)) return false;
+      }
       if (selectedParas.length) {
         if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
+      }
+      if (modeSupportsBiomes(currentMode)) {
+        const mateBiomes = getMateBiomes(mate);
+        if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
       }
       if (!statusPassesFilter(mate)) return false;
       if (currentMode === "npc" && mate.cosmark === "Y") return false;

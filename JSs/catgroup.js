@@ -151,6 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const card = document.createElement("div");
     card.className = "card";
     if (isParagon(mate)) card.classList.add("rarity-paragon");
+    const firstBiome = getMateBiomes(mate)[0];
+    if (firstBiome) {
+      card.classList.add("biome-bg");
+      card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
+    }
     applyMateStyle(card, mate);
 
     const lostImage = mate.image && mate.image.toLowerCase().includes("lostimages");
@@ -303,10 +308,26 @@ document.addEventListener("DOMContentLoaded", () => {
     return `<span style="background:${t ? t.color : "#ccc"}">${escapeHtml(typeName)}</span>`;
   }
 
+  function getMateBiomes(mate) {
+    if (!mate) return [];
+    if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
+    if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
+    if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
+    if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
+    return [];
+  }
+
+  function biomeImagePath(biomeName) {
+    if (!biomeName) return "";
+    return `webimages/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
+  }
+
   function mateVitalsHtml(mate) {
+    const biomes = getMateBiomes(mate);
+    const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
     const height = escapeHtml(mate.height || "Unknown");
     const color = escapeHtml(mate.color || "Unknown");
-    return `<div class="mate-meta"><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+    return `<div class="mate-meta"><p><b>Biomes:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
   }
 
   function applyMateStyle(el, mate) {

@@ -181,6 +181,22 @@ main.list {
   display: inline-block;
   position: relative;
 }
+.card.biome-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--biome-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+.card.biome-bg > * {
+  position: relative;
+  z-index: 1;
+}
 
 .card:hover { transform: scale(1.04); box-shadow: 0 0 12px #0ff; }
 .card img { width: 100px; height: 100px; object-fit: contain; }
