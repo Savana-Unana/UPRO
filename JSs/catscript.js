@@ -515,11 +515,13 @@ document.addEventListener("DOMContentLoaded", () => {
     gridView.classList.add("active");
     listView.classList.remove("active");
     animatrix.className = "grid";
+    document.body.classList.remove("animatrix-list-view");
   });
   listView.addEventListener("click", () => {
     listView.classList.add("active");
     gridView.classList.remove("active");
     animatrix.className = "list";
+    document.body.classList.add("animatrix-list-view");
   });
 
   search.addEventListener("input", renderAnimatrix);
