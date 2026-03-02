@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
   const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
-  const databaseModes = ["base", "sacred", "ace", "ncanon", "event"];
-  const databaseModeRank = { base: 0, sacred: 1, ace: 2, ncanon: 3, event: 4 };
+  const databaseModes = ["base", "sacred", "ace", "event", "costumes", "npc"];
+  const databaseModeRank = { base: 0, sacred: 1, ace: 2, event: 3, costumes: 4, npc: 5 };
   const biomeOptions = [
     "Lake",
     "Forest",
@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "I'eland",
     "Factory"
   ];
+  let versionOptions = [];
 
   function getRarities(mate) {
     const raw = mate?.rarity;
@@ -129,6 +130,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const isConceptualized = m =>
     /(^|\/)lostimages\//i.test(m.image || "");
 
+  function getMateVersions(mate) {
+    if (!mate) return [];
+    if (Array.isArray(mate.versions)) return mate.versions.filter(Boolean).map(v => String(v).trim()).filter(Boolean);
+    if (typeof mate.versions === "string" && mate.versions.trim()) return [mate.versions.trim()];
+    if (Array.isArray(mate.version)) return mate.version.filter(Boolean).map(v => String(v).trim()).filter(Boolean);
+    if (typeof mate.version === "string" && mate.version.trim()) return [mate.version.trim()];
+    if (typeof mate.Version === "string" && mate.Version.trim()) return [mate.Version.trim()];
+    return [];
+  }
+
+  function compareVersionLabels(a, b) {
+    const aLabel = String(a || "").trim();
+    const bLabel = String(b || "").trim();
+    const aMatch = aLabel.match(/^Demo\s+(\d+)$/i);
+    const bMatch = bLabel.match(/^Demo\s+(\d+)$/i);
+
+    if (aMatch && bMatch) {
+      return Number(aMatch[1]) - Number(bMatch[1]);
+    }
+    if (aMatch) return -1;
+    if (bMatch) return 1;
+    return aLabel.localeCompare(bLabel);
+  }
+
+  function rebuildVersionOptions() {
+    const labels = new Set();
+    ["base", "sacred", "ace", "event", "costumes", "npc"].forEach(mode => {
+      (allData[mode] || []).forEach(mate => {
+        getMateVersions(mate).forEach(version => labels.add(version));
+      });
+    });
+    versionOptions = Array.from(labels).sort(compareVersionLabels);
+  }
+
   // mode buttons
   const modeButtons = Array.from(document.querySelectorAll(".mode-btn"));
 
@@ -178,6 +213,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return true; // keep in this mode
           });
         });
+
+        rebuildVersionOptions();
 
         loadMode("base");
       })
@@ -448,16 +485,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return mate && mate.id !== null && mate.id !== undefined && mate.id !== "null";
   }
 
-  function compareByIdThenName(a, b) {
+  function getVersionRank(mate) {
+    const value = getMateVersions(mate)[0] || "";
+    const idx = versionOptions.indexOf(String(value).trim());
+    return idx >= 0 ? idx : 999;
+  }
+
+  function compareByVersionThenName(a, b) {
+    const aVersionRank = getVersionRank(a);
+    const bVersionRank = getVersionRank(b);
+    if (aVersionRank !== bVersionRank) return aVersionRank - bVersionRank;
+
     const aHasId = hasUsableId(a);
     const bHasId = hasUsableId(b);
-
     if (aHasId && bHasId) {
       const aId = Number(a.id);
       const bId = Number(b.id);
       if (aId !== bId) return aId - bId;
     } else if (aHasId !== bHasId) {
-      return aHasId ? -1 : 1; // keep null/undefined ids at the end
+      return aHasId ? -1 : 1;
     }
 
     const aRank = databaseModeRank[a.mode] ?? 999;
@@ -469,25 +515,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getDatabaseMates() {
     return databaseModes.flatMap(mode =>
-      (allData[mode] || []).map(mate => ({ ...mate, mode }))
+      (allData[mode] || [])
+        .filter(mate => !(mode === "event" && mate.sourceMode === "ncanon"))
+        .map(mate => ({ ...mate, mode }))
     );
   }
 
   function modeSupportsBiomes(mode) {
+    return mode === "base" || mode === "event" || mode === "database";
+  }
+
+  function modeUsesBiomeArt(mode) {
     return mode === "base" || mode === "event";
   }
 
   function setBiomeFilterVisibility(mode) {
     const showBiomes = modeSupportsBiomes(mode);
     if (biomeFilterWrapper) biomeFilterWrapper.style.display = showBiomes ? "inline-block" : "none";
+    if (biomeToggle) biomeToggle.textContent = mode === "database" ? "Versions ▾" : "Biome ▾";
+    populateFilterOptions(mode === "database" ? versionOptions : biomeOptions, biomeOptionsEl);
     if (!showBiomes) {
       biomePanel.classList.remove("open");
       biomePanel.setAttribute("aria-hidden", "true");
     }
   }
 
-  function getMateBiomes(mate) {
+  function getMateBiomes(mate, mode = currentMode) {
     if (!mate) return [];
+    if (mode === "database") {
+      return getMateVersions(mate);
+    }
     if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
@@ -514,7 +571,7 @@ document.addEventListener("DOMContentLoaded", () => {
       : (Array.isArray(allData[mode]) ? allData[mode] : []);
     animatrixData = sourceData.filter(mate => !isMode(mate));
     if (mode === "database") {
-      animatrixData = animatrixData.sort(compareByIdThenName);
+      animatrixData = animatrixData.sort(compareByVersionThenName);
     }
     renderAnimatrix();
   }
@@ -555,7 +612,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.className = "card";
         if (isParagon(mate)) card.classList.add("rarity-paragon");
         const firstBiome = getMateBiomes(mate)[0];
-        if (firstBiome) {
+        if (firstBiome && modeUsesBiomeArt(currentMode)) {
           card.classList.add("biome-bg");
           card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
         }
@@ -604,7 +661,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
     const height = escapeHtml(mate.height || "Unknown");
     const color = escapeHtml(mate.color || "Unknown");
-    return `<div class="mate-meta"><p><b>Biomes:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+    const locationLabel = currentMode === "database" ? "Versions" : "Biomes";
+    return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
   }
 
   gridView.addEventListener("click", () => {
