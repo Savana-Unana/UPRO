@@ -9,7 +9,9 @@ const state = {
   pool: [],
   pair: [],
   typeColors: new Map(),
-  isVoting: false
+  isVoting: false,
+  pendingVotes: loadPendingVotes(),
+  isFlushingVotes: false
 };
 
 const arena = document.getElementById("arena");
@@ -43,6 +45,7 @@ async function init() {
     updatePoolStatus();
     updateSaveStatus();
     nextPair();
+    flushPendingVotes();
   } catch (error) {
     console.error(error);
     renderEmptyState("The vote page could not load its data.");
@@ -56,6 +59,10 @@ function buildPool(baseEntries, aceEntries, npcEntries) {
   const seen = new Set();
 
   for (const entry of baseEntries) {
+    if (!isDesignedEntry(entry)) {
+      continue;
+    }
+
     if (entry.event) {
       if (isModeEntry(entry)) {
         continue;
@@ -68,6 +75,10 @@ function buildPool(baseEntries, aceEntries, npcEntries) {
   }
 
   for (const entry of aceEntries) {
+    if (!isDesignedEntry(entry)) {
+      continue;
+    }
+
     if (entry.event) {
       if (isModeEntry(entry)) {
         continue;
@@ -80,6 +91,9 @@ function buildPool(baseEntries, aceEntries, npcEntries) {
   }
 
   for (const entry of npcEntries) {
+    if (!isDesignedEntry({ ...entry, mode: "npc" })) {
+      continue;
+    }
     pushPoolItem(pool, seen, normalizeNpc(entry));
   }
 
@@ -88,6 +102,22 @@ function buildPool(baseEntries, aceEntries, npcEntries) {
 
 function isModeEntry(entry) {
   return typeof entry.rarity === "string" && entry.rarity.includes("Mode");
+}
+
+function isDesignedEntry(entry) {
+  return entry?.mode !== "npc" && !isMissingNo(entry) && !isOnes(entry);
+}
+
+function isMissingNo(entry) {
+  return entry?.mode !== "npc" && (
+    entry?.name === "MissingNo" ||
+    entry?.name === "L.MissingNo" ||
+    String(entry?.image || "").includes("MissingNo")
+  );
+}
+
+function isOnes(entry) {
+  return entry?.name === "Ones";
 }
 
 function pushPoolItem(pool, seen, item) {
@@ -161,16 +191,10 @@ function renderPanel(panel, mon, sideIndex) {
   panel.disabled = state.isVoting;
   panel.onclick = () => handleVote(sideIndex);
 
-  const typeMarkup = mon.types.length
-    ? mon.types.map(type => `<span class="type-chip">${escapeHtml(type)}</span>`).join("")
-    : `<span class="type-chip">${escapeHtml(mon.primaryType)}</span>`;
-
   panel.innerHTML = `
     <article class="vote-card">
-      <span class="source-chip">${escapeHtml(mon.source)}</span>
       <img class="mon-image" src="${escapeAttribute(mon.image)}" alt="${escapeAttribute(mon.name)}">
       <h2 class="mon-name">${escapeHtml(mon.name)}</h2>
-      <div class="meta">${typeMarkup}</div>
     </article>
   `;
 }
@@ -185,18 +209,9 @@ async function handleVote(selectedIndex) {
 
   const winner = state.pair[selectedIndex];
   const loser = state.pair[selectedIndex === 0 ? 1 : 0];
-
-  try {
-    await submitVote(winner, loser);
-    saveStatus.textContent = `Saved vote: ${winner.name}`;
-    saveStatus.className = "status-ok";
-  } catch (error) {
-    console.error(error);
-    saveStatus.textContent = "Vote advanced, but the Google Sheet save failed.";
-    saveStatus.className = "status-error";
-  }
-
+  enqueueVote(winner, loser);
   nextPair();
+  flushPendingVotes();
 }
 
 async function submitVote(winner, loser) {
@@ -227,6 +242,57 @@ async function submitVote(winner, loser) {
   }
 }
 
+function enqueueVote(winner, loser) {
+  state.pendingVotes.push({
+    winner: {
+      name: winner.name,
+      source: winner.source
+    },
+    loser: {
+      name: loser.name,
+      source: loser.source
+    },
+    queuedAt: Date.now()
+  });
+
+  persistPendingVotes();
+  saveStatus.textContent = `Queued vote: ${winner.name}`;
+  saveStatus.className = "status-warn";
+}
+
+async function flushPendingVotes() {
+  if (state.isFlushingVotes || !state.pendingVotes.length) {
+    updateSaveStatus();
+    return;
+  }
+
+  if (!GOOGLE_SCRIPT_URL) {
+    updateSaveStatus();
+    return;
+  }
+
+  state.isFlushingVotes = true;
+  updateSaveStatus();
+
+  try {
+    while (state.pendingVotes.length) {
+      const vote = state.pendingVotes[0];
+      await submitVote(vote.winner, vote.loser);
+      state.pendingVotes.shift();
+      persistPendingVotes();
+    }
+
+    saveStatus.textContent = "All queued votes saved.";
+    saveStatus.className = "status-ok";
+  } catch (error) {
+    console.error(error);
+    saveStatus.textContent = `Saved later: ${state.pendingVotes.length} queued vote(s).`;
+    saveStatus.className = "status-error";
+  } finally {
+    state.isFlushingVotes = false;
+  }
+}
+
 function updatePoolStatus() {
   const counts = state.pool.reduce((acc, item) => {
     acc[item.source] = (acc[item.source] || 0) + 1;
@@ -244,6 +310,18 @@ function updatePoolStatus() {
 
 function updateSaveStatus() {
   if (GOOGLE_SCRIPT_URL) {
+    if (state.isFlushingVotes) {
+      saveStatus.textContent = `Saving ${state.pendingVotes.length} queued vote(s)...`;
+      saveStatus.className = "status-warn";
+      return;
+    }
+
+    if (state.pendingVotes.length) {
+      saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued for sync.`;
+      saveStatus.className = "status-warn";
+      return;
+    }
+
     saveStatus.textContent = "Google Sheet connection configured.";
     saveStatus.className = "status-ok";
     return;
@@ -289,4 +367,27 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value);
+}
+
+function loadPendingVotes() {
+  try {
+    const raw = window.localStorage.getItem("upro_vote_queue");
+    if (!raw) {
+      return [];
+    }
+
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+function persistPendingVotes() {
+  try {
+    window.localStorage.setItem("upro_vote_queue", JSON.stringify(state.pendingVotes));
+  } catch (error) {
+    console.error(error);
+  }
 }

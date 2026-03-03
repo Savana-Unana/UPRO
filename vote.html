@@ -34,6 +34,14 @@
       font-family: "UPRO", "Trebuchet MS", sans-serif;
     }
 
+    button,
+    h1,
+    h2,
+    div,
+    span {
+      font-family: "UPRO", "Trebuchet MS", sans-serif;
+    }
+
     .page {
       min-height: 100vh;
       display: grid;
@@ -51,11 +59,34 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
+    .header-nav {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
     .header h1 {
       margin: 0;
       font-size: clamp(1.15rem, 2vw, 1.8rem);
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    .header-nav button {
+      background: #222;
+      color: #0ff;
+      font-family: "UPRO", serif;
+      font-size: 30px;
+      border: 1px solid #0ff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .header-nav button:hover {
+      background: #0ff;
+      color: #000;
     }
 
     .arena {
@@ -118,21 +149,6 @@
       backdrop-filter: blur(6px);
     }
 
-    .source-chip,
-    .type-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 32px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.18);
-      color: inherit;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-    }
-
     .mon-image {
       width: min(42vw, 320px);
       max-width: 100%;
@@ -147,13 +163,6 @@
       line-height: 1.05;
       letter-spacing: 0.03em;
       text-wrap: balance;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
     }
 
     .empty-state {
@@ -215,6 +224,11 @@
 <body>
   <div class="page">
     <header class="header">
+      <div class="header-nav">
+        <a href="animatrix.html">
+          <button type="button">Animatrix</button>
+        </a>
+      </div>
       <h1>Select your favorite of the two</h1>
     </header>
 
