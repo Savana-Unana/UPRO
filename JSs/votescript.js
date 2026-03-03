@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqQSJI28AB_XpRKdWa1XwQkh7RdrnZbsBWeeJBnju_bae3jVJbuwm4WGW9IzO93GxuYA/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzPkOiS6hsEu4n7h0e3N_WGzcuure7hn9rVOgH6p_EsbDIPKgw1V2WfU8ii89ElACxtHg/exec";
 
 const FALLBACK_TYPE = {
   name: "NPC",
@@ -219,27 +219,13 @@ async function submitVote(winner, loser) {
     throw new Error("Google Apps Script URL is not configured.");
   }
 
-  const response = await fetch(GOOGLE_SCRIPT_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify({
-      action: "vote",
-      winner: {
-        name: winner.name,
-        source: winner.source
-      },
-      loser: {
-        name: loser.name,
-        source: loser.source
-      }
-    })
+  await postVoteThroughIframe({
+    action: "vote",
+    winnerName: winner.name,
+    winnerSource: winner.source,
+    loserName: loser.name,
+    loserSource: loser.source
   });
-
-  if (!response.ok) {
-    throw new Error(`Vote request failed with ${response.status}.`);
-  }
 }
 
 function enqueueVote(winner, loser) {
@@ -390,4 +376,57 @@ function persistPendingVotes() {
   } catch (error) {
     console.error(error);
   }
+}
+
+function postVoteThroughIframe(fields) {
+  return new Promise((resolve, reject) => {
+    const iframeName = `vote-submit-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const iframe = document.createElement("iframe");
+    const form = document.createElement("form");
+    let settled = false;
+
+    const cleanup = () => {
+      window.clearTimeout(timeoutId);
+      iframe.remove();
+      form.remove();
+    };
+
+    const settle = callback => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      cleanup();
+      callback();
+    };
+
+    iframe.name = iframeName;
+    iframe.hidden = true;
+    iframe.tabIndex = -1;
+
+    form.method = "POST";
+    form.action = GOOGLE_SCRIPT_URL;
+    form.target = iframeName;
+    form.hidden = true;
+
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
+
+    iframe.addEventListener("load", () => {
+      settle(resolve);
+    }, { once: true });
+
+    const timeoutId = window.setTimeout(() => {
+      settle(() => reject(new Error("Vote request timed out.")));
+    }, 15000);
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
+  });
 }

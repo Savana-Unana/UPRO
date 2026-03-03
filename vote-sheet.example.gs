@@ -14,7 +14,7 @@ function doPost(e) {
     sheet.getRange(1, 1, 1, 4).setValues([["Name", "Votes", "Appearances", "Percentage"]]);
   }
 
-  var payload = JSON.parse(e.postData.contents || "{}");
+  var payload = parseVotePayload_(e);
   if (payload.action !== "vote" || !payload.winner || !payload.loser) {
     return jsonResponse({ ok: false, error: "Invalid payload." });
   }
@@ -128,4 +128,28 @@ function jsonResponse(payload) {
   return ContentService
     .createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function parseVotePayload_(e) {
+  if (e && e.postData && e.postData.contents) {
+    try {
+      var parsed = JSON.parse(e.postData.contents);
+      if (parsed && typeof parsed === "object") {
+        return parsed;
+      }
+    } catch (error) {}
+  }
+
+  var params = (e && e.parameter) || {};
+  return {
+    action: params.action || "",
+    winner: {
+      name: params.winnerName || "",
+      source: params.winnerSource || ""
+    },
+    loser: {
+      name: params.loserName || "",
+      source: params.loserSource || ""
+    }
+  };
 }
