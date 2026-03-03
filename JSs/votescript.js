@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = "";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqQSJI28AB_XpRKdWa1XwQkh7RdrnZbsBWeeJBnju_bae3jVJbuwm4WGW9IzO93GxuYA/exec";
 
 const FALLBACK_TYPE = {
   name: "NPC",
