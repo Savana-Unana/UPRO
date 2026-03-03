@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPRO Vote</title>
+  <style>
+    @font-face {
+      font-family: "UPRO";
+      src: url("UPRO.ttf") format("truetype");
+    }
+
+    :root {
+      --bg: #111418;
+      --panel-text: #111418;
+      --panel-light-text: #f7f8fb;
+      --neutral: #d7cfbf;
+      --neutral-dark: #6b6459;
+      --header-bg: rgba(10, 14, 20, 0.86);
+      --card-shadow: rgba(0, 0, 0, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 30%),
+        linear-gradient(180deg, #0e1116 0%, #171c24 100%);
+      color: #f7f8fb;
+      font-family: "UPRO", "Trebuchet MS", sans-serif;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 16px 20px;
+      text-align: center;
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(1.15rem, 2vw, 1.8rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .arena {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 0;
+    }
+
+    .vote-panel {
+      position: relative;
+      border: 0;
+      padding: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      background: var(--neutral);
+      color: var(--panel-text);
+      transition: transform 140ms ease, filter 140ms ease;
+    }
+
+    .vote-panel:hover,
+    .vote-panel:focus-visible {
+      transform: scale(0.992);
+      filter: brightness(1.04);
+      outline: none;
+    }
+
+    .vote-panel.is-loading {
+      cursor: progress;
+    }
+
+    .vote-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.2), transparent 45%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.16), transparent 40%);
+      pointer-events: none;
+    }
+
+    .vote-panel.left {
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .vote-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 28px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 24px 60px var(--card-shadow);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .source-chip,
+    .type-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.18);
+      color: inherit;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .mon-image {
+      width: min(42vw, 320px);
+      max-width: 100%;
+      max-height: 38vh;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.28));
+    }
+
+    .mon-name {
+      margin: 0;
+      font-size: clamp(1.4rem, 3vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      text-wrap: balance;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 14, 20, 0.76);
+      font-size: 0.9rem;
+    }
+
+    .status-bar strong {
+      font-weight: normal;
+    }
+
+    .status-ok {
+      color: #aef0b0;
+    }
+
+    .status-warn {
+      color: #ffd38a;
+    }
+
+    .status-error {
+      color: #ff9d9d;
+    }
+
+    @media (max-width: 800px) {
+      .arena {
+        grid-template-columns: 1fr;
+      }
+
+      .vote-panel.left {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .mon-image {
+        width: min(70vw, 240px);
+        max-height: 26vh;
+      }
+
+      .status-bar {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>Select your favorite of the two</h1>
+    </header>
+
+    <main class="arena" id="arena" aria-live="polite">
+      <button class="vote-panel left is-loading" id="left-panel" type="button" aria-label="Left vote option"></button>
+      <button class="vote-panel right is-loading" id="right-panel" type="button" aria-label="Right vote option"></button>
+    </main>
+
+    <footer class="status-bar">
+      <div id="pool-status">Loading vote pool...</div>
+      <div id="save-status" class="status-warn">Google Sheet endpoint not configured yet.</div>
+    </footer>
+  </div>
+
+  <script src="JSs/votescript.js"></script>
+</body>
+</html>
