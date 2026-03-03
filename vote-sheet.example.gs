@@ -11,7 +11,7 @@ function doPost(e) {
   }
 
   if (sheet.getLastRow() === 0) {
-    sheet.getRange(1, 1, 1, 3).setValues([["Name", "Votes", "Percentage"]]);
+    sheet.getRange(1, 1, 1, 4).setValues([["Name", "Votes", "Appearances", "Percentage"]]);
   }
 
   var payload = JSON.parse(e.postData.contents || "{}");
@@ -38,7 +38,7 @@ function readVoteRows_(sheet) {
     return {};
   }
 
-  var values = sheet.getRange(2, 1, lastRow - 1, 3).getValues();
+  var values = sheet.getRange(2, 1, lastRow - 1, 4).getValues();
   var rows = {};
   values.forEach(function(row, index) {
     var name = row[0];
@@ -49,7 +49,8 @@ function readVoteRows_(sheet) {
     rows[name] = {
       rowNumber: index + 2,
       votes: Number(row[1]) || 0,
-      percentage: row[2] || "0.00%"
+      appearances: Number(row[2]) || 0,
+      percentage: row[3] || "0.00%"
     };
   });
   return rows;
@@ -60,6 +61,7 @@ function updateRow_(rows, name, won, appearances) {
     rows[name] = {
       rowNumber: null,
       votes: 0,
+      appearances: 0,
       percentage: "0.00%"
     };
   }
@@ -69,6 +71,7 @@ function updateRow_(rows, name, won, appearances) {
   }
 
   appearances[name] += 1;
+  rows[name].appearances = appearances[name];
 
   if (won) {
     rows[name].votes += 1;
@@ -79,9 +82,31 @@ function updateRow_(rows, name, won, appearances) {
 }
 
 function writeVoteRows_(sheet, rows) {
-  var names = Object.keys(rows).sort();
-  var values = names.map(function(name) {
-    return [name, rows[name].votes, rows[name].percentage];
+  var sortedRows = Object.keys(rows)
+    .map(function(name) {
+      return {
+        name: name,
+        votes: rows[name].votes,
+        appearances: rows[name].appearances,
+        percentage: rows[name].percentage
+      };
+    })
+    .sort(function(a, b) {
+      if (b.votes !== a.votes) {
+        return b.votes - a.votes;
+      }
+
+      var aPct = parseFloat(String(a.percentage).replace("%", "")) || 0;
+      var bPct = parseFloat(String(b.percentage).replace("%", "")) || 0;
+      if (bPct !== aPct) {
+        return bPct - aPct;
+      }
+
+      return a.name.localeCompare(b.name);
+    });
+
+  var values = sortedRows.map(function(row) {
+    return [row.name, row.votes, row.appearances, row.percentage];
   });
 
   var neededRows = values.length + 1;
@@ -90,12 +115,12 @@ function writeVoteRows_(sheet, rows) {
   }
 
   if (values.length) {
-    sheet.getRange(2, 1, values.length, 3).setValues(values);
+    sheet.getRange(2, 1, values.length, 4).setValues(values);
   }
 
   var existingContentRows = sheet.getLastRow() - 1;
   if (existingContentRows > values.length) {
-    sheet.getRange(values.length + 2, 1, existingContentRows - values.length, 3).clearContent();
+    sheet.getRange(values.length + 2, 1, existingContentRows - values.length, 4).clearContent();
   }
 }
 
