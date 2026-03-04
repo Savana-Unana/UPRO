@@ -73,6 +73,40 @@
       text-transform: uppercase;
     }
 
+    .mode-switcher {
+      margin-top: 14px;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .mode-button {
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--panel-light-text);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+
+    .mode-button:hover,
+    .mode-button:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.45);
+      outline: none;
+    }
+
+    .mode-button.is-active {
+      background: var(--neutral);
+      color: var(--panel-text);
+      border-color: var(--neutral);
+    }
+
     .header-nav button {
       background: #222;
       color: #0ff;
@@ -230,6 +264,11 @@
         </a>
       </div>
       <h1>Select your favorite of the two</h1>
+      <div class="mode-switcher" id="mode-switcher" role="tablist" aria-label="Vote mode">
+        <button class="mode-button is-active" type="button" data-vote-mode="finalized" role="tab" aria-selected="true">Finalized</button>
+        <button class="mode-button" type="button" data-vote-mode="conceptualized" role="tab" aria-selected="false">Conceptualized</button>
+        <button class="mode-button" type="button" data-vote-mode="all" role="tab" aria-selected="false">All Mons</button>
+      </div>
     </header>
 
     <main class="arena" id="arena" aria-live="polite">

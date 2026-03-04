@@ -1,13 +1,29 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1wM0PuhsT8TUoorvnXx9OZx5lXcd0I-7o4LpW7Yea3ham4saWMn2WOnNvGvUyKpqbow/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxE1DoOARQLGl9mKJmdFSsIltgq9wWN3E-ilF-Tf5yESS6A62CI3IKyv33myyQv1iMUBg/exec";
 
 const FALLBACK_TYPE = {
   name: "NPC",
   color: "#d7cfbf"
 };
 
+const VOTE_MODES = {
+  finalized: { label: "Finalized", sheetName: "Finalized" },
+  conceptualized: { label: "Conceptualized", sheetName: "Conceptualized" },
+  all: { label: "All Mons", sheetName: "All Mons" }
+};
+
+const DEFAULT_MODE = "finalized";
+const RESET_VOTES_HASH = "#appleciderbananajuice";
+const PENDING_VOTES_KEY = "upro_vote_queue";
+const LAST_MODE_KEY = "upro_vote_mode";
+
 const state = {
-  pool: [],
+  pools: {
+    finalized: [],
+    conceptualized: [],
+    all: []
+  },
   pair: [],
+  currentMode: loadVoteMode(),
   typeColors: new Map(),
   isVoting: false,
   pendingVotes: loadPendingVotes(),
@@ -19,7 +35,8 @@ const leftPanel = document.getElementById("left-panel");
 const rightPanel = document.getElementById("right-panel");
 const poolStatus = document.getElementById("pool-status");
 const saveStatus = document.getElementById("save-status");
-const RESET_VOTES_HASH = "#appleciderbananajuice";
+const modeButtons = Array.from(document.querySelectorAll("[data-vote-mode]"));
+let emptyStateEl = null;
 
 bootstrap();
 
@@ -29,6 +46,7 @@ async function bootstrap() {
     return;
   }
 
+  initModeSwitcher();
   init();
 }
 
@@ -45,16 +63,8 @@ async function init() {
       state.typeColors.set(type.name, type.color);
     }
 
-    state.pool = buildPool(base, ace, npc);
-
-    if (state.pool.length < 2) {
-      renderEmptyState("Not enough vote options were found.");
-      return;
-    }
-
-    updatePoolStatus();
-    updateSaveStatus();
-    nextPair();
+    state.pools = buildPools(base, ace, npc);
+    refreshForCurrentMode();
     flushPendingVotes();
   } catch (error) {
     console.error(error);
@@ -64,54 +74,101 @@ async function init() {
   }
 }
 
-function buildPool(baseEntries, aceEntries, npcEntries) {
-  const pool = [];
-  const seen = new Set();
+function initModeSwitcher() {
+  modeButtons.forEach(button => {
+    button.addEventListener("click", () => setVoteMode(button.dataset.voteMode));
+  });
+  syncModeButtons();
+}
 
-  for (const entry of baseEntries) {
-    if (!isDesignedEntry(entry)) {
-      continue;
-    }
-
-    if (entry.event) {
-      if (isModeEntry(entry)) {
-        continue;
-      }
-      pushPoolItem(pool, seen, normalizeMate(entry, "Event"));
-      continue;
-    }
-
-    pushPoolItem(pool, seen, normalizeMate(entry, "Base"));
+function setVoteMode(mode) {
+  if (!VOTE_MODES[mode] || mode === state.currentMode) {
+    return;
   }
 
-  for (const entry of aceEntries) {
-    if (!isDesignedEntry(entry)) {
+  state.currentMode = mode;
+  persistVoteMode();
+  refreshForCurrentMode();
+  flushPendingVotes();
+}
+
+function refreshForCurrentMode() {
+  syncModeButtons();
+  updatePoolStatus();
+  updateSaveStatus();
+
+  if (getCurrentPool().length < 2) {
+    state.pair = [];
+    renderEmptyState(`Not enough ${VOTE_MODES[state.currentMode].label.toLowerCase()} vote options were found.`);
+    return;
+  }
+
+  nextPair();
+}
+
+function syncModeButtons() {
+  modeButtons.forEach(button => {
+    const isActive = button.dataset.voteMode === state.currentMode;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+}
+
+function getCurrentPool() {
+  return state.pools[state.currentMode] || [];
+}
+
+function buildPools(baseEntries, aceEntries, npcEntries) {
+  const pools = {
+    finalized: [],
+    conceptualized: [],
+    all: []
+  };
+  const seen = {
+    finalized: new Set(),
+    conceptualized: new Set(),
+    all: new Set()
+  };
+
+  const mateEntries = [
+    ...baseEntries.map(entry => ({ entry, source: entry.event ? "Event" : "Base" })),
+    ...aceEntries.map(entry => ({ entry, source: entry.event ? "Event" : "Ace" }))
+  ];
+
+  for (const { entry, source } of mateEntries) {
+    if (!isDesignedEntry(entry) || isModeEntry(entry)) {
       continue;
     }
 
-    if (entry.event) {
-      if (isModeEntry(entry)) {
-        continue;
-      }
-      pushPoolItem(pool, seen, normalizeMate(entry, "Event"));
+    const item = normalizeMate(entry, source);
+    if (!item) {
       continue;
     }
 
-    pushPoolItem(pool, seen, normalizeMate(entry, "Ace"));
+    if (isFinalizedEntry(entry)) {
+      pushPoolItem(pools.finalized, seen.finalized, item);
+    }
+    if (isConceptualizedEntry(entry)) {
+      pushPoolItem(pools.conceptualized, seen.conceptualized, item);
+    }
+    pushPoolItem(pools.all, seen.all, item);
   }
 
   for (const entry of npcEntries) {
     if (!isDesignedNpcEntry(entry)) {
       continue;
     }
-    pushPoolItem(pool, seen, normalizeNpc(entry));
+
+    const item = normalizeNpc(entry);
+    pushPoolItem(pools.finalized, seen.finalized, item);
+    pushPoolItem(pools.all, seen.all, item);
   }
 
-  return pool;
+  return pools;
 }
 
 function isModeEntry(entry) {
-  return typeof entry.rarity === "string" && entry.rarity.includes("Mode");
+  return typeof entry?.rarity === "string" && entry.rarity.includes("Mode");
 }
 
 function isDesignedEntry(entry) {
@@ -119,7 +176,18 @@ function isDesignedEntry(entry) {
 }
 
 function isDesignedNpcEntry(entry) {
-  return !String(entry?.image || "").toLowerCase().includes("youknowwhoiam");
+  const image = String(entry?.image || "").toLowerCase();
+  return /(^|\/)nimages\//i.test(image) && !image.includes("youknowwhoiam");
+}
+
+function isFinalizedEntry(entry) {
+  const image = String(entry?.image || "").toLowerCase();
+  return /(^|\/)images\//i.test(image);
+}
+
+function isConceptualizedEntry(entry) {
+  const image = String(entry?.image || "").toLowerCase();
+  return /(^|\/)lostimages\//i.test(image);
 }
 
 function isMissingNo(entry) {
@@ -176,7 +244,8 @@ function getTypeColor(typeName) {
 }
 
 function nextPair() {
-  state.pair = pickPair(state.pool);
+  const pool = getCurrentPool();
+  state.pair = pickPair(pool);
   state.isVoting = false;
   renderPair();
 }
@@ -193,12 +262,20 @@ function pickPair(pool) {
 }
 
 function renderPair() {
+  ensureArenaReady();
   const [left, right] = state.pair;
   renderPanel(leftPanel, left, 0);
   renderPanel(rightPanel, right, 1);
 }
 
 function renderPanel(panel, mon, sideIndex) {
+  if (!mon) {
+    panel.innerHTML = "";
+    panel.disabled = true;
+    panel.classList.add("is-loading");
+    return;
+  }
+
   panel.classList.toggle("is-loading", state.isVoting);
   panel.style.background = mon.primaryColor;
   panel.style.color = mon.textColor;
@@ -223,27 +300,29 @@ async function handleVote(selectedIndex) {
 
   const winner = state.pair[selectedIndex];
   const loser = state.pair[selectedIndex === 0 ? 1 : 0];
-  enqueueVote(winner, loser);
+  enqueueVote(winner, loser, state.currentMode);
   nextPair();
   flushPendingVotes();
 }
 
-async function submitVote(winner, loser) {
+async function submitVote(vote) {
   if (!GOOGLE_SCRIPT_URL) {
     throw new Error("Google Apps Script URL is not configured.");
   }
 
-  await postVoteThroughIframe({
+  await postVoteRequest({
     action: "vote",
-    winnerName: winner.name,
-    winnerSource: winner.source,
-    loserName: loser.name,
-    loserSource: loser.source
+    mode: vote.mode,
+    winnerName: vote.winner.name,
+    winnerSource: vote.winner.source,
+    loserName: vote.loser.name,
+    loserSource: vote.loser.source
   });
 }
 
-function enqueueVote(winner, loser) {
+function enqueueVote(winner, loser, mode) {
   state.pendingVotes.push({
+    mode,
     winner: {
       name: winner.name,
       source: winner.source
@@ -256,7 +335,7 @@ function enqueueVote(winner, loser) {
   });
 
   persistPendingVotes();
-  saveStatus.textContent = `Queued vote: ${winner.name}`;
+  saveStatus.textContent = `Queued ${VOTE_MODES[mode].label} vote: ${winner.name}`;
   saveStatus.className = "status-warn";
 }
 
@@ -276,8 +355,8 @@ async function flushPendingVotes() {
 
   try {
     while (state.pendingVotes.length) {
-      const vote = state.pendingVotes[0];
-      await submitVote(vote.winner, vote.loser);
+      const vote = normalizePendingVote(state.pendingVotes[0]);
+      await submitVote(vote);
       state.pendingVotes.shift();
       persistPendingVotes();
     }
@@ -293,14 +372,30 @@ async function flushPendingVotes() {
   }
 }
 
+function normalizePendingVote(vote) {
+  return {
+    mode: VOTE_MODES[vote?.mode] ? vote.mode : "all",
+    winner: {
+      name: vote?.winner?.name || "",
+      source: vote?.winner?.source || ""
+    },
+    loser: {
+      name: vote?.loser?.name || "",
+      source: vote?.loser?.source || ""
+    },
+    queuedAt: vote?.queuedAt || Date.now()
+  };
+}
+
 function updatePoolStatus() {
-  const counts = state.pool.reduce((acc, item) => {
+  const pool = getCurrentPool();
+  const counts = pool.reduce((acc, item) => {
     acc[item.source] = (acc[item.source] || 0) + 1;
     return acc;
   }, {});
 
   poolStatus.innerHTML = [
-    `Loaded <strong>${state.pool.length}</strong> options.`,
+    `${VOTE_MODES[state.currentMode].label}: <strong>${pool.length}</strong> options.`,
     `Base: <strong>${counts.Base || 0}</strong>`,
     `Ace: <strong>${counts.Ace || 0}</strong>`,
     `NPC: <strong>${counts.NPC || 0}</strong>`,
@@ -309,6 +404,11 @@ function updatePoolStatus() {
 }
 
 function updateSaveStatus() {
+  const queuedInCurrentMode = state.pendingVotes
+    .map(normalizePendingVote)
+    .filter(vote => vote.mode === state.currentMode)
+    .length;
+
   if (GOOGLE_SCRIPT_URL) {
     if (state.isFlushingVotes) {
       saveStatus.textContent = `Saving ${state.pendingVotes.length} queued vote(s)...`;
@@ -317,12 +417,16 @@ function updateSaveStatus() {
     }
 
     if (state.pendingVotes.length) {
-      saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued for sync.`;
+      if (queuedInCurrentMode) {
+        saveStatus.textContent = `${queuedInCurrentMode} ${VOTE_MODES[state.currentMode].label.toLowerCase()} vote(s) queued for sync.`;
+      } else {
+        saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued in other mode(s).`;
+      }
       saveStatus.className = "status-warn";
       return;
     }
 
-    saveStatus.textContent = "Google Sheet connection configured.";
+    saveStatus.textContent = `Google Sheet connection configured for ${VOTE_MODES[state.currentMode].sheetName}.`;
     saveStatus.className = "status-ok";
     return;
   }
@@ -332,7 +436,25 @@ function updateSaveStatus() {
 }
 
 function renderEmptyState(message) {
-  arena.innerHTML = `<div class="empty-state">${escapeHtml(message)}</div>`;
+  if (!emptyStateEl) {
+    emptyStateEl = document.createElement("div");
+    emptyStateEl.className = "empty-state";
+  }
+
+  leftPanel.hidden = true;
+  rightPanel.hidden = true;
+  emptyStateEl.innerHTML = escapeHtml(message);
+  if (!arena.contains(emptyStateEl)) {
+    arena.appendChild(emptyStateEl);
+  }
+}
+
+function ensureArenaReady() {
+  leftPanel.hidden = false;
+  rightPanel.hidden = false;
+  if (emptyStateEl && arena.contains(emptyStateEl)) {
+    emptyStateEl.remove();
+  }
 }
 
 async function fetchJson(path) {
@@ -371,13 +493,13 @@ function escapeAttribute(value) {
 
 function loadPendingVotes() {
   try {
-    const raw = window.localStorage.getItem("upro_vote_queue");
+    const raw = window.localStorage.getItem(PENDING_VOTES_KEY);
     if (!raw) {
       return [];
     }
 
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed) ? parsed.map(normalizePendingVote) : [];
   } catch (error) {
     console.error(error);
     return [];
@@ -386,7 +508,25 @@ function loadPendingVotes() {
 
 function persistPendingVotes() {
   try {
-    window.localStorage.setItem("upro_vote_queue", JSON.stringify(state.pendingVotes));
+    window.localStorage.setItem(PENDING_VOTES_KEY, JSON.stringify(state.pendingVotes));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function loadVoteMode() {
+  try {
+    const savedMode = window.localStorage.getItem(LAST_MODE_KEY);
+    return VOTE_MODES[savedMode] ? savedMode : DEFAULT_MODE;
+  } catch (error) {
+    console.error(error);
+    return DEFAULT_MODE;
+  }
+}
+
+function persistVoteMode() {
+  try {
+    window.localStorage.setItem(LAST_MODE_KEY, state.currentMode);
   } catch (error) {
     console.error(error);
   }
@@ -394,14 +534,14 @@ function persistPendingVotes() {
 
 async function handleVoteResetHash() {
   try {
-    window.localStorage.removeItem("upro_vote_queue");
+    window.localStorage.removeItem(PENDING_VOTES_KEY);
   } catch (error) {
     console.error(error);
   }
 
   if (GOOGLE_SCRIPT_URL) {
     try {
-      await postVoteThroughIframe({ action: "reset" });
+      await postVoteRequest({ action: "reset" });
     } catch (error) {
       console.error(error);
     }
@@ -409,6 +549,32 @@ async function handleVoteResetHash() {
 
   const cleanUrl = `${window.location.pathname}${window.location.search}`;
   window.location.replace(cleanUrl);
+}
+
+async function postVoteRequest(fields) {
+  if (typeof window.fetch === "function") {
+    const body = new URLSearchParams();
+    Object.entries(fields).forEach(([key, value]) => {
+      body.append(key, value == null ? "" : String(value));
+    });
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: body.toString(),
+        keepalive: true
+      });
+      return;
+    } catch (error) {
+      console.warn("Fetch vote submit failed; falling back to iframe submit.", error);
+    }
+  }
+
+  return postVoteThroughIframe(fields);
 }
 
 function postVoteThroughIframe(fields) {

@@ -1,3 +1,21 @@
+var SHEET_CONFIG = {
+  finalized: {
+    sheetName: "Finalized",
+    appearancesKey: "vote_appearances_finalized"
+  },
+  conceptualized: {
+    sheetName: "Conceptualized",
+    appearancesKey: "vote_appearances_conceptualized"
+  },
+  all: {
+    sheetName: "All Mons",
+    appearancesKey: "vote_appearances_all"
+  }
+};
+
+var DEFAULT_MODE = "all";
+var HEADER_ROW = [["Name", "Votes", "Appearances", "Percentage"]];
+
 function doGet() {
   return ContentService
     .createTextOutput(JSON.stringify({ ok: true }))
@@ -5,36 +23,49 @@ function doGet() {
 }
 
 function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Votes");
-  if (!sheet) {
-    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Votes");
-  }
-
-  if (sheet.getLastRow() === 0) {
-    sheet.getRange(1, 1, 1, 4).setValues([["Name", "Votes", "Appearances", "Percentage"]]);
-  }
-
   var payload = parseVotePayload_(e);
+
   if (payload.action === "reset") {
-    resetVoteData_(sheet);
+    resetAllVoteData_();
     return jsonResponse({ ok: true, reset: true });
   }
 
-  if (payload.action !== "vote" || !payload.winner || !payload.loser) {
+  if (payload.action !== "vote" || !payload.winner || !payload.winner.name || !payload.loser || !payload.loser.name) {
     return jsonResponse({ ok: false, error: "Invalid payload." });
   }
 
+  var config = getSheetConfig_(payload.mode);
+  var sheet = getOrCreateVoteSheet_(config.sheetName);
   var properties = PropertiesService.getScriptProperties();
-  var appearances = JSON.parse(properties.getProperty("vote_appearances") || "{}");
+  var appearances = JSON.parse(properties.getProperty(config.appearancesKey) || "{}");
   var rows = readVoteRows_(sheet);
 
   updateRow_(rows, payload.winner.name, true, appearances);
   updateRow_(rows, payload.loser.name, false, appearances);
 
   writeVoteRows_(sheet, rows);
-  properties.setProperty("vote_appearances", JSON.stringify(appearances));
+  properties.setProperty(config.appearancesKey, JSON.stringify(appearances));
 
-  return jsonResponse({ ok: true });
+  return jsonResponse({ ok: true, mode: payload.mode, sheet: config.sheetName });
+}
+
+function getSheetConfig_(mode) {
+  return SHEET_CONFIG[mode] || SHEET_CONFIG[DEFAULT_MODE];
+}
+
+function getOrCreateVoteSheet_(sheetName) {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getSheetByName(sheetName);
+
+  if (!sheet) {
+    sheet = spreadsheet.insertSheet(sheetName);
+  }
+
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, 4).setValues(HEADER_ROW);
+  }
+
+  return sheet;
 }
 
 function readVoteRows_(sheet) {
@@ -135,6 +166,15 @@ function jsonResponse(payload) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+function resetAllVoteData_() {
+  Object.keys(SHEET_CONFIG).forEach(function(mode) {
+    var config = SHEET_CONFIG[mode];
+    var sheet = getOrCreateVoteSheet_(config.sheetName);
+    resetVoteData_(sheet);
+    PropertiesService.getScriptProperties().deleteProperty(config.appearancesKey);
+  });
+}
+
 function resetVoteData_(sheet) {
   var lastRow = sheet.getLastRow();
   if (lastRow > 1) {
@@ -146,7 +186,9 @@ function resetVoteData_(sheet) {
     sheet.deleteRows(2, maxRows - 2);
   }
 
-  PropertiesService.getScriptProperties().deleteProperty("vote_appearances");
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, 4).setValues(HEADER_ROW);
+  }
 }
 
 function parseVotePayload_(e) {
@@ -154,14 +196,15 @@ function parseVotePayload_(e) {
     try {
       var parsed = JSON.parse(e.postData.contents);
       if (parsed && typeof parsed === "object") {
-        return parsed;
+        return normalizeVotePayload_(parsed);
       }
     } catch (error) {}
   }
 
   var params = (e && e.parameter) || {};
-  return {
+  return normalizeVotePayload_({
     action: params.action || "",
+    mode: params.mode || "",
     winner: {
       name: params.winnerName || "",
       source: params.winnerSource || ""
@@ -169,6 +212,21 @@ function parseVotePayload_(e) {
     loser: {
       name: params.loserName || "",
       source: params.loserSource || ""
+    }
+  });
+}
+
+function normalizeVotePayload_(payload) {
+  return {
+    action: payload.action || "",
+    mode: SHEET_CONFIG[payload.mode] ? payload.mode : DEFAULT_MODE,
+    winner: {
+      name: payload.winner && payload.winner.name || payload.winnerName || "",
+      source: payload.winner && payload.winner.source || payload.winnerSource || ""
+    },
+    loser: {
+      name: payload.loser && payload.loser.name || payload.loserName || "",
+      source: payload.loser && payload.loser.source || payload.loserSource || ""
     }
   };
 }
