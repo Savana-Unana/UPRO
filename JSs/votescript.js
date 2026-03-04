@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1bMx04XBfogj0D8pXF-K6So_qlXIBwCxMgI_2cA_ZvH0KJdWarp4PIpNffEE5fEZxsQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1wM0PuhsT8TUoorvnXx9OZx5lXcd0I-7o4LpW7Yea3ham4saWMn2WOnNvGvUyKpqbow/exec";
 
 const FALLBACK_TYPE = {
   name: "NPC",
@@ -19,8 +19,18 @@ const leftPanel = document.getElementById("left-panel");
 const rightPanel = document.getElementById("right-panel");
 const poolStatus = document.getElementById("pool-status");
 const saveStatus = document.getElementById("save-status");
+const RESET_VOTES_HASH = "#appleciderbananajuice";
 
-init();
+bootstrap();
+
+async function bootstrap() {
+  if (window.location.hash === RESET_VOTES_HASH) {
+    await handleVoteResetHash();
+    return;
+  }
+
+  init();
+}
 
 async function init() {
   try {
@@ -376,6 +386,25 @@ function persistPendingVotes() {
   } catch (error) {
     console.error(error);
   }
+}
+
+async function handleVoteResetHash() {
+  try {
+    window.localStorage.removeItem("upro_vote_queue");
+  } catch (error) {
+    console.error(error);
+  }
+
+  if (GOOGLE_SCRIPT_URL) {
+    try {
+      await postVoteThroughIframe({ action: "reset" });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const cleanUrl = `${window.location.pathname}${window.location.search}`;
+  window.location.replace(cleanUrl);
 }
 
 function postVoteThroughIframe(fields) {

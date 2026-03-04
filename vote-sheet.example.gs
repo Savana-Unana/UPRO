@@ -15,6 +15,11 @@ function doPost(e) {
   }
 
   var payload = parseVotePayload_(e);
+  if (payload.action === "reset") {
+    resetVoteData_(sheet);
+    return jsonResponse({ ok: true, reset: true });
+  }
+
   if (payload.action !== "vote" || !payload.winner || !payload.loser) {
     return jsonResponse({ ok: false, error: "Invalid payload." });
   }
@@ -128,6 +133,20 @@ function jsonResponse(payload) {
   return ContentService
     .createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function resetVoteData_(sheet) {
+  var lastRow = sheet.getLastRow();
+  if (lastRow > 1) {
+    sheet.getRange(2, 1, lastRow - 1, 4).clearContent();
+  }
+
+  var maxRows = sheet.getMaxRows();
+  if (maxRows > 2) {
+    sheet.deleteRows(2, maxRows - 2);
+  }
+
+  PropertiesService.getScriptProperties().deleteProperty("vote_appearances");
 }
 
 function parseVotePayload_(e) {
