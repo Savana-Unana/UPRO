@@ -101,7 +101,7 @@ function buildPool(baseEntries, aceEntries, npcEntries) {
   }
 
   for (const entry of npcEntries) {
-    if (!isDesignedEntry({ ...entry, mode: "npc" })) {
+    if (!isDesignedNpcEntry(entry)) {
       continue;
     }
     pushPoolItem(pool, seen, normalizeNpc(entry));
@@ -116,6 +116,10 @@ function isModeEntry(entry) {
 
 function isDesignedEntry(entry) {
   return entry?.mode !== "npc" && !isMissingNo(entry) && !isOnes(entry);
+}
+
+function isDesignedNpcEntry(entry) {
+  return !String(entry?.image || "").toLowerCase().includes("youknowwhoiam");
 }
 
 function isMissingNo(entry) {
