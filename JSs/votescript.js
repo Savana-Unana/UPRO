@@ -136,7 +136,7 @@ function buildPools(baseEntries, aceEntries, npcEntries) {
   ];
 
   for (const { entry, source } of mateEntries) {
-    if (!isDesignedEntry(entry) || isModeEntry(entry)) {
+    if (isModeEntry(entry) || isOnes(entry)) {
       continue;
     }
 
@@ -145,10 +145,10 @@ function buildPools(baseEntries, aceEntries, npcEntries) {
       continue;
     }
 
-    if (isFinalizedEntry(entry)) {
+    if (isDesignedEntry(entry) && isFinalizedEntry(entry)) {
       pushPoolItem(pools.finalized, seen.finalized, item);
     }
-    if (isConceptualizedEntry(entry)) {
+    if (isDesignedEntry(entry) && isConceptualizedEntry(entry)) {
       pushPoolItem(pools.conceptualized, seen.conceptualized, item);
     }
     pushPoolItem(pools.all, seen.all, item);
