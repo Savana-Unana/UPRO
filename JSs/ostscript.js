@@ -19,6 +19,10 @@ let searchQuery = '';
 let currentAudio = null;
 let currentButton = null;
 
+function isSongPlayable(song) {
+  return typeof song?.file === "string" && song.file.trim().length > 0;
+}
+
 // Type colors
 const typeColors = {
   Normal: "white", Plant: "#6BBF59", Water: "#3BA5FF", Ice: "#C9F0FF",
@@ -101,25 +105,46 @@ function renderSongs() {
   filtered.forEach(song => {
     const card = document.createElement('div');
     card.classList.add('card');
-    card.dataset.file = song.file;
+    const playable = isSongPlayable(song);
+    if (playable) {
+      card.dataset.file = song.file;
+    } else {
+      card.classList.add('song-unavailable');
+    }
 
     const songTyping = Array.isArray(song.typing) ? song.typing : [song.typing || 'Unknown'];
     card.style.border = `4px solid ${typeColors[songTyping[0]] || "#0ff"}`;
 
-    const audio = document.createElement("audio");
-    audio.src = song.file;
-    audio.preload = "metadata";
-    audio.onended = () => {
-        if (!playlistMode) {
-            audio.currentTime = 0;
-            audio.play();
-            if (currentButton) currentButton.textContent = "Pause";
-        }
-    };
-    card.appendChild(audio);
+    let audio = null;
+    if (playable) {
+      audio = document.createElement("audio");
+      audio.src = song.file;
+      audio.preload = "metadata";
+      audio.onended = () => {
+          if (!playlistMode) {
+              audio.currentTime = 0;
+              audio.play();
+              if (currentButton) currentButton.textContent = "Pause";
+          }
+      };
+      card.appendChild(audio);
+    }
 
     const title = document.createElement('h3'); title.textContent = song.name;
     const composer = document.createElement('p'); composer.className = 'composer'; composer.textContent = `Composer: ${song.composer || 'Unknown'}`;
+
+    const infoWrap = document.createElement('div');
+    infoWrap.className = 'song-info-wrap';
+    const infoBtn = document.createElement('span');
+    infoBtn.className = 'song-info-icon';
+    infoBtn.textContent = 'i';
+    const infoBox = document.createElement('div');
+    infoBox.className = 'song-info-box';
+    const infoTitle = song["description-title"] || "Info";
+    const infoText = song.description || "No description yet.";
+    infoBox.innerHTML = `<strong>${infoTitle}</strong><p>${infoText}</p>`;
+    infoWrap.appendChild(infoBtn);
+    infoWrap.appendChild(infoBox);
 
     const areaEl = document.createElement('div'); areaEl.className = 'types';
     const areaSpan = document.createElement('span'); areaSpan.textContent = song.area || 'Unknown'; areaEl.appendChild(areaSpan);
@@ -128,10 +153,12 @@ function renderSongs() {
     const themeSpan = document.createElement('span'); themeSpan.textContent = song.theme || 'Theme'; themeEl.appendChild(themeSpan);
 
     const selectBtn = document.createElement('button');
-    selectBtn.textContent = playlistMode ? 'Add to Playlist' : '';
+    selectBtn.textContent = (playlistMode && playable) ? 'Add to Playlist' : '';
     selectBtn.classList.add('playlist-btn');
+    if (!playable) selectBtn.disabled = true;
 
     selectBtn.addEventListener('click', () => {
+        if (!playable) return;
         if (!playlist.includes(song)) {
             playlist.push(song);
             updatePlaylistUI();
@@ -140,7 +167,12 @@ function renderSongs() {
     });
 
     const playBtn = document.createElement('button'); playBtn.textContent = 'Play'; playBtn.classList.add('play-btn');
+    if (!playable) {
+      playBtn.textContent = 'Unavailable';
+      playBtn.disabled = true;
+    }
     playBtn.addEventListener('click', () => {
+    if (!playable) return;
     if (playlistMode && playlist.length > 0) {
         // Toggle play/pause for playlist
         playPlaylistSong(true);
@@ -166,23 +198,35 @@ function renderSongs() {
 
 
     const timeDisplay = document.createElement('div'); timeDisplay.classList.add('time-display'); timeDisplay.textContent = '0:00 / 0:00';
+    if (!playable) timeDisplay.textContent = '--:-- / --:--';
 
     const progressContainer = document.createElement('div'); progressContainer.classList.add('progress-container');
     const progressBar = document.createElement('div'); progressBar.classList.add('progress-bar'); progressContainer.appendChild(progressBar);
     const handle = document.createElement('div'); handle.classList.add('progress-handle'); progressContainer.appendChild(handle);
+    if (!playable) progressContainer.classList.add('disabled-progress');
 
     function updateProgress() {
+      if (!audio) return;
       const percent = (audio.currentTime / audio.duration) * 100 || 0;
       progressBar.style.width = percent+'%'; handle.style.left = percent+'%';
       timeDisplay.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
     }
 
-    audio.addEventListener('loadedmetadata', updateProgress);
-    audio.addEventListener("timeupdate", updateProgress);
+    if (audio) {
+      audio.addEventListener('loadedmetadata', updateProgress);
+      audio.addEventListener("timeupdate", updateProgress);
+    }
 
     let dragging = false;
-    handle.addEventListener('pointerdown', ev => { ev.preventDefault(); dragging=true; handle.setPointerCapture(ev.pointerId); if (!audio.paused) audio.pause(); });
+    handle.addEventListener('pointerdown', ev => {
+      if (!audio) return;
+      ev.preventDefault();
+      dragging=true;
+      handle.setPointerCapture(ev.pointerId);
+      if (!audio.paused) audio.pause();
+    });
     handle.addEventListener('pointermove', ev => {
+      if (!audio) return;
       if (!dragging) return;
       const rect = progressContainer.getBoundingClientRect();
       let newPercent = ((ev.clientX - rect.left)/rect.width)*100;
@@ -192,6 +236,7 @@ function renderSongs() {
       updateProgress();
     });
     handle.addEventListener('pointerup', ev => {
+      if (!audio) return;
       if (!dragging) return; dragging=false; try { handle.releasePointerCapture(ev.pointerId); } catch{}
       const rect = progressContainer.getBoundingClientRect();
       let newPercent = ((ev.clientX - rect.left)/rect.width); newPercent = Math.max(0, Math.min(1,newPercent));
@@ -205,6 +250,7 @@ function renderSongs() {
     });
 
     progressContainer.addEventListener('click', e => {
+      if (!audio) return;
       const rect = progressContainer.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const newPercent = Math.max(0, Math.min(1, clickX/rect.width));
@@ -217,6 +263,7 @@ function renderSongs() {
       playBtn.textContent = 'Pause';
     });
 
+    card.appendChild(infoWrap);
     card.appendChild(title); card.appendChild(composer); card.appendChild(areaEl); card.appendChild(themeEl);
     card.appendChild(playBtn); card.appendChild(timeDisplay); card.appendChild(progressContainer);
     card.appendChild(selectBtn);
@@ -291,11 +338,11 @@ function initFilters() {
   addToggle('songTypeToggle','songTypePanel');
 }
 document.getElementById('playAllBtn').addEventListener('click', () => {
-  document.querySelectorAll('audio').forEach(a => a.play());
+  document.querySelectorAll('#ostGrid .card audio').forEach(a => a.play());
 });
 
 document.getElementById('pauseAllBtn').addEventListener('click', () => {
-  document.querySelectorAll('audio').forEach(a => {
+  document.querySelectorAll('#ostGrid .card audio').forEach(a => {
     a.pause();
     a.currentTime = 0;
   });
@@ -314,7 +361,9 @@ document.getElementById('playlistModeBtn').addEventListener('click', () => {
 
   // Update text only
   document.querySelectorAll('.playlist-btn').forEach(btn => {
-    btn.textContent = playlistMode ? "Add to Playlist" : "";
+    const card = btn.closest('.card');
+    const playable = card && !card.classList.contains('song-unavailable');
+    btn.textContent = (playlistMode && playable) ? "Add to Playlist" : "";
   });
 
   updatePlaylistUI();
@@ -345,7 +394,7 @@ function playPlaylistSong(pauseToggle=false) {
     }
 
     // Stop all other audio
-    document.querySelectorAll('audio').forEach(a => { if(a!==audio) a.pause(); });
+    document.querySelectorAll('#ostGrid .card audio').forEach(a => { if(a!==audio) a.pause(); });
 
     audio.currentTime = 0;
     audio.play();

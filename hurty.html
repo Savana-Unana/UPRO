@@ -7,7 +7,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="hurty-page">
+  <div class="status-effects-wrap">
+    <button
+      id="statusEffectsIcon"
+      class="status-effects-icon"
+      type="button"
+      title="Show status effects"
+      aria-label="Show status effects"
+      aria-expanded="false"
+      aria-controls="statusEffectsPopover"
+    >i</button>
+    <div id="statusEffectsPopover" class="status-effects-popover hidden" aria-hidden="true">
+      <div class="status-effects-head">
+        <h3>Status Effects</h3>
+        <span id="statusEffectsCount"></span>
+      </div>
+      <ul id="statusEffectsList"></ul>
+    </div>
+  </div>
+
   <header>
     <div style="display:flex;">
       <div id="nav-btn">
@@ -41,17 +60,12 @@
         </select>
       </div>
 
-      <!-- Grid / List toggle -->
-      <div class="view-toggle">
-        <button id="gridView" class="active">Grid</button>
-        <button id="listView">List</button>
-      </div>
-
       <!-- Tabs -->
       <div class="mode-switch">
         <button class="dex-tab active" data-tab="abilities">Abilities</button>
         <button class="dex-tab" data-tab="moves">Moves</button>
       </div>
+
     </div>
   </header>
 
@@ -75,7 +89,6 @@
         <div id="monUsers" style="margin-top:12px;">
         </div>
       </div>
-at
       <div class="modal-footer">
         <button id="prevItem" class="nav-btn">← Previous</button>
         <button id="nextItem" class="nav-btn">Next →</button>

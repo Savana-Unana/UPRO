@@ -1,6 +1,7 @@
 let abilitiesData = [];
 let movesData = [];
 let allMons = []; // merged mon list
+let statusEffectsData = [];
 
 let allTypes = [];
 
@@ -21,10 +22,11 @@ const clearTypes = document.getElementById("clearTypes");
 const moveTypeWrapper = document.getElementById("moveTypeWrapper");
 const moveTypeSelect = document.getElementById("moveTypeSelect");
 
-const gridView = document.getElementById("gridView");
-const listView = document.getElementById("listView");
-
 const tabButtons = Array.from(document.querySelectorAll(".dex-tab"));
+const statusEffectsIcon = document.getElementById("statusEffectsIcon");
+const statusEffectsPopover = document.getElementById("statusEffectsPopover");
+const statusEffectsList = document.getElementById("statusEffectsList");
+const statusEffectsCount = document.getElementById("statusEffectsCount");
 
 // modal refs
 const modal = document.getElementById("detailsModal");
@@ -44,6 +46,48 @@ const defaultTypes = [
   "Lucid"
 ];
 
+const typeColors = {
+  Normal: "#d8dde8",
+  Plant: "#6BBF59",
+  Water: "#3BA5FF",
+  Ice: "#C9F0FF",
+  Fire: "#FF7A4D",
+  Earth: "#C99C6B",
+  Mystic: "#BFA6FF",
+  Air: "#9ED8FF",
+  Savage: "#D6C79B",
+  Metal: "#B0B8C1",
+  Electric: "#F6C94C",
+  Artillery: "#D88F8F",
+  Light: "#FFF3B0",
+  Dark: "#3B3B3F",
+  Gross: "#A8A77A",
+  Spectral: "#8F7AE6",
+  Lucid: "#9FE5D1"
+};
+
+// fallback status effects list (kept at 18 entries)
+const fallbackStatusEffects = [
+  { name: "Bored", typing: "Normal", desc: "10% chance each turn to do nothing." },
+  { name: "Wet", typing: "Water", desc: "More vulnerable to electric effects while wet." },
+  { name: "Burn", typing: "Fire", desc: "Takes 5% damage per turn and loses 15% MATK." },
+  { name: "Poison", typing: "Plant", desc: "Takes gradual damage each turn." },
+  { name: "Bloated", typing: "Air", desc: "Heals 2% each turn but loses 20% SP and 5% RATK." },
+  { name: "Magnetized", typing: "Metal", desc: "Can be manipulated by magnetic effects." },
+  { name: "Conductive", typing: "Electric", desc: "Opposing damaging attacks are 25% faster." },
+  { name: "Confused", typing: "Mystic", desc: "10% chance each turn to hit itself." },
+  { name: "Possessed", typing: "Spectral", desc: "30% chance once to attack itself with its own move." },
+  { name: "Feral", typing: "Savage", desc: "Control is unstable and actions can become erratic." },
+  { name: "Nauseous", typing: "Gross", desc: "10% chance to use the wrong move and loses 10% RATK." },
+  { name: "Frozen", typing: "Ice", desc: "May be unable to act until thawed." },
+  { name: "Rooted", typing: "Earth", desc: "Movement or swap options can be restricted." },
+  { name: "Wounded", typing: "Artillery", desc: "Cannot swap out and takes +14% RATK damage." },
+  { name: "Exposed", typing: "Light", desc: "Opposing attacks cannot miss." },
+  { name: "Blind", typing: "Dark", desc: "Attacks are 40% more likely to miss." },
+  { name: "Dreamlocked", typing: "Lucid", desc: "Mind state is altered by dream pressure." },
+  { name: "Glitched", typing: "Switcheroo", desc: "Unstable switch state may force random interactions." }
+];
+
 // small HTML escape
 function escapeHtml(str) {
   if (!str && str !== 0) return "";
@@ -54,12 +98,13 @@ function escapeHtml(str) {
 Promise.all([
   fetch("data/abilities.json").then(r => r.json()).catch(() => []),
   fetch("data/moves.json").then(r => r.json()).catch(() => []),
-  fetch("data/base.json").then(r => r.json()).catch(() => []),
-  fetch("data/sacred.json").then(r => r.json()).catch(() => []),
-  fetch("data/ace.json").then(r => r.json()).catch(() => []),
-  fetch("data/event.json").then(r => r.json()).catch(() => []),
-  fetch("data/ncanon.json").then(r => r.json()).catch(() => [])
-]).then(([abilities, moves, base, sacred, ace, event, ncanon]) => {
+  fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
+  fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
+  fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
+  fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
+  fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
+  fetch("data/unusused%20stuff/status.json").then(r => r.json()).catch(() => [])
+]).then(([abilities, moves, base, sacred, ace, event, ncanon, statuses]) => {
   abilitiesData = Array.isArray(abilities) ? abilities : [];
   movesData = Array.isArray(moves) ? moves : [];
 
@@ -69,6 +114,7 @@ Promise.all([
     if (Array.isArray(arr)) merged.push(...arr);
   });
   allMons = merged;
+  statusEffectsData = buildStatusEffects(statuses);
 
   // gather types from moves + abilities + mons (so the type filter dropdown is useful)
   collectAllTypes();
@@ -78,12 +124,15 @@ Promise.all([
 
   // initial render
   renderCurrentTab();
+  renderStatusEffects();
 }).catch(err => {
   console.error("Failed to load JSONs:", err);
   // if fetch fails, keep abilities/moves empty and continue with UI (no user list)
   allTypes = defaultTypes.slice();
+  statusEffectsData = fallbackStatusEffects.slice();
   populateTypeOptions();
   renderCurrentTab();
+  renderStatusEffects();
 });
 
 /* ----------------- Helpers for types/filter UI ----------------- */
@@ -92,7 +141,10 @@ function collectAllTypes() {
   const set = new Set();
 
   movesData.forEach(m => { if (m && typeof m.type === "string" && m.type.trim()) set.add(m.type.trim()); });
-  abilitiesData.forEach(a => { if (Array.isArray(a.types)) a.types.forEach(t => { if (t && t.trim()) set.add(t.trim()); }); });
+  abilitiesData.forEach(a => {
+    if (Array.isArray(a.types)) a.types.forEach(t => { if (t && t.trim()) set.add(t.trim()); });
+    if (a && typeof a.type === "string" && a.type.trim()) set.add(a.type.trim());
+  });
 
   // also include types used in mons
   allMons.forEach(mon => {
@@ -140,6 +192,23 @@ function setupToggle(toggle, panel) {
 }
 setupToggle(typeToggle, typePanel);
 
+if (statusEffectsIcon && statusEffectsPopover) {
+  statusEffectsIcon.addEventListener("click", ev => {
+    ev.stopPropagation();
+    toggleStatusPopover();
+  });
+
+  document.addEventListener("click", ev => {
+    if (!statusEffectsPopover.contains(ev.target) && ev.target !== statusEffectsIcon) {
+      closeStatusPopover();
+    }
+  });
+
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape") closeStatusPopover();
+  });
+}
+
 /* ----------------- Events (unchanged) ----------------- */
 
 clearTypes.addEventListener("click", () => {
@@ -149,17 +218,6 @@ clearTypes.addEventListener("click", () => {
 typeOptionsEl.addEventListener("change", renderCurrentTab);
 searchInput.addEventListener("input", renderCurrentTab);
 moveTypeSelect.addEventListener("change", renderCurrentTab);
-
-gridView.addEventListener("click", () => {
-  gridView.classList.add("active");
-  listView.classList.remove("active");
-  pokedex.className = "grid";
-});
-listView.addEventListener("click", () => {
-  listView.classList.add("active");
-  gridView.classList.remove("active");
-  pokedex.className = "list";
-});
 
 // tab switching
 tabButtons.forEach(btn => {
@@ -189,7 +247,60 @@ function matchesSearch(entity, term) {
 }
 
 function typeTag(t) {
-  return `<span style="background:#0ff; padding:3px 6px; border-radius:6px; color:#000; margin:2px; display:inline-block;">${escapeHtml(t)}</span>`;
+  return `<span class="hurty-type-tag">${escapeHtml(t)}</span>`;
+}
+
+function getTypeColor(typeName) {
+  if (!typeName || typeof typeName !== "string") return "#8fa7ce";
+  return typeColors[typeName.trim()] || "#8fa7ce";
+}
+
+function buildStatusEffects(rawStatuses) {
+  const raw = Array.isArray(rawStatuses) ? rawStatuses : [];
+  return fallbackStatusEffects.map((fallback, index) => {
+    const exact = raw.find(s => (s?.typing || "").trim().toLowerCase() === fallback.typing.toLowerCase());
+    if (!exact) return { ...fallback, order: index + 1 };
+
+    return {
+      name: (exact.name || "").trim() || fallback.name,
+      typing: (exact.typing || "").trim() || fallback.typing,
+      desc: (exact.desc || "").trim() || fallback.desc,
+      order: index + 1
+    };
+  });
+}
+
+function renderStatusEffects() {
+  if (!statusEffectsList) return;
+
+  const effects = statusEffectsData.length ? statusEffectsData : fallbackStatusEffects;
+  statusEffectsList.innerHTML = effects.map(effect => {
+    return `
+      <li>
+        <span class="hurty-type-tag">${escapeHtml(effect.typing)}</span>
+        <strong>${escapeHtml(effect.name)}</strong>
+        <p>${escapeHtml(effect.desc)}</p>
+      </li>
+    `;
+  }).join("");
+
+  if (statusEffectsCount) statusEffectsCount.textContent = `${effects.length} total`;
+}
+
+function closeStatusPopover() {
+  if (!statusEffectsPopover || !statusEffectsIcon) return;
+  statusEffectsPopover.classList.add("hidden");
+  statusEffectsPopover.setAttribute("aria-hidden", "true");
+  statusEffectsIcon.setAttribute("aria-expanded", "false");
+}
+
+function toggleStatusPopover() {
+  if (!statusEffectsPopover || !statusEffectsIcon) return;
+
+  const isOpen = !statusEffectsPopover.classList.contains("hidden");
+  statusEffectsPopover.classList.toggle("hidden", isOpen);
+  statusEffectsPopover.setAttribute("aria-hidden", isOpen ? "true" : "false");
+  statusEffectsIcon.setAttribute("aria-expanded", isOpen ? "false" : "true");
 }
 
 /* ----------------- Renderers (mostly unchanged) ----------------- */
@@ -208,26 +319,34 @@ function renderAbilities() {
   const term = (searchInput.value || "").trim();
 
   filteredList = abilitiesData.filter(a => {
+    const abilityTypes = Array.isArray(a.types)
+      ? a.types.filter(Boolean)
+      : (a.type ? [a.type] : []);
     if (!matchesSearch(a, term)) return false;
     if (types.length > 0) {
-      if (!Array.isArray(a.types)) return false;
-      if (!a.types.some(t => types.includes(t))) return false;
+      if (!abilityTypes.length) return false;
+      if (!abilityTypes.some(t => types.includes(t))) return false;
     }
     return true;
   });
 
   if (!filteredList.length) {
-    pokedex.innerHTML = `<div style="padding:20px; color:#0ff;">No abilities found.</div>`;
+    pokedex.innerHTML = `<div class="hurty-empty">No abilities found.</div>`;
     return;
   }
 
   filteredList.forEach((a, i) => {
     const card = document.createElement("div");
     card.className = "card";
+    const abilityTypes = Array.isArray(a.types)
+      ? a.types.filter(Boolean)
+      : (a.type ? [a.type] : []);
+    const primaryType = abilityTypes.length ? abilityTypes[0] : "";
+    card.style.borderColor = getTypeColor(primaryType);
     card.innerHTML = `
-      <h3 style="font-size:2.4rem; margin:6px 0;">${escapeHtml(a.name)}</h3>
-      <div class="types">${(a.types || []).map(typeTag).join("")}</div>
-      <p style="font-size:1.8rem; padding:6px 8px;">${escapeHtml(a.text || a.description || "")}</p>
+      <h3 class="hurty-card-title">${escapeHtml(a.name)}</h3>
+      <div class="types">${abilityTypes.map(typeTag).join("")}</div>
+      <p class="hurty-card-copy">${escapeHtml(a.text || a.description || "")}</p>
     `;
     card.addEventListener("click", () => openModal(i));
     pokedex.appendChild(card);
@@ -254,18 +373,19 @@ function renderMoves() {
   });
 
   if (!filteredList.length) {
-    pokedex.innerHTML = `<div style="padding:20px; color:#0ff;">No moves found.</div>`;
+    pokedex.innerHTML = `<div class="hurty-empty">No moves found.</div>`;
     return;
   }
 
   filteredList.forEach((m, i) => {
     const card = document.createElement("div");
     card.className = "card";
+    card.style.borderColor = getTypeColor(m.type);
     card.innerHTML = `
-      <h3 style="font-size:2.4rem; margin:6px 0;">${escapeHtml(m.name)}</h3>
+      <h3 class="hurty-card-title">${escapeHtml(m.name)}</h3>
       <div class="types">${m.type ? typeTag(m.type) : ''}</div>
-      <p style="font-size:1.6rem; padding:6px 8px;">${escapeHtml(m.description || "")}</p>
-      <div style="display:flex; gap:10px; justify-content:center; font-size:1.6rem; margin-top:8px;">
+      <p class="hurty-card-copy">${escapeHtml(m.description || "")}</p>
+      <div class="hurty-card-quickstats">
         <div>Power: ${escapeHtml(m.power ?? "")}</div>
         <div>Acc: ${escapeHtml(m.accuracy ?? "")}</div>
         <div>EP: ${escapeHtml(m.ep ?? "")}</div>
@@ -316,7 +436,7 @@ function openModal(i) {
     itemTypes.innerHTML = item.type ? typeTag(item.type) : "";
     itemText.textContent = item.description || "";
     extraStats.innerHTML = `
-      <div style="margin-top:8px; font-size:1.6rem;">
+      <div class="hurty-move-stats">
         <b>Category:</b> ${escapeHtml(item.category || "")}<br>
         <b>Power:</b> ${escapeHtml(item.power ?? "")} &nbsp;
         <b>Accuracy:</b> ${escapeHtml(item.accuracy ?? "")} &nbsp;
@@ -329,7 +449,10 @@ function openModal(i) {
     renderMonUsersGrid(users);
   } else {
     // ability
-    itemTypes.innerHTML = (item.types || []).map(typeTag).join("");
+    const abilityTypes = Array.isArray(item.types)
+      ? item.types.filter(Boolean)
+      : (item.type ? [item.type] : []);
+    itemTypes.innerHTML = abilityTypes.map(typeTag).join("");
     itemText.textContent = item.text || item.description || "";
     extraStats.innerHTML = "";
 
@@ -347,53 +470,37 @@ function renderMonUsersGrid(monArray) {
   monUsersContainer.innerHTML = ""; // clear
 
   const header = document.createElement("div");
-  header.style.marginBottom = "8px";
-  header.style.fontSize = "1.4rem";
-  header.style.color = "#cfe";
+  header.className = "mon-users-title";
   header.textContent = monArray.length ? "Usable by:" : "No mons found that use this.";
   monUsersContainer.appendChild(header);
 
   if (!monArray.length) return;
 
   const grid = document.createElement("div");
-  grid.style.display = "grid";
-  grid.style.gridTemplateColumns = "repeat(auto-fit, minmax(140px, 1fr))";
-  grid.style.gap = "10px";
-  grid.style.alignItems = "start";
+  grid.className = "mon-users-grid";
 
   monArray.forEach(mon => {
     const card = document.createElement("div");
-    card.style.background = "#1b1b1f";
-    card.style.border = "1px solid #0ff";
-    card.style.borderRadius = "10px";
-    card.style.padding = "8px";
-    card.style.textAlign = "center";
-    card.style.color = "#e0f0ff";
-    card.style.pointerEvents = "none"; // ensure non-clickable
+    card.className = "mon-user-card";
 
     // image (use mon.image exactly)
     const img = document.createElement("img");
     img.src = mon.image || "";
     img.alt = mon.name || "";
-    img.style.width = "100%";
-    img.style.height = "120px";
-    img.style.objectFit = "contain";
-    img.style.display = "block";
-    img.style.margin = "0 auto 8px auto";
+    img.className = "mon-user-image";
     card.appendChild(img);
 
     // name
     const nm = document.createElement("div");
-    nm.style.fontSize = "1.1rem";
-    nm.style.fontWeight = "600";
+    nm.className = "mon-user-name";
     nm.textContent = mon.name || "";
     card.appendChild(nm);
 
     // types (small)
     if (Array.isArray(mon.types) && mon.types.length) {
       const typesWrap = document.createElement("div");
-      typesWrap.style.marginTop = "6px";
-      typesWrap.innerHTML = (mon.types || []).map(t => `<span style="background:#0ff; color:#000; padding:3px 6px; border-radius:6px; margin:2px; display:inline-block; font-weight:bold;">${escapeHtml(t)}</span>`).join("");
+      typesWrap.className = "mon-user-types";
+      typesWrap.innerHTML = (mon.types || []).map(typeTag).join("");
       card.appendChild(typesWrap);
     }
 
