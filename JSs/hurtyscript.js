@@ -68,24 +68,14 @@ const typeColors = {
 
 // fallback status effects list (kept at 18 entries)
 const fallbackStatusEffects = [
-  { name: "Bored", typing: "Normal", desc: "10% chance each turn to do nothing." },
-  { name: "Wet", typing: "Water", desc: "More vulnerable to electric effects while wet." },
-  { name: "Burn", typing: "Fire", desc: "Takes 5% damage per turn and loses 15% MATK." },
-  { name: "Poison", typing: "Plant", desc: "Takes gradual damage each turn." },
-  { name: "Bloated", typing: "Air", desc: "Heals 2% each turn but loses 20% SP and 5% RATK." },
-  { name: "Magnetized", typing: "Metal", desc: "Can be manipulated by magnetic effects." },
-  { name: "Conductive", typing: "Electric", desc: "Opposing damaging attacks are 25% faster." },
-  { name: "Confused", typing: "Mystic", desc: "10% chance each turn to hit itself." },
-  { name: "Possessed", typing: "Spectral", desc: "30% chance once to attack itself with its own move." },
-  { name: "Feral", typing: "Savage", desc: "Control is unstable and actions can become erratic." },
-  { name: "Nauseous", typing: "Gross", desc: "10% chance to use the wrong move and loses 10% RATK." },
-  { name: "Frozen", typing: "Ice", desc: "May be unable to act until thawed." },
-  { name: "Rooted", typing: "Earth", desc: "Movement or swap options can be restricted." },
-  { name: "Wounded", typing: "Artillery", desc: "Cannot swap out and takes +14% RATK damage." },
-  { name: "Exposed", typing: "Light", desc: "Opposing attacks cannot miss." },
-  { name: "Blind", typing: "Dark", desc: "Attacks are 40% more likely to miss." },
-  { name: "Dreamlocked", typing: "Lucid", desc: "Mind state is altered by dream pressure." },
-  { name: "Glitched", typing: "Switcheroo", desc: "Unstable switch state may force random interactions." }
+  { name: "Defenseless", typing: "Normal", desc: "This Animates takes 150% dmg from attacks." },
+  { name: "Burn", typing: "Fire", desc: "Takes 1+(number of turns with effect)% of max HP as damage each turn." },
+  { name: "Wet", typing: "Water", desc: "125% damage from Electric attacks, and only deals 80% fire damage. Accuracy is reduced to maximum of 95%." },
+  { name: "Frozen", typing: "Ice", desc: "Can't move. Any fire attacks disable the status." },
+  { name: "Filthy", typing: "Gross", desc: "All healing items, moves, and abilities are halved in effect." },
+  { name: "Blinded", typing: "Light", desc: "Accuracy is reduced to maximum of 90%. Any damage from Dark-type moves ends the status." },
+  { name: "Obscured", typing: "Dark", desc: "Accuracy is reduced to maximum of 90%. Any damage from Light-type moves ends the status." },
+  { name: "Placeholder", typing: "Placeholder", desc: "Placeholder" }
 ];
 
 // small HTML escape
