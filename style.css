@@ -198,7 +198,7 @@ main.list {
   z-index: 1;
 }
 
-.card:hover { transform: scale(1.04); box-shadow: 0 0 12px #0ff; }
+.card:hover { transform: scale(1.04); box-shadow: 0 0 12px var(--outline-color, #0ff); }
 .card img { width: 100px; height: 100px; object-fit: contain; }
 .card img.rarity-shiver-badge {
   position: absolute;
@@ -722,7 +722,7 @@ input#search:focus {
 /* Hover effect */
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px #0ff;
+  box-shadow: 0 0 12px var(--outline-color, #0ff);
 }
 
 /* Song image */

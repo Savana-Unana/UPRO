@@ -1,31 +1,46 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxW2-Ir2-V-gYtjh_8loErFZNmNbBPEYq7tgFbpZNtUQNeKt1Pnz5-v87aTu8jHb43gRg/exec";
 
-const FALLBACK_TYPE = {
-  name: "NPC",
-  color: "#d7cfbf"
+const FALLBACK_COLOR = "#d7cfbf";
+const SONG_VOTE_MODES = {
+  ost: { label: "Canon", sheetName: "Song Canon" },
+  bonus: { label: "Non-Canon", sheetName: "Song Non-Canon" }
 };
 
-const VOTE_MODES = {
-  finalized: { label: "Finalized", sheetName: "Finalized" },
-  conceptualized: { label: "Conceptualized", sheetName: "Conceptualized" },
-  all: { label: "All Mons", sheetName: "All Mons" }
+const TYPE_COLORS = {
+  Normal: "#d7cfbf",
+  Plant: "#6BBF59",
+  Water: "#3BA5FF",
+  Ice: "#C9F0FF",
+  Fire: "#FF7A4D",
+  Earth: "#C99C6B",
+  Mystic: "#BFA6FF",
+  Air: "#9ED8FF",
+  Savage: "#D6C79B",
+  Metal: "#B0B8C1",
+  Electric: "#F6C94C",
+  Artillery: "#D88F8F",
+  Light: "#FFF3B0",
+  Dark: "#3B3B3F",
+  Gross: "#A8A77A",
+  Spectral: "#8F7AE6",
+  Lucid: "#9FE5D1"
 };
 
-const DEFAULT_MODE = "finalized";
+const DEFAULT_MODE = "ost";
 const RESET_VOTES_HASH = "#appleciderbananajuice";
-const PENDING_VOTES_KEY = "upro_vote_queue";
-const LAST_MODE_KEY = "upro_vote_mode";
+const PENDING_VOTES_KEY = "upro_song_vote_queue";
+const LAST_MODE_KEY = "upro_song_vote_mode";
 
 const state = {
   pools: {
-    finalized: [],
-    conceptualized: [],
-    all: []
+    ost: [],
+    bonus: []
   },
   pair: [],
   currentMode: loadVoteMode(),
-  typeColors: new Map(),
   isVoting: false,
+  currentAudio: null,
+  currentListenButton: null,
   pendingVotes: loadPendingVotes(),
   isFlushingVotes: false
 };
@@ -52,23 +67,13 @@ async function bootstrap() {
 
 async function init() {
   try {
-    const [types, base, ace, npc] = await Promise.all([
-      fetchJson("data/types.json"),
-      fetchJson("data/mates/base.json"),
-      fetchJson("data/mates/ace.json"),
-      fetchJson("data/mates/npc.json")
-    ]);
-
-    for (const type of types) {
-      state.typeColors.set(type.name, type.color);
-    }
-
-    state.pools = buildPools(base, ace, npc);
+    const songs = await fetchJson("data/songs.json");
+    state.pools = buildPools(songs);
     refreshForCurrentMode();
     flushPendingVotes();
   } catch (error) {
     console.error(error);
-    renderEmptyState("The vote page could not load its data.");
+    renderEmptyState("The song vote page could not load its data.");
     saveStatus.textContent = "Loading failed.";
     saveStatus.className = "status-error";
   }
@@ -82,7 +87,7 @@ function initModeSwitcher() {
 }
 
 function setVoteMode(mode) {
-  if (!VOTE_MODES[mode] || mode === state.currentMode) {
+  if (!SONG_VOTE_MODES[mode] || mode === state.currentMode) {
     return;
   }
 
@@ -99,7 +104,7 @@ function refreshForCurrentMode() {
 
   if (getCurrentPool().length < 2) {
     state.pair = [];
-    renderEmptyState(`Not enough ${VOTE_MODES[state.currentMode].label.toLowerCase()} vote options were found.`);
+    renderEmptyState(`Not enough ${SONG_VOTE_MODES[state.currentMode].label.toLowerCase()} songs were found.`);
     return;
   }
 
@@ -118,88 +123,63 @@ function getCurrentPool() {
   return state.pools[state.currentMode] || [];
 }
 
-function buildPools(baseEntries, aceEntries, npcEntries) {
+function buildPools(songEntries) {
   const pools = {
-    finalized: [],
-    conceptualized: [],
-    all: []
+    ost: [],
+    bonus: []
   };
   const seen = {
-    finalized: new Set(),
-    conceptualized: new Set(),
-    all: new Set()
+    ost: new Set(),
+    bonus: new Set()
   };
 
-  const mateEntries = [
-    ...baseEntries.map(entry => ({ entry, source: entry.event ? "Event" : "Base" })),
-    ...aceEntries.map(entry => ({ entry, source: entry.event ? "Event" : "Ace" }))
-  ];
-
-  for (const { entry, source } of mateEntries) {
-    if (isModeEntry(entry) || isOnes(entry)) {
-      continue;
-    }
-
-    const item = normalizeMate(entry, source);
-    if (!item) {
-      continue;
-    }
-
-    if (isDesignedEntry(entry) && isFinalizedEntry(entry)) {
-      pushPoolItem(pools.finalized, seen.finalized, item);
-    }
-    if (isDesignedEntry(entry) && isConceptualizedEntry(entry)) {
-      pushPoolItem(pools.conceptualized, seen.conceptualized, item);
-    }
-    pushPoolItem(pools.all, seen.all, item);
-  }
-
-  for (const entry of npcEntries) {
-    if (!isDesignedNpcEntry(entry)) {
-      continue;
-    }
-
-    const item = normalizeNpc(entry);
-    pushPoolItem(pools.finalized, seen.finalized, item);
-    pushPoolItem(pools.all, seen.all, item);
-  }
+  songEntries
+    .map(normalizeSong)
+    .filter(song => song && song.playable)
+    .forEach(song => {
+      if (song.isCanonTrack) {
+        pushPoolItem(pools.ost, seen.ost, song);
+      } else {
+        pushPoolItem(pools.bonus, seen.bonus, song);
+      }
+    });
 
   return pools;
 }
 
-function isModeEntry(entry) {
-  return typeof entry?.rarity === "string" && entry.rarity.includes("Mode");
-}
+function normalizeSong(entry) {
+  if (!entry || !entry.name) {
+    return null;
+  }
 
-function isDesignedEntry(entry) {
-  return entry?.mode !== "npc" && !isMissingNo(entry) && !isOnes(entry);
-}
+  const typing = Array.isArray(entry.typing) ? entry.typing : [entry.typing || "Normal"];
+  const primaryType = typing[0] || "Normal";
+  const primaryColor = TYPE_COLORS[primaryType] || FALLBACK_COLOR;
+  const ostNumber = Number(entry.ost);
+  const file = typeof entry.file === "string" ? entry.file.trim() : "";
+  const playable = Boolean(file);
+  const isNonCanonTrack = Number.isFinite(ostNumber) && ostNumber === 1000;
+  const isCanonTrack = playable && !isNonCanonTrack;
 
-function isDesignedNpcEntry(entry) {
-  const image = String(entry?.image || "").toLowerCase();
-  return /(^|\/)nimages\//i.test(image) && !image.includes("youknowwhoiam");
-}
-
-function isFinalizedEntry(entry) {
-  const image = String(entry?.image || "").toLowerCase();
-  return /(^|\/)images\//i.test(image);
-}
-
-function isConceptualizedEntry(entry) {
-  const image = String(entry?.image || "").toLowerCase();
-  return /(^|\/)lostimages\//i.test(image);
-}
-
-function isMissingNo(entry) {
-  return entry?.mode !== "npc" && (
-    entry?.name === "MissingNo" ||
-    entry?.name === "L.MissingNo" ||
-    String(entry?.image || "").includes("MissingNo")
-  );
-}
-
-function isOnes(entry) {
-  return entry?.name === "Ones";
+  return {
+    key: `Song:${entry.name}`,
+    name: entry.name,
+    composer: entry.composer || "Unknown",
+    area: entry.area || "Unknown",
+    theme: entry.theme || "Theme",
+    typing,
+    primaryType,
+    primaryColor,
+    textColor: getReadableTextColor(primaryColor),
+    ost: Number.isFinite(ostNumber) ? ostNumber : null,
+    order: Number(entry.order) || 0,
+    source: isCanonTrack ? "Canon" : "Non-Canon",
+    isCanonTrack,
+    isNonCanonTrack,
+    file,
+    playable,
+    raw: entry
+  };
 }
 
 function pushPoolItem(pool, seen, item) {
@@ -211,39 +191,8 @@ function pushPoolItem(pool, seen, item) {
   pool.push(item);
 }
 
-function normalizeMate(entry, source) {
-  return {
-    key: `${source}:${entry.name}`,
-    source,
-    name: entry.name,
-    image: entry.image || "",
-    primaryType: Array.isArray(entry.types) && entry.types[0] ? entry.types[0] : FALLBACK_TYPE.name,
-    primaryColor: getTypeColor(Array.isArray(entry.types) ? entry.types[0] : ""),
-    textColor: getReadableTextColor(getTypeColor(Array.isArray(entry.types) ? entry.types[0] : "")),
-    types: Array.isArray(entry.types) ? entry.types : [],
-    raw: entry
-  };
-}
-
-function normalizeNpc(entry) {
-  return {
-    key: `NPC:${entry.name}`,
-    source: "NPC",
-    name: entry.name,
-    image: entry.image || "",
-    primaryType: FALLBACK_TYPE.name,
-    primaryColor: FALLBACK_TYPE.color,
-    textColor: getReadableTextColor(FALLBACK_TYPE.color),
-    types: [],
-    raw: entry
-  };
-}
-
-function getTypeColor(typeName) {
-  return state.typeColors.get(typeName) || FALLBACK_TYPE.color;
-}
-
 function nextPair() {
+  resetCurrentPreview();
   const pool = getCurrentPool();
   state.pair = pickPair(pool);
   state.isVoting = false;
@@ -268,26 +217,68 @@ function renderPair() {
   renderPanel(rightPanel, right, 1);
 }
 
-function renderPanel(panel, mon, sideIndex) {
-  if (!mon) {
+function renderPanel(panel, song, sideIndex) {
+  if (!song) {
     panel.innerHTML = "";
-    panel.disabled = true;
+    panel.removeAttribute("aria-disabled");
+    panel.removeAttribute("data-vote-index");
     panel.classList.add("is-loading");
+    panel.onclick = null;
+    panel.onkeydown = null;
     return;
   }
 
   panel.classList.toggle("is-loading", state.isVoting);
-  panel.style.background = mon.primaryColor;
-  panel.style.color = mon.textColor;
-  panel.disabled = state.isVoting;
+  panel.style.setProperty("--song-rgb", hexToRgbString(song.primaryColor));
+  panel.style.setProperty("--song-color", song.primaryColor);
+  panel.style.color = "#f7f8fb";
+  panel.setAttribute("aria-disabled", state.isVoting ? "true" : "false");
+  panel.dataset.voteIndex = String(sideIndex);
   panel.onclick = () => handleVote(sideIndex);
+  panel.onkeydown = event => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
+    event.preventDefault();
+    handleVote(sideIndex);
+  };
+
+  const numberLabel = song.isCanonTrack ? `OST ${song.ost}` : "NON-CANON";
+  const typingChips = song.typing
+    .filter(Boolean)
+    .map(type => `<span class="song-chip">${escapeHtml(type)}</span>`)
+    .join("");
+  const listenLabel = song.playable ? "Listen" : "Unavailable";
+  const listenStatus = song.playable ? "Preview this song" : "No file available";
 
   panel.innerHTML = `
     <article class="vote-card">
-      <img class="mon-image" src="${escapeAttribute(mon.image)}" alt="${escapeAttribute(mon.name)}">
-      <h2 class="mon-name">${escapeHtml(mon.name)}</h2>
+      <div class="song-number">${escapeHtml(numberLabel)}</div>
+      <h2 class="song-name">${escapeHtml(song.name)}</h2>
+      <div class="song-meta">
+        <p>Composer: ${escapeHtml(song.composer)}</p>
+        <p>${escapeHtml(song.area)} | ${escapeHtml(song.theme)}</p>
+      </div>
+      <div class="song-chip-row">${typingChips}</div>
+      <div class="song-actions">
+        <button class="listen-button" type="button" ${song.playable ? "" : "disabled"}>${listenLabel}</button>
+      </div>
+      <div class="listen-status">${escapeHtml(listenStatus)}</div>
+      ${song.playable ? `<audio preload="metadata" src="${escapeAttribute(song.file)}"></audio>` : ""}
     </article>
   `;
+
+  const listenButton = panel.querySelector(".listen-button");
+  const listenStatusEl = panel.querySelector(".listen-status");
+  const audio = panel.querySelector("audio");
+
+  if (listenButton) {
+    listenButton.addEventListener("click", event => {
+      event.stopPropagation();
+      toggleSongPreview(song, audio, listenButton, listenStatusEl);
+    });
+  }
 }
 
 async function handleVote(selectedIndex) {
@@ -312,6 +303,7 @@ async function submitVote(vote) {
 
   await postVoteRequest({
     action: "vote",
+    entityType: "song",
     mode: vote.mode,
     winnerName: vote.winner.name,
     winnerSource: vote.winner.source,
@@ -335,7 +327,7 @@ function enqueueVote(winner, loser, mode) {
   });
 
   persistPendingVotes();
-  saveStatus.textContent = `Queued ${VOTE_MODES[mode].label} vote: ${winner.name}`;
+  saveStatus.textContent = `Queued ${SONG_VOTE_MODES[mode].label} song vote: ${winner.name}`;
   saveStatus.className = "status-warn";
 }
 
@@ -361,7 +353,7 @@ async function flushPendingVotes() {
       persistPendingVotes();
     }
 
-    saveStatus.textContent = "All queued votes saved.";
+    saveStatus.textContent = "All queued song votes saved.";
     saveStatus.className = "status-ok";
   } catch (error) {
     console.error(error);
@@ -374,7 +366,7 @@ async function flushPendingVotes() {
 
 function normalizePendingVote(vote) {
   return {
-    mode: VOTE_MODES[vote?.mode] ? vote.mode : "all",
+    mode: SONG_VOTE_MODES[vote?.mode] ? vote.mode : DEFAULT_MODE,
     winner: {
       name: vote?.winner?.name || "",
       source: vote?.winner?.source || ""
@@ -395,11 +387,9 @@ function updatePoolStatus() {
   }, {});
 
   poolStatus.innerHTML = [
-    `${VOTE_MODES[state.currentMode].label}: <strong>${pool.length}</strong> options.`,
-    `Base: <strong>${counts.Base || 0}</strong>`,
-    `Ace: <strong>${counts.Ace || 0}</strong>`,
-    `NPC: <strong>${counts.NPC || 0}</strong>`,
-    `Event: <strong>${counts.Event || 0}</strong>`
+    `${SONG_VOTE_MODES[state.currentMode].label}: <strong>${pool.length}</strong> songs.`,
+    `Canon: <strong>${counts.Canon || 0}</strong>`,
+    `Non-Canon: <strong>${counts["Non-Canon"] || 0}</strong>`
   ].join(" ");
 }
 
@@ -418,15 +408,15 @@ function updateSaveStatus() {
 
     if (state.pendingVotes.length) {
       if (queuedInCurrentMode) {
-        saveStatus.textContent = `${queuedInCurrentMode} ${VOTE_MODES[state.currentMode].label.toLowerCase()} vote(s) queued for sync.`;
+        saveStatus.textContent = `${queuedInCurrentMode} ${SONG_VOTE_MODES[state.currentMode].label.toLowerCase()} song vote(s) queued for sync.`;
       } else {
-        saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued in other mode(s).`;
+        saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued in other song mode(s).`;
       }
       saveStatus.className = "status-warn";
       return;
     }
 
-    saveStatus.textContent = `Google Sheet connection configured for ${VOTE_MODES[state.currentMode].sheetName}.`;
+    saveStatus.textContent = `Google Sheet connection configured for ${SONG_VOTE_MODES[state.currentMode].sheetName}.`;
     saveStatus.className = "status-ok";
     return;
   }
@@ -457,6 +447,66 @@ function ensureArenaReady() {
   }
 }
 
+function toggleSongPreview(song, audio, button, statusEl) {
+  if (!audio || !button || !statusEl) {
+    return;
+  }
+
+  if (state.currentAudio && state.currentAudio !== audio) {
+    resetCurrentPreview();
+  }
+
+  if (audio.paused) {
+    audio.currentTime = 0;
+    audio.play().catch(error => {
+      console.error(error);
+      statusEl.textContent = "Could not play preview";
+    });
+    button.textContent = "Pause";
+    statusEl.textContent = `Playing ${song.name}`;
+    state.currentAudio = audio;
+    state.currentListenButton = button;
+
+    audio.onended = () => {
+      if (state.currentAudio === audio) {
+        button.textContent = "Listen";
+        statusEl.textContent = "Preview this song";
+        state.currentAudio = null;
+        state.currentListenButton = null;
+      }
+    };
+    return;
+  }
+
+  audio.pause();
+  button.textContent = "Listen";
+  statusEl.textContent = "Preview this song";
+  if (state.currentAudio === audio) {
+    state.currentAudio = null;
+    state.currentListenButton = null;
+  }
+}
+
+function resetCurrentPreview() {
+  if (!state.currentAudio || !state.currentListenButton) {
+    return;
+  }
+
+  const previousAudio = state.currentAudio;
+  const previousButton = state.currentListenButton;
+  const previousStatus = previousButton.closest(".vote-card")?.querySelector(".listen-status");
+
+  previousAudio.pause();
+  previousAudio.currentTime = 0;
+  previousButton.textContent = "Listen";
+  if (previousStatus) {
+    previousStatus.textContent = "Preview this song";
+  }
+
+  state.currentAudio = null;
+  state.currentListenButton = null;
+}
+
 async function fetchJson(path) {
   const response = await fetch(path);
   if (!response.ok) {
@@ -476,6 +526,18 @@ function getReadableTextColor(hexColor) {
   const blue = parseInt(color.slice(4, 6), 16);
   const luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue);
   return luminance > 150 ? "#111418" : "#f7f8fb";
+}
+
+function hexToRgbString(hexColor) {
+  const color = (hexColor || "").replace("#", "");
+  if (color.length !== 6) {
+    return "215, 207, 191";
+  }
+
+  const red = parseInt(color.slice(0, 2), 16);
+  const green = parseInt(color.slice(2, 4), 16);
+  const blue = parseInt(color.slice(4, 6), 16);
+  return `${red}, ${green}, ${blue}`;
 }
 
 function escapeHtml(value) {
@@ -517,7 +579,7 @@ function persistPendingVotes() {
 function loadVoteMode() {
   try {
     const savedMode = window.localStorage.getItem(LAST_MODE_KEY);
-    return VOTE_MODES[savedMode] ? savedMode : DEFAULT_MODE;
+    return SONG_VOTE_MODES[savedMode] ? savedMode : DEFAULT_MODE;
   } catch (error) {
     console.error(error);
     return DEFAULT_MODE;
@@ -541,7 +603,7 @@ async function handleVoteResetHash() {
 
   if (GOOGLE_SCRIPT_URL) {
     try {
-      await postVoteRequest({ action: "reset" });
+      await postVoteRequest({ action: "reset", entityType: "song" });
     } catch (error) {
       console.error(error);
     }

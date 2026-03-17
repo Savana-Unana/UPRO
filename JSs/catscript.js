@@ -491,11 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return idx >= 0 ? idx : 999;
   }
 
-  function compareByVersionThenName(a, b) {
-    const aVersionRank = getVersionRank(a);
-    const bVersionRank = getVersionRank(b);
-    if (aVersionRank !== bVersionRank) return aVersionRank - bVersionRank;
-
+  function compareByDisplayOrder(a, b) {
     const aHasId = hasUsableId(a);
     const bHasId = hasUsableId(b);
     if (aHasId && bHasId) {
@@ -505,6 +501,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (aHasId !== bHasId) {
       return aHasId ? -1 : 1;
     }
+
+    const aVersionRank = getVersionRank(a);
+    const bVersionRank = getVersionRank(b);
+    if (aVersionRank !== bVersionRank) return aVersionRank - bVersionRank;
 
     const aRank = databaseModeRank[a.mode] ?? 999;
     const bRank = databaseModeRank[b.mode] ?? 999;
@@ -569,10 +569,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const sourceData = mode === "database"
       ? getDatabaseMates()
       : (Array.isArray(allData[mode]) ? allData[mode] : []);
-    animatrixData = sourceData.filter(mate => !isMode(mate));
-    if (mode === "database") {
-      animatrixData = animatrixData.sort(compareByVersionThenName);
-    }
+    animatrixData = sourceData
+      .filter(mate => !isMode(mate))
+      .sort(compareByDisplayOrder);
     renderAnimatrix();
   }
 

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPRO Song Vote</title>
+  <style>
+    @font-face {
+      font-family: "UPRO";
+      src: url("UPRO.ttf") format("truetype");
+    }
+
+    :root {
+      --bg: #111418;
+      --panel-text: #111418;
+      --panel-light-text: #f7f8fb;
+      --neutral: #d7cfbf;
+      --neutral-dark: #6b6459;
+      --header-bg: rgba(10, 14, 20, 0.86);
+      --card-shadow: rgba(0, 0, 0, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 30%),
+        linear-gradient(180deg, #0e1116 0%, #171c24 100%);
+      color: #f7f8fb;
+      font-family: "UPRO", "Trebuchet MS", sans-serif;
+    }
+
+    button,
+    h1,
+    h2,
+    div,
+    span,
+    p {
+      font-family: "UPRO", "Trebuchet MS", sans-serif;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 16px 20px;
+      text-align: center;
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .header-nav {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: clamp(1.15rem, 2vw, 1.8rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mode-switcher {
+      margin-top: 14px;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .mode-button {
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--panel-light-text);
+      padding: 10px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+
+    .mode-button:hover,
+    .mode-button:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.45);
+      outline: none;
+    }
+
+    .mode-button.is-active {
+      background: var(--neutral);
+      color: var(--panel-text);
+      border-color: var(--neutral);
+    }
+
+    .header-nav button {
+      background: #222;
+      color: #0ff;
+      font-family: "UPRO", serif;
+      font-size: 30px;
+      border: 1px solid #0ff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .header-nav button:hover {
+      background: #0ff;
+      color: #000;
+    }
+
+    .arena {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 0;
+    }
+
+    .vote-panel {
+      position: relative;
+      border: 0;
+      padding: 28px;
+      cursor: pointer;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      background:
+        radial-gradient(circle at top, rgba(var(--song-rgb, 215, 207, 191), 0.34), transparent 42%),
+        linear-gradient(180deg, rgba(18, 22, 30, 0.98) 0%, rgba(11, 15, 21, 0.98) 100%);
+      color: var(--panel-light-text);
+      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+    }
+
+    .vote-panel:hover,
+    .vote-panel:focus-visible {
+      transform: scale(0.992);
+      filter: brightness(1.04);
+      box-shadow: inset 0 0 0 1px rgba(var(--song-rgb, 215, 207, 191), 0.5), 0 0 24px rgba(var(--song-rgb, 215, 207, 191), 0.28);
+      outline: none;
+    }
+
+    .vote-panel.is-loading {
+      cursor: progress;
+    }
+
+    .vote-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.2), transparent 45%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.16), transparent 40%);
+      pointer-events: none;
+    }
+
+    .vote-panel.left {
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .vote-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+      gap: 14px;
+      padding: 24px 20px;
+      border-radius: 28px;
+      border: 3px solid rgba(var(--song-rgb, 215, 207, 191), 0.85);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+        0 24px 60px var(--card-shadow),
+        0 0 18px rgba(var(--song-rgb, 215, 207, 191), 0.22);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+        rgba(12, 16, 22, 0.72);
+      backdrop-filter: blur(6px);
+    }
+
+    .song-number {
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(var(--song-rgb, 215, 207, 191), 1);
+      opacity: 0.95;
+    }
+
+    .song-name {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      text-wrap: balance;
+      color: #f7f8fb;
+    }
+
+    .song-meta {
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      color: #d7e1ef;
+      opacity: 0.92;
+    }
+
+    .song-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .song-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(var(--song-rgb, 215, 207, 191), 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #0f141c;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .song-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .listen-button {
+      background: #222;
+      color: #0ff;
+      border: 1px solid #0ff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: 0.2s;
+    }
+
+    .listen-button:hover,
+    .listen-button:focus-visible {
+      background: #0ff;
+      color: #000;
+      outline: none;
+    }
+
+    .listen-button:disabled {
+      background: #2d313a;
+      border-color: #4a5160;
+      color: #96a2b8;
+      cursor: not-allowed;
+    }
+
+    .listen-status {
+      min-height: 1.1rem;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 14, 20, 0.76);
+      font-size: 0.9rem;
+    }
+
+    .status-bar strong {
+      font-weight: normal;
+    }
+
+    .status-ok {
+      color: #aef0b0;
+    }
+
+    .status-warn {
+      color: #ffd38a;
+    }
+
+    .status-error {
+      color: #ff9d9d;
+    }
+
+    @media (max-width: 800px) {
+      .arena {
+        grid-template-columns: 1fr;
+      }
+
+      .vote-panel.left {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .status-bar {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-nav">
+        <a href="ost.html">
+          <button type="button">OST</button>
+        </a>
+      </div>
+      <h1>Select your favorite song of the two</h1>
+      <div class="mode-switcher" id="mode-switcher" role="tablist" aria-label="Song vote mode">
+        <button class="mode-button is-active" type="button" data-vote-mode="ost" role="tab" aria-selected="true">Canon</button>
+        <button class="mode-button" type="button" data-vote-mode="bonus" role="tab" aria-selected="false">Non-Canon</button>
+      </div>
+    </header>
+
+    <main class="arena" id="arena" aria-live="polite">
+      <div class="vote-panel left is-loading" id="left-panel" role="button" tabindex="0" aria-label="Left vote option"></div>
+      <div class="vote-panel right is-loading" id="right-panel" role="button" tabindex="0" aria-label="Right vote option"></div>
+    </main>
+
+    <footer class="status-bar">
+      <div id="pool-status">Loading song vote pool...</div>
+      <div id="save-status" class="status-warn">Google Sheet endpoint not configured yet.</div>
+    </footer>
+  </div>
+
+  <script src="JSs/songvotescript.js"></script>
+</body>
+</html>
