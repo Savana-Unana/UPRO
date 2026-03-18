@@ -29,7 +29,7 @@
 {"name":"Lock 'em Up","animates":["Vigilith","Empire Vigilith", "Agilith","Lumilox","Donkfine"]},
 {"type":"bonus","name":"Coats of Armor","description":"Skip takes 20% less damage.","animates":["Exosteel","Perchancealot","Bagueezer"]},
 {"name":"Lucky Charms","animates":["Green Blarb","Plucked Chancix"]},
-{"name":"","animates":[""]},
+{"name":"BALD","animates":["Bald Ghouliath","Plucked Chancix"]},
 {"name":"","animates":[""]},
 {"name":"","animates":[""]}
 ]
