@@ -4,6 +4,29 @@ let visibleMates = [];
 let currentMateIndex = 0;
 let groupsData = [];
 
+function normalizeGroup(group) {
+  if (!group || typeof group !== "object") {
+    return {
+      name: "Unnamed Group",
+      type: "normal",
+      description: "",
+      animates: []
+    };
+  }
+
+  const normalizedType = String(group.type || "normal").trim().toLowerCase() === "bonus"
+    ? "bonus"
+    : "normal";
+
+  return {
+    ...group,
+    name: group.name ? String(group.name) : "Unnamed Group",
+    type: normalizedType,
+    description: typeof group.description === "string" ? group.description.trim() : "",
+    animates: Array.isArray(group.animates) ? group.animates : []
+  };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const groupsRoot = document.getElementById("categoryGroups");
   const search = document.getElementById("search");
@@ -52,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ]);
     })
     .then(([groups, base, sacred, ace, ncanon, costumes, npc]) => {
-      groupsData = Array.isArray(groups) ? groups : [];
+      groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];
       allData = {
         base: base || [],
         sacred: sacred || [],
@@ -88,9 +111,43 @@ document.addEventListener("DOMContentLoaded", () => {
     groupsRoot.innerHTML = "";
     visibleMates = [];
 
-    groupsData.forEach(group => {
-      const groupName = (group && group.name) ? String(group.name) : "Unnamed Group";
-      const nameList = Array.isArray(group?.animates) ? group.animates : [];
+    const normalGroups = groupsData.filter(group => group.type !== "bonus");
+    const bonusGroups = groupsData.filter(group => group.type === "bonus");
+
+    renderGroupSection(normalGroups, allForms, term, {
+      heading: "Groups",
+      emptyMessage: "No groups defined. Add entries to data/mates/groups.json."
+    });
+
+    renderGroupSection(bonusGroups, allForms, term, {
+      heading: "Bonus Groups",
+      emptyMessage: "No bonus groups defined yet.",
+      isBonusSection: true
+    });
+
+    if (!groupsRoot.children.length) {
+      groupsRoot.innerHTML = `<div class="cat-empty">No groups defined. Add entries to data/mates/groups.json.</div>`;
+    }
+  }
+
+  function renderGroupSection(groups, allForms, term, options = {}) {
+    if (!Array.isArray(groups) || !groups.length) return;
+
+    const wrapper = document.createElement("section");
+    wrapper.className = options.isBonusSection ? "cat-grouping cat-grouping-bonus" : "cat-grouping";
+
+    if (options.heading) {
+      const heading = document.createElement("h2");
+      heading.className = "cat-grouping-title";
+      heading.textContent = options.heading;
+      wrapper.appendChild(heading);
+    }
+
+    let renderedCount = 0;
+
+    groups.forEach(group => {
+      const groupName = group.name;
+      const nameList = group.animates;
 
       const found = [];
       nameList.forEach(name => {
@@ -117,12 +174,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const section = document.createElement("section");
-      section.className = "cat-section";
+      section.className = group.type === "bonus" ? "cat-section cat-section-bonus" : "cat-section";
 
       const title = document.createElement("h2");
       title.className = "cat-title";
       title.textContent = `${groupName} (${filtered.length})`;
       section.appendChild(title);
+
+      if (group.type === "bonus" && group.description) {
+        const description = document.createElement("p");
+        description.className = "cat-description";
+        description.textContent = group.description;
+        section.appendChild(description);
+      }
 
       if (!filtered.length) {
         const empty = document.createElement("div");
@@ -139,12 +203,18 @@ document.addEventListener("DOMContentLoaded", () => {
         section.appendChild(grid);
       }
 
-      groupsRoot.appendChild(section);
+      wrapper.appendChild(section);
+      renderedCount += 1;
     });
 
-    if (!groupsRoot.children.length) {
-      groupsRoot.innerHTML = `<div class="cat-empty">No groups defined. Add entries to data/mates/groups.json.</div>`;
+    if (!renderedCount && options.emptyMessage) {
+      const empty = document.createElement("div");
+      empty.className = "cat-empty";
+      empty.textContent = options.emptyMessage;
+      wrapper.appendChild(empty);
     }
+
+    groupsRoot.appendChild(wrapper);
   }
 
   function makeCard(mate) {

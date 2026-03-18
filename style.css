@@ -81,8 +81,23 @@ main.list {
 #categoryGroups {
   padding: 16px 20px 30px;
 }
+.cat-grouping {
+  margin-bottom: 28px;
+}
+.cat-grouping-title {
+  margin: 8px 0 16px;
+  color: #f4ff9a;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 .cat-section {
   margin: 10px 0 24px;
+}
+.cat-section-bonus {
+  padding: 14px 16px 18px;
+  border: 1px solid rgba(244, 255, 154, 0.45);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(244, 255, 154, 0.08), rgba(27, 27, 31, 0.4));
 }
 .cat-title {
   margin: 8px 0 12px;
@@ -90,6 +105,12 @@ main.list {
   color: #b6f7ff;
   text-align: left;
   padding-left: 4px;
+}
+.cat-description {
+  margin: -4px 0 14px;
+  padding-left: 4px;
+  color: #f6f6cf;
+  line-height: 1.45;
 }
 .cat-grid {
   display: grid;
