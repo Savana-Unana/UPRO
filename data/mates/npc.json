@@ -38,7 +38,7 @@
 {"id":"CC","name":"Lucky Block Capture Capsule","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":"Mario Bros.","Description":"No entry yet","cosmark":"Y","versions":"Demo 2"},
 {"id":"CC","name":"Origin Capture Capsule","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":"Ghostbusters","Description":"No entry yet","cosmark":"Y","versions":"Demo 6"},
 {"id":"Kal","name":"Kal","image":"nimages/Kal.gif","quest":"Unlocked when Kal joins the party.","reference":null,"Description":"The Normal sprites.","cosmark":"N","versions":"Demo 10"},
-{"id":"Kal","name":"Super Surfer Kal","image":"nimages/Kal.gif","quest":"","reference":"Gerrindamo","Description":"No entry yet","cosmark":"Y","versions":"Demo 10"},
+{"id":"Kal","name":"Super Surfer Kal","image":"nimages/YouKnowWhoIAm.gif","quest":"","reference":"Gerrindamo","Description":"No entry yet","cosmark":"Y","versions":"Demo 10"},
 {"id":"Kal","name":"Flaminstein's Monster Kal","image":"nimages/YouKnowWhoIAm.gif","quest":"","reference":"Frankenstein Story","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"Kal","name":"Evil Dirtbag With Chainsaw Kal","image":"nimages/YouKnowWhoIAm.gif","quest":"","reference":"FNAF: The Musical","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"Kal","name":"Actor Kal","image":"nimages/YouKnowWhoIAm.gif","quest":"","reference":null,"Description":"No entry yet","cosmark":"Y","versions":"Demo 10"},
