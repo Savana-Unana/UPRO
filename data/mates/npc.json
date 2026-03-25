@@ -24,6 +24,7 @@
 {"id":"Skip","name":"Slasher Skip","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":"Friday the 13th","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"Skip","name":"Rapper Skip","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":null,"Description":"No entry yet","cosmark":"Y","versions":"Demo 13"},
 {"id":"Skip","name":"Capsule Skip","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":"Capture Capsule","Description":"No entry yet","cosmark":"Y","versions":"Demo 1"},
+{"id":"Skip","name":"Jester Skip","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":"The Amazing Digital Circus","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"CC","name":"Capture Capsule","image":"nimages/CC.gif","quest":"Unlocked by playing the game.","reference":null,"Description":"The Normal sprites.","cosmark":"N","versions":"Demo 1"},
 {"id":"CC","name":"Speaker Box Capture Capsule","image":"nimages/YouKnowWhoIAm.gif","quest":"???","reference":"Battle For Dream Island","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"CC","name":"Cult Capture Capsule","image":"nimages/YouKnowWhoIAm.gif","quest":"Beat the Fairy Gauntlet.","reference":null,"Description":"A ketchup covered Capture Capsule.","cosmark":"Y","versions":"Demo 5"},

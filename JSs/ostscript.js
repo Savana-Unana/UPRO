@@ -95,7 +95,10 @@ function renderSongs() {
   const filtered = songs.filter(song => {
     const matchSearch = song.name.toLowerCase().includes(searchQuery.toLowerCase());
     const matchType = activeTypes.length === 0 || song.typing.some(t => activeTypes.includes(t));
-    const matchSongType = activeSongTypes.length === 0 || activeSongTypes.includes(song.theme);
+    const isFakeTheme = song.theme === 'FakeTheme';
+    const matchSongType = isFakeTheme
+      ? activeSongTypes.includes('FakeTheme')
+      : activeSongTypes.length === 0 || activeSongTypes.includes(song.theme);
     const matchArea = activeAreas.length === 0 || activeAreas.includes(song.area);
     return matchSearch && matchType && matchSongType && matchArea;
   });

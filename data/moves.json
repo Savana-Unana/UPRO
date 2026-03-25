@@ -5,5 +5,17 @@
 {"name":"Scratch","type":"Normal","category":"Melee","power":40,"accuracy":100,"ep":1,"description":"Scratch."},
 {"name":"Infernal Takedown","type":"Fire","category":"Status","power":90,"accuracy":90,"ep":4,"description":"Flies and dives into opponent. 50% chance of inflicted burn to all opposing mons."},
 {"name":"Bubble Barrier","type":"Water","category":"Status","power":0,"accuracy":100,"ep":5,"description":"Summons a barrier that blocks the first offensive move used on this mon. Also removes the burn effect."},
+{"name":"Melt","type":"Gross","category":"Status","power":15,"accuracy":100,"ep":2,"description":"Deals damage to self. Spawns goop hazard."},
+{"name":"Sneeze","type":"Gross","category":"Ranged","power":40,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
+{"name":"Placeholder","type":"Typing","category":"Category","power":666,"accuracy":666,"ep":666,"description":""},
 {"name":"Focus","type":"Mystic","category":"Status","power":0,"accuracy":100,"ep":2,"description":""}
 ]
