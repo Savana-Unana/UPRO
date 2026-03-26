@@ -1,4 +1,7 @@
 let switcherooActive = false;
+const guessWhoClickWindowMs = 2000;
+const guessWhoUnlockClicks = 10;
+let switcherooClickTimes = [];
 
 // Original positions (from your CSS)
 const normalPositions = [
@@ -70,6 +73,15 @@ function updateButtons() {
 function triggerSwitcheroo() {
   switcherooActive = !switcherooActive;
   updateButtons();
+
+  const now = performance.now();
+  switcherooClickTimes.push(now);
+  switcherooClickTimes = switcherooClickTimes.filter(time => now - time <= guessWhoClickWindowMs);
+
+  if (switcherooClickTimes.length >= guessWhoUnlockClicks) {
+    sessionStorage.setItem("upro_guesswho_unlocked", "true");
+    window.location.href = "guesswho.html";
+  }
 }
 
 // Initialize page without toggling

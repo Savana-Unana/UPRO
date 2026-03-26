@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animatrix Guess Who?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="guesswho-page">
+  <main class="guesswho-shell">
+    <section id="nameScreen" class="guesswho-screen guesswho-screen-active guesswho-center-screen" aria-labelledby="nameScreenTitle">
+      <div class="guesswho-name-layout">
+        <h1 id="nameScreenTitle" class="guesswho-large-title">Please enter your name!</h1>
+        <p class="guesswho-sub-copy">It will be displayed in-game</p>
+        <div class="guesswho-name-field-wrap">
+          <input id="playerNameInput" class="guesswho-text-input guesswho-name-input" type="text" maxlength="24" value="Placeholder" />
+        </div>
+      </div>
+      <div class="guesswho-bottom-action">
+        <button type="button" class="guesswho-box-btn" id="continueFromNameBtn">Continue</button>
+      </div>
+    </section>
+
+    <section id="menuScreen" class="guesswho-screen" aria-labelledby="guesswhoMenuTitle" hidden>
+      <div class="guesswho-menu-stage">
+        <div class="guesswho-menu-header">
+          <div class="guesswho-logo-wrap">
+            <p class="guesswho-kicker">THE UPRO</p>
+            <h1 id="guesswhoMenuTitle" class="guesswho-logo">ANIMATRIX</h1>
+            <div class="guesswho-logo-sub">Guess Who</div>
+          </div>
+          <p class="guesswho-chosen-name">Chosen name: <span id="chosenNameLabel">Placeholder</span></p>
+        </div>
+
+        <nav class="guesswho-menu" aria-label="Guess Who menu">
+          <button type="button" class="guesswho-menu-btn" id="startGameBtn">START GAME</button>
+          <button type="button" class="guesswho-menu-btn" id="editNameBtn">EDIT NAME</button>
+          <button type="button" class="guesswho-menu-btn" id="instructionsBtn">INSTRUCTIONS</button>
+          <button type="button" class="guesswho-menu-btn" id="quitBtn">QUIT</button>
+        </nav>
+      </div>
+    </section>
+
+    <section id="instructionsScreen" class="guesswho-screen" hidden aria-labelledby="instructionsTitle">
+      <div class="guesswho-instructions-layout">
+        <div class="guesswho-instructions-main">
+          <h2 id="instructionsTitle" class="guesswho-screen-heading">INTRUCTIONS:</h2>
+          <div class="guesswho-instructions-copy">
+            <p>If you don't know how Guess Who works, you will need 2 people in order to play. Ask a friend to get the game on their device, and play through a call or just side by side. Each player needs their own game and their own screen.</p>
+            <p>Once you're set, take turns asking "yes" or "no" questions to try and figure out who your opponent's character is. Whoever guesses correct first wins.</p>
+            <p class="guesswho-rules-intro">Here are some <span>RULES</span> to spice up the game. You can adjust them to your liking.</p>
+            <ol class="guesswho-rules-list">
+              <li>No repeated questions. Once a question is asked, it can't be asked again.</li>
+              <li>No questions about the card's placement on the board.</li>
+              <li>Each player gets 3 guesses. Guessing also takes a turn.</li>
+              <li>Optional rule: allow one final guess after losing so the round can end on a tie.</li>
+            </ol>
+            <p class="guesswho-hard-mode">As a fun <span>HARD MODE</span> alternative, try a turn where you're only allowed to ask subjective questions instead of pure yes/no ones.</p>
+          </div>
+        </div>
+
+        <aside class="guesswho-extra-controls">
+          <h3>EXTRA CONTROLS:</h3>
+          <ul>
+            <li><span>[+]</span> Increase Volume</li>
+            <li><span>[-]</span> Decrease Volume</li>
+            <li><span>[Esc]</span> Close the game</li>
+            <li><span>[F5]</span> Restart the game</li>
+            <li><span>[F4]</span> Toggle Fullscreen</li>
+          </ul>
+          <p class="guesswho-try-it">[Alt + F4] Try it!</p>
+        </aside>
+      </div>
+      <div class="guesswho-bottom-action">
+        <button type="button" class="guesswho-box-btn guesswho-box-btn-large" id="instructionsBackBtn">◀ Quit to Menu</button>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="guesswho-screen" aria-labelledby="povTitle" hidden>
+      <div class="guesswho-toolbar guesswho-toolbar-left">
+        <button type="button" class="guesswho-box-btn" id="quitToMenuBtn">◀ Quit to Menu</button>
+      </div>
+      <div class="guesswho-toolbar guesswho-toolbar-right">
+        <button type="button" class="guesswho-box-btn" id="notesBtn">Notes ▣</button>
+      </div>
+
+      <div class="guesswho-game-layout">
+        <aside class="guesswho-sidebar-panel" aria-labelledby="yourCharacterTitle">
+          <h2 id="yourCharacterTitle" class="guesswho-panel-title">YOUR CHARACTER:</h2>
+          <button type="button" id="secretCharacterButton" class="guesswho-secret-button">
+            <p id="secretNameLabel" class="guesswho-panel-name">None</p>
+            <div id="secretPortrait" class="guesswho-secret-portrait">
+              <div class="guesswho-secret-placeholder">?</div>
+            </div>
+          </button>
+
+          <div class="guesswho-guesses">
+            <p class="guesswho-guesses-label">Guesses:</p>
+            <div id="guessHearts" class="guesswho-hearts" aria-label="Remaining guesses"></div>
+          </div>
+        </aside>
+
+        <section class="guesswho-board-panel" aria-labelledby="povTitle">
+          <header class="guesswho-board-head">
+            <h2 id="povTitle" class="guesswho-pov-title">Placeholder's POV</h2>
+            <p class="guesswho-cards-left">Cards left: <span id="cardsLeftLabel">0/50</span></p>
+          </header>
+
+          <div id="guesswhoBoard" class="guesswho-board" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <div id="controlsPanel" class="guesswho-controls-panel" hidden>
+        <div class="guesswho-controls-grid">
+          <span>🖱 Flip card.</span>
+          <span>🖱 Highlight card.</span>
+          <span>⌨ Toggle flipped cards.</span>
+          <span>R Reset cards.</span>
+          <span>Click your character to re-roll.</span>
+          <span>Click the hearts to count your guesses.</span>
+        </div>
+      </div>
+
+      <div class="guesswho-controls-corner">
+        <button type="button" class="guesswho-box-btn" id="showControlsBtn">Show Controls</button>
+      </div>
+    </section>
+
+    <section id="notesScreen" class="guesswho-screen" hidden aria-labelledby="notesScreenTitle">
+      <div class="guesswho-toolbar guesswho-toolbar-left">
+        <button type="button" class="guesswho-box-btn guesswho-box-btn-accent" id="notesBackBtn">Go Back</button>
+      </div>
+
+      <div class="guesswho-notes-layout">
+        <header class="guesswho-notes-header">
+          <h2 id="notesScreenTitle" class="guesswho-notes-title">Notes about your opponent's character.</h2>
+          <p class="guesswho-sub-copy">Make notes after each question to avoid losing track of information.</p>
+        </header>
+
+        <textarea id="notesArea" class="guesswho-notes-area" spellcheck="false"></textarea>
+
+        <section class="guesswho-notes-tools">
+          <p id="notesStatus">Load a board from finalized mons, or save your own exact 50-mon list.</p>
+          <div class="guesswho-modal-actions">
+            <button type="button" class="guesswho-box-btn" id="notesRandomBtn">Randomized Board</button>
+            <button type="button" class="guesswho-box-btn" id="notesUseCustomBtn">Use Custom List</button>
+            <button type="button" class="guesswho-box-btn" id="notesUseCurrentBtn">Copy Current Board</button>
+            <button type="button" class="guesswho-box-btn" id="notesSaveCustomBtn">Save Custom List</button>
+            <button type="button" class="guesswho-box-btn" id="notesLoadSavedBtn">Load Saved List</button>
+            <button type="button" class="guesswho-box-btn" id="notesNewSecretBtn">New Secret Mon</button>
+          </div>
+          <label class="guesswho-field-label" for="customBoardInput">Custom board names, exactly 50 finalized mons</label>
+          <textarea id="customBoardInput" class="guesswho-textarea" rows="8" spellcheck="false"></textarea>
+          <p id="customValidation" class="guesswho-validation" aria-live="polite"></p>
+          <details class="guesswho-finalized-list">
+            <summary>Finalized names</summary>
+            <div id="finalizedNames" class="guesswho-finalized-names"></div>
+          </details>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="JSs/guesswho.js"></script>
+</body>
+</html>
