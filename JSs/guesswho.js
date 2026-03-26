@@ -1,11 +1,11 @@
 (function () {
   const ACCESS_KEY = "upro_guesswho_unlocked";
-  const SAVED_CUSTOM_KEY = "upro_guesswho_custom_board";
   const PLAYER_NAME_KEY = "upro_guesswho_player_name";
   const NOTES_KEY = "upro_guesswho_notes";
   const BOARD_SIZE = 50;
   const DEFAULT_NAME = "Placeholder";
   const GUESSES_TOTAL = 3;
+  const KEY_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
   const DATA_FILES = [
     { mode: "base", path: "data/mates/base.json" },
     { mode: "sacred", path: "data/mates/sacred.json" },
@@ -24,7 +24,9 @@
   const state = {
     pool: [],
     poolByName: new Map(),
+    poolIndexByName: new Map(),
     board: [],
+    boardKey: "",
     secret: null,
     playerName: localStorage.getItem(PLAYER_NAME_KEY) || DEFAULT_NAME,
     remainingGuesses: GUESSES_TOTAL,
@@ -50,11 +52,12 @@
   const controlsPanel = document.getElementById("controlsPanel");
   const controlsButton = document.getElementById("showControlsBtn");
   const notesArea = document.getElementById("notesArea");
-  const customBoardInput = document.getElementById("customBoardInput");
-  const customValidation = document.getElementById("customValidation");
-  const finalizedNames = document.getElementById("finalizedNames");
   const notesStatus = document.getElementById("notesStatus");
   const secretCharacterButton = document.getElementById("secretCharacterButton");
+  const joinPanel = document.getElementById("joinPanel");
+  const joinGameKeyInput = document.getElementById("joinGameKeyInput");
+  const joinStatus = document.getElementById("joinStatus");
+  const gameKeyOutput = document.getElementById("gameKeyOutput");
 
   init();
 
@@ -78,8 +81,7 @@
 
       state.pool = buildFinalizedPool(datasets);
       state.poolByName = new Map(state.pool.map(mon => [mon.name.toLowerCase(), mon]));
-      finalizedNames.innerHTML = state.pool.map(mon => `<span class="guesswho-name-chip">${escapeHtml(mon.name)}</span>`).join("");
-      loadSavedCustomList(false);
+      state.poolIndexByName = new Map(state.pool.map((mon, index) => [mon.name.toLowerCase(), index]));
     } catch (error) {
       console.error(error);
       notesStatus.textContent = "Loading finalized mons failed.";
@@ -89,6 +91,11 @@
   function wireEvents() {
     document.getElementById("continueFromNameBtn").addEventListener("click", continueFromName);
     document.getElementById("startGameBtn").addEventListener("click", startGame);
+    document.getElementById("joinGameBtn").addEventListener("click", () => {
+      joinPanel.hidden = !joinPanel.hidden;
+      if (!joinPanel.hidden) joinGameKeyInput.focus();
+    });
+    document.getElementById("loadKeyBtn").addEventListener("click", () => loadBoardFromKey(joinGameKeyInput.value));
     document.getElementById("editNameBtn").addEventListener("click", () => showScreen("name"));
     document.getElementById("instructionsBtn").addEventListener("click", () => showScreen("instructions"));
     document.getElementById("quitBtn").addEventListener("click", () => window.location.href = "index.html");
@@ -100,13 +107,24 @@
       buildRandomBoard();
       notesStatus.textContent = "Randomized finalized board loaded.";
     });
-    document.getElementById("notesUseCustomBtn").addEventListener("click", buildCustomBoard);
-    document.getElementById("notesUseCurrentBtn").addEventListener("click", copyCurrentBoardToEditor);
-    document.getElementById("notesSaveCustomBtn").addEventListener("click", saveCustomList);
-    document.getElementById("notesLoadSavedBtn").addEventListener("click", () => loadSavedCustomList(true));
     document.getElementById("notesNewSecretBtn").addEventListener("click", rerollSecret);
+    document.getElementById("copyGameKeyBtn").addEventListener("click", copyGameKey);
     document.getElementById("showControlsBtn").addEventListener("click", toggleControlsPanel);
     secretCharacterButton.addEventListener("click", rerollSecret);
+
+    playerNameInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        continueFromName();
+      }
+    });
+
+    joinGameKeyInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        loadBoardFromKey(joinGameKeyInput.value);
+      }
+    });
 
     notesArea.addEventListener("input", () => {
       localStorage.setItem(NOTES_KEY, notesArea.value);
@@ -157,7 +175,8 @@
   function syncPlayerName() {
     chosenNameLabel.textContent = state.playerName;
     povTitle.textContent = `${state.playerName}'s POV`;
-    playerNameInput.value = state.playerName;
+    playerNameInput.value = "";
+    playerNameInput.placeholder = state.playerName || DEFAULT_NAME;
   }
 
   function buildFinalizedPool(datasets) {
@@ -216,8 +235,9 @@
     state.board = shuffled.slice(0, BOARD_SIZE).map(mon => ({
       ...mon,
       hidden: false,
-      highlighted: false
+      questioned: false
     }));
+    state.boardKey = buildBoardKey(state.board);
     state.remainingGuesses = GUESSES_TOTAL;
     state.controlsVisible = false;
     controlsPanel.hidden = true;
@@ -226,57 +246,7 @@
     renderBoard();
     renderHearts();
     updateBoardCounter();
-  }
-
-  function buildCustomBoard() {
-    const names = String(customBoardInput.value || "")
-      .split(/[\n,]+/g)
-      .map(name => name.trim())
-      .filter(Boolean);
-
-    if (names.length !== BOARD_SIZE) {
-      customValidation.textContent = `Custom board needs exactly ${BOARD_SIZE} names.`;
-      return;
-    }
-
-    const seen = new Set();
-    const board = [];
-    const invalid = [];
-
-    names.forEach(name => {
-      const key = name.toLowerCase();
-      if (seen.has(key)) {
-        invalid.push(name);
-        return;
-      }
-      seen.add(key);
-
-      const mon = state.poolByName.get(key);
-      if (!mon) {
-        invalid.push(name);
-        return;
-      }
-
-      board.push({
-        ...mon,
-        hidden: false,
-        highlighted: false
-      });
-    });
-
-    if (invalid.length) {
-      customValidation.textContent = `Only finalized mons can be used once each. Problem entries: ${invalid.join(", ")}.`;
-      return;
-    }
-
-    state.board = board;
-    state.remainingGuesses = GUESSES_TOTAL;
-    rerollSecret();
-    renderBoard();
-    renderHearts();
-    updateBoardCounter();
-    customValidation.textContent = "Custom board loaded.";
-    notesStatus.textContent = "Custom finalized board loaded.";
+    updateGameKeyOutput();
   }
 
   function rerollSecret() {
@@ -307,7 +277,7 @@
     state.board.forEach((card, index) => {
       const button = document.createElement("button");
       button.type = "button";
-      button.className = `guesswho-board-card${card.hidden ? " is-hidden" : ""}${card.highlighted ? " is-highlighted" : ""}`;
+      button.className = `guesswho-board-card${card.hidden ? " is-hidden" : ""}${card.questioned ? " is-questioned" : ""}`;
       button.setAttribute("aria-label", `${card.name}${card.hidden ? ", hidden" : ", visible"}`);
       button.innerHTML = `
         <span class="guesswho-board-frame">
@@ -320,7 +290,7 @@
       button.addEventListener("click", () => toggleCard(index));
       button.addEventListener("contextmenu", event => {
         event.preventDefault();
-        toggleHighlight(index);
+        toggleQuestioned(index);
       });
       button.addEventListener("keydown", event => {
         if (event.key === "Enter" || event.key === " ") {
@@ -341,10 +311,10 @@
     updateBoardCounter();
   }
 
-  function toggleHighlight(index) {
+  function toggleQuestioned(index) {
     const card = state.board[index];
     if (!card) return;
-    card.highlighted = !card.highlighted;
+    card.questioned = !card.questioned;
     renderBoard();
   }
 
@@ -360,7 +330,7 @@
   function resetBoard() {
     state.board.forEach(card => {
       card.hidden = false;
-      card.highlighted = false;
+      card.questioned = false;
     });
     renderBoard();
     updateBoardCounter();
@@ -392,30 +362,92 @@
     controlsButton.textContent = state.controlsVisible ? "Hide Controls" : "Show Controls";
   }
 
-  function saveCustomList() {
-    localStorage.setItem(SAVED_CUSTOM_KEY, customBoardInput.value);
-    customValidation.textContent = "Custom list saved.";
+  function buildBoardKey(board) {
+    return `G${board
+      .map(card => {
+        const index = state.poolIndexByName.get(card.name.toLowerCase());
+        return KEY_ALPHABET[index] || "";
+      })
+      .join("")}`;
   }
 
-  function loadSavedCustomList(showMessage) {
-    const saved = localStorage.getItem(SAVED_CUSTOM_KEY);
-    if (!saved) {
-      if (showMessage) customValidation.textContent = "No saved custom list found.";
+  function parseBoardKey(key) {
+    const raw = String(key || "").trim();
+    const compact = raw.startsWith("G") ? raw.slice(1) : raw;
+    if (compact.length !== BOARD_SIZE) {
+      throw new Error("Bad length");
+    }
+
+    return compact.split("").map(char => {
+      const index = KEY_ALPHABET.indexOf(char);
+      if (index < 0 || index >= state.pool.length) {
+        throw new Error("Bad char");
+      }
+      return state.pool[index].name;
+    });
+  }
+
+  function loadBoardFromKey(key) {
+    let names;
+    try {
+      names = parseBoardKey(key);
+    } catch (error) {
+      joinStatus.textContent = "That key could not be read.";
       return;
     }
 
-    customBoardInput.value = saved;
-    if (showMessage) customValidation.textContent = "Saved custom list loaded.";
-  }
-
-  function copyCurrentBoardToEditor() {
-    if (!state.board.length) {
-      customValidation.textContent = "Start or load a board first.";
+    if (names.length !== BOARD_SIZE) {
+      joinStatus.textContent = "That key does not contain 50 mons.";
       return;
     }
 
-    customBoardInput.value = state.board.map(card => card.name).join("\n");
-    customValidation.textContent = "Current board copied into the custom list.";
+    const seen = new Set();
+    const board = [];
+    for (const name of names) {
+      const normalized = name.toLowerCase();
+      if (seen.has(normalized)) {
+        joinStatus.textContent = "That key has duplicate mons.";
+        return;
+      }
+      seen.add(normalized);
+
+      const mon = state.poolByName.get(normalized);
+      if (!mon) {
+        joinStatus.textContent = `Unknown or non-finalized mon in key: ${name}.`;
+        return;
+      }
+
+      board.push({
+        ...mon,
+        hidden: false,
+        questioned: false
+      });
+    }
+
+    state.board = board;
+    state.boardKey = buildBoardKey(board);
+    state.remainingGuesses = GUESSES_TOTAL;
+    rerollSecret();
+    renderBoard();
+    renderHearts();
+    updateBoardCounter();
+    updateGameKeyOutput();
+    joinStatus.textContent = "Board loaded from key.";
+    showScreen("game");
+  }
+
+  function updateGameKeyOutput() {
+    gameKeyOutput.value = state.boardKey || "";
+  }
+
+  async function copyGameKey() {
+    if (!state.boardKey) return;
+    try {
+      await navigator.clipboard.writeText(state.boardKey);
+      notesStatus.textContent = "Game key copied.";
+    } catch (error) {
+      notesStatus.textContent = "Could not copy the game key.";
+    }
   }
 
   function escapeHtml(value) {

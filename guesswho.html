@@ -13,7 +13,7 @@
         <h1 id="nameScreenTitle" class="guesswho-large-title">Please enter your name!</h1>
         <p class="guesswho-sub-copy">It will be displayed in-game</p>
         <div class="guesswho-name-field-wrap">
-          <input id="playerNameInput" class="guesswho-text-input guesswho-name-input" type="text" maxlength="24" value="Placeholder" />
+          <input id="playerNameInput" class="guesswho-text-input guesswho-name-input" type="text" maxlength="24" placeholder="Placeholder" />
         </div>
       </div>
       <div class="guesswho-bottom-action">
@@ -25,8 +25,7 @@
       <div class="guesswho-menu-stage">
         <div class="guesswho-menu-header">
           <div class="guesswho-logo-wrap">
-            <p class="guesswho-kicker">THE UPRO</p>
-            <h1 id="guesswhoMenuTitle" class="guesswho-logo">ANIMATRIX</h1>
+            <img id="guesswhoMenuTitle" class="guesswho-logo-image" src="webimages/Logo.png" alt="UPRO logo" />
             <div class="guesswho-logo-sub">Guess Who</div>
           </div>
           <p class="guesswho-chosen-name">Chosen name: <span id="chosenNameLabel">Placeholder</span></p>
@@ -34,10 +33,20 @@
 
         <nav class="guesswho-menu" aria-label="Guess Who menu">
           <button type="button" class="guesswho-menu-btn" id="startGameBtn">START GAME</button>
+          <button type="button" class="guesswho-menu-btn" id="joinGameBtn">JOIN GAME</button>
           <button type="button" class="guesswho-menu-btn" id="editNameBtn">EDIT NAME</button>
           <button type="button" class="guesswho-menu-btn" id="instructionsBtn">INSTRUCTIONS</button>
           <button type="button" class="guesswho-menu-btn" id="quitBtn">QUIT</button>
         </nav>
+
+        <section id="joinPanel" class="guesswho-join-panel" hidden>
+          <label class="guesswho-field-label" for="joinGameKeyInput">Paste a game key to load the same 50-mon order</label>
+          <div class="guesswho-join-row">
+            <input id="joinGameKeyInput" class="guesswho-text-input" type="text" />
+            <button type="button" class="guesswho-box-btn" id="loadKeyBtn">Load Key</button>
+          </div>
+          <p id="joinStatus" class="guesswho-validation"></p>
+        </section>
       </div>
     </section>
 
@@ -140,22 +149,16 @@
         <textarea id="notesArea" class="guesswho-notes-area" spellcheck="false"></textarea>
 
         <section class="guesswho-notes-tools">
-          <p id="notesStatus">Load a board from finalized mons, or save your own exact 50-mon list.</p>
+          <p id="notesStatus">Share a key to mirror the same 50-mon board, or reroll a fresh randomized one.</p>
+          <label class="guesswho-field-label" for="gameKeyOutput">Current game key</label>
+          <div class="guesswho-join-row">
+            <input id="gameKeyOutput" class="guesswho-text-input" type="text" readonly />
+            <button type="button" class="guesswho-box-btn" id="copyGameKeyBtn">Copy Key</button>
+          </div>
           <div class="guesswho-modal-actions">
             <button type="button" class="guesswho-box-btn" id="notesRandomBtn">Randomized Board</button>
-            <button type="button" class="guesswho-box-btn" id="notesUseCustomBtn">Use Custom List</button>
-            <button type="button" class="guesswho-box-btn" id="notesUseCurrentBtn">Copy Current Board</button>
-            <button type="button" class="guesswho-box-btn" id="notesSaveCustomBtn">Save Custom List</button>
-            <button type="button" class="guesswho-box-btn" id="notesLoadSavedBtn">Load Saved List</button>
             <button type="button" class="guesswho-box-btn" id="notesNewSecretBtn">New Secret Mon</button>
           </div>
-          <label class="guesswho-field-label" for="customBoardInput">Custom board names, exactly 50 finalized mons</label>
-          <textarea id="customBoardInput" class="guesswho-textarea" rows="8" spellcheck="false"></textarea>
-          <p id="customValidation" class="guesswho-validation" aria-live="polite"></p>
-          <details class="guesswho-finalized-list">
-            <summary>Finalized names</summary>
-            <div id="finalizedNames" class="guesswho-finalized-names"></div>
-          </details>
         </section>
       </div>
     </section>
