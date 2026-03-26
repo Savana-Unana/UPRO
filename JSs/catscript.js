@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
   const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
-  const databaseModes = ["base", "sacred", "ace", "event", "costumes", "npc"];
-  const databaseModeRank = { base: 0, sacred: 1, ace: 2, event: 3, costumes: 4, npc: 5 };
+  const databaseModes = ["base", "sacred", "ace", "goner", "event", "costumes", "npc"];
+  const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5, npc: 6 };
   const biomeOptions = [
     "Lake",
     "Forest",
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function rebuildVersionOptions() {
     const labels = new Set();
-    ["base", "sacred", "ace", "event", "costumes", "npc"].forEach(mode => {
+    ["base", "sacred", "ace", "goner", "event", "costumes", "npc"].forEach(mode => {
       (allData[mode] || []).forEach(mate => {
         getMateVersions(mate).forEach(version => labels.add(version));
       });
@@ -183,17 +183,19 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/goner.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/npc.json").then(r => r.json()).catch(() => []),
       ]);
     })
-    .then(([abilities, base, sacred, ace, ncanon, costumes, npc]) => {
+    .then(([abilities, base, sacred, ace, goner, ncanon, costumes, npc]) => {
         abilitiesData = abilities || [];
         allData = { 
           base: base || [], 
           sacred: sacred || [], 
           ace: ace || [], 
+          goner: goner || [],
           ncanon: ncanon || [], 
           costumes: costumes || [],
           npc: npc || [],
@@ -246,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       // -------------------- MODE STATS --------------------
-      const modeList = ["base", "sacred", "ace", "ncanon", "event", "costumes", "npc"];
+      const modeList = ["base", "sacred", "ace", "goner", "ncanon", "event", "costumes", "npc"];
       let modeHtml = `<section class="stats-section">
         <h2>Mode Stats</h2>
         <div class="mode-stats">`;
@@ -497,6 +499,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (aHasId && bHasId) {
       const aId = Number(a.id);
       const bId = Number(b.id);
+      const aSortableId = Number.isNaN(aId) ? Infinity : Math.abs(aId);
+      const bSortableId = Number.isNaN(bId) ? Infinity : Math.abs(bId);
+      if (aSortableId !== bSortableId) return aSortableId - bSortableId;
       if (aId !== bId) return aId - bId;
     } else if (aHasId !== bHasId) {
       return aHasId ? -1 : 1;

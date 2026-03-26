@@ -69,17 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
+        fetch("data/mates/goner.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
         fetch("data/mates/npc.json").then(r => r.json()).catch(() => []),
       ]);
     })
-    .then(([groups, base, sacred, ace, ncanon, costumes, npc]) => {
+    .then(([groups, base, sacred, ace, goner, ncanon, costumes, npc]) => {
       groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];
       allData = {
         base: base || [],
         sacred: sacred || [],
         ace: ace || [],
+        goner: goner || [],
         ncanon: ncanon || [],
         costumes: costumes || [],
         npc: npc || [],
