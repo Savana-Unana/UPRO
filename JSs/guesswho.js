@@ -47,6 +47,7 @@
   const secretPortrait = document.getElementById("secretPortrait");
   const cardsLeftLabel = document.getElementById("cardsLeftLabel");
   const boardEl = document.getElementById("guesswhoBoard");
+  const hoverTag = document.getElementById("guesswhoHoverTag");
   const heartsEl = document.getElementById("guessHearts");
   const notesArea = document.getElementById("notesArea");
   const notesStatus = document.getElementById("notesStatus");
@@ -285,6 +286,9 @@
         event.preventDefault();
         toggleQuestioned(index);
       });
+      button.addEventListener("mouseenter", event => showHoverTag(card.name, event.currentTarget));
+      button.addEventListener("mouseleave", hideHoverTag);
+      button.addEventListener("mousemove", event => moveHoverTag(event.currentTarget));
       button.addEventListener("keydown", event => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
@@ -448,5 +452,28 @@
 
   function escapeAttribute(value) {
     return escapeHtml(value);
+  }
+
+  function showHoverTag(name, target) {
+    if (!hoverTag || !target) return;
+    hoverTag.textContent = name;
+    hoverTag.hidden = false;
+    moveHoverTag(target);
+  }
+
+  function moveHoverTag(target) {
+    if (!hoverTag || hoverTag.hidden || !target) return;
+    const cardRect = target.getBoundingClientRect();
+    const panelRect = boardEl.parentElement.getBoundingClientRect();
+    const left = cardRect.left - panelRect.left + (cardRect.width / 2);
+    const top = cardRect.top - panelRect.top - 10;
+
+    hoverTag.style.left = `${left}px`;
+    hoverTag.style.top = `${top}px`;
+  }
+
+  function hideHoverTag() {
+    if (!hoverTag) return;
+    hoverTag.hidden = true;
   }
 })();
