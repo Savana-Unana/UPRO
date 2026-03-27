@@ -29,8 +29,7 @@
     boardKey: "",
     secret: null,
     playerName: localStorage.getItem(PLAYER_NAME_KEY) || DEFAULT_NAME,
-    remainingGuesses: GUESSES_TOTAL,
-    controlsVisible: false
+    remainingGuesses: GUESSES_TOTAL
   };
 
   const screens = {
@@ -49,8 +48,6 @@
   const cardsLeftLabel = document.getElementById("cardsLeftLabel");
   const boardEl = document.getElementById("guesswhoBoard");
   const heartsEl = document.getElementById("guessHearts");
-  const controlsPanel = document.getElementById("controlsPanel");
-  const controlsButton = document.getElementById("showControlsBtn");
   const notesArea = document.getElementById("notesArea");
   const notesStatus = document.getElementById("notesStatus");
   const secretCharacterButton = document.getElementById("secretCharacterButton");
@@ -109,7 +106,6 @@
     });
     document.getElementById("notesNewSecretBtn").addEventListener("click", rerollSecret);
     document.getElementById("copyGameKeyBtn").addEventListener("click", copyGameKey);
-    document.getElementById("showControlsBtn").addEventListener("click", toggleControlsPanel);
     secretCharacterButton.addEventListener("click", rerollSecret);
 
     playerNameInput.addEventListener("keydown", event => {
@@ -239,9 +235,6 @@
     }));
     state.boardKey = buildBoardKey(state.board);
     state.remainingGuesses = GUESSES_TOTAL;
-    state.controlsVisible = false;
-    controlsPanel.hidden = true;
-    controlsButton.textContent = "Show Controls";
     rerollSecret();
     renderBoard();
     renderHearts();
@@ -354,12 +347,6 @@
       });
       heartsEl.appendChild(button);
     }
-  }
-
-  function toggleControlsPanel() {
-    state.controlsVisible = !state.controlsVisible;
-    controlsPanel.hidden = !state.controlsVisible;
-    controlsButton.textContent = state.controlsVisible ? "Hide Controls" : "Show Controls";
   }
 
   function buildBoardKey(board) {

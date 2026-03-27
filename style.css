@@ -1561,16 +1561,20 @@ body.guesswho-page textarea {
   display: grid;
   grid-template-columns: 270px minmax(0, 1fr);
   gap: 12px;
-  padding: 84px 10px 16px;
+  padding: 70px 10px 12px;
+  box-sizing: border-box;
+  height: calc(100vh - 4px);
   align-items: start;
+  overflow: hidden;
 }
 
 .guesswho-sidebar-panel {
-  padding-top: 96px;
+  padding-top: 82px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 0;
 }
 
 .guesswho-panel-title {
@@ -1667,48 +1671,49 @@ body.guesswho-page textarea {
 }
 
 .guesswho-board-panel {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   min-height: 0;
+  height: 100%;
 }
 
 .guesswho-board-head {
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   background: var(--guesswho-panel);
   border: 1px solid rgba(143, 211, 255, 0.24);
   border-bottom: 3px solid var(--guesswho-line);
-  border-radius: 18px;
-  padding: 12px 16px 12px;
+  border-radius: 16px;
+  padding: 4px 12px 6px;
+  flex: 0 0 auto;
 }
 
 .guesswho-pov-title {
   margin: 0;
-  font-size: clamp(4.2rem, 5.8vw, 6rem);
-  line-height: 1;
+  font-size: clamp(3.3rem, 4.5vw, 4.8rem);
+  line-height: 0.95;
   text-transform: none;
   text-shadow: none;
 }
 
 .guesswho-cards-left {
-  margin: 8px 0 0;
-  font-size: 1.55rem;
+  margin: 2px 0 0;
+  font-size: 1.15rem;
   color: #b8cae8;
   text-shadow: none;
 }
 
 .guesswho-board {
-  --guesswho-card-width: min(
-    calc((100vw - 390px) / 10),
-    calc(((100vh - 220px) / 5) * 0.78)
-  );
   display: grid;
-  grid-template-columns: repeat(10, var(--guesswho-card-width));
-  gap: 6px;
-  justify-content: start;
-  align-content: start;
-  height: calc(100vh - 220px);
-  max-height: calc(100vh - 220px);
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+  flex: 1 1 auto;
+  height: auto;
+  max-height: none;
   overflow: hidden;
   padding-right: 0;
+  min-height: 0;
 }
 
 .guesswho-board-card {
@@ -1717,13 +1722,16 @@ body.guesswho-page textarea {
   background: transparent;
   cursor: pointer;
   min-width: 0;
+  min-height: 0;
+  height: 100%;
 }
 
 .guesswho-board-frame {
   position: relative;
   display: block;
-  width: var(--guesswho-card-width);
-  aspect-ratio: 0.78 / 1;
+  width: 95%;
+  height: 95%;
+  margin: auto;
   border: 2px solid rgba(244, 247, 251, 0.92);
   border-radius: 8px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.22);
@@ -1753,7 +1761,7 @@ body.guesswho-page textarea {
 }
 
 .guesswho-board-card.is-hidden .guesswho-board-image {
-  opacity: 0.6;
+  opacity: 0.8;
   filter: saturate(0.8);
 }
 
@@ -1783,23 +1791,34 @@ body.guesswho-page textarea {
   outline: none;
 }
 
-.guesswho-controls-corner {
+.guesswho-controls-dock {
   position: fixed;
-  right: 26px;
-  bottom: 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 68px;
+  z-index: 7;
 }
 
 .guesswho-controls-panel {
-  position: fixed;
+  position: absolute;
   left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
+  bottom: 0;
+  transform: translate(-50%, calc(100% - 12px));
+  transition: transform 0.18s ease;
   width: min(1240px, calc(100vw - 220px));
   border: 1px solid rgba(143, 211, 255, 0.28);
   background: rgba(9, 13, 20, 0.96);
   border-radius: 16px;
   box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
   padding: 14px 20px;
+  pointer-events: none;
+}
+
+.guesswho-controls-dock:hover .guesswho-controls-panel,
+.guesswho-controls-dock:focus-within .guesswho-controls-panel {
+  transform: translate(-50%, -8px);
+  pointer-events: auto;
 }
 
 .guesswho-controls-grid {
@@ -2071,7 +2090,7 @@ body.guesswho-page textarea {
   }
 
   .guesswho-game-layout {
-    padding: 74px 14px 120px;
+    padding: 74px 14px 12px;
   }
 
   .guesswho-toolbar-left {
@@ -2080,11 +2099,6 @@ body.guesswho-page textarea {
 
   .guesswho-toolbar-right {
     right: 14px;
-  }
-
-  .guesswho-controls-corner {
-    right: 14px;
-    bottom: 14px;
   }
 
   .guesswho-bottom-action {
@@ -2097,18 +2111,21 @@ body.guesswho-page textarea {
   }
 
   .guesswho-board {
-    --guesswho-card-width: min(
-      calc((100vw - 42px) / 5),
-      calc(((100vh - 260px) / 10) * 0.78)
-    );
-    grid-template-columns: repeat(5, var(--guesswho-card-width));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(10, minmax(0, 1fr));
   }
 
   .guesswho-controls-panel {
     left: 14px;
     right: 14px;
-    transform: none;
+    bottom: 0;
+    transform: translateY(calc(100% - 12px));
     width: auto;
+  }
+
+  .guesswho-controls-dock:hover .guesswho-controls-panel,
+  .guesswho-controls-dock:focus-within .guesswho-controls-panel {
+    transform: translateY(-8px);
   }
 
   .guesswho-controls-grid {
