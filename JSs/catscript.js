@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Plains",
     "Circus",
     "Ice-Caps",
+    "Ranch",
     "Volcano",
+    "Axo-Skerry",
     "Alcatraz",
     "Jungle",
     "Borgo Slor",
@@ -96,7 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
     (
       m.name === "MissingNo" ||
       m.name === "L.MissingNo" ||
-      (m.image || "").includes("MissingNo")
+      (m.image || "").includes("MissingNo") ||
+      (m.mode === "goner" && (m.image || "").toLowerCase().includes("mois.png"))
     );
   const isOnes = m => m.name === "Ones";
   const isSpecial = m => isMissingNo(m) || isOnes(m);
@@ -289,7 +292,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .filter(m => m.mode !== "npc" && hasValidId(m)); // includes event now
 
     const missingNoMons = nonNpcMons.filter(isMissingNo);
+    const highestId = allMons
+      .map(m => Number(m?.id))
+      .filter(id => Number.isFinite(id))
+      .reduce((max, id) => Math.max(max, id), Number.NEGATIVE_INFINITY);
     const missingNoHtml = `<section class="stats-section">
+      <p>Current Highest ID: ${Number.isFinite(highestId) ? highestId : "None"}</p>
       <p>Total MissingNo: ${missingNoMons.length}/${nonNpcMons.length}</p>
     </section><hr>`;
 
@@ -527,11 +535,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function modeSupportsBiomes(mode) {
-    return mode === "base" || mode === "event" || mode === "database";
+    return mode !== "npc";
   }
 
   function modeUsesBiomeArt(mode) {
-    return mode === "base" || mode === "event";
+    return mode !== "npc" && mode !== "database";
   }
 
   function setBiomeFilterVisibility(mode) {
@@ -554,6 +562,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
     if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
+    const sharedBaseMate = (allData.base || []).find(baseMate => (baseMate?.id ?? null) === (mate?.id ?? null));
+    if (sharedBaseMate && sharedBaseMate !== mate) {
+      if (Array.isArray(sharedBaseMate.biomes)) return sharedBaseMate.biomes.filter(Boolean);
+      if (Array.isArray(sharedBaseMate.biome)) return sharedBaseMate.biome.filter(Boolean);
+      if (typeof sharedBaseMate.biome === "string" && sharedBaseMate.biome.trim()) return [sharedBaseMate.biome.trim()];
+      if (typeof sharedBaseMate.Biome === "string" && sharedBaseMate.Biome.trim()) return [sharedBaseMate.Biome.trim()];
+    }
     return [];
   }
 
@@ -667,6 +682,83 @@ document.addEventListener("DOMContentLoaded", () => {
     const color = escapeHtml(mate.color || "Unknown");
     const locationLabel = currentMode === "database" ? "Versions" : "Biomes";
     return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+  }
+
+  function asArray(value) {
+    if (Array.isArray(value)) return value;
+    if (value === null || value === undefined || value === "") return [];
+    return [value];
+  }
+
+  function normalizeObtainmentItems(mate) {
+    const raw = mate?.obtainment;
+
+    if (Array.isArray(raw)) return raw;
+    if (raw && typeof raw === "object") return [raw];
+    if (typeof raw === "string" && raw.trim()) return [raw.trim()];
+
+    if (typeof mate?.quest === "string" && mate.quest.trim()) {
+      return [{ quest: { "quest desc": mate.quest.trim() } }];
+    }
+
+    return [];
+  }
+
+  function renderObtainmentHtml(mate) {
+    const items = normalizeObtainmentItems(mate);
+    if (!items.length) return `<b>Obtainment:</b><div>None</div>`;
+
+    const blocks = [];
+
+    items.forEach(item => {
+      if (typeof item === "string") {
+        blocks.push(`<div>${escapeHtml(item)}</div>`);
+        return;
+      }
+
+      if (!item || typeof item !== "object") return;
+
+      if (item.quest !== undefined) {
+        asArray(item.quest).forEach(quest => {
+          if (typeof quest === "string") {
+            blocks.push(`<div><strong>Quest:</strong> ${escapeHtml(quest)}</div>`);
+            return;
+          }
+
+          if (!quest || typeof quest !== "object") return;
+
+          const questName = quest["quest-name"] || quest.questName || quest.name || "";
+          const questDesc = quest["quest desc"] || quest.questDesc || quest.description || quest.desc || "";
+          const parts = [];
+          if (questName) parts.push(`<div><strong>Quest:</strong> ${escapeHtml(questName)}</div>`);
+          if (questDesc) parts.push(`<div>${escapeHtml(questDesc)}</div>`);
+          if (!parts.length) parts.push(`<div><strong>Quest:</strong> None</div>`);
+          blocks.push(parts.join(""));
+        });
+      }
+
+      if (item.shop !== undefined) {
+        asArray(item.shop).forEach(shop => {
+          if (typeof shop === "string") {
+            blocks.push(`<div><strong>Shop:</strong> ${escapeHtml(shop)}</div>`);
+            return;
+          }
+
+          if (!shop || typeof shop !== "object") return;
+
+          const shopkeeper = shop.shopkeeper || shop["shopkeeper:"] || shop.keeper || "";
+          const cost = shop.cost || "";
+          const shopDesc = shop["shop-desc"] || shop.shopDesc || shop.description || shop.desc || "";
+          const parts = [`<div><strong>Shop:</strong> ${escapeHtml(shopkeeper || "Unknown")}</div>`];
+          if (cost) parts.push(`<div><strong>Cost:</strong> ${escapeHtml(cost)}</div>`);
+          if (shopDesc) parts.push(`<div>${escapeHtml(shopDesc)}</div>`);
+          blocks.push(parts.join(""));
+        });
+      }
+    });
+
+    if (!blocks.length) return `<b>Obtainment:</b><div>None</div>`;
+    return `<b>Obtainment:</b>${blocks.map(block => `<div style="margin-top:6px;">${block}</div>`).join("")}`;
   }
 
   gridView.addEventListener("click", () => {
@@ -803,14 +895,13 @@ document.addEventListener("DOMContentLoaded", () => {
     tabsContainer.innerHTML = "";
 
     if (currentMode === "npc") {
-      document.getElementById("abilityContainer").innerHTML = "";
+      document.getElementById("abilityContainer").innerHTML = renderObtainmentHtml(mate);
       document.getElementById("paraTypesContainer").innerHTML = "";
       document.getElementById("evolutionsContainer").innerHTML = "";
       const tabsContainer = document.querySelector(".dex-tabs");
       tabsContainer.innerHTML = "";
       const npcHtml = `
           <div><strong>Description: </strong>${escapeHtml(mate.Description || "None")}</div>
-          <div><strong>Quest:</strong> ${escapeHtml(mate.quest || "None")}</div>
           <div><strong>Reference:</strong> ${escapeHtml(mate.reference || "None")}</div>
       `;
       document.getElementById("mateDexText").innerHTML = npcHtml;
@@ -856,6 +947,8 @@ document.addEventListener("DOMContentLoaded", () => {
         abilityContainer.innerHTML = ab
           ? `<b>Ability:</b><div style="margin-top:6px;"><strong>${escapeHtml(ab.name)}</strong> &mdash; ${escapeHtml(ab.text)}</div>`
           : `<b>Ability:</b> <div>${escapeHtml(mate.ability)}</div>`;
+      } else if (currentMode === "costumes") {
+        abilityContainer.innerHTML = renderObtainmentHtml(mate);
       }
 
       // Para types
@@ -876,10 +969,10 @@ document.addEventListener("DOMContentLoaded", () => {
         (m.evolvesTo || []).forEach(e => {
           if (!e || !e.name) return;
           if (!outgoing.has(m.name)) outgoing.set(m.name, []);
-          outgoing.get(m.name).push({ to: e.name, level: e.level });
+          outgoing.get(m.name).push({ to: e.name, level: e.level, item: e.Item });
 
           if (!incoming.has(e.name)) incoming.set(e.name, []);
-          incoming.get(e.name).push({ from: m.name, level: e.level });
+          incoming.get(e.name).push({ from: m.name, level: e.level, item: e.Item });
         });
       });
 
@@ -904,10 +997,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function buildAllPathsFrom(rootName) {
         const paths = [];
-        function dfs(nodeName, names, levels, seen) {
+        function dfs(nodeName, names, requirements, seen) {
           const edges = outgoing.get(nodeName) || [];
           if (!edges.length) {
-            paths.push({ names: [...names], levels: [...levels] });
+            paths.push({ names: [...names], requirements: [...requirements] });
             return;
           }
           let progressed = false;
@@ -915,19 +1008,31 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!edge || !edge.to || seen.has(edge.to)) return;
             progressed = true;
             names.push(edge.to);
-            levels.push(edge.level);
+            requirements.push({ level: edge.level, item: edge.item });
             seen.add(edge.to);
-            dfs(edge.to, names, levels, seen);
+            dfs(edge.to, names, requirements, seen);
             seen.delete(edge.to);
             names.pop();
-            levels.pop();
+            requirements.pop();
           });
           if (!progressed) {
-            paths.push({ names: [...names], levels: [...levels] });
+            paths.push({ names: [...names], requirements: [...requirements] });
           }
         }
         dfs(rootName, [rootName], [], new Set([rootName]));
         return paths;
+      }
+
+      function evolutionRequirementText(requirement) {
+        if (!requirement) return "";
+        const parts = [];
+        if (requirement.level !== null && requirement.level !== undefined && requirement.level !== "") {
+          parts.push(`Lvl ${requirement.level}`);
+        }
+        if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) {
+          parts.push(`Item: ${requirement.item}`);
+        }
+        return parts.join(" | ");
       }
 
       const allLines = findCandidateRoots(mate.name)
@@ -975,7 +1080,7 @@ document.addEventListener("DOMContentLoaded", () => {
               arrow.textContent = "→";
               const lvl = document.createElement("div");
               lvl.className = "evo-level";
-              lvl.textContent = line.levels[idx] == null || line.levels[idx] === "" ? "Level" : `Lvl ${line.levels[idx]}`;
+              lvl.textContent = evolutionRequirementText(line.requirements[idx]);
               link.appendChild(arrow);
               link.appendChild(lvl);
               lineEl.appendChild(link);

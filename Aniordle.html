@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aniordle</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="aniordle-page">
+  <main class="aniordle-shell">
+    <header class="aniordle-header">
+      <a class="aniordle-back-link" href="normal.html">Back</a>
+      <div class="aniordle-logo-block">
+        <img src="webimages/Logo.png" alt="UPRO logo" class="aniordle-logo">
+        <div>
+          <h1 class="aniordle-title">Aniordle</h1>
+          <p class="aniordle-subtitle" id="aniordleModeLabel">Daily finalized animate</p>
+        </div>
+      </div>
+      <button class="aniordle-share-btn" type="button" id="aniordleShareBtn" disabled>Share</button>
+    </header>
+
+    <section class="aniordle-panel aniordle-controls">
+      <div class="aniordle-combobox" id="aniordleCombobox">
+        <button class="aniordle-combobox-btn" type="button" id="aniordlePickerBtn" aria-expanded="false" aria-controls="aniordlePickerPanel">
+          <img src="webimages/Placeholder.png" alt="" class="aniordle-picker-logo">
+          <span id="aniordlePickerLabel">Choose a finalized animate</span>
+        </button>
+        <div class="aniordle-combobox-panel" id="aniordlePickerPanel" hidden>
+          <input class="aniordle-search" id="aniordleSearchInput" type="text" placeholder="Search animates..." autocomplete="off">
+          <div class="aniordle-option-list" id="aniordleOptionList" role="listbox" aria-label="Finalized animates"></div>
+        </div>
+      </div>
+
+      <div class="aniordle-actions">
+        <p class="aniordle-status" id="aniordleStatus">You have 6 guesses to find today's animate.</p>
+        <button class="aniordle-random-btn" type="button" id="aniordleRandomBtn" hidden>Play Random Round</button>
+      </div>
+    </section>
+
+    <section class="aniordle-panel aniordle-board-panel">
+      <div class="aniordle-category-row" aria-hidden="true">
+        <div class="aniordle-category">Id</div>
+        <div class="aniordle-category">Typing-1</div>
+        <div class="aniordle-category">Typing-2</div>
+        <div class="aniordle-category">Biome</div>
+        <div class="aniordle-category">Demo Number</div>
+      </div>
+
+      <div class="aniordle-board" id="aniordleBoard" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="JSs/aniordle.js"></script>
+</body>
+</html>

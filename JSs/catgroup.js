@@ -277,12 +277,11 @@ document.addEventListener("DOMContentLoaded", () => {
     tabsContainer.innerHTML = "";
 
     if (mateMode === "npc") {
-      document.getElementById("abilityContainer").innerHTML = "";
+      document.getElementById("abilityContainer").innerHTML = renderObtainmentHtml(mate);
       document.getElementById("paraTypesContainer").innerHTML = "";
       document.getElementById("evolutionsContainer").innerHTML = "";
       const npcHtml = `
         <div><strong>Description: </strong>${escapeHtml(mate.Description || "None")}</div>
-        <div><strong>Quest:</strong> ${escapeHtml(mate.quest || "None")}</div>
         <div><strong>Reference:</strong> ${escapeHtml(mate.reference || "None")}</div>
       `;
       document.getElementById("mateDexText").innerHTML = npcHtml;
@@ -316,7 +315,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (tabsContainer.querySelector(".dex-tab")) tabsContainer.querySelector(".dex-tab").click();
 
       // Intentionally omitted on groups page: abilities, evolutions, moves.
-      document.getElementById("abilityContainer").innerHTML = "";
+      document.getElementById("abilityContainer").innerHTML = mateMode === "costumes"
+        ? renderObtainmentHtml(mate)
+        : "";
       document.getElementById("evolutionsContainer").innerHTML = "";
 
       const paraContainer = document.getElementById("paraTypesContainer");
@@ -386,6 +387,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
     if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
+    const sharedBaseMate = (allData.base || []).find(baseMate => (baseMate?.id ?? null) === (mate?.id ?? null));
+    if (sharedBaseMate && sharedBaseMate !== mate) {
+      if (Array.isArray(sharedBaseMate.biomes)) return sharedBaseMate.biomes.filter(Boolean);
+      if (Array.isArray(sharedBaseMate.biome)) return sharedBaseMate.biome.filter(Boolean);
+      if (typeof sharedBaseMate.biome === "string" && sharedBaseMate.biome.trim()) return [sharedBaseMate.biome.trim()];
+      if (typeof sharedBaseMate.Biome === "string" && sharedBaseMate.Biome.trim()) return [sharedBaseMate.Biome.trim()];
+    }
     return [];
   }
 
@@ -400,6 +408,83 @@ document.addEventListener("DOMContentLoaded", () => {
     const height = escapeHtml(mate.height || "Unknown");
     const color = escapeHtml(mate.color || "Unknown");
     return `<div class="mate-meta"><p><b>Biomes:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+  }
+
+  function asArray(value) {
+    if (Array.isArray(value)) return value;
+    if (value === null || value === undefined || value === "") return [];
+    return [value];
+  }
+
+  function normalizeObtainmentItems(mate) {
+    const raw = mate?.obtainment;
+
+    if (Array.isArray(raw)) return raw;
+    if (raw && typeof raw === "object") return [raw];
+    if (typeof raw === "string" && raw.trim()) return [raw.trim()];
+
+    if (typeof mate?.quest === "string" && mate.quest.trim()) {
+      return [{ quest: { "quest desc": mate.quest.trim() } }];
+    }
+
+    return [];
+  }
+
+  function renderObtainmentHtml(mate) {
+    const items = normalizeObtainmentItems(mate);
+    if (!items.length) return `<b>Obtainment:</b><div>None</div>`;
+
+    const blocks = [];
+
+    items.forEach(item => {
+      if (typeof item === "string") {
+        blocks.push(`<div>${escapeHtml(item)}</div>`);
+        return;
+      }
+
+      if (!item || typeof item !== "object") return;
+
+      if (item.quest !== undefined) {
+        asArray(item.quest).forEach(quest => {
+          if (typeof quest === "string") {
+            blocks.push(`<div><strong>Quest:</strong> ${escapeHtml(quest)}</div>`);
+            return;
+          }
+
+          if (!quest || typeof quest !== "object") return;
+
+          const questName = quest["quest-name"] || quest.questName || quest.name || "";
+          const questDesc = quest["quest desc"] || quest.questDesc || quest.description || quest.desc || "";
+          const parts = [];
+          if (questName) parts.push(`<div><strong>Quest:</strong> ${escapeHtml(questName)}</div>`);
+          if (questDesc) parts.push(`<div>${escapeHtml(questDesc)}</div>`);
+          if (!parts.length) parts.push(`<div><strong>Quest:</strong> None</div>`);
+          blocks.push(parts.join(""));
+        });
+      }
+
+      if (item.shop !== undefined) {
+        asArray(item.shop).forEach(shop => {
+          if (typeof shop === "string") {
+            blocks.push(`<div><strong>Shop:</strong> ${escapeHtml(shop)}</div>`);
+            return;
+          }
+
+          if (!shop || typeof shop !== "object") return;
+
+          const shopkeeper = shop.shopkeeper || shop["shopkeeper:"] || shop.keeper || "";
+          const cost = shop.cost || "";
+          const shopDesc = shop["shop-desc"] || shop.shopDesc || shop.description || shop.desc || "";
+          const parts = [`<div><strong>Shop:</strong> ${escapeHtml(shopkeeper || "Unknown")}</div>`];
+          if (cost) parts.push(`<div><strong>Cost:</strong> ${escapeHtml(cost)}</div>`);
+          if (shopDesc) parts.push(`<div>${escapeHtml(shopDesc)}</div>`);
+          blocks.push(parts.join(""));
+        });
+      }
+    });
+
+    if (!blocks.length) return `<b>Obtainment:</b><div>None</div>`;
+    return `<b>Obtainment:</b>${blocks.map(block => `<div style="margin-top:6px;">${block}</div>`).join("")}`;
   }
 
   function applyMateStyle(el, mate) {

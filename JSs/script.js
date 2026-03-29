@@ -80,7 +80,7 @@ function triggerSwitcheroo() {
 
   if (switcherooClickTimes.length >= guessWhoUnlockClicks) {
     sessionStorage.setItem("upro_guesswho_unlocked", "true");
-    window.location.href = "guesswho.html";
+    window.location.href = "normal.html";
   }
 }
 
