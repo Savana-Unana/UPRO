@@ -42,7 +42,7 @@
       renderBoard();
     } catch (error) {
       console.error(error);
-      statusEl.textContent = "Aniordle failed to load finalized animates.";
+      statusEl.textContent = "UPROrdle failed to load finalized animates.";
       pickerBtn.disabled = true;
     }
   }
@@ -176,7 +176,7 @@
     state.finished = false;
     state.dailyKey = getDailyStorageKey();
     state.target = state.pool[getDailyIndex()];
-    modeLabel.textContent = "Daily finalized animate";
+    modeLabel.textContent = "For That Daily UPRO Thought";
     statusEl.textContent = `You have ${MAX_GUESSES} guesses to find today's animate.`;
     shareBtn.disabled = true;
     randomBtn.hidden = true;
@@ -408,7 +408,7 @@
   }
 
   function buildShareText() {
-    const modeLabelText = state.randomRound ? "Aniordle Random" : "Aniordle";
+    const modeLabelText = state.randomRound ? "UPROrdle Random" : "UPROrdle";
     const score = state.guesses.some(guess => guess.result.every(cell => cell.state === "green"))
       ? `${state.guesses.length}/${MAX_GUESSES}`
       : `X/${MAX_GUESSES}`;
