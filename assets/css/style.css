@@ -1,0 +1,2660 @@
+/* ---------- FONT ---------- */
+@font-face {
+  font-family: 'UPRO';
+  src: url('../fonts/UPRO.ttf') format('truetype');
+}
+
+body.normal-hub-page {
+  min-height: 100vh;
+  margin: 0;
+  background: #0f1116;
+  font-family: 'UPRO', serif;
+}
+
+.normal-hub-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+.normal-hub-grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.normal-hub-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  color: #ffffff;
+  font-family: 'UPRO', serif;
+  font-size: clamp(4.5rem, 8vw, 8.5rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 140ms ease, filter 140ms ease;
+}
+
+.normal-hub-tile:hover,
+.normal-hub-tile:focus-visible {
+  transform: scale(0.985);
+  filter: brightness(1.08);
+}
+
+.normal-hub-green {
+  background: #2f9e44;
+}
+
+.normal-hub-red {
+  background: #c92a2a;
+}
+
+.normal-hub-yellow {
+  background: #f08c00;
+}
+
+.normal-hub-blue {
+  background: #1864ab;
+}
+
+.normal-hub-center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(150px, 18vw, 240px);
+  height: clamp(150px, 18vw, 240px);
+  border-radius: 999px;
+  z-index: 5;
+}
+
+.normal-hub-center-button:hover,
+.normal-hub-center-button:focus-visible {
+  transform: translate(-50%, -50%) scale(1.04);
+  filter: brightness(1.04);
+}
+
+.normal-hub-center-image {
+  width: 72%;
+  height: 72%;
+  object-fit: contain;
+}
+
+body.aniordle-page {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 222, 89, 0.18), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(24, 100, 171, 0.24), transparent 30%),
+    linear-gradient(180deg, #0f1828 0%, #13151c 100%);
+  color: #f4f4f0;
+  font-family: 'UPRO', serif;
+  font-size: 180%;
+}
+
+.aniordle-shell {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 30px 0 56px;
+}
+
+.aniordle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.aniordle-back-link,
+.aniordle-share-btn,
+.aniordle-random-btn,
+.aniordle-combobox-btn,
+.aniordle-option {
+  font: inherit;
+}
+
+.aniordle-back-link,
+.aniordle-share-btn,
+.aniordle-random-btn {
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(10, 16, 27, 0.78);
+  color: #f4f4f0;
+  padding: 18px 24px;
+  font-size: 2.7rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.aniordle-share-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.aniordle-logo-block {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.aniordle-logo {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+.aniordle-title {
+  margin: 0;
+  font-family: 'UPRO', serif;
+  font-size: clamp(5.6rem, 9.8vw, 8.7rem);
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.aniordle-subtitle {
+  margin: 6px 0 0;
+  color: #d9d1ae;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.aniordle-panel {
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background: rgba(9, 15, 25, 0.84);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.aniordle-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 18px;
+  padding: 24px;
+  margin-bottom: 18px;
+}
+
+.aniordle-combobox {
+  position: relative;
+}
+
+.aniordle-combobox-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(21, 30, 48, 0.95);
+  color: #f4f4f0;
+  padding: 22px 24px;
+  font-size: 2.75rem;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.aniordle-picker-logo,
+.aniordle-option-image,
+.aniordle-guess-image {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.aniordle-combobox-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 12;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(8, 13, 22, 0.98);
+  padding: 12px;
+}
+
+.aniordle-search {
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(20, 29, 46, 0.92);
+  color: #f4f4f0;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  font-family: 'UPRO', serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+}
+
+.aniordle-option-list {
+  max-height: 320px;
+  overflow-y: auto;
+  display: grid;
+  gap: 8px;
+}
+
+.aniordle-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(27, 39, 61, 0.92);
+  color: #f4f4f0;
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 2.1rem;
+}
+
+.aniordle-option:hover,
+.aniordle-option:focus-visible {
+  background: rgba(47, 67, 102, 0.96);
+}
+
+.aniordle-option-name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.aniordle-empty {
+  padding: 14px;
+  text-align: center;
+  color: #d7cdc0;
+  font-size: 2rem;
+}
+
+.aniordle-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.aniordle-status {
+  margin: 0;
+  line-height: 1.5;
+  color: #ece4bb;
+  font-size: 2.3rem;
+  letter-spacing: 0.05em;
+}
+
+.aniordle-board-panel {
+  padding: 24px;
+}
+
+.aniordle-category-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.aniordle-category {
+  border-radius: 16px;
+  background: rgba(25, 40, 66, 0.92);
+  color: #f3e48c;
+  padding: 18px 12px;
+  text-align: center;
+  font-family: 'UPRO', serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aniordle-board {
+  display: grid;
+  gap: 12px;
+}
+
+.aniordle-row {
+  display: grid;
+  gap: 8px;
+}
+
+.aniordle-guess-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f4f4f0;
+  font-weight: 700;
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+}
+
+.aniordle-guess-name-empty {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  color: rgba(244, 244, 240, 0.48);
+  font-size: 2.1rem;
+  letter-spacing: 0.06em;
+}
+
+.aniordle-cells {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.aniordle-cell {
+  min-height: 110px;
+  border-radius: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2.05rem;
+  letter-spacing: 0.05em;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  animation: aniordleReveal 280ms ease forwards;
+}
+
+.aniordle-cell-empty {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.aniordle-cell-green {
+  background: #2f9e44;
+}
+
+.aniordle-cell-yellow {
+  background: #d9480f;
+  color: #fff8d4;
+}
+
+.aniordle-cell-red {
+  background: #7f1d1d;
+}
+
+@keyframes aniordleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 860px) {
+  .aniordle-header,
+  .aniordle-controls {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .aniordle-header {
+    gap: 12px;
+  }
+
+  .aniordle-category-row,
+  .aniordle-cells {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .normal-hub-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, minmax(160px, 1fr));
+  }
+
+  .aniordle-shell {
+    width: min(100%, calc(100% - 18px));
+    padding-top: 16px;
+  }
+
+  .normal-hub-tile {
+    font-size: clamp(3.4rem, 12vw, 5.4rem);
+  }
+
+  .normal-hub-center-button {
+    width: 130px;
+    height: 130px;
+    border-width: 6px;
+  }
+
+  .aniordle-category-row,
+  .aniordle-cells {
+    grid-template-columns: 1fr;
+  }
+
+  .aniordle-logo-block {
+    align-items: flex-start;
+  }
+}
+
+/* ---------- GLOBAL ---------- */
+html { font-size: 70%; }
+
+body {
+  font-family: 'UPRO', serif;
+  font-size: 40px;
+  background: #0d0d0f;
+  color: #e0f0ff;
+  margin: 0;
+
+  /* merged useful layout from the second CSS */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  text-align: center;
+  background: #111;
+  padding: 10px;
+  border-bottom: 2px solid #0ff;
+}
+
+/* ---------- CONTROLS ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+button, select, input {
+  background: #222;
+  color: #0ff;
+  font-family: 'UPRO', serif;
+  font-size: 30px;
+  border: 1px solid #0ff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover, select:hover,
+.view-toggle button.active,
+.mode-btn.active {
+  background: #0ff;
+  color: #000;
+}
+
+select[multiple] {
+  min-width: 160px;
+  max-width: 260px;
+  font-size: 26px;
+  padding: 6px;
+}
+
+/* ---------- GRID & LIST VIEW ---------- */
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  padding: 20px;
+}
+
+main.list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* ---------- CATEGORY GROUPS PAGE ---------- */
+#categoryGroups {
+  padding: 16px 20px 30px;
+}
+.cat-grouping {
+  margin-bottom: 28px;
+}
+.cat-grouping-title {
+  margin: 8px 0 16px;
+  color: #f4ff9a;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cat-section {
+  margin: 10px 0 24px;
+}
+.cat-section-bonus {
+  padding: 14px 16px 18px;
+  border: 1px solid rgba(244, 255, 154, 0.45);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(244, 255, 154, 0.08), rgba(27, 27, 31, 0.4));
+}
+.cat-title {
+  margin: 8px 0 12px;
+  font-size: 1.3em;
+  color: #b6f7ff;
+  text-align: left;
+  padding-left: 4px;
+}
+.cat-description {
+  margin: -4px 0 14px;
+  padding-left: 4px;
+  color: #f6f6cf;
+  line-height: 1.45;
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.cat-grid .card {
+  justify-self: center;
+}
+.cat-empty {
+  padding: 20px;
+  color: #a8dce3;
+}
+
+/* GRID VIEW */
+#pokedex.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+/* ---------- POKEMON CARD FIX ---------- */
+#pokedex .card {
+  display: flex;
+  flex-direction: column; /* stack image, name, types */
+  align-items: center;
+  justify-content: flex-start; /* don't force spacing */
+  width: 200px; 
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  transition: 0.2s;
+}
+
+#pokedex .card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+#pokedex .card h3 {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 4px 0;
+  line-height: 1.2em;
+  word-break: break-word; /* wrap long names */
+  overflow: visible;      /* allow growing */
+  max-height: none;       /* remove 2-line clamp */
+}
+
+#pokedex .card .types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 4px;
+  max-height: none;       /* allow multiple lines */
+  overflow: visible;      /* don't cut off types */
+}
+
+#pokedex .card .types span {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #0ff;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.9em; /* scale down slightly if needed */
+}
+
+/* ---------- CARD ---------- */
+.card {
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+  transition: .2s;
+  display: inline-block;
+  position: relative;
+}
+.card.biome-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--biome-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+.card.biome-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover { transform: scale(1.04); box-shadow: 0 0 12px var(--outline-color, #0ff); }
+.card img { width: 100px; height: 100px; object-fit: contain; }
+.card img.rarity-shiver-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  max-width: 48px;
+  max-height: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.35);
+}
+.card .card-id {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  color: #e0f0ff;
+  font-size: 0.62em;
+  line-height: 1.1;
+  z-index: 2;
+}
+.card.rarity-paragon,
+.card.rarity-paragon:hover {
+  box-shadow:
+    0 0 8px var(--outline-color, #0ff),
+    0 0 18px var(--outline-color, #0ff),
+    0 0 28px var(--outline-color, #0ff);
+}
+.mate-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 8px 0 4px;
+  font-size: 1.2em;
+  color: #cfefff;
+}
+.mate-meta p {
+  margin: 0;
+}
+
+/* ---------- TYPE LABELS ---------- */
+.types span {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 8px;
+  margin: 2px;
+  color: #000;
+  font-weight: bold;
+}
+
+/* ---------- MODAL ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.modal.hidden { display: none; }
+
+.modal-content {
+  background: #121214;
+  border: 2px solid #0ff;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 95%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+body.animatrix-list-view {
+  display: grid;
+  grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  align-items: start;
+}
+
+body.animatrix-list-view > header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+body.animatrix-list-view > main#animatrix {
+  grid-column: 1;
+  grid-row: 2;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+body.animatrix-list-view > main#animatrix.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-content: start;
+}
+
+body.animatrix-list-view > #detailsModal {
+  grid-column: 2;
+  grid-row: 2;
+  position: sticky;
+  top: 0;
+  inset: auto;
+  display: block;
+  background: transparent;
+  z-index: 1;
+  padding: 10px 20px 20px 0;
+  height: calc(100vh - 180px);
+}
+
+body.animatrix-list-view > #detailsModal.hidden {
+  display: none;
+}
+
+body.animatrix-list-view > #detailsModal .modal-content {
+  width: 100%;
+  max-width: none;
+  max-height: 100%;
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  body.animatrix-list-view {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body.animatrix-list-view > main#animatrix {
+    max-height: none;
+    overflow: visible;
+  }
+
+  body.animatrix-list-view > #detailsModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.8);
+    padding: 0;
+    height: auto;
+    z-index: 100;
+  }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 60%; }
+  .modal-content { max-width: 600px; }
+  .modal-content img { width: 150px !important; height: 150px !important; }
+}
+
+/* ---------- MULTI-FILTER PANEL ---------- */
+.multi-filter { position: relative; display: inline-block; }
+
+.filter-toggle {
+  background: #222;
+  color: #0ff;
+  font-size: 28px;
+  border: 1px solid #0ff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #121214;
+  border: 1px solid #0ff;
+  color: #e0f0ff;
+  min-width: 220px;
+  max-width: 320px;
+  border-radius: 8px;
+  padding: 8px;
+  display: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,.6);
+  z-index: 60;
+}
+.filter-panel.open { display: block; }
+
+.panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+}
+.clear-btn {
+  background: none;
+  color: #0ff;
+  border: 1px dashed #0ff;
+  padding: 4px 8px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-panel .options {
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.filter-panel .opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  font-size: 20px;
+}
+.filter-panel .opt input { width: 18px; height: 18px; cursor: pointer; }
+
+@media (max-width: 600px) {
+  .filter-panel { left: auto; right: 0; min-width: 180px; max-width: 260px; }
+  .filter-toggle { font-size: 22px; }
+}
+
+/* ---------- IMAGE CONTAINER ---------- */
+.image-container img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: .2s;
+}
+.image-container img:hover { transform: scale(1.05); }
+
+.modal-body { width: 100%; text-align: center; }
+
+/* ---------- TEXT SECTIONS ---------- */
+#monDexText { font-size: 1.2em; margin-top: 10px; line-height: 1.4; }
+.mate-vitals {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.mode-badge {
+  margin-top: 6px;
+  font-size: 0.95em;
+  color: #9cfbff;
+}
+
+#sacredContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+#ModeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.dex-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.dex-tab {
+  font-size: clamp(14px, 2vw, 28px);
+  padding: 6px 12px;
+}
+.dex-tab.active { background: #0ff; color: #000; }
+
+.nav-btn { margin: 10px; background: #0ff; color: #000; }
+
+#paraTypesContainer span {
+  border: 1px solid #0ff;
+  border-radius: 6px;
+  margin: 2px;
+  padding: 3px 6px;
+  display: inline-block;
+}
+
+#evolutionsContainer img,
+#sacredContainer img,
+#ModeContainer img {
+  width: 80px;
+  cursor: pointer;
+  margin: 4px;
+}
+
+#evolutionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+}
+
+.evo-line {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  min-width: max-content;
+  margin: 4px 0;
+}
+
+.evo-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 84px;
+}
+
+.evo-node.current img {
+  outline: 2px solid #0ff;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.evo-name {
+  margin-top: 2px;
+  font-size: 0.95em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.evo-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  margin-top: 14px;
+}
+
+.evo-arrow {
+  line-height: 1;
+}
+
+.evo-level {
+  font-size: 0.75em;
+  margin-top: 2px;
+  line-height: 1.1;
+}
+
+/* ---------- FILTER LABEL (MERGED) ---------- */
+.filter-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1em;
+  color: #333;
+  margin: 4px 0;
+  cursor: pointer;
+}
+.filter-label input {
+  width: 16px;
+  height: 16px;
+  accent-color: #555;
+}
+
+/* ---------- SEARCH & ALT ---------- */
+.search-alt-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.Alt {
+  position: relative;
+  background: #333;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: .7em;
+  letter-spacing: .1em;
+  padding: 2px;
+  border: 3px solid #00a2ff;
+  border-radius: 8px;
+  transition: .5s;
+}
+.Alt:hover {
+  letter-spacing: .2em;
+  background: #555;
+  border-color: #00ba32;
+}
+.Alt::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: #1c1c1c;
+  border-radius: 6px;
+}
+
+input#search {
+  padding: 12px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  transition: .3s;
+}
+input#search:focus {
+  border-color: #4824f8;
+  box-shadow: 0 0 8px rgba(46,46,46,.6);
+}
+
+
+
+/* ---------- VIDEO ---------- */
+.video-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* ---------- CAPSULE IMAGE WITH BUTTONS ---------- */
+.capsule-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+  overflow: visible;
+  --capsule-width: 400px;
+  --skip-width: 380px;
+  --skip-left-point: -165px;
+  --skip-right-point: 565px;
+  --skip-vertical-offset: -210px;
+}
+
+.capsule-container img {
+  display: block;
+  width: var(--capsule-width); /* adjust to your image size */
+  height: auto;
+}
+
+#capsule-img {
+  position: relative;
+  z-index: 2;
+}
+
+.skip-runner {
+  position: absolute;
+  top: 0;
+  display: grid;
+  width: var(--skip-width);
+  opacity: 1;
+  text-decoration: none;
+  transform: translate(-50%, var(--skip-vertical-offset));
+  transition: none;
+}
+
+.skip-runner img {
+  width: var(--skip-width);
+  height: auto;
+  image-rendering: auto;
+  display: block;
+}
+
+.skip-sprite {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-sprite.is-visible {
+  opacity: 1;
+}
+
+.skip-runner.skip-left {
+  left: var(--skip-left-point);
+}
+
+.skip-runner.skip-right {
+  left: var(--skip-right-point);
+}
+
+.skip-runner.skip-front {
+  z-index: 4;
+}
+
+.skip-runner.skip-behind {
+  z-index: 1;
+}
+
+.skip-runner.is-moving {
+  transition-property: left;
+  transition-timing-function: linear;
+}
+
+/* overlay buttons positioned over the robot */
+.image-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.overlay-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(27, 27, 31, 0.8);
+  border: 1px solid #0ff;
+  color: #0ff;
+  font-family: 'UPRO', serif;
+  font-size: 1rem;
+  border-radius: 8px;
+  padding: 6px 10px;
+  text-decoration: none;
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.overlay-btn:hover {
+  background: #0ff;
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #0ff;
+}
+
+#btn1 { top: 9%; left: 42%; width: 70px; height: 60px; }
+#btn2 { top: 10%; left: 67%; width: 70px; height: 60px; }
+#btn3 { top: 41%; left: 44.5%; width: 70px; height: 60px; }
+#btn4 { top: 42%; left: 70%; width: 70px; height: 60px; }
+
+.switcheroo-container {
+  margin-top: 20px;
+}
+.switcheroo-container img {
+  width: 110px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.switcheroo-container img:hover {
+  transform: scale(1.1);
+}
+
+
+
+/* ---------- OST CARDS ---------- */
+#ostGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 20px;
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+/* Card container */
+.card {
+  width: 200px;
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* space between top (text) and bottom (play/progress) */
+  gap: 8px;
+  transition: 0.2s;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px var(--outline-color, #0ff);
+}
+
+/* Song image */
+.card img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+/* Song name */
+.card h3 {
+  font-size: 5rem;
+  text-align: center;
+  margin: 4px 0;
+  line-height: 1.2;
+  max-height: 2.8em; /* 2 lines max */
+  overflow: hidden;
+}
+
+/* Composer name */
+.card p.composer {
+  font-size: 3.2rem;
+  color: #0ff;
+  margin: 2px 0;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+/* Types container */
+.card .types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin: 4px 0;
+  max-height: 40px;
+  overflow: hidden;
+}
+
+.card .types span {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #0ff;
+  color: #000;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+/* Play button */
+.play-btn {
+  font-size: 2.5rem;
+  padding: 6px 10px;
+  background: #222;
+  color: #0ff;
+  border: 1px solid #0ff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.play-btn:hover {
+  background: #0ff;
+  color: #000;
+}
+
+/* Time display */
+.time-display {
+  font-size: 3rem;
+  color: #0ff;
+  margin-top: 4px;
+  height: 20px;
+  min-height: 20px;
+}
+
+.progress-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: #222;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #0ff;
+  border-radius: 6px;
+  transition: width 0.1s linear;
+}
+
+.progress-handle {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.progress-handle:hover {
+  background: lightgray;
+}
+
+.playlist-btn {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.playlist-mode .playlist-btn {
+  display: block;
+}
+
+#ostGrid .card {
+  width: min(100%, 230px);
+  margin: 0;
+}
+
+#ostGrid .card {
+  position: relative;
+  overflow: visible;
+}
+
+#ostGrid .card.song-unavailable {
+  background: #101217;
+  border-color: #3f4652 !important;
+  box-shadow: none;
+}
+
+#ostGrid .card.song-unavailable .composer,
+#ostGrid .card.song-unavailable h3,
+#ostGrid .card.song-unavailable .types span,
+#ostGrid .card.song-unavailable .time-display {
+  opacity: 0.9;
+}
+
+#ostGrid .card.song-unavailable .play-btn,
+#ostGrid .card.song-unavailable .playlist-btn {
+  background: #2d313a;
+  border-color: #4a5160;
+  color: #96a2b8;
+  cursor: not-allowed;
+}
+
+#ostGrid .disabled-progress {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#ostGrid .disabled-progress .progress-handle {
+  pointer-events: none;
+}
+
+#ostGrid .song-info-wrap {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 4;
+}
+
+#ostGrid .song-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #7f91af;
+  background: #1e2532;
+  color: #d9e7ff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#ostGrid .song-info-box {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  min-width: 220px;
+  max-width: 320px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #586c90;
+  background: #121a29;
+  color: #d6e6ff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  display: none;
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+#ostGrid .song-info-box strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #f4f8ff;
+}
+
+#ostGrid .song-info-box p {
+  margin: 0;
+  color: #b8cbeb;
+}
+
+#ostGrid .song-info-wrap:hover .song-info-box {
+  display: block;
+}
+
+/* ---------- MOVES/ABILITIES PAGE REFRESH ---------- */
+body.hurty-page {
+  background:
+    radial-gradient(circle at 10% 15%, rgba(122, 170, 255, 0.22), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(255, 181, 140, 0.2), transparent 34%),
+    linear-gradient(180deg, #f5f7fc 0%, #eef2fa 55%, #e7edf7 100%);
+  color: #243042;
+  min-height: 100vh;
+  font-size: 28px;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+}
+
+body.hurty-page header {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(79, 108, 156, 0.28);
+  backdrop-filter: blur(6px);
+  padding: 14px 14px 18px;
+}
+
+body.hurty-page h1 {
+  margin: 8px 0 10px;
+  color: #1f2c43;
+  text-shadow: none;
+}
+
+body.hurty-page button,
+body.hurty-page select,
+body.hurty-page input {
+  background: #ffffff;
+  color: #22324b;
+  border: 1px solid rgba(79, 108, 156, 0.42);
+  border-radius: 12px;
+  font-size: 24px;
+  padding: 8px 12px;
+}
+
+body.hurty-page button:hover,
+body.hurty-page select:hover,
+body.hurty-page .dex-tab.active {
+  background: #2d527f;
+  color: #f6f9ff;
+}
+
+body.hurty-page .controls {
+  max-width: 1180px;
+  margin: 0 auto;
+  gap: 12px;
+}
+
+body.hurty-page .mode-switch {
+  display: inline-flex;
+  gap: 8px;
+}
+
+body.hurty-page .multi-filter {
+  position: relative;
+  z-index: 2200;
+}
+
+body.hurty-page .filter-toggle {
+  font-size: 24px;
+}
+
+body.hurty-page .filter-panel {
+  background: #f8fbff;
+  border: 1px solid #b6c8ea;
+  color: #1f3556;
+  z-index: 2300;
+}
+
+body.hurty-page .filter-panel .opt {
+  font-size: 18px;
+}
+
+body.hurty-page .clear-btn {
+  color: #2d527f;
+  border-color: #2d527f;
+}
+
+body.hurty-page input#search:focus {
+  border-color: #2d527f;
+  box-shadow: 0 0 0 3px rgba(45, 82, 127, 0.18);
+}
+
+body.hurty-page #pokedex.grid {
+  max-width: 1600px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+  padding: 22px 24px 28px;
+  width: 100%;
+  justify-items: stretch;
+  box-sizing: border-box;
+}
+
+body.hurty-page #pokedex .card {
+  width: 100%;
+  max-width: none;
+  background: rgba(255, 255, 255, 0.94);
+  border: 4px solid rgba(91, 127, 183, 0.45);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(30, 56, 97, 0.12);
+  color: #1c2c43;
+  padding: 14px 12px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body.hurty-page #pokedex .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(30, 56, 97, 0.2);
+}
+
+body.hurty-page .hurty-card-title {
+  font-size: 3.2rem;
+  margin: 4px 0 8px;
+  line-height: 1.1;
+  color: #1a2f4f;
+}
+
+body.hurty-page .hurty-card-copy {
+  font-size: 2.2rem;
+  line-height: 1.35;
+  margin: 8px 0 2px;
+  color: #3b5275;
+  padding: 0 4px;
+}
+
+body.hurty-page .hurty-card-quickstats {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 2rem;
+  color: #304f7d;
+  margin-top: 8px;
+}
+
+body.hurty-page .hurty-type-tag {
+  display: inline-block;
+  margin: 2px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #dbe8fb;
+  border: 1px solid #a3bfeb;
+  color: #223d67;
+  font-weight: 700;
+}
+
+body.hurty-page .hurty-empty {
+  color: #38537c;
+  padding: 20px;
+}
+
+body.hurty-page .status-effects-wrap {
+  position: fixed;
+  top: 10px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  z-index: 5000;
+}
+
+body.hurty-page .status-effects-icon {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 2.2rem;
+  line-height: 1;
+  font-weight: 700;
+}
+
+body.hurty-page .status-effects-popover {
+  position: fixed;
+  top: 60px;
+  right: 14px;
+  width: min(460px, 85vw);
+  max-height: 420px;
+  overflow: auto;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid rgba(79, 108, 156, 0.32);
+  border-radius: 14px;
+  box-shadow: 0 16px 30px rgba(25, 49, 89, 0.24);
+  padding: 12px;
+  z-index: 5001;
+}
+
+body.hurty-page .status-effects-popover.hidden {
+  display: none;
+}
+
+body.hurty-page .status-effects-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+body.hurty-page .status-effects-head h3 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+body.hurty-page #statusEffectsCount {
+  font-size: 1.7rem;
+  color: #4e6489;
+}
+
+body.hurty-page #statusEffectsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+body.hurty-page #statusEffectsList li {
+  border: 1px solid #d2def4;
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: #f7faff;
+}
+
+body.hurty-page #statusEffectsList strong {
+  margin-left: 6px;
+}
+
+body.hurty-page #statusEffectsList p {
+  margin: 6px 0 0;
+  font-size: 1.55rem;
+  color: #324f77;
+}
+
+body.hurty-page .modal-content {
+  background: #f9fbff;
+  border: 1px solid rgba(79, 108, 156, 0.35);
+  box-shadow: 0 24px 44px rgba(19, 36, 65, 0.28);
+  color: #263a5a;
+  max-width: 900px;
+  width: min(900px, calc(100vw - 24px));
+  box-sizing: border-box;
+}
+
+body.hurty-page .hurty-move-stats {
+  margin-top: 8px;
+  font-size: 2.2rem;
+}
+
+body.hurty-page .modal-header h2 {
+  margin: 0 0 8px;
+  color: #1c3256;
+  font-size: 4rem;
+  line-height: 1.08;
+}
+
+body.hurty-page #itemText {
+  font-size: 2.2rem;
+  line-height: 1.4;
+  color: #35527d;
+}
+
+body.hurty-page .close-btn {
+  background: #edf3ff;
+  color: #2b4367;
+  border: 1px solid #adc1e5;
+}
+
+body.hurty-page .mon-users-title {
+  margin-bottom: 8px;
+  color: #44638e;
+  font-size: 2rem;
+}
+
+body.hurty-page .mon-users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+
+body.hurty-page .mon-user-card {
+  background: #ffffff;
+  border: 1px solid #cddbf2;
+  border-radius: 12px;
+  padding: 8px;
+  text-align: center;
+  pointer-events: none;
+}
+
+body.hurty-page .mon-user-image {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px;
+}
+
+body.hurty-page .mon-user-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+body.hurty-page .mon-user-types {
+  margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+  body.hurty-page {
+    font-size: 24px;
+  }
+
+  body.hurty-page h1 {
+    margin-top: 12px;
+  }
+
+  body.hurty-page #pokedex.grid {
+    padding: 16px;
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  body.hurty-page #pokedex .card {
+    width: 100%;
+  }
+
+  body.hurty-page .status-effects-wrap {
+    top: 8px;
+    right: 8px;
+  }
+
+  body.hurty-page .status-effects-popover {
+    top: 52px;
+    right: 8px;
+    width: min(94vw, 460px);
+  }
+}
+
+body.guesswho-page {
+  --guesswho-grid: rgba(104, 34, 173, 0.22);
+  --guesswho-white: #f4f7fb;
+  --guesswho-panel: rgba(10, 14, 23, 0.92);
+  --guesswho-panel-soft: rgba(18, 25, 38, 0.9);
+  --guesswho-line: #8fd3ff;
+  --guesswho-accent: #7ab4ff;
+  --guesswho-accent-2: #f1da62;
+  height: 100vh;
+  margin: 0;
+  color: var(--guesswho-white);
+  font-family: "UPRO", serif;
+  font-size: 28px;
+  line-height: 1.3;
+  background:
+    radial-gradient(circle at top left, rgba(122, 180, 255, 0.08), transparent 24%),
+    radial-gradient(circle at top right, rgba(241, 218, 98, 0.06), transparent 20%),
+    linear-gradient(var(--guesswho-grid) 2px, transparent 2px),
+    linear-gradient(90deg, var(--guesswho-grid) 2px, transparent 2px),
+    linear-gradient(180deg, #06070c 0%, #080b14 100%);
+  background-size: 56px 56px;
+  overflow: hidden;
+}
+
+body.guesswho-page button,
+body.guesswho-page input,
+body.guesswho-page textarea {
+  font-family: inherit;
+}
+
+.guesswho-shell {
+  height: 100vh;
+  position: relative;
+}
+
+.guesswho-screen {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.guesswho-screen[hidden] {
+  display: none !important;
+}
+
+.guesswho-center-screen {
+  display: grid;
+  place-items: center;
+}
+
+.guesswho-name-layout {
+  text-align: center;
+  margin-top: -54px;
+  width: min(1180px, calc(100vw - 48px));
+}
+
+.guesswho-large-title {
+  margin: 0;
+  font-family: "UPRO", "Courier New", monospace;
+  font-size: clamp(6rem, 9vw, 9.8rem);
+  line-height: 1;
+  color: #f1f5fb;
+  text-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.guesswho-sub-copy {
+  margin: 14px 0 0;
+  color: #b8cae8;
+  font-size: 2.15rem;
+}
+
+.guesswho-name-field-wrap {
+  margin-top: 34px;
+}
+
+.guesswho-name-input {
+  width: min(920px, calc(100vw - 48px));
+  text-align: center;
+  font-size: 4.4rem;
+  padding: 28px 32px;
+  line-height: 1.1;
+}
+
+.guesswho-name-input::placeholder,
+.guesswho-text-input::placeholder,
+.guesswho-textarea::placeholder {
+  color: rgba(232, 239, 247, 0.58);
+  opacity: 1;
+}
+
+.guesswho-bottom-action {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+}
+
+.guesswho-menu-stage {
+  padding: 38px 46px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  height: 100%;
+  box-sizing: border-box;
+  background:
+    linear-gradient(90deg, rgba(4, 6, 10, 0.84) 0%, rgba(4, 6, 10, 0.68) 38%, rgba(4, 6, 10, 0.3) 62%, rgba(4, 6, 10, 0.58) 100%),
+    url("../images/ui/biomes/Forest.png") center/cover no-repeat;
+}
+
+.guesswho-menu-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.guesswho-logo-wrap {
+  width: min(640px, 100%);
+}
+
+.guesswho-logo-image {
+  width: min(620px, 100%);
+  height: auto;
+  display: block;
+  image-rendering: auto;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.guesswho-kicker {
+  margin: 0 0 6px 4px;
+  color: #83d57d;
+  font-size: 1.55rem;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.guesswho-logo-sub,
+.guesswho-menu-btn,
+.guesswho-box-btn,
+.guesswho-panel-title,
+.guesswho-pov-title,
+.guesswho-cards-left,
+.guesswho-panel-name,
+.guesswho-guesses-label,
+.guesswho-field-label,
+.guesswho-modal-card h2,
+.guesswho-validation,
+.guesswho-finalized-list,
+.guesswho-name-chip {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.guesswho-logo-sub {
+  margin-top: 12px;
+  font-size: clamp(3.6rem, 5vw, 4.8rem);
+  font-weight: 700;
+  color: #eef3fb;
+  text-shadow: none;
+}
+
+.guesswho-chosen-name {
+  margin: 10px 0 0;
+  color: #b7c7dd;
+  font-size: 1.85rem;
+  text-transform: none;
+  white-space: normal;
+  max-width: 480px;
+  border: 1px solid rgba(143, 211, 255, 0.18);
+  background: rgba(9, 13, 20, 0.82);
+  border-radius: 12px;
+  padding: 14px 18px;
+  line-height: 1.15;
+}
+
+.guesswho-chosen-name span {
+  color: #fff;
+}
+
+.guesswho-menu {
+  margin: 12px 0 0 8px;
+  display: grid;
+  gap: 16px;
+  width: 430px;
+}
+
+.guesswho-join-panel {
+  width: min(720px, 100%);
+  background: rgba(9, 13, 20, 0.86);
+  border: 1px solid rgba(143, 211, 255, 0.18);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.guesswho-join-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.guesswho-menu-btn {
+  padding: 18px 22px;
+  border: 4px solid #050608;
+  border-radius: 22px;
+  background: #f7f7f2;
+  color: #111;
+  text-align: center;
+  font-size: 2.45rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  text-shadow: none;
+  box-shadow: 0 7px 0 rgba(0, 0, 0, 0.28);
+}
+
+.guesswho-menu-btn:hover,
+.guesswho-menu-btn:focus-visible {
+  color: #111;
+  background: #fff3a8;
+  outline: none;
+}
+
+.guesswho-toolbar {
+  position: fixed;
+  top: 14px;
+  z-index: 5;
+}
+
+.guesswho-toolbar-left {
+  left: 26px;
+}
+
+.guesswho-toolbar-right {
+  right: 26px;
+}
+
+.guesswho-box-btn {
+  border: 3px solid rgba(244, 247, 251, 0.85);
+  background: rgba(13, 16, 24, 0.96);
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+
+.guesswho-box-btn:hover,
+.guesswho-box-btn:focus-visible {
+  color: var(--guesswho-accent-2);
+  border-color: var(--guesswho-accent-2);
+  outline: none;
+}
+
+.guesswho-game-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 12px;
+  padding: 70px 10px 12px;
+  box-sizing: border-box;
+  height: calc(100vh - 4px);
+  align-items: start;
+  overflow: hidden;
+}
+
+.guesswho-sidebar-panel {
+  padding-top: 82px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
+}
+
+.guesswho-panel-title {
+  margin: 0;
+  font-size: clamp(3.4rem, 4.6vw, 4.5rem);
+  line-height: 1.1;
+  text-shadow: none;
+}
+
+.guesswho-panel-name {
+  margin: 12px 0 18px;
+  font-size: clamp(2.4rem, 3.3vw, 3.1rem);
+  text-transform: none;
+  text-shadow: none;
+  line-height: 1.08;
+}
+
+.guesswho-secret-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.guesswho-secret-portrait {
+  width: 180px;
+  height: 180px;
+  border: 4px solid rgba(244, 247, 251, 0.9);
+  border-radius: 14px;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.26);
+  background: var(--guesswho-panel-soft);
+  display: grid;
+  place-items: center;
+  margin-left: 0;
+}
+
+.guesswho-secret-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.guesswho-secret-placeholder {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.guesswho-guesses {
+  margin: 20px auto 0;
+  width: 180px;
+  text-align: center;
+}
+
+.guesswho-guesses-label {
+  margin: 0 0 16px;
+  font-size: 1.55rem;
+  color: #d3deed;
+  text-shadow: none;
+}
+
+.guesswho-hearts {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.guesswho-heart {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  line-height: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0.24;
+}
+
+.guesswho-heart.is-full {
+  opacity: 1;
+}
+
+.guesswho-heart-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.guesswho-board-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  position: relative;
+}
+
+.guesswho-board-head {
+  margin: 0 0 8px;
+  background: var(--guesswho-panel);
+  border: 1px solid rgba(143, 211, 255, 0.24);
+  border-bottom: 3px solid var(--guesswho-line);
+  border-radius: 16px;
+  padding: 4px 12px 6px;
+  flex: 0 0 auto;
+}
+
+.guesswho-pov-title {
+  margin: 0;
+  font-size: clamp(3.3rem, 4.5vw, 4.8rem);
+  line-height: 0.95;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.guesswho-cards-left {
+  margin: 2px 0 0;
+  font-size: 2rem;
+  color: #b8cae8;
+  text-shadow: none;
+}
+
+.guesswho-board {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+  flex: 1 1 auto;
+  height: auto;
+  max-height: none;
+  overflow: hidden;
+  padding-right: 0;
+  min-height: 0;
+}
+
+.guesswho-board-card {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.guesswho-board-frame {
+  position: relative;
+  display: block;
+  width: 95%;
+  height: 95%;
+  margin: auto;
+  border: 2px solid rgba(244, 247, 251, 0.92);
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.22);
+  background: var(--guesswho-panel-soft);
+  overflow: hidden;
+}
+
+.guesswho-hover-tag {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  z-index: 8;
+  pointer-events: none;
+  max-width: 220px;
+  padding: 8px 14px;
+  border: 3px solid #050608;
+  border-radius: 18px;
+  background: #f7f7f2;
+  color: #111;
+  font-size: 2.7rem;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.24);
+}
+
+.guesswho-board-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.guesswho-board-silhouette {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 12, 19, 0.16);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.guesswho-board-card.is-hidden .guesswho-board-silhouette {
+  opacity: 1;
+}
+
+.guesswho-board-card.is-hidden .guesswho-board-image {
+  opacity: 1;
+  filter: brightness(0) saturate(0);
+}
+
+.guesswho-board-highlight {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--guesswho-accent-2);
+  text-shadow: none;
+  opacity: 0;
+}
+
+.guesswho-board-card.is-questioned .guesswho-board-highlight {
+  opacity: 1;
+  animation: guesswho-questionPulse 0.9s steps(2, end) infinite;
+}
+
+.guesswho-board-card.is-questioned .guesswho-board-frame {
+  border-color: var(--guesswho-accent-2);
+}
+
+.guesswho-board-card:hover .guesswho-board-frame,
+.guesswho-board-card:focus-visible .guesswho-board-frame {
+  border-color: var(--guesswho-accent-2);
+  outline: none;
+}
+
+.guesswho-controls-dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 68px;
+  z-index: 7;
+}
+
+.guesswho-controls-panel {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, calc(100% - 12px));
+  transition: transform 0.18s ease;
+  width: min(1240px, calc(100vw - 220px));
+  border: 1px solid rgba(143, 211, 255, 0.28);
+  background: rgba(9, 13, 20, 0.96);
+  border-radius: 16px;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.28);
+  padding: 14px 20px;
+  pointer-events: none;
+}
+
+.guesswho-controls-dock:hover .guesswho-controls-panel,
+.guesswho-controls-dock:focus-within .guesswho-controls-panel {
+  transform: translate(-50%, -8px);
+  pointer-events: auto;
+}
+
+.guesswho-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 18px;
+  font-size: 1.5rem;
+  color: #d7e4f2;
+}
+
+.guesswho-box-btn-accent {
+  color: var(--guesswho-accent-2);
+  border-color: var(--guesswho-accent-2);
+}
+
+.guesswho-box-btn-large {
+  font-size: 2.9rem;
+  padding: 14px 22px;
+}
+
+.guesswho-instructions-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  padding: 18px 40px 120px;
+}
+
+.guesswho-screen-heading {
+  margin: 0 0 18px;
+  font-size: clamp(4.8rem, 6.4vw, 6.8rem);
+  text-shadow: none;
+  font-family: "UPRO", serif;
+}
+
+.guesswho-instructions-copy {
+  max-width: 920px;
+  color: #e7e7e7;
+  font-family: "UPRO", serif;
+  font-size: 2.3rem;
+  line-height: 1.38;
+}
+
+.guesswho-instructions-copy p {
+  margin: 0 0 18px;
+}
+
+.guesswho-rules-intro span,
+.guesswho-hard-mode span,
+.guesswho-try-it {
+  color: #ff3b3b;
+}
+
+.guesswho-rules-list {
+  margin: 0 0 22px 34px;
+  padding: 0;
+}
+
+.guesswho-rules-list li {
+  margin-bottom: 18px;
+}
+
+.guesswho-extra-controls {
+  padding-top: 64px;
+  color: var(--guesswho-accent-2);
+  font-family: "UPRO", serif;
+  font-size: 2rem;
+}
+
+.guesswho-extra-controls h3 {
+  margin: 0 0 18px;
+  font-size: 3.8rem;
+  text-shadow: none;
+}
+
+.guesswho-extra-controls ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: #f3f3f3;
+}
+
+.guesswho-extra-controls li {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.guesswho-extra-controls span {
+  min-width: 72px;
+}
+
+.guesswho-notes-layout {
+  padding: 18px 32px 40px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.guesswho-notes-header {
+  text-align: center;
+  margin-bottom: 18px;
+  background: var(--guesswho-panel);
+  border: 1px solid rgba(143, 211, 255, 0.24);
+  border-bottom: 3px solid var(--guesswho-line);
+  border-radius: 18px;
+  padding: 18px 20px 14px;
+}
+
+.guesswho-notes-title {
+  margin: 0;
+  font-size: clamp(4.8rem, 6.4vw, 6.8rem);
+  line-height: 1.05;
+  text-shadow: none;
+  font-family: "UPRO", serif;
+}
+
+.guesswho-notes-area {
+  width: 100%;
+  min-height: 280px;
+  box-sizing: border-box;
+  border: 1px solid rgba(143, 211, 255, 0.22);
+  border-radius: 16px;
+  background: rgba(9, 13, 20, 0.92);
+  color: #fff;
+  font-size: 1.9rem;
+  resize: vertical;
+  outline: none;
+  padding: 16px;
+}
+
+.guesswho-notes-tools {
+  margin-top: 18px;
+  border: 1px solid rgba(143, 211, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(9, 13, 20, 0.9);
+  padding: 20px;
+}
+
+.guesswho-notes-tools > p {
+  margin-top: 0;
+  color: #d6e3f0;
+  font-size: 1.9rem;
+}
+
+.guesswho-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.guesswho-field-label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 1.7rem;
+  text-shadow: none;
+}
+
+.guesswho-text-input,
+.guesswho-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid rgba(244, 247, 251, 0.82);
+  border-radius: 14px;
+  background: rgba(18, 22, 31, 0.96);
+  color: #fff;
+  padding: 16px;
+  font-size: 1.95rem;
+  line-height: 1.15;
+  box-shadow: none;
+}
+
+.guesswho-textarea {
+  resize: vertical;
+  min-height: 240px;
+}
+
+.guesswho-validation {
+  margin: 12px 0 0;
+  color: var(--guesswho-accent-2);
+  text-transform: none;
+  font-size: 1.7rem;
+}
+
+.guesswho-finalized-list {
+  margin-top: 16px;
+}
+
+.guesswho-finalized-list summary {
+  cursor: pointer;
+  font-size: 1.85rem;
+  color: #fff;
+}
+
+.guesswho-finalized-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.guesswho-name-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(244, 247, 251, 0.2);
+  border-radius: 999px;
+  background: rgba(122, 180, 255, 0.12);
+  padding: 5px 8px;
+  font-size: 1.6rem;
+  padding: 7px 11px;
+  box-shadow: none;
+}
+
+@keyframes guesswho-questionPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 1180px) {
+  .guesswho-game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .guesswho-sidebar-panel {
+    padding-top: 28px;
+  }
+
+  .guesswho-secret-portrait,
+  .guesswho-guesses {
+    margin-left: 0;
+  }
+
+  .guesswho-controls-panel {
+    width: calc(100vw - 40px);
+  }
+
+  .guesswho-instructions-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .guesswho-menu-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  .guesswho-menu-stage {
+    padding: 24px 18px 32px;
+  }
+
+  .guesswho-logo-wrap,
+  .guesswho-menu {
+    width: auto;
+  }
+
+  .guesswho-menu {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .guesswho-join-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .guesswho-game-layout {
+    padding: 74px 14px 12px;
+  }
+
+  .guesswho-toolbar-left {
+    left: 14px;
+  }
+
+  .guesswho-toolbar-right {
+    right: 14px;
+  }
+
+  .guesswho-bottom-action {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .guesswho-name-layout {
+    margin-top: -20px;
+  }
+
+  .guesswho-board {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(10, minmax(0, 1fr));
+  }
+
+  .guesswho-controls-panel {
+    left: 14px;
+    right: 14px;
+    bottom: 0;
+    transform: translateY(calc(100% - 12px));
+    width: auto;
+  }
+
+  .guesswho-controls-dock:hover .guesswho-controls-panel,
+  .guesswho-controls-dock:focus-within .guesswho-controls-panel {
+    transform: translateY(-8px);
+  }
+
+  .guesswho-controls-grid {
+    grid-template-columns: 1fr;
+  }
+}
