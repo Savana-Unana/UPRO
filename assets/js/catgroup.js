@@ -76,6 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return String(mate?.name || "").trim();
   }
 
+  function getNpcFamilyKey(mate) {
+    return String(mate?.id || "").trim();
+  }
+
+  function getAlternateGroupKey(mate) {
+    if ((mate?.mode || "") === "npc") {
+      return `npc:${getNpcFamilyKey(mate)}`;
+    }
+    return `ref:${getResolvedMateRef(mate)}`;
+  }
+
   function getReferenceKey(mate) {
     return String(mate?.name || "").trim();
   }
@@ -454,10 +465,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const ModeC = document.getElementById("ModeContainer");
     ModeC.innerHTML = "";
     {
-      const mateRef = getResolvedMateRef(mate);
-      const sameSpeciesSameMode = modeForms.filter(f => getResolvedMateRef(f) === mateRef);
+      const alternateGroupKey = getAlternateGroupKey(mate);
+      const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
       const modeOnlyForms = sameSpeciesSameMode.filter(f => {
         if (f.name === mate.name && f.image === mate.image) return false;
+        if (mateMode === "npc") return true;
         if (isMode(mate)) return true;
         return isMode(f);
       });
