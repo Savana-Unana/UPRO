@@ -1,5 +1,4 @@
-[
-{"id":"Skip","name":"Skip","image":"nimages/Skip.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Unlocked by playing the game."}]}],"reference":null,"Description":"The Normal sprites.","cosmark":"N","versions":"Demo 1"},
+[{"id":"Skip","name":"Skip","image":"nimages/Skip.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Unlocked by playing the game."}]}],"reference":null,"Description":"The Normal sprites.","cosmark":"N","versions":"Demo 1"},
 {"id":"Skip","name":"Noob","image":"nimages/Noob.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Complete the Limbo minigame."}]}],"reference":"Roblox","Description":"A yellow, blue, and green humanoid. Is from another world, and has unique voicelines.","cosmark":"Y","versions":"April Fools"},
 {"id":"Skip","name":"Infested Skip","image":"nimages/YouKnowWhoIAm.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Use an Ace Axolarg."}]}],"reference":"Axolarg","Description":"Skip but controlled by Axo-Shards.","cosmark":"Y","versions":"Demo 5"},
 {"id":"Skip","name":"Trashcan Skip","image":"nimages/YouKnowWhoIAm.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Interact with everything at Homegrounds."}]}],"reference":"Chip","Description":"Skip that looks like Chip.","cosmark":"Y","versions":"Demo 1"},
@@ -84,5 +83,4 @@
 {"id":"May","name":"May","image":"nimages/YouKnowWhoIAm.gif","obtainment":[],"reference":"","Description":"No entry yet","versions":"Demo 1"},
 {"id":"Stiphicus","name":"Stiphicus","image":"nimages/YouKnowWhoIAm.gif","obtainment":[],"reference":"","Description":"No entry yet","versions":"Demo 1"},
 {"id":"Jackary","name":"Jackary","image":"nimages/YouKnowWhoIAm.gif","obtainment":[],"reference":"","Description":"No entry yet","versions":"Demo 1"},
-{"id":"","name":"","image":"nimages/YouKnowWhoIAm.gif","obtainment":[],"reference":"","Description":"No entry yet","versions":null}
-]
+{"id":"","name":"","image":"nimages/YouKnowWhoIAm.gif","obtainment":[],"reference":"","Description":"No entry yet","versions":null}]

@@ -1097,12 +1097,72 @@ input#search:focus {
   position: relative;
   display: inline-block;
   margin-top: 20px;
+  overflow: visible;
+  --capsule-width: 400px;
+  --skip-width: 380px;
+  --skip-left-point: -165px;
+  --skip-right-point: 565px;
+  --skip-vertical-offset: -210px;
 }
 
 .capsule-container img {
   display: block;
-  width: 400px; /* adjust to your image size */
+  width: var(--capsule-width); /* adjust to your image size */
   height: auto;
+}
+
+#capsule-img {
+  position: relative;
+  z-index: 2;
+}
+
+.skip-runner {
+  position: absolute;
+  top: 0;
+  display: grid;
+  width: var(--skip-width);
+  opacity: 1;
+  text-decoration: none;
+  transform: translate(-50%, var(--skip-vertical-offset));
+  transition: none;
+}
+
+.skip-runner img {
+  width: var(--skip-width);
+  height: auto;
+  image-rendering: auto;
+  display: block;
+}
+
+.skip-sprite {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skip-sprite.is-visible {
+  opacity: 1;
+}
+
+.skip-runner.skip-left {
+  left: var(--skip-left-point);
+}
+
+.skip-runner.skip-right {
+  left: var(--skip-right-point);
+}
+
+.skip-runner.skip-front {
+  z-index: 4;
+}
+
+.skip-runner.skip-behind {
+  z-index: 1;
+}
+
+.skip-runner.is-moving {
+  transition-property: left;
+  transition-timing-function: linear;
 }
 
 /* overlay buttons positioned over the robot */
@@ -1112,6 +1172,7 @@ input#search:focus {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 3;
 }
 
 .overlay-btn {
@@ -1154,6 +1215,7 @@ input#search:focus {
 .switcheroo-container img:hover {
   transform: scale(1.1);
 }
+
 
 
 /* ---------- OST CARDS ---------- */

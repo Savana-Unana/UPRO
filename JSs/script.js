@@ -1,6 +1,11 @@
 let switcherooActive = false;
+let skipTargetRight = false;
+let skipMoveToken = 0;
+let skipCrossTimeoutId;
+let skipSettleTimeoutId;
+const skipPixelsPerSecond = 780;
 const guessWhoClickWindowMs = 2000;
-const guessWhoUnlockClicks = 10;
+const guessWhoUnlockClicks = 15;
 let switcherooClickTimes = [];
 
 // Original positions (from your CSS)
@@ -70,9 +75,90 @@ function updateButtons() {
   });
 }
 
+function getSkipMetrics(skipRunner) {
+  const capsuleContainer = skipRunner.parentElement;
+  const capsuleStyles = window.getComputedStyle(capsuleContainer);
+  const capsuleWidth = parseFloat(capsuleStyles.getPropertyValue("--capsule-width")) || 400;
+  const leftPoint = parseFloat(capsuleStyles.getPropertyValue("--skip-left-point")) || -80;
+  const rightPoint = parseFloat(capsuleStyles.getPropertyValue("--skip-right-point")) || (capsuleWidth + 80);
+
+  return {
+    leftAnchor: leftPoint,
+    rightAnchor: rightPoint,
+    crossPoint: capsuleWidth / 2
+  };
+}
+
+function getSkipLeft(skipRunner) {
+  const capsuleContainer = skipRunner.parentElement;
+  const runnerRect = skipRunner.getBoundingClientRect();
+  const containerRect = capsuleContainer.getBoundingClientRect();
+
+  return (runnerRect.left - containerRect.left) + (runnerRect.width / 2);
+}
+
+function triggerSkipRun() {
+  const skipRunner = document.getElementById("skip-runner");
+  const skipImgLeft = document.getElementById("skip-img-left");
+  const skipImgRight = document.getElementById("skip-img-right");
+  const { leftAnchor, rightAnchor, crossPoint } = getSkipMetrics(skipRunner);
+  const nextTargetRight = !skipTargetRight;
+  const moveToken = ++skipMoveToken;
+  const startLeft = getSkipLeft(skipRunner);
+  const endLeft = nextTargetRight ? rightAnchor : leftAnchor;
+  const totalDistance = Math.abs(endLeft - startLeft);
+  const travelDurationMs = totalDistance === 0
+    ? 0
+    : Math.round((totalDistance / skipPixelsPerSecond) * 1000);
+
+  skipTargetRight = nextTargetRight;
+
+  skipImgLeft.classList.toggle("is-visible", !nextTargetRight);
+  skipImgRight.classList.toggle("is-visible", nextTargetRight);
+
+  window.clearTimeout(skipCrossTimeoutId);
+  window.clearTimeout(skipSettleTimeoutId);
+  skipRunner.style.transition = "none";
+  skipRunner.classList.remove("skip-front", "skip-behind", "is-moving");
+  skipRunner.style.left = `${startLeft}px`;
+  void skipRunner.offsetWidth;
+  skipRunner.classList.add("skip-front");
+  skipRunner.style.transition = `left ${travelDurationMs}ms linear`;
+  skipRunner.classList.add("is-moving");
+  skipRunner.classList.remove("skip-left", "skip-right");
+  skipRunner.style.left = `${endLeft}px`;
+
+  if (
+    (startLeft <= crossPoint && endLeft >= crossPoint) ||
+    (startLeft >= crossPoint && endLeft <= crossPoint)
+  ) {
+    const distanceToCenter = Math.abs(crossPoint - startLeft);
+    const crossDelay = totalDistance === 0
+      ? 0
+      : Math.round((distanceToCenter / totalDistance) * travelDurationMs);
+
+    skipCrossTimeoutId = window.setTimeout(() => {
+      if (moveToken !== skipMoveToken) {
+        return;
+      }
+      switcherooActive = !switcherooActive;
+      updateButtons();
+    }, crossDelay);
+  }
+
+  skipSettleTimeoutId = window.setTimeout(() => {
+    if (moveToken !== skipMoveToken) {
+      return;
+    }
+    skipRunner.classList.remove("is-moving", "skip-left", "skip-right");
+    skipRunner.classList.add(nextTargetRight ? "skip-right" : "skip-left");
+    skipRunner.style.transition = "none";
+    skipRunner.style.left = `${endLeft}px`;
+  }, travelDurationMs);
+}
+
 function triggerSwitcheroo() {
-  switcherooActive = !switcherooActive;
-  updateButtons();
+  triggerSkipRun();
 
   const now = performance.now();
   switcherooClickTimes.push(now);

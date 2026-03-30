@@ -66,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "Factory"
   ];
   let versionOptions = [];
+  let crossTabFormsByRef = new Map();
+  let mateByName = new Map();
 
   function getRarities(mate) {
     const raw = mate?.rarity;
@@ -219,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
 
+        rebuildRefIndexes();
         rebuildVersionOptions();
 
         loadMode("base");
@@ -241,11 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closeStats.onclick = () => statsModal.classList.add("hidden");
 
     function buildStats() {
-      const hasValidId = m =>
-        m &&
-        m.id !== null &&
-        m.id !== undefined &&
-        m.id !== "null";
+      const hasValidId = m => getMateDisplayId(m) !== null;
       const allMons = Object.entries(allData).flatMap(
         ([mode, mons]) => mons.map(m => ({ ...m, mode }))
       );
@@ -293,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const missingNoMons = nonNpcMons.filter(isMissingNo);
     const highestId = allMons
-      .map(m => Number(m?.id))
+      .map(m => getMateDisplayId(m))
       .filter(id => Number.isFinite(id))
       .reduce((max, id) => Math.max(max, id), Number.NEGATIVE_INFINITY);
     const missingNoHtml = `<section class="stats-section">
@@ -492,7 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function hasUsableId(mate) {
-    return mate && mate.id !== null && mate.id !== undefined && mate.id !== "null";
+    return getMateDisplayId(mate) !== null;
   }
 
   function getVersionRank(mate) {
@@ -502,13 +501,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function compareByDisplayOrder(a, b) {
-    const aHasId = hasUsableId(a);
-    const bHasId = hasUsableId(b);
+    const aId = getMateDisplayId(a);
+    const bId = getMateDisplayId(b);
+    const aHasId = aId !== null;
+    const bHasId = bId !== null;
     if (aHasId && bHasId) {
-      const aId = Number(a.id);
-      const bId = Number(b.id);
-      const aSortableId = Number.isNaN(aId) ? Infinity : Math.abs(aId);
-      const bSortableId = Number.isNaN(bId) ? Infinity : Math.abs(bId);
+      const aSortableId = Math.abs(aId);
+      const bSortableId = Math.abs(bId);
       if (aSortableId !== bSortableId) return aSortableId - bSortableId;
       if (aId !== bId) return aId - bId;
     } else if (aHasId !== bHasId) {
@@ -532,6 +531,108 @@ document.addEventListener("DOMContentLoaded", () => {
         .filter(mate => !(mode === "event" && mate.sourceMode === "ncanon"))
         .map(mate => ({ ...mate, mode }))
     );
+  }
+
+  function getMateRef(mate) {
+    const explicitRef = String(mate?.ref || "").trim();
+    if (explicitRef) return explicitRef;
+    return String(mate?.name || "").trim();
+  }
+
+  function getReferenceKey(mate) {
+    return String(mate?.name || "").trim();
+  }
+
+  function getModeRank(mode) {
+    return databaseModeRank[mode] ?? 999;
+  }
+
+  function chooseReferencedMate(candidates, requesterMode = "") {
+    if (!Array.isArray(candidates) || !candidates.length) return null;
+    const preferred = candidates
+      .slice()
+      .sort((a, b) => {
+        const aRequesterPenalty = (a.mode || "") === requesterMode ? -1 : 0;
+        const bRequesterPenalty = (b.mode || "") === requesterMode ? -1 : 0;
+        if (aRequesterPenalty !== bRequesterPenalty) return aRequesterPenalty - bRequesterPenalty;
+        return getModeRank(a.mode) - getModeRank(b.mode);
+      });
+    return preferred[0] || null;
+  }
+
+  function resolveReferenceRoot(mate, visited = new Set()) {
+    if (!mate) return null;
+
+    const ownName = getReferenceKey(mate);
+    const explicitRef = String(mate?.ref || "").trim();
+    if (!explicitRef || explicitRef === ownName) return mate;
+
+    const visitKey = `${mate.mode || ""}|${ownName}|${explicitRef}`;
+    if (visited.has(visitKey)) return mate;
+    visited.add(visitKey);
+
+    const candidates = (mateByName.get(explicitRef) || []).filter(candidate => {
+      return !(
+        (candidate.mode || "") === (mate.mode || "") &&
+        String(candidate.name || "").trim() === ownName &&
+        String(candidate.image || "") === String(mate.image || "")
+      );
+    });
+    const referencedMate = chooseReferencedMate(candidates, mate.mode || "");
+    if (!referencedMate) return mate;
+    return resolveReferenceRoot(referencedMate, visited);
+  }
+
+  function getResolvedMateRef(mate) {
+    const resolvedMate = resolveReferenceRoot(mate);
+    return getReferenceKey(resolvedMate || mate);
+  }
+
+  function rebuildRefIndexes() {
+    crossTabFormsByRef = new Map();
+    mateByName = new Map();
+
+    Object.entries(allData).forEach(([mode, mates]) => {
+      (mates || []).forEach(mate => {
+        const form = { ...mate, mode };
+        const ownName = getReferenceKey(form);
+        if (ownName) {
+          if (!mateByName.has(ownName)) {
+            mateByName.set(ownName, []);
+          }
+          mateByName.get(ownName).push(form);
+        }
+      });
+    });
+
+    mateByName.forEach(forms => {
+      forms.sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode));
+    });
+
+    Object.entries(allData).forEach(([mode, mates]) => {
+      (mates || []).forEach(mate => {
+        const form = { ...mate, mode };
+        const resolvedRef = getResolvedMateRef(form);
+        if (!resolvedRef) return;
+        if (!crossTabFormsByRef.has(resolvedRef)) {
+          crossTabFormsByRef.set(resolvedRef, []);
+        }
+        crossTabFormsByRef.get(resolvedRef).push(form);
+      });
+    });
+  }
+
+  function getMateDisplayId(mate) {
+    if (mate && mate.id !== null && mate.id !== undefined && mate.id !== "null") {
+      const directId = Number(mate.id);
+      if (Number.isFinite(directId)) return directId;
+    }
+
+    const resolvedMate = resolveReferenceRoot(mate);
+    if (!resolvedMate || resolvedMate === mate) return null;
+
+    const resolvedId = Number(resolvedMate.id);
+    return Number.isFinite(resolvedId) ? resolvedId : null;
   }
 
   function modeSupportsBiomes(mode) {
@@ -562,12 +663,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
     if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
-    const sharedBaseMate = (allData.base || []).find(baseMate => (baseMate?.id ?? null) === (mate?.id ?? null));
-    if (sharedBaseMate && sharedBaseMate !== mate) {
-      if (Array.isArray(sharedBaseMate.biomes)) return sharedBaseMate.biomes.filter(Boolean);
-      if (Array.isArray(sharedBaseMate.biome)) return sharedBaseMate.biome.filter(Boolean);
-      if (typeof sharedBaseMate.biome === "string" && sharedBaseMate.biome.trim()) return [sharedBaseMate.biome.trim()];
-      if (typeof sharedBaseMate.Biome === "string" && sharedBaseMate.Biome.trim()) return [sharedBaseMate.Biome.trim()];
+    const resolvedMate = resolveReferenceRoot(mate);
+    if (resolvedMate && resolvedMate !== mate) {
+      if (Array.isArray(resolvedMate.biomes)) return resolvedMate.biomes.filter(Boolean);
+      if (Array.isArray(resolvedMate.biome)) return resolvedMate.biome.filter(Boolean);
+      if (typeof resolvedMate.biome === "string" && resolvedMate.biome.trim()) return [resolvedMate.biome.trim()];
+      if (typeof resolvedMate.Biome === "string" && resolvedMate.Biome.trim()) return [resolvedMate.Biome.trim()];
     }
     return [];
   }
@@ -640,7 +741,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Determine if it uses lostimages
         const lostImage = mate.image && mate.image.toLowerCase().includes("lostimages");
         const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
-        const idText = (mate.id === null || mate.id === undefined || mate.id === "null") ? "?" : String(mate.id);
+        const displayId = getMateDisplayId(mate);
+        const idText = displayId === null ? "?" : String(displayId);
         const shiverBadge = isShiver(mate)
           ? `<img class="rarity-shiver-badge" src="webimages/Shiver.png" alt="Shiver" title="Shiver">`
           : "";
@@ -834,7 +936,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // set currentMateIndex to the index within the current filtered animatrixData, if present
-    const idx = animatrixData.findIndex(m => m.name === mate.name && (m.id === mate.id || !mate.id));
+    const idx = animatrixData.findIndex(m =>
+      m.name === mate.name &&
+      getResolvedMateRef(m) === getResolvedMateRef(mate) &&
+      (m.mode || currentMode) === (mate.mode || mateMode)
+    );
     currentMateIndex = idx >= 0 ? idx : 0;
 
     updateDetails(mate);
@@ -1092,15 +1198,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Alternate Forms: same id across all tabs, excluding Mode entries
+    // Alternate Forms: same ref across tabs, excluding ncanon and Mode entries
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
     const mateMode = mate.mode || currentMode;
     const modeForms = getMateModePool(mate);
-    const hasValidId = mate.id !== undefined && mate.id !== null;
-    if (hasValidId) {
-      const allForms = Object.entries(allData).flatMap(([mode, mates]) => (mates || []).map(m => ({ ...m, mode })));
-      const sameSpeciesAllTabs = allForms.filter(f => f.id === mate.id);
+    {
+      const mateRef = getResolvedMateRef(mate);
+      const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
       const alternateForms = sameSpeciesAllTabs.filter(f => {
         if (f.name === mate.name && f.mode === mateMode) return false;
         if (isMode(f)) return false;
@@ -1128,8 +1233,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Alternates: same tab + same id, Mode entries only
     const ModeC = document.getElementById("ModeContainer");
     ModeC.innerHTML = "";
-    if (hasValidId) {
-      const sameSpeciesSameMode = modeForms.filter(f => f.id === mate.id);
+    {
+      const mateRef = getResolvedMateRef(mate);
+      const sameSpeciesSameMode = modeForms.filter(f => getResolvedMateRef(f) === mateRef);
       const modeOnlyForms = sameSpeciesSameMode.filter(f => {
         if (f.name === mate.name && f.image === mate.image) return false;
         if (isMode(mate)) return true;

@@ -3,6 +3,8 @@ let typesData = [];
 let visibleMates = [];
 let currentMateIndex = 0;
 let groupsData = [];
+let crossTabFormsByRef = new Map();
+let mateByName = new Map();
 
 function normalizeGroup(group) {
   if (!group || typeof group !== "object") {
@@ -60,6 +62,96 @@ document.addEventListener("DOMContentLoaded", () => {
   const isShiver = mate => hasRarity(mate, "Shiver");
   const isParagon = mate => hasRarity(mate, "Paragon");
 
+  function getMateRef(mate) {
+    const explicitRef = String(mate?.ref || "").trim();
+    if (explicitRef) return explicitRef;
+    return String(mate?.name || "").trim();
+  }
+
+  function getReferenceKey(mate) {
+    return String(mate?.name || "").trim();
+  }
+
+  function getModeRank(mode) {
+    const rank = { base: 0, sacred: 1, ace: 2, goner: 3, ncanon: 4, event: 5, costumes: 6, npc: 7 };
+    return rank[mode] ?? 999;
+  }
+
+  function chooseReferencedMate(candidates, requesterMode = "") {
+    if (!Array.isArray(candidates) || !candidates.length) return null;
+    const preferred = candidates
+      .slice()
+      .sort((a, b) => {
+        const aRequesterPenalty = (a.mode || "") === requesterMode ? -1 : 0;
+        const bRequesterPenalty = (b.mode || "") === requesterMode ? -1 : 0;
+        if (aRequesterPenalty !== bRequesterPenalty) return aRequesterPenalty - bRequesterPenalty;
+        return getModeRank(a.mode) - getModeRank(b.mode);
+      });
+    return preferred[0] || null;
+  }
+
+  function resolveReferenceRoot(mate, visited = new Set()) {
+    if (!mate) return null;
+
+    const ownName = getReferenceKey(mate);
+    const explicitRef = String(mate?.ref || "").trim();
+    if (!explicitRef || explicitRef === ownName) return mate;
+
+    const visitKey = `${mate.mode || ""}|${ownName}|${explicitRef}`;
+    if (visited.has(visitKey)) return mate;
+    visited.add(visitKey);
+
+    const candidates = (mateByName.get(explicitRef) || []).filter(candidate => {
+      return !(
+        (candidate.mode || "") === (mate.mode || "") &&
+        String(candidate.name || "").trim() === ownName &&
+        String(candidate.image || "") === String(mate.image || "")
+      );
+    });
+    const referencedMate = chooseReferencedMate(candidates, mate.mode || "");
+    if (!referencedMate) return mate;
+    return resolveReferenceRoot(referencedMate, visited);
+  }
+
+  function getResolvedMateRef(mate) {
+    const resolvedMate = resolveReferenceRoot(mate);
+    return getReferenceKey(resolvedMate || mate);
+  }
+
+  function rebuildRefIndexes() {
+    crossTabFormsByRef = new Map();
+    mateByName = new Map();
+
+    Object.entries(allData).forEach(([mode, mates]) => {
+      (mates || []).forEach(mate => {
+        const form = { ...mate, mode };
+        const ownName = getReferenceKey(form);
+        if (ownName) {
+          if (!mateByName.has(ownName)) {
+            mateByName.set(ownName, []);
+          }
+          mateByName.get(ownName).push(form);
+        }
+      });
+    });
+
+    mateByName.forEach(forms => {
+      forms.sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode));
+    });
+
+    Object.entries(allData).forEach(([mode, mates]) => {
+      (mates || []).forEach(mate => {
+        const form = { ...mate, mode };
+        const resolvedRef = getResolvedMateRef(form);
+        if (!resolvedRef) return;
+        if (!crossTabFormsByRef.has(resolvedRef)) {
+          crossTabFormsByRef.set(resolvedRef, []);
+        }
+        crossTabFormsByRef.get(resolvedRef).push(form);
+      });
+    });
+  }
+
   fetch("data/types.json")
     .then(r => r.json())
     .then(types => {
@@ -100,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
+      rebuildRefIndexes();
       renderGroups();
     })
     .catch(err => {
@@ -326,11 +419,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
-    const hasValidId = mate.id !== undefined && mate.id !== null;
     const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
-    if (hasValidId) {
-      const allForms = Object.entries(allData).flatMap(([mode, mates]) => (mates || []).map(m => ({ ...m, mode })));
-      const sameSpeciesAllTabs = allForms.filter(f => f.id === mate.id);
+    {
+      const mateRef = getResolvedMateRef(mate);
+      const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
       const alternateForms = sameSpeciesAllTabs.filter(f => {
         if (f.name === mate.name && f.mode === mateMode) return false;
         if (isMode(f)) return false;
@@ -351,8 +443,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const ModeC = document.getElementById("ModeContainer");
     ModeC.innerHTML = "";
-    if (hasValidId) {
-      const sameSpeciesSameMode = modeForms.filter(f => f.id === mate.id);
+    {
+      const mateRef = getResolvedMateRef(mate);
+      const sameSpeciesSameMode = modeForms.filter(f => getResolvedMateRef(f) === mateRef);
       const modeOnlyForms = sameSpeciesSameMode.filter(f => {
         if (f.name === mate.name && f.image === mate.image) return false;
         if (isMode(mate)) return true;
@@ -387,12 +480,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
     if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
-    const sharedBaseMate = (allData.base || []).find(baseMate => (baseMate?.id ?? null) === (mate?.id ?? null));
-    if (sharedBaseMate && sharedBaseMate !== mate) {
-      if (Array.isArray(sharedBaseMate.biomes)) return sharedBaseMate.biomes.filter(Boolean);
-      if (Array.isArray(sharedBaseMate.biome)) return sharedBaseMate.biome.filter(Boolean);
-      if (typeof sharedBaseMate.biome === "string" && sharedBaseMate.biome.trim()) return [sharedBaseMate.biome.trim()];
-      if (typeof sharedBaseMate.Biome === "string" && sharedBaseMate.Biome.trim()) return [sharedBaseMate.Biome.trim()];
+    const resolvedMate = resolveReferenceRoot(mate);
+    if (resolvedMate && resolvedMate !== mate) {
+      if (Array.isArray(resolvedMate.biomes)) return resolvedMate.biomes.filter(Boolean);
+      if (Array.isArray(resolvedMate.biome)) return resolvedMate.biome.filter(Boolean);
+      if (typeof resolvedMate.biome === "string" && resolvedMate.biome.trim()) return [resolvedMate.biome.trim()];
+      if (typeof resolvedMate.Biome === "string" && resolvedMate.Biome.trim()) return [resolvedMate.Biome.trim()];
     }
     return [];
   }
@@ -515,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function sameMate(a, b) {
-    return (a.name === b.name) && ((a.id ?? null) === (b.id ?? null)) && ((a.mode || "") === (b.mode || ""));
+    return (a.name === b.name) && (getResolvedMateRef(a) === getResolvedMateRef(b)) && ((a.mode || "") === (b.mode || ""));
   }
 
   function escapeHtml(str) {
