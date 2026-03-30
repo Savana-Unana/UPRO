@@ -96,11 +96,11 @@
 
   function buildPool(baseItems) {
     return baseItems
-      .map(item => normalizeAnimate(item))
+      .map((item, index) => normalizeAnimate(item, index))
       .filter(Boolean);
   }
 
-  function normalizeAnimate(item) {
+  function normalizeAnimate(item, index) {
     const imagePath = String(item.image || "");
     const path = imagePath.toLowerCase();
     const hasFinalArt = (
@@ -121,7 +121,7 @@
     const displayMode = item.event ? item.event : "base";
 
     return {
-      id: Number(item.id),
+      id: index,
       name: String(item.name || "Unknown"),
       mode: "base",
       displayMode,

@@ -69,6 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let crossTabFormsByRef = new Map();
   let mateByName = new Map();
 
+  function annotateMateOrder(mode, mates) {
+    (mates || []).forEach((mate, index) => {
+      mate.__mode = mode;
+      mate.__order = index;
+    });
+    return mates || [];
+  }
+
   function getRarities(mate) {
     const raw = mate?.rarity;
     let list = [];
@@ -197,13 +205,13 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(([abilities, base, sacred, ace, goner, ncanon, costumes, npc]) => {
         abilitiesData = abilities || [];
         allData = { 
-          base: base || [], 
-          sacred: sacred || [], 
-          ace: ace || [], 
-          goner: goner || [],
-          ncanon: ncanon || [], 
-          costumes: costumes || [],
-          npc: npc || [],
+          base: annotateMateOrder("base", base || []), 
+          sacred: annotateMateOrder("sacred", sacred || []), 
+          ace: annotateMateOrder("ace", ace || []), 
+          goner: annotateMateOrder("goner", goner || []),
+          ncanon: annotateMateOrder("ncanon", ncanon || []), 
+          costumes: annotateMateOrder("costumes", costumes || []),
+          npc: annotateMateOrder("npc", npc || []),
           event: [] // initialize event
         };
 
@@ -214,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (mate.event !== undefined && mate.event !== null) {
               mate.sourceMode = mode;    // preserve original tab for event-specific logic
               mate.mode = "event";       // mark it as event
+              mate.__mode = "event";
               allData.event.push(mate);  // add to event list
               return false;             // remove from original mode
             }
@@ -221,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         });
 
+        annotateMateOrder("event", allData.event);
         rebuildRefIndexes();
         rebuildVersionOptions();
 
@@ -623,16 +633,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getMateDisplayId(mate) {
-    if (mate && mate.id !== null && mate.id !== undefined && mate.id !== "null") {
-      const directId = Number(mate.id);
-      if (Number.isFinite(directId)) return directId;
+    const mode = mate?.mode || mate?.__mode || "";
+    const order = Number(mate?.__order);
+
+    if (mode === "base" && Number.isInteger(order)) {
+      return order;
+    }
+
+    if (mode === "ncanon") {
+      return -1;
+    }
+
+    if (mode === "goner" && Number.isInteger(order)) {
+      return -2 - order;
     }
 
     const resolvedMate = resolveReferenceRoot(mate);
     if (!resolvedMate || resolvedMate === mate) return null;
-
-    const resolvedId = Number(resolvedMate.id);
-    return Number.isFinite(resolvedId) ? resolvedId : null;
+    return getMateDisplayId(resolvedMate);
   }
 
   function modeSupportsBiomes(mode) {

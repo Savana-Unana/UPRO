@@ -6,6 +6,14 @@ let groupsData = [];
 let crossTabFormsByRef = new Map();
 let mateByName = new Map();
 
+function annotateMateOrder(mode, mates) {
+  (mates || []).forEach((mate, index) => {
+    mate.__mode = mode;
+    mate.__order = index;
+  });
+  return mates || [];
+}
+
 function normalizeGroup(group) {
   if (!group || typeof group !== "object") {
     return {
@@ -170,13 +178,13 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(([groups, base, sacred, ace, goner, ncanon, costumes, npc]) => {
       groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];
       allData = {
-        base: base || [],
-        sacred: sacred || [],
-        ace: ace || [],
-        goner: goner || [],
-        ncanon: ncanon || [],
-        costumes: costumes || [],
-        npc: npc || [],
+        base: annotateMateOrder("base", base || []),
+        sacred: annotateMateOrder("sacred", sacred || []),
+        ace: annotateMateOrder("ace", ace || []),
+        goner: annotateMateOrder("goner", goner || []),
+        ncanon: annotateMateOrder("ncanon", ncanon || []),
+        costumes: annotateMateOrder("costumes", costumes || []),
+        npc: annotateMateOrder("npc", npc || []),
         event: []
       };
 
@@ -185,6 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
         allData[mode] = mates.filter(mate => {
           if (mate.event !== undefined && mate.event !== null) {
             mate.mode = "event";
+            mate.__mode = "event";
             allData.event.push(mate);
             return false;
           }
@@ -192,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
+      annotateMateOrder("event", allData.event);
       rebuildRefIndexes();
       renderGroups();
     })
@@ -255,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const deduped = [];
       const seen = new Set();
       found.forEach(m => {
-        const key = `${m.mode || ""}|${m.id ?? ""}|${m.name || ""}|${m.image || ""}`;
+        const key = `${m.mode || ""}|${m.__order ?? ""}|${m.name || ""}|${m.image || ""}`;
         if (seen.has(key)) return;
         seen.add(key);
         deduped.push(m);
