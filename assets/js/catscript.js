@@ -267,16 +267,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         modeList.forEach(mode => {
           const mons = (allData[mode] || []).map(m => ({ ...m, mode }));
-          const statsMons = mons.filter(hasValidId);
           let createdCount;
           let finalizedCount;
-          let totalCount = statsMons.length;
+          let totalCount;
 
           if (mode === "npc") {
-            const npcMons = statsMons.filter(m => m.image);
+            const npcMons = mons.filter(m => usesNimage(m));
             createdCount = npcMons.filter(isNpcCreated).length;
             totalCount = npcMons.length;
           } else {
+            const statsMons = mons.filter(hasValidId);
+            totalCount = statsMons.length;
             createdCount = statsMons.filter(isDesigned).length;
             finalizedCount = statsMons.filter(isFinalized).length;
           }

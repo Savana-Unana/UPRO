@@ -197,7 +197,7 @@
 
         const valid = mode === "npc"
           ? /(^|\/)assets\/images\/mates\/npc\//i.test(image) && !image.includes("youknowwhoiam")
-          : /(^|\/)images\//i.test(image);
+          : /(^|\/)assets\/images\/mates\/base\//i.test(image);
 
         if (!valid) return;
 

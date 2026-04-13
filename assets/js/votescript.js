@@ -182,7 +182,10 @@ function isDesignedNpcEntry(entry) {
 
 function isFinalizedEntry(entry) {
   const image = String(entry?.image || "").toLowerCase();
-  return /(^|\/)images\//i.test(image);
+  return (
+    /(^|\/)assets\/images\/mates\/base\//i.test(image) ||
+    /(^|\/)assets\/images\/mates\/costumes\//i.test(image)
+  );
 }
 
 function isConceptualizedEntry(entry) {
