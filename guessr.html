@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guessr</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="guessr-page">
+  <main class="guessr-shell">
+    <header class="guessr-header">
+      <a class="guessr-back-link" href="normal.html">Back</a>
+      <div class="guessr-logo-block">
+        <img src="assets/images/ui/Logo.png" alt="UPRO logo" class="guessr-logo">
+        <div>
+          <h1 class="guessr-title">Guessr</h1>
+          <p class="guessr-subtitle" id="guessrModeLabel">Two daily clue hunts, two different animates</p>
+        </div>
+      </div>
+      <div class="guessr-header-actions">
+        <button class="guessr-random-btn" type="button" id="guessrRandomBtn" hidden>Play Random Round</button>
+      </div>
+    </header>
+
+    <section class="guessr-tabs" id="guessrTabs" aria-label="Guessr clue modes"></section>
+    <section class="guessr-stage" id="guessrGameGrid"></section>
+  </main>
+
+  <script src="assets/js/guessr.js"></script>
+</body>
+</html>
