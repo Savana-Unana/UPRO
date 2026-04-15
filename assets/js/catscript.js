@@ -666,11 +666,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function modeSupportsBiomes(mode) {
-    return mode !== "npc";
+    return mode !== "npc" && mode !== "costumes";
   }
 
   function modeUsesBiomeArt(mode) {
-    return mode !== "npc" && mode !== "database";
+    return mode !== "npc" && mode !== "database" && mode !== "costumes";
   }
 
   function setBiomeFilterVisibility(mode) {
@@ -689,6 +689,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mode === "database") {
       return getMateVersions(mate);
     }
+    if ((mate.mode || mode) === "costumes") return [];
     if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
@@ -807,6 +808,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mateVitalsHtml(mate) {
+    if ((mate.mode || currentMode) === "costumes") return "";
     const biomes = getMateBiomes(mate);
     const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
     const height = escapeHtml(mate.height || "Unknown");
@@ -1093,137 +1095,139 @@ document.addEventListener("DOMContentLoaded", () => {
       // Evolution line (previous + current + next, same mode)
       const evoC = document.getElementById("evolutionsContainer");
       evoC.innerHTML = "";
-      const mateMode = mate.mode || currentMode;
-      const modeForms = getMateModePool(mate);
-      const byName = new Map(modeForms.map(m => [m.name, m]));
-      if (!byName.has(mate.name)) byName.set(mate.name, mate);
+      if (currentMode !== "costumes") {
+        const mateMode = mate.mode || currentMode;
+        const modeForms = getMateModePool(mate);
+        const byName = new Map(modeForms.map(m => [m.name, m]));
+        if (!byName.has(mate.name)) byName.set(mate.name, mate);
 
-      const outgoing = new Map();
-      const incoming = new Map();
-      modeForms.forEach(m => {
-        (m.evolvesTo || []).forEach(e => {
-          if (!e || !e.name) return;
-          if (!outgoing.has(m.name)) outgoing.set(m.name, []);
-          outgoing.get(m.name).push({ to: e.name, level: e.level, item: e.Item });
+        const outgoing = new Map();
+        const incoming = new Map();
+        modeForms.forEach(m => {
+          (m.evolvesTo || []).forEach(e => {
+            if (!e || !e.name) return;
+            if (!outgoing.has(m.name)) outgoing.set(m.name, []);
+            outgoing.get(m.name).push({ to: e.name, level: e.level, item: e.Item });
 
-          if (!incoming.has(e.name)) incoming.set(e.name, []);
-          incoming.get(e.name).push({ from: m.name, level: e.level, item: e.Item });
-        });
-      });
-
-      function collectReachableAncestors(startName) {
-        const seen = new Set();
-        const stack = [startName];
-        while (stack.length) {
-          const node = stack.pop();
-          if (seen.has(node)) continue;
-          seen.add(node);
-          const parents = incoming.get(node) || [];
-          parents.forEach(p => stack.push(p.from));
-        }
-        return seen;
-      }
-
-      function findCandidateRoots(startName) {
-        const ancestorSet = collectReachableAncestors(startName);
-        const roots = [...ancestorSet].filter(name => !(incoming.get(name) || []).length);
-        return roots.length ? roots : [startName];
-      }
-
-      function buildAllPathsFrom(rootName) {
-        const paths = [];
-        function dfs(nodeName, names, requirements, seen) {
-          const edges = outgoing.get(nodeName) || [];
-          if (!edges.length) {
-            paths.push({ names: [...names], requirements: [...requirements] });
-            return;
-          }
-          let progressed = false;
-          edges.forEach(edge => {
-            if (!edge || !edge.to || seen.has(edge.to)) return;
-            progressed = true;
-            names.push(edge.to);
-            requirements.push({ level: edge.level, item: edge.item });
-            seen.add(edge.to);
-            dfs(edge.to, names, requirements, seen);
-            seen.delete(edge.to);
-            names.pop();
-            requirements.pop();
+            if (!incoming.has(e.name)) incoming.set(e.name, []);
+            incoming.get(e.name).push({ from: m.name, level: e.level, item: e.Item });
           });
-          if (!progressed) {
-            paths.push({ names: [...names], requirements: [...requirements] });
+        });
+
+        function collectReachableAncestors(startName) {
+          const seen = new Set();
+          const stack = [startName];
+          while (stack.length) {
+            const node = stack.pop();
+            if (seen.has(node)) continue;
+            seen.add(node);
+            const parents = incoming.get(node) || [];
+            parents.forEach(p => stack.push(p.from));
           }
+          return seen;
         }
-        dfs(rootName, [rootName], [], new Set([rootName]));
-        return paths;
-      }
 
-      function evolutionRequirementText(requirement) {
-        if (!requirement) return "";
-        const parts = [];
-        if (requirement.level !== null && requirement.level !== undefined && requirement.level !== "") {
-          parts.push(`Lvl ${requirement.level}`);
+        function findCandidateRoots(startName) {
+          const ancestorSet = collectReachableAncestors(startName);
+          const roots = [...ancestorSet].filter(name => !(incoming.get(name) || []).length);
+          return roots.length ? roots : [startName];
         }
-        if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) {
-          parts.push(`Item: ${requirement.item}`);
-        }
-        return parts.join(" | ");
-      }
 
-      const allLines = findCandidateRoots(mate.name)
-        .flatMap(root => buildAllPathsFrom(root))
-        .filter(path => path.names.includes(mate.name));
-      const seenPathKeys = new Set();
-      const lines = allLines.filter(path => {
-        const key = path.names.join("->");
-        if (seenPathKeys.has(key)) return false;
-        seenPathKeys.add(key);
-        return true;
-      });
-      const shouldShowLine = lines.length > 0 && (incoming.has(mate.name) || outgoing.has(mate.name) || lines.some(l => l.names.length > 1));
-
-      if (shouldShowLine) {
-        evoC.innerHTML = "<b>Evolution Line:</b><br>";
-        lines.forEach(line => {
-          const lineEl = document.createElement("div");
-          lineEl.className = "evo-line";
-
-          line.names.forEach((name, idx) => {
-            const nodeMate = byName.get(name);
-            const node = document.createElement("div");
-            node.className = "evo-node" + (name === mate.name ? " current" : "");
-
-            const img = document.createElement("img");
-            img.src = (nodeMate && nodeMate.image) || "";
-            img.alt = name;
-            img.title = name;
-            if (nodeMate) img.onclick = () => openDetails(nodeMate);
-
-            const label = document.createElement("div");
-            label.className = "evo-name";
-            label.textContent = name;
-
-            node.appendChild(img);
-            node.appendChild(label);
-            lineEl.appendChild(node);
-
-            if (idx < line.names.length - 1) {
-              const link = document.createElement("div");
-              link.className = "evo-link";
-              const arrow = document.createElement("div");
-              arrow.className = "evo-arrow";
-              arrow.textContent = "→";
-              const lvl = document.createElement("div");
-              lvl.className = "evo-level";
-              lvl.textContent = evolutionRequirementText(line.requirements[idx]);
-              link.appendChild(arrow);
-              link.appendChild(lvl);
-              lineEl.appendChild(link);
+        function buildAllPathsFrom(rootName) {
+          const paths = [];
+          function dfs(nodeName, names, requirements, seen) {
+            const edges = outgoing.get(nodeName) || [];
+            if (!edges.length) {
+              paths.push({ names: [...names], requirements: [...requirements] });
+              return;
             }
-          });
+            let progressed = false;
+            edges.forEach(edge => {
+              if (!edge || !edge.to || seen.has(edge.to)) return;
+              progressed = true;
+              names.push(edge.to);
+              requirements.push({ level: edge.level, item: edge.item });
+              seen.add(edge.to);
+              dfs(edge.to, names, requirements, seen);
+              seen.delete(edge.to);
+              names.pop();
+              requirements.pop();
+            });
+            if (!progressed) {
+              paths.push({ names: [...names], requirements: [...requirements] });
+            }
+          }
+          dfs(rootName, [rootName], [], new Set([rootName]));
+          return paths;
+        }
 
-          evoC.appendChild(lineEl);
+        function evolutionRequirementText(requirement) {
+          if (!requirement) return "";
+          const parts = [];
+          if (requirement.level !== null && requirement.level !== undefined && requirement.level !== "") {
+            parts.push(`Lvl ${requirement.level}`);
+          }
+          if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) {
+            parts.push(`Item: ${requirement.item}`);
+          }
+          return parts.join(" | ");
+        }
+
+        const allLines = findCandidateRoots(mate.name)
+          .flatMap(root => buildAllPathsFrom(root))
+          .filter(path => path.names.includes(mate.name));
+        const seenPathKeys = new Set();
+        const lines = allLines.filter(path => {
+          const key = path.names.join("->");
+          if (seenPathKeys.has(key)) return false;
+          seenPathKeys.add(key);
+          return true;
         });
+        const shouldShowLine = lines.length > 0 && (incoming.has(mate.name) || outgoing.has(mate.name) || lines.some(l => l.names.length > 1));
+
+        if (shouldShowLine) {
+          evoC.innerHTML = "<b>Evolution Line:</b><br>";
+          lines.forEach(line => {
+            const lineEl = document.createElement("div");
+            lineEl.className = "evo-line";
+
+            line.names.forEach((name, idx) => {
+              const nodeMate = byName.get(name);
+              const node = document.createElement("div");
+              node.className = "evo-node" + (name === mate.name ? " current" : "");
+
+              const img = document.createElement("img");
+              img.src = (nodeMate && nodeMate.image) || "";
+              img.alt = name;
+              img.title = name;
+              if (nodeMate) img.onclick = () => openDetails(nodeMate);
+
+              const label = document.createElement("div");
+              label.className = "evo-name";
+              label.textContent = name;
+
+              node.appendChild(img);
+              node.appendChild(label);
+              lineEl.appendChild(node);
+
+              if (idx < line.names.length - 1) {
+                const link = document.createElement("div");
+                link.className = "evo-link";
+                const arrow = document.createElement("div");
+                arrow.className = "evo-arrow";
+                arrow.textContent = "→";
+                const lvl = document.createElement("div");
+                lvl.className = "evo-level";
+                lvl.textContent = evolutionRequirementText(line.requirements[idx]);
+                link.appendChild(arrow);
+                link.appendChild(lvl);
+                lineEl.appendChild(link);
+              }
+            });
+
+            evoC.appendChild(lineEl);
+          });
+        }
       }
     }
 

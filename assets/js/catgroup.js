@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
     card.className = "card";
     if (isParagon(mate)) card.classList.add("rarity-paragon");
     const firstBiome = getMateBiomes(mate)[0];
-    if (firstBiome) {
+    if (firstBiome && mate.mode !== "costumes") {
       card.classList.add("biome-bg");
       card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
     }
@@ -498,6 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getMateBiomes(mate) {
     if (!mate) return [];
+    if (mate.mode === "costumes") return [];
     if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
     if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
     if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
@@ -518,6 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function mateVitalsHtml(mate) {
+    if (mate.mode === "costumes") return "";
     const biomes = getMateBiomes(mate);
     const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
     const height = escapeHtml(mate.height || "Unknown");
