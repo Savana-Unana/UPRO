@@ -873,6 +873,11 @@ header {
   border-bottom: 2px solid #0ff;
 }
 
+body.ost-page header {
+  position: relative;
+  z-index: 200;
+}
+
 /* ---------- CONTROLS ---------- */
 .controls {
   display: flex;
@@ -1245,6 +1250,15 @@ body.animatrix-list-view > #detailsModal .modal-content {
   z-index: 60;
 }
 .filter-panel.open { display: block; }
+
+body.ost-page .multi-filter {
+  position: relative;
+  z-index: 220;
+}
+
+body.ost-page .filter-panel {
+  z-index: 230;
+}
 
 .panel-actions {
   display: flex;
@@ -1785,6 +1799,15 @@ input#search:focus {
 #ostGrid .card {
   position: relative;
   overflow: visible;
+}
+
+body.ost-page #ostGrid {
+  position: relative;
+  z-index: 1;
+}
+
+body.ost-page #playlistPanel {
+  z-index: 240;
 }
 
 #ostGrid .card.song-unavailable {
