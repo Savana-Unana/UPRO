@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guys thats literally my idea</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="animatrix-groups-page uprod-page">
+  <header>
+    <div style="display:flex; gap:10px; justify-content:center;">
+      <a href="index.html"><button>Main Menu</button></a>
+      <a href="animatrix.html"><button>Return</button></a>
+    </div>
+    <h1>Order + Help</h1>
+    <div class="controls uprod-controls">
+      <label class="uprod-filter">
+        <span>Concepted</span>
+        <select id="conceptedFilter">
+          <option value="">All</option>
+        </select>
+      </label>
+      <label class="uprod-filter">
+        <span>Designed</span>
+        <select id="designedFilter">
+          <option value="">All</option>
+        </select>
+      </label>
+      <label class="uprod-filter">
+        <span>Named</span>
+        <select id="namedFilter">
+          <option value="">All</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main id="uprodGrid" class="cat-grid"></main>
+
+  <div id="detailsModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close-btn">✕</button>
+
+      <div class="modal-header">
+        <h2 id="mateName"></h2>
+        <div id="modeBadge" class="mode-badge"></div>
+      </div>
+
+      <div class="modal-body">
+        <div class="image-container">
+          <img id="mateImage" alt="">
+        </div>
+
+        <div id="mateCredits" class="uprod-credit-panels">
+          <div id="conceptedByContainer" class="uprod-credit-card"></div>
+          <div id="designedByContainer" class="uprod-credit-card"></div>
+          <div id="namedByContainer" class="uprod-credit-card"></div>
+        </div>
+        <div id="evolutionsContainer"></div>
+        <div id="sacredContainer"></div>
+        <div id="ModeContainer"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="prevMate" class="nav-btn">← Previous</button>
+        <button id="nextMate" class="nav-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/uprod.js"></script>
+</body>
+</html>

@@ -974,6 +974,51 @@ main.list {
   color: #a8dce3;
 }
 
+.uprod-controls {
+  gap: 16px;
+  justify-content: center;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.uprod-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+  color: #f6f6cf;
+  text-align: left;
+}
+
+.uprod-filter select {
+  min-height: 42px;
+  border-radius: 10px;
+  border: 1px solid rgba(182, 247, 255, 0.45);
+  background: rgba(8, 12, 20, 0.82);
+  color: #fff;
+  padding: 0 12px;
+  font: inherit;
+}
+
+.uprod-page #uprodGrid {
+  padding: 16px 20px 30px;
+}
+
+.uprod-credit-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 18px 0 8px;
+}
+
+.uprod-credit-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 12px 14px;
+  text-align: left;
+}
+
 /* GRID VIEW */
 #pokedex.grid {
     display: grid;

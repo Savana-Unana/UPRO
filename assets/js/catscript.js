@@ -1016,10 +1016,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalContent =
     document.querySelector("#detailsModal .modal-content") ||
     document.getElementById("detailsModal");
+    const mateImage = document.getElementById("mateImage");
     applyMateStyle(modalContent, mate);
     setModeBadge(mate.mode || currentMode, mate);
     document.getElementById("mateName").textContent = mate.name || "";
-    document.getElementById("mateImage").src = mate.image || "";
+    mateImage.src = mate.image || "";
+    mateImage.onclick = null;
+    mateImage.removeAttribute("title");
+    if ((mate.name || "").toLowerCase() === "thoot") {
+      mateImage.title = "Open UPROD";
+      mateImage.onclick = () => {
+        window.location.href = "UPROD.html";
+      };
+    }
     document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
 
     // Types (hide for NPCs)
