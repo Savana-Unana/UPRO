@@ -1026,7 +1026,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if ((mate.name || "").toLowerCase() === "thoot") {
       mateImage.title = "Open UPROD";
       mateImage.onclick = () => {
-        window.location.href = "UPROD.html";
+        window.location.href = "Credtrix.html";
       };
     }
     document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
