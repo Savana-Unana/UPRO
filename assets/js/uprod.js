@@ -13,7 +13,7 @@ let crorderRank = new Map();
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("uprodGrid");
   const conceptedFilter = document.getElementById("conceptedFilter");
-  const designedFilter = document.getElementById("designedFilter");
+  const assistedFilter = document.getElementById("assistedFilter");
   const namedFilter = document.getElementById("namedFilter");
   const modal = document.getElementById("detailsModal");
   const closeModal = document.getElementById("closeModal");
@@ -33,14 +33,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function normalizeCreditsEntry(entry) {
     if (!entry || typeof entry !== "object") {
-      return { person: "Unknown", concepted: [], designed: [], named: [] };
+      return { person: "Unknown", concepted: [], assisted: [], named: [] };
     }
     return {
       person: String(entry.person || "Unknown").trim() || "Unknown",
       concepted: Array.isArray(entry.concepted) ? entry.concepted.map(x => String(x || "").trim()).filter(Boolean) : [],
-      designed: Array.isArray(entry.designed) ? entry.designed.map(x => String(x || "").trim()).filter(Boolean) : [],
+      assisted: normalizeAssistedItems(entry.assisted),
       named: Array.isArray(entry.named) ? entry.named.map(x => String(x || "").trim()).filter(Boolean) : []
     };
+  }
+
+  function normalizeAssistedItems(items) {
+    if (!Array.isArray(items)) return [];
+    return items
+      .map(item => {
+        if (typeof item === "string") {
+          const name = item.trim();
+          return name ? { name, how: "" } : null;
+        }
+        if (!item || typeof item !== "object") return null;
+        const name = String(item.name || "").trim();
+        const how = String(item.how || "").trim();
+        if (!name) return null;
+        return { name, how };
+      })
+      .filter(Boolean);
   }
 
   function getRarities(mate) {
@@ -164,21 +181,23 @@ document.addEventListener("DOMContentLoaded", () => {
       entry.concepted.forEach(name => {
         const key = String(name || "").trim();
         if (!key) return;
-        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], designed: [], named: [] });
+        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });
         const record = creditsByAnimate.get(key);
         if (!record.concepted.includes(entry.person)) record.concepted.push(entry.person);
       });
-      entry.designed.forEach(name => {
-        const key = String(name || "").trim();
+      entry.assisted.forEach(item => {
+        const key = String(item?.name || "").trim();
         if (!key) return;
-        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], designed: [], named: [] });
+        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });
         const record = creditsByAnimate.get(key);
-        if (!record.designed.includes(entry.person)) record.designed.push(entry.person);
+        if (!record.assisted.some(assisted => assisted.person === entry.person && assisted.how === item.how)) {
+          record.assisted.push({ person: entry.person, how: item.how || "" });
+        }
       });
       entry.named.forEach(name => {
         const key = String(name || "").trim();
         if (!key) return;
-        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], designed: [], named: [] });
+        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });
         const record = creditsByAnimate.get(key);
         if (!record.named.includes(entry.person)) record.named.push(entry.person);
       });
@@ -202,10 +221,10 @@ document.addEventListener("DOMContentLoaded", () => {
       conceptOption.textContent = person;
       conceptedFilter.appendChild(conceptOption);
 
-      const designedOption = document.createElement("option");
-      designedOption.value = person;
-      designedOption.textContent = person;
-      designedFilter.appendChild(designedOption);
+      const assistedOption = document.createElement("option");
+      assistedOption.value = person;
+      assistedOption.textContent = person;
+      assistedFilter.appendChild(assistedOption);
 
       const namedOption = document.createElement("option");
       namedOption.value = person;
@@ -216,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getMateCredits(mate) {
     const namesToCheck = [String(mate?.name || "").trim(), getResolvedMateRef(mate)].filter(Boolean);
-    const combined = { concepted: [], designed: [], named: [] };
+    const combined = { concepted: [], assisted: [], named: [] };
 
     namesToCheck.forEach(name => {
       const record = creditsByAnimate.get(name);
@@ -224,8 +243,10 @@ document.addEventListener("DOMContentLoaded", () => {
       record.concepted.forEach(person => {
         if (!combined.concepted.includes(person)) combined.concepted.push(person);
       });
-      record.designed.forEach(person => {
-        if (!combined.designed.includes(person)) combined.designed.push(person);
+      record.assisted.forEach(item => {
+        if (!combined.assisted.some(assisted => assisted.person === item.person && assisted.how === item.how)) {
+          combined.assisted.push(item);
+        }
       });
       record.named.forEach(person => {
         if (!combined.named.includes(person)) combined.named.push(person);
@@ -269,12 +290,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderGrid() {
     const selectedConcepted = conceptedFilter.value;
-    const selectedDesigned = designedFilter.value;
+    const selectedAssisted = assistedFilter.value;
     const selectedNamed = namedFilter.value;
     const mates = buildDisplayPool().filter(mate => {
       const credits = getMateCredits(mate);
       if (selectedConcepted && !credits.concepted.includes(selectedConcepted)) return false;
-      if (selectedDesigned && !credits.designed.includes(selectedDesigned)) return false;
+      if (selectedAssisted && !credits.assisted.includes(selectedAssisted)) return false;
       if (selectedNamed && !credits.named.includes(selectedNamed)) return false;
       return true;
     });
@@ -302,11 +323,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const shiverBadge = isShiver(mate)
       ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
       : "";
+    const assistedSummary = getAssistedSummary(getMateCredits(mate));
 
     card.innerHTML = `
       ${shiverBadge}
       <img src="${escapeHtml(mate.image || "")}" alt="${escapeHtml(mate.name || "")}">
       <h3>${displayName}</h3>
+      ${assistedSummary ? `<p class="uprod-card-note">${escapeHtml(assistedSummary)}</p>` : ""}
     `;
 
     card.addEventListener("click", () => openDetails(mate));
@@ -331,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("mateName").textContent = mate.name || "";
     document.getElementById("mateImage").src = mate.image || "";
     document.getElementById("conceptedByContainer").innerHTML = renderCreditSection("Concepted By", credits.concepted);
-    document.getElementById("designedByContainer").innerHTML = renderCreditSection("Designed By", credits.designed);
+    document.getElementById("assistedByContainer").innerHTML = renderAssistedSection(credits.assisted);
     document.getElementById("namedByContainer").innerHTML = renderCreditSection("Named By", credits.named);
     renderEvolutionLine(mate);
 
@@ -341,6 +364,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderCreditSection(label, people) {
     return `<b>${escapeHtml(label)}:</b><div>${people.length ? escapeHtml(people.join(", ")) : "Incomplete Info"}</div>`;
+  }
+
+  function renderAssistedSection(items) {
+    if (!items.length) return `<b>Assisted By:</b><div>Incomplete Info</div>`;
+    const rows = items.map(item => {
+      const detail = item.how ? `: ${escapeHtml(item.how)}` : "";
+      return `<div><strong>${escapeHtml(item.person)}</strong>${detail}</div>`;
+    }).join("");
+    return `<b>Assisted By:</b>${rows}`;
+  }
+
+  function getAssistedSummary(credits) {
+    if (!credits?.assisted?.length) return "";
+    const withHow = credits.assisted.find(item => item.how);
+    if (!withHow) return "";
+    if (credits.assisted.length === 1) return `${withHow.person}: ${withHow.how}`;
+    return `${withHow.person}: ${withHow.how}`;
   }
 
   function renderEvolutionLine(mate) {
@@ -651,7 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   conceptedFilter.addEventListener("change", renderGrid);
-  designedFilter.addEventListener("change", renderGrid);
+  assistedFilter.addEventListener("change", renderGrid);
   namedFilter.addEventListener("change", renderGrid);
 
   closeModal.onclick = () => modal.classList.add("hidden");

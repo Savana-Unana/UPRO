@@ -1019,6 +1019,14 @@ main.list {
   text-align: left;
 }
 
+.uprod-card-note {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: #dfe8ee;
+  text-align: center;
+}
+
 /* GRID VIEW */
 #pokedex.grid {
     display: grid;

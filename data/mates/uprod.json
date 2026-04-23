@@ -2,14 +2,50 @@
   {
     "person": "Ivri",
     "concepted": ["Thoot", "Blarb","Chancix","Quillcoil","Statipillar"],
-    "designed": ["Thoot"],
+    "assisted": ["Thoot"],
     "named":["Dribtar"]
   },
   {
-    "person": "Shane",
-    "concepted": ["Capture Capsule","Blazuki","Furnacoon","Axolitl","Axolote","Axolarg","Duadog","Dodecadog","Pretengerine","Espiorange","Bakunbush","Pigturee","Dribsom","Dribtar","Statipillar","Gaslug","Cocompis","Coconkurer","Gerrindamo","Quubly","Quontoon","Honkraft","Camoflish","Bowlfish","Tankfish","Chordal","Cartilicht","Beabar","Ghouliath","Unanimule","Hachit","Cluchit","Graspit","Flikflek","Kangurru","Limirail","Schuck","Thruck","Thrack","Nudinde","Growool","Furgery","Weredyagoat","Doereme","Cannitil","Aggranite","Ranaiolate","Scregling","Robenhoodie","Hexkwet","Vultumbra","Cuputrid","Torterritory","Beit","Pirotte","Pocube","Anchophant","Binkit","Bunkit",""],
-    "designed": [""],
+    "person": "Amo",
+    "concepted": [],
+    "assisted": [],
     "named":[]
+  },
+  {
+    "person": "Ariel",
+    "concepted": [],
+    "assisted": [],
+    "named":[]
+  },
+  {
+    "person": "Aviva",
+    "concepted": [],
+    "assisted": [],
+    "named":[]
+  },
+  {
+    "person": "Shaina",
+    "concepted": [],
+    "assisted": [],
+    "named":[]
+  },
+  {
+    "person": "Michael",
+    "concepted": [],
+    "assisted": [],
+    "named":[]
+  },
+  {
+    "person": "Jake",
+    "concepted": ["Erbacub","Bearosion","Hileaph"],
+    "assisted": ["Capture Capsule","Axolote","Axolarg"],
+    "named":["Sparcoon","Axolote"]
+  },
+  {
+    "person": "Shane",
+    "concepted": ["Capture Capsule","Sparcoon","Axolitl","Axolote","Axolarg","Duadog","Dodecadog","Pretengerine","Espiorange","Bakunbush","Pigturee","Dribsom","Dribtar","Statipillar","Gaslug","Cocompis","Coconkurer","Gerrindamo","Quubly","Quontoon","Honkraft","Camoflish","Bowlfish","Tankfish","Chordal","Cartilicht","Beabar","Ghouliath","Unanimule","Hachit","Cluchit","Graspit","Flikflek","Kangurru","Limirail","Schuck","Thruck","Thrack","Nudinde","Growool","Furgery","Weredyagoat","Doereme","Cannitil","Aggranite","Ranaiolate","Scregling","Robenhoodie","Hexkwet","Vultumbra","Cuputrid","Torterritory","Beit","Pirotte","Pocube","Anchophant","Binkit","Bunkit","Cristail","Lambabeem","Mucalf","Depreslion","Cogulata","Walmare","Nightingbale","Plagorovid","Garbajool","Trashure","Shiver Shocks","Buffmunk","Buntot","Challadin","Frankfortress","Lunam","Soltan","Fettugenie","Gloobie","Borgo Slor","Saplite","Dreadbloom","Rosophagus","Pollutron","Bansheep","Sadacol","Vigilith","Agilith","Signilith","Bewag","Slurpent","Puppechyu","Mockenyu","Clokoo","Clawkwalk","Verdaermy","Fortome","Paranger","Fonceer","Dressiani","Berdminton","Keidromae","Carapotor","Spongus","Myte","Symbrex","Shadasnow","Meepu","Brroil","Gwavceer","Polerb","Starpod","Puffle","Huffapuff","Vortipuff","Cnidofish","Scyphon","Masqulpt","Murchan","Clamb","Lovedove","Sorrauk","Melaswan","Charquid","Nonignite","Forgalyss","Nymflay","Mantiflay","Acorgin","Tectoadaver","Splinky","Sapphae","Fumerey","Scentry","Elixion","Buzzibee","Wasniach","Eternip","Pumpkadav","Livine","Propulfin","Aligilitter","Prismite","Duchrom","Prismoth","Cheorie","Lodorus","Aestereg","Moteeph","Reverense","Meducap","Perchancealot","Possibilitor","Cuggaeous","Shiver Jaws","Shiver Vlogs","Shiver Blades","Shiver Waves","Shiver Gogs","Shiver Pests","Lemody","Pydromaglar","Exosteel","Cuddol","Dopplergrail","TwoMew.png.jpeg,gif.webp.jif","Toumern","Waxilo","Betophage","Drawrlin","Shiver Molds","Shiver Dupes"],
+    "assisted": [{"name":"Erbacub","how":"Design Assistance"},{"name":"Hileaph","how":"Design Assistance"},{"name":"Blazuki","how":"Design Assistance"},{"name":"Honkraft","how":"Design Assistance"}],
+    "named":["Capture Capsule","Erbacub","Bearosion","Hileaph","Blazuki","Furnacoon","Axolitl","Axolote","Axolarg","Caneins","Duadog","Dodecadog","Bakunbush","Pigturee","Dribsom","Statipillar","Gaslug","Zantifeeld (Palm)","Cocompis","Coconkurer","Gerrindamo","Quubly","Quontoon","Honkraft","Confished","Twynami","Camoflish","Bowlfish","Tankfish","Fizzik","Chordal","Cartilicht","Blarb","Beabar","Ghouliath","Tumball","Unanimule","Hachit","Cluchit","Graspit","Flikflek","Kangurru","Limirail","Schuck","Thruck","Thrack","Grraft","Nudinde","Tenwreck","Risuhan","Growool","Furgery","Weredyagoat","Doereme","Cannitil","Aggranite","Ranaiolate","Scregling","Robenhoodie","Bombabeak","Hexkwet","Vultumbra","Tralgon","Cuputrid","Babahl","Torterritory","Beit","Pirotte","Pocube","Ampede","Anchophant","Binkit","Bunkit","Cristail","Lambabeem","Mucalf","Depreslion","Cogulata","Quillcoil","Walmare","Tweedle","Hayvian","Nightingbale","Plagorovid","Garbajool","Trashure","Shiver Shocks","Risuden","Acrodent","Buffmunk","Brisancado","Buntot","Challadin","Frankyurt","Frankfortress","Lunam","Soltan","Fettugenie","Gloobie","Flapdrag","Borgo Slor","Saplite","Dreadbloom","Rosophagus","Pollutron","Bansheep","Sadacol","Vigilith","Agilith","Signilith","Bewag","Slurpent","Puppechyu","Mockenyu","Clokoo","Clawkwalk","Verdaermy","Fortome","umilox","Paranger","Fonceer","Dressiani","Berdminton","Keidromae","Carapotor","Spongus","Myte","Symbrex","Shadasnow","Meepu","Brroil","Gwavceer","Polerb","Starpod","Puffle","Huffapuff","Vortipuff","Cnidofish","Scyphon","Masqulpt","Murchan","Clamb","Volcannon","Gastrover","Sorrauk","Melaswan","Charquid","Nonignite","Forgalyss","Nymflay","Mantiflay","Acorgin","Rebble","Tectoadaver","Splinky","Sapphae","Enchrancess","Toxinewt","Wyrachnos","Fumerey","Scentry","Elixion","Krasbopper","Lurkest","Buzzibee","Wasniach","Eternip","Pumpkadav","Livine","Propulfin","Aligilitter","Prismite","Duchrom","Prismoth","Guardung","Cheorie","Lodorus","Finking","Aestereg","Moteeph","Reverense","Meducap","Perchancealot","Possibilitor","Cuggaeous","Shiver Jaws","Shiver Vlogs","Shiver Blades","Shiver Waves","Shiver Gogs","Shiver Pests","Lemody","Pydromaglar","Exosteel","Cuddol","Cosmicanine","Dopplergrail","TwoMew.png.jpeg,gif.webp.jif","Toumern","Waxilo","Betophage","Drawrlin","Shiver Molds","Shiver Dupes"]
   }
 
 ]
