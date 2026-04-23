@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const conceptedFilter = document.getElementById("conceptedFilter");
   const assistedFilter = document.getElementById("assistedFilter");
   const namedFilter = document.getElementById("namedFilter");
+  const anythingFilter = document.getElementById("anythingFilter");
   const modal = document.getElementById("detailsModal");
   const closeModal = document.getElementById("closeModal");
   const nextMate = document.getElementById("nextMate");
@@ -230,7 +231,18 @@ document.addEventListener("DOMContentLoaded", () => {
       namedOption.value = person;
       namedOption.textContent = person;
       namedFilter.appendChild(namedOption);
+
+      const anythingOption = document.createElement("option");
+      anythingOption.value = person;
+      anythingOption.textContent = person;
+      anythingFilter.appendChild(anythingOption);
     });
+  }
+
+  function didPersonHelpWithAnything(credits, person) {
+    return credits.concepted.includes(person) ||
+      credits.assisted.some(item => item.person === person) ||
+      credits.named.includes(person);
   }
 
   function getMateCredits(mate) {
@@ -292,11 +304,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedConcepted = conceptedFilter.value;
     const selectedAssisted = assistedFilter.value;
     const selectedNamed = namedFilter.value;
+    const selectedAnything = anythingFilter.value;
     const mates = buildDisplayPool().filter(mate => {
       const credits = getMateCredits(mate);
       if (selectedConcepted && !credits.concepted.includes(selectedConcepted)) return false;
-      if (selectedAssisted && !credits.assisted.includes(selectedAssisted)) return false;
+      if (selectedAssisted && !credits.assisted.some(item => item.person === selectedAssisted)) return false;
       if (selectedNamed && !credits.named.includes(selectedNamed)) return false;
+      if (selectedAnything && !didPersonHelpWithAnything(credits, selectedAnything)) return false;
       return true;
     });
     visibleMates = mates;
@@ -323,13 +337,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const shiverBadge = isShiver(mate)
       ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
       : "";
-    const assistedSummary = getAssistedSummary(getMateCredits(mate));
-
     card.innerHTML = `
       ${shiverBadge}
       <img src="${escapeHtml(mate.image || "")}" alt="${escapeHtml(mate.name || "")}">
       <h3>${displayName}</h3>
-      ${assistedSummary ? `<p class="uprod-card-note">${escapeHtml(assistedSummary)}</p>` : ""}
     `;
 
     card.addEventListener("click", () => openDetails(mate));
@@ -353,9 +364,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("mateName").textContent = mate.name || "";
     document.getElementById("mateImage").src = mate.image || "";
-    document.getElementById("conceptedByContainer").innerHTML = renderCreditSection("Concepted By", credits.concepted);
-    document.getElementById("assistedByContainer").innerHTML = renderAssistedSection(credits.assisted);
-    document.getElementById("namedByContainer").innerHTML = renderCreditSection("Named By", credits.named);
+    renderOptionalSection(document.getElementById("conceptedByContainer"), renderCreditSection("Concepted By", credits.concepted));
+    renderOptionalSection(document.getElementById("assistedByContainer"), renderAssistedSection(credits.assisted));
+    renderOptionalSection(document.getElementById("namedByContainer"), renderCreditSection("Named By", credits.named));
     renderEvolutionLine(mate);
 
     renderAlternateForms(mate);
@@ -363,11 +374,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderCreditSection(label, people) {
-    return `<b>${escapeHtml(label)}:</b><div>${people.length ? escapeHtml(people.join(", ")) : "Incomplete Info"}</div>`;
+    if (!people.length) return "";
+    return `<b>${escapeHtml(label)}:</b><div>${escapeHtml(people.join(", "))}</div>`;
   }
 
   function renderAssistedSection(items) {
-    if (!items.length) return `<b>Assisted By:</b><div>Incomplete Info</div>`;
+    if (!items.length) return "";
     const rows = items.map(item => {
       const detail = item.how ? `: ${escapeHtml(item.how)}` : "";
       return `<div><strong>${escapeHtml(item.person)}</strong>${detail}</div>`;
@@ -375,12 +387,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return `<b>Assisted By:</b>${rows}`;
   }
 
-  function getAssistedSummary(credits) {
-    if (!credits?.assisted?.length) return "";
-    const withHow = credits.assisted.find(item => item.how);
-    if (!withHow) return "";
-    if (credits.assisted.length === 1) return `${withHow.person}: ${withHow.how}`;
-    return `${withHow.person}: ${withHow.how}`;
+  function renderOptionalSection(container, html) {
+    container.innerHTML = html;
+    container.hidden = !html;
   }
 
   function renderEvolutionLine(mate) {
@@ -472,7 +481,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const shouldShowLine = lines.length > 0 && (incoming.has(mate.name) || outgoing.has(mate.name) || lines.some(line => line.names.length > 1));
 
     if (!shouldShowLine) {
-      evoContainer.innerHTML = "<b>Evolution Line:</b><div>Incomplete Info</div>";
       return;
     }
 
@@ -533,7 +541,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (!alternateForms.length) {
-      sacredContainer.innerHTML = "<b>Alternate Forms:</b><div>Incomplete Info</div>";
       return;
     }
 
@@ -567,7 +574,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (!modeOnlyForms.length) {
-      modeContainer.innerHTML = "<b>Alternates:</b><div>Incomplete Info</div>";
       return;
     }
 
@@ -693,6 +699,7 @@ document.addEventListener("DOMContentLoaded", () => {
   conceptedFilter.addEventListener("change", renderGrid);
   assistedFilter.addEventListener("change", renderGrid);
   namedFilter.addEventListener("change", renderGrid);
+  anythingFilter.addEventListener("change", renderGrid);
 
   closeModal.onclick = () => modal.classList.add("hidden");
   nextMate.onclick = () => {
