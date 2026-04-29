@@ -529,9 +529,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const bVersionRank = getVersionRank(b);
     if (aVersionRank !== bVersionRank) return aVersionRank - bVersionRank;
 
-    const aRank = databaseModeRank[a.mode] ?? 999;
-    const bRank = databaseModeRank[b.mode] ?? 999;
+    const aMode = a.mode || a.__mode || "";
+    const bMode = b.mode || b.__mode || "";
+    const aRank = databaseModeRank[aMode] ?? 999;
+    const bRank = databaseModeRank[bMode] ?? 999;
     if (aRank !== bRank) return aRank - bRank;
+
+    if (aMode === "npc" && bMode === "npc") {
+      const aOrder = Number(a.__order);
+      const bOrder = Number(b.__order);
+      const aHasOrder = Number.isInteger(aOrder);
+      const bHasOrder = Number.isInteger(bOrder);
+      if (aHasOrder && bHasOrder && aOrder !== bOrder) return aOrder - bOrder;
+      if (aHasOrder !== bHasOrder) return aHasOrder ? -1 : 1;
+    }
 
     return String(a.name || "").localeCompare(String(b.name || ""));
   }
@@ -649,7 +660,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const order = Number(mate?.__order);
 
     if (mode === "base" && Number.isInteger(order)) {
-      return order;
+      return order + 1;
     }
 
     if (mode === "ncanon") {
@@ -657,7 +668,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (mode === "goner" && Number.isInteger(order)) {
-      return -2 - order;
+      return -order;
     }
 
     const resolvedMate = resolveReferenceRoot(mate);

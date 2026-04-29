@@ -181,7 +181,7 @@
     const pool = [];
 
     datasets.forEach(({ mode, items }) => {
-      (items || []).forEach(entry => {
+      (items || []).forEach((entry, index) => {
         const normalizedName = String(entry?.name || "").trim();
         const image = String(entry?.image || "").toLowerCase();
         if (!normalizedName || seen.has(normalizedName.toLowerCase())) return;
@@ -203,13 +203,20 @@
 
         seen.add(normalizedName.toLowerCase());
         pool.push({
+          mode,
+          order: index,
           name: normalizedName,
           image: String(entry.image || "")
         });
       });
     });
 
-    return pool.sort((a, b) => a.name.localeCompare(b.name));
+    return pool.sort((a, b) => {
+      if (a.mode === "npc" && b.mode !== "npc") return 1;
+      if (a.mode !== "npc" && b.mode === "npc") return -1;
+      if (a.mode === "npc" && b.mode === "npc") return a.order - b.order;
+      return a.name.localeCompare(b.name);
+    });
   }
 
   function startGame() {

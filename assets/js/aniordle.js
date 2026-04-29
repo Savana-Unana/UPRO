@@ -121,7 +121,7 @@
     const displayMode = item.event ? item.event : "base";
 
     return {
-      id: index,
+      id: index + 1,
       name: String(item.name || "Unknown"),
       mode: "base",
       displayMode,

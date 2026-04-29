@@ -25,6 +25,7 @@
 {"id":"Skip","name":"Capsule Skip","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":"Capture Capsule","Description":"No entry yet","cosmark":"Y","versions":"Demo 1"},
 {"id":"Skip","name":"Jester Skip","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":"The Amazing Digital Circus","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"CC","name":"CC","image":"assets/images/mates/npc/CC.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Unlocked by playing the game."}]}],"reference":null,"Description":"The Normal sprites.","cosmark":"N","versions":"Demo 1"},
+{"id":"CC","name":"Battle CC","image":"assets/images/mates/npc/BattleCC.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Play a Battle"}]}],"reference":null,"Description":"","cosmark":"Y","versions":"Demo 1"},
 {"id":"CC","name":"Speaker Box CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":"Battle For Dream Island","Description":"No entry yet","cosmark":"Y","versions":"Halloween"},
 {"id":"CC","name":"Cult CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Beat the Fairy Gauntlet."}]}],"reference":null,"Description":"A ketchup covered Capture Capsule.","cosmark":"Y","versions":"Demo 5"},
 {"id":"CC","name":"IFO CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":null,"Description":"AHHHHH A UFO!!!!!","cosmark":"Y","versions":"Demo 1"},

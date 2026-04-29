@@ -220,7 +220,7 @@
     if (item.name === "MissingNo" || item.name === "L.MissingNo" || item.name === "Ones") return null;
 
     return {
-      id: index,
+      id: index + 1,
       name: String(item.name || "Unknown"),
       image: imagePath
     };
