@@ -905,6 +905,11 @@ button:hover, select:hover,
   color: #000;
 }
 
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 select[multiple] {
   min-width: 160px;
   max-width: 260px;
@@ -924,6 +929,23 @@ main.list {
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+
+.list-mode-actions {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px 0;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.list-mode-actions button {
+  font-size: 32px;
+  padding: 10px 18px;
+}
+
+.list-mode-actions[hidden] {
+  display: none;
 }
 
 /* ---------- CATEGORY GROUPS PAGE ---------- */
@@ -1191,33 +1213,101 @@ main.list {
 body.animatrix-list-view {
   display: grid;
   grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto minmax(0, 1fr);
   align-items: start;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body.animatrix-list-view > header {
   grid-column: 1 / 3;
   grid-row: 1;
+  padding: 10px 20px;
+  text-align: left;
+}
+
+body.animatrix-list-view > header > div:first-child,
+body.animatrix-list-view > header h1,
+body.animatrix-list-view > header .controls > :not(.view-toggle),
+body.animatrix-list-view > header .view-toggle #listView {
+  display: none !important;
+}
+
+body.animatrix-list-view > header .controls {
+  justify-content: flex-start;
+  margin-top: 0;
+}
+
+body.animatrix-list-view > .list-mode-actions {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 10px 20px 0 0;
 }
 
 body.animatrix-list-view > main#animatrix {
   grid-column: 1;
-  grid-row: 2;
-  max-height: calc(100vh - 180px);
+  grid-row: 2 / 4;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
   overflow-y: auto;
 }
 
 body.animatrix-list-view > main#animatrix.list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-items: stretch;
   align-content: start;
+  padding-top: 10px;
+}
+
+body.animatrix-list-view #animatrix .card.list-card {
+  width: auto;
+  margin: 0;
+  min-height: 58px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  border-radius: 6px;
+  background: #1b1b1f;
+  color: #e7fbff;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.25;
+  box-sizing: border-box;
+  overflow: visible;
+  justify-content: center;
+}
+
+body.animatrix-list-view #animatrix .card.list-card.selected {
+  min-height: 68px;
+  padding: 16px 18px;
+  font-size: 33px;
+  border-color: #0ff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.35);
+}
+
+body.animatrix-list-view #animatrix .card.list-card .list-card-label {
+  display: block;
+  width: 100%;
+  color: #e7fbff;
+  font: inherit;
+  line-height: inherit;
+  text-align: center;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+body.animatrix-list-view #animatrix .card.list-card:hover {
+  transform: none;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.35);
 }
 
 body.animatrix-list-view > #detailsModal {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   position: sticky;
   top: 0;
   inset: auto;
@@ -1225,7 +1315,8 @@ body.animatrix-list-view > #detailsModal {
   background: transparent;
   z-index: 1;
   padding: 10px 20px 20px 0;
-  height: calc(100vh - 180px);
+  height: 100%;
+  min-height: 0;
 }
 
 body.animatrix-list-view > #detailsModal.hidden {
@@ -1235,8 +1326,163 @@ body.animatrix-list-view > #detailsModal.hidden {
 body.animatrix-list-view > #detailsModal .modal-content {
   width: 100%;
   max-width: none;
-  max-height: 100%;
+  height: 100%;
+  max-height: none;
   margin: 0;
+  overflow-y: auto;
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+
+body.animatrix-list-view > #detailsModal .modal-body {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.82fr) minmax(190px, 1.18fr);
+  gap: 6px 12px;
+  align-items: center;
+  font-size: 0.76em;
+}
+
+body.animatrix-list-view > #detailsModal .image-container {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+body.animatrix-list-view > #detailsModal .mate-vitals {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: stretch;
+  margin: 0;
+}
+
+body.animatrix-list-view > #detailsModal .mate-vitals.biome-bg {
+  min-height: 92px;
+  padding: 8px;
+}
+
+body.animatrix-list-view > #detailsModal .mate-meta {
+  gap: 0;
+  margin: 0;
+  font-size: 0.92em;
+  line-height: 1.15;
+}
+
+body.animatrix-list-view > #detailsModal .mate-meta p {
+  margin: 0;
+}
+
+body.animatrix-list-view > #detailsModal .dex-tabs,
+body.animatrix-list-view > #detailsModal #mateDexText,
+body.animatrix-list-view > #detailsModal #abilityContainer,
+body.animatrix-list-view > #detailsModal #listTypesContainer,
+body.animatrix-list-view > #detailsModal #paraTypesContainer,
+body.animatrix-list-view > #detailsModal #evolutionsContainer {
+  grid-column: 1 / -1;
+}
+
+body.animatrix-list-view > #detailsModal #sacredContainer,
+body.animatrix-list-view > #detailsModal #ModeContainer {
+  display: none;
+}
+
+body.animatrix-list-view > #detailsModal .modal-footer {
+  display: none;
+}
+
+body.animatrix-list-view > #detailsModal #mateTypes,
+body.animatrix-list-view > #detailsModal #modeBadge {
+  display: none;
+}
+
+body.animatrix-list-view > #detailsModal #closeModal {
+  display: none;
+}
+
+body.animatrix-list-view > #detailsModal .modal-header h2 {
+  margin: 0 0 4px;
+  line-height: 1.05;
+  font-size: 1.25em;
+}
+
+body.animatrix-list-view > #detailsModal .image-container img {
+  width: min(180px, 100%) !important;
+  height: min(180px, 28vh) !important;
+}
+
+body.animatrix-list-view > #detailsModal .dex-tabs {
+  gap: 5px;
+}
+
+body.animatrix-list-view > #detailsModal .dex-tab {
+  font-size: 28px;
+  padding: 8px 14px;
+}
+
+body.animatrix-list-view > #detailsModal #mateDexText,
+body.animatrix-list-view > #detailsModal #abilityContainer,
+body.animatrix-list-view > #detailsModal #listTypesContainer,
+body.animatrix-list-view > #detailsModal #paraTypesContainer,
+body.animatrix-list-view > #detailsModal #evolutionsContainer {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  line-height: 1.15;
+}
+
+body.animatrix-list-view > #detailsModal #listTypesContainer,
+body.animatrix-list-view > #detailsModal #paraTypesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px 7px;
+  line-height: 1.25;
+}
+
+body.animatrix-list-view > #detailsModal #listTypesContainer b,
+body.animatrix-list-view > #detailsModal #paraTypesContainer b {
+  margin-right: 2px;
+}
+
+body.animatrix-list-view > #detailsModal #listTypesContainer span,
+body.animatrix-list-view > #detailsModal #paraTypesContainer span {
+  line-height: 1.1;
+  padding: 3px 7px;
+  margin: 0;
+}
+
+body.animatrix-list-view > #detailsModal #evolutionsContainer {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body.animatrix-list-view > #detailsModal #evolutionsContainer img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+body.animatrix-list-view > #detailsModal .evo-node {
+  min-width: 62px;
+}
+
+body.animatrix-list-view > #detailsModal .evo-line {
+  gap: 5px;
+  margin: 2px 0;
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+body.animatrix-list-view > #detailsModal .evo-link {
+  min-width: 40px;
+  margin-top: 8px;
+}
+
+body.animatrix-list-view > #detailsModal .evo-name {
+  display: none;
+}
+
+body.animatrix-list-view > #detailsModal .evo-level {
+  font-size: 0.68em;
 }
 
 @media (max-width: 1100px) {
@@ -1257,6 +1503,10 @@ body.animatrix-list-view > #detailsModal .modal-content {
     padding: 0;
     height: auto;
     z-index: 100;
+  }
+
+  body.animatrix-list-view > #detailsModal .modal-body {
+    display: block;
   }
 }
 
@@ -1359,6 +1609,33 @@ body.ost-page .filter-panel {
   justify-content: center;
   margin-top: 8px;
   margin-bottom: 8px;
+}
+.mate-vitals.biome-bg {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 160px;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  border-radius: 8px;
+  padding: 14px;
+  align-items: center;
+}
+.mate-vitals.biome-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--biome-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+  z-index: -2;
+}
+.mate-vitals.biome-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+  z-index: -1;
 }
 .mode-badge {
   margin-top: 6px;

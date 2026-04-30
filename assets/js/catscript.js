@@ -4,11 +4,16 @@ let allData = {}; // store all JSON data for cross-referencing
 let typesData = [];
 let abilitiesData = [];
 let currentMateIndex = 0;
+let currentDetailMate = null;
+let listCostumeMode = false;
+let listCostumeReturnMode = "base";
+let listCostumeSourceMate = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   const animatrix = document.getElementById("animatrix");
   const gridView = document.getElementById("gridView");
   const listView = document.getElementById("listView");
+  const listModeActions = document.getElementById("listModeActions");
   const search = document.getElementById("search");
 
   // custom filter UI elements
@@ -179,6 +184,123 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // mode buttons
   const modeButtons = Array.from(document.querySelectorAll(".mode-btn"));
+
+  function isListViewActive() {
+    return document.body.classList.contains("animatrix-list-view");
+  }
+
+  function formatListCardId(mate) {
+    const displayId = getMateDisplayId(mate);
+    if (displayId === null) return "????";
+    const sign = displayId < 0 ? "-" : "";
+    return `${sign}${String(Math.abs(displayId)).padStart(4, "0")}`;
+  }
+
+  function setMainModeButton(mode) {
+    const match = modeButtons.find(b => b.dataset.mode === mode);
+    if (!match) return;
+    modeButtons.forEach(b => b.classList.remove("active"));
+    match.classList.add("active");
+  }
+
+  function findRelatedModeMate(mate, mode) {
+    if (!mate || !Array.isArray(allData[mode])) return null;
+    const mateRef = getResolvedMateRef(mate);
+    const forms = crossTabFormsByRef.get(mateRef) || [];
+    const exact = forms.find(form => form.mode === mode && !isMode(form));
+    if (exact) return exact;
+
+    const ref = getMateRef(mate);
+    return allData[mode]
+      .map(form => ({ ...form, mode }))
+      .find(form => !isMode(form) && (getMateRef(form) === ref || getResolvedMateRef(form) === mateRef)) || null;
+  }
+
+  function getRelatedCostumes(mate) {
+    if (!mate || !Array.isArray(allData.costumes)) return [];
+    const mateRef = getResolvedMateRef(mate);
+    const ownRef = getMateRef(mate);
+    return allData.costumes
+      .map(form => ({ ...form, mode: "costumes" }))
+      .filter(form => {
+        if (isMode(form)) return false;
+        const costumeRef = getMateRef(form);
+        return costumeRef === mateRef || costumeRef === ownRef || getResolvedMateRef(form) === mateRef;
+      })
+      .sort(compareByDisplayOrder);
+  }
+
+  function switchToRelatedMode(mode) {
+    const targetMate = findRelatedModeMate(currentDetailMate, mode);
+    if (!targetMate) return;
+    listCostumeMode = false;
+    listCostumeSourceMate = null;
+    openDetails(targetMate);
+  }
+
+  function updateListModeActions() {
+    if (!listModeActions) return;
+    listModeActions.hidden = !isListViewActive();
+    if (listModeActions.hidden) return;
+
+    listModeActions.innerHTML = "";
+    if (listCostumeMode) {
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.textContent = "X";
+      closeBtn.title = "Close costume list";
+      closeBtn.addEventListener("click", () => {
+        const sourceMate = listCostumeSourceMate;
+        listCostumeMode = false;
+        listCostumeSourceMate = null;
+        loadMode("base");
+        setMainModeButton("base");
+        if (sourceMate) openDetails(sourceMate);
+      });
+      listModeActions.appendChild(closeBtn);
+      return;
+    }
+
+    const detailMode = currentDetailMate?.mode || currentMode;
+    const actions = [];
+    if (detailMode === "sacred" || detailMode === "ace" || detailMode === "costumes") {
+      actions.push({ label: "Base", mode: "base" });
+    }
+    if (detailMode !== "sacred") {
+      actions.push({ label: "Sacred", mode: "sacred" });
+    }
+    if (detailMode !== "ace") {
+      actions.push({ label: "Ace", mode: "ace" });
+    }
+    actions.push({ label: "Costumes", mode: "costumes" });
+
+    actions.forEach(action => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = action.label;
+      if (action.mode !== "costumes" && !findRelatedModeMate(currentDetailMate, action.mode)) {
+        btn.disabled = true;
+      }
+      if (action.mode === "costumes" && !getRelatedCostumes(currentDetailMate).length) {
+        btn.disabled = true;
+      }
+      btn.addEventListener("click", () => {
+        if (action.mode === "costumes") {
+          if (!currentDetailMate) return;
+          listCostumeMode = true;
+          listCostumeReturnMode = currentMode === "costumes" ? (listCostumeReturnMode || "base") : currentMode;
+          listCostumeSourceMate = currentDetailMate;
+          loadMode("costumes");
+          setMainModeButton("costumes");
+          updateListModeActions();
+          return;
+        }
+
+        switchToRelatedMode(action.mode);
+      });
+      listModeActions.appendChild(btn);
+    });
+  }
 
   // Load types first
   fetch("data/types.json")
@@ -495,9 +617,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mode switching
   modeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
+      listCostumeMode = false;
       modeButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       loadMode(btn.dataset.mode);
+      updateListModeActions();
     });
   });
 
@@ -729,9 +853,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadMode(mode) {
     currentMode = mode;
     setBiomeFilterVisibility(mode);
-    const sourceData = mode === "database"
+    const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database" && mode !== "npc"
+      ? "base"
+      : mode;
+    const sourceData = listSidebarMode === "database"
       ? getDatabaseMates()
-      : (Array.isArray(allData[mode]) ? allData[mode] : []);
+      : (listCostumeMode && listSidebarMode === "costumes")
+        ? getRelatedCostumes(listCostumeSourceMate || currentDetailMate)
+      : (Array.isArray(allData[listSidebarMode]) ? allData[listSidebarMode].map(mate => ({ ...mate, mode: listSidebarMode })) : []);
     animatrixData = sourceData
       .filter(mate => !isMode(mate))
       .sort(compareByDisplayOrder);
@@ -740,6 +869,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderAnimatrix() {
     animatrix.innerHTML = "";
+    updateListModeActions();
+    const listViewActive = isListViewActive();
     const term = (search.value || "").trim().toLowerCase();
     const selectedTypes = getCheckedValues(typeOptionsEl);
     const selectedTypes2 = getCheckedValues(type2OptionsEl);
@@ -747,10 +878,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
 
     const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
-    animatrixData
+    const filteredMates = animatrixData
       .filter(mate => {
         if (!mate) return false;
         if (isMode(mate)) return false;
+        if (listViewActive) return true;
         if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
         if (selectedTypes.length) {
           if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -768,37 +900,63 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!statusPassesFilter(mate)) return false;
         if (currentMode === "npc" && mate.cosmark === "Y") return false;
         return true;
-      })
-      .forEach(mate => {
+      });
+
+    if (!filteredMates.length) {
+      const empty = document.createElement("div");
+      empty.className = "cat-empty";
+      empty.textContent = listCostumeMode ? "No costumes for this animate." : "No matching animates.";
+      animatrix.appendChild(empty);
+      return;
+    }
+
+    filteredMates.forEach(mate => {
         const card = document.createElement("div");
         card.className = "card";
-        if (isParagon(mate)) card.classList.add("rarity-paragon");
+        card.__mate = mate;
+        const listViewCard = isListViewActive();
+        if (listViewCard) card.classList.add("list-card");
+        if (listViewCard && currentDetailMate && sameMateForList(mate, currentDetailMate)) {
+          card.classList.add("selected");
+        }
+        if (!listViewCard && isParagon(mate)) card.classList.add("rarity-paragon");
         const firstBiome = getMateBiomes(mate)[0];
-        if (firstBiome && modeUsesBiomeArt(currentMode)) {
+        if (!listViewCard && firstBiome && modeUsesBiomeArt(currentMode)) {
           card.classList.add("biome-bg");
           card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
         }
-        applyMateStyle(card, mate);
+        if (!listViewCard) {
+          applyMateStyle(card, mate);
+        }
 
         const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
         const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
         const displayId = getMateDisplayId(mate);
-        const idText = displayId === null ? "?" : String(displayId);
+        const idText = listViewCard ? formatListCardId(mate) : (displayId === null ? "?" : String(displayId));
         const shiverBadge = isShiver(mate)
           ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
           : "";
 
-        // Inner HTML for the card
-        card.innerHTML = `
-          <div class="card-id">${escapeHtml(idText)}</div>
-          ${shiverBadge}
-          <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
-          <h3>${displayName}</h3>
-          ${(mate.event === "fools") ? "" : `
-            <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
-            ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""} 
-          `}
-        `;
+        if (listViewCard) {
+          const rowLabel = document.createElement("span");
+          rowLabel.className = "list-card-label";
+          rowLabel.textContent = currentMode === "costumes"
+            ? (mate.name || "")
+            : `${idText} - ${mate.name || ""}${lostImage ? "*" : ""}`;
+          card.appendChild(rowLabel);
+        } else {
+          // Inner HTML for the card
+          card.innerHTML = `
+            <div class="card-id">${escapeHtml(idText)}</div>
+            ${shiverBadge}
+            <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
+            <h3>${displayName}</h3>
+            ${(mate.event === "fools") ? "" : `
+              <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
+              ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""} 
+            `}
+          `;
+        }
 
         card.addEventListener("click", () => openDetails(mate));
         animatrix.appendChild(card);
@@ -811,6 +969,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return (allData.event || []).map(m => ({ ...m, mode: "event", sourceMode: m.sourceMode }));
     }
     return (allData[mode] || []).map(m => ({ ...m, mode }));
+  }
+
+  function sameMateForList(a, b) {
+    if (!a || !b) return false;
+    if ((a.mode || currentMode) === "costumes" || (b.mode || currentMode) === "costumes") {
+      return (a.name || "") === (b.name || "") && getMateRef(a) === getMateRef(b);
+    }
+    return getResolvedMateRef(a) === getResolvedMateRef(b);
+  }
+
+  function updateListSelectionClasses() {
+    if (!isListViewActive()) return;
+    animatrix.querySelectorAll(".card.list-card").forEach(card => {
+      card.classList.toggle("selected", sameMateForList(card.__mate, currentDetailMate));
+    });
   }
 
   function typeTag(typeName) {
@@ -906,16 +1079,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   gridView.addEventListener("click", () => {
+    listCostumeMode = false;
     gridView.classList.add("active");
     listView.classList.remove("active");
     animatrix.className = "grid";
     document.body.classList.remove("animatrix-list-view");
+    updateListModeActions();
+    renderAnimatrix();
   });
   listView.addEventListener("click", () => {
     listView.classList.add("active");
     gridView.classList.remove("active");
     animatrix.className = "list";
     document.body.classList.add("animatrix-list-view");
+    listCostumeMode = false;
+    listCostumeSourceMate = null;
+    loadMode("base");
+    setMainModeButton("base");
   });
 
   search.addEventListener("input", renderAnimatrix);
@@ -973,7 +1153,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // set mode badge and activate mode button if possible
     const mateMode = mate.mode || currentMode;
     setModeBadge(mateMode, mate);
-    if (currentMode !== "database") {
+    if (isListViewActive() && mateMode !== "costumes") {
+      setMainModeButton("base");
+    } else if (currentMode !== "database") {
       activateModeButton(mateMode);
     }
 
@@ -986,6 +1168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentMateIndex = idx >= 0 ? idx : 0;
 
     updateDetails(mate);
+    updateListSelectionClasses();
     modal.classList.remove("hidden");
   }
 
@@ -1024,6 +1207,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function updateDetails(mate) {
+    currentDetailMate = mate;
+    updateListModeActions();
     const modalContent =
     document.querySelector("#detailsModal .modal-content") ||
     document.getElementById("detailsModal");
@@ -1041,6 +1226,14 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     }
     document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
+    const mateVitals = document.getElementById("mateVitals");
+    const detailBiome = getMateBiomes(mate)[0];
+    mateVitals.classList.toggle("biome-bg", Boolean(detailBiome));
+    if (detailBiome) {
+      mateVitals.style.setProperty("--biome-image", `url('${biomeImagePath(detailBiome)}')`);
+    } else {
+      mateVitals.style.removeProperty("--biome-image");
+    }
 
     // Types (hide for NPCs)
     document.getElementById("mateTypes").innerHTML = currentMode !== "npc"
@@ -1106,6 +1299,13 @@ document.addEventListener("DOMContentLoaded", () => {
           : `<b>Ability:</b> <div>${escapeHtml(mate.ability)}</div>`;
       } else if (currentMode === "costumes") {
         abilityContainer.innerHTML = renderObtainmentHtml(mate);
+      }
+
+      const listTypesContainer = document.getElementById("listTypesContainer");
+      if (listTypesContainer) {
+        listTypesContainer.innerHTML = isListViewActive() && currentMode !== "npc"
+          ? `<b>Types:</b> ${(mate.types || []).map(t => typeTag(t)).join("")}`
+          : "";
       }
 
       // Para types
@@ -1254,6 +1454,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Alternate Forms: same ref across tabs, excluding ncanon and Mode entries
     const sacredC = document.getElementById("sacredContainer");
     sacredC.innerHTML = "";
+    if (isListViewActive()) {
+      document.getElementById("ModeContainer").innerHTML = "";
+      return;
+    }
     const mateMode = mate.mode || currentMode;
     const modeForms = getMateModePool(mate);
     {
