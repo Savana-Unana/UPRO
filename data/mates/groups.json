@@ -26,6 +26,8 @@
 {"name":"Their Favorites","animates":["Capsule Skip","Super Surfer Kal","Dodeca Chip","Cloaked Maya"]},
 {"type":"bonus","name":"Counting Sheep","description":"Evening goes 1.15x faster.","animates":["Growool","Furgery","Weredyagoat","Babahl","Lambabeem","Bansheep"]},
 {"name":"Single Squad","animates":["Ghouliath","Tralgon","Alpacalypse","Borgo Slor","Empire Vigilith","Bewag","Spongus","Symbrex","Aestereg","Cuggaeous","Lemody","Pydromaglar","Exosteel","Cuddol","Cosmicanine","TwoMew.png.jpeg.gif.webp.jif","Shiver Dupes","Shiver Molds","Waxilo","Drawrlin"]},
+{"name":"Paragons","animates":["Ghouliath","Borgo Slor","Spongus","Aestereg","Lemody","Pydromaglar","Exosteel","Cuddol","Cosmicanine","TwoMew.png.jpeg.gif.webp.jif"]},
+{"name":"Loners","animates":["Tralgon","Alpacalypse","Empire Vigilith","Bewag","Symbrex","Cuggaeous","Shiver Dupes","Shiver Molds","Waxilo","Drawrlin"]},
 {"name":"Lock \u0027em Up","animates":["Vigilith","Empire Vigilith","Agilith","Lumilox","Donkfine"]},
 {"type":"bonus","name":"Coats of Armor","description":"Skip takes 20% less damage.","animates":["Exosteel","Perchancealot","Bagueezer"]},
 {"name":"Lucky Charms","animates":["Green Blarb","Plucked Chancix"]},
