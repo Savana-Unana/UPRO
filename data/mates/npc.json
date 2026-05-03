@@ -37,6 +37,7 @@
 {"id":"CC","name":"Cart CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":null,"Description":"No entry yet","cosmark":"Y","versions":"Demo 7"},
 {"id":"CC","name":"Backwards CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":null,"Description":"No entry yet","cosmark":"Y","versions":"Demo 4"},
 {"id":"CC","name":"Lucky Block CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":"Mario Bros.","Description":"No entry yet","cosmark":"Y","versions":"Demo 2"},
+{"id":"CC","name":"Cardboard CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":null,"Description":"No entry yet","cosmark":"Y","versions":"Demo 1"},
 {"id":"CC","name":"Origin CC","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":"Ghostbusters","Description":"No entry yet","cosmark":"Y","versions":"Demo 6"},
 {"id":"Kal","name":"Kal","image":"assets/images/mates/npc/Kal.gif","obtainment":[{"quest":[{"quest-name":"","quest desc":"Unlocked when Kal joins the party."}]}],"reference":null,"Description":"The Normal sprites.","cosmark":"N","versions":"Demo 10"},
 {"id":"Kal","name":"Super Surfer Kal","image":"assets/images/mates/npc/YouKnowWhoIAm.gif","obtainment":[],"reference":"Gerrindamo","Description":"No entry yet","cosmark":"Y","versions":"Demo 10"},

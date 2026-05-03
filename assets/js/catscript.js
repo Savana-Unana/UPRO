@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prevMate = document.getElementById("prevMate");
   const modeBadge = document.getElementById("modeBadge");
   const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
+  const eventOrder = { winter: 0, fools: 1, halloween: 2, anti: 3 };
   const databaseModes = ["base", "sacred", "ace", "goner", "event", "costumes", "npc"];
   const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5, npc: 6 };
   const biomeOptions = [
@@ -102,6 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!normalized.length) return ["Normal"];
     if (normalized.length > 1) return normalized.filter(r => r !== "Normal");
     return normalized;
+  }
+  function getParagonOf(mate) {
+    return String(mate?.paragonOf || "").trim();
   }
   const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);
   const isMode = mate => hasRarity(mate, "Mode");
@@ -341,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Object.entries(allData).forEach(([mode, mates]) => {
           if (mode === "event") return; // skip event itself
           allData[mode] = mates.filter(mate => {
-            if (mate.event !== undefined && mate.event !== null) {
+            if (mode === "base" && mate.event !== undefined && mate.event !== null) {
               mate.sourceMode = mode;    // preserve original tab for event-specific logic
               mate.mode = "event";       // mark it as event
               mate.__mode = "event";
@@ -635,7 +639,32 @@ document.addEventListener("DOMContentLoaded", () => {
     return idx >= 0 ? idx : 999;
   }
 
+  function getEventKey(mate) {
+    const eventKey = String(mate?.event || "").trim().toLowerCase();
+    if (eventKey === "april fools") return "fools";
+    return eventKey;
+  }
+
+  function getEventRank(mate) {
+    return eventOrder[getEventKey(mate)] ?? 999;
+  }
+
   function compareByDisplayOrder(a, b) {
+    const aMode = a.mode || a.__mode || "";
+    const bMode = b.mode || b.__mode || "";
+    if (aMode === "event" && bMode === "event") {
+      const aEventRank = getEventRank(a);
+      const bEventRank = getEventRank(b);
+      if (aEventRank !== bEventRank) return aEventRank - bEventRank;
+
+      const aOrder = Number(a.__order);
+      const bOrder = Number(b.__order);
+      const aHasOrder = Number.isInteger(aOrder);
+      const bHasOrder = Number.isInteger(bOrder);
+      if (aHasOrder && bHasOrder && aOrder !== bOrder) return aOrder - bOrder;
+      if (aHasOrder !== bHasOrder) return aHasOrder ? -1 : 1;
+    }
+
     const aId = getMateDisplayId(a);
     const bId = getMateDisplayId(b);
     const aHasId = aId !== null;
@@ -653,8 +682,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const bVersionRank = getVersionRank(b);
     if (aVersionRank !== bVersionRank) return aVersionRank - bVersionRank;
 
-    const aMode = a.mode || a.__mode || "";
-    const bMode = b.mode || b.__mode || "";
     const aRank = databaseModeRank[aMode] ?? 999;
     const bRank = databaseModeRank[bMode] ?? 999;
     if (aRank !== bRank) return aRank - bRank;
@@ -997,8 +1024,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
     const height = escapeHtml(mate.height || "Unknown");
     const color = escapeHtml(mate.color || "Unknown");
+    const paragonOf = isParagon(mate) ? getParagonOf(mate) : "";
+    const paragonHtml = paragonOf ? `<p><b>Paragon of:</b> ${escapeHtml(paragonOf)}</p>` : "";
     const locationLabel = currentMode === "database" ? "Versions" : "Biomes";
-    return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+    return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${paragonHtml}</div>`;
   }
 
   function asArray(value) {
@@ -1181,20 +1210,27 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.fontFamily = "";
     el.style.border = "";
     el.style.removeProperty("--outline-color");
+    el.classList.remove("event-anti");
+    el.classList.remove("event-fools");
 
     // event styles
-    if (mate.event === "halloween") {
+    const eventKey = getEventKey(mate);
+    if (eventKey === "halloween") {
       el.style.backgroundColor = "#4B0082";
       el.style.color = "#ff6c1c";
     } 
-    else if (mate.event === "winter") {
+    else if (eventKey === "winter") {
       el.style.backgroundColor = "#001f4d";
       el.style.color = "#cce6ff";
     } 
-    else if (mate.event === "fools") {
+    else if (eventKey === "fools") {
       el.style.backgroundColor = "#fff";
       el.style.color = "#000";
       el.style.fontFamily = "Arial, sans-serif";
+      el.classList.add("event-fools");
+    }
+    else if (eventKey === "anti") {
+      el.classList.add("event-anti");
     }
 
     // primary type border

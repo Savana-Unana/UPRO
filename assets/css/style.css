@@ -1164,6 +1164,25 @@ main.list {
     0 0 18px var(--outline-color, #0ff),
     0 0 28px var(--outline-color, #0ff);
 }
+.event-anti {
+  filter: invert(1);
+}
+.event-anti img {
+  filter: invert(1);
+}
+.event-fools button {
+  background: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+  border-color: #000;
+  box-shadow: none;
+}
+.event-fools button:hover,
+.event-fools .dex-tab.active,
+.event-fools .nav-btn {
+  background: #000;
+  color: #fff;
+}
 .mate-meta {
   display: flex;
   flex-direction: column;
@@ -1676,6 +1695,7 @@ body.ost-page .filter-panel {
 
 .nav-btn { margin: 10px; background: #0ff; color: #000; }
 
+#listTypesContainer span,
 #paraTypesContainer span {
   border: 1px solid #0ff;
   border-radius: 6px;
