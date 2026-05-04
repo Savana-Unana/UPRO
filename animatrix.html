@@ -60,6 +60,28 @@
         </div>
       </div>
 
+      <!-- Version filters -->
+      <div class="multi-filter" id="versionFilterWrapper">
+        <button class="filter-toggle" id="versionToggle">Versions ▾</button>
+        <div class="filter-panel" id="versionPanel" aria-hidden="true">
+          <div class="panel-actions">
+            <button id="clearVersions" class="clear-btn">Clear</button>
+          </div>
+          <div class="options" id="versionOptions"></div>
+        </div>
+      </div>
+
+      <!-- Database source tab filters -->
+      <div class="multi-filter" id="databaseTabFilterWrapper" style="display:none;">
+        <button class="filter-toggle" id="databaseTabToggle">Tabs ▾</button>
+        <div class="filter-panel" id="databaseTabPanel" aria-hidden="true">
+          <div class="panel-actions">
+            <button id="clearDatabaseTabs" class="clear-btn">Clear</button>
+          </div>
+          <div class="options" id="databaseTabOptions"></div>
+        </div>
+      </div>
+
       <!-- Base/Event biome filters -->
       <div class="multi-filter" id="biomeFilterWrapper">
         <button class="filter-toggle" id="biomeToggle">Biome ▾</button>

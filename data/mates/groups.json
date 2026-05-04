@@ -32,6 +32,7 @@
 {"type":"bonus","name":"Coats of Armor","description":"Skip takes 20% less damage.","animates":["Exosteel","Perchancealot","Bagueezer"]},
 {"name":"Lucky Charms","animates":["Green Blarb","Plucked Chancix"]},
 {"name":"BALD","animates":["Bald Ghouliath","Plucked Chancix"]},
+{"name":"Eye Doctor","animates":["Dodecadog","Opticat","Sceline","Ommewtan","Ghouliath","Coconkurer","Sapphae","Pydromaglar","Shiver Dupes","Dopplergrail"]},
 {"name":"","animates":[""]},
 {"name":"","animates":[""]}
 ]

@@ -30,6 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const paraPanel = document.getElementById("paraPanel");
   const paraOptionsEl = document.getElementById("paraOptions");
   const clearParas = document.getElementById("clearParas");
+  const versionToggle = document.getElementById("versionToggle");
+  const versionPanel = document.getElementById("versionPanel");
+  const versionOptionsEl = document.getElementById("versionOptions");
+  const clearVersions = document.getElementById("clearVersions");
+  const databaseTabFilterWrapper = document.getElementById("databaseTabFilterWrapper");
+  const databaseTabToggle = document.getElementById("databaseTabToggle");
+  const databaseTabPanel = document.getElementById("databaseTabPanel");
+  const databaseTabOptionsEl = document.getElementById("databaseTabOptions");
+  const clearDatabaseTabs = document.getElementById("clearDatabaseTabs");
   const biomeFilterWrapper = document.getElementById("biomeFilterWrapper");
   const biomeToggle = document.getElementById("biomeToggle");
   const biomePanel = document.getElementById("biomePanel");
@@ -47,6 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
   const eventOrder = { winter: 0, fools: 1, halloween: 2, anti: 3 };
   const databaseModes = ["base", "sacred", "ace", "goner", "event", "costumes", "npc"];
+  const databaseModeLabels = {
+    base: "Base",
+    sacred: "Sacred",
+    ace: "Ace",
+    goner: "Goner",
+    event: "Event",
+    costumes: "Costumes",
+    npc: "NPCs"
+  };
   const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5, npc: 6 };
   const biomeOptions = [
     "Lake",
@@ -314,6 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
       populateFilterOptions(typesData, typeOptionsEl);
       populateFilterOptions(typesData, type2OptionsEl);
       populateFilterOptions(typesData, paraOptionsEl);
+      populateFilterOptions(databaseModes.map(mode => ({ name: databaseModeLabels[mode], value: mode })), databaseTabOptionsEl);
       populateFilterOptions(biomeOptions, biomeOptionsEl);
 
       // load abilities and all mode JSONs
@@ -359,6 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
         annotateMateOrder("event", allData.event);
         rebuildRefIndexes();
         rebuildVersionOptions();
+        populateFilterOptions(versionOptions, versionOptionsEl);
 
         loadMode("base");
       })
@@ -525,10 +545,11 @@ document.addEventListener("DOMContentLoaded", () => {
     container.innerHTML = "";
     types.forEach(t => {
       const label = typeof t === "string" ? t : t?.name;
+      const value = typeof t === "string" ? t : (t?.value || t?.name);
       if (!label) return;
       const row = document.createElement("label");
       row.className = "opt";
-      row.innerHTML = `<input type="checkbox" value="${escapeHtml(label)}"> <span>${escapeHtml(label)}</span>`;
+      row.innerHTML = `<input type="checkbox" value="${escapeHtml(value)}"> <span>${escapeHtml(label)}</span>`;
       container.appendChild(row);
     });
   }
@@ -570,6 +591,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupToggle(typeToggle, typePanel);
   setupToggle(type2Toggle, type2Panel);
   setupToggle(paraToggle, paraPanel);
+  setupToggle(versionToggle, versionPanel);
+  setupToggle(databaseTabToggle, databaseTabPanel);
   setupToggle(biomeToggle, biomePanel);
   setupToggle(statusToggle, statusPanel);
 
@@ -606,6 +629,14 @@ document.addEventListener("DOMContentLoaded", () => {
     clearCheckboxes(paraOptionsEl);
     renderAnimatrix();
   });
+  clearVersions.addEventListener("click", () => {
+    clearCheckboxes(versionOptionsEl);
+    renderAnimatrix();
+  });
+  clearDatabaseTabs.addEventListener("click", () => {
+    clearCheckboxes(databaseTabOptionsEl);
+    loadMode(currentMode);
+  });
   clearBiomes.addEventListener("click", () => {
     clearCheckboxes(biomeOptionsEl);
     renderAnimatrix();
@@ -615,6 +646,8 @@ document.addEventListener("DOMContentLoaded", () => {
   typeOptionsEl.addEventListener("change", renderAnimatrix);
   type2OptionsEl.addEventListener("change", renderAnimatrix);
   paraOptionsEl.addEventListener("change", renderAnimatrix);
+  versionOptionsEl.addEventListener("change", renderAnimatrix);
+  databaseTabOptionsEl.addEventListener("change", () => loadMode(currentMode));
   biomeOptionsEl.addEventListener("change", renderAnimatrix);
   statusOptionsEl.addEventListener("change", renderAnimatrix);
 
@@ -699,7 +732,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getDatabaseMates() {
-    return databaseModes.flatMap(mode =>
+    const selectedModes = getCheckedValues(databaseTabOptionsEl);
+    const modesToShow = selectedModes.length
+      ? databaseModes.filter(mode => selectedModes.includes(mode))
+      : databaseModes;
+
+    return modesToShow.flatMap(mode =>
       (allData[mode] || [])
         .filter(mate => !(mode === "event" && mate.sourceMode === "ncanon"))
         .map(mate => ({ ...mate, mode }))
@@ -828,7 +866,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function modeSupportsBiomes(mode) {
-    return mode !== "npc" && mode !== "costumes";
+    return mode !== "npc" && mode !== "database" && mode !== "costumes";
   }
 
   function modeUsesBiomeArt(mode) {
@@ -838,11 +876,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function setBiomeFilterVisibility(mode) {
     const showBiomes = modeSupportsBiomes(mode);
     if (biomeFilterWrapper) biomeFilterWrapper.style.display = showBiomes ? "inline-block" : "none";
-    if (biomeToggle) biomeToggle.textContent = mode === "database" ? "Versions ▾" : "Biome ▾";
-    populateFilterOptions(mode === "database" ? versionOptions : biomeOptions, biomeOptionsEl);
+    if (biomeToggle) biomeToggle.textContent = "Biome ▾";
+    populateFilterOptions(biomeOptions, biomeOptionsEl);
     if (!showBiomes) {
       biomePanel.classList.remove("open");
       biomePanel.setAttribute("aria-hidden", "true");
+    }
+  }
+
+  function setDatabaseTabFilterVisibility(mode) {
+    const showTabs = mode === "database";
+    if (databaseTabFilterWrapper) databaseTabFilterWrapper.style.display = showTabs ? "inline-block" : "none";
+    if (!showTabs) {
+      databaseTabPanel.classList.remove("open");
+      databaseTabPanel.setAttribute("aria-hidden", "true");
     }
   }
 
@@ -872,6 +919,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return selectedBiomes.some(b => biomes.includes(b));
   }
 
+  function versionsPassFilter(mate, selectedVersions) {
+    if (!Array.isArray(selectedVersions) || !selectedVersions.length) return true;
+    const versions = getMateVersions(mate);
+    return selectedVersions.some(version => versions.includes(version));
+  }
+
   function biomeImagePath(biomeName) {
     if (!biomeName) return "";
     return `assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
@@ -880,6 +933,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadMode(mode) {
     currentMode = mode;
     setBiomeFilterVisibility(mode);
+    setDatabaseTabFilterVisibility(mode);
     const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database" && mode !== "npc"
       ? "base"
       : mode;
@@ -902,6 +956,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedTypes = getCheckedValues(typeOptionsEl);
     const selectedTypes2 = getCheckedValues(type2OptionsEl);
     const selectedParas = getCheckedValues(paraOptionsEl);
+    const selectedVersions = getCheckedValues(versionOptionsEl);
     const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
 
     const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
@@ -920,6 +975,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (selectedParas.length) {
           if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
         }
+        if (!versionsPassFilter(mate, selectedVersions)) return false;
         if (modeSupportsBiomes(currentMode)) {
           const mateBiomes = getMateBiomes(mate);
           if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
@@ -1140,6 +1196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedTypes = getCheckedValues(typeOptionsEl);
     const selectedTypes2 = getCheckedValues(type2OptionsEl);
     const selectedParas = getCheckedValues(paraOptionsEl);
+    const selectedVersions = getCheckedValues(versionOptionsEl);
     const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
     
 
@@ -1159,6 +1216,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedParas.length) {
         if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
       }
+      if (!versionsPassFilter(mate, selectedVersions)) return false;
       if (modeSupportsBiomes(currentMode)) {
         const mateBiomes = getMateBiomes(mate);
         if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
