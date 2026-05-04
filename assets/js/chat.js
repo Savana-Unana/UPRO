@@ -34,6 +34,19 @@ const DEFAULTS = { spacing: -20, scale: 5 };
 
 // ====== Utilities ======
 const uid = () => Math.random().toString(36).slice(2, 10);
+function normalizeAssetSrc(src) {
+  const value = String(src || "");
+  if (!value) return "";
+
+  const oldBoxMatch = value.match(/(?:^|\/)IconTest\/boxes\/([^/?#]+)/i) || value.match(/^boxes\/([^/?#]+)/i);
+  if (oldBoxMatch) return `assets/images/dialogue/boxes/${oldBoxMatch[1]}`;
+
+  const oldIconMatch = value.match(/(?:^|\/)IconTest\/icons\/([^/?#]+)/i) || value.match(/^icons\/([^/?#]+)/i);
+  if (oldIconMatch) return `assets/images/dialogue/icons/${oldIconMatch[1]}`;
+
+  return value;
+}
+
 const saveState = () => {
   localStorage.setItem(LS_KEYS.CARDS, JSON.stringify(cards));
   localStorage.setItem(LS_KEYS.ACTIVE, activeId || "");
@@ -42,7 +55,14 @@ function loadState() {
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEYS.CARDS) || "[]");
     const a = localStorage.getItem(LS_KEYS.ACTIVE) || "";
-    if (Array.isArray(c) && c.length) { cards = c; activeId = a || c[0].id; }
+    if (Array.isArray(c) && c.length) {
+      cards = c.map(card => ({
+        ...card,
+        boxSrc: normalizeAssetSrc(card.boxSrc),
+        iconSrc: normalizeAssetSrc(card.iconSrc)
+      }));
+      activeId = a || c[0].id;
+    }
   } catch {}
 }
 const getActiveCard = () => cards.find(c => c.id === activeId);
@@ -138,11 +158,11 @@ function getFirstIconTabKey() {
 }
 function getFirstBoxSrc() {
   const tab = getFirstBoxTabKey(); const list = (BOXES && BOXES[tab]) || [];
-  return list.length ? `boxes/${list[0]}` : "";
+  return list.length ? `assets/images/dialogue/boxes/${list[0]}` : "";
 }
 function getFirstIconSrc() {
   const tab = getFirstIconTabKey(); const list = (ICONS && ICONS[tab]) || [];
-  return list.length ? `icons/${list[0].file}` : "";
+  return list.length ? `assets/images/dialogue/icons/${list[0].file}` : "";
 }
 
 // ====== Tabs: Boxes ======
@@ -176,7 +196,7 @@ function displayBoxCategory(cat, files) {
   boxOptions.innerHTML = "";
   files.forEach(file => {
     const img = document.createElement("img");
-    img.src = `boxes/${file}`;
+    img.src = `assets/images/dialogue/boxes/${file}`;
     img.className = "thumb";
     img.setAttribute("data-file", file);
     img.addEventListener("click", () => {
@@ -230,7 +250,7 @@ function displayIconCategory(cat, files) {
   iconOptions.innerHTML = "";
   files.forEach(obj => {
     const img = document.createElement("img");
-    img.src = `icons/${obj.file}`;
+    img.src = `assets/images/dialogue/icons/${obj.file}`;
     img.className = "thumb";
     img.setAttribute("data-file", obj.file);
 
@@ -302,7 +322,7 @@ resetBtn.addEventListener("click", () => {
 });
 
 // ====== Boot ======
-Promise.all([ fetch("boxes.json").then(r=>r.json()), fetch("icons.json").then(r=>r.json()) ])
+Promise.all([ fetch("data/dialogue/boxes.json").then(r=>r.json()), fetch("data/dialogue/icons.json").then(r=>r.json()) ])
 .then(([boxes, icons]) => {
   BOXES = boxes; ICONS = icons;
   setupBoxTabs(BOXES);

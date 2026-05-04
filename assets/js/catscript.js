@@ -94,9 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let mateByName = new Map();
 
   function annotateMateOrder(mode, mates) {
+    let idOrder = 0;
     (mates || []).forEach((mate, index) => {
       mate.__mode = mode;
       mate.__order = index;
+      mate.__idOrder = isMode(mate) ? null : idOrder++;
     });
     return mates || [];
   }
@@ -845,8 +847,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getMateDisplayId(mate) {
+    if (isMode(mate)) return null;
+
     const mode = mate?.mode || mate?.__mode || "";
-    const order = Number(mate?.__order);
+    const order = Number(mate?.__idOrder ?? mate?.__order);
 
     if (mode === "base" && Number.isInteger(order)) {
       return order + 1;

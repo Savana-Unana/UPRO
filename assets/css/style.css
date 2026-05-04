@@ -2238,11 +2238,8 @@ body.ost-page #playlistPanel {
 
 /* ---------- MOVES/ABILITIES PAGE REFRESH ---------- */
 body.hurty-page {
-  background:
-    radial-gradient(circle at 10% 15%, rgba(122, 170, 255, 0.22), transparent 36%),
-    radial-gradient(circle at 88% 18%, rgba(255, 181, 140, 0.2), transparent 34%),
-    linear-gradient(180deg, #f5f7fc 0%, #eef2fa 55%, #e7edf7 100%);
-  color: #243042;
+  background: #0d0d0f;
+  color: #e0f0ff;
   min-height: 100vh;
   font-size: 28px;
   letter-spacing: 0.01em;
@@ -2250,25 +2247,24 @@ body.hurty-page {
 }
 
 body.hurty-page header {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(79, 108, 156, 0.28);
-  backdrop-filter: blur(6px);
+  background: #111;
+  border-bottom: 2px solid #0ff;
   padding: 14px 14px 18px;
 }
 
 body.hurty-page h1 {
   margin: 8px 0 10px;
-  color: #1f2c43;
-  text-shadow: none;
+  color: #e0f0ff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.25);
 }
 
 body.hurty-page button,
 body.hurty-page select,
 body.hurty-page input {
-  background: #ffffff;
-  color: #22324b;
-  border: 1px solid rgba(79, 108, 156, 0.42);
-  border-radius: 12px;
+  background: #222;
+  color: #0ff;
+  border: 1px solid #0ff;
+  border-radius: 6px;
   font-size: 24px;
   padding: 8px 12px;
 }
@@ -2276,8 +2272,8 @@ body.hurty-page input {
 body.hurty-page button:hover,
 body.hurty-page select:hover,
 body.hurty-page .dex-tab.active {
-  background: #2d527f;
-  color: #f6f9ff;
+  background: #0ff;
+  color: #000;
 }
 
 body.hurty-page .controls {
@@ -2301,9 +2297,9 @@ body.hurty-page .filter-toggle {
 }
 
 body.hurty-page .filter-panel {
-  background: #f8fbff;
-  border: 1px solid #b6c8ea;
-  color: #1f3556;
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  color: #e0f0ff;
   z-index: 2300;
 }
 
@@ -2312,13 +2308,13 @@ body.hurty-page .filter-panel .opt {
 }
 
 body.hurty-page .clear-btn {
-  color: #2d527f;
-  border-color: #2d527f;
+  color: #0ff;
+  border-color: #0ff;
 }
 
 body.hurty-page input#search:focus {
-  border-color: #2d527f;
-  box-shadow: 0 0 0 3px rgba(45, 82, 127, 0.18);
+  border-color: #0ff;
+  box-shadow: 0 0 8px #0ff;
 }
 
 body.hurty-page #pokedex.grid {
@@ -2334,33 +2330,33 @@ body.hurty-page #pokedex.grid {
 body.hurty-page #pokedex .card {
   width: 100%;
   max-width: none;
-  background: rgba(255, 255, 255, 0.94);
-  border: 4px solid rgba(91, 127, 183, 0.45);
-  border-radius: 16px;
-  box-shadow: 0 10px 24px rgba(30, 56, 97, 0.12);
-  color: #1c2c43;
+  background: #1b1b1f;
+  border: 4px solid rgba(0, 255, 255, 0.58);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
+  color: #e0f0ff;
   padding: 14px 12px;
   margin: 0;
   box-sizing: border-box;
 }
 
 body.hurty-page #pokedex .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 30px rgba(30, 56, 97, 0.2);
+  transform: scale(1.03);
+  box-shadow: 0 0 14px var(--outline-color, #0ff);
 }
 
 body.hurty-page .hurty-card-title {
   font-size: 3.2rem;
   margin: 4px 0 8px;
   line-height: 1.1;
-  color: #1a2f4f;
+  color: #f4ff9a;
 }
 
 body.hurty-page .hurty-card-copy {
   font-size: 2.2rem;
   line-height: 1.35;
   margin: 8px 0 2px;
-  color: #3b5275;
+  color: #e0f0ff;
   padding: 0 4px;
 }
 
@@ -2370,7 +2366,7 @@ body.hurty-page .hurty-card-quickstats {
   gap: 8px;
   flex-wrap: wrap;
   font-size: 2rem;
-  color: #304f7d;
+  color: #9cfbff;
   margin-top: 8px;
 }
 
@@ -2378,15 +2374,15 @@ body.hurty-page .hurty-type-tag {
   display: inline-block;
   margin: 2px;
   padding: 4px 8px;
-  border-radius: 999px;
-  background: #dbe8fb;
-  border: 1px solid #a3bfeb;
-  color: #223d67;
+  border-radius: 6px;
+  background: #0ff;
+  border: 1px solid #0ff;
+  color: #000;
   font-weight: 700;
 }
 
 body.hurty-page .hurty-empty {
-  color: #38537c;
+  color: #a8dce3;
   padding: 20px;
 }
 
@@ -2417,10 +2413,10 @@ body.hurty-page .status-effects-popover {
   max-height: 420px;
   overflow: auto;
   text-align: left;
-  background: #ffffff;
-  border: 1px solid rgba(79, 108, 156, 0.32);
-  border-radius: 14px;
-  box-shadow: 0 16px 30px rgba(25, 49, 89, 0.24);
+  background: #1b1b1f;
+  border: 1px solid #0ff;
+  border-radius: 10px;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.24);
   padding: 12px;
   z-index: 5001;
 }
@@ -2438,12 +2434,13 @@ body.hurty-page .status-effects-head {
 
 body.hurty-page .status-effects-head h3 {
   margin: 0;
+  color: #f4ff9a;
   font-size: 2.5rem;
 }
 
 body.hurty-page #statusEffectsCount {
   font-size: 1.7rem;
-  color: #4e6489;
+  color: #9cfbff;
 }
 
 body.hurty-page #statusEffectsList {
@@ -2455,10 +2452,10 @@ body.hurty-page #statusEffectsList {
 }
 
 body.hurty-page #statusEffectsList li {
-  border: 1px solid #d2def4;
-  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.36);
+  border-radius: 8px;
   padding: 8px 10px;
-  background: #f7faff;
+  background: #111;
 }
 
 body.hurty-page #statusEffectsList strong {
@@ -2468,14 +2465,14 @@ body.hurty-page #statusEffectsList strong {
 body.hurty-page #statusEffectsList p {
   margin: 6px 0 0;
   font-size: 1.55rem;
-  color: #324f77;
+  color: #e0f0ff;
 }
 
 body.hurty-page .modal-content {
-  background: #f9fbff;
-  border: 1px solid rgba(79, 108, 156, 0.35);
-  box-shadow: 0 24px 44px rgba(19, 36, 65, 0.28);
-  color: #263a5a;
+  background: #1b1b1f;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 18px #0ff;
+  color: #e0f0ff;
   max-width: 900px;
   width: min(900px, calc(100vw - 24px));
   box-sizing: border-box;
@@ -2488,7 +2485,7 @@ body.hurty-page .hurty-move-stats {
 
 body.hurty-page .modal-header h2 {
   margin: 0 0 8px;
-  color: #1c3256;
+  color: #f4ff9a;
   font-size: 4rem;
   line-height: 1.08;
 }
@@ -2496,18 +2493,18 @@ body.hurty-page .modal-header h2 {
 body.hurty-page #itemText {
   font-size: 2.2rem;
   line-height: 1.4;
-  color: #35527d;
+  color: #e0f0ff;
 }
 
 body.hurty-page .close-btn {
-  background: #edf3ff;
-  color: #2b4367;
-  border: 1px solid #adc1e5;
+  background: #222;
+  color: #0ff;
+  border: 1px solid #0ff;
 }
 
 body.hurty-page .mon-users-title {
   margin-bottom: 8px;
-  color: #44638e;
+  color: #9cfbff;
   font-size: 2rem;
 }
 
@@ -2519,9 +2516,9 @@ body.hurty-page .mon-users-grid {
 }
 
 body.hurty-page .mon-user-card {
-  background: #ffffff;
-  border: 1px solid #cddbf2;
-  border-radius: 12px;
+  background: #111;
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  border-radius: 8px;
   padding: 8px;
   text-align: center;
   pointer-events: none;
@@ -2572,6 +2569,201 @@ body.hurty-page .mon-user-types {
     top: 52px;
     right: 8px;
     width: min(94vw, 460px);
+  }
+}
+/* ---------- CHAT / DIALOGUE BUILDER ---------- */
+body.chat-page {
+  --card-gap: -20px;
+  min-height: 100vh;
+  background: #0d0d0f;
+  color: #e0f0ff;
+  font-family: 'UPRO', sans-serif;
+  font-weight: bold;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+body.chat-page #editor {
+  display: flex;
+  gap: 20px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body.chat-page .panel {
+  background: #1b1b1f;
+  border: 1px solid rgba(0, 255, 255, 0.42);
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.14);
+  padding: 15px;
+}
+
+body.chat-page .panel:first-child {
+  border-right: 2px solid rgba(0, 255, 255, 0.45);
+  padding-right: 20px;
+  margin-right: 20px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+body.chat-page .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+body.chat-page #cardsContainer {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+body.chat-page .dialogue-card {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  border: 0;
+}
+
+body.chat-page .dialogue-card + .dialogue-card {
+  margin-top: var(--card-gap);
+}
+
+body.chat-page .dialogue-card.active {
+  outline: 2px solid #f4ff9a;
+  outline-offset: 0;
+}
+
+body.chat-page .preview-box {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  background: #000;
+  border: 10px solid black;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+}
+
+body.chat-page .nameBox {
+  position: absolute;
+  top: 47px;
+  left: 8px;
+  width: 220px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+body.chat-page .speaker {
+  font-size: 23px;
+  line-height: 23px;
+  color: black;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 5px;
+  padding-bottom: 0;
+  font-weight: bold;
+}
+
+body.chat-page .dialogueBox {
+  position: absolute;
+  bottom: 34px;
+  left: 25px;
+  right: 120px;
+  height: 89.5px;
+  overflow: hidden;
+  display: block;
+  text-align: left;
+}
+
+body.chat-page .dialogue {
+  font-size: 23px;
+  line-height: 1.1;
+  color: black;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding-left: 10px;
+  margin-right: 34px;
+  vertical-align: top;
+  font-weight: bold;
+}
+
+body.chat-page .iconImage {
+  position: absolute;
+  bottom: 73px;
+  right: 11px;
+  width: 100px;
+  height: 100px;
+  image-rendering: pixelated;
+  z-index: 10;
+}
+
+body.chat-page #iconOptions {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+body.chat-page .iconImage,
+body.chat-page .preview-box img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+body.chat-page .tabBtn {
+  background: #222;
+  color: #0ff;
+  border: 1px solid #0ff;
+  margin: 2px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body.chat-page .tabBtn.active {
+  background: #0ff;
+  color: #000;
+}
+
+body.chat-page .thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid transparent;
+  background: #111;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+body.chat-page .thumb.selected {
+  border-color: #f4ff9a;
+}
+
+body.chat-page #iconTabs {
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+@media (max-width: 900px) {
+  body.chat-page #editor {
+    flex-wrap: wrap;
+  }
+
+  body.chat-page .panel:first-child {
+    max-height: none;
+    margin-right: 0;
   }
 }
 

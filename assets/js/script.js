@@ -51,7 +51,7 @@ function updateButtons() {
   const configs = switcherooActive
     ? [
         { text: "Type Chart", href: "typechart.html", bg: "linear-gradient(135deg, #e48dff, #c300ff)" },
-        { text: "Chat", href: "IconTest/index.html", bg: "linear-gradient(135deg, #eaa78f, #c96e4e)" },
+        { text: "Chat", href: "chat.html", bg: "linear-gradient(135deg, #eaa78f, #c96e4e)" },
         { text: "Moves/Abilities", href: "hurty.html", bg: "linear-gradient(135deg, #ffbc62, #ff9200)" },
         { text: "Credits", href: "friend.html", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)" }
       ]
