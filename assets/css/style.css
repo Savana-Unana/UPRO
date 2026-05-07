@@ -30,9 +30,9 @@ body.normal-hub-page {
   border: 0;
   color: #ffffff;
   font-family: 'UPRO', serif;
-  font-size: clamp(4.5rem, 8vw, 8.5rem);
+  font-size: clamp(3.6rem, 6.4vw, 6.8rem);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.096em;
   line-height: 1.1;
   text-transform: uppercase;
   text-decoration: none;
@@ -70,8 +70,8 @@ body.normal-hub-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(150px, 18vw, 240px);
-  height: clamp(150px, 18vw, 240px);
+  width: clamp(120px, 14.4vw, 192px);
+  height: clamp(120px, 14.4vw, 192px);
   border-radius: 999px;
   z-index: 5;
 }
@@ -430,12 +430,12 @@ body.aniordle-page {
   }
 
   .normal-hub-tile {
-    font-size: clamp(3.4rem, 12vw, 5.4rem);
+    font-size: clamp(2.7rem, 9.6vw, 4.3rem);
   }
 
   .normal-hub-center-button {
-    width: 130px;
-    height: 130px;
+    width: 104px;
+    height: 104px;
     border-width: 6px;
   }
 
