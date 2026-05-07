@@ -5,7 +5,7 @@
 }
 
 body.normal-hub-page {
-  min-height: 100vh;
+  min-height: 125vh;
   margin: 0;
   background: #0f1116;
   font-family: 'UPRO', serif;
@@ -13,11 +13,11 @@ body.normal-hub-page {
 
 .normal-hub-shell {
   position: relative;
-  min-height: 100vh;
+  min-height: 125vh;
 }
 
 .normal-hub-grid {
-  min-height: 100vh;
+  min-height: 125vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -89,7 +89,7 @@ body.normal-hub-page {
 }
 
 body.aniordle-page {
-  min-height: 100vh;
+  min-height: 125vh;
   margin: 0;
   background:
     radial-gradient(circle at top, rgba(255, 222, 89, 0.18), transparent 32%),
@@ -450,7 +450,7 @@ body.aniordle-page {
 }
 
 body.guessr-page {
-  min-height: 100vh;
+  min-height: 125vh;
   margin: 0;
   background:
     radial-gradient(circle at top left, rgba(255, 220, 120, 0.12), transparent 26%),
@@ -1246,7 +1246,7 @@ body.animatrix-list-view {
   grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
   grid-template-rows: auto auto minmax(0, 1fr);
   align-items: start;
-  height: 100vh;
+  height: 125vh;
   overflow: hidden;
 }
 
@@ -2260,7 +2260,7 @@ body.ost-page #playlistPanel {
 body.hurty-page {
   background: #0d0d0f;
   color: #e0f0ff;
-  min-height: 100vh;
+  min-height: 125vh;
   font-size: 28px;
   letter-spacing: 0.01em;
   overflow-x: hidden;
@@ -2594,7 +2594,7 @@ body.hurty-page .mon-user-types {
 /* ---------- CHAT / DIALOGUE BUILDER ---------- */
 body.chat-page {
   --card-gap: -20px;
-  min-height: 100vh;
+  min-height: 125vh;
   background: #0d0d0f;
   color: #e0f0ff;
   font-family: 'UPRO', sans-serif;
@@ -2626,7 +2626,7 @@ body.chat-page .panel:first-child {
   padding-right: 20px;
   margin-right: 20px;
   flex-shrink: 0;
-  max-height: calc(100vh - 40px);
+  max-height: calc(125vh - 40px);
   overflow-y: auto;
 }
 
@@ -2795,7 +2795,7 @@ body.guesswho-page {
   --guesswho-line: #8fd3ff;
   --guesswho-accent: #7ab4ff;
   --guesswho-accent-2: #f1da62;
-  height: 100vh;
+  height: 125vh;
   margin: 0;
   color: var(--guesswho-white);
   font-family: "UPRO", serif;
@@ -2818,12 +2818,12 @@ body.guesswho-page textarea {
 }
 
 .guesswho-shell {
-  height: 100vh;
+  height: 125vh;
   position: relative;
 }
 
 .guesswho-screen {
-  height: 100vh;
+  height: 125vh;
   overflow: hidden;
 }
 
@@ -3046,7 +3046,7 @@ body.guesswho-page textarea {
   gap: 12px;
   padding: 70px 10px 12px;
   box-sizing: border-box;
-  height: calc(100vh - 4px);
+  height: calc(125vh - 4px);
   align-items: start;
   overflow: hidden;
 }

@@ -5,7 +5,7 @@ const pageStyles = `body {
   color: red;
   font-family: papyrus;
   font-size: 3rem;
-  height: 100vh;
+  height: 125vh;
   margin: 0;
   display: flex;
   justify-content: center;
