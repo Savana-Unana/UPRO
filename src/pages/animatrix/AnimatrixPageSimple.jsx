@@ -11,8 +11,8 @@ export default function AnimatrixPageSimple() {
     document.body.setAttribute('style', '')
 
     Promise.all([
-      fetch('/data/mates/base.json').then(response => response.json()),
-      fetch('/data/types.json').then(response => response.json()),
+      fetch('data/mates/base.json').then(response => response.json()),
+      fetch('data/types.json').then(response => response.json()),
     ])
       .then(([baseMates, typeData]) => {
         setMates(baseMates || [])
@@ -45,7 +45,7 @@ export default function AnimatrixPageSimple() {
           {mates.map((mate, index) => (
             <article className="card" key={`${mate.name}-${index}`}>
               <div className="card-id">{String(index + 1).padStart(4, '0')}</div>
-              <img src={`/${mate.image}`} alt={mate.name} />
+              <img src={mate.image} alt={mate.name} />
               <h3>{mate.name}</h3>
               <div className="types">
                 {(mate.types || []).filter(Boolean).map(type => (

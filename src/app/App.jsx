@@ -2,14 +2,48 @@ import { useEffect, useMemo, useState } from 'react'
 import { legacyRouteRedirects, routes } from './routes.jsx'
 
 const routeByPath = new Map(routes.map(route => [route.path.toLowerCase(), route]))
+const basePath = normalizeBasePath(import.meta.env.BASE_URL)
+
+function normalizeBasePath(baseUrl) {
+  if (!baseUrl || baseUrl === './') return '/'
+
+  const path = baseUrl.startsWith('http') ? new URL(baseUrl).pathname : baseUrl
+  const withLeadingSlash = path.startsWith('/') ? path : `/${path}`
+  const withoutTrailingSlash = withLeadingSlash.endsWith('/')
+    ? withLeadingSlash.slice(0, -1)
+    : withLeadingSlash
+
+  return withoutTrailingSlash || '/'
+}
 
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') return '/'
   return pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
 }
 
-function cleanLegacyPath(pathname) {
+function stripBasePath(pathname) {
+  if (basePath === '/') return pathname
+
   const normalized = normalizePath(pathname)
+  const lowerPath = normalized.toLowerCase()
+  const lowerBase = basePath.toLowerCase()
+
+  if (lowerPath === lowerBase) return '/'
+  if (lowerPath.startsWith(`${lowerBase}/`)) {
+    return normalized.slice(basePath.length) || '/'
+  }
+
+  return normalized
+}
+
+function withBasePath(pathname) {
+  if (basePath === '/') return pathname
+  if (pathname === '/') return `${basePath}/`
+  return `${basePath}${pathname}`
+}
+
+function cleanLegacyPath(pathname) {
+  const normalized = normalizePath(stripBasePath(pathname))
   return legacyRouteRedirects.get(normalized) || normalized
 }
 
@@ -33,7 +67,7 @@ function getReactPath(href) {
     return null
   }
 
-  return `${pathname}${url.search}${url.hash}`
+  return `${withBasePath(pathname)}${url.search}${url.hash}`
 }
 
 export default function App() {
@@ -42,9 +76,10 @@ export default function App() {
 
   useEffect(() => {
     const cleanPath = cleanLegacyPath(window.location.pathname)
+    const currentPath = normalizePath(stripBasePath(window.location.pathname))
 
-    if (cleanPath !== normalizePath(window.location.pathname)) {
-      window.history.replaceState(null, '', `${cleanPath}${window.location.search}${window.location.hash}`)
+    if (cleanPath !== currentPath) {
+      window.history.replaceState(null, '', `${withBasePath(cleanPath)}${window.location.search}${window.location.hash}`)
     }
   }, [])
 
@@ -74,6 +109,15 @@ export default function App() {
 
     return () => document.removeEventListener('click', handleClick)
   }, [])
+
+  useEffect(() => {
+    for (const anchor of document.querySelectorAll('a[href]')) {
+      const nextPath = getReactPath(anchor.getAttribute('href'))
+      if (nextPath) {
+        anchor.setAttribute('href', nextPath)
+      }
+    }
+  }, [route])
 
   return <Component key={route.path} />
 }
