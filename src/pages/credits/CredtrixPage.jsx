@@ -66,25 +66,25 @@ export default function CredtrixPage() {
       <label className="uprod-filter">
         <span>Concepted</span>
         <select id="conceptedFilter">
-          <option value>All</option>
+          <option value="">All</option>
         </select>
       </label>
       <label className="uprod-filter">
         <span>Assisted</span>
         <select id="assistedFilter">
-          <option value>All</option>
+          <option value="">All</option>
         </select>
       </label>
       <label className="uprod-filter">
         <span>Named</span>
         <select id="namedFilter">
-          <option value>All</option>
+          <option value="">All</option>
         </select>
       </label>
       <label className="uprod-filter">
         <span>Anything</span>
         <select id="anythingFilter">
-          <option value>All</option>
+          <option value="">All</option>
         </select>
       </label>
     </div>
