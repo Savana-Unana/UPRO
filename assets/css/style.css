@@ -1238,32 +1238,32 @@ body.animatrix-list-view {
   overflow: hidden;
 }
 
-body.animatrix-list-view > header {
+body.animatrix-list-view header {
   grid-column: 1 / 3;
   grid-row: 1;
   padding: 10px 20px;
   text-align: left;
 }
 
-body.animatrix-list-view > header > div:first-child,
-body.animatrix-list-view > header h1,
-body.animatrix-list-view > header .controls > :not(.view-toggle),
-body.animatrix-list-view > header .view-toggle #listView {
+body.animatrix-list-view header > div:first-child,
+body.animatrix-list-view header h1,
+body.animatrix-list-view header .controls > :not(.view-toggle),
+body.animatrix-list-view header .view-toggle #listView {
   display: none !important;
 }
 
-body.animatrix-list-view > header .controls {
+body.animatrix-list-view header .controls {
   justify-content: flex-start;
   margin-top: 0;
 }
 
-body.animatrix-list-view > .list-mode-actions {
+body.animatrix-list-view .list-mode-actions {
   grid-column: 2;
   grid-row: 2;
   padding: 10px 20px 0 0;
 }
 
-body.animatrix-list-view > main#animatrix {
+body.animatrix-list-view main#animatrix {
   grid-column: 1;
   grid-row: 2 / 4;
   height: 100%;
@@ -1272,7 +1272,7 @@ body.animatrix-list-view > main#animatrix {
   overflow-y: auto;
 }
 
-body.animatrix-list-view > main#animatrix.list {
+body.animatrix-list-view main#animatrix.list {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -1324,7 +1324,7 @@ body.animatrix-list-view #animatrix .card.list-card:hover {
   box-shadow: 0 0 8px rgba(0, 255, 255, 0.35);
 }
 
-body.animatrix-list-view > #detailsModal {
+body.animatrix-list-view #detailsModal {
   grid-column: 2;
   grid-row: 3;
   position: sticky;
@@ -1338,11 +1338,11 @@ body.animatrix-list-view > #detailsModal {
   min-height: 0;
 }
 
-body.animatrix-list-view > #detailsModal.hidden {
+body.animatrix-list-view #detailsModal.hidden {
   display: none;
 }
 
-body.animatrix-list-view > #detailsModal .modal-content {
+body.animatrix-list-view #detailsModal .modal-content {
   width: 100%;
   max-width: none;
   height: 100%;
@@ -1353,7 +1353,7 @@ body.animatrix-list-view > #detailsModal .modal-content {
   box-sizing: border-box;
 }
 
-body.animatrix-list-view > #detailsModal .modal-body {
+body.animatrix-list-view #detailsModal .modal-body {
   display: grid;
   grid-template-columns: minmax(150px, 0.82fr) minmax(190px, 1.18fr);
   gap: 6px 12px;
@@ -1361,93 +1361,93 @@ body.animatrix-list-view > #detailsModal .modal-body {
   font-size: 0.76em;
 }
 
-body.animatrix-list-view > #detailsModal .image-container {
+body.animatrix-list-view #detailsModal .image-container {
   grid-column: 2;
   grid-row: 1;
 }
 
-body.animatrix-list-view > #detailsModal .mate-vitals {
+body.animatrix-list-view #detailsModal .mate-vitals {
   grid-column: 1;
   grid-row: 1;
   align-self: stretch;
   margin: 0;
 }
 
-body.animatrix-list-view > #detailsModal .mate-vitals.biome-bg {
+body.animatrix-list-view #detailsModal .mate-vitals.biome-bg {
   min-height: 92px;
   padding: 8px;
 }
 
-body.animatrix-list-view > #detailsModal .mate-meta {
+body.animatrix-list-view #detailsModal .mate-meta {
   gap: 0;
   margin: 0;
   font-size: 0.92em;
   line-height: 1.15;
 }
 
-body.animatrix-list-view > #detailsModal .mate-meta p {
+body.animatrix-list-view #detailsModal .mate-meta p {
   margin: 0;
 }
 
-body.animatrix-list-view > #detailsModal .dex-tabs,
-body.animatrix-list-view > #detailsModal #mateDexText,
-body.animatrix-list-view > #detailsModal #abilityContainer,
-body.animatrix-list-view > #detailsModal #listTypesContainer,
-body.animatrix-list-view > #detailsModal #paraTypesContainer,
-body.animatrix-list-view > #detailsModal #evolutionsContainer {
+body.animatrix-list-view #detailsModal .dex-tabs,
+body.animatrix-list-view #detailsModal #mateDexText,
+body.animatrix-list-view #detailsModal #abilityContainer,
+body.animatrix-list-view #detailsModal #listTypesContainer,
+body.animatrix-list-view #detailsModal #paraTypesContainer,
+body.animatrix-list-view #detailsModal #evolutionsContainer {
   grid-column: 1 / -1;
 }
 
-body.animatrix-list-view > #detailsModal #sacredContainer,
-body.animatrix-list-view > #detailsModal #ModeContainer {
+body.animatrix-list-view #detailsModal #sacredContainer,
+body.animatrix-list-view #detailsModal #ModeContainer {
   display: none;
 }
 
-body.animatrix-list-view > #detailsModal .modal-footer {
+body.animatrix-list-view #detailsModal .modal-footer {
   display: none;
 }
 
-body.animatrix-list-view > #detailsModal #mateTypes,
-body.animatrix-list-view > #detailsModal #modeBadge {
+body.animatrix-list-view #detailsModal #mateTypes,
+body.animatrix-list-view #detailsModal #modeBadge {
   display: none;
 }
 
-body.animatrix-list-view > #detailsModal #closeModal {
+body.animatrix-list-view #detailsModal #closeModal {
   display: none;
 }
 
-body.animatrix-list-view > #detailsModal .modal-header h2 {
+body.animatrix-list-view #detailsModal .modal-header h2 {
   margin: 0 0 4px;
   line-height: 1.05;
   font-size: 1.25em;
 }
 
-body.animatrix-list-view > #detailsModal .image-container img {
+body.animatrix-list-view #detailsModal .image-container img {
   width: min(180px, 100%) !important;
   height: min(180px, 28vh) !important;
 }
 
-body.animatrix-list-view > #detailsModal .dex-tabs {
+body.animatrix-list-view #detailsModal .dex-tabs {
   gap: 5px;
 }
 
-body.animatrix-list-view > #detailsModal .dex-tab {
+body.animatrix-list-view #detailsModal .dex-tab {
   font-size: 28px;
   padding: 8px 14px;
 }
 
-body.animatrix-list-view > #detailsModal #mateDexText,
-body.animatrix-list-view > #detailsModal #abilityContainer,
-body.animatrix-list-view > #detailsModal #listTypesContainer,
-body.animatrix-list-view > #detailsModal #paraTypesContainer,
-body.animatrix-list-view > #detailsModal #evolutionsContainer {
+body.animatrix-list-view #detailsModal #mateDexText,
+body.animatrix-list-view #detailsModal #abilityContainer,
+body.animatrix-list-view #detailsModal #listTypesContainer,
+body.animatrix-list-view #detailsModal #paraTypesContainer,
+body.animatrix-list-view #detailsModal #evolutionsContainer {
   margin-top: 2px;
   margin-bottom: 2px;
   line-height: 1.15;
 }
 
-body.animatrix-list-view > #detailsModal #listTypesContainer,
-body.animatrix-list-view > #detailsModal #paraTypesContainer {
+body.animatrix-list-view #detailsModal #listTypesContainer,
+body.animatrix-list-view #detailsModal #paraTypesContainer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1456,34 +1456,34 @@ body.animatrix-list-view > #detailsModal #paraTypesContainer {
   line-height: 1.25;
 }
 
-body.animatrix-list-view > #detailsModal #listTypesContainer b,
-body.animatrix-list-view > #detailsModal #paraTypesContainer b {
+body.animatrix-list-view #detailsModal #listTypesContainer b,
+body.animatrix-list-view #detailsModal #paraTypesContainer b {
   margin-right: 2px;
 }
 
-body.animatrix-list-view > #detailsModal #listTypesContainer span,
-body.animatrix-list-view > #detailsModal #paraTypesContainer span {
+body.animatrix-list-view #detailsModal #listTypesContainer span,
+body.animatrix-list-view #detailsModal #paraTypesContainer span {
   line-height: 1.1;
   padding: 3px 7px;
   margin: 0;
 }
 
-body.animatrix-list-view > #detailsModal #evolutionsContainer {
+body.animatrix-list-view #detailsModal #evolutionsContainer {
   max-width: 100%;
   overflow-x: hidden;
 }
 
-body.animatrix-list-view > #detailsModal #evolutionsContainer img {
+body.animatrix-list-view #detailsModal #evolutionsContainer img {
   width: 58px;
   height: 58px;
   object-fit: contain;
 }
 
-body.animatrix-list-view > #detailsModal .evo-node {
+body.animatrix-list-view #detailsModal .evo-node {
   min-width: 62px;
 }
 
-body.animatrix-list-view > #detailsModal .evo-line {
+body.animatrix-list-view #detailsModal .evo-line {
   gap: 5px;
   margin: 2px 0;
   min-width: 0;
@@ -1491,16 +1491,16 @@ body.animatrix-list-view > #detailsModal .evo-line {
   flex-wrap: wrap;
 }
 
-body.animatrix-list-view > #detailsModal .evo-link {
+body.animatrix-list-view #detailsModal .evo-link {
   min-width: 40px;
   margin-top: 8px;
 }
 
-body.animatrix-list-view > #detailsModal .evo-name {
+body.animatrix-list-view #detailsModal .evo-name {
   display: none;
 }
 
-body.animatrix-list-view > #detailsModal .evo-level {
+body.animatrix-list-view #detailsModal .evo-level {
   font-size: 0.68em;
 }
 
@@ -1510,12 +1510,12 @@ body.animatrix-list-view > #detailsModal .evo-level {
     flex-direction: column;
   }
 
-  body.animatrix-list-view > main#animatrix {
+  body.animatrix-list-view main#animatrix {
     max-height: none;
     overflow: visible;
   }
 
-  body.animatrix-list-view > #detailsModal {
+  body.animatrix-list-view #detailsModal {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,.8);
@@ -1524,7 +1524,7 @@ body.animatrix-list-view > #detailsModal .evo-level {
     z-index: 100;
   }
 
-  body.animatrix-list-view > #detailsModal .modal-body {
+  body.animatrix-list-view #detailsModal .modal-body {
     display: block;
   }
 }
@@ -1958,6 +1958,14 @@ input#search:focus {
 #btn2 { top: 10%; left: 67%; width: 70px; height: 60px; }
 #btn3 { top: 41%; left: 44.5%; width: 70px; height: 60px; }
 #btn4 { top: 42%; left: 70%; width: 70px; height: 60px; }
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 24px;
+}
 
 .switcheroo-container {
   margin-top: 20px;

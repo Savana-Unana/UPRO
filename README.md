@@ -1,29 +1,23 @@
-# Erm ma ha sigma
+# UPRO
 
-## Website
+React/Vite version of the UPRO site.
 
-<https://savana-unana.github.io/UPRO/Index/index.html>
+## Project Layout
 
-### Git Commands
+- `src/main.jsx` - React entry point.
+- `src/app/` - app shell, routes, and legacy route redirects.
+- `src/pages/` - React pages, grouped by feature.
+- `src/styles/` - React/global wrapper styles.
+- `assets/` - public images, audio, fonts, and legacy/global CSS used by the site.
+- `data/` - public JSON data loaded by pages.
+- `data/unused/` - data that is kept around but not part of the main app flow.
+- `archive/legacy-out/` - leftover legacy files kept for reference.
+- `public/` - Vite public assets such as icons.
 
-#### To Pull
+## Commands
 
-``` bash
-git pull origin
-```
-
-#### To Update
-
-```bash
-git add -A 
-git commit -m "Hardly Workin or Workin Unbarebly Hard Please Help"
-git push origin 
-
-```
-
-## If Someone has comitted pushed before you
-
- ``` bash
- git pull origin main --rebase
- git push origin
+```powershell
+npm run dev
+npm run lint
+npm run build
 ```
