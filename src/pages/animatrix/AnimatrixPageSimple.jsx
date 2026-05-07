@@ -29,14 +29,6 @@ export default function AnimatrixPageSimple() {
 
   return (
     <div className="upro-page-root">
-      <header>
-        <div style={{ display: 'flex' }}>
-          <a href="/">
-            <button>Main Menu</button>
-          </a>
-        </div>
-        <h1>The Animatrix</h1>
-      </header>
 
       {error ? (
         <main className="cat-empty">{error}</main>
