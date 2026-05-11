@@ -15,9 +15,21 @@ body {
 #map-container {
   position: relative;
   margin: 20px auto;
-  width: 60vh;
+  width: 460px;
   max-width: 100%;
   height: auto;
+}
+
+@media screen and (min-height: 900px) {
+  #map-container {
+    width: 540px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  #map-container {
+    width: 100%;
+  }
 }
 
 #map {
