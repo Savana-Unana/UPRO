@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { legacyRouteRedirects, routes } from './routes.jsx'
 
 const routeByPath = new Map(routes.map(route => [route.path.toLowerCase(), route]))
@@ -73,6 +73,26 @@ function getReactPath(href) {
 export default function App() {
   const [route, setRoute] = useState(getRoute)
   const Component = useMemo(() => route.Component, [route])
+  const navigateTo = useCallback((href) => {
+    const nextPath = getReactPath(href)
+
+    if (!nextPath) {
+      window.location.href = href
+      return false
+    }
+
+    window.history.pushState(null, '', nextPath)
+    setRoute(getRoute())
+    return true
+  }, [])
+
+  useEffect(() => {
+    window.uproNavigate = navigateTo
+
+    return () => {
+      delete window.uproNavigate
+    }
+  }, [navigateTo])
 
   useEffect(() => {
     const cleanPath = cleanLegacyPath(window.location.pathname)
@@ -101,14 +121,13 @@ export default function App() {
       if (!nextPath) return
 
       event.preventDefault()
-      window.history.pushState(null, '', nextPath)
-      setRoute(getRoute())
+      navigateTo(anchor.getAttribute('href'))
     }
 
     document.addEventListener('click', handleClick)
 
     return () => document.removeEventListener('click', handleClick)
-  }, [])
+  }, [navigateTo])
 
   useEffect(() => {
     for (const anchor of document.querySelectorAll('a[href]')) {
