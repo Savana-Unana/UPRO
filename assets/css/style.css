@@ -1920,11 +1920,11 @@ input#search:focus {
   display: inline-block;
   margin-top: 20px;
   overflow: visible;
-  --capsule-width: 400px;
-  --skip-width: 380px;
+  --capsule-width: 350px;
+  --skip-width: 300px;
   --skip-left-point: -165px;
   --skip-right-point: 565px;
-  --skip-vertical-offset: -210px;
+  --skip-vertical-offset: -164px;
 }
 
 .capsule-container img {

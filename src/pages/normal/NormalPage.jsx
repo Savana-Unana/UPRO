@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 const pageStyles = ""
 const pageScript = "(function () {\r\n  const guessWhoLink = document.getElementById(\"normalHubGuessWho\");\r\n\r\n  if (guessWhoLink) {\r\n    guessWhoLink.addEventListener(\"click\", () => {\r\n      sessionStorage.setItem(\"upro_guesswho_unlocked\", \"true\");\r\n    });\r\n  }\r\n})();\r\n"
 const remoteScripts = []
+const mainMenuHref = import.meta.env.BASE_URL || '/'
 
 function loadRemoteScript(src) {
   return new Promise((resolve, reject) => {
@@ -71,7 +72,7 @@ export default function NormalPage() {
         <span>UPROrdle</span>
       </a>
     </div>
-    <a className="normal-hub-center-button" href="/" aria-label="Back to main page">
+    <a className="normal-hub-center-button" href={mainMenuHref} aria-label="Back to main page">
       <img src="assets/images/ui/BadSwitch.png" alt="Switcheroo" className="normal-hub-center-image" />
     </a>
   </main></div>
