@@ -5,7 +5,7 @@
 }
 
 body.normal-hub-page {
-  min-height: 125vh;
+  min-height: 100dvh;
   margin: 0;
   background: #0f1116;
   font-family: 'UPRO', serif;
@@ -13,11 +13,11 @@ body.normal-hub-page {
 
 .normal-hub-shell {
   position: relative;
-  min-height: 125vh;
+  min-height: 100dvh;
 }
 
 .normal-hub-grid {
-  min-height: 125vh;
+  min-height: 100dvh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -128,7 +128,7 @@ body.normal-hub-page {
 }
 
 body.aniordle-page {
-  min-height: 125vh;
+  min-height: 100dvh;
   margin: 0;
   background:
     radial-gradient(circle at top, rgba(255, 222, 89, 0.18), transparent 32%),
@@ -503,7 +503,7 @@ body.aniordle-page {
 }
 
 body.guessr-page {
-  min-height: 125vh;
+  min-height: 100dvh;
   margin: 0;
   background:
     radial-gradient(circle at top left, rgba(255, 220, 120, 0.12), transparent 26%),
@@ -911,22 +911,12 @@ body.guessr-page {
 
 /* ---------- GLOBAL ---------- */
 html {
-  font-size: 70%;
-  zoom: 80%;
-}
-
-@supports not (zoom: 1) {
-  body {
-    width: 125%;
-    min-height: 125vh;
-    transform: scale(0.8);
-    transform-origin: top left;
-  }
+  font-size: 56.25%;
 }
 
 body {
   font-family: 'UPRO', serif;
-  font-size: 40px;
+  font-size: 32px;
   background: #0d0d0f;
   color: #e0f0ff;
   margin: 0;
@@ -964,7 +954,7 @@ button, select, input {
   background: #222;
   color: #0ff;
   font-family: 'UPRO', serif;
-  font-size: 30px;
+  font-size: 24px;
   border: 1px solid #0ff;
   padding: 6px 12px;
   border-radius: 6px;
@@ -986,7 +976,7 @@ button:disabled {
 select[multiple] {
   min-width: 160px;
   max-width: 260px;
-  font-size: 26px;
+  font-size: 21px;
   padding: 6px;
 }
 
@@ -1307,7 +1297,7 @@ body.animatrix-list-view {
   grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
   grid-template-rows: auto auto minmax(0, 1fr);
   align-items: start;
-  height: 125vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -1603,7 +1593,7 @@ body.animatrix-list-view #detailsModal .evo-level {
 }
 
 @media screen and (max-width: 768px) {
-  html { font-size: 60%; }
+  html { font-size: 48%; }
   .modal-content { max-width: 600px; }
   .modal-content img { width: 150px !important; height: 150px !important; }
 }
@@ -2325,7 +2315,7 @@ body.ost-page #playlistPanel {
 body.hurty-page {
   background: #0d0d0f;
   color: #e0f0ff;
-  min-height: 125vh;
+  min-height: 100dvh;
   font-size: 28px;
   letter-spacing: 0.01em;
   overflow-x: hidden;
@@ -2660,7 +2650,7 @@ body.hurty-page .mon-user-types {
 /* ---------- CHAT / DIALOGUE BUILDER ---------- */
 body.chat-page {
   --card-gap: -20px;
-  min-height: 125vh;
+  min-height: 100dvh;
   background: #0d0d0f;
   color: #e0f0ff;
   font-family: 'UPRO', sans-serif;
@@ -2692,7 +2682,7 @@ body.chat-page .panel:first-child {
   padding-right: 20px;
   margin-right: 20px;
   flex-shrink: 0;
-  max-height: calc(125vh - 40px);
+  max-height: calc(100dvh - 40px);
   overflow-y: auto;
 }
 
@@ -2861,7 +2851,7 @@ body.guesswho-page {
   --guesswho-line: #8fd3ff;
   --guesswho-accent: #7ab4ff;
   --guesswho-accent-2: #f1da62;
-  height: 125vh;
+  height: 100dvh;
   margin: 0;
   color: var(--guesswho-white);
   font-family: "UPRO", serif;
@@ -2884,12 +2874,12 @@ body.guesswho-page textarea {
 }
 
 .guesswho-shell {
-  height: 125vh;
+  height: 100dvh;
   position: relative;
 }
 
 .guesswho-screen {
-  height: 125vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -3112,7 +3102,7 @@ body.guesswho-page textarea {
   gap: 12px;
   padding: 70px 10px 12px;
   box-sizing: border-box;
-  height: calc(125vh - 4px);
+  height: calc(100dvh - 4px);
   align-items: start;
   overflow: hidden;
 }
