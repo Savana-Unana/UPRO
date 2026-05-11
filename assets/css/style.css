@@ -1924,7 +1924,7 @@ input#search:focus {
   --skip-width: 300px;
   --skip-left-point: -165px;
   --skip-right-point: 565px;
-  --skip-vertical-offset: -164px;
+  --skip-vertical-offset: -135px;
 }
 
 .capsule-container img {
