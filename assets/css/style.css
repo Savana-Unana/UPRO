@@ -912,6 +912,7 @@ body.guessr-page {
 /* ---------- GLOBAL ---------- */
 html {
   font-size: 56.25%;
+  background: #0d0d0f;
 }
 
 body {
@@ -930,6 +931,9 @@ body {
 
 body.animatrix-page {
   zoom: 0.8;
+  width: 125vw;
+  min-height: 125dvh;
+  background: #0d0d0f;
 }
 
 /* ---------- HEADER ---------- */
@@ -1301,10 +1305,25 @@ body.animatrix-list-view {
   grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
   grid-template-rows: auto auto minmax(0, 1fr);
   align-items: start;
-  height: 100dvh;
+  height: 125dvh;
   overflow: hidden;
   overflow-x: hidden;
-  max-width: 100%;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+body.animatrix-list-view #root {
+  display: contents;
+}
+
+body.animatrix-list-view .upro-page-root {
+  display: contents;
+  height: auto;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  overflow: visible;
   box-sizing: border-box;
 }
 
