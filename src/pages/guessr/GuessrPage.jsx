@@ -1,8 +1,695 @@
 import { useEffect } from 'react'
 
 const pageStyles = ""
-const pageScript = "(function () {\r\n  const BASE_DATA_PATH = \"data/mates/base.json\";\r\n  const MAX_GUESSES = 6;\r\n  const STORAGE_PREFIX = \"upro-guessr-daily-\";\r\n  const CLUE_CONFIGS = [\r\n    {\r\n      id: \"blackout\",\r\n      title: \"Black-out\",\r\n      description: \"A fully blacked-out sprite silhouette.\",\r\n      modeLabel: \"Blacked-out animate\",\r\n      shareSymbol: \"⬛\",\r\n      emptyState: \"No finalized animates match that search.\"\r\n    },\r\n    {\r\n      id: \"palette\",\r\n      title: \"Semi-Color\",\r\n      description: \"The sprite's colors, shown side by side.\",\r\n      modeLabel: \"Palette animate\",\r\n      shareSymbol: \"🟦\",\r\n      emptyState: \"No finalized animates match that search.\"\r\n    }\r\n  ];\r\n\r\n  const gameGrid = document.getElementById(\"guessrGameGrid\");\r\n  const tabsEl = document.getElementById(\"guessrTabs\");\r\n  const modeLabel = document.getElementById(\"guessrModeLabel\");\r\n  const randomBtn = document.getElementById(\"guessrRandomBtn\");\r\n\r\n  const state = {\r\n    pool: [],\r\n    rounds: {},\r\n    randomRound: false,\r\n    dailyKey: \"\",\r\n    activeTab: CLUE_CONFIGS[0].id\r\n  };\r\n\r\n  init();\r\n\r\n  async function init() {\r\n    buildGameCards();\r\n    setActiveTab(state.activeTab);\r\n    wireGlobalEvents();\r\n\r\n    try {\r\n      const baseItems = await fetch(BASE_DATA_PATH)\r\n        .then(response => {\r\n          if (!response.ok) throw new Error(`Failed to load ${BASE_DATA_PATH}`);\r\n          return response.json();\r\n        });\r\n\r\n      state.pool = buildPool(baseItems);\r\n      state.pool.sort((a, b) => a.name.localeCompare(b.name));\r\n      if (state.pool.length < 2) {\r\n        throw new Error(\"Guessr needs at least two finalized animates.\");\r\n      }\r\n\r\n      startDailyRound();\r\n    } catch (error) {\r\n      console.error(error);\r\n      modeLabel.textContent = \"Guessr failed to load finalized animates.\";\r\n      Object.values(state.rounds).forEach(round => {\r\n        round.status.textContent = \"Guessr could not load the finalized animate pool.\";\r\n        round.pickerBtn.disabled = true;\r\n      });\r\n      randomBtn.hidden = true;\r\n    }\r\n  }\r\n\r\n  function buildGameCards() {\r\n    CLUE_CONFIGS.forEach(config => {\r\n      const tab = document.createElement(\"button\");\r\n      tab.type = \"button\";\r\n      tab.className = \"guessr-tab\";\r\n      tab.id = `guessrTab-${config.id}`;\r\n      tab.textContent = config.title;\r\n      tab.setAttribute(\"aria-selected\", config.id === state.activeTab ? \"true\" : \"false\");\r\n      tab.addEventListener(\"click\", () => setActiveTab(config.id));\r\n      tabsEl.appendChild(tab);\r\n\r\n      const article = document.createElement(\"article\");\r\n      article.className = \"guessr-panel\";\r\n      article.id = `guessrPanel-${config.id}`;\r\n      article.hidden = config.id !== state.activeTab;\r\n      article.innerHTML = `\r\n        <div class=\"guessr-panel-head\">\r\n          <div>\r\n            <p class=\"guessr-kicker\">${escapeHtml(config.title)}</p>\r\n            <h2 class=\"guessr-panel-title\">${escapeHtml(config.modeLabel)}</h2>\r\n            <p class=\"guessr-panel-copy\">${escapeHtml(config.description)}</p>\r\n          </div>\r\n          <div class=\"guessr-clue-shell\">\r\n            <div class=\"guessr-clue-card guessr-clue-card-${config.id}\" id=\"guessrClueCard-${config.id}\">\r\n              ${config.id === \"blackout\" ? `\r\n              <div class=\"guessr-clue-image-wrap\" id=\"guessrClueWrap-${config.id}\">\r\n                <img alt=\"\" class=\"guessr-clue-image\" id=\"guessrClueImage-${config.id}\" hidden>\r\n                <div class=\"guessr-clue-fallback\" id=\"guessrClueFallback-${config.id}\">Loading clue...</div>\r\n              </div>\r\n              ` : `\r\n              <div class=\"guessr-palette-grid\" id=\"guessrPalette-${config.id}\" hidden></div>\r\n              `}\r\n            </div>\r\n          </div>\r\n        </div>\r\n\r\n        <div class=\"guessr-controls\">\r\n          <div class=\"guessr-combobox\" id=\"guessrCombobox-${config.id}\">\r\n            <button class=\"guessr-combobox-btn\" type=\"button\" id=\"guessrPickerBtn-${config.id}\" aria-expanded=\"false\" aria-controls=\"guessrPickerPanel-${config.id}\">\r\n              <span id=\"guessrPickerLabel-${config.id}\">Guess the animate</span>\r\n            </button>\r\n            <div class=\"guessr-combobox-panel\" id=\"guessrPickerPanel-${config.id}\" hidden>\r\n              <input class=\"guessr-search\" id=\"guessrSearchInput-${config.id}\" type=\"text\" placeholder=\"Search animates...\" autocomplete=\"off\">\r\n              <div class=\"guessr-option-list\" id=\"guessrOptionList-${config.id}\" role=\"listbox\" aria-label=\"${escapeAttribute(config.title)} animate options\"></div>\r\n            </div>\r\n          </div>\r\n\r\n          <p class=\"guessr-status\" id=\"guessrStatus-${config.id}\">You have ${MAX_GUESSES} guesses for ${config.title}.</p>\r\n        </div>\r\n\r\n        <div class=\"guessr-board\" id=\"guessrBoard-${config.id}\" aria-live=\"polite\"></div>\r\n      `;\r\n\r\n      gameGrid.appendChild(article);\r\n\r\n      state.rounds[config.id] = {\r\n        config,\r\n        target: null,\r\n        guesses: [],\r\n        finished: false,\r\n        pickerBtn: article.querySelector(`#guessrPickerBtn-${config.id}`),\r\n        pickerLabel: article.querySelector(`#guessrPickerLabel-${config.id}`),\r\n        pickerPanel: article.querySelector(`#guessrPickerPanel-${config.id}`),\r\n        searchInput: article.querySelector(`#guessrSearchInput-${config.id}`),\r\n        optionList: article.querySelector(`#guessrOptionList-${config.id}`),\r\n        status: article.querySelector(`#guessrStatus-${config.id}`),\r\n        board: article.querySelector(`#guessrBoard-${config.id}`),\r\n        panel: article,\r\n        tab,\r\n        clueCard: article.querySelector(`#guessrClueCard-${config.id}`),\r\n        clueWrap: article.querySelector(`#guessrClueWrap-${config.id}`),\r\n        clueImage: article.querySelector(`#guessrClueImage-${config.id}`),\r\n        clueFallback: article.querySelector(`#guessrClueFallback-${config.id}`),\r\n        paletteGrid: article.querySelector(`#guessrPalette-${config.id}`)\r\n      };\r\n    });\r\n\r\n    Object.values(state.rounds).forEach(wireRoundEvents);\r\n  }\r\n\r\n  function setActiveTab(tabId) {\r\n    state.activeTab = tabId;\r\n    Object.values(state.rounds).forEach(round => {\r\n      const isActive = round.config.id === tabId;\r\n      round.panel.hidden = !isActive;\r\n      round.tab.setAttribute(\"aria-selected\", isActive ? \"true\" : \"false\");\r\n      round.tab.classList.toggle(\"is-active\", isActive);\r\n      if (!isActive) {\r\n        closePicker(round);\r\n      }\r\n    });\r\n  }\r\n\r\n  function wireGlobalEvents() {\r\n    document.addEventListener(\"click\", event => {\r\n      Object.values(state.rounds).forEach(round => {\r\n        const combobox = document.getElementById(`guessrCombobox-${round.config.id}`);\r\n        if (combobox && !combobox.contains(event.target)) {\r\n          closePicker(round);\r\n        }\r\n      });\r\n    });\r\n\r\n    randomBtn.addEventListener(\"click\", () => {\r\n      startRandomRound();\r\n    });\r\n  }\r\n\r\n  function wireRoundEvents(round) {\r\n    round.pickerBtn.addEventListener(\"click\", () => {\r\n      const isOpen = !round.pickerPanel.hidden;\r\n      closeAllPickers();\r\n      if (isOpen) return;\r\n      round.pickerPanel.hidden = false;\r\n      round.pickerBtn.setAttribute(\"aria-expanded\", \"true\");\r\n      round.searchInput.value = \"\";\r\n      renderOptions(round, \"\");\r\n      round.searchInput.focus();\r\n    });\r\n\r\n    round.searchInput.addEventListener(\"input\", event => {\r\n      renderOptions(round, event.target.value || \"\");\r\n    });\r\n  }\r\n\r\n  function closeAllPickers() {\r\n    Object.values(state.rounds).forEach(closePicker);\r\n  }\r\n\r\n  function closePicker(round) {\r\n    round.pickerPanel.hidden = true;\r\n    round.pickerBtn.setAttribute(\"aria-expanded\", \"false\");\r\n  }\r\n\r\n  function buildPool(baseItems) {\r\n    return baseItems\r\n      .map((item, index) => normalizeAnimate(item, index))\r\n      .filter(Boolean);\r\n  }\r\n\r\n  function normalizeAnimate(item, index) {\r\n    const imagePath = String(item.image || \"\");\r\n    const path = imagePath.toLowerCase();\r\n    const hasFinalArt = (\r\n      path.startsWith(\"assets/images/mates/base/\") ||\r\n      path.includes(\"/assets/images/mates/base/\") ||\r\n      path.startsWith(\"assets/images/mates/costumes/\") ||\r\n      path.includes(\"/assets/images/mates/costumes/\")\r\n    ) && !path.includes(\"missingno\") && !path.includes(\"youknowwhoiam\");\r\n\r\n    if (!hasFinalArt) return null;\r\n    if (item.name === \"MissingNo\" || item.name === \"L.MissingNo\" || item.name === \"Ones\") return null;\r\n\r\n    return {\r\n      id: index + 1,\r\n      name: String(item.name || \"Unknown\"),\r\n      image: imagePath\r\n    };\r\n  }\r\n\r\n  function startDailyRound() {\r\n    state.randomRound = false;\r\n    state.dailyKey = getDailyStorageKey();\r\n    modeLabel.textContent = \"Two daily clue hunts, two different animates\";\r\n    assignTargets(pickDistinctTargets(getDailySeed()));\r\n    resetRounds();\r\n    restoreDailyProgress();\r\n    renderAll();\r\n  }\r\n\r\n  function startRandomRound() {\r\n    state.randomRound = true;\r\n    state.dailyKey = \"\";\r\n    modeLabel.textContent = \"Random round with two different animates\";\r\n    assignTargets(pickDistinctTargets(`${Date.now()}-${Math.random()}`));\r\n    resetRounds();\r\n    renderAll();\r\n  }\r\n\r\n  function assignTargets(targets) {\r\n    CLUE_CONFIGS.forEach((config, index) => {\r\n      state.rounds[config.id].target = targets[index];\r\n    });\r\n  }\r\n\r\n  function resetRounds() {\r\n    Object.values(state.rounds).forEach(round => {\r\n      round.guesses = [];\r\n      round.finished = false;\r\n      round.pickerBtn.disabled = false;\r\n      round.pickerLabel.textContent = \"Guess the animate\";\r\n      round.status.textContent = `You have ${MAX_GUESSES} guesses for ${round.config.title}.`;\r\n      renderOptions(round, \"\");\r\n      renderBoard(round);\r\n      renderClue(round);\r\n    });\r\n\r\n    randomBtn.hidden = true;\r\n  }\r\n\r\n  function restoreDailyProgress() {\r\n    const saved = loadDailyProgress();\r\n    if (!saved || !saved.targets) return;\r\n\r\n    const matchesTargets = CLUE_CONFIGS.every(config => {\r\n      const round = state.rounds[config.id];\r\n      return saved.targets[config.id] === round.target?.name;\r\n    });\r\n\r\n    if (!matchesTargets) return;\r\n\r\n    CLUE_CONFIGS.forEach(config => {\r\n      const round = state.rounds[config.id];\r\n      const guesses = Array.isArray(saved.guesses?.[config.id]) ? saved.guesses[config.id] : [];\r\n      guesses.slice(0, MAX_GUESSES).forEach(guessName => {\r\n        const animate = state.pool.find(entry => entry.name === guessName);\r\n        if (!animate) return;\r\n        round.guesses.push({\r\n          animate,\r\n          correct: animate.name === round.target.name\r\n        });\r\n      });\r\n\r\n      if (round.guesses.length) {\r\n        round.pickerLabel.textContent = round.guesses[round.guesses.length - 1].animate.name;\r\n      }\r\n\r\n      round.finished = round.guesses.some(guess => guess.correct) || round.guesses.length >= MAX_GUESSES;\r\n      updateRoundStatus(round);\r\n      if (round.finished) {\r\n        round.pickerBtn.disabled = true;\r\n      }\r\n    });\r\n\r\n    updateGlobalActions();\r\n  }\r\n\r\n  function renderAll() {\r\n    Object.values(state.rounds).forEach(round => {\r\n      renderOptions(round, \"\");\r\n      renderBoard(round);\r\n      renderClue(round);\r\n      updateRoundStatus(round);\r\n    });\r\n    updateGlobalActions();\r\n  }\r\n\r\n  function renderOptions(round, term) {\r\n    round.optionList.innerHTML = \"\";\r\n\r\n    const needle = String(term || \"\").trim().toLowerCase();\r\n    const visible = state.pool.filter(animate => animate.name.toLowerCase().includes(needle));\r\n\r\n    visible.forEach(animate => {\r\n      const button = document.createElement(\"button\");\r\n      button.type = \"button\";\r\n      button.className = \"guessr-option\";\r\n      button.innerHTML = `<span class=\"guessr-option-name\">${escapeHtml(animate.name)}</span>`;\r\n      button.addEventListener(\"click\", () => submitGuess(round, animate));\r\n      round.optionList.appendChild(button);\r\n    });\r\n\r\n    if (!visible.length) {\r\n      const empty = document.createElement(\"div\");\r\n      empty.className = \"guessr-empty\";\r\n      empty.textContent = round.config.emptyState;\r\n      round.optionList.appendChild(empty);\r\n    }\r\n  }\r\n\r\n  function submitGuess(round, animate) {\r\n    if (round.finished) return;\r\n\r\n    if (round.guesses.some(guess => guess.animate.name === animate.name)) {\r\n      round.status.textContent = \"You already guessed that animate.\";\r\n      closePicker(round);\r\n      return;\r\n    }\r\n\r\n    round.guesses.push({\r\n      animate,\r\n      correct: animate.name === round.target.name\r\n    });\r\n\r\n    round.pickerLabel.textContent = animate.name;\r\n    closePicker(round);\r\n\r\n    if (animate.name === round.target.name) {\r\n      round.finished = true;\r\n      round.pickerBtn.disabled = true;\r\n    } else if (round.guesses.length >= MAX_GUESSES) {\r\n      round.finished = true;\r\n      round.pickerBtn.disabled = true;\r\n    }\r\n\r\n    updateRoundStatus(round);\r\n    renderBoard(round);\r\n    saveDailyProgress();\r\n    updateGlobalActions();\r\n  }\r\n\r\n  function renderBoard(round) {\r\n    round.board.innerHTML = \"\";\r\n\r\n    if (!round.guesses.length) {\r\n      const empty = document.createElement(\"div\");\r\n      empty.className = \"guessr-board-empty\";\r\n      empty.textContent = \"No guesses yet.\";\r\n      round.board.appendChild(empty);\r\n      return;\r\n    }\r\n\r\n    round.guesses.forEach((guessEntry, guessIndex) => {\r\n      const row = document.createElement(\"div\");\r\n      row.className = `guessr-row ${guessEntry.correct ? \"is-correct\" : \"is-wrong\"}`;\r\n      row.style.animationDelay = `${guessIndex * 90}ms`;\r\n      row.innerHTML = `\r\n        <div class=\"guessr-row-main\">\r\n          <div>\r\n            <div class=\"guessr-row-name\">${escapeHtml(guessEntry.animate.name)}</div>\r\n            <div class=\"guessr-row-result\">${guessEntry.correct ? \"Correct\" : \"Not this animate\"}</div>\r\n          </div>\r\n        </div>\r\n      `;\r\n      round.board.appendChild(row);\r\n    });\r\n  }\r\n\r\n  function renderClue(round) {\r\n    if (round.clueWrap) {\r\n      round.clueImage.hidden = true;\r\n    }\r\n    if (round.paletteGrid) {\r\n      round.paletteGrid.hidden = true;\r\n      round.paletteGrid.innerHTML = \"\";\r\n    }\r\n    if (round.clueFallback) {\r\n      round.clueFallback.hidden = false;\r\n      round.clueFallback.textContent = \"Loading clue...\";\r\n    }\r\n\r\n    const target = round.target;\r\n    if (!target) {\r\n      if (round.config.id === \"blackout\") {\r\n        round.clueFallback.textContent = \"Clue unavailable.\";\r\n      }\r\n      return;\r\n    }\r\n\r\n    const image = new Image();\r\n    image.decoding = \"async\";\r\n    image.onload = () => {\r\n      try {\r\n        const clueData = buildClueData(image, round.config.id);\r\n\r\n        if (round.config.id === \"blackout\") {\r\n          round.clueImage.src = clueData;\r\n          round.clueImage.hidden = false;\r\n          round.clueFallback.hidden = true;\r\n        } else {\r\n          clueData.forEach(color => {\r\n            const swatch = document.createElement(\"div\");\r\n            swatch.className = \"guessr-palette-swatch\";\r\n            swatch.style.background = color;\r\n            round.paletteGrid.appendChild(swatch);\r\n          });\r\n          if (round.paletteGrid) {\r\n            round.paletteGrid.hidden = clueData.length === 0;\r\n          }\r\n        }\r\n      } catch (error) {\r\n        console.error(error);\r\n        if (round.config.id === \"blackout\") {\r\n          round.clueFallback.textContent = \"Clue unavailable.\";\r\n        }\r\n      }\r\n    };\r\n    image.onerror = () => {\r\n      if (round.config.id === \"blackout\") {\r\n        round.clueFallback.textContent = \"Clue unavailable.\";\r\n      }\r\n    };\r\n    image.src = target.image;\r\n  }\r\n\r\n  function buildClueData(image, clueId) {\r\n    const canvas = document.createElement(\"canvas\");\r\n    const width = Math.max(1, image.naturalWidth || image.width || 1);\r\n    const height = Math.max(1, image.naturalHeight || image.height || 1);\r\n    canvas.width = width;\r\n    canvas.height = height;\r\n\r\n    const context = canvas.getContext(\"2d\", { willReadFrequently: true });\r\n    context.clearRect(0, 0, width, height);\r\n    context.drawImage(image, 0, 0, width, height);\r\n\r\n    if (clueId === \"blackout\") {\r\n      const imageData = context.getImageData(0, 0, width, height);\r\n      const pixels = imageData.data;\r\n      for (let index = 0; index < pixels.length; index += 4) {\r\n        if (pixels[index + 3] === 0) continue;\r\n        pixels[index] = 0;\r\n        pixels[index + 1] = 0;\r\n        pixels[index + 2] = 0;\r\n      }\r\n      context.putImageData(imageData, 0, 0);\r\n      return canvas.toDataURL(\"image/png\");\r\n    }\r\n\r\n    const rawPalette = extractPalette(context.getImageData(0, 0, width, height).data);\r\n    return sortPalette(rawPalette).slice(0, 24);\r\n  }\r\n\r\n  function extractPalette(pixels) {\r\n    const counts = new Map();\r\n\r\n    for (let index = 0; index < pixels.length; index += 4) {\r\n      const alpha = pixels[index + 3];\r\n      if (alpha < 24) continue;\r\n\r\n      const red = quantizeChannel(pixels[index]);\r\n      const green = quantizeChannel(pixels[index + 1]);\r\n      const blue = quantizeChannel(pixels[index + 2]);\r\n      const key = `${red},${green},${blue}`;\r\n      counts.set(key, (counts.get(key) || 0) + 1);\r\n    }\r\n\r\n    return [...counts.entries()]\r\n      .sort((left, right) => right[1] - left[1])\r\n      .map(([key]) => {\r\n        const [red, green, blue] = key.split(\",\").map(Number);\r\n        return rgbToHex(red, green, blue);\r\n      });\r\n  }\r\n\r\n  function sortPalette(colors) {\r\n    return colors.slice().sort((left, right) => {\r\n      const leftHsl = hexToHsl(left);\r\n      const rightHsl = hexToHsl(right);\r\n\r\n      const leftNeutral = leftHsl.s < 0.12;\r\n      const rightNeutral = rightHsl.s < 0.12;\r\n      if (leftNeutral && rightNeutral) return rightHsl.l - leftHsl.l;\r\n      if (leftNeutral) return 1;\r\n      if (rightNeutral) return -1;\r\n\r\n      const leftHue = normalizeHueOrder(leftHsl.h);\r\n      const rightHue = normalizeHueOrder(rightHsl.h);\r\n      if (leftHue !== rightHue) return leftHue - rightHue;\r\n      if (leftHsl.l !== rightHsl.l) return rightHsl.l - leftHsl.l;\r\n      return rightHsl.s - leftHsl.s;\r\n    });\r\n  }\r\n\r\n  function normalizeHueOrder(hue) {\r\n    return hue < 0 ? 999 : ((hue - 360) % 360 + 360) % 360;\r\n  }\r\n\r\n  function hexToHsl(hex) {\r\n    const red = parseInt(hex.slice(1, 3), 16) / 255;\r\n    const green = parseInt(hex.slice(3, 5), 16) / 255;\r\n    const blue = parseInt(hex.slice(5, 7), 16) / 255;\r\n    const max = Math.max(red, green, blue);\r\n    const min = Math.min(red, green, blue);\r\n    const lightness = (max + min) / 2;\r\n    const delta = max - min;\r\n\r\n    if (delta === 0) {\r\n      return { h: -1, s: 0, l: lightness };\r\n    }\r\n\r\n    const saturation = delta / (1 - Math.abs(2 * lightness - 1));\r\n    let hue;\r\n\r\n    switch (max) {\r\n      case red:\r\n        hue = 60 * (((green - blue) / delta) % 6);\r\n        break;\r\n      case green:\r\n        hue = 60 * (((blue - red) / delta) + 2);\r\n        break;\r\n      default:\r\n        hue = 60 * (((red - green) / delta) + 4);\r\n        break;\r\n    }\r\n\r\n    if (hue < 0) hue += 360;\r\n    return { h: hue, s: saturation, l: lightness };\r\n  }\r\n\r\n  function quantizeChannel(value) {\r\n    return Math.max(0, Math.min(255, Math.round(value / 16) * 16));\r\n  }\r\n\r\n  function rgbToHex(red, green, blue) {\r\n    return `#${[red, green, blue].map(value => value.toString(16).padStart(2, \"0\")).join(\"\")}`;\r\n  }\r\n\r\n  function updateRoundStatus(round) {\r\n    const correctGuess = round.guesses.find(guess => guess.correct);\r\n    if (correctGuess) {\r\n      round.status.textContent = `Solved in ${round.guesses.length}/${MAX_GUESSES}. ${correctGuess.animate.name} was the answer.`;\r\n      return;\r\n    }\r\n\r\n    if (round.guesses.length >= MAX_GUESSES) {\r\n      round.status.textContent = `Out of guesses. The answer was ${round.target.name}.`;\r\n      return;\r\n    }\r\n\r\n    round.status.textContent = `${MAX_GUESSES - round.guesses.length} guesses remaining for ${round.config.title}.`;\r\n  }\r\n\r\n  function updateGlobalActions() {\r\n    const allFinished = Object.values(state.rounds).every(round => round.finished);\r\n    randomBtn.hidden = !allFinished;\r\n  }\r\n\r\n  function saveDailyProgress() {\r\n    if (state.randomRound || !state.dailyKey) return;\r\n    const payload = {\r\n      targets: Object.fromEntries(CLUE_CONFIGS.map(config => [config.id, state.rounds[config.id].target?.name || \"\"])),\r\n      guesses: Object.fromEntries(CLUE_CONFIGS.map(config => [config.id, state.rounds[config.id].guesses.map(entry => entry.animate.name)]))\r\n    };\r\n    try {\r\n      localStorage.setItem(state.dailyKey, JSON.stringify(payload));\r\n    } catch (error) {\r\n      console.error(error);\r\n    }\r\n  }\r\n\r\n  function loadDailyProgress() {\r\n    if (!state.dailyKey) return null;\r\n    try {\r\n      const raw = localStorage.getItem(state.dailyKey);\r\n      return raw ? JSON.parse(raw) : null;\r\n    } catch (error) {\r\n      console.error(error);\r\n      return null;\r\n    }\r\n  }\r\n\r\n  function pickDistinctTargets(seedText) {\r\n    const firstIndex = seededIndex(seedText, \"blackout\", state.pool.length);\r\n    let secondIndex = seededIndex(seedText, \"palette\", state.pool.length);\r\n\r\n    if (secondIndex === firstIndex) {\r\n      secondIndex = (secondIndex + 1) % state.pool.length;\r\n    }\r\n\r\n    return [state.pool[firstIndex], state.pool[secondIndex]];\r\n  }\r\n\r\n  function seededIndex(seedText, salt, size) {\r\n    const fullSeed = `${seedText}:${salt}`;\r\n    let hash = 0;\r\n    for (let index = 0; index < fullSeed.length; index += 1) {\r\n      hash = ((hash * 31) + fullSeed.charCodeAt(index)) >>> 0;\r\n    }\r\n    return hash % size;\r\n  }\r\n\r\n  function getDailySeed() {\r\n    const now = new Date();\r\n    return [\r\n      now.getUTCFullYear(),\r\n      String(now.getUTCMonth() + 1).padStart(2, \"0\"),\r\n      String(now.getUTCDate()).padStart(2, \"0\")\r\n    ].join(\"-\");\r\n  }\r\n\r\n  function getDailyStorageKey() {\r\n    return `${STORAGE_PREFIX}${getDailySeed()}`;\r\n  }\r\n\r\n  function escapeHtml(value) {\r\n    return String(value || \"\").replace(/[&<>\"']/g, match => ({\r\n      \"&\": \"&amp;\",\r\n      \"<\": \"&lt;\",\r\n      \">\": \"&gt;\",\r\n      \"\\\"\": \"&quot;\",\r\n      \"'\": \"&#39;\"\r\n    }[match]));\r\n  }\r\n\r\n  function escapeAttribute(value) {\r\n    return escapeHtml(value);\r\n  }\r\n})();\r\n"
+function runPageScript() {
+  const BASE_DATA_PATH = "data/mates/base.json";
+  const MAX_GUESSES = 6;
+  const STORAGE_PREFIX = "upro-guessr-daily-";
+  const CLUE_CONFIGS = [
+    {
+      id: "blackout",
+      title: "Black-out",
+      description: "A fully blacked-out sprite silhouette.",
+      modeLabel: "Blacked-out animate",
+      shareSymbol: "⬛",
+      emptyState: "No finalized animates match that search."
+    },
+    {
+      id: "palette",
+      title: "Semi-Color",
+      description: "The sprite's colors, shown side by side.",
+      modeLabel: "Palette animate",
+      shareSymbol: "🟦",
+      emptyState: "No finalized animates match that search."
+    }
+  ];
+
+  const gameGrid = document.getElementById("guessrGameGrid");
+  const tabsEl = document.getElementById("guessrTabs");
+  const modeLabel = document.getElementById("guessrModeLabel");
+  const randomBtn = document.getElementById("guessrRandomBtn");
+
+  const state = {
+    pool: [],
+    rounds: {},
+    randomRound: false,
+    dailyKey: "",
+    activeTab: CLUE_CONFIGS[0].id
+  };
+
+  init();
+
+  async function init() {
+    buildGameCards();
+    setActiveTab(state.activeTab);
+    wireGlobalEvents();
+
+    try {
+      const baseItems = await fetch(BASE_DATA_PATH)
+        .then(response => {
+          if (!response.ok) throw new Error(`Failed to load ${BASE_DATA_PATH}`);
+          return response.json();
+        });
+
+      state.pool = buildPool(baseItems);
+      state.pool.sort((a, b) => a.name.localeCompare(b.name));
+      if (state.pool.length < 2) {
+        throw new Error("Guessr needs at least two finalized animates.");
+      }
+
+      startDailyRound();
+    } catch (error) {
+      console.error(error);
+      modeLabel.textContent = "Guessr failed to load finalized animates.";
+      Object.values(state.rounds).forEach(round => {
+        round.status.textContent = "Guessr could not load the finalized animate pool.";
+        round.pickerBtn.disabled = true;
+      });
+      randomBtn.hidden = true;
+    }
+  }
+
+  function buildGameCards() {
+    CLUE_CONFIGS.forEach(config => {
+      const tab = document.createElement("button");
+      tab.type = "button";
+      tab.className = "guessr-tab";
+      tab.id = `guessrTab-${config.id}`;
+      tab.textContent = config.title;
+      tab.setAttribute("aria-selected", config.id === state.activeTab ? "true" : "false");
+      tab.addEventListener("click", () => setActiveTab(config.id));
+      tabsEl.appendChild(tab);
+
+      const article = document.createElement("article");
+      article.className = "guessr-panel";
+      article.id = `guessrPanel-${config.id}`;
+      article.hidden = config.id !== state.activeTab;
+      article.innerHTML = `
+        <div class="guessr-panel-head">
+          <div>
+            <p class="guessr-kicker">${escapeHtml(config.title)}</p>
+            <h2 class="guessr-panel-title">${escapeHtml(config.modeLabel)}</h2>
+            <p class="guessr-panel-copy">${escapeHtml(config.description)}</p>
+          </div>
+          <div class="guessr-clue-shell">
+            <div class="guessr-clue-card guessr-clue-card-${config.id}" id="guessrClueCard-${config.id}">
+              ${config.id === "blackout" ? `
+              <div class="guessr-clue-image-wrap" id="guessrClueWrap-${config.id}">
+                <img alt="" class="guessr-clue-image" id="guessrClueImage-${config.id}" hidden>
+                <div class="guessr-clue-fallback" id="guessrClueFallback-${config.id}">Loading clue...</div>
+              </div>
+              ` : `
+              <div class="guessr-palette-grid" id="guessrPalette-${config.id}" hidden></div>
+              `}
+            </div>
+          </div>
+        </div>
+
+        <div class="guessr-controls">
+          <div class="guessr-combobox" id="guessrCombobox-${config.id}">
+            <button class="guessr-combobox-btn" type="button" id="guessrPickerBtn-${config.id}" aria-expanded="false" aria-controls="guessrPickerPanel-${config.id}">
+              <span id="guessrPickerLabel-${config.id}">Guess the animate</span>
+            </button>
+            <div class="guessr-combobox-panel" id="guessrPickerPanel-${config.id}" hidden>
+              <input class="guessr-search" id="guessrSearchInput-${config.id}" type="text" placeholder="Search animates..." autocomplete="off">
+              <div class="guessr-option-list" id="guessrOptionList-${config.id}" role="listbox" aria-label="${escapeAttribute(config.title)} animate options"></div>
+            </div>
+          </div>
+
+          <p class="guessr-status" id="guessrStatus-${config.id}">You have ${MAX_GUESSES} guesses for ${config.title}.</p>
+        </div>
+
+        <div class="guessr-board" id="guessrBoard-${config.id}" aria-live="polite"></div>
+      `;
+
+      gameGrid.appendChild(article);
+
+      state.rounds[config.id] = {
+        config,
+        target: null,
+        guesses: [],
+        finished: false,
+        pickerBtn: article.querySelector(`#guessrPickerBtn-${config.id}`),
+        pickerLabel: article.querySelector(`#guessrPickerLabel-${config.id}`),
+        pickerPanel: article.querySelector(`#guessrPickerPanel-${config.id}`),
+        searchInput: article.querySelector(`#guessrSearchInput-${config.id}`),
+        optionList: article.querySelector(`#guessrOptionList-${config.id}`),
+        status: article.querySelector(`#guessrStatus-${config.id}`),
+        board: article.querySelector(`#guessrBoard-${config.id}`),
+        panel: article,
+        tab,
+        clueCard: article.querySelector(`#guessrClueCard-${config.id}`),
+        clueWrap: article.querySelector(`#guessrClueWrap-${config.id}`),
+        clueImage: article.querySelector(`#guessrClueImage-${config.id}`),
+        clueFallback: article.querySelector(`#guessrClueFallback-${config.id}`),
+        paletteGrid: article.querySelector(`#guessrPalette-${config.id}`)
+      };
+    });
+
+    Object.values(state.rounds).forEach(wireRoundEvents);
+  }
+
+  function setActiveTab(tabId) {
+    state.activeTab = tabId;
+    Object.values(state.rounds).forEach(round => {
+      const isActive = round.config.id === tabId;
+      round.panel.hidden = !isActive;
+      round.tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      round.tab.classList.toggle("is-active", isActive);
+      if (!isActive) {
+        closePicker(round);
+      }
+    });
+  }
+
+  function wireGlobalEvents() {
+    document.addEventListener("click", event => {
+      Object.values(state.rounds).forEach(round => {
+        const combobox = document.getElementById(`guessrCombobox-${round.config.id}`);
+        if (combobox && !combobox.contains(event.target)) {
+          closePicker(round);
+        }
+      });
+    });
+
+    randomBtn.addEventListener("click", () => {
+      startRandomRound();
+    });
+  }
+
+  function wireRoundEvents(round) {
+    round.pickerBtn.addEventListener("click", () => {
+      const isOpen = !round.pickerPanel.hidden;
+      closeAllPickers();
+      if (isOpen) return;
+      round.pickerPanel.hidden = false;
+      round.pickerBtn.setAttribute("aria-expanded", "true");
+      round.searchInput.value = "";
+      renderOptions(round, "");
+      round.searchInput.focus();
+    });
+
+    round.searchInput.addEventListener("input", event => {
+      renderOptions(round, event.target.value || "");
+    });
+  }
+
+  function closeAllPickers() {
+    Object.values(state.rounds).forEach(closePicker);
+  }
+
+  function closePicker(round) {
+    round.pickerPanel.hidden = true;
+    round.pickerBtn.setAttribute("aria-expanded", "false");
+  }
+
+  function buildPool(baseItems) {
+    return baseItems
+      .map((item, index) => normalizeAnimate(item, index))
+      .filter(Boolean);
+  }
+
+  function normalizeAnimate(item, index) {
+    const imagePath = String(item.image || "");
+    const path = imagePath.toLowerCase();
+    const hasFinalArt = (
+      path.startsWith("assets/images/mates/base/") ||
+      path.includes("/assets/images/mates/base/") ||
+      path.startsWith("assets/images/mates/costumes/") ||
+      path.includes("/assets/images/mates/costumes/")
+    ) && !path.includes("missingno") && !path.includes("youknowwhoiam");
+
+    if (!hasFinalArt) return null;
+    if (item.name === "MissingNo" || item.name === "L.MissingNo" || item.name === "Ones") return null;
+
+    return {
+      id: index + 1,
+      name: String(item.name || "Unknown"),
+      image: imagePath
+    };
+  }
+
+  function startDailyRound() {
+    state.randomRound = false;
+    state.dailyKey = getDailyStorageKey();
+    modeLabel.textContent = "Two daily clue hunts, two different animates";
+    assignTargets(pickDistinctTargets(getDailySeed()));
+    resetRounds();
+    restoreDailyProgress();
+    renderAll();
+  }
+
+  function startRandomRound() {
+    state.randomRound = true;
+    state.dailyKey = "";
+    modeLabel.textContent = "Random round with two different animates";
+    assignTargets(pickDistinctTargets(`${Date.now()}-${Math.random()}`));
+    resetRounds();
+    renderAll();
+  }
+
+  function assignTargets(targets) {
+    CLUE_CONFIGS.forEach((config, index) => {
+      state.rounds[config.id].target = targets[index];
+    });
+  }
+
+  function resetRounds() {
+    Object.values(state.rounds).forEach(round => {
+      round.guesses = [];
+      round.finished = false;
+      round.pickerBtn.disabled = false;
+      round.pickerLabel.textContent = "Guess the animate";
+      round.status.textContent = `You have ${MAX_GUESSES} guesses for ${round.config.title}.`;
+      renderOptions(round, "");
+      renderBoard(round);
+      renderClue(round);
+    });
+
+    randomBtn.hidden = true;
+  }
+
+  function restoreDailyProgress() {
+    const saved = loadDailyProgress();
+    if (!saved || !saved.targets) return;
+
+    const matchesTargets = CLUE_CONFIGS.every(config => {
+      const round = state.rounds[config.id];
+      return saved.targets[config.id] === round.target?.name;
+    });
+
+    if (!matchesTargets) return;
+
+    CLUE_CONFIGS.forEach(config => {
+      const round = state.rounds[config.id];
+      const guesses = Array.isArray(saved.guesses?.[config.id]) ? saved.guesses[config.id] : [];
+      guesses.slice(0, MAX_GUESSES).forEach(guessName => {
+        const animate = state.pool.find(entry => entry.name === guessName);
+        if (!animate) return;
+        round.guesses.push({
+          animate,
+          correct: animate.name === round.target.name
+        });
+      });
+
+      if (round.guesses.length) {
+        round.pickerLabel.textContent = round.guesses[round.guesses.length - 1].animate.name;
+      }
+
+      round.finished = round.guesses.some(guess => guess.correct) || round.guesses.length >= MAX_GUESSES;
+      updateRoundStatus(round);
+      if (round.finished) {
+        round.pickerBtn.disabled = true;
+      }
+    });
+
+    updateGlobalActions();
+  }
+
+  function renderAll() {
+    Object.values(state.rounds).forEach(round => {
+      renderOptions(round, "");
+      renderBoard(round);
+      renderClue(round);
+      updateRoundStatus(round);
+    });
+    updateGlobalActions();
+  }
+
+  function renderOptions(round, term) {
+    round.optionList.innerHTML = "";
+
+    const needle = String(term || "").trim().toLowerCase();
+    const visible = state.pool.filter(animate => animate.name.toLowerCase().includes(needle));
+
+    visible.forEach(animate => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "guessr-option";
+      button.innerHTML = `<span class="guessr-option-name">${escapeHtml(animate.name)}</span>`;
+      button.addEventListener("click", () => submitGuess(round, animate));
+      round.optionList.appendChild(button);
+    });
+
+    if (!visible.length) {
+      const empty = document.createElement("div");
+      empty.className = "guessr-empty";
+      empty.textContent = round.config.emptyState;
+      round.optionList.appendChild(empty);
+    }
+  }
+
+  function submitGuess(round, animate) {
+    if (round.finished) return;
+
+    if (round.guesses.some(guess => guess.animate.name === animate.name)) {
+      round.status.textContent = "You already guessed that animate.";
+      closePicker(round);
+      return;
+    }
+
+    round.guesses.push({
+      animate,
+      correct: animate.name === round.target.name
+    });
+
+    round.pickerLabel.textContent = animate.name;
+    closePicker(round);
+
+    if (animate.name === round.target.name) {
+      round.finished = true;
+      round.pickerBtn.disabled = true;
+    } else if (round.guesses.length >= MAX_GUESSES) {
+      round.finished = true;
+      round.pickerBtn.disabled = true;
+    }
+
+    updateRoundStatus(round);
+    renderBoard(round);
+    saveDailyProgress();
+    updateGlobalActions();
+  }
+
+  function renderBoard(round) {
+    round.board.innerHTML = "";
+
+    if (!round.guesses.length) {
+      const empty = document.createElement("div");
+      empty.className = "guessr-board-empty";
+      empty.textContent = "No guesses yet.";
+      round.board.appendChild(empty);
+      return;
+    }
+
+    round.guesses.forEach((guessEntry, guessIndex) => {
+      const row = document.createElement("div");
+      row.className = `guessr-row ${guessEntry.correct ? "is-correct" : "is-wrong"}`;
+      row.style.animationDelay = `${guessIndex * 90}ms`;
+      row.innerHTML = `
+        <div class="guessr-row-main">
+          <div>
+            <div class="guessr-row-name">${escapeHtml(guessEntry.animate.name)}</div>
+            <div class="guessr-row-result">${guessEntry.correct ? "Correct" : "Not this animate"}</div>
+          </div>
+        </div>
+      `;
+      round.board.appendChild(row);
+    });
+  }
+
+  function renderClue(round) {
+    if (round.clueWrap) {
+      round.clueImage.hidden = true;
+    }
+    if (round.paletteGrid) {
+      round.paletteGrid.hidden = true;
+      round.paletteGrid.innerHTML = "";
+    }
+    if (round.clueFallback) {
+      round.clueFallback.hidden = false;
+      round.clueFallback.textContent = "Loading clue...";
+    }
+
+    const target = round.target;
+    if (!target) {
+      if (round.config.id === "blackout") {
+        round.clueFallback.textContent = "Clue unavailable.";
+      }
+      return;
+    }
+
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = () => {
+      try {
+        const clueData = buildClueData(image, round.config.id);
+
+        if (round.config.id === "blackout") {
+          round.clueImage.src = clueData;
+          round.clueImage.hidden = false;
+          round.clueFallback.hidden = true;
+        } else {
+          clueData.forEach(color => {
+            const swatch = document.createElement("div");
+            swatch.className = "guessr-palette-swatch";
+            swatch.style.background = color;
+            round.paletteGrid.appendChild(swatch);
+          });
+          if (round.paletteGrid) {
+            round.paletteGrid.hidden = clueData.length === 0;
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        if (round.config.id === "blackout") {
+          round.clueFallback.textContent = "Clue unavailable.";
+        }
+      }
+    };
+    image.onerror = () => {
+      if (round.config.id === "blackout") {
+        round.clueFallback.textContent = "Clue unavailable.";
+      }
+    };
+    image.src = target.image;
+  }
+
+  function buildClueData(image, clueId) {
+    const canvas = document.createElement("canvas");
+    const width = Math.max(1, image.naturalWidth || image.width || 1);
+    const height = Math.max(1, image.naturalHeight || image.height || 1);
+    canvas.width = width;
+    canvas.height = height;
+
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    context.clearRect(0, 0, width, height);
+    context.drawImage(image, 0, 0, width, height);
+
+    if (clueId === "blackout") {
+      const imageData = context.getImageData(0, 0, width, height);
+      const pixels = imageData.data;
+      for (let index = 0; index < pixels.length; index += 4) {
+        if (pixels[index + 3] === 0) continue;
+        pixels[index] = 0;
+        pixels[index + 1] = 0;
+        pixels[index + 2] = 0;
+      }
+      context.putImageData(imageData, 0, 0);
+      return canvas.toDataURL("image/png");
+    }
+
+    const rawPalette = extractPalette(context.getImageData(0, 0, width, height).data);
+    return sortPalette(rawPalette).slice(0, 24);
+  }
+
+  function extractPalette(pixels) {
+    const counts = new Map();
+
+    for (let index = 0; index < pixels.length; index += 4) {
+      const alpha = pixels[index + 3];
+      if (alpha < 24) continue;
+
+      const red = quantizeChannel(pixels[index]);
+      const green = quantizeChannel(pixels[index + 1]);
+      const blue = quantizeChannel(pixels[index + 2]);
+      const key = `${red},${green},${blue}`;
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+
+    return [...counts.entries()]
+      .sort((left, right) => right[1] - left[1])
+      .map(([key]) => {
+        const [red, green, blue] = key.split(",").map(Number);
+        return rgbToHex(red, green, blue);
+      });
+  }
+
+  function sortPalette(colors) {
+    return colors.slice().sort((left, right) => {
+      const leftHsl = hexToHsl(left);
+      const rightHsl = hexToHsl(right);
+
+      const leftNeutral = leftHsl.s < 0.12;
+      const rightNeutral = rightHsl.s < 0.12;
+      if (leftNeutral && rightNeutral) return rightHsl.l - leftHsl.l;
+      if (leftNeutral) return 1;
+      if (rightNeutral) return -1;
+
+      const leftHue = normalizeHueOrder(leftHsl.h);
+      const rightHue = normalizeHueOrder(rightHsl.h);
+      if (leftHue !== rightHue) return leftHue - rightHue;
+      if (leftHsl.l !== rightHsl.l) return rightHsl.l - leftHsl.l;
+      return rightHsl.s - leftHsl.s;
+    });
+  }
+
+  function normalizeHueOrder(hue) {
+    return hue < 0 ? 999 : ((hue - 360) % 360 + 360) % 360;
+  }
+
+  function hexToHsl(hex) {
+    const red = parseInt(hex.slice(1, 3), 16) / 255;
+    const green = parseInt(hex.slice(3, 5), 16) / 255;
+    const blue = parseInt(hex.slice(5, 7), 16) / 255;
+    const max = Math.max(red, green, blue);
+    const min = Math.min(red, green, blue);
+    const lightness = (max + min) / 2;
+    const delta = max - min;
+
+    if (delta === 0) {
+      return { h: -1, s: 0, l: lightness };
+    }
+
+    const saturation = delta / (1 - Math.abs(2 * lightness - 1));
+    let hue;
+
+    switch (max) {
+      case red:
+        hue = 60 * (((green - blue) / delta) % 6);
+        break;
+      case green:
+        hue = 60 * (((blue - red) / delta) + 2);
+        break;
+      default:
+        hue = 60 * (((red - green) / delta) + 4);
+        break;
+    }
+
+    if (hue < 0) hue += 360;
+    return { h: hue, s: saturation, l: lightness };
+  }
+
+  function quantizeChannel(value) {
+    return Math.max(0, Math.min(255, Math.round(value / 16) * 16));
+  }
+
+  function rgbToHex(red, green, blue) {
+    return `#${[red, green, blue].map(value => value.toString(16).padStart(2, "0")).join("")}`;
+  }
+
+  function updateRoundStatus(round) {
+    const correctGuess = round.guesses.find(guess => guess.correct);
+    if (correctGuess) {
+      round.status.textContent = `Solved in ${round.guesses.length}/${MAX_GUESSES}. ${correctGuess.animate.name} was the answer.`;
+      return;
+    }
+
+    if (round.guesses.length >= MAX_GUESSES) {
+      round.status.textContent = `Out of guesses. The answer was ${round.target.name}.`;
+      return;
+    }
+
+    round.status.textContent = `${MAX_GUESSES - round.guesses.length} guesses remaining for ${round.config.title}.`;
+  }
+
+  function updateGlobalActions() {
+    const allFinished = Object.values(state.rounds).every(round => round.finished);
+    randomBtn.hidden = !allFinished;
+  }
+
+  function saveDailyProgress() {
+    if (state.randomRound || !state.dailyKey) return;
+    const payload = {
+      targets: Object.fromEntries(CLUE_CONFIGS.map(config => [config.id, state.rounds[config.id].target?.name || ""])),
+      guesses: Object.fromEntries(CLUE_CONFIGS.map(config => [config.id, state.rounds[config.id].guesses.map(entry => entry.animate.name)]))
+    };
+    try {
+      localStorage.setItem(state.dailyKey, JSON.stringify(payload));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function loadDailyProgress() {
+    if (!state.dailyKey) return null;
+    try {
+      const raw = localStorage.getItem(state.dailyKey);
+      return raw ? JSON.parse(raw) : null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  function pickDistinctTargets(seedText) {
+    const firstIndex = seededIndex(seedText, "blackout", state.pool.length);
+    let secondIndex = seededIndex(seedText, "palette", state.pool.length);
+
+    if (secondIndex === firstIndex) {
+      secondIndex = (secondIndex + 1) % state.pool.length;
+    }
+
+    return [state.pool[firstIndex], state.pool[secondIndex]];
+  }
+
+  function seededIndex(seedText, salt, size) {
+    const fullSeed = `${seedText}:${salt}`;
+    let hash = 0;
+    for (let index = 0; index < fullSeed.length; index += 1) {
+      hash = ((hash * 31) + fullSeed.charCodeAt(index)) >>> 0;
+    }
+    return hash % size;
+  }
+
+  function getDailySeed() {
+    const now = new Date();
+    return [
+      now.getUTCFullYear(),
+      String(now.getUTCMonth() + 1).padStart(2, "0"),
+      String(now.getUTCDate()).padStart(2, "0")
+    ].join("-");
+  }
+
+  function getDailyStorageKey() {
+    return `${STORAGE_PREFIX}${getDailySeed()}`;
+  }
+
+  function escapeHtml(value) {
+    return String(value || "").replace(/[&<>"']/g, match => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#39;"
+    }[match]));
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value);
+  }
+}
 const remoteScripts = []
+
+function clearGuessrMounts() {
+  document.getElementById('guessrTabs')?.replaceChildren()
+  document.getElementById('guessrGameGrid')?.replaceChildren()
+}
+
+function dedupeGuessrPaletteSwatches() {
+  document.querySelectorAll('.guessr-palette-grid').forEach(grid => {
+    const seenColors = new Set()
+
+    grid.querySelectorAll('.guessr-palette-swatch').forEach(swatch => {
+      const color = swatch.style.backgroundColor || swatch.style.background
+      if (seenColors.has(color)) {
+        swatch.remove()
+        return
+      }
+
+      seenColors.add(color)
+    })
+  })
+}
+
+function watchGuessrPaletteSwatches() {
+  const stage = document.getElementById('guessrGameGrid')
+  if (!stage) return null
+
+  const observer = new MutationObserver(dedupeGuessrPaletteSwatches)
+  observer.observe(stage, { childList: true, subtree: true })
+  dedupeGuessrPaletteSwatches()
+  return observer
+}
 
 function loadRemoteScript(src) {
   return new Promise((resolve, reject) => {
@@ -28,16 +715,18 @@ export default function GuessrPage() {
     document.body.setAttribute('style', "")
 
     let cancelled = false
+    let paletteObserver = null
 
     async function startPage() {
       for (const src of remoteScripts) {
         await loadRemoteScript(src)
       }
+      if (cancelled) return
 
-      if (cancelled || !pageScript) return
-
+      clearGuessrMounts()
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=GuessrPage.legacy.js`)()
+      runPageScript()
+      paletteObserver = watchGuessrPaletteSwatches()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {
@@ -49,6 +738,8 @@ export default function GuessrPage() {
 
     return () => {
       cancelled = true
+      paletteObserver?.disconnect()
+      clearGuessrMounts()
       window.onload = null
     }
   }, [])

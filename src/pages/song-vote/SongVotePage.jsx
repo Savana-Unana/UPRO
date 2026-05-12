@@ -1,7 +1,701 @@
 import { useEffect } from 'react'
 
 const pageStyles = "@font-face {\r\n      font-family: \"UPRO\";\r\n      src: url(\"assets/fonts/UPRO.ttf\") format(\"truetype\");\r\n    }\r\n\r\n    :root {\r\n      --bg: #111418;\r\n      --panel-text: #111418;\r\n      --panel-light-text: #f7f8fb;\r\n      --neutral: #d7cfbf;\r\n      --neutral-dark: #6b6459;\r\n      --header-bg: rgba(10, 14, 20, 0.86);\r\n      --card-shadow: rgba(0, 0, 0, 0.24);\r\n    }\r\n\r\n    * {\r\n      box-sizing: border-box;\r\n    }\r\n\r\n    body {\r\n      margin: 0;\r\n      min-height: 100dvh;\r\n      background:\r\n        radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 30%),\r\n        linear-gradient(180deg, #0e1116 0%, #171c24 100%);\r\n      color: #f7f8fb;\r\n      font-family: \"UPRO\", \"Trebuchet MS\", sans-serif;\r\n    }\r\n\r\n    button,\r\n    h1,\r\n    h2,\r\n    div,\r\n    span,\r\n    p {\r\n      font-family: \"UPRO\", \"Trebuchet MS\", sans-serif;\r\n    }\r\n\r\n    .page {\r\n      min-height: 100dvh;\r\n      display: grid;\r\n      grid-template-rows: auto 1fr auto;\r\n    }\r\n\r\n    .header {\r\n      position: sticky;\r\n      top: 0;\r\n      z-index: 10;\r\n      padding: 16px 20px;\r\n      text-align: center;\r\n      background: var(--header-bg);\r\n      backdrop-filter: blur(10px);\r\n      border-bottom: 1px solid rgba(255, 255, 255, 0.12);\r\n    }\r\n\r\n    .header-nav {\r\n      display: flex;\r\n      justify-content: flex-start;\r\n      margin-bottom: 10px;\r\n      gap: 10px;\r\n    }\r\n\r\n    .header h1 {\r\n      margin: 0;\r\n      font-size: 3.2rem;\r\n      letter-spacing: 0.08em;\r\n      text-transform: uppercase;\r\n    }\r\n\r\n    .mode-switcher {\r\n      margin-top: 14px;\r\n      display: inline-flex;\r\n      flex-wrap: wrap;\r\n      justify-content: center;\r\n      gap: 10px;\r\n    }\r\n\r\n    .mode-button {\r\n      border: 1px solid rgba(255, 255, 255, 0.25);\r\n      background: rgba(255, 255, 255, 0.08);\r\n      color: var(--panel-light-text);\r\n      padding: 10px 16px;\r\n      border-radius: 999px;\r\n      cursor: pointer;\r\n      font-size: 1.35rem;\r\n      letter-spacing: 0.04em;\r\n      text-transform: uppercase;\r\n      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;\r\n    }\r\n\r\n    .mode-button:hover,\r\n    .mode-button:focus-visible {\r\n      background: rgba(255, 255, 255, 0.16);\r\n      border-color: rgba(255, 255, 255, 0.45);\r\n      outline: none;\r\n    }\r\n\r\n    .mode-button.is-active {\r\n      background: var(--neutral);\r\n      color: var(--panel-text);\r\n      border-color: var(--neutral);\r\n    }\r\n\r\n    .header-nav button {\r\n      background: #222;\r\n      color: #0ff;\r\n      font-family: \"UPRO\", serif;\r\n      font-size: 30px;\r\n      border: 1px solid #0ff;\r\n      padding: 6px 12px;\r\n      border-radius: 6px;\r\n      cursor: pointer;\r\n    }\r\n\r\n    .header-nav button:hover {\r\n      background: #0ff;\r\n      color: #000;\r\n    }\r\n\r\n    .arena {\r\n      display: grid;\r\n      grid-template-columns: 1fr 1fr;\r\n      min-height: 0;\r\n    }\r\n\r\n    .vote-panel {\r\n      position: relative;\r\n      border: 0;\r\n      padding: 28px;\r\n      cursor: pointer;\r\n      display: flex;\r\n      align-items: stretch;\r\n      justify-content: stretch;\r\n      background:\r\n        radial-gradient(circle at top, rgba(var(--song-rgb, 215, 207, 191), 0.34), transparent 42%),\r\n        linear-gradient(180deg, rgba(18, 22, 30, 0.98) 0%, rgba(11, 15, 21, 0.98) 100%);\r\n      color: var(--panel-light-text);\r\n      transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;\r\n    }\r\n\r\n    .vote-panel:hover,\r\n    .vote-panel:focus-visible {\r\n      transform: scale(0.992);\r\n      filter: brightness(1.04);\r\n      box-shadow: inset 0 0 0 1px rgba(var(--song-rgb, 215, 207, 191), 0.5), 0 0 24px rgba(var(--song-rgb, 215, 207, 191), 0.28);\r\n      outline: none;\r\n    }\r\n\r\n    .vote-panel.is-loading {\r\n      cursor: progress;\r\n    }\r\n\r\n    .vote-panel::after {\r\n      content: \"\";\r\n      position: absolute;\r\n      inset: 0;\r\n      background:\r\n        linear-gradient(140deg, rgba(255, 255, 255, 0.2), transparent 45%),\r\n        linear-gradient(0deg, rgba(0, 0, 0, 0.16), transparent 40%);\r\n      pointer-events: none;\r\n    }\r\n\r\n    .vote-panel.left {\r\n      border-right: 1px solid rgba(255, 255, 255, 0.12);\r\n    }\r\n\r\n    .vote-card {\r\n      position: relative;\r\n      z-index: 1;\r\n      width: 100%;\r\n      display: grid;\r\n      align-content: center;\r\n      justify-items: center;\r\n      text-align: center;\r\n      gap: 28px;\r\n      padding: 40px 32px;\r\n      border-radius: 28px;\r\n      border: 3px solid rgba(var(--song-rgb, 215, 207, 191), 0.85);\r\n      box-shadow:\r\n        inset 0 0 0 1px rgba(255, 255, 255, 0.14),\r\n        0 24px 60px var(--card-shadow),\r\n        0 0 18px rgba(var(--song-rgb, 215, 207, 191), 0.22);\r\n      background:\r\n        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),\r\n        rgba(12, 16, 22, 0.72);\r\n      backdrop-filter: blur(6px);\r\n    }\r\n\r\n    .song-number {\r\n      font-size: 1.35rem;\r\n      letter-spacing: 0.12em;\r\n      text-transform: uppercase;\r\n      color: rgba(var(--song-rgb, 215, 207, 191), 1);\r\n      opacity: 0.95;\r\n    }\r\n\r\n    .song-name {\r\n      margin: 0;\r\n      font-size: 5.4rem;\r\n      line-height: 1.05;\r\n      letter-spacing: 0.03em;\r\n      text-wrap: balance;\r\n      color: #f7f8fb;\r\n    }\r\n\r\n    .song-meta {\r\n      display: grid;\r\n      gap: 8px;\r\n      justify-items: center;\r\n      font-size: 1.9rem;\r\n      color: #d7e1ef;\r\n      opacity: 0.92;\r\n    }\r\n\r\n    .song-chip-row {\r\n      display: flex;\r\n      flex-wrap: wrap;\r\n      justify-content: center;\r\n      gap: 8px;\r\n    }\r\n\r\n    .song-chip {\r\n      padding: 6px 10px;\r\n      border-radius: 999px;\r\n      background: rgba(var(--song-rgb, 215, 207, 191), 0.92);\r\n      border: 1px solid rgba(255, 255, 255, 0.18);\r\n      color: #0f141c;\r\n      font-size: 1.25rem;\r\n      letter-spacing: 0.04em;\r\n      text-transform: uppercase;\r\n      font-weight: bold;\r\n    }\r\n\r\n    .song-actions {\r\n      display: flex;\r\n      justify-content: center;\r\n      gap: 10px;\r\n      flex-wrap: wrap;\r\n      margin-top: 2px;\r\n    }\r\n\r\n    .listen-button {\r\n      background: #222;\r\n      color: #0ff;\r\n      border: 1px solid #0ff;\r\n      padding: 8px 14px;\r\n      border-radius: 8px;\r\n      cursor: pointer;\r\n      font-size: 1.35rem;\r\n      letter-spacing: 0.04em;\r\n      text-transform: uppercase;\r\n      transition: 0.2s;\r\n    }\r\n\r\n    .listen-button:hover,\r\n    .listen-button:focus-visible {\r\n      background: #0ff;\r\n      color: #000;\r\n      outline: none;\r\n    }\r\n\r\n    .listen-button:disabled {\r\n      background: #2d313a;\r\n      border-color: #4a5160;\r\n      color: #96a2b8;\r\n      cursor: not-allowed;\r\n    }\r\n\r\n    .listen-status {\r\n      min-height: 1.1rem;\r\n      font-size: 1.2rem;\r\n      letter-spacing: 0.04em;\r\n      opacity: 0.9;\r\n    }\r\n\r\n    .empty-state {\r\n      grid-column: 1 / -1;\r\n      display: grid;\r\n      place-items: center;\r\n      padding: 32px;\r\n      text-align: center;\r\n      font-size: 1.2rem;\r\n    }\r\n\r\n    .status-bar {\r\n      display: flex;\r\n      justify-content: space-between;\r\n      gap: 12px;\r\n      padding: 12px 18px;\r\n      border-top: 1px solid rgba(255, 255, 255, 0.12);\r\n      background: rgba(10, 14, 20, 0.76);\r\n      font-size: 1.15rem;\r\n    }\r\n\r\n    .status-bar strong {\r\n      font-weight: normal;\r\n    }\r\n\r\n    .status-ok {\r\n      color: #aef0b0;\r\n    }\r\n\r\n    .status-warn {\r\n      color: #ffd38a;\r\n    }\r\n\r\n    .status-error {\r\n      color: #ff9d9d;\r\n    }\r\n\r\n    .header h1 {\r\n      font-size: 3.6rem;\r\n    }\r\n\r\n    .mode-button {\r\n      font-size: 1.9rem;\r\n    }\r\n\r\n    .song-number {\r\n      font-size: 1.7rem;\r\n    }\r\n\r\n    .song-name {\r\n      font-size: 5rem;\r\n    }\r\n\r\n    .song-meta {\r\n      font-size: 2.35rem;\r\n    }\r\n\r\n    .song-chip {\r\n      font-size: 1.6rem;\r\n    }\r\n\r\n    .listen-button {\r\n      font-size: 1.14rem;\r\n    }\r\n\r\n    .listen-status {\r\n      font-size: 1.5rem;\r\n    }\r\n\r\n    .empty-state {\r\n      font-size: 2.4rem;\r\n    }\r\n\r\n    .status-bar {\r\n      font-size: 1.8rem;\r\n    }\r\n    .vote-card {\r\n      width: min(86%, 900px);\r\n      min-height: 52%;\r\n      margin: auto;\r\n    }\r\n\r\n    @media screen and (max-width: 800px) {\r\n      .header h1 {\r\n        font-size: 2.3rem;\r\n      }\r\n\r\n      .song-name {\r\n        font-size: 3.2rem;\r\n      }\r\n\r\n      .song-meta {\r\n        font-size: 1.8rem;\r\n      }\r\n\r\n      .arena {\r\n        grid-template-columns: 1fr;\r\n      }\r\n\r\n      .vote-panel.left {\r\n        border-right: 0;\r\n        border-bottom: 1px solid rgba(255, 255, 255, 0.12);\r\n      }\r\n\r\n      .status-bar {\r\n        flex-direction: column;\r\n      }\r\n    }"
-const pageScript = "const GOOGLE_SCRIPT_URL = \"https://script.google.com/macros/s/AKfycbxW2-Ir2-V-gYtjh_8loErFZNmNbBPEYq7tgFbpZNtUQNeKt1Pnz5-v87aTu8jHb43gRg/exec\";\r\n\r\nconst FALLBACK_COLOR = \"#d7cfbf\";\r\nconst SONG_VOTE_MODES = {\r\n  ost: { label: \"Canon\", sheetName: \"Song Canon\" },\r\n  bonus: { label: \"Non-Canon\", sheetName: \"Song Non-Canon\" }\r\n};\r\n\r\nconst TYPE_COLORS = {\r\n  Normal: \"#d7cfbf\",\r\n  Plant: \"#6BBF59\",\r\n  Water: \"#3BA5FF\",\r\n  Ice: \"#C9F0FF\",\r\n  Fire: \"#FF7A4D\",\r\n  Earth: \"#C99C6B\",\r\n  Mystic: \"#BFA6FF\",\r\n  Air: \"#9ED8FF\",\r\n  Savage: \"#D6C79B\",\r\n  Metal: \"#B0B8C1\",\r\n  Electric: \"#F6C94C\",\r\n  Artillery: \"#D88F8F\",\r\n  Light: \"#FFF3B0\",\r\n  Dark: \"#3B3B3F\",\r\n  Gross: \"#A8A77A\",\r\n  Spectral: \"#8F7AE6\",\r\n  Lucid: \"#9FE5D1\"\r\n};\r\n\r\nconst DEFAULT_MODE = \"ost\";\r\nconst RESET_VOTES_HASH = \"#appleciderbananajuice\";\r\nconst PENDING_VOTES_KEY = \"upro_song_vote_queue\";\r\nconst LAST_MODE_KEY = \"upro_song_vote_mode\";\r\n\r\nconst state = {\r\n  pools: {\r\n    ost: [],\r\n    bonus: []\r\n  },\r\n  pair: [],\r\n  currentMode: loadVoteMode(),\r\n  isVoting: false,\r\n  currentAudio: null,\r\n  currentListenButton: null,\r\n  pendingVotes: loadPendingVotes(),\r\n  isFlushingVotes: false\r\n};\r\n\r\nconst arena = document.getElementById(\"arena\");\r\nconst leftPanel = document.getElementById(\"left-panel\");\r\nconst rightPanel = document.getElementById(\"right-panel\");\r\nconst poolStatus = document.getElementById(\"pool-status\");\r\nconst saveStatus = document.getElementById(\"save-status\");\r\nconst modeButtons = Array.from(document.querySelectorAll(\"[data-vote-mode]\"));\r\nlet emptyStateEl = null;\r\n\r\nbootstrap();\r\n\r\nasync function bootstrap() {\r\n  if (window.location.hash === RESET_VOTES_HASH) {\r\n    await handleVoteResetHash();\r\n    return;\r\n  }\r\n\r\n  initModeSwitcher();\r\n  init();\r\n}\r\n\r\nasync function init() {\r\n  try {\r\n    const songs = await fetchJson(\"data/songs.json\");\r\n    state.pools = buildPools(songs);\r\n    refreshForCurrentMode();\r\n    flushPendingVotes();\r\n  } catch (error) {\r\n    console.error(error);\r\n    renderEmptyState(\"The song vote page could not load its data.\");\r\n    saveStatus.textContent = \"Loading failed.\";\r\n    saveStatus.className = \"status-error\";\r\n  }\r\n}\r\n\r\nfunction initModeSwitcher() {\r\n  modeButtons.forEach(button => {\r\n    button.addEventListener(\"click\", () => setVoteMode(button.dataset.voteMode));\r\n  });\r\n  syncModeButtons();\r\n}\r\n\r\nfunction setVoteMode(mode) {\r\n  if (!SONG_VOTE_MODES[mode] || mode === state.currentMode) {\r\n    return;\r\n  }\r\n\r\n  state.currentMode = mode;\r\n  persistVoteMode();\r\n  refreshForCurrentMode();\r\n  flushPendingVotes();\r\n}\r\n\r\nfunction refreshForCurrentMode() {\r\n  syncModeButtons();\r\n  updatePoolStatus();\r\n  updateSaveStatus();\r\n\r\n  if (getCurrentPool().length < 2) {\r\n    state.pair = [];\r\n    renderEmptyState(`Not enough ${SONG_VOTE_MODES[state.currentMode].label.toLowerCase()} songs were found.`);\r\n    return;\r\n  }\r\n\r\n  nextPair();\r\n}\r\n\r\nfunction syncModeButtons() {\r\n  modeButtons.forEach(button => {\r\n    const isActive = button.dataset.voteMode === state.currentMode;\r\n    button.classList.toggle(\"is-active\", isActive);\r\n    button.setAttribute(\"aria-selected\", isActive ? \"true\" : \"false\");\r\n  });\r\n}\r\n\r\nfunction getCurrentPool() {\r\n  return state.pools[state.currentMode] || [];\r\n}\r\n\r\nfunction buildPools(songEntries) {\r\n  const pools = {\r\n    ost: [],\r\n    bonus: []\r\n  };\r\n  const seen = {\r\n    ost: new Set(),\r\n    bonus: new Set()\r\n  };\r\n\r\n  songEntries\r\n    .map(normalizeSong)\r\n    .filter(song => song && song.playable)\r\n    .forEach(song => {\r\n      if (song.isCanonTrack) {\r\n        pushPoolItem(pools.ost, seen.ost, song);\r\n      } else {\r\n        pushPoolItem(pools.bonus, seen.bonus, song);\r\n      }\r\n    });\r\n\r\n  return pools;\r\n}\r\n\r\nfunction normalizeSong(entry) {\r\n  if (!entry || !entry.name) {\r\n    return null;\r\n  }\r\n\r\n  const typing = Array.isArray(entry.typing) ? entry.typing : [entry.typing || \"Normal\"];\r\n  const primaryType = typing[0] || \"Normal\";\r\n  const primaryColor = TYPE_COLORS[primaryType] || FALLBACK_COLOR;\r\n  const ostNumber = Number(entry.ost);\r\n  const file = typeof entry.file === \"string\" ? entry.file.trim() : \"\";\r\n  const playable = Boolean(file);\r\n  const isNonCanonTrack = Number.isFinite(ostNumber) && ostNumber === 1000;\r\n  const isCanonTrack = playable && !isNonCanonTrack;\r\n\r\n  return {\r\n    key: `Song:${entry.name}`,\r\n    name: entry.name,\r\n    composer: entry.composer || \"Unknown\",\r\n    area: entry.area || \"Unknown\",\r\n    theme: entry.theme || \"Theme\",\r\n    typing,\r\n    primaryType,\r\n    primaryColor,\r\n    textColor: getReadableTextColor(primaryColor),\r\n    ost: Number.isFinite(ostNumber) ? ostNumber : null,\r\n    order: Number(entry.order) || 0,\r\n    source: isCanonTrack ? \"Canon\" : \"Non-Canon\",\r\n    isCanonTrack,\r\n    isNonCanonTrack,\r\n    file,\r\n    playable,\r\n    raw: entry\r\n  };\r\n}\r\n\r\nfunction pushPoolItem(pool, seen, item) {\r\n  if (!item || !item.name || seen.has(item.key)) {\r\n    return;\r\n  }\r\n\r\n  seen.add(item.key);\r\n  pool.push(item);\r\n}\r\n\r\nfunction nextPair() {\r\n  resetCurrentPreview();\r\n  const pool = getCurrentPool();\r\n  state.pair = pickPair(pool);\r\n  state.isVoting = false;\r\n  renderPair();\r\n}\r\n\r\nfunction pickPair(pool) {\r\n  const firstIndex = Math.floor(Math.random() * pool.length);\r\n  let secondIndex = Math.floor(Math.random() * pool.length);\r\n\r\n  while (secondIndex === firstIndex) {\r\n    secondIndex = Math.floor(Math.random() * pool.length);\r\n  }\r\n\r\n  return [pool[firstIndex], pool[secondIndex]];\r\n}\r\n\r\nfunction renderPair() {\r\n  ensureArenaReady();\r\n  const [left, right] = state.pair;\r\n  renderPanel(leftPanel, left, 0);\r\n  renderPanel(rightPanel, right, 1);\r\n}\r\n\r\nfunction renderPanel(panel, song, sideIndex) {\r\n  if (!song) {\r\n    panel.innerHTML = \"\";\r\n    panel.removeAttribute(\"aria-disabled\");\r\n    panel.removeAttribute(\"data-vote-index\");\r\n    panel.classList.add(\"is-loading\");\r\n    panel.onclick = null;\r\n    panel.onkeydown = null;\r\n    return;\r\n  }\r\n\r\n  panel.classList.toggle(\"is-loading\", state.isVoting);\r\n  panel.style.setProperty(\"--song-rgb\", hexToRgbString(song.primaryColor));\r\n  panel.style.setProperty(\"--song-color\", song.primaryColor);\r\n  panel.style.color = \"#f7f8fb\";\r\n  panel.setAttribute(\"aria-disabled\", state.isVoting ? \"true\" : \"false\");\r\n  panel.dataset.voteIndex = String(sideIndex);\r\n  panel.onclick = () => handleVote(sideIndex);\r\n  panel.onkeydown = event => {\r\n    if (event.key !== \"Enter\" && event.key !== \" \") {\r\n      return;\r\n    }\r\n\r\n    event.preventDefault();\r\n    handleVote(sideIndex);\r\n  };\r\n\r\n  const numberLabel = song.isCanonTrack ? `OST ${song.ost}` : \"NON-CANON\";\r\n  const typingChips = song.typing\r\n    .filter(Boolean)\r\n    .map(type => `<span class=\"song-chip\">${escapeHtml(type)}</span>`)\r\n    .join(\"\");\r\n  const listenLabel = song.playable ? \"Listen\" : \"Unavailable\";\r\n  const listenStatus = song.playable ? \"Preview this song\" : \"No file available\";\r\n\r\n  panel.innerHTML = `\r\n    <article class=\"vote-card\">\r\n      <div class=\"song-number\">${escapeHtml(numberLabel)}</div>\r\n      <h2 class=\"song-name\">${escapeHtml(song.name)}</h2>\r\n      <div class=\"song-meta\">\r\n        <p>Composer: ${escapeHtml(song.composer)}</p>\r\n        <p>${escapeHtml(song.area)} | ${escapeHtml(song.theme)}</p>\r\n      </div>\r\n      <div class=\"song-chip-row\">${typingChips}</div>\r\n      <div class=\"song-actions\">\r\n        <button class=\"listen-button\" type=\"button\" ${song.playable ? \"\" : \"disabled\"}>${listenLabel}</button>\r\n      </div>\r\n      <div class=\"listen-status\">${escapeHtml(listenStatus)}</div>\r\n      ${song.playable ? `<audio preload=\"metadata\" src=\"${escapeAttribute(song.file)}\"></audio>` : \"\"}\r\n    </article>\r\n  `;\r\n\r\n  const listenButton = panel.querySelector(\".listen-button\");\r\n  const listenStatusEl = panel.querySelector(\".listen-status\");\r\n  const audio = panel.querySelector(\"audio\");\r\n\r\n  if (listenButton) {\r\n    listenButton.addEventListener(\"click\", event => {\r\n      event.stopPropagation();\r\n      toggleSongPreview(song, audio, listenButton, listenStatusEl);\r\n    });\r\n  }\r\n}\r\n\r\nasync function handleVote(selectedIndex) {\r\n  if (state.isVoting || state.pair.length !== 2) {\r\n    return;\r\n  }\r\n\r\n  state.isVoting = true;\r\n  renderPair();\r\n\r\n  const winner = state.pair[selectedIndex];\r\n  const loser = state.pair[selectedIndex === 0 ? 1 : 0];\r\n  enqueueVote(winner, loser, state.currentMode);\r\n  nextPair();\r\n  flushPendingVotes();\r\n}\r\n\r\nasync function submitVote(vote) {\r\n  if (!GOOGLE_SCRIPT_URL) {\r\n    throw new Error(\"Google Apps Script URL is not configured.\");\r\n  }\r\n\r\n  await postVoteRequest({\r\n    action: \"vote\",\r\n    entityType: \"song\",\r\n    mode: vote.mode,\r\n    winnerName: vote.winner.name,\r\n    winnerSource: vote.winner.source,\r\n    loserName: vote.loser.name,\r\n    loserSource: vote.loser.source\r\n  });\r\n}\r\n\r\nfunction enqueueVote(winner, loser, mode) {\r\n  state.pendingVotes.push({\r\n    mode,\r\n    winner: {\r\n      name: winner.name,\r\n      source: winner.source\r\n    },\r\n    loser: {\r\n      name: loser.name,\r\n      source: loser.source\r\n    },\r\n    queuedAt: Date.now()\r\n  });\r\n\r\n  persistPendingVotes();\r\n  saveStatus.textContent = `Queued ${SONG_VOTE_MODES[mode].label} song vote: ${winner.name}`;\r\n  saveStatus.className = \"status-warn\";\r\n}\r\n\r\nasync function flushPendingVotes() {\r\n  if (state.isFlushingVotes || !state.pendingVotes.length) {\r\n    updateSaveStatus();\r\n    return;\r\n  }\r\n\r\n  if (!GOOGLE_SCRIPT_URL) {\r\n    updateSaveStatus();\r\n    return;\r\n  }\r\n\r\n  state.isFlushingVotes = true;\r\n  updateSaveStatus();\r\n\r\n  try {\r\n    while (state.pendingVotes.length) {\r\n      const vote = normalizePendingVote(state.pendingVotes[0]);\r\n      await submitVote(vote);\r\n      state.pendingVotes.shift();\r\n      persistPendingVotes();\r\n    }\r\n\r\n    saveStatus.textContent = \"All queued song votes saved.\";\r\n    saveStatus.className = \"status-ok\";\r\n  } catch (error) {\r\n    console.error(error);\r\n    saveStatus.textContent = `Saved later: ${state.pendingVotes.length} queued vote(s).`;\r\n    saveStatus.className = \"status-error\";\r\n  } finally {\r\n    state.isFlushingVotes = false;\r\n  }\r\n}\r\n\r\nfunction normalizePendingVote(vote) {\r\n  return {\r\n    mode: SONG_VOTE_MODES[vote?.mode] ? vote.mode : DEFAULT_MODE,\r\n    winner: {\r\n      name: vote?.winner?.name || \"\",\r\n      source: vote?.winner?.source || \"\"\r\n    },\r\n    loser: {\r\n      name: vote?.loser?.name || \"\",\r\n      source: vote?.loser?.source || \"\"\r\n    },\r\n    queuedAt: vote?.queuedAt || Date.now()\r\n  };\r\n}\r\n\r\nfunction updatePoolStatus() {\r\n  const pool = getCurrentPool();\r\n  const counts = pool.reduce((acc, item) => {\r\n    acc[item.source] = (acc[item.source] || 0) + 1;\r\n    return acc;\r\n  }, {});\r\n\r\n  poolStatus.innerHTML = [\r\n    `${SONG_VOTE_MODES[state.currentMode].label}: <strong>${pool.length}</strong> songs.`,\r\n    `Canon: <strong>${counts.Canon || 0}</strong>`,\r\n    `Non-Canon: <strong>${counts[\"Non-Canon\"] || 0}</strong>`\r\n  ].join(\" \");\r\n}\r\n\r\nfunction updateSaveStatus() {\r\n  const queuedInCurrentMode = state.pendingVotes\r\n    .map(normalizePendingVote)\r\n    .filter(vote => vote.mode === state.currentMode)\r\n    .length;\r\n\r\n  if (GOOGLE_SCRIPT_URL) {\r\n    if (state.isFlushingVotes) {\r\n      saveStatus.textContent = `Saving ${state.pendingVotes.length} queued vote(s)...`;\r\n      saveStatus.className = \"status-warn\";\r\n      return;\r\n    }\r\n\r\n    if (state.pendingVotes.length) {\r\n      if (queuedInCurrentMode) {\r\n        saveStatus.textContent = `${queuedInCurrentMode} ${SONG_VOTE_MODES[state.currentMode].label.toLowerCase()} song vote(s) queued for sync.`;\r\n      } else {\r\n        saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued in other song mode(s).`;\r\n      }\r\n      saveStatus.className = \"status-warn\";\r\n      return;\r\n    }\r\n\r\n    saveStatus.textContent = `Google Sheet connection configured for ${SONG_VOTE_MODES[state.currentMode].sheetName}.`;\r\n    saveStatus.className = \"status-ok\";\r\n    return;\r\n  }\r\n\r\n  saveStatus.textContent = \"Google Sheet endpoint not configured yet.\";\r\n  saveStatus.className = \"status-warn\";\r\n}\r\n\r\nfunction renderEmptyState(message) {\r\n  if (!emptyStateEl) {\r\n    emptyStateEl = document.createElement(\"div\");\r\n    emptyStateEl.className = \"empty-state\";\r\n  }\r\n\r\n  leftPanel.hidden = true;\r\n  rightPanel.hidden = true;\r\n  emptyStateEl.innerHTML = escapeHtml(message);\r\n  if (!arena.contains(emptyStateEl)) {\r\n    arena.appendChild(emptyStateEl);\r\n  }\r\n}\r\n\r\nfunction ensureArenaReady() {\r\n  leftPanel.hidden = false;\r\n  rightPanel.hidden = false;\r\n  if (emptyStateEl && arena.contains(emptyStateEl)) {\r\n    emptyStateEl.remove();\r\n  }\r\n}\r\n\r\nfunction toggleSongPreview(song, audio, button, statusEl) {\r\n  if (!audio || !button || !statusEl) {\r\n    return;\r\n  }\r\n\r\n  if (state.currentAudio && state.currentAudio !== audio) {\r\n    resetCurrentPreview();\r\n  }\r\n\r\n  if (audio.paused) {\r\n    audio.currentTime = 0;\r\n    audio.play().catch(error => {\r\n      console.error(error);\r\n      statusEl.textContent = \"Could not play preview\";\r\n    });\r\n    button.textContent = \"Pause\";\r\n    statusEl.textContent = `Playing ${song.name}`;\r\n    state.currentAudio = audio;\r\n    state.currentListenButton = button;\r\n\r\n    audio.onended = () => {\r\n      if (state.currentAudio === audio) {\r\n        button.textContent = \"Listen\";\r\n        statusEl.textContent = \"Preview this song\";\r\n        state.currentAudio = null;\r\n        state.currentListenButton = null;\r\n      }\r\n    };\r\n    return;\r\n  }\r\n\r\n  audio.pause();\r\n  button.textContent = \"Listen\";\r\n  statusEl.textContent = \"Preview this song\";\r\n  if (state.currentAudio === audio) {\r\n    state.currentAudio = null;\r\n    state.currentListenButton = null;\r\n  }\r\n}\r\n\r\nfunction resetCurrentPreview() {\r\n  if (!state.currentAudio || !state.currentListenButton) {\r\n    return;\r\n  }\r\n\r\n  const previousAudio = state.currentAudio;\r\n  const previousButton = state.currentListenButton;\r\n  const previousStatus = previousButton.closest(\".vote-card\")?.querySelector(\".listen-status\");\r\n\r\n  previousAudio.pause();\r\n  previousAudio.currentTime = 0;\r\n  previousButton.textContent = \"Listen\";\r\n  if (previousStatus) {\r\n    previousStatus.textContent = \"Preview this song\";\r\n  }\r\n\r\n  state.currentAudio = null;\r\n  state.currentListenButton = null;\r\n}\r\n\r\nasync function fetchJson(path) {\r\n  const response = await fetch(path);\r\n  if (!response.ok) {\r\n    throw new Error(`Failed to load ${path}.`);\r\n  }\r\n  return response.json();\r\n}\r\n\r\nfunction getReadableTextColor(hexColor) {\r\n  const color = (hexColor || \"\").replace(\"#\", \"\");\r\n  if (color.length !== 6) {\r\n    return \"#111418\";\r\n  }\r\n\r\n  const red = parseInt(color.slice(0, 2), 16);\r\n  const green = parseInt(color.slice(2, 4), 16);\r\n  const blue = parseInt(color.slice(4, 6), 16);\r\n  const luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue);\r\n  return luminance > 150 ? \"#111418\" : \"#f7f8fb\";\r\n}\r\n\r\nfunction hexToRgbString(hexColor) {\r\n  const color = (hexColor || \"\").replace(\"#\", \"\");\r\n  if (color.length !== 6) {\r\n    return \"215, 207, 191\";\r\n  }\r\n\r\n  const red = parseInt(color.slice(0, 2), 16);\r\n  const green = parseInt(color.slice(2, 4), 16);\r\n  const blue = parseInt(color.slice(4, 6), 16);\r\n  return `${red}, ${green}, ${blue}`;\r\n}\r\n\r\nfunction escapeHtml(value) {\r\n  return String(value)\r\n    .replaceAll(\"&\", \"&amp;\")\r\n    .replaceAll(\"<\", \"&lt;\")\r\n    .replaceAll(\">\", \"&gt;\")\r\n    .replaceAll('\"', \"&quot;\")\r\n    .replaceAll(\"'\", \"&#39;\");\r\n}\r\n\r\nfunction escapeAttribute(value) {\r\n  return escapeHtml(value);\r\n}\r\n\r\nfunction loadPendingVotes() {\r\n  try {\r\n    const raw = window.localStorage.getItem(PENDING_VOTES_KEY);\r\n    if (!raw) {\r\n      return [];\r\n    }\r\n\r\n    const parsed = JSON.parse(raw);\r\n    return Array.isArray(parsed) ? parsed.map(normalizePendingVote) : [];\r\n  } catch (error) {\r\n    console.error(error);\r\n    return [];\r\n  }\r\n}\r\n\r\nfunction persistPendingVotes() {\r\n  try {\r\n    window.localStorage.setItem(PENDING_VOTES_KEY, JSON.stringify(state.pendingVotes));\r\n  } catch (error) {\r\n    console.error(error);\r\n  }\r\n}\r\n\r\nfunction loadVoteMode() {\r\n  try {\r\n    const savedMode = window.localStorage.getItem(LAST_MODE_KEY);\r\n    return SONG_VOTE_MODES[savedMode] ? savedMode : DEFAULT_MODE;\r\n  } catch (error) {\r\n    console.error(error);\r\n    return DEFAULT_MODE;\r\n  }\r\n}\r\n\r\nfunction persistVoteMode() {\r\n  try {\r\n    window.localStorage.setItem(LAST_MODE_KEY, state.currentMode);\r\n  } catch (error) {\r\n    console.error(error);\r\n  }\r\n}\r\n\r\nasync function handleVoteResetHash() {\r\n  try {\r\n    window.localStorage.removeItem(PENDING_VOTES_KEY);\r\n  } catch (error) {\r\n    console.error(error);\r\n  }\r\n\r\n  if (GOOGLE_SCRIPT_URL) {\r\n    try {\r\n      await postVoteRequest({ action: \"reset\", entityType: \"song\" });\r\n    } catch (error) {\r\n      console.error(error);\r\n    }\r\n  }\r\n\r\n  const cleanUrl = `${window.location.pathname}${window.location.search}`;\r\n  window.location.replace(cleanUrl);\r\n}\r\n\r\nasync function postVoteRequest(fields) {\r\n  if (typeof window.fetch === \"function\") {\r\n    const body = new URLSearchParams();\r\n    Object.entries(fields).forEach(([key, value]) => {\r\n      body.append(key, value == null ? \"\" : String(value));\r\n    });\r\n\r\n    try {\r\n      await fetch(GOOGLE_SCRIPT_URL, {\r\n        method: \"POST\",\r\n        mode: \"no-cors\",\r\n        headers: {\r\n          \"Content-Type\": \"application/x-www-form-urlencoded;charset=UTF-8\"\r\n        },\r\n        body: body.toString(),\r\n        keepalive: true\r\n      });\r\n      return;\r\n    } catch (error) {\r\n      console.warn(\"Fetch vote submit failed; falling back to iframe submit.\", error);\r\n    }\r\n  }\r\n\r\n  return postVoteThroughIframe(fields);\r\n}\r\n\r\nfunction postVoteThroughIframe(fields) {\r\n  return new Promise((resolve, reject) => {\r\n    const iframeName = `vote-submit-${Date.now()}-${Math.random().toString(36).slice(2)}`;\r\n    const iframe = document.createElement(\"iframe\");\r\n    const form = document.createElement(\"form\");\r\n    let settled = false;\r\n\r\n    const cleanup = () => {\r\n      window.clearTimeout(timeoutId);\r\n      iframe.remove();\r\n      form.remove();\r\n    };\r\n\r\n    const settle = callback => {\r\n      if (settled) {\r\n        return;\r\n      }\r\n      settled = true;\r\n      cleanup();\r\n      callback();\r\n    };\r\n\r\n    iframe.name = iframeName;\r\n    iframe.hidden = true;\r\n    iframe.tabIndex = -1;\r\n\r\n    form.method = \"POST\";\r\n    form.action = GOOGLE_SCRIPT_URL;\r\n    form.target = iframeName;\r\n    form.hidden = true;\r\n\r\n    Object.entries(fields).forEach(([key, value]) => {\r\n      const input = document.createElement(\"input\");\r\n      input.type = \"hidden\";\r\n      input.name = key;\r\n      input.value = value;\r\n      form.appendChild(input);\r\n    });\r\n\r\n    iframe.addEventListener(\"load\", () => {\r\n      settle(resolve);\r\n    }, { once: true });\r\n\r\n    const timeoutId = window.setTimeout(() => {\r\n      settle(() => reject(new Error(\"Vote request timed out.\")));\r\n    }, 15000);\r\n\r\n    document.body.appendChild(iframe);\r\n    document.body.appendChild(form);\r\n    form.submit();\r\n  });\r\n}\r\n"
+function runPageScript() {
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxW2-Ir2-V-gYtjh_8loErFZNmNbBPEYq7tgFbpZNtUQNeKt1Pnz5-v87aTu8jHb43gRg/exec";
+
+  const FALLBACK_COLOR = "#d7cfbf";
+  const SONG_VOTE_MODES = {
+    ost: { label: "Canon", sheetName: "Song Canon" },
+    bonus: { label: "Non-Canon", sheetName: "Song Non-Canon" }
+  };
+
+  const TYPE_COLORS = {
+    Normal: "#d7cfbf",
+    Plant: "#6BBF59",
+    Water: "#3BA5FF",
+    Ice: "#C9F0FF",
+    Fire: "#FF7A4D",
+    Earth: "#C99C6B",
+    Mystic: "#BFA6FF",
+    Air: "#9ED8FF",
+    Savage: "#D6C79B",
+    Metal: "#B0B8C1",
+    Electric: "#F6C94C",
+    Artillery: "#D88F8F",
+    Light: "#FFF3B0",
+    Dark: "#3B3B3F",
+    Gross: "#A8A77A",
+    Spectral: "#8F7AE6",
+    Lucid: "#9FE5D1"
+  };
+
+  const DEFAULT_MODE = "ost";
+  const RESET_VOTES_HASH = "#appleciderbananajuice";
+  const PENDING_VOTES_KEY = "upro_song_vote_queue";
+  const LAST_MODE_KEY = "upro_song_vote_mode";
+
+  const state = {
+    pools: {
+      ost: [],
+      bonus: []
+    },
+    pair: [],
+    currentMode: loadVoteMode(),
+    isVoting: false,
+    currentAudio: null,
+    currentListenButton: null,
+    pendingVotes: loadPendingVotes(),
+    isFlushingVotes: false
+  };
+
+  const arena = document.getElementById("arena");
+  const leftPanel = document.getElementById("left-panel");
+  const rightPanel = document.getElementById("right-panel");
+  const poolStatus = document.getElementById("pool-status");
+  const saveStatus = document.getElementById("save-status");
+  const modeButtons = Array.from(document.querySelectorAll("[data-vote-mode]"));
+  let emptyStateEl = null;
+
+  bootstrap();
+
+  async function bootstrap() {
+    if (window.location.hash === RESET_VOTES_HASH) {
+      await handleVoteResetHash();
+      return;
+    }
+
+    initModeSwitcher();
+    init();
+  }
+
+  async function init() {
+    try {
+      const songs = await fetchJson("data/songs.json");
+      state.pools = buildPools(songs);
+      refreshForCurrentMode();
+      flushPendingVotes();
+    } catch (error) {
+      console.error(error);
+      renderEmptyState("The song vote page could not load its data.");
+      saveStatus.textContent = "Loading failed.";
+      saveStatus.className = "status-error";
+    }
+  }
+
+  function initModeSwitcher() {
+    modeButtons.forEach(button => {
+      button.addEventListener("click", () => setVoteMode(button.dataset.voteMode));
+    });
+    syncModeButtons();
+  }
+
+  function setVoteMode(mode) {
+    if (!SONG_VOTE_MODES[mode] || mode === state.currentMode) {
+      return;
+    }
+
+    state.currentMode = mode;
+    persistVoteMode();
+    refreshForCurrentMode();
+    flushPendingVotes();
+  }
+
+  function refreshForCurrentMode() {
+    syncModeButtons();
+    updatePoolStatus();
+    updateSaveStatus();
+
+    if (getCurrentPool().length < 2) {
+      state.pair = [];
+      renderEmptyState(`Not enough ${SONG_VOTE_MODES[state.currentMode].label.toLowerCase()} songs were found.`);
+      return;
+    }
+
+    nextPair();
+  }
+
+  function syncModeButtons() {
+    modeButtons.forEach(button => {
+      const isActive = button.dataset.voteMode === state.currentMode;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+  }
+
+  function getCurrentPool() {
+    return state.pools[state.currentMode] || [];
+  }
+
+  function buildPools(songEntries) {
+    const pools = {
+      ost: [],
+      bonus: []
+    };
+    const seen = {
+      ost: new Set(),
+      bonus: new Set()
+    };
+
+    songEntries
+      .map(normalizeSong)
+      .filter(song => song && song.playable)
+      .forEach(song => {
+        if (song.isCanonTrack) {
+          pushPoolItem(pools.ost, seen.ost, song);
+        } else {
+          pushPoolItem(pools.bonus, seen.bonus, song);
+        }
+      });
+
+    return pools;
+  }
+
+  function normalizeSong(entry) {
+    if (!entry || !entry.name) {
+      return null;
+    }
+
+    const typing = Array.isArray(entry.typing) ? entry.typing : [entry.typing || "Normal"];
+    const primaryType = typing[0] || "Normal";
+    const primaryColor = TYPE_COLORS[primaryType] || FALLBACK_COLOR;
+    const ostNumber = Number(entry.ost);
+    const file = typeof entry.file === "string" ? entry.file.trim() : "";
+    const playable = Boolean(file);
+    const isNonCanonTrack = Number.isFinite(ostNumber) && ostNumber === 1000;
+    const isCanonTrack = playable && !isNonCanonTrack;
+
+    return {
+      key: `Song:${entry.name}`,
+      name: entry.name,
+      composer: entry.composer || "Unknown",
+      area: entry.area || "Unknown",
+      theme: entry.theme || "Theme",
+      typing,
+      primaryType,
+      primaryColor,
+      textColor: getReadableTextColor(primaryColor),
+      ost: Number.isFinite(ostNumber) ? ostNumber : null,
+      order: Number(entry.order) || 0,
+      source: isCanonTrack ? "Canon" : "Non-Canon",
+      isCanonTrack,
+      isNonCanonTrack,
+      file,
+      playable,
+      raw: entry
+    };
+  }
+
+  function pushPoolItem(pool, seen, item) {
+    if (!item || !item.name || seen.has(item.key)) {
+      return;
+    }
+
+    seen.add(item.key);
+    pool.push(item);
+  }
+
+  function nextPair() {
+    resetCurrentPreview();
+    const pool = getCurrentPool();
+    state.pair = pickPair(pool);
+    state.isVoting = false;
+    renderPair();
+  }
+
+  function pickPair(pool) {
+    const firstIndex = Math.floor(Math.random() * pool.length);
+    let secondIndex = Math.floor(Math.random() * pool.length);
+
+    while (secondIndex === firstIndex) {
+      secondIndex = Math.floor(Math.random() * pool.length);
+    }
+
+    return [pool[firstIndex], pool[secondIndex]];
+  }
+
+  function renderPair() {
+    ensureArenaReady();
+    const [left, right] = state.pair;
+    renderPanel(leftPanel, left, 0);
+    renderPanel(rightPanel, right, 1);
+  }
+
+  function renderPanel(panel, song, sideIndex) {
+    if (!song) {
+      panel.innerHTML = "";
+      panel.removeAttribute("aria-disabled");
+      panel.removeAttribute("data-vote-index");
+      panel.classList.add("is-loading");
+      panel.onclick = null;
+      panel.onkeydown = null;
+      return;
+    }
+
+    panel.classList.toggle("is-loading", state.isVoting);
+    panel.style.setProperty("--song-rgb", hexToRgbString(song.primaryColor));
+    panel.style.setProperty("--song-color", song.primaryColor);
+    panel.style.color = "#f7f8fb";
+    panel.setAttribute("aria-disabled", state.isVoting ? "true" : "false");
+    panel.dataset.voteIndex = String(sideIndex);
+    panel.onclick = () => handleVote(sideIndex);
+    panel.onkeydown = event => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      handleVote(sideIndex);
+    };
+
+    const numberLabel = song.isCanonTrack ? `OST ${song.ost}` : "NON-CANON";
+    const typingChips = song.typing
+      .filter(Boolean)
+      .map(type => `<span class="song-chip">${escapeHtml(type)}</span>`)
+      .join("");
+    const listenLabel = song.playable ? "Listen" : "Unavailable";
+    const listenStatus = song.playable ? "Preview this song" : "No file available";
+
+    panel.innerHTML = `
+      <article class="vote-card">
+        <div class="song-number">${escapeHtml(numberLabel)}</div>
+        <h2 class="song-name">${escapeHtml(song.name)}</h2>
+        <div class="song-meta">
+          <p>Composer: ${escapeHtml(song.composer)}</p>
+          <p>${escapeHtml(song.area)} | ${escapeHtml(song.theme)}</p>
+        </div>
+        <div class="song-chip-row">${typingChips}</div>
+        <div class="song-actions">
+          <button class="listen-button" type="button" ${song.playable ? "" : "disabled"}>${listenLabel}</button>
+        </div>
+        <div class="listen-status">${escapeHtml(listenStatus)}</div>
+        ${song.playable ? `<audio preload="metadata" src="${escapeAttribute(song.file)}"></audio>` : ""}
+      </article>
+    `;
+
+    const listenButton = panel.querySelector(".listen-button");
+    const listenStatusEl = panel.querySelector(".listen-status");
+    const audio = panel.querySelector("audio");
+
+    if (listenButton) {
+      listenButton.addEventListener("click", event => {
+        event.stopPropagation();
+        toggleSongPreview(song, audio, listenButton, listenStatusEl);
+      });
+    }
+  }
+
+  async function handleVote(selectedIndex) {
+    if (state.isVoting || state.pair.length !== 2) {
+      return;
+    }
+
+    state.isVoting = true;
+    renderPair();
+
+    const winner = state.pair[selectedIndex];
+    const loser = state.pair[selectedIndex === 0 ? 1 : 0];
+    enqueueVote(winner, loser, state.currentMode);
+    nextPair();
+    flushPendingVotes();
+  }
+
+  async function submitVote(vote) {
+    if (!GOOGLE_SCRIPT_URL) {
+      throw new Error("Google Apps Script URL is not configured.");
+    }
+
+    await postVoteRequest({
+      action: "vote",
+      entityType: "song",
+      mode: vote.mode,
+      winnerName: vote.winner.name,
+      winnerSource: vote.winner.source,
+      loserName: vote.loser.name,
+      loserSource: vote.loser.source
+    });
+  }
+
+  function enqueueVote(winner, loser, mode) {
+    state.pendingVotes.push({
+      mode,
+      winner: {
+        name: winner.name,
+        source: winner.source
+      },
+      loser: {
+        name: loser.name,
+        source: loser.source
+      },
+      queuedAt: Date.now()
+    });
+
+    persistPendingVotes();
+    saveStatus.textContent = `Queued ${SONG_VOTE_MODES[mode].label} song vote: ${winner.name}`;
+    saveStatus.className = "status-warn";
+  }
+
+  async function flushPendingVotes() {
+    if (state.isFlushingVotes || !state.pendingVotes.length) {
+      updateSaveStatus();
+      return;
+    }
+
+    if (!GOOGLE_SCRIPT_URL) {
+      updateSaveStatus();
+      return;
+    }
+
+    state.isFlushingVotes = true;
+    updateSaveStatus();
+
+    try {
+      while (state.pendingVotes.length) {
+        const vote = normalizePendingVote(state.pendingVotes[0]);
+        await submitVote(vote);
+        state.pendingVotes.shift();
+        persistPendingVotes();
+      }
+
+      saveStatus.textContent = "All queued song votes saved.";
+      saveStatus.className = "status-ok";
+    } catch (error) {
+      console.error(error);
+      saveStatus.textContent = `Saved later: ${state.pendingVotes.length} queued vote(s).`;
+      saveStatus.className = "status-error";
+    } finally {
+      state.isFlushingVotes = false;
+    }
+  }
+
+  function normalizePendingVote(vote) {
+    return {
+      mode: SONG_VOTE_MODES[vote?.mode] ? vote.mode : DEFAULT_MODE,
+      winner: {
+        name: vote?.winner?.name || "",
+        source: vote?.winner?.source || ""
+      },
+      loser: {
+        name: vote?.loser?.name || "",
+        source: vote?.loser?.source || ""
+      },
+      queuedAt: vote?.queuedAt || Date.now()
+    };
+  }
+
+  function updatePoolStatus() {
+    const pool = getCurrentPool();
+    const counts = pool.reduce((acc, item) => {
+      acc[item.source] = (acc[item.source] || 0) + 1;
+      return acc;
+    }, {});
+
+    poolStatus.innerHTML = [
+      `${SONG_VOTE_MODES[state.currentMode].label}: <strong>${pool.length}</strong> songs.`,
+      `Canon: <strong>${counts.Canon || 0}</strong>`,
+      `Non-Canon: <strong>${counts["Non-Canon"] || 0}</strong>`
+    ].join(" ");
+  }
+
+  function updateSaveStatus() {
+    const queuedInCurrentMode = state.pendingVotes
+      .map(normalizePendingVote)
+      .filter(vote => vote.mode === state.currentMode)
+      .length;
+
+    if (GOOGLE_SCRIPT_URL) {
+      if (state.isFlushingVotes) {
+        saveStatus.textContent = `Saving ${state.pendingVotes.length} queued vote(s)...`;
+        saveStatus.className = "status-warn";
+        return;
+      }
+
+      if (state.pendingVotes.length) {
+        if (queuedInCurrentMode) {
+          saveStatus.textContent = `${queuedInCurrentMode} ${SONG_VOTE_MODES[state.currentMode].label.toLowerCase()} song vote(s) queued for sync.`;
+        } else {
+          saveStatus.textContent = `${state.pendingVotes.length} vote(s) queued in other song mode(s).`;
+        }
+        saveStatus.className = "status-warn";
+        return;
+      }
+
+      saveStatus.textContent = `Google Sheet connection configured for ${SONG_VOTE_MODES[state.currentMode].sheetName}.`;
+      saveStatus.className = "status-ok";
+      return;
+    }
+
+    saveStatus.textContent = "Google Sheet endpoint not configured yet.";
+    saveStatus.className = "status-warn";
+  }
+
+  function renderEmptyState(message) {
+    if (!emptyStateEl) {
+      emptyStateEl = document.createElement("div");
+      emptyStateEl.className = "empty-state";
+    }
+
+    leftPanel.hidden = true;
+    rightPanel.hidden = true;
+    emptyStateEl.innerHTML = escapeHtml(message);
+    if (!arena.contains(emptyStateEl)) {
+      arena.appendChild(emptyStateEl);
+    }
+  }
+
+  function ensureArenaReady() {
+    leftPanel.hidden = false;
+    rightPanel.hidden = false;
+    if (emptyStateEl && arena.contains(emptyStateEl)) {
+      emptyStateEl.remove();
+    }
+  }
+
+  function toggleSongPreview(song, audio, button, statusEl) {
+    if (!audio || !button || !statusEl) {
+      return;
+    }
+
+    if (state.currentAudio && state.currentAudio !== audio) {
+      resetCurrentPreview();
+    }
+
+    if (audio.paused) {
+      audio.currentTime = 0;
+      audio.play().catch(error => {
+        console.error(error);
+        statusEl.textContent = "Could not play preview";
+      });
+      button.textContent = "Pause";
+      statusEl.textContent = `Playing ${song.name}`;
+      state.currentAudio = audio;
+      state.currentListenButton = button;
+
+      audio.onended = () => {
+        if (state.currentAudio === audio) {
+          button.textContent = "Listen";
+          statusEl.textContent = "Preview this song";
+          state.currentAudio = null;
+          state.currentListenButton = null;
+        }
+      };
+      return;
+    }
+
+    audio.pause();
+    button.textContent = "Listen";
+    statusEl.textContent = "Preview this song";
+    if (state.currentAudio === audio) {
+      state.currentAudio = null;
+      state.currentListenButton = null;
+    }
+  }
+
+  function resetCurrentPreview() {
+    if (!state.currentAudio || !state.currentListenButton) {
+      return;
+    }
+
+    const previousAudio = state.currentAudio;
+    const previousButton = state.currentListenButton;
+    const previousStatus = previousButton.closest(".vote-card")?.querySelector(".listen-status");
+
+    previousAudio.pause();
+    previousAudio.currentTime = 0;
+    previousButton.textContent = "Listen";
+    if (previousStatus) {
+      previousStatus.textContent = "Preview this song";
+    }
+
+    state.currentAudio = null;
+    state.currentListenButton = null;
+  }
+
+  async function fetchJson(path) {
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error(`Failed to load ${path}.`);
+    }
+    return response.json();
+  }
+
+  function getReadableTextColor(hexColor) {
+    const color = (hexColor || "").replace("#", "");
+    if (color.length !== 6) {
+      return "#111418";
+    }
+
+    const red = parseInt(color.slice(0, 2), 16);
+    const green = parseInt(color.slice(2, 4), 16);
+    const blue = parseInt(color.slice(4, 6), 16);
+    const luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue);
+    return luminance > 150 ? "#111418" : "#f7f8fb";
+  }
+
+  function hexToRgbString(hexColor) {
+    const color = (hexColor || "").replace("#", "");
+    if (color.length !== 6) {
+      return "215, 207, 191";
+    }
+
+    const red = parseInt(color.slice(0, 2), 16);
+    const green = parseInt(color.slice(2, 4), 16);
+    const blue = parseInt(color.slice(4, 6), 16);
+    return `${red}, ${green}, ${blue}`;
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value);
+  }
+
+  function loadPendingVotes() {
+    try {
+      const raw = window.localStorage.getItem(PENDING_VOTES_KEY);
+      if (!raw) {
+        return [];
+      }
+
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed.map(normalizePendingVote) : [];
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
+
+  function persistPendingVotes() {
+    try {
+      window.localStorage.setItem(PENDING_VOTES_KEY, JSON.stringify(state.pendingVotes));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function loadVoteMode() {
+    try {
+      const savedMode = window.localStorage.getItem(LAST_MODE_KEY);
+      return SONG_VOTE_MODES[savedMode] ? savedMode : DEFAULT_MODE;
+    } catch (error) {
+      console.error(error);
+      return DEFAULT_MODE;
+    }
+  }
+
+  function persistVoteMode() {
+    try {
+      window.localStorage.setItem(LAST_MODE_KEY, state.currentMode);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleVoteResetHash() {
+    try {
+      window.localStorage.removeItem(PENDING_VOTES_KEY);
+    } catch (error) {
+      console.error(error);
+    }
+
+    if (GOOGLE_SCRIPT_URL) {
+      try {
+        await postVoteRequest({ action: "reset", entityType: "song" });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    const cleanUrl = `${window.location.pathname}${window.location.search}`;
+    window.location.replace(cleanUrl);
+  }
+
+  async function postVoteRequest(fields) {
+    if (typeof window.fetch === "function") {
+      const body = new URLSearchParams();
+      Object.entries(fields).forEach(([key, value]) => {
+        body.append(key, value == null ? "" : String(value));
+      });
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          },
+          body: body.toString(),
+          keepalive: true
+        });
+        return;
+      } catch (error) {
+        console.warn("Fetch vote submit failed; falling back to iframe submit.", error);
+      }
+    }
+
+    return postVoteThroughIframe(fields);
+  }
+
+  function postVoteThroughIframe(fields) {
+    return new Promise((resolve, reject) => {
+      const iframeName = `vote-submit-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const iframe = document.createElement("iframe");
+      const form = document.createElement("form");
+      let settled = false;
+
+      const cleanup = () => {
+        window.clearTimeout(timeoutId);
+        iframe.remove();
+        form.remove();
+      };
+
+      const settle = callback => {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        cleanup();
+        callback();
+      };
+
+      iframe.name = iframeName;
+      iframe.hidden = true;
+      iframe.tabIndex = -1;
+
+      form.method = "POST";
+      form.action = GOOGLE_SCRIPT_URL;
+      form.target = iframeName;
+      form.hidden = true;
+
+      Object.entries(fields).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      iframe.addEventListener("load", () => {
+        settle(resolve);
+      }, { once: true });
+
+      const timeoutId = window.setTimeout(() => {
+        settle(() => reject(new Error("Vote request timed out.")));
+      }, 15000);
+
+      document.body.appendChild(iframe);
+      document.body.appendChild(form);
+      form.submit();
+    });
+  }
+}
 const remoteScripts = []
 
 function loadRemoteScript(src) {
@@ -34,10 +728,10 @@ export default function SongVotePage() {
         await loadRemoteScript(src)
       }
 
-      if (cancelled || !pageScript) return
+      if (cancelled) return
 
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=SongVotePage.legacy.js`)()
+      runPageScript()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {

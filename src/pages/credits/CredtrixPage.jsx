@@ -1,7 +1,724 @@
 import { useEffect } from 'react'
 
+/* eslint-disable no-unused-vars */
 const pageStyles = ""
-const pageScript = "let allData = {};\r\nlet typesData = [];\r\nlet abilitiesData = [];\r\nlet creditsData = [];\r\nlet crorderData = [];\r\nlet visibleMates = [];\r\nlet currentMateIndex = 0;\r\nlet crossTabFormsByRef = new Map();\r\nlet mateByName = new Map();\r\nlet creditsByAnimate = new Map();\r\nlet crorderRank = new Map();\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n  const grid = document.getElementById(\"uprodGrid\");\r\n  const conceptedFilter = document.getElementById(\"conceptedFilter\");\r\n  const assistedFilter = document.getElementById(\"assistedFilter\");\r\n  const namedFilter = document.getElementById(\"namedFilter\");\r\n  const anythingFilter = document.getElementById(\"anythingFilter\");\r\n  const modal = document.getElementById(\"detailsModal\");\r\n  const closeModal = document.getElementById(\"closeModal\");\r\n  const nextMate = document.getElementById(\"nextMate\");\r\n  const prevMate = document.getElementById(\"prevMate\");\r\n  const modeBadge = document.getElementById(\"modeBadge\");\r\n\r\n  const allowedRarities = new Set([\"Normal\", \"Mode\", \"Shiver\", \"Paragon\"]);\r\n\r\n  function annotateMateOrder(mode, mates) {\r\n    (mates || []).forEach((mate, index) => {\r\n      mate.__mode = mode;\r\n      mate.__order = index;\r\n    });\r\n    return mates || [];\r\n  }\r\n\r\n  function normalizeCreditsEntry(entry) {\r\n    if (!entry || typeof entry !== \"object\") {\r\n      return { person: \"Unknown\", concepted: [], assisted: [], named: [] };\r\n    }\r\n    return {\r\n      person: String(entry.person || \"Unknown\").trim() || \"Unknown\",\r\n      concepted: Array.isArray(entry.concepted) ? entry.concepted.map(x => String(x || \"\").trim()).filter(Boolean) : [],\r\n      assisted: normalizeAssistedItems(entry.assisted),\r\n      named: Array.isArray(entry.named) ? entry.named.map(x => String(x || \"\").trim()).filter(Boolean) : []\r\n    };\r\n  }\r\n\r\n  function normalizeAssistedItems(items) {\r\n    if (!Array.isArray(items)) return [];\r\n    return items\r\n      .map(item => {\r\n        if (typeof item === \"string\") {\r\n          const name = item.trim();\r\n          return name ? { name, how: \"\" } : null;\r\n        }\r\n        if (!item || typeof item !== \"object\") return null;\r\n        const name = String(item.name || \"\").trim();\r\n        const how = String(item.how || \"\").trim();\r\n        if (!name) return null;\r\n        return { name, how };\r\n      })\r\n      .filter(Boolean);\r\n  }\r\n\r\n  function getRarities(mate) {\r\n    const raw = mate?.rarity;\r\n    let list = [];\r\n\r\n    if (Array.isArray(raw)) list = raw;\r\n    else if (typeof raw === \"string\") list = raw.split(/[,+|/]/g).map(x => x.trim()).filter(Boolean);\r\n    else if (raw !== undefined && raw !== null) list = [String(raw).trim()];\r\n\r\n    const normalized = [];\r\n    list.forEach(rarity => {\r\n      if (allowedRarities.has(rarity) && !normalized.includes(rarity)) normalized.push(rarity);\r\n    });\r\n\r\n    if (!normalized.length) return [\"Normal\"];\r\n    if (normalized.length > 1) return normalized.filter(rarity => rarity !== \"Normal\");\r\n    return normalized;\r\n  }\r\n\r\n  const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);\r\n  const isMode = mate => hasRarity(mate, \"Mode\");\r\n  const isShiver = mate => hasRarity(mate, \"Shiver\");\r\n  const isParagon = mate => hasRarity(mate, \"Paragon\");\r\n\r\n  function getMateRef(mate) {\r\n    const explicitRef = String(mate?.ref || \"\").trim();\r\n    if (explicitRef) return explicitRef;\r\n    return String(mate?.name || \"\").trim();\r\n  }\r\n\r\n  function getReferenceKey(mate) {\r\n    return String(mate?.name || \"\").trim();\r\n  }\r\n\r\n  function getNpcFamilyKey(mate) {\r\n    return String(mate?.id || \"\").trim();\r\n  }\r\n\r\n  function getAlternateGroupKey(mate) {\r\n    if ((mate?.mode || \"\") === \"npc\") return `npc:${getNpcFamilyKey(mate)}`;\r\n    return `ref:${getResolvedMateRef(mate)}`;\r\n  }\r\n\r\n  function getModeRank(mode) {\r\n    const rank = { base: 0, sacred: 1, ace: 2, goner: 3, ncanon: 4, event: 5, costumes: 6, npc: 7 };\r\n    return rank[mode] ?? 999;\r\n  }\r\n\r\n  function chooseReferencedMate(candidates, requesterMode = \"\") {\r\n    if (!Array.isArray(candidates) || !candidates.length) return null;\r\n    const preferred = candidates.slice().sort((a, b) => {\r\n      const aRequesterPenalty = (a.mode || \"\") === requesterMode ? -1 : 0;\r\n      const bRequesterPenalty = (b.mode || \"\") === requesterMode ? -1 : 0;\r\n      if (aRequesterPenalty !== bRequesterPenalty) return aRequesterPenalty - bRequesterPenalty;\r\n      return getModeRank(a.mode) - getModeRank(b.mode);\r\n    });\r\n    return preferred[0] || null;\r\n  }\r\n\r\n  function resolveReferenceRoot(mate, visited = new Set()) {\r\n    if (!mate) return null;\r\n\r\n    const ownName = getReferenceKey(mate);\r\n    const explicitRef = String(mate?.ref || \"\").trim();\r\n    if (!explicitRef || explicitRef === ownName) return mate;\r\n\r\n    const visitKey = `${mate.mode || \"\"}|${ownName}|${explicitRef}`;\r\n    if (visited.has(visitKey)) return mate;\r\n    visited.add(visitKey);\r\n\r\n    const candidates = (mateByName.get(explicitRef) || []).filter(candidate => {\r\n      return !(\r\n        (candidate.mode || \"\") === (mate.mode || \"\") &&\r\n        String(candidate.name || \"\").trim() === ownName &&\r\n        String(candidate.image || \"\") === String(mate.image || \"\")\r\n      );\r\n    });\r\n    const referencedMate = chooseReferencedMate(candidates, mate.mode || \"\");\r\n    if (!referencedMate) return mate;\r\n    return resolveReferenceRoot(referencedMate, visited);\r\n  }\r\n\r\n  function getResolvedMateRef(mate) {\r\n    const resolvedMate = resolveReferenceRoot(mate);\r\n    return getReferenceKey(resolvedMate || mate);\r\n  }\r\n\r\n  function rebuildRefIndexes() {\r\n    crossTabFormsByRef = new Map();\r\n    mateByName = new Map();\r\n\r\n    Object.entries(allData).forEach(([mode, mates]) => {\r\n      (mates || []).forEach(mate => {\r\n        const form = { ...mate, mode };\r\n        const ownName = getReferenceKey(form);\r\n        if (!ownName) return;\r\n        if (!mateByName.has(ownName)) mateByName.set(ownName, []);\r\n        mateByName.get(ownName).push(form);\r\n      });\r\n    });\r\n\r\n    mateByName.forEach(forms => {\r\n      forms.sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode));\r\n    });\r\n\r\n    Object.entries(allData).forEach(([mode, mates]) => {\r\n      (mates || []).forEach(mate => {\r\n        const form = { ...mate, mode };\r\n        const resolvedRef = getResolvedMateRef(form);\r\n        if (!resolvedRef) return;\r\n        if (!crossTabFormsByRef.has(resolvedRef)) crossTabFormsByRef.set(resolvedRef, []);\r\n        crossTabFormsByRef.get(resolvedRef).push(form);\r\n      });\r\n    });\r\n  }\r\n\r\n  function buildCreditsIndex() {\r\n    creditsByAnimate = new Map();\r\n    creditsData.forEach(entry => {\r\n      entry.concepted.forEach(name => {\r\n        const key = String(name || \"\").trim();\r\n        if (!key) return;\r\n        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });\r\n        const record = creditsByAnimate.get(key);\r\n        if (!record.concepted.includes(entry.person)) record.concepted.push(entry.person);\r\n      });\r\n      entry.assisted.forEach(item => {\r\n        const key = String(item?.name || \"\").trim();\r\n        if (!key) return;\r\n        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });\r\n        const record = creditsByAnimate.get(key);\r\n        if (!record.assisted.some(assisted => assisted.person === entry.person && assisted.how === item.how)) {\r\n          record.assisted.push({ person: entry.person, how: item.how || \"\" });\r\n        }\r\n      });\r\n      entry.named.forEach(name => {\r\n        const key = String(name || \"\").trim();\r\n        if (!key) return;\r\n        if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });\r\n        const record = creditsByAnimate.get(key);\r\n        if (!record.named.includes(entry.person)) record.named.push(entry.person);\r\n      });\r\n    });\r\n  }\r\n\r\n  function rebuildCrorderRanks() {\r\n    crorderRank = new Map();\r\n    crorderData.forEach((name, index) => {\r\n      const trimmed = String(name || \"\").trim();\r\n      if (!trimmed || crorderRank.has(trimmed)) return;\r\n      crorderRank.set(trimmed, index);\r\n    });\r\n  }\r\n\r\n  function populateFilters() {\r\n    const people = Array.from(new Set(creditsData.map(entry => entry.person))).sort((a, b) => a.localeCompare(b));\r\n    people.forEach(person => {\r\n      const conceptOption = document.createElement(\"option\");\r\n      conceptOption.value = person;\r\n      conceptOption.textContent = person;\r\n      conceptedFilter.appendChild(conceptOption);\r\n\r\n      const assistedOption = document.createElement(\"option\");\r\n      assistedOption.value = person;\r\n      assistedOption.textContent = person;\r\n      assistedFilter.appendChild(assistedOption);\r\n\r\n      const namedOption = document.createElement(\"option\");\r\n      namedOption.value = person;\r\n      namedOption.textContent = person;\r\n      namedFilter.appendChild(namedOption);\r\n\r\n      const anythingOption = document.createElement(\"option\");\r\n      anythingOption.value = person;\r\n      anythingOption.textContent = person;\r\n      anythingFilter.appendChild(anythingOption);\r\n    });\r\n  }\r\n\r\n  function didPersonHelpWithAnything(credits, person) {\r\n    return credits.concepted.includes(person) ||\r\n      credits.assisted.some(item => item.person === person) ||\r\n      credits.named.includes(person);\r\n  }\r\n\r\n  function getMateCredits(mate) {\r\n    const namesToCheck = [String(mate?.name || \"\").trim(), getResolvedMateRef(mate)].filter(Boolean);\r\n    const combined = { concepted: [], assisted: [], named: [] };\r\n\r\n    namesToCheck.forEach(name => {\r\n      const record = creditsByAnimate.get(name);\r\n      if (!record) return;\r\n      record.concepted.forEach(person => {\r\n        if (!combined.concepted.includes(person)) combined.concepted.push(person);\r\n      });\r\n      record.assisted.forEach(item => {\r\n        if (!combined.assisted.some(assisted => assisted.person === item.person && assisted.how === item.how)) {\r\n          combined.assisted.push(item);\r\n        }\r\n      });\r\n      record.named.forEach(person => {\r\n        if (!combined.named.includes(person)) combined.named.push(person);\r\n      });\r\n    });\r\n\r\n    return combined;\r\n  }\r\n\r\n  function buildDisplayPool() {\r\n    const seen = new Set();\r\n    const pool = [];\r\n\r\n    [\"base\", \"sacred\", \"ace\", \"ncanon\", \"goner\", \"event\", \"costumes\", \"npc\"].forEach(mode => {\r\n      const mates = allData[mode] || [];\r\n      mates.forEach(mate => {\r\n        const form = { ...mate, mode };\r\n        if (isMode(form)) return;\r\n        if (!crorderRank.has(String(form.name || \"\"))) return;\r\n        const key = `${form.mode || \"\"}|${form.__order ?? \"\"}|${form.name || \"\"}|${form.image || \"\"}`;\r\n        if (seen.has(key)) return;\r\n        seen.add(key);\r\n        pool.push(form);\r\n      });\r\n    });\r\n\r\n    return pool.sort((a, b) => {\r\n      const aName = String(a.name || \"\");\r\n      const bName = String(b.name || \"\");\r\n      const aRank = crorderRank.has(aName) ? crorderRank.get(aName) : Number.POSITIVE_INFINITY;\r\n      const bRank = crorderRank.has(bName) ? crorderRank.get(bName) : Number.POSITIVE_INFINITY;\r\n\r\n      if (aRank !== bRank) return aRank - bRank;\r\n\r\n      const nameCompare = aName.localeCompare(bName);\r\n      if (nameCompare !== 0) return nameCompare;\r\n\r\n      return getModeRank(a.mode) - getModeRank(b.mode);\r\n    });\r\n  }\r\n\r\n  function renderGrid() {\r\n    const selectedConcepted = conceptedFilter.value;\r\n    const selectedAssisted = assistedFilter.value;\r\n    const selectedNamed = namedFilter.value;\r\n    const selectedAnything = anythingFilter.value;\r\n    const mates = buildDisplayPool().filter(mate => {\r\n      const credits = getMateCredits(mate);\r\n      if (selectedConcepted && !credits.concepted.includes(selectedConcepted)) return false;\r\n      if (selectedAssisted && !credits.assisted.some(item => item.person === selectedAssisted)) return false;\r\n      if (selectedNamed && !credits.named.includes(selectedNamed)) return false;\r\n      if (selectedAnything && !didPersonHelpWithAnything(credits, selectedAnything)) return false;\r\n      return true;\r\n    });\r\n    visibleMates = mates;\r\n    grid.innerHTML = \"\";\r\n\r\n    if (!mates.length) {\r\n      grid.innerHTML = `<div class=\"cat-empty\">No matching animates.</div>`;\r\n      return;\r\n    }\r\n\r\n    mates.forEach(mate => {\r\n      grid.appendChild(makeCard(mate));\r\n    });\r\n  }\r\n\r\n  function makeCard(mate) {\r\n    const card = document.createElement(\"div\");\r\n    card.className = \"card\";\r\n    if (isParagon(mate)) card.classList.add(\"rarity-paragon\");\r\n    applyMateStyle(card, mate);\r\n\r\n    const lostImage = mate.image && mate.image.toLowerCase().includes(\"assets/images/mates/lost\");\r\n    const displayName = escapeHtml(mate.name) + (lostImage ? \"*\" : \"\");\r\n    const shiverBadge = isShiver(mate)\r\n      ? `<img class=\"rarity-shiver-badge\" src=\"assets/images/ui/Shiver.png\" alt=\"Shiver\" title=\"Shiver\">`\r\n      : \"\";\r\n    card.innerHTML = `\r\n      ${shiverBadge}\r\n      <img src=\"${escapeHtml(mate.image || \"\")}\" alt=\"${escapeHtml(mate.name || \"\")}\">\r\n      <h3>${displayName}</h3>\r\n    `;\r\n\r\n    card.addEventListener(\"click\", () => openDetails(mate));\r\n    return card;\r\n  }\r\n\r\n  function openDetails(mate) {\r\n    const idx = visibleMates.findIndex(entry => sameMate(entry, mate));\r\n    currentMateIndex = idx >= 0 ? idx : 0;\r\n    updateDetails(mate);\r\n    modal.classList.remove(\"hidden\");\r\n  }\r\n\r\n  function updateDetails(mate) {\r\n    const mateMode = mate.mode || \"base\";\r\n    const modalContent = document.querySelector(\"#detailsModal .modal-content\") || document.getElementById(\"detailsModal\");\r\n    const credits = getMateCredits(mate);\r\n\r\n    applyMateStyle(modalContent, mate);\r\n    setModeBadge(mateMode, mate);\r\n\r\n    document.getElementById(\"mateName\").textContent = mate.name || \"\";\r\n    document.getElementById(\"mateImage\").src = mate.image || \"\";\r\n    renderOptionalSection(document.getElementById(\"conceptedByContainer\"), renderCreditSection(\"Concepted By\", credits.concepted));\r\n    renderOptionalSection(document.getElementById(\"assistedByContainer\"), renderAssistedSection(credits.assisted));\r\n    renderOptionalSection(document.getElementById(\"namedByContainer\"), renderCreditSection(\"Named By\", credits.named));\r\n    renderEvolutionLine(mate);\r\n\r\n    renderAlternateForms(mate);\r\n    renderModeAlternates(mate);\r\n  }\r\n\r\n  function renderCreditSection(label, people) {\r\n    if (!people.length) return \"\";\r\n    return `<b>${escapeHtml(label)}:</b><div>${escapeHtml(people.join(\", \"))}</div>`;\r\n  }\r\n\r\n  function renderAssistedSection(items) {\r\n    if (!items.length) return \"\";\r\n    const rows = items.map(item => {\r\n      const detail = item.how ? `: ${escapeHtml(item.how)}` : \"\";\r\n      return `<div><strong>${escapeHtml(item.person)}</strong>${detail}</div>`;\r\n    }).join(\"\");\r\n    return `<b>Assisted By:</b>${rows}`;\r\n  }\r\n\r\n  function renderOptionalSection(container, html) {\r\n    container.innerHTML = html;\r\n    container.hidden = !html;\r\n  }\r\n\r\n  function renderEvolutionLine(mate) {\r\n    const evoContainer = document.getElementById(\"evolutionsContainer\");\r\n    evoContainer.innerHTML = \"\";\r\n    if ((mate.mode || \"base\") === \"costumes\") return;\r\n\r\n    const mateMode = mate.mode || \"base\";\r\n    const modeForms = getMateModePool(mate);\r\n    const byName = new Map(modeForms.map(entry => [entry.name, entry]));\r\n    if (!byName.has(mate.name)) byName.set(mate.name, mate);\r\n\r\n    const outgoing = new Map();\r\n    const incoming = new Map();\r\n    modeForms.forEach(entry => {\r\n      (entry.evolvesTo || []).forEach(evo => {\r\n        if (!evo || !evo.name) return;\r\n        if (!outgoing.has(entry.name)) outgoing.set(entry.name, []);\r\n        outgoing.get(entry.name).push({ to: evo.name, level: evo.level, item: evo.Item });\r\n\r\n        if (!incoming.has(evo.name)) incoming.set(evo.name, []);\r\n        incoming.get(evo.name).push({ from: entry.name, level: evo.level, item: evo.Item });\r\n      });\r\n    });\r\n\r\n    function collectReachableAncestors(startName) {\r\n      const seen = new Set();\r\n      const stack = [startName];\r\n      while (stack.length) {\r\n        const node = stack.pop();\r\n        if (seen.has(node)) continue;\r\n        seen.add(node);\r\n        const parents = incoming.get(node) || [];\r\n        parents.forEach(parent => stack.push(parent.from));\r\n      }\r\n      return seen;\r\n    }\r\n\r\n    function findCandidateRoots(startName) {\r\n      const ancestorSet = collectReachableAncestors(startName);\r\n      const roots = [...ancestorSet].filter(name => !(incoming.get(name) || []).length);\r\n      return roots.length ? roots : [startName];\r\n    }\r\n\r\n    function buildAllPathsFrom(rootName) {\r\n      const paths = [];\r\n      function dfs(nodeName, names, requirements, seen) {\r\n        const edges = outgoing.get(nodeName) || [];\r\n        if (!edges.length) {\r\n          paths.push({ names: [...names], requirements: [...requirements] });\r\n          return;\r\n        }\r\n        let progressed = false;\r\n        edges.forEach(edge => {\r\n          if (!edge || !edge.to || seen.has(edge.to)) return;\r\n          progressed = true;\r\n          names.push(edge.to);\r\n          requirements.push({ level: edge.level, item: edge.item });\r\n          seen.add(edge.to);\r\n          dfs(edge.to, names, requirements, seen);\r\n          seen.delete(edge.to);\r\n          names.pop();\r\n          requirements.pop();\r\n        });\r\n        if (!progressed) paths.push({ names: [...names], requirements: [...requirements] });\r\n      }\r\n      dfs(rootName, [rootName], [], new Set([rootName]));\r\n      return paths;\r\n    }\r\n\r\n    function evolutionRequirementText(requirement) {\r\n      if (!requirement) return \"\";\r\n      const parts = [];\r\n      if (requirement.level !== null && requirement.level !== undefined && requirement.level !== \"\") parts.push(`Lvl ${requirement.level}`);\r\n      if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) parts.push(`Item: ${requirement.item}`);\r\n      return parts.join(\" | \");\r\n    }\r\n\r\n    const allLines = findCandidateRoots(mate.name)\r\n      .flatMap(rootName => buildAllPathsFrom(rootName))\r\n      .filter(path => path.names.includes(mate.name));\r\n    const seenPathKeys = new Set();\r\n    const lines = allLines.filter(path => {\r\n      const key = path.names.join(\"->\");\r\n      if (seenPathKeys.has(key)) return false;\r\n      seenPathKeys.add(key);\r\n      return true;\r\n    });\r\n    const shouldShowLine = lines.length > 0 && (incoming.has(mate.name) || outgoing.has(mate.name) || lines.some(line => line.names.length > 1));\r\n\r\n    if (!shouldShowLine) {\r\n      return;\r\n    }\r\n\r\n    evoContainer.innerHTML = \"<b>Evolution Line:</b><br>\";\r\n    lines.forEach(line => {\r\n      const lineEl = document.createElement(\"div\");\r\n      lineEl.className = \"evo-line\";\r\n\r\n      line.names.forEach((name, idx) => {\r\n        const nodeMate = byName.get(name);\r\n        const node = document.createElement(\"div\");\r\n        node.className = \"evo-node\" + (name === mate.name ? \" current\" : \"\");\r\n\r\n        const img = document.createElement(\"img\");\r\n        img.src = (nodeMate && nodeMate.image) || \"\";\r\n        img.alt = name;\r\n        img.title = name;\r\n        if (nodeMate) img.onclick = () => openDetails(nodeMate);\r\n\r\n        const label = document.createElement(\"div\");\r\n        label.className = \"evo-name\";\r\n        label.textContent = name;\r\n\r\n        node.appendChild(img);\r\n        node.appendChild(label);\r\n        lineEl.appendChild(node);\r\n\r\n        if (idx < line.names.length - 1) {\r\n          const link = document.createElement(\"div\");\r\n          link.className = \"evo-link\";\r\n          const arrow = document.createElement(\"div\");\r\n          arrow.className = \"evo-arrow\";\r\n          arrow.textContent = \"→\";\r\n          const lvl = document.createElement(\"div\");\r\n          lvl.className = \"evo-level\";\r\n          lvl.textContent = evolutionRequirementText(line.requirements[idx]);\r\n          link.appendChild(arrow);\r\n          link.appendChild(lvl);\r\n          lineEl.appendChild(link);\r\n        }\r\n      });\r\n\r\n      evoContainer.appendChild(lineEl);\r\n    });\r\n  }\r\n\r\n  function renderAlternateForms(mate) {\r\n    const sacredContainer = document.getElementById(\"sacredContainer\");\r\n    sacredContainer.innerHTML = \"\";\r\n    const mateMode = mate.mode || \"base\";\r\n    const mateRef = getResolvedMateRef(mate);\r\n    const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];\r\n    const alternateForms = sameSpeciesAllTabs.filter(form => {\r\n      if (form.name === mate.name && form.mode === mateMode) return false;\r\n      if (isMode(form)) return false;\r\n      if (isMode(mate) && (form.mode || \"\") === mateMode) return false;\r\n      return true;\r\n    });\r\n\r\n    if (!alternateForms.length) {\r\n      return;\r\n    }\r\n\r\n    sacredContainer.innerHTML = \"<b>Alternate Forms:</b><br>\";\r\n    alternateForms.forEach(form => {\r\n      const img = document.createElement(\"img\");\r\n      img.src = form.image || \"\";\r\n      img.title = `${form.name} (${form.mode})`;\r\n      img.onclick = () => openDetails(form);\r\n      img.style.width = \"80px\";\r\n      img.style.margin = \"4px\";\r\n      img.style.border = \"2px solid #0ff\";\r\n      img.style.borderRadius = \"10px\";\r\n      img.style.cursor = \"pointer\";\r\n      sacredContainer.appendChild(img);\r\n    });\r\n  }\r\n\r\n  function renderModeAlternates(mate) {\r\n    const modeContainer = document.getElementById(\"ModeContainer\");\r\n    modeContainer.innerHTML = \"\";\r\n    const mateMode = mate.mode || \"base\";\r\n    const modeForms = getMateModePool(mate);\r\n    const alternateGroupKey = getAlternateGroupKey(mate);\r\n    const sameSpeciesSameMode = modeForms.filter(form => getAlternateGroupKey(form) === alternateGroupKey);\r\n    const modeOnlyForms = sameSpeciesSameMode.filter(form => {\r\n      if (form.name === mate.name && form.image === mate.image) return false;\r\n      if (mateMode === \"npc\") return true;\r\n      if (isMode(mate)) return true;\r\n      return isMode(form);\r\n    });\r\n\r\n    if (!modeOnlyForms.length) {\r\n      return;\r\n    }\r\n\r\n    modeContainer.innerHTML = \"<b>Alternates:</b><br>\";\r\n    modeOnlyForms.forEach(form => {\r\n      const img = document.createElement(\"img\");\r\n      img.src = form.image || \"\";\r\n      img.title = `${form.name} (${form.mode})`;\r\n      img.onclick = () => openDetails(form);\r\n      img.style.width = \"80px\";\r\n      img.style.margin = \"4px\";\r\n      img.style.border = \"2px solid #0ff\";\r\n      img.style.borderRadius = \"10px\";\r\n      img.style.cursor = \"pointer\";\r\n      modeContainer.appendChild(img);\r\n    });\r\n  }\r\n\r\n  function getMateModePool(mate) {\r\n    const mode = mate?.mode || \"base\";\r\n    if (mode === \"event\") return (allData.event || []).map(entry => ({ ...entry, mode: \"event\", sourceMode: entry.sourceMode }));\r\n    return (allData[mode] || []).map(entry => ({ ...entry, mode }));\r\n  }\r\n\r\n  function setModeBadge(mode) {\r\n    modeBadge.textContent = mode ? mode.toUpperCase() : \"\";\r\n  }\r\n\r\n  function applyMateStyle(el, mate) {\r\n    if (!el) return;\r\n    el.style.backgroundColor = \"\";\r\n    el.style.color = \"\";\r\n    el.style.fontFamily = \"\";\r\n    el.style.border = \"\";\r\n    el.style.removeProperty(\"--outline-color\");\r\n\r\n    if (mate.event === \"halloween\") {\r\n      el.style.backgroundColor = \"#4B0082\";\r\n      el.style.color = \"#ff6c1c\";\r\n    } else if (mate.event === \"winter\") {\r\n      el.style.backgroundColor = \"#001f4d\";\r\n      el.style.color = \"#cce6ff\";\r\n    } else if (mate.event === \"fools\") {\r\n      el.style.backgroundColor = \"#fff\";\r\n      el.style.color = \"#000\";\r\n      el.style.fontFamily = \"Arial, sans-serif\";\r\n    }\r\n\r\n    const primaryType = mate.types?.[0];\r\n    const typeObj = typesData.find(entry => entry.name === primaryType);\r\n    const outlineColor = typeObj ? typeObj.color : \"#ccc\";\r\n    el.style.setProperty(\"--outline-color\", outlineColor);\r\n    el.style.border = `3px solid ${outlineColor}`;\r\n  }\r\n\r\n  function sameMate(a, b) {\r\n    return (a.name === b.name) && (getResolvedMateRef(a) === getResolvedMateRef(b)) && ((a.mode || \"\") === (b.mode || \"\"));\r\n  }\r\n\r\n  function escapeHtml(str) {\r\n    if (str === null || str === undefined) return \"\";\r\n    return String(str).replace(/[&<>\"']/g, char => ({\r\n      \"&\": \"&amp;\",\r\n      \"<\": \"&lt;\",\r\n      \">\": \"&gt;\",\r\n      \"\\\"\": \"&quot;\",\r\n      \"'\": \"&#39;\"\r\n    }[char]));\r\n  }\r\n\r\n  Promise.all([\r\n    fetch(\"data/types.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/abilities.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/uprod.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/crorder.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/base.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/sacred.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/ace.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/goner.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/ncanon.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/costumes.json\").then(response => response.json()).catch(() => []),\r\n    fetch(\"data/mates/npc.json\").then(response => response.json()).catch(() => [])\r\n  ]).then(([types, abilities, credits, crorder, base, sacred, ace, goner, ncanon, costumes, npc]) => {\r\n    typesData = types || [];\r\n    abilitiesData = abilities || [];\r\n    creditsData = Array.isArray(credits) ? credits.map(normalizeCreditsEntry) : [];\r\n    crorderData = Array.isArray(crorder) ? crorder.map(name => String(name || \"\").trim()).filter(Boolean) : [];\r\n    allData = {\r\n      base: annotateMateOrder(\"base\", base || []),\r\n      sacred: annotateMateOrder(\"sacred\", sacred || []),\r\n      ace: annotateMateOrder(\"ace\", ace || []),\r\n      goner: annotateMateOrder(\"goner\", goner || []),\r\n      ncanon: annotateMateOrder(\"ncanon\", ncanon || []),\r\n      costumes: annotateMateOrder(\"costumes\", costumes || []),\r\n      npc: annotateMateOrder(\"npc\", npc || []),\r\n      event: []\r\n    };\r\n\r\n    Object.entries(allData).forEach(([mode, mates]) => {\r\n      if (mode === \"event\") return;\r\n      allData[mode] = mates.filter(mate => {\r\n        if (mate.event !== undefined && mate.event !== null) {\r\n          mate.mode = \"event\";\r\n          mate.__mode = \"event\";\r\n          allData.event.push(mate);\r\n          return false;\r\n        }\r\n        return true;\r\n      });\r\n    });\r\n\r\n    annotateMateOrder(\"event\", allData.event);\r\n    rebuildRefIndexes();\r\n    buildCreditsIndex();\r\n    rebuildCrorderRanks();\r\n    populateFilters();\r\n    renderGrid();\r\n  }).catch(error => {\r\n    console.error(\"Failed to load UPROD data\", error);\r\n    grid.innerHTML = `<div class=\"cat-empty\">Failed to load data.</div>`;\r\n  });\r\n\r\n  conceptedFilter.addEventListener(\"change\", renderGrid);\r\n  assistedFilter.addEventListener(\"change\", renderGrid);\r\n  namedFilter.addEventListener(\"change\", renderGrid);\r\n  anythingFilter.addEventListener(\"change\", renderGrid);\r\n\r\n  closeModal.onclick = () => modal.classList.add(\"hidden\");\r\n  nextMate.onclick = () => {\r\n    if (!visibleMates.length) return;\r\n    currentMateIndex = (currentMateIndex + 1) % visibleMates.length;\r\n    updateDetails(visibleMates[currentMateIndex]);\r\n  };\r\n  prevMate.onclick = () => {\r\n    if (!visibleMates.length) return;\r\n    currentMateIndex = (currentMateIndex - 1 + visibleMates.length) % visibleMates.length;\r\n    updateDetails(visibleMates[currentMateIndex]);\r\n  };\r\n});\r\n"
+function runPageScript() {
+  let allData = {};
+  let typesData = [];
+  let abilitiesData = [];
+  let creditsData = [];
+  let crorderData = [];
+  let visibleMates = [];
+  let currentMateIndex = 0;
+  let crossTabFormsByRef = new Map();
+  let mateByName = new Map();
+  let creditsByAnimate = new Map();
+  let crorderRank = new Map();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("uprodGrid");
+    const conceptedFilter = document.getElementById("conceptedFilter");
+    const assistedFilter = document.getElementById("assistedFilter");
+    const namedFilter = document.getElementById("namedFilter");
+    const anythingFilter = document.getElementById("anythingFilter");
+    const modal = document.getElementById("detailsModal");
+    const closeModal = document.getElementById("closeModal");
+    const nextMate = document.getElementById("nextMate");
+    const prevMate = document.getElementById("prevMate");
+    const modeBadge = document.getElementById("modeBadge");
+
+    const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
+
+    function annotateMateOrder(mode, mates) {
+      (mates || []).forEach((mate, index) => {
+        mate.__mode = mode;
+        mate.__order = index;
+      });
+      return mates || [];
+    }
+
+    function normalizeCreditsEntry(entry) {
+      if (!entry || typeof entry !== "object") {
+        return { person: "Unknown", concepted: [], assisted: [], named: [] };
+      }
+      return {
+        person: String(entry.person || "Unknown").trim() || "Unknown",
+        concepted: Array.isArray(entry.concepted) ? entry.concepted.map(x => String(x || "").trim()).filter(Boolean) : [],
+        assisted: normalizeAssistedItems(entry.assisted),
+        named: Array.isArray(entry.named) ? entry.named.map(x => String(x || "").trim()).filter(Boolean) : []
+      };
+    }
+
+    function normalizeAssistedItems(items) {
+      if (!Array.isArray(items)) return [];
+      return items
+        .map(item => {
+          if (typeof item === "string") {
+            const name = item.trim();
+            return name ? { name, how: "" } : null;
+          }
+          if (!item || typeof item !== "object") return null;
+          const name = String(item.name || "").trim();
+          const how = String(item.how || "").trim();
+          if (!name) return null;
+          return { name, how };
+        })
+        .filter(Boolean);
+    }
+
+    function getRarities(mate) {
+      const raw = mate?.rarity;
+      let list = [];
+
+      if (Array.isArray(raw)) list = raw;
+      else if (typeof raw === "string") list = raw.split(/[,+|/]/g).map(x => x.trim()).filter(Boolean);
+      else if (raw !== undefined && raw !== null) list = [String(raw).trim()];
+
+      const normalized = [];
+      list.forEach(rarity => {
+        if (allowedRarities.has(rarity) && !normalized.includes(rarity)) normalized.push(rarity);
+      });
+
+      if (!normalized.length) return ["Normal"];
+      if (normalized.length > 1) return normalized.filter(rarity => rarity !== "Normal");
+      return normalized;
+    }
+
+    const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);
+    const isMode = mate => hasRarity(mate, "Mode");
+    const isShiver = mate => hasRarity(mate, "Shiver");
+    const isParagon = mate => hasRarity(mate, "Paragon");
+
+    function getMateRef(mate) {
+      const explicitRef = String(mate?.ref || "").trim();
+      if (explicitRef) return explicitRef;
+      return String(mate?.name || "").trim();
+    }
+
+    function getReferenceKey(mate) {
+      return String(mate?.name || "").trim();
+    }
+
+    function getNpcFamilyKey(mate) {
+      return String(mate?.id || "").trim();
+    }
+
+    function getAlternateGroupKey(mate) {
+      if ((mate?.mode || "") === "npc") return `npc:${getNpcFamilyKey(mate)}`;
+      return `ref:${getResolvedMateRef(mate)}`;
+    }
+
+    function getModeRank(mode) {
+      const rank = { base: 0, sacred: 1, ace: 2, goner: 3, ncanon: 4, event: 5, costumes: 6, npc: 7 };
+      return rank[mode] ?? 999;
+    }
+
+    function chooseReferencedMate(candidates, requesterMode = "") {
+      if (!Array.isArray(candidates) || !candidates.length) return null;
+      const preferred = candidates.slice().sort((a, b) => {
+        const aRequesterPenalty = (a.mode || "") === requesterMode ? -1 : 0;
+        const bRequesterPenalty = (b.mode || "") === requesterMode ? -1 : 0;
+        if (aRequesterPenalty !== bRequesterPenalty) return aRequesterPenalty - bRequesterPenalty;
+        return getModeRank(a.mode) - getModeRank(b.mode);
+      });
+      return preferred[0] || null;
+    }
+
+    function resolveReferenceRoot(mate, visited = new Set()) {
+      if (!mate) return null;
+
+      const ownName = getReferenceKey(mate);
+      const explicitRef = String(mate?.ref || "").trim();
+      if (!explicitRef || explicitRef === ownName) return mate;
+
+      const visitKey = `${mate.mode || ""}|${ownName}|${explicitRef}`;
+      if (visited.has(visitKey)) return mate;
+      visited.add(visitKey);
+
+      const candidates = (mateByName.get(explicitRef) || []).filter(candidate => {
+        return !(
+          (candidate.mode || "") === (mate.mode || "") &&
+          String(candidate.name || "").trim() === ownName &&
+          String(candidate.image || "") === String(mate.image || "")
+        );
+      });
+      const referencedMate = chooseReferencedMate(candidates, mate.mode || "");
+      if (!referencedMate) return mate;
+      return resolveReferenceRoot(referencedMate, visited);
+    }
+
+    function getResolvedMateRef(mate) {
+      const resolvedMate = resolveReferenceRoot(mate);
+      return getReferenceKey(resolvedMate || mate);
+    }
+
+    function rebuildRefIndexes() {
+      crossTabFormsByRef = new Map();
+      mateByName = new Map();
+
+      Object.entries(allData).forEach(([mode, mates]) => {
+        (mates || []).forEach(mate => {
+          const form = { ...mate, mode };
+          const ownName = getReferenceKey(form);
+          if (!ownName) return;
+          if (!mateByName.has(ownName)) mateByName.set(ownName, []);
+          mateByName.get(ownName).push(form);
+        });
+      });
+
+      mateByName.forEach(forms => {
+        forms.sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode));
+      });
+
+      Object.entries(allData).forEach(([mode, mates]) => {
+        (mates || []).forEach(mate => {
+          const form = { ...mate, mode };
+          const resolvedRef = getResolvedMateRef(form);
+          if (!resolvedRef) return;
+          if (!crossTabFormsByRef.has(resolvedRef)) crossTabFormsByRef.set(resolvedRef, []);
+          crossTabFormsByRef.get(resolvedRef).push(form);
+        });
+      });
+    }
+
+    function buildCreditsIndex() {
+      creditsByAnimate = new Map();
+      creditsData.forEach(entry => {
+        entry.concepted.forEach(name => {
+          const key = String(name || "").trim();
+          if (!key) return;
+          if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });
+          const record = creditsByAnimate.get(key);
+          if (!record.concepted.includes(entry.person)) record.concepted.push(entry.person);
+        });
+        entry.assisted.forEach(item => {
+          const key = String(item?.name || "").trim();
+          if (!key) return;
+          if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });
+          const record = creditsByAnimate.get(key);
+          if (!record.assisted.some(assisted => assisted.person === entry.person && assisted.how === item.how)) {
+            record.assisted.push({ person: entry.person, how: item.how || "" });
+          }
+        });
+        entry.named.forEach(name => {
+          const key = String(name || "").trim();
+          if (!key) return;
+          if (!creditsByAnimate.has(key)) creditsByAnimate.set(key, { concepted: [], assisted: [], named: [] });
+          const record = creditsByAnimate.get(key);
+          if (!record.named.includes(entry.person)) record.named.push(entry.person);
+        });
+      });
+    }
+
+    function rebuildCrorderRanks() {
+      crorderRank = new Map();
+      crorderData.forEach((name, index) => {
+        const trimmed = String(name || "").trim();
+        if (!trimmed || crorderRank.has(trimmed)) return;
+        crorderRank.set(trimmed, index);
+      });
+    }
+
+    function populateFilters() {
+      const people = Array.from(new Set(creditsData.map(entry => entry.person))).sort((a, b) => a.localeCompare(b));
+      people.forEach(person => {
+        const conceptOption = document.createElement("option");
+        conceptOption.value = person;
+        conceptOption.textContent = person;
+        conceptedFilter.appendChild(conceptOption);
+
+        const assistedOption = document.createElement("option");
+        assistedOption.value = person;
+        assistedOption.textContent = person;
+        assistedFilter.appendChild(assistedOption);
+
+        const namedOption = document.createElement("option");
+        namedOption.value = person;
+        namedOption.textContent = person;
+        namedFilter.appendChild(namedOption);
+
+        const anythingOption = document.createElement("option");
+        anythingOption.value = person;
+        anythingOption.textContent = person;
+        anythingFilter.appendChild(anythingOption);
+      });
+    }
+
+    function didPersonHelpWithAnything(credits, person) {
+      return credits.concepted.includes(person) ||
+        credits.assisted.some(item => item.person === person) ||
+        credits.named.includes(person);
+    }
+
+    function getMateCredits(mate) {
+      const namesToCheck = [String(mate?.name || "").trim(), getResolvedMateRef(mate)].filter(Boolean);
+      const combined = { concepted: [], assisted: [], named: [] };
+
+      namesToCheck.forEach(name => {
+        const record = creditsByAnimate.get(name);
+        if (!record) return;
+        record.concepted.forEach(person => {
+          if (!combined.concepted.includes(person)) combined.concepted.push(person);
+        });
+        record.assisted.forEach(item => {
+          if (!combined.assisted.some(assisted => assisted.person === item.person && assisted.how === item.how)) {
+            combined.assisted.push(item);
+          }
+        });
+        record.named.forEach(person => {
+          if (!combined.named.includes(person)) combined.named.push(person);
+        });
+      });
+
+      return combined;
+    }
+
+    function buildDisplayPool() {
+      const seen = new Set();
+      const pool = [];
+
+      ["base", "sacred", "ace", "ncanon", "goner", "event", "costumes", "npc"].forEach(mode => {
+        const mates = allData[mode] || [];
+        mates.forEach(mate => {
+          const form = { ...mate, mode };
+          if (isMode(form)) return;
+          if (!crorderRank.has(String(form.name || ""))) return;
+          const key = `${form.mode || ""}|${form.__order ?? ""}|${form.name || ""}|${form.image || ""}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          pool.push(form);
+        });
+      });
+
+      return pool.sort((a, b) => {
+        const aName = String(a.name || "");
+        const bName = String(b.name || "");
+        const aRank = crorderRank.has(aName) ? crorderRank.get(aName) : Number.POSITIVE_INFINITY;
+        const bRank = crorderRank.has(bName) ? crorderRank.get(bName) : Number.POSITIVE_INFINITY;
+
+        if (aRank !== bRank) return aRank - bRank;
+
+        const nameCompare = aName.localeCompare(bName);
+        if (nameCompare !== 0) return nameCompare;
+
+        return getModeRank(a.mode) - getModeRank(b.mode);
+      });
+    }
+
+    function renderGrid() {
+      const selectedConcepted = conceptedFilter.value;
+      const selectedAssisted = assistedFilter.value;
+      const selectedNamed = namedFilter.value;
+      const selectedAnything = anythingFilter.value;
+      const mates = buildDisplayPool().filter(mate => {
+        const credits = getMateCredits(mate);
+        if (selectedConcepted && !credits.concepted.includes(selectedConcepted)) return false;
+        if (selectedAssisted && !credits.assisted.some(item => item.person === selectedAssisted)) return false;
+        if (selectedNamed && !credits.named.includes(selectedNamed)) return false;
+        if (selectedAnything && !didPersonHelpWithAnything(credits, selectedAnything)) return false;
+        return true;
+      });
+      visibleMates = mates;
+      grid.innerHTML = "";
+
+      if (!mates.length) {
+        grid.innerHTML = `<div class="cat-empty">No matching animates.</div>`;
+        return;
+      }
+
+      mates.forEach(mate => {
+        grid.appendChild(makeCard(mate));
+      });
+    }
+
+    function makeCard(mate) {
+      const card = document.createElement("div");
+      card.className = "card";
+      if (isParagon(mate)) card.classList.add("rarity-paragon");
+      applyMateStyle(card, mate);
+
+      const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
+      const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
+      const shiverBadge = isShiver(mate)
+        ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
+        : "";
+      card.innerHTML = `
+        ${shiverBadge}
+        <img src="${escapeHtml(mate.image || "")}" alt="${escapeHtml(mate.name || "")}">
+        <h3>${displayName}</h3>
+      `;
+
+      card.addEventListener("click", () => openDetails(mate));
+      return card;
+    }
+
+    function openDetails(mate) {
+      const idx = visibleMates.findIndex(entry => sameMate(entry, mate));
+      currentMateIndex = idx >= 0 ? idx : 0;
+      updateDetails(mate);
+      modal.classList.remove("hidden");
+    }
+
+    function updateDetails(mate) {
+      const mateMode = mate.mode || "base";
+      const modalContent = document.querySelector("#detailsModal .modal-content") || document.getElementById("detailsModal");
+      const credits = getMateCredits(mate);
+
+      applyMateStyle(modalContent, mate);
+      setModeBadge(mateMode, mate);
+
+      document.getElementById("mateName").textContent = mate.name || "";
+      document.getElementById("mateImage").src = mate.image || "";
+      renderOptionalSection(document.getElementById("conceptedByContainer"), renderCreditSection("Concepted By", credits.concepted));
+      renderOptionalSection(document.getElementById("assistedByContainer"), renderAssistedSection(credits.assisted));
+      renderOptionalSection(document.getElementById("namedByContainer"), renderCreditSection("Named By", credits.named));
+      renderEvolutionLine(mate);
+
+      renderAlternateForms(mate);
+      renderModeAlternates(mate);
+    }
+
+    function renderCreditSection(label, people) {
+      if (!people.length) return "";
+      return `<b>${escapeHtml(label)}:</b><div>${escapeHtml(people.join(", "))}</div>`;
+    }
+
+    function renderAssistedSection(items) {
+      if (!items.length) return "";
+      const rows = items.map(item => {
+        const detail = item.how ? `: ${escapeHtml(item.how)}` : "";
+        return `<div><strong>${escapeHtml(item.person)}</strong>${detail}</div>`;
+      }).join("");
+      return `<b>Assisted By:</b>${rows}`;
+    }
+
+    function renderOptionalSection(container, html) {
+      container.innerHTML = html;
+      container.hidden = !html;
+    }
+
+    function renderEvolutionLine(mate) {
+      const evoContainer = document.getElementById("evolutionsContainer");
+      evoContainer.innerHTML = "";
+      if ((mate.mode || "base") === "costumes") return;
+
+      const mateMode = mate.mode || "base";
+      const modeForms = getMateModePool(mate);
+      const byName = new Map(modeForms.map(entry => [entry.name, entry]));
+      if (!byName.has(mate.name)) byName.set(mate.name, mate);
+
+      const outgoing = new Map();
+      const incoming = new Map();
+      modeForms.forEach(entry => {
+        (entry.evolvesTo || []).forEach(evo => {
+          if (!evo || !evo.name) return;
+          if (!outgoing.has(entry.name)) outgoing.set(entry.name, []);
+          outgoing.get(entry.name).push({ to: evo.name, level: evo.level, item: evo.Item });
+
+          if (!incoming.has(evo.name)) incoming.set(evo.name, []);
+          incoming.get(evo.name).push({ from: entry.name, level: evo.level, item: evo.Item });
+        });
+      });
+
+      function collectReachableAncestors(startName) {
+        const seen = new Set();
+        const stack = [startName];
+        while (stack.length) {
+          const node = stack.pop();
+          if (seen.has(node)) continue;
+          seen.add(node);
+          const parents = incoming.get(node) || [];
+          parents.forEach(parent => stack.push(parent.from));
+        }
+        return seen;
+      }
+
+      function findCandidateRoots(startName) {
+        const ancestorSet = collectReachableAncestors(startName);
+        const roots = [...ancestorSet].filter(name => !(incoming.get(name) || []).length);
+        return roots.length ? roots : [startName];
+      }
+
+      function buildAllPathsFrom(rootName) {
+        const paths = [];
+        function dfs(nodeName, names, requirements, seen) {
+          const edges = outgoing.get(nodeName) || [];
+          if (!edges.length) {
+            paths.push({ names: [...names], requirements: [...requirements] });
+            return;
+          }
+          let progressed = false;
+          edges.forEach(edge => {
+            if (!edge || !edge.to || seen.has(edge.to)) return;
+            progressed = true;
+            names.push(edge.to);
+            requirements.push({ level: edge.level, item: edge.item });
+            seen.add(edge.to);
+            dfs(edge.to, names, requirements, seen);
+            seen.delete(edge.to);
+            names.pop();
+            requirements.pop();
+          });
+          if (!progressed) paths.push({ names: [...names], requirements: [...requirements] });
+        }
+        dfs(rootName, [rootName], [], new Set([rootName]));
+        return paths;
+      }
+
+      function evolutionRequirementText(requirement) {
+        if (!requirement) return "";
+        const parts = [];
+        if (requirement.level !== null && requirement.level !== undefined && requirement.level !== "") parts.push(`Lvl ${requirement.level}`);
+        if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) parts.push(`Item: ${requirement.item}`);
+        return parts.join(" | ");
+      }
+
+      const allLines = findCandidateRoots(mate.name)
+        .flatMap(rootName => buildAllPathsFrom(rootName))
+        .filter(path => path.names.includes(mate.name));
+      const seenPathKeys = new Set();
+      const lines = allLines.filter(path => {
+        const key = path.names.join("->");
+        if (seenPathKeys.has(key)) return false;
+        seenPathKeys.add(key);
+        return true;
+      });
+      const shouldShowLine = lines.length > 0 && (incoming.has(mate.name) || outgoing.has(mate.name) || lines.some(line => line.names.length > 1));
+
+      if (!shouldShowLine) {
+        return;
+      }
+
+      evoContainer.innerHTML = "<b>Evolution Line:</b><br>";
+      lines.forEach(line => {
+        const lineEl = document.createElement("div");
+        lineEl.className = "evo-line";
+
+        line.names.forEach((name, idx) => {
+          const nodeMate = byName.get(name);
+          const node = document.createElement("div");
+          node.className = "evo-node" + (name === mate.name ? " current" : "");
+
+          const img = document.createElement("img");
+          img.src = (nodeMate && nodeMate.image) || "";
+          img.alt = name;
+          img.title = name;
+          if (nodeMate) img.onclick = () => openDetails(nodeMate);
+
+          const label = document.createElement("div");
+          label.className = "evo-name";
+          label.textContent = name;
+
+          node.appendChild(img);
+          node.appendChild(label);
+          lineEl.appendChild(node);
+
+          if (idx < line.names.length - 1) {
+            const link = document.createElement("div");
+            link.className = "evo-link";
+            const arrow = document.createElement("div");
+            arrow.className = "evo-arrow";
+            arrow.textContent = "→";
+            const lvl = document.createElement("div");
+            lvl.className = "evo-level";
+            lvl.textContent = evolutionRequirementText(line.requirements[idx]);
+            link.appendChild(arrow);
+            link.appendChild(lvl);
+            lineEl.appendChild(link);
+          }
+        });
+
+        evoContainer.appendChild(lineEl);
+      });
+    }
+
+    function renderAlternateForms(mate) {
+      const sacredContainer = document.getElementById("sacredContainer");
+      sacredContainer.innerHTML = "";
+      const mateMode = mate.mode || "base";
+      const mateRef = getResolvedMateRef(mate);
+      const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
+      const alternateForms = sameSpeciesAllTabs.filter(form => {
+        if (form.name === mate.name && form.mode === mateMode) return false;
+        if (isMode(form)) return false;
+        if (isMode(mate) && (form.mode || "") === mateMode) return false;
+        return true;
+      });
+
+      if (!alternateForms.length) {
+        return;
+      }
+
+      sacredContainer.innerHTML = "<b>Alternate Forms:</b><br>";
+      alternateForms.forEach(form => {
+        const img = document.createElement("img");
+        img.src = form.image || "";
+        img.title = `${form.name} (${form.mode})`;
+        img.onclick = () => openDetails(form);
+        img.style.width = "80px";
+        img.style.margin = "4px";
+        img.style.border = "2px solid #0ff";
+        img.style.borderRadius = "10px";
+        img.style.cursor = "pointer";
+        sacredContainer.appendChild(img);
+      });
+    }
+
+    function renderModeAlternates(mate) {
+      const modeContainer = document.getElementById("ModeContainer");
+      modeContainer.innerHTML = "";
+      const mateMode = mate.mode || "base";
+      const modeForms = getMateModePool(mate);
+      const alternateGroupKey = getAlternateGroupKey(mate);
+      const sameSpeciesSameMode = modeForms.filter(form => getAlternateGroupKey(form) === alternateGroupKey);
+      const modeOnlyForms = sameSpeciesSameMode.filter(form => {
+        if (form.name === mate.name && form.image === mate.image) return false;
+        if (mateMode === "npc") return true;
+        if (isMode(mate)) return true;
+        return isMode(form);
+      });
+
+      if (!modeOnlyForms.length) {
+        return;
+      }
+
+      modeContainer.innerHTML = "<b>Alternates:</b><br>";
+      modeOnlyForms.forEach(form => {
+        const img = document.createElement("img");
+        img.src = form.image || "";
+        img.title = `${form.name} (${form.mode})`;
+        img.onclick = () => openDetails(form);
+        img.style.width = "80px";
+        img.style.margin = "4px";
+        img.style.border = "2px solid #0ff";
+        img.style.borderRadius = "10px";
+        img.style.cursor = "pointer";
+        modeContainer.appendChild(img);
+      });
+    }
+
+    function getMateModePool(mate) {
+      const mode = mate?.mode || "base";
+      if (mode === "event") return (allData.event || []).map(entry => ({ ...entry, mode: "event", sourceMode: entry.sourceMode }));
+      return (allData[mode] || []).map(entry => ({ ...entry, mode }));
+    }
+
+    function setModeBadge(mode) {
+      modeBadge.textContent = mode ? mode.toUpperCase() : "";
+    }
+
+    function applyMateStyle(el, mate) {
+      if (!el) return;
+      el.style.backgroundColor = "";
+      el.style.color = "";
+      el.style.fontFamily = "";
+      el.style.border = "";
+      el.style.removeProperty("--outline-color");
+
+      if (mate.event === "halloween") {
+        el.style.backgroundColor = "#4B0082";
+        el.style.color = "#ff6c1c";
+      } else if (mate.event === "winter") {
+        el.style.backgroundColor = "#001f4d";
+        el.style.color = "#cce6ff";
+      } else if (mate.event === "fools") {
+        el.style.backgroundColor = "#fff";
+        el.style.color = "#000";
+        el.style.fontFamily = "Arial, sans-serif";
+      }
+
+      const primaryType = mate.types?.[0];
+      const typeObj = typesData.find(entry => entry.name === primaryType);
+      const outlineColor = typeObj ? typeObj.color : "#ccc";
+      el.style.setProperty("--outline-color", outlineColor);
+      el.style.border = `3px solid ${outlineColor}`;
+    }
+
+    function sameMate(a, b) {
+      return (a.name === b.name) && (getResolvedMateRef(a) === getResolvedMateRef(b)) && ((a.mode || "") === (b.mode || ""));
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return "";
+      return String(str).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    Promise.all([
+      fetch("data/types.json").then(response => response.json()).catch(() => []),
+      fetch("data/abilities.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/uprod.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/crorder.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/sacred.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/ace.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/goner.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/ncanon.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/costumes.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
+    ]).then(([types, abilities, credits, crorder, base, sacred, ace, goner, ncanon, costumes, npc]) => {
+      typesData = types || [];
+      abilitiesData = abilities || [];
+      creditsData = Array.isArray(credits) ? credits.map(normalizeCreditsEntry) : [];
+      crorderData = Array.isArray(crorder) ? crorder.map(name => String(name || "").trim()).filter(Boolean) : [];
+      allData = {
+        base: annotateMateOrder("base", base || []),
+        sacred: annotateMateOrder("sacred", sacred || []),
+        ace: annotateMateOrder("ace", ace || []),
+        goner: annotateMateOrder("goner", goner || []),
+        ncanon: annotateMateOrder("ncanon", ncanon || []),
+        costumes: annotateMateOrder("costumes", costumes || []),
+        npc: annotateMateOrder("npc", npc || []),
+        event: []
+      };
+
+      Object.entries(allData).forEach(([mode, mates]) => {
+        if (mode === "event") return;
+        allData[mode] = mates.filter(mate => {
+          if (mate.event !== undefined && mate.event !== null) {
+            mate.mode = "event";
+            mate.__mode = "event";
+            allData.event.push(mate);
+            return false;
+          }
+          return true;
+        });
+      });
+
+      annotateMateOrder("event", allData.event);
+      rebuildRefIndexes();
+      buildCreditsIndex();
+      rebuildCrorderRanks();
+      populateFilters();
+      renderGrid();
+    }).catch(error => {
+      console.error("Failed to load UPROD data", error);
+      grid.innerHTML = `<div class="cat-empty">Failed to load data.</div>`;
+    });
+
+    conceptedFilter.addEventListener("change", renderGrid);
+    assistedFilter.addEventListener("change", renderGrid);
+    namedFilter.addEventListener("change", renderGrid);
+    anythingFilter.addEventListener("change", renderGrid);
+
+    closeModal.onclick = () => modal.classList.add("hidden");
+    nextMate.onclick = () => {
+      if (!visibleMates.length) return;
+      currentMateIndex = (currentMateIndex + 1) % visibleMates.length;
+      updateDetails(visibleMates[currentMateIndex]);
+    };
+    prevMate.onclick = () => {
+      if (!visibleMates.length) return;
+      currentMateIndex = (currentMateIndex - 1 + visibleMates.length) % visibleMates.length;
+      updateDetails(visibleMates[currentMateIndex]);
+    };
+  });
+}
 const remoteScripts = []
 
 function loadRemoteScript(src) {
@@ -33,11 +750,10 @@ export default function CredtrixPage() {
       for (const src of remoteScripts) {
         await loadRemoteScript(src)
       }
-
-      if (cancelled || !pageScript) return
+      if (cancelled) return
 
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=CredtrixPage.legacy.js`)()
+      runPageScript()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {

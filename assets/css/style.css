@@ -1303,6 +1303,17 @@ body.animatrix-list-view {
   align-items: start;
   height: 100dvh;
   overflow: hidden;
+  overflow-x: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+body.animatrix-list-view header,
+body.animatrix-list-view .list-mode-actions,
+body.animatrix-list-view main#animatrix,
+body.animatrix-list-view #detailsModal {
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 body.animatrix-list-view header {
@@ -1403,6 +1414,9 @@ body.animatrix-list-view #detailsModal {
   padding: 10px 20px 20px 0;
   height: 100%;
   min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body.animatrix-list-view #detailsModal.hidden {
@@ -1416,6 +1430,7 @@ body.animatrix-list-view #detailsModal .modal-content {
   max-height: none;
   margin: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 10px 12px;
   box-sizing: border-box;
 }
@@ -1426,6 +1441,13 @@ body.animatrix-list-view #detailsModal .modal-body {
   gap: 6px 12px;
   align-items: center;
   font-size: 0.76em;
+  min-width: 0;
+  max-width: 100%;
+}
+
+body.animatrix-list-view #detailsModal .modal-body > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 body.animatrix-list-view #detailsModal .image-container {

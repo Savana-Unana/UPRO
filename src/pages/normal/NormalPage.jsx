@@ -1,7 +1,15 @@
 import { useEffect } from 'react'
 
 const pageStyles = ""
-const pageScript = "(function () {\r\n  const guessWhoLink = document.getElementById(\"normalHubGuessWho\");\r\n\r\n  if (guessWhoLink) {\r\n    guessWhoLink.addEventListener(\"click\", () => {\r\n      sessionStorage.setItem(\"upro_guesswho_unlocked\", \"true\");\r\n    });\r\n  }\r\n})();\r\n"
+function runPageScript() {
+  const guessWhoLink = document.getElementById("normalHubGuessWho");
+
+  if (guessWhoLink) {
+    guessWhoLink.addEventListener("click", () => {
+      sessionStorage.setItem("upro_guesswho_unlocked", "true");
+    });
+  }
+}
 const remoteScripts = []
 const mainMenuHref = import.meta.env.BASE_URL || '/'
 
@@ -34,11 +42,10 @@ export default function NormalPage() {
       for (const src of remoteScripts) {
         await loadRemoteScript(src)
       }
-
-      if (cancelled || !pageScript) return
+      if (cancelled) return
 
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=NormalPage.legacy.js`)()
+      runPageScript()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {

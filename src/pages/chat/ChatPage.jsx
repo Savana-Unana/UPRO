@@ -1,7 +1,358 @@
 import { useEffect } from 'react'
 
+/* eslint-disable no-empty, no-undef */
 const pageStyles = ""
-const pageScript = "// ====== DOM Refs ======\r\nconst boxOptions = document.getElementById(\"boxOptions\");\r\nconst boxTabContainer = document.getElementById(\"boxTabs\");\r\nconst iconOptions = document.getElementById(\"iconOptions\");\r\nconst iconTabContainer = document.getElementById(\"iconTabs\");\r\nconst speakerInput = document.getElementById(\"speakerInput\");\r\nconst dialogueInput = document.getElementById(\"dialogueInput\");\r\nconst cardsContainer = document.getElementById(\"cardsContainer\");\r\nconst cardTemplate = document.getElementById(\"cardTemplate\");\r\nconst nextBtn = document.getElementById(\"nextBtn\");\r\nconst exportAllBtn = document.getElementById(\"exportAllBtn\");\r\nconst resetBtn = document.getElementById(\"resetBtn\");\r\nconst spacingSlider = document.getElementById(\"spacingSlider\");\r\nconst spacingVal = document.getElementById(\"spacingVal\");\r\nconst scaleSlider = document.getElementById(\"scaleSlider\");\r\nconst scaleVal = document.getElementById(\"scaleVal\");\r\n\r\n// ====== App State ======\r\nlet BOXES = null, ICONS = null;\r\nlet cards = [];         // [{id, speaker, text, boxSrc, iconSrc, boxTab, iconTab}]\r\nlet activeId = null;\r\n\r\nconst LS_KEYS = {\r\n  CARDS: \"dialogue_cards_v2\",\r\n  ACTIVE: \"dialogue_active_v2\",\r\n  BOX_TAB: \"dialogue_box_tab\",\r\n  ICON_TAB: \"dialogue_icon_tab\",\r\n  SPACING: \"dialogue_spacing_px_v1\",\r\n  SCALE: \"dialogue_export_scale_v1\"\r\n};\r\n\r\n// Defaults:\r\nconst DEFAULTS = { spacing: -20, scale: 5 };\r\n\r\n// ====== Utilities ======\r\nconst uid = () => Math.random().toString(36).slice(2, 10);\r\nfunction normalizeAssetSrc(src) {\r\n  const value = String(src || \"\");\r\n  if (!value) return \"\";\r\n\r\n  const oldBoxMatch = value.match(/(?:^|\\/)IconTest\\/boxes\\/([^/?#]+)/i) || value.match(/^boxes\\/([^/?#]+)/i);\r\n  if (oldBoxMatch) return `assets/images/dialogue/boxes/${oldBoxMatch[1]}`;\r\n\r\n  const oldIconMatch = value.match(/(?:^|\\/)IconTest\\/icons\\/([^/?#]+)/i) || value.match(/^icons\\/([^/?#]+)/i);\r\n  if (oldIconMatch) return `assets/images/dialogue/icons/${oldIconMatch[1]}`;\r\n\r\n  return value;\r\n}\r\n\r\nconst saveState = () => {\r\n  localStorage.setItem(LS_KEYS.CARDS, JSON.stringify(cards));\r\n  localStorage.setItem(LS_KEYS.ACTIVE, activeId || \"\");\r\n};\r\nfunction loadState() {\r\n  try {\r\n    const c = JSON.parse(localStorage.getItem(LS_KEYS.CARDS) || \"[]\");\r\n    const a = localStorage.getItem(LS_KEYS.ACTIVE) || \"\";\r\n    if (Array.isArray(c) && c.length) {\r\n      cards = c.map(card => ({\r\n        ...card,\r\n        boxSrc: normalizeAssetSrc(card.boxSrc),\r\n        iconSrc: normalizeAssetSrc(card.iconSrc)\r\n      }));\r\n      activeId = a || c[0].id;\r\n    }\r\n  } catch {}\r\n}\r\nconst getActiveCard = () => cards.find(c => c.id === activeId);\r\n\r\nfunction setActive(id) {\r\n  activeId = id;\r\n  [...cardsContainer.querySelectorAll(\".dialogue-card\")].forEach(el =>\r\n    el.classList.toggle(\"active\", el.dataset.id === activeId)\r\n  );\r\n  const c = getActiveCard(); if (!c) return;\r\n  speakerInput.value = c.speaker || \"\";\r\n  dialogueInput.value = c.text || \"\";\r\n  saveState();\r\n  // Sync thumbs/tabs ONLY when switching active card\r\n  syncThumbnailsToActive();\r\n}\r\n\r\nfunction selectThumb(container, src) {\r\n  if (!src) return;\r\n  container.querySelectorAll(\".thumb\").forEach(t => {\r\n    t.classList.toggle(\"selected\", t.src === src || (t.src && src && src.endsWith(t.getAttribute(\"data-file\") || \"\")));\r\n  });\r\n}\r\nfunction syncThumbnailsToActive() {\r\n  const c = getActiveCard(); if (!c) return;\r\n\r\n  // Switch tabs to the card's saved tabs\r\n  if (c.boxTab && boxTabContainer.querySelector(`[data-type=\"${c.boxTab}\"]`)) {\r\n    boxTabContainer.querySelector(`[data-type=\"${c.boxTab}\"]`).classList.add(\"active\");\r\n    displayBoxCategory(c.boxTab, BOXES[c.boxTab]);\r\n  }\r\n  if (c.iconTab && iconTabContainer.querySelector(`[data-type=\"${c.iconTab}\"]`)) {\r\n    iconTabContainer.querySelector(`[data-type=\"${c.iconTab}\"]`).classList.add(\"active\");\r\n    displayIconCategory(c.iconTab, ICONS[c.iconTab]);\r\n  }\r\n  // Highlight current selections\r\n  selectThumb(boxOptions, c.boxSrc);\r\n  selectThumb(iconOptions, c.iconSrc);\r\n}\r\n\r\n// ====== Render ======\r\nfunction renderAllCards() {\r\n  cardsContainer.innerHTML = \"\";\r\n  cards.forEach(renderCard);\r\n  setActive(activeId);\r\n}\r\nfunction renderCard(card) {\r\n  const node = cardTemplate.content.firstElementChild.cloneNode(true);\r\n  node.dataset.id = card.id;\r\n  node.querySelector(\".boxImage\").src = card.boxSrc || \"\";\r\n  node.querySelector(\".iconImage\").src = card.iconSrc || \"\";\r\n  node.querySelector(\".speaker\").textContent = card.speaker || \"\";\r\n  node.querySelector(\".dialogue\").textContent = card.text || \"\";\r\n  node.addEventListener(\"click\", () => setActive(card.id));\r\n  node.addEventListener(\"keydown\", e => {\r\n    if (e.key === \"Enter\" || e.key === \" \") { e.preventDefault(); setActive(card.id); }\r\n  });\r\n  cardsContainer.appendChild(node);\r\n}\r\nfunction patchActiveCardDOM() {\r\n  const c = getActiveCard(); if (!c) return;\r\n  const node = cardsContainer.querySelector(`.dialogue-card[data-id=\"${c.id}\"]`);\r\n  if (!node) return;\r\n  node.querySelector(\".boxImage\").src = c.boxSrc || \"\";\r\n  node.querySelector(\".iconImage\").src = c.iconSrc || \"\";\r\n  node.querySelector(\".speaker\").textContent = c.speaker || \"\";\r\n  node.querySelector(\".dialogue\").textContent = c.text || \"\";\r\n}\r\n\r\n// ====== Create ======\r\nfunction createCardFromCurrent() {\r\n  const base = getActiveCard() || {};\r\n  const card = {\r\n    id: uid(),\r\n    speaker: speakerInput.value || base.speaker || \"\",\r\n    text: dialogueInput.value || base.text || \"\",\r\n    boxSrc: base.boxSrc || getFirstBoxSrc(),\r\n    iconSrc: base.iconSrc || getFirstIconSrc(),\r\n    boxTab: base.boxTab || getFirstBoxTabKey(),\r\n    iconTab: base.iconTab || getFirstIconTabKey()\r\n  };\r\n  cards.push(card); saveState(); renderCard(card); setActive(card.id);\r\n}\r\n\r\n// Defaults\r\nfunction getFirstBoxTabKey() {\r\n  const a = boxTabContainer.querySelector(\".tabBtn.active\");\r\n  return a ? a.dataset.type : (Object.keys(BOXES || { DialogueBox: [] })[0] || \"DialogueBox\");\r\n}\r\nfunction getFirstIconTabKey() {\r\n  const a = iconTabContainer.querySelector(\".tabBtn.active\");\r\n  return a ? a.dataset.type : (Object.keys(ICONS || {})[0] || \"\");\r\n}\r\nfunction getFirstBoxSrc() {\r\n  const tab = getFirstBoxTabKey(); const list = (BOXES && BOXES[tab]) || [];\r\n  return list.length ? `assets/images/dialogue/boxes/${list[0]}` : \"\";\r\n}\r\nfunction getFirstIconSrc() {\r\n  const tab = getFirstIconTabKey(); const list = (ICONS && ICONS[tab]) || [];\r\n  return list.length ? `assets/images/dialogue/icons/${list[0].file}` : \"\";\r\n}\r\n\r\n// ====== Tabs: Boxes ======\r\nfunction setupBoxTabs(boxes) {\r\n  // clear active class first\r\n  boxTabContainer.querySelectorAll(\".tabBtn\").forEach(t => t.classList.remove(\"active\"));\r\n\r\n  boxTabContainer.querySelectorAll(\".tabBtn\").forEach(tab => {\r\n    tab.addEventListener(\"click\", () => {\r\n      boxTabContainer.querySelectorAll(\".tabBtn\").forEach(t => t.classList.remove(\"active\"));\r\n      tab.classList.add(\"active\");\r\n      // Show the category the user clicked\r\n      displayBoxCategory(tab.dataset.type, boxes[tab.dataset.type]);\r\n      localStorage.setItem(LS_KEYS.BOX_TAB, tab.dataset.type);\r\n      // NOTE: DO NOT call syncThumbnailsToActive() here (prevents click being undone)\r\n    });\r\n  });\r\n\r\n  // initial: use saved tab or first button\r\n  const savedTab = localStorage.getItem(LS_KEYS.BOX_TAB);\r\n  const firstTab = savedTab \r\n    ? boxTabContainer.querySelector(`.tabBtn[data-type=\"${savedTab}\"]`)\r\n    : boxTabContainer.querySelector(\".tabBtn\");\r\n  if (firstTab) {\r\n    firstTab.classList.add(\"active\");\r\n    displayBoxCategory(firstTab.dataset.type, boxes[firstTab.dataset.type]);\r\n  }\r\n}\r\n\r\nfunction displayBoxCategory(cat, files) {\r\n  boxOptions.innerHTML = \"\";\r\n  files.forEach(file => {\r\n    const img = document.createElement(\"img\");\r\n    img.src = `assets/images/dialogue/boxes/${file}`;\r\n    img.className = \"thumb\";\r\n    img.setAttribute(\"data-file\", file);\r\n    img.addEventListener(\"click\", () => {\r\n      boxOptions.querySelectorAll(\".thumb\").forEach(t => t.classList.remove(\"selected\"));\r\n      img.classList.add(\"selected\");\r\n      const c = getActiveCard(); if (!c) return;\r\n      c.boxSrc = img.src;\r\n      c.boxTab = cat;\r\n      saveState();\r\n      patchActiveCardDOM();\r\n    });\r\n    boxOptions.appendChild(img);\r\n  });\r\n}\r\n\r\n// ====== Tabs: Icons ======\r\nfunction setupIconTabs(icons) {\r\n  iconTabContainer.innerHTML = \"\";\r\n  iconOptions.innerHTML = \"\";\r\n\r\n  for (const cat in icons) {\r\n    const btn = document.createElement(\"button\");\r\n    btn.textContent = cat;\r\n    btn.className = \"tabBtn\";\r\n    btn.dataset.type = cat;\r\n\r\n    btn.addEventListener(\"click\", () => {\r\n      iconTabContainer.querySelectorAll(\".tabBtn\").forEach(t => t.classList.remove(\"active\"));\r\n      btn.classList.add(\"active\");\r\n      // Show the category the user clicked\r\n      displayIconCategory(cat, icons[cat]);\r\n      localStorage.setItem(LS_KEYS.ICON_TAB, cat);\r\n      // NOTE: DO NOT call syncThumbnailsToActive() here (prevents click being undone)\r\n    });\r\n\r\n    iconTabContainer.appendChild(btn);\r\n  }\r\n\r\n  // initial: use saved tab or first\r\n  const savedIconTab = localStorage.getItem(LS_KEYS.ICON_TAB);\r\n  const first = savedIconTab \r\n    ? iconTabContainer.querySelector(`.tabBtn[data-type=\"${savedIconTab}\"]`)\r\n    : iconTabContainer.querySelector(\".tabBtn\");\r\n  if (first) {\r\n    first.classList.add(\"active\");\r\n    displayIconCategory(first.dataset.type, icons[first.dataset.type]);\r\n  }\r\n}\r\n\r\nfunction displayIconCategory(cat, files) {\r\n  iconOptions.innerHTML = \"\";\r\n  files.forEach(obj => {\r\n    const img = document.createElement(\"img\");\r\n    img.src = `assets/images/dialogue/icons/${obj.file}`;\r\n    img.className = \"thumb\";\r\n    img.setAttribute(\"data-file\", obj.file);\r\n\r\n    img.addEventListener(\"click\", () => {\r\n      iconOptions.querySelectorAll(\".thumb\").forEach(t => t.classList.remove(\"selected\"));\r\n      img.classList.add(\"selected\");\r\n      const c = getActiveCard(); if (!c) return;\r\n      c.iconSrc = img.src;\r\n      c.iconTab = cat;\r\n      saveState();\r\n      patchActiveCardDOM();\r\n    });\r\n\r\n    iconOptions.appendChild(img);\r\n  });\r\n}\r\n\r\n// ====== Inputs ======\r\nspeakerInput.addEventListener(\"input\", () => {\r\n  const c = getActiveCard(); if (!c) return;\r\n  c.speaker = speakerInput.value; saveState(); patchActiveCardDOM();\r\n});\r\ndialogueInput.addEventListener(\"input\", () => {\r\n  const c = getActiveCard(); if (!c) return;\r\n  c.text = dialogueInput.value; saveState(); patchActiveCardDOM();\r\n});\r\n\r\n// ====== Spacing slider ======\r\nfunction applySpacing(px) {\r\n  document.documentElement.style.setProperty(\"--card-gap\", `${px}px`);\r\n  spacingVal.textContent = `${px}px`;\r\n  localStorage.setItem(LS_KEYS.SPACING, String(px));\r\n}\r\nspacingSlider.addEventListener(\"input\", () => applySpacing(Number(spacingSlider.value)));\r\n\r\n// ====== Scale slider ======\r\nfunction applyScale(v) {\r\n  scaleVal.textContent = `×${v}`;\r\n  localStorage.setItem(LS_KEYS.SCALE, String(v));\r\n}\r\nscaleSlider.addEventListener(\"input\", () => applyScale(Number(scaleSlider.value)));\r\n\r\n// ====== Buttons ======\r\nnextBtn.addEventListener(\"click\", createCardFromCurrent);\r\n\r\nexportAllBtn.addEventListener(\"click\", async () => {\r\n  const scale = Number(localStorage.getItem(LS_KEYS.SCALE)) || DEFAULTS.scale;\r\n  const actives = [...cardsContainer.querySelectorAll(\".dialogue-card.active\")];\r\n  actives.forEach(el => el.classList.remove(\"active\"));\r\n\r\n  const canvas = await html2canvas(cardsContainer, { scale, backgroundColor: null, useCORS: true });\r\n\r\n  setActive(activeId); // restore outline\r\n\r\n  const link = document.createElement(\"a\");\r\n  link.download = \"dialogues.png\";\r\n  link.href = canvas.toDataURL(\"image/png\");\r\n  link.click();\r\n});\r\n\r\nresetBtn.addEventListener(\"click\", () => {\r\n  Object.values(LS_KEYS).forEach(k => localStorage.removeItem(k));\r\n  spacingSlider.value = DEFAULTS.spacing; applySpacing(DEFAULTS.spacing);\r\n  scaleSlider.value = DEFAULTS.scale; applyScale(DEFAULTS.scale);\r\n\r\n  cards = []; activeId = null; cardsContainer.innerHTML = \"\";\r\n  const first = { id: uid(), speaker: \"\", text: \"\", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };\r\n  cards.push(first); renderAllCards(); setActive(first.id);\r\n});\r\n\r\n// ====== Boot ======\r\nPromise.all([ fetch(\"data/dialogue/boxes.json\").then(r=>r.json()), fetch(\"data/dialogue/icons.json\").then(r=>r.json()) ])\r\n.then(([boxes, icons]) => {\r\n  BOXES = boxes; ICONS = icons;\r\n  setupBoxTabs(BOXES);\r\n  setupIconTabs(ICONS);\r\n\r\n  // init sliders\r\n  const savedSpacing = Number(localStorage.getItem(LS_KEYS.SPACING));\r\n  const spacing = Number.isFinite(savedSpacing) ? savedSpacing : DEFAULTS.spacing;\r\n  spacingSlider.value = spacing; applySpacing(spacing);\r\n\r\n  const savedScale = Number(localStorage.getItem(LS_KEYS.SCALE));\r\n  const scale = Number.isFinite(savedScale) ? savedScale : DEFAULTS.scale;\r\n  scaleSlider.value = scale; applyScale(scale);\r\n\r\n  loadState();\r\n  if (cards.length === 0) {\r\n    const first = { id: uid(), speaker: localStorage.getItem(\"dialogue_speaker\") || \"\", text: localStorage.getItem(\"dialogue_text\") || \"\", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };\r\n    cards.push(first); activeId = first.id;\r\n  }\r\n  renderAllCards();\r\n  setActive(activeId);\r\n  // one-time sync at boot so tabs match the first card\r\n  syncThumbnailsToActive();\r\n});\r\n"
+function runPageScript() {
+  // ====== DOM Refs ======
+  const boxOptions = document.getElementById("boxOptions");
+  const boxTabContainer = document.getElementById("boxTabs");
+  const iconOptions = document.getElementById("iconOptions");
+  const iconTabContainer = document.getElementById("iconTabs");
+  const speakerInput = document.getElementById("speakerInput");
+  const dialogueInput = document.getElementById("dialogueInput");
+  const cardsContainer = document.getElementById("cardsContainer");
+  const cardTemplate = document.getElementById("cardTemplate");
+  const nextBtn = document.getElementById("nextBtn");
+  const exportAllBtn = document.getElementById("exportAllBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const spacingSlider = document.getElementById("spacingSlider");
+  const spacingVal = document.getElementById("spacingVal");
+  const scaleSlider = document.getElementById("scaleSlider");
+  const scaleVal = document.getElementById("scaleVal");
+
+  // ====== App State ======
+  let BOXES = null, ICONS = null;
+  let cards = [];         // [{id, speaker, text, boxSrc, iconSrc, boxTab, iconTab}]
+  let activeId = null;
+
+  const LS_KEYS = {
+    CARDS: "dialogue_cards_v2",
+    ACTIVE: "dialogue_active_v2",
+    BOX_TAB: "dialogue_box_tab",
+    ICON_TAB: "dialogue_icon_tab",
+    SPACING: "dialogue_spacing_px_v1",
+    SCALE: "dialogue_export_scale_v1"
+  };
+
+  // Defaults:
+  const DEFAULTS = { spacing: -20, scale: 5 };
+
+  // ====== Utilities ======
+  const uid = () => Math.random().toString(36).slice(2, 10);
+  function normalizeAssetSrc(src) {
+    const value = String(src || "");
+    if (!value) return "";
+
+    const oldBoxMatch = value.match(/(?:^|\/)IconTest\/boxes\/([^/?#]+)/i) || value.match(/^boxes\/([^/?#]+)/i);
+    if (oldBoxMatch) return `assets/images/dialogue/boxes/${oldBoxMatch[1]}`;
+
+    const oldIconMatch = value.match(/(?:^|\/)IconTest\/icons\/([^/?#]+)/i) || value.match(/^icons\/([^/?#]+)/i);
+    if (oldIconMatch) return `assets/images/dialogue/icons/${oldIconMatch[1]}`;
+
+    return value;
+  }
+
+  const saveState = () => {
+    localStorage.setItem(LS_KEYS.CARDS, JSON.stringify(cards));
+    localStorage.setItem(LS_KEYS.ACTIVE, activeId || "");
+  };
+  function loadState() {
+    try {
+      const c = JSON.parse(localStorage.getItem(LS_KEYS.CARDS) || "[]");
+      const a = localStorage.getItem(LS_KEYS.ACTIVE) || "";
+      if (Array.isArray(c) && c.length) {
+        cards = c.map(card => ({
+          ...card,
+          boxSrc: normalizeAssetSrc(card.boxSrc),
+          iconSrc: normalizeAssetSrc(card.iconSrc)
+        }));
+        activeId = a || c[0].id;
+      }
+    } catch {}
+  }
+  const getActiveCard = () => cards.find(c => c.id === activeId);
+
+  function setActive(id) {
+    activeId = id;
+    [...cardsContainer.querySelectorAll(".dialogue-card")].forEach(el =>
+      el.classList.toggle("active", el.dataset.id === activeId)
+    );
+    const c = getActiveCard(); if (!c) return;
+    speakerInput.value = c.speaker || "";
+    dialogueInput.value = c.text || "";
+    saveState();
+    // Sync thumbs/tabs ONLY when switching active card
+    syncThumbnailsToActive();
+  }
+
+  function selectThumb(container, src) {
+    if (!src) return;
+    container.querySelectorAll(".thumb").forEach(t => {
+      t.classList.toggle("selected", t.src === src || (t.src && src && src.endsWith(t.getAttribute("data-file") || "")));
+    });
+  }
+  function syncThumbnailsToActive() {
+    const c = getActiveCard(); if (!c) return;
+
+    // Switch tabs to the card's saved tabs
+    if (c.boxTab && boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`)) {
+      boxTabContainer.querySelector(`[data-type="${c.boxTab}"]`).classList.add("active");
+      displayBoxCategory(c.boxTab, BOXES[c.boxTab]);
+    }
+    if (c.iconTab && iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`)) {
+      iconTabContainer.querySelector(`[data-type="${c.iconTab}"]`).classList.add("active");
+      displayIconCategory(c.iconTab, ICONS[c.iconTab]);
+    }
+    // Highlight current selections
+    selectThumb(boxOptions, c.boxSrc);
+    selectThumb(iconOptions, c.iconSrc);
+  }
+
+  // ====== Render ======
+  function renderAllCards() {
+    cardsContainer.innerHTML = "";
+    cards.forEach(renderCard);
+    setActive(activeId);
+  }
+  function renderCard(card) {
+    const node = cardTemplate.content.firstElementChild.cloneNode(true);
+    node.dataset.id = card.id;
+    node.querySelector(".boxImage").src = card.boxSrc || "";
+    node.querySelector(".iconImage").src = card.iconSrc || "";
+    node.querySelector(".speaker").textContent = card.speaker || "";
+    node.querySelector(".dialogue").textContent = card.text || "";
+    node.addEventListener("click", () => setActive(card.id));
+    node.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActive(card.id); }
+    });
+    cardsContainer.appendChild(node);
+  }
+  function patchActiveCardDOM() {
+    const c = getActiveCard(); if (!c) return;
+    const node = cardsContainer.querySelector(`.dialogue-card[data-id="${c.id}"]`);
+    if (!node) return;
+    node.querySelector(".boxImage").src = c.boxSrc || "";
+    node.querySelector(".iconImage").src = c.iconSrc || "";
+    node.querySelector(".speaker").textContent = c.speaker || "";
+    node.querySelector(".dialogue").textContent = c.text || "";
+  }
+
+  // ====== Create ======
+  function createCardFromCurrent() {
+    const base = getActiveCard() || {};
+    const card = {
+      id: uid(),
+      speaker: speakerInput.value || base.speaker || "",
+      text: dialogueInput.value || base.text || "",
+      boxSrc: base.boxSrc || getFirstBoxSrc(),
+      iconSrc: base.iconSrc || getFirstIconSrc(),
+      boxTab: base.boxTab || getFirstBoxTabKey(),
+      iconTab: base.iconTab || getFirstIconTabKey()
+    };
+    cards.push(card); saveState(); renderCard(card); setActive(card.id);
+  }
+
+  // Defaults
+  function getFirstBoxTabKey() {
+    const a = boxTabContainer.querySelector(".tabBtn.active");
+    return a ? a.dataset.type : (Object.keys(BOXES || { DialogueBox: [] })[0] || "DialogueBox");
+  }
+  function getFirstIconTabKey() {
+    const a = iconTabContainer.querySelector(".tabBtn.active");
+    return a ? a.dataset.type : (Object.keys(ICONS || {})[0] || "");
+  }
+  function getFirstBoxSrc() {
+    const tab = getFirstBoxTabKey(); const list = (BOXES && BOXES[tab]) || [];
+    return list.length ? `assets/images/dialogue/boxes/${list[0]}` : "";
+  }
+  function getFirstIconSrc() {
+    const tab = getFirstIconTabKey(); const list = (ICONS && ICONS[tab]) || [];
+    return list.length ? `assets/images/dialogue/icons/${list[0].file}` : "";
+  }
+
+  // ====== Tabs: Boxes ======
+  function setupBoxTabs(boxes) {
+    // clear active class first
+    boxTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
+
+    boxTabContainer.querySelectorAll(".tabBtn").forEach(tab => {
+      tab.addEventListener("click", () => {
+        boxTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        // Show the category the user clicked
+        displayBoxCategory(tab.dataset.type, boxes[tab.dataset.type]);
+        localStorage.setItem(LS_KEYS.BOX_TAB, tab.dataset.type);
+        // NOTE: DO NOT call syncThumbnailsToActive() here (prevents click being undone)
+      });
+    });
+
+    // initial: use saved tab or first button
+    const savedTab = localStorage.getItem(LS_KEYS.BOX_TAB);
+    const firstTab = savedTab 
+      ? boxTabContainer.querySelector(`.tabBtn[data-type="${savedTab}"]`)
+      : boxTabContainer.querySelector(".tabBtn");
+    if (firstTab) {
+      firstTab.classList.add("active");
+      displayBoxCategory(firstTab.dataset.type, boxes[firstTab.dataset.type]);
+    }
+  }
+
+  function displayBoxCategory(cat, files) {
+    boxOptions.innerHTML = "";
+    files.forEach(file => {
+      const img = document.createElement("img");
+      img.src = `assets/images/dialogue/boxes/${file}`;
+      img.className = "thumb";
+      img.setAttribute("data-file", file);
+      img.addEventListener("click", () => {
+        boxOptions.querySelectorAll(".thumb").forEach(t => t.classList.remove("selected"));
+        img.classList.add("selected");
+        const c = getActiveCard(); if (!c) return;
+        c.boxSrc = img.src;
+        c.boxTab = cat;
+        saveState();
+        patchActiveCardDOM();
+      });
+      boxOptions.appendChild(img);
+    });
+  }
+
+  // ====== Tabs: Icons ======
+  function setupIconTabs(icons) {
+    iconTabContainer.innerHTML = "";
+    iconOptions.innerHTML = "";
+
+    for (const cat in icons) {
+      const btn = document.createElement("button");
+      btn.textContent = cat;
+      btn.className = "tabBtn";
+      btn.dataset.type = cat;
+
+      btn.addEventListener("click", () => {
+        iconTabContainer.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
+        btn.classList.add("active");
+        // Show the category the user clicked
+        displayIconCategory(cat, icons[cat]);
+        localStorage.setItem(LS_KEYS.ICON_TAB, cat);
+        // NOTE: DO NOT call syncThumbnailsToActive() here (prevents click being undone)
+      });
+
+      iconTabContainer.appendChild(btn);
+    }
+
+    // initial: use saved tab or first
+    const savedIconTab = localStorage.getItem(LS_KEYS.ICON_TAB);
+    const first = savedIconTab 
+      ? iconTabContainer.querySelector(`.tabBtn[data-type="${savedIconTab}"]`)
+      : iconTabContainer.querySelector(".tabBtn");
+    if (first) {
+      first.classList.add("active");
+      displayIconCategory(first.dataset.type, icons[first.dataset.type]);
+    }
+  }
+
+  function displayIconCategory(cat, files) {
+    iconOptions.innerHTML = "";
+    files.forEach(obj => {
+      const img = document.createElement("img");
+      img.src = `assets/images/dialogue/icons/${obj.file}`;
+      img.className = "thumb";
+      img.setAttribute("data-file", obj.file);
+
+      img.addEventListener("click", () => {
+        iconOptions.querySelectorAll(".thumb").forEach(t => t.classList.remove("selected"));
+        img.classList.add("selected");
+        const c = getActiveCard(); if (!c) return;
+        c.iconSrc = img.src;
+        c.iconTab = cat;
+        saveState();
+        patchActiveCardDOM();
+      });
+
+      iconOptions.appendChild(img);
+    });
+  }
+
+  // ====== Inputs ======
+  speakerInput.addEventListener("input", () => {
+    const c = getActiveCard(); if (!c) return;
+    c.speaker = speakerInput.value; saveState(); patchActiveCardDOM();
+  });
+  dialogueInput.addEventListener("input", () => {
+    const c = getActiveCard(); if (!c) return;
+    c.text = dialogueInput.value; saveState(); patchActiveCardDOM();
+  });
+
+  // ====== Spacing slider ======
+  function applySpacing(px) {
+    document.documentElement.style.setProperty("--card-gap", `${px}px`);
+    spacingVal.textContent = `${px}px`;
+    localStorage.setItem(LS_KEYS.SPACING, String(px));
+  }
+  spacingSlider.addEventListener("input", () => applySpacing(Number(spacingSlider.value)));
+
+  // ====== Scale slider ======
+  function applyScale(v) {
+    scaleVal.textContent = `×${v}`;
+    localStorage.setItem(LS_KEYS.SCALE, String(v));
+  }
+  scaleSlider.addEventListener("input", () => applyScale(Number(scaleSlider.value)));
+
+  // ====== Buttons ======
+  nextBtn.addEventListener("click", createCardFromCurrent);
+
+  exportAllBtn.addEventListener("click", async () => {
+    const scale = Number(localStorage.getItem(LS_KEYS.SCALE)) || DEFAULTS.scale;
+    const actives = [...cardsContainer.querySelectorAll(".dialogue-card.active")];
+    actives.forEach(el => el.classList.remove("active"));
+
+    const canvas = await html2canvas(cardsContainer, { scale, backgroundColor: null, useCORS: true });
+
+    setActive(activeId); // restore outline
+
+    const link = document.createElement("a");
+    link.download = "dialogues.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+
+  resetBtn.addEventListener("click", () => {
+    Object.values(LS_KEYS).forEach(k => localStorage.removeItem(k));
+    spacingSlider.value = DEFAULTS.spacing; applySpacing(DEFAULTS.spacing);
+    scaleSlider.value = DEFAULTS.scale; applyScale(DEFAULTS.scale);
+
+    cards = []; activeId = null; cardsContainer.innerHTML = "";
+    const first = { id: uid(), speaker: "", text: "", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };
+    cards.push(first); renderAllCards(); setActive(first.id);
+  });
+
+  // ====== Boot ======
+  Promise.all([ fetch("data/dialogue/boxes.json").then(r=>r.json()), fetch("data/dialogue/icons.json").then(r=>r.json()) ])
+  .then(([boxes, icons]) => {
+    BOXES = boxes; ICONS = icons;
+    setupBoxTabs(BOXES);
+    setupIconTabs(ICONS);
+
+    // init sliders
+    const savedSpacing = Number(localStorage.getItem(LS_KEYS.SPACING));
+    const spacing = Number.isFinite(savedSpacing) ? savedSpacing : DEFAULTS.spacing;
+    spacingSlider.value = spacing; applySpacing(spacing);
+
+    const savedScale = Number(localStorage.getItem(LS_KEYS.SCALE));
+    const scale = Number.isFinite(savedScale) ? savedScale : DEFAULTS.scale;
+    scaleSlider.value = scale; applyScale(scale);
+
+    loadState();
+    if (cards.length === 0) {
+      const first = { id: uid(), speaker: localStorage.getItem("dialogue_speaker") || "", text: localStorage.getItem("dialogue_text") || "", boxSrc: getFirstBoxSrc(), iconSrc: getFirstIconSrc(), boxTab: getFirstBoxTabKey(), iconTab: getFirstIconTabKey() };
+      cards.push(first); activeId = first.id;
+    }
+    renderAllCards();
+    setActive(activeId);
+    // one-time sync at boot so tabs match the first card
+    syncThumbnailsToActive();
+  });
+}
 const remoteScripts = ["https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"]
 
 function loadRemoteScript(src) {
@@ -33,11 +384,10 @@ export default function ChatPage() {
       for (const src of remoteScripts) {
         await loadRemoteScript(src)
       }
-
-      if (cancelled || !pageScript) return
+      if (cancelled) return
 
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=ChatPage.legacy.js`)()
+      runPageScript()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {

@@ -941,7 +941,7 @@ export default function AnimatrixPage() {
 
       function biomeImagePath(biomeName) {
         if (!biomeName) return "";
-        return `images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
+        return `assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
       }
 
       function loadMode(mode) {

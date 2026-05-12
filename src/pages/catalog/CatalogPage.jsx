@@ -1,7 +1,671 @@
 import { useEffect } from 'react'
 
+/* eslint-disable no-unused-vars, no-useless-assignment */
 const pageStyles = ""
-const pageScript = "let allData = {};\r\nlet typesData = [];\r\nlet visibleMates = [];\r\nlet currentMateIndex = 0;\r\nlet groupsData = [];\r\nlet crossTabFormsByRef = new Map();\r\nlet mateByName = new Map();\r\n\r\nfunction annotateMateOrder(mode, mates) {\r\n  (mates || []).forEach((mate, index) => {\r\n    mate.__mode = mode;\r\n    mate.__order = index;\r\n  });\r\n  return mates || [];\r\n}\r\n\r\nfunction normalizeGroup(group) {\r\n  if (!group || typeof group !== \"object\") {\r\n    return {\r\n      name: \"Unnamed Group\",\r\n      type: \"normal\",\r\n      description: \"\",\r\n      animates: []\r\n    };\r\n  }\r\n\r\n  const normalizedType = String(group.type || \"normal\").trim().toLowerCase() === \"bonus\"\r\n    ? \"bonus\"\r\n    : \"normal\";\r\n\r\n  return {\r\n    ...group,\r\n    name: group.name ? String(group.name) : \"Unnamed Group\",\r\n    type: normalizedType,\r\n    description: typeof group.description === \"string\" ? group.description.trim() : \"\",\r\n    animates: Array.isArray(group.animates) ? group.animates : []\r\n  };\r\n}\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n  const groupsRoot = document.getElementById(\"categoryGroups\");\r\n  const search = document.getElementById(\"search\");\r\n  const modeBadge = document.getElementById(\"modeBadge\");\r\n  const modal = document.getElementById(\"detailsModal\");\r\n  const closeModal = document.getElementById(\"closeModal\");\r\n  const nextMate = document.getElementById(\"nextMate\");\r\n  const prevMate = document.getElementById(\"prevMate\");\r\n\r\n  const allowedRarities = new Set([\"Normal\", \"Mode\", \"Shiver\", \"Paragon\"]);\r\n  function getRarities(mate) {\r\n    const raw = mate?.rarity;\r\n    let list = [];\r\n\r\n    if (Array.isArray(raw)) list = raw;\r\n    else if (typeof raw === \"string\") list = raw.split(/[,+|/]/g).map(x => x.trim()).filter(Boolean);\r\n    else if (raw !== undefined && raw !== null) list = [String(raw).trim()];\r\n\r\n    const normalized = [];\r\n    list.forEach(r => {\r\n      if (allowedRarities.has(r) && !normalized.includes(r)) normalized.push(r);\r\n    });\r\n\r\n    if (!normalized.length) return [\"Normal\"];\r\n    if (normalized.length > 1) return normalized.filter(r => r !== \"Normal\");\r\n    return normalized;\r\n  }\r\n\r\n  const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);\r\n  const isMode = mate => hasRarity(mate, \"Mode\");\r\n  const isShiver = mate => hasRarity(mate, \"Shiver\");\r\n  const isParagon = mate => hasRarity(mate, \"Paragon\");\r\n\r\n  function getMateRef(mate) {\r\n    const explicitRef = String(mate?.ref || \"\").trim();\r\n    if (explicitRef) return explicitRef;\r\n    return String(mate?.name || \"\").trim();\r\n  }\r\n\r\n  function getNpcFamilyKey(mate) {\r\n    return String(mate?.id || \"\").trim();\r\n  }\r\n\r\n  function getAlternateGroupKey(mate) {\r\n    if ((mate?.mode || \"\") === \"npc\") {\r\n      return `npc:${getNpcFamilyKey(mate)}`;\r\n    }\r\n    return `ref:${getResolvedMateRef(mate)}`;\r\n  }\r\n\r\n  function getReferenceKey(mate) {\r\n    return String(mate?.name || \"\").trim();\r\n  }\r\n\r\n  function getModeRank(mode) {\r\n    const rank = { base: 0, sacred: 1, ace: 2, goner: 3, ncanon: 4, event: 5, costumes: 6, npc: 7 };\r\n    return rank[mode] ?? 999;\r\n  }\r\n\r\n  function chooseReferencedMate(candidates, requesterMode = \"\") {\r\n    if (!Array.isArray(candidates) || !candidates.length) return null;\r\n    const preferred = candidates\r\n      .slice()\r\n      .sort((a, b) => {\r\n        const aRequesterPenalty = (a.mode || \"\") === requesterMode ? -1 : 0;\r\n        const bRequesterPenalty = (b.mode || \"\") === requesterMode ? -1 : 0;\r\n        if (aRequesterPenalty !== bRequesterPenalty) return aRequesterPenalty - bRequesterPenalty;\r\n        return getModeRank(a.mode) - getModeRank(b.mode);\r\n      });\r\n    return preferred[0] || null;\r\n  }\r\n\r\n  function resolveReferenceRoot(mate, visited = new Set()) {\r\n    if (!mate) return null;\r\n\r\n    const ownName = getReferenceKey(mate);\r\n    const explicitRef = String(mate?.ref || \"\").trim();\r\n    if (!explicitRef || explicitRef === ownName) return mate;\r\n\r\n    const visitKey = `${mate.mode || \"\"}|${ownName}|${explicitRef}`;\r\n    if (visited.has(visitKey)) return mate;\r\n    visited.add(visitKey);\r\n\r\n    const candidates = (mateByName.get(explicitRef) || []).filter(candidate => {\r\n      return !(\r\n        (candidate.mode || \"\") === (mate.mode || \"\") &&\r\n        String(candidate.name || \"\").trim() === ownName &&\r\n        String(candidate.image || \"\") === String(mate.image || \"\")\r\n      );\r\n    });\r\n    const referencedMate = chooseReferencedMate(candidates, mate.mode || \"\");\r\n    if (!referencedMate) return mate;\r\n    return resolveReferenceRoot(referencedMate, visited);\r\n  }\r\n\r\n  function getResolvedMateRef(mate) {\r\n    const resolvedMate = resolveReferenceRoot(mate);\r\n    return getReferenceKey(resolvedMate || mate);\r\n  }\r\n\r\n  function rebuildRefIndexes() {\r\n    crossTabFormsByRef = new Map();\r\n    mateByName = new Map();\r\n\r\n    Object.entries(allData).forEach(([mode, mates]) => {\r\n      (mates || []).forEach(mate => {\r\n        const form = { ...mate, mode };\r\n        const ownName = getReferenceKey(form);\r\n        if (ownName) {\r\n          if (!mateByName.has(ownName)) {\r\n            mateByName.set(ownName, []);\r\n          }\r\n          mateByName.get(ownName).push(form);\r\n        }\r\n      });\r\n    });\r\n\r\n    mateByName.forEach(forms => {\r\n      forms.sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode));\r\n    });\r\n\r\n    Object.entries(allData).forEach(([mode, mates]) => {\r\n      (mates || []).forEach(mate => {\r\n        const form = { ...mate, mode };\r\n        const resolvedRef = getResolvedMateRef(form);\r\n        if (!resolvedRef) return;\r\n        if (!crossTabFormsByRef.has(resolvedRef)) {\r\n          crossTabFormsByRef.set(resolvedRef, []);\r\n        }\r\n        crossTabFormsByRef.get(resolvedRef).push(form);\r\n      });\r\n    });\r\n  }\r\n\r\n  fetch(\"data/types.json\")\r\n    .then(r => r.json())\r\n    .then(types => {\r\n      typesData = types || [];\r\n      return Promise.all([\r\n        fetch(\"data/mates/groups.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/base.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/sacred.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/ace.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/goner.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/ncanon.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/costumes.json\").then(r => r.json()).catch(() => []),\r\n        fetch(\"data/mates/npc.json\").then(r => r.json()).catch(() => []),\r\n      ]);\r\n    })\r\n    .then(([groups, base, sacred, ace, goner, ncanon, costumes, npc]) => {\r\n      groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];\r\n      allData = {\r\n        base: annotateMateOrder(\"base\", base || []),\r\n        sacred: annotateMateOrder(\"sacred\", sacred || []),\r\n        ace: annotateMateOrder(\"ace\", ace || []),\r\n        goner: annotateMateOrder(\"goner\", goner || []),\r\n        ncanon: annotateMateOrder(\"ncanon\", ncanon || []),\r\n        costumes: annotateMateOrder(\"costumes\", costumes || []),\r\n        npc: annotateMateOrder(\"npc\", npc || []),\r\n        event: []\r\n      };\r\n\r\n      Object.entries(allData).forEach(([mode, mates]) => {\r\n        if (mode === \"event\") return;\r\n        allData[mode] = mates.filter(mate => {\r\n          if (mate.event !== undefined && mate.event !== null) {\r\n            mate.mode = \"event\";\r\n            mate.__mode = \"event\";\r\n            allData.event.push(mate);\r\n            return false;\r\n          }\r\n          return true;\r\n        });\r\n      });\r\n\r\n      annotateMateOrder(\"event\", allData.event);\r\n      rebuildRefIndexes();\r\n      renderGroups();\r\n    })\r\n    .catch(err => {\r\n      console.error(\"Failed to load groups page data\", err);\r\n      groupsRoot.innerHTML = `<div class=\"cat-empty\">Failed to load data.</div>`;\r\n    });\r\n\r\n  function renderGroups() {\r\n    const term = (search.value || \"\").trim().toLowerCase();\r\n    const allForms = Object.entries(allData).flatMap(([mode, mates]) => (mates || []).map(m => ({ ...m, mode })));\r\n    groupsRoot.innerHTML = \"\";\r\n    visibleMates = [];\r\n\r\n    const normalGroups = groupsData.filter(group => group.type !== \"bonus\");\r\n    const bonusGroups = groupsData.filter(group => group.type === \"bonus\");\r\n\r\n    renderGroupSection(normalGroups, allForms, term, {\r\n      heading: \"Groups\",\r\n      emptyMessage: \"No groups defined. Add entries to data/mates/groups.json.\"\r\n    });\r\n\r\n    renderGroupSection(bonusGroups, allForms, term, {\r\n      heading: \"Bonus Groups\",\r\n      emptyMessage: \"No bonus groups defined yet.\",\r\n      isBonusSection: true\r\n    });\r\n\r\n    if (!groupsRoot.children.length) {\r\n      groupsRoot.innerHTML = `<div class=\"cat-empty\">No groups defined. Add entries to data/mates/groups.json.</div>`;\r\n    }\r\n  }\r\n\r\n  function renderGroupSection(groups, allForms, term, options = {}) {\r\n    if (!Array.isArray(groups) || !groups.length) return;\r\n\r\n    const wrapper = document.createElement(\"section\");\r\n    wrapper.className = options.isBonusSection ? \"cat-grouping cat-grouping-bonus\" : \"cat-grouping\";\r\n\r\n    if (options.heading) {\r\n      const heading = document.createElement(\"h2\");\r\n      heading.className = \"cat-grouping-title\";\r\n      heading.textContent = options.heading;\r\n      wrapper.appendChild(heading);\r\n    }\r\n\r\n    let renderedCount = 0;\r\n\r\n    groups.forEach(group => {\r\n      const groupName = group.name;\r\n      const nameList = group.animates;\r\n\r\n      const found = [];\r\n      nameList.forEach(name => {\r\n        const wanted = String(name || \"\").trim();\r\n        allForms.forEach(mate => {\r\n          if (String(mate.name || \"\").trim() === wanted) found.push(mate);\r\n        });\r\n      });\r\n\r\n      const deduped = [];\r\n      const seen = new Set();\r\n      found.forEach(m => {\r\n        const key = `${m.mode || \"\"}|${m.__order ?? \"\"}|${m.name || \"\"}|${m.image || \"\"}`;\r\n        if (seen.has(key)) return;\r\n        seen.add(key);\r\n        deduped.push(m);\r\n      });\r\n\r\n      const filtered = deduped.filter(mate => {\r\n        if (!mate) return false;\r\n        if (isMode(mate)) return false;\r\n        if (term && !(mate.name || \"\").toLowerCase().includes(term)) return false;\r\n        return true;\r\n      });\r\n\r\n      const section = document.createElement(\"section\");\r\n      section.className = group.type === \"bonus\" ? \"cat-section cat-section-bonus\" : \"cat-section\";\r\n\r\n      const title = document.createElement(\"h2\");\r\n      title.className = \"cat-title\";\r\n      title.textContent = `${groupName} (${filtered.length})`;\r\n      section.appendChild(title);\r\n\r\n      if (group.type === \"bonus\" && group.description) {\r\n        const description = document.createElement(\"p\");\r\n        description.className = \"cat-description\";\r\n        description.textContent = group.description;\r\n        section.appendChild(description);\r\n      }\r\n\r\n      if (!filtered.length) {\r\n        const empty = document.createElement(\"div\");\r\n        empty.className = \"cat-empty\";\r\n        empty.textContent = \"No matching animates.\";\r\n        section.appendChild(empty);\r\n      } else {\r\n        const grid = document.createElement(\"div\");\r\n        grid.className = \"cat-grid\";\r\n        filtered.forEach(mate => {\r\n          visibleMates.push(mate);\r\n          grid.appendChild(makeCard(mate));\r\n        });\r\n        section.appendChild(grid);\r\n      }\r\n\r\n      wrapper.appendChild(section);\r\n      renderedCount += 1;\r\n    });\r\n\r\n    if (!renderedCount && options.emptyMessage) {\r\n      const empty = document.createElement(\"div\");\r\n      empty.className = \"cat-empty\";\r\n      empty.textContent = options.emptyMessage;\r\n      wrapper.appendChild(empty);\r\n    }\r\n\r\n    groupsRoot.appendChild(wrapper);\r\n  }\r\n\r\n  function makeCard(mate) {\r\n    const card = document.createElement(\"div\");\r\n    card.className = \"card\";\r\n    if (isParagon(mate)) card.classList.add(\"rarity-paragon\");\r\n    const firstBiome = getMateBiomes(mate)[0];\r\n    if (firstBiome && mate.mode !== \"costumes\") {\r\n      card.classList.add(\"biome-bg\");\r\n      card.style.setProperty(\"--biome-image\", `url('${biomeImagePath(firstBiome)}')`);\r\n    }\r\n    applyMateStyle(card, mate);\r\n\r\n    const lostImage = mate.image && mate.image.toLowerCase().includes(\"assets/images/mates/lost\");\r\n    const displayName = escapeHtml(mate.name) + (lostImage ? \"*\" : \"\");\r\n    const shiverBadge = isShiver(mate)\r\n      ? `<img class=\"rarity-shiver-badge\" src=\"assets/images/ui/Shiver.png\" alt=\"Shiver\" title=\"Shiver\">`\r\n      : \"\";\r\n\r\n    card.innerHTML = `\r\n      ${shiverBadge}\r\n      <img src=\"${escapeHtml(mate.image || \"\")}\" alt=\"${escapeHtml(mate.name || \"\")}\">\r\n      <h3>${displayName}</h3>\r\n      ${(mate.event === \"fools\" || mate.mode === \"npc\") ? \"\" : `\r\n        <div class=\"types\">${(mate.types || []).map(t => typeTag(t)).join(\"\")}</div>\r\n        ${(mate.paraTypes || []).length ? `<div class=\"types\">${mate.paraTypes.map(p => typeTag(p)).join(\"\")}</div>` : \"\"}\r\n      `}\r\n    `;\r\n\r\n    card.addEventListener(\"click\", () => openDetails(mate));\r\n    return card;\r\n  }\r\n\r\n  function openDetails(mate) {\r\n    const idx = visibleMates.findIndex(m => sameMate(m, mate));\r\n    currentMateIndex = idx >= 0 ? idx : 0;\r\n    updateDetails(mate);\r\n    modal.classList.remove(\"hidden\");\r\n  }\r\n\r\n  function updateDetails(mate) {\r\n    const mateMode = mate.mode || \"base\";\r\n    const modalContent =\r\n      document.querySelector(\"#detailsModal .modal-content\") ||\r\n      document.getElementById(\"detailsModal\");\r\n\r\n    applyMateStyle(modalContent, mate);\r\n    setModeBadge(mateMode, mate);\r\n\r\n    document.getElementById(\"mateName\").textContent = mate.name || \"\";\r\n    document.getElementById(\"mateImage\").src = mate.image || \"\";\r\n    document.getElementById(\"mateTypes\").innerHTML = mateMode !== \"npc\"\r\n      ? (mate.types || []).map(t => typeTag(t)).join(\"\")\r\n      : \"\";\r\n    document.getElementById(\"mateVitals\").innerHTML = mateVitalsHtml(mate);\r\n\r\n    const tabsContainer = document.querySelector(\".dex-tabs\");\r\n    tabsContainer.innerHTML = \"\";\r\n\r\n    if (mateMode === \"npc\") {\r\n      document.getElementById(\"abilityContainer\").innerHTML = renderObtainmentHtml(mate);\r\n      document.getElementById(\"paraTypesContainer\").innerHTML = \"\";\r\n      document.getElementById(\"evolutionsContainer\").innerHTML = \"\";\r\n      const npcHtml = `\r\n        <div><strong>Description: </strong>${escapeHtml(mate.Description || \"None\")}</div>\r\n        <div><strong>Reference:</strong> ${escapeHtml(mate.reference || \"None\")}</div>\r\n      `;\r\n      document.getElementById(\"mateDexText\").innerHTML = npcHtml;\r\n    } else {\r\n      let tabNames = [\"Discovered\", \"First Caught\", \"Experienced\", \"Reverense\"];\r\n      if (mateMode === \"costumes\") tabNames = [\"Store\", \"Catalog\", \"Reverense\"];\r\n\r\n      tabNames.forEach((name, idx) => {\r\n        const tabBtn = document.createElement(\"button\");\r\n        tabBtn.className = \"dex-tab\";\r\n        if (idx === 0) tabBtn.classList.add(\"active\");\r\n        tabBtn.dataset.entry = name;\r\n        tabBtn.textContent = name;\r\n        tabBtn.onclick = () => {\r\n          document.querySelectorAll(\".dex-tab\").forEach(t => t.classList.remove(\"active\"));\r\n          tabBtn.classList.add(\"active\");\r\n\r\n          let text = \"\";\r\n          if (mateMode === \"costumes\") {\r\n            if (name === \"Store\") text = mate.store || \"No entry yet.\";\r\n            else if (name === \"Catalog\") text = mate.catalog || mate.description || \"No entry yet.\";\r\n            else text = mate.reverense || \"No entry yet\";\r\n          } else {\r\n            text = mate.dexEntries ? (mate.dexEntries[name] || mate.description) : mate.description;\r\n          }\r\n          document.getElementById(\"mateDexText\").textContent = text;\r\n        };\r\n        tabsContainer.appendChild(tabBtn);\r\n      });\r\n\r\n      if (tabsContainer.querySelector(\".dex-tab\")) tabsContainer.querySelector(\".dex-tab\").click();\r\n\r\n      // Intentionally omitted on groups page: abilities, evolutions, moves.\r\n      document.getElementById(\"abilityContainer\").innerHTML = mateMode === \"costumes\"\r\n        ? renderObtainmentHtml(mate)\r\n        : \"\";\r\n      document.getElementById(\"evolutionsContainer\").innerHTML = \"\";\r\n\r\n      const paraContainer = document.getElementById(\"paraTypesContainer\");\r\n      paraContainer.innerHTML = mate.paraTypes ? `<b>Para Types:</b> ${mate.paraTypes.map(p => typeTag(p)).join(\"\")}` : \"\";\r\n    }\r\n\r\n    const sacredC = document.getElementById(\"sacredContainer\");\r\n    sacredC.innerHTML = \"\";\r\n    const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));\r\n    {\r\n      const mateRef = getResolvedMateRef(mate);\r\n      const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];\r\n      const alternateForms = sameSpeciesAllTabs.filter(f => {\r\n        if (f.name === mate.name && f.mode === mateMode) return false;\r\n        if (isMode(f)) return false;\r\n        if (isMode(mate) && (f.mode || \"\") === mateMode) return false;\r\n        return true;\r\n      });\r\n      if (alternateForms.length) {\r\n        sacredC.innerHTML = \"<b>Alternate Forms:</b><br>\";\r\n        alternateForms.forEach(form => {\r\n          const img = document.createElement(\"img\");\r\n          img.src = form.image || \"\";\r\n          img.title = `${form.name} (${form.mode})`;\r\n          img.onclick = () => openDetails(form);\r\n          sacredC.appendChild(img);\r\n        });\r\n      }\r\n    }\r\n\r\n    const ModeC = document.getElementById(\"ModeContainer\");\r\n    ModeC.innerHTML = \"\";\r\n    {\r\n      const alternateGroupKey = getAlternateGroupKey(mate);\r\n      const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);\r\n      const modeOnlyForms = sameSpeciesSameMode.filter(f => {\r\n        if (f.name === mate.name && f.image === mate.image) return false;\r\n        if (mateMode === \"npc\") return true;\r\n        if (isMode(mate)) return true;\r\n        return isMode(f);\r\n      });\r\n      if (modeOnlyForms.length) {\r\n        ModeC.innerHTML = \"<b>Alternates:</b><br>\";\r\n        modeOnlyForms.forEach(form => {\r\n          const img = document.createElement(\"img\");\r\n          img.src = form.image || \"\";\r\n          img.title = `${form.name} (${form.mode})`;\r\n          img.onclick = () => openDetails(form);\r\n          ModeC.appendChild(img);\r\n        });\r\n      }\r\n    }\r\n  }\r\n\r\n  function setModeBadge(mode, mate) {\r\n    const rarityText = getRarities(mate).join(\"+\");\r\n    modeBadge.textContent = mode ? `${mode.toUpperCase()} | ${rarityText}` : rarityText;\r\n  }\r\n\r\n  function typeTag(typeName) {\r\n    const t = typesData.find(x => x.name === typeName);\r\n    return `<span style=\"background:${t ? t.color : \"#ccc\"}\">${escapeHtml(typeName)}</span>`;\r\n  }\r\n\r\n  function getMateBiomes(mate) {\r\n    if (!mate) return [];\r\n    if (mate.mode === \"costumes\") return [];\r\n    if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);\r\n    if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);\r\n    if (typeof mate.biome === \"string\" && mate.biome.trim()) return [mate.biome.trim()];\r\n    if (typeof mate.Biome === \"string\" && mate.Biome.trim()) return [mate.Biome.trim()];\r\n    const resolvedMate = resolveReferenceRoot(mate);\r\n    if (resolvedMate && resolvedMate !== mate) {\r\n      if (Array.isArray(resolvedMate.biomes)) return resolvedMate.biomes.filter(Boolean);\r\n      if (Array.isArray(resolvedMate.biome)) return resolvedMate.biome.filter(Boolean);\r\n      if (typeof resolvedMate.biome === \"string\" && resolvedMate.biome.trim()) return [resolvedMate.biome.trim()];\r\n      if (typeof resolvedMate.Biome === \"string\" && resolvedMate.Biome.trim()) return [resolvedMate.Biome.trim()];\r\n    }\r\n    return [];\r\n  }\r\n\r\n  function biomeImagePath(biomeName) {\r\n    if (!biomeName) return \"\";\r\n    return `assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;\r\n  }\r\n\r\n  function mateVitalsHtml(mate) {\r\n    if (mate.mode === \"costumes\") return \"\";\r\n    const biomes = getMateBiomes(mate);\r\n    const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(\", \") : \"Unknown\";\r\n    const height = escapeHtml(mate.height || \"Unknown\");\r\n    const color = escapeHtml(mate.color || \"Unknown\");\r\n    return `<div class=\"mate-meta\"><p><b>Biomes:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;\r\n  }\r\n\r\n  function asArray(value) {\r\n    if (Array.isArray(value)) return value;\r\n    if (value === null || value === undefined || value === \"\") return [];\r\n    return [value];\r\n  }\r\n\r\n  function normalizeObtainmentItems(mate) {\r\n    const raw = mate?.obtainment;\r\n\r\n    if (Array.isArray(raw)) return raw;\r\n    if (raw && typeof raw === \"object\") return [raw];\r\n    if (typeof raw === \"string\" && raw.trim()) return [raw.trim()];\r\n\r\n    if (typeof mate?.quest === \"string\" && mate.quest.trim()) {\r\n      return [{ quest: { \"quest desc\": mate.quest.trim() } }];\r\n    }\r\n\r\n    return [];\r\n  }\r\n\r\n  function renderObtainmentHtml(mate) {\r\n    const items = normalizeObtainmentItems(mate);\r\n    if (!items.length) return `<b>Obtainment:</b><div>None</div>`;\r\n\r\n    const blocks = [];\r\n\r\n    items.forEach(item => {\r\n      if (typeof item === \"string\") {\r\n        blocks.push(`<div>${escapeHtml(item)}</div>`);\r\n        return;\r\n      }\r\n\r\n      if (!item || typeof item !== \"object\") return;\r\n\r\n      if (item.quest !== undefined) {\r\n        asArray(item.quest).forEach(quest => {\r\n          if (typeof quest === \"string\") {\r\n            blocks.push(`<div><strong>Quest:</strong> ${escapeHtml(quest)}</div>`);\r\n            return;\r\n          }\r\n\r\n          if (!quest || typeof quest !== \"object\") return;\r\n\r\n          const questName = quest[\"quest-name\"] || quest.questName || quest.name || \"\";\r\n          const questDesc = quest[\"quest desc\"] || quest.questDesc || quest.description || quest.desc || \"\";\r\n          const parts = [];\r\n          if (questName) parts.push(`<div><strong>Quest:</strong> ${escapeHtml(questName)}</div>`);\r\n          if (questDesc) parts.push(`<div>${escapeHtml(questDesc)}</div>`);\r\n          if (!parts.length) parts.push(`<div><strong>Quest:</strong> None</div>`);\r\n          blocks.push(parts.join(\"\"));\r\n        });\r\n      }\r\n\r\n      if (item.shop !== undefined) {\r\n        asArray(item.shop).forEach(shop => {\r\n          if (typeof shop === \"string\") {\r\n            blocks.push(`<div><strong>Shop:</strong> ${escapeHtml(shop)}</div>`);\r\n            return;\r\n          }\r\n\r\n          if (!shop || typeof shop !== \"object\") return;\r\n\r\n          const shopkeeper = shop.shopkeeper || shop[\"shopkeeper:\"] || shop.keeper || \"\";\r\n          const cost = shop.cost || \"\";\r\n          const shopDesc = shop[\"shop-desc\"] || shop.shopDesc || shop.description || shop.desc || \"\";\r\n          const parts = [`<div><strong>Shop:</strong> ${escapeHtml(shopkeeper || \"Unknown\")}</div>`];\r\n          if (cost) parts.push(`<div><strong>Cost:</strong> ${escapeHtml(cost)}</div>`);\r\n          if (shopDesc) parts.push(`<div>${escapeHtml(shopDesc)}</div>`);\r\n          blocks.push(parts.join(\"\"));\r\n        });\r\n      }\r\n    });\r\n\r\n    if (!blocks.length) return `<b>Obtainment:</b><div>None</div>`;\r\n    return `<b>Obtainment:</b>${blocks.map(block => `<div style=\"margin-top:6px;\">${block}</div>`).join(\"\")}`;\r\n  }\r\n\r\n  function applyMateStyle(el, mate) {\r\n    if (!el) return;\r\n    el.style.backgroundColor = \"\";\r\n    el.style.color = \"\";\r\n    el.style.fontFamily = \"\";\r\n    el.style.border = \"\";\r\n    el.style.removeProperty(\"--outline-color\");\r\n\r\n    if (mate.event === \"halloween\") {\r\n      el.style.backgroundColor = \"#4B0082\";\r\n      el.style.color = \"#ff6c1c\";\r\n    } else if (mate.event === \"winter\") {\r\n      el.style.backgroundColor = \"#001f4d\";\r\n      el.style.color = \"#cce6ff\";\r\n    } else if (mate.event === \"fools\") {\r\n      el.style.backgroundColor = \"#fff\";\r\n      el.style.color = \"#000\";\r\n      el.style.fontFamily = \"Arial, sans-serif\";\r\n    }\r\n\r\n    const primaryType = mate.types?.[0];\r\n    const typeObj = typesData.find(t => t.name === primaryType);\r\n    const outlineColor = typeObj ? typeObj.color : \"#ccc\";\r\n    el.style.setProperty(\"--outline-color\", outlineColor);\r\n    el.style.border = `3px solid ${outlineColor}`;\r\n  }\r\n\r\n  function sameMate(a, b) {\r\n    return (a.name === b.name) && (getResolvedMateRef(a) === getResolvedMateRef(b)) && ((a.mode || \"\") === (b.mode || \"\"));\r\n  }\r\n\r\n  function escapeHtml(str) {\r\n    if (str === null || str === undefined) return \"\";\r\n    return String(str).replace(/[&<>\"']/g, s => ({\r\n      \"&\": \"&amp;\",\r\n      \"<\": \"&lt;\",\r\n      \">\": \"&gt;\",\r\n      \"\\\"\": \"&quot;\",\r\n      \"'\": \"&#39;\"\r\n    }[s]));\r\n  }\r\n\r\n  search.addEventListener(\"input\", renderGroups);\r\n\r\n  closeModal.onclick = () => modal.classList.add(\"hidden\");\r\n  nextMate.onclick = () => {\r\n    if (!visibleMates.length) return;\r\n    currentMateIndex = (currentMateIndex + 1) % visibleMates.length;\r\n    updateDetails(visibleMates[currentMateIndex]);\r\n  };\r\n  prevMate.onclick = () => {\r\n    if (!visibleMates.length) return;\r\n    currentMateIndex = (currentMateIndex - 1 + visibleMates.length) % visibleMates.length;\r\n    updateDetails(visibleMates[currentMateIndex]);\r\n  };\r\n});\r\n"
+function runPageScript() {
+  let allData = {};
+  let typesData = [];
+  let visibleMates = [];
+  let currentMateIndex = 0;
+  let groupsData = [];
+  let crossTabFormsByRef = new Map();
+  let mateByName = new Map();
+
+  function annotateMateOrder(mode, mates) {
+    (mates || []).forEach((mate, index) => {
+      mate.__mode = mode;
+      mate.__order = index;
+    });
+    return mates || [];
+  }
+
+  function normalizeGroup(group) {
+    if (!group || typeof group !== "object") {
+      return {
+        name: "Unnamed Group",
+        type: "normal",
+        description: "",
+        animates: []
+      };
+    }
+
+    const normalizedType = String(group.type || "normal").trim().toLowerCase() === "bonus"
+      ? "bonus"
+      : "normal";
+
+    return {
+      ...group,
+      name: group.name ? String(group.name) : "Unnamed Group",
+      type: normalizedType,
+      description: typeof group.description === "string" ? group.description.trim() : "",
+      animates: Array.isArray(group.animates) ? group.animates : []
+    };
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const groupsRoot = document.getElementById("categoryGroups");
+    const search = document.getElementById("search");
+    const modeBadge = document.getElementById("modeBadge");
+    const modal = document.getElementById("detailsModal");
+    const closeModal = document.getElementById("closeModal");
+    const nextMate = document.getElementById("nextMate");
+    const prevMate = document.getElementById("prevMate");
+
+    const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
+    function getRarities(mate) {
+      const raw = mate?.rarity;
+      let list = [];
+
+      if (Array.isArray(raw)) list = raw;
+      else if (typeof raw === "string") list = raw.split(/[,+|/]/g).map(x => x.trim()).filter(Boolean);
+      else if (raw !== undefined && raw !== null) list = [String(raw).trim()];
+
+      const normalized = [];
+      list.forEach(r => {
+        if (allowedRarities.has(r) && !normalized.includes(r)) normalized.push(r);
+      });
+
+      if (!normalized.length) return ["Normal"];
+      if (normalized.length > 1) return normalized.filter(r => r !== "Normal");
+      return normalized;
+    }
+
+    const hasRarity = (mate, rarity) => getRarities(mate).includes(rarity);
+    const isMode = mate => hasRarity(mate, "Mode");
+    const isShiver = mate => hasRarity(mate, "Shiver");
+    const isParagon = mate => hasRarity(mate, "Paragon");
+
+    function getMateRef(mate) {
+      const explicitRef = String(mate?.ref || "").trim();
+      if (explicitRef) return explicitRef;
+      return String(mate?.name || "").trim();
+    }
+
+    function getNpcFamilyKey(mate) {
+      return String(mate?.id || "").trim();
+    }
+
+    function getAlternateGroupKey(mate) {
+      if ((mate?.mode || "") === "npc") {
+        return `npc:${getNpcFamilyKey(mate)}`;
+      }
+      return `ref:${getResolvedMateRef(mate)}`;
+    }
+
+    function getReferenceKey(mate) {
+      return String(mate?.name || "").trim();
+    }
+
+    function getModeRank(mode) {
+      const rank = { base: 0, sacred: 1, ace: 2, goner: 3, ncanon: 4, event: 5, costumes: 6, npc: 7 };
+      return rank[mode] ?? 999;
+    }
+
+    function chooseReferencedMate(candidates, requesterMode = "") {
+      if (!Array.isArray(candidates) || !candidates.length) return null;
+      const preferred = candidates
+        .slice()
+        .sort((a, b) => {
+          const aRequesterPenalty = (a.mode || "") === requesterMode ? -1 : 0;
+          const bRequesterPenalty = (b.mode || "") === requesterMode ? -1 : 0;
+          if (aRequesterPenalty !== bRequesterPenalty) return aRequesterPenalty - bRequesterPenalty;
+          return getModeRank(a.mode) - getModeRank(b.mode);
+        });
+      return preferred[0] || null;
+    }
+
+    function resolveReferenceRoot(mate, visited = new Set()) {
+      if (!mate) return null;
+
+      const ownName = getReferenceKey(mate);
+      const explicitRef = String(mate?.ref || "").trim();
+      if (!explicitRef || explicitRef === ownName) return mate;
+
+      const visitKey = `${mate.mode || ""}|${ownName}|${explicitRef}`;
+      if (visited.has(visitKey)) return mate;
+      visited.add(visitKey);
+
+      const candidates = (mateByName.get(explicitRef) || []).filter(candidate => {
+        return !(
+          (candidate.mode || "") === (mate.mode || "") &&
+          String(candidate.name || "").trim() === ownName &&
+          String(candidate.image || "") === String(mate.image || "")
+        );
+      });
+      const referencedMate = chooseReferencedMate(candidates, mate.mode || "");
+      if (!referencedMate) return mate;
+      return resolveReferenceRoot(referencedMate, visited);
+    }
+
+    function getResolvedMateRef(mate) {
+      const resolvedMate = resolveReferenceRoot(mate);
+      return getReferenceKey(resolvedMate || mate);
+    }
+
+    function rebuildRefIndexes() {
+      crossTabFormsByRef = new Map();
+      mateByName = new Map();
+
+      Object.entries(allData).forEach(([mode, mates]) => {
+        (mates || []).forEach(mate => {
+          const form = { ...mate, mode };
+          const ownName = getReferenceKey(form);
+          if (ownName) {
+            if (!mateByName.has(ownName)) {
+              mateByName.set(ownName, []);
+            }
+            mateByName.get(ownName).push(form);
+          }
+        });
+      });
+
+      mateByName.forEach(forms => {
+        forms.sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode));
+      });
+
+      Object.entries(allData).forEach(([mode, mates]) => {
+        (mates || []).forEach(mate => {
+          const form = { ...mate, mode };
+          const resolvedRef = getResolvedMateRef(form);
+          if (!resolvedRef) return;
+          if (!crossTabFormsByRef.has(resolvedRef)) {
+            crossTabFormsByRef.set(resolvedRef, []);
+          }
+          crossTabFormsByRef.get(resolvedRef).push(form);
+        });
+      });
+    }
+
+    fetch("data/types.json")
+      .then(r => r.json())
+      .then(types => {
+        typesData = types || [];
+        return Promise.all([
+          fetch("data/mates/groups.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/goner.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
+          fetch("data/mates/npc.json").then(r => r.json()).catch(() => []),
+        ]);
+      })
+      .then(([groups, base, sacred, ace, goner, ncanon, costumes, npc]) => {
+        groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];
+        allData = {
+          base: annotateMateOrder("base", base || []),
+          sacred: annotateMateOrder("sacred", sacred || []),
+          ace: annotateMateOrder("ace", ace || []),
+          goner: annotateMateOrder("goner", goner || []),
+          ncanon: annotateMateOrder("ncanon", ncanon || []),
+          costumes: annotateMateOrder("costumes", costumes || []),
+          npc: annotateMateOrder("npc", npc || []),
+          event: []
+        };
+
+        Object.entries(allData).forEach(([mode, mates]) => {
+          if (mode === "event") return;
+          allData[mode] = mates.filter(mate => {
+            if (mate.event !== undefined && mate.event !== null) {
+              mate.mode = "event";
+              mate.__mode = "event";
+              allData.event.push(mate);
+              return false;
+            }
+            return true;
+          });
+        });
+
+        annotateMateOrder("event", allData.event);
+        rebuildRefIndexes();
+        renderGroups();
+      })
+      .catch(err => {
+        console.error("Failed to load groups page data", err);
+        groupsRoot.innerHTML = `<div class="cat-empty">Failed to load data.</div>`;
+      });
+
+    function renderGroups() {
+      const term = (search.value || "").trim().toLowerCase();
+      const allForms = Object.entries(allData).flatMap(([mode, mates]) => (mates || []).map(m => ({ ...m, mode })));
+      groupsRoot.innerHTML = "";
+      visibleMates = [];
+
+      const normalGroups = groupsData.filter(group => group.type !== "bonus");
+      const bonusGroups = groupsData.filter(group => group.type === "bonus");
+
+      renderGroupSection(normalGroups, allForms, term, {
+        heading: "Groups",
+        emptyMessage: "No groups defined. Add entries to data/mates/groups.json."
+      });
+
+      renderGroupSection(bonusGroups, allForms, term, {
+        heading: "Bonus Groups",
+        emptyMessage: "No bonus groups defined yet.",
+        isBonusSection: true
+      });
+
+      if (!groupsRoot.children.length) {
+        groupsRoot.innerHTML = `<div class="cat-empty">No groups defined. Add entries to data/mates/groups.json.</div>`;
+      }
+    }
+
+    function renderGroupSection(groups, allForms, term, options = {}) {
+      if (!Array.isArray(groups) || !groups.length) return;
+
+      const wrapper = document.createElement("section");
+      wrapper.className = options.isBonusSection ? "cat-grouping cat-grouping-bonus" : "cat-grouping";
+
+      if (options.heading) {
+        const heading = document.createElement("h2");
+        heading.className = "cat-grouping-title";
+        heading.textContent = options.heading;
+        wrapper.appendChild(heading);
+      }
+
+      let renderedCount = 0;
+
+      groups.forEach(group => {
+        const groupName = group.name;
+        const nameList = group.animates;
+
+        const found = [];
+        nameList.forEach(name => {
+          const wanted = String(name || "").trim();
+          allForms.forEach(mate => {
+            if (String(mate.name || "").trim() === wanted) found.push(mate);
+          });
+        });
+
+        const deduped = [];
+        const seen = new Set();
+        found.forEach(m => {
+          const key = `${m.mode || ""}|${m.__order ?? ""}|${m.name || ""}|${m.image || ""}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          deduped.push(m);
+        });
+
+        const filtered = deduped.filter(mate => {
+          if (!mate) return false;
+          if (isMode(mate)) return false;
+          if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
+          return true;
+        });
+
+        const section = document.createElement("section");
+        section.className = group.type === "bonus" ? "cat-section cat-section-bonus" : "cat-section";
+
+        const title = document.createElement("h2");
+        title.className = "cat-title";
+        title.textContent = `${groupName} (${filtered.length})`;
+        section.appendChild(title);
+
+        if (group.type === "bonus" && group.description) {
+          const description = document.createElement("p");
+          description.className = "cat-description";
+          description.textContent = group.description;
+          section.appendChild(description);
+        }
+
+        if (!filtered.length) {
+          const empty = document.createElement("div");
+          empty.className = "cat-empty";
+          empty.textContent = "No matching animates.";
+          section.appendChild(empty);
+        } else {
+          const grid = document.createElement("div");
+          grid.className = "cat-grid";
+          filtered.forEach(mate => {
+            visibleMates.push(mate);
+            grid.appendChild(makeCard(mate));
+          });
+          section.appendChild(grid);
+        }
+
+        wrapper.appendChild(section);
+        renderedCount += 1;
+      });
+
+      if (!renderedCount && options.emptyMessage) {
+        const empty = document.createElement("div");
+        empty.className = "cat-empty";
+        empty.textContent = options.emptyMessage;
+        wrapper.appendChild(empty);
+      }
+
+      groupsRoot.appendChild(wrapper);
+    }
+
+    function makeCard(mate) {
+      const card = document.createElement("div");
+      card.className = "card";
+      if (isParagon(mate)) card.classList.add("rarity-paragon");
+      const firstBiome = getMateBiomes(mate)[0];
+      if (firstBiome && mate.mode !== "costumes") {
+        card.classList.add("biome-bg");
+        card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
+      }
+      applyMateStyle(card, mate);
+
+      const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
+      const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
+      const shiverBadge = isShiver(mate)
+        ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
+        : "";
+
+      card.innerHTML = `
+        ${shiverBadge}
+        <img src="${escapeHtml(mate.image || "")}" alt="${escapeHtml(mate.name || "")}">
+        <h3>${displayName}</h3>
+        ${(mate.event === "fools" || mate.mode === "npc") ? "" : `
+          <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
+          ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+        `}
+      `;
+
+      card.addEventListener("click", () => openDetails(mate));
+      return card;
+    }
+
+    function openDetails(mate) {
+      const idx = visibleMates.findIndex(m => sameMate(m, mate));
+      currentMateIndex = idx >= 0 ? idx : 0;
+      updateDetails(mate);
+      modal.classList.remove("hidden");
+    }
+
+    function updateDetails(mate) {
+      const mateMode = mate.mode || "base";
+      const modalContent =
+        document.querySelector("#detailsModal .modal-content") ||
+        document.getElementById("detailsModal");
+
+      applyMateStyle(modalContent, mate);
+      setModeBadge(mateMode, mate);
+
+      document.getElementById("mateName").textContent = mate.name || "";
+      document.getElementById("mateImage").src = mate.image || "";
+      document.getElementById("mateTypes").innerHTML = mateMode !== "npc"
+        ? (mate.types || []).map(t => typeTag(t)).join("")
+        : "";
+      document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
+
+      const tabsContainer = document.querySelector(".dex-tabs");
+      tabsContainer.innerHTML = "";
+
+      if (mateMode === "npc") {
+        document.getElementById("abilityContainer").innerHTML = renderObtainmentHtml(mate);
+        document.getElementById("paraTypesContainer").innerHTML = "";
+        document.getElementById("evolutionsContainer").innerHTML = "";
+        const npcHtml = `
+          <div><strong>Description: </strong>${escapeHtml(mate.Description || "None")}</div>
+          <div><strong>Reference:</strong> ${escapeHtml(mate.reference || "None")}</div>
+        `;
+        document.getElementById("mateDexText").innerHTML = npcHtml;
+      } else {
+        let tabNames = ["Discovered", "First Caught", "Experienced", "Reverense"];
+        if (mateMode === "costumes") tabNames = ["Store", "Catalog", "Reverense"];
+
+        tabNames.forEach((name, idx) => {
+          const tabBtn = document.createElement("button");
+          tabBtn.className = "dex-tab";
+          if (idx === 0) tabBtn.classList.add("active");
+          tabBtn.dataset.entry = name;
+          tabBtn.textContent = name;
+          tabBtn.onclick = () => {
+            document.querySelectorAll(".dex-tab").forEach(t => t.classList.remove("active"));
+            tabBtn.classList.add("active");
+
+            let text = "";
+            if (mateMode === "costumes") {
+              if (name === "Store") text = mate.store || "No entry yet.";
+              else if (name === "Catalog") text = mate.catalog || mate.description || "No entry yet.";
+              else text = mate.reverense || "No entry yet";
+            } else {
+              text = mate.dexEntries ? (mate.dexEntries[name] || mate.description) : mate.description;
+            }
+            document.getElementById("mateDexText").textContent = text;
+          };
+          tabsContainer.appendChild(tabBtn);
+        });
+
+        if (tabsContainer.querySelector(".dex-tab")) tabsContainer.querySelector(".dex-tab").click();
+
+        // Intentionally omitted on groups page: abilities, evolutions, moves.
+        document.getElementById("abilityContainer").innerHTML = mateMode === "costumes"
+          ? renderObtainmentHtml(mate)
+          : "";
+        document.getElementById("evolutionsContainer").innerHTML = "";
+
+        const paraContainer = document.getElementById("paraTypesContainer");
+        paraContainer.innerHTML = mate.paraTypes ? `<b>Para Types:</b> ${mate.paraTypes.map(p => typeTag(p)).join("")}` : "";
+      }
+
+      const sacredC = document.getElementById("sacredContainer");
+      sacredC.innerHTML = "";
+      const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
+      {
+        const mateRef = getResolvedMateRef(mate);
+        const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
+        const alternateForms = sameSpeciesAllTabs.filter(f => {
+          if (f.name === mate.name && f.mode === mateMode) return false;
+          if (isMode(f)) return false;
+          if (isMode(mate) && (f.mode || "") === mateMode) return false;
+          return true;
+        });
+        if (alternateForms.length) {
+          sacredC.innerHTML = "<b>Alternate Forms:</b><br>";
+          alternateForms.forEach(form => {
+            const img = document.createElement("img");
+            img.src = form.image || "";
+            img.title = `${form.name} (${form.mode})`;
+            img.onclick = () => openDetails(form);
+            sacredC.appendChild(img);
+          });
+        }
+      }
+
+      const ModeC = document.getElementById("ModeContainer");
+      ModeC.innerHTML = "";
+      {
+        const alternateGroupKey = getAlternateGroupKey(mate);
+        const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
+        const modeOnlyForms = sameSpeciesSameMode.filter(f => {
+          if (f.name === mate.name && f.image === mate.image) return false;
+          if (mateMode === "npc") return true;
+          if (isMode(mate)) return true;
+          return isMode(f);
+        });
+        if (modeOnlyForms.length) {
+          ModeC.innerHTML = "<b>Alternates:</b><br>";
+          modeOnlyForms.forEach(form => {
+            const img = document.createElement("img");
+            img.src = form.image || "";
+            img.title = `${form.name} (${form.mode})`;
+            img.onclick = () => openDetails(form);
+            ModeC.appendChild(img);
+          });
+        }
+      }
+    }
+
+    function setModeBadge(mode, mate) {
+      const rarityText = getRarities(mate).join("+");
+      modeBadge.textContent = mode ? `${mode.toUpperCase()} | ${rarityText}` : rarityText;
+    }
+
+    function typeTag(typeName) {
+      const t = typesData.find(x => x.name === typeName);
+      return `<span style="background:${t ? t.color : "#ccc"}">${escapeHtml(typeName)}</span>`;
+    }
+
+    function getMateBiomes(mate) {
+      if (!mate) return [];
+      if (mate.mode === "costumes") return [];
+      if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
+      if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
+      if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
+      if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
+      const resolvedMate = resolveReferenceRoot(mate);
+      if (resolvedMate && resolvedMate !== mate) {
+        if (Array.isArray(resolvedMate.biomes)) return resolvedMate.biomes.filter(Boolean);
+        if (Array.isArray(resolvedMate.biome)) return resolvedMate.biome.filter(Boolean);
+        if (typeof resolvedMate.biome === "string" && resolvedMate.biome.trim()) return [resolvedMate.biome.trim()];
+        if (typeof resolvedMate.Biome === "string" && resolvedMate.Biome.trim()) return [resolvedMate.Biome.trim()];
+      }
+      return [];
+    }
+
+    function biomeImagePath(biomeName) {
+      if (!biomeName) return "";
+      return `assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
+    }
+
+    function mateVitalsHtml(mate) {
+      if (mate.mode === "costumes") return "";
+      const biomes = getMateBiomes(mate);
+      const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
+      const height = escapeHtml(mate.height || "Unknown");
+      const color = escapeHtml(mate.color || "Unknown");
+      return `<div class="mate-meta"><p><b>Biomes:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p></div>`;
+    }
+
+    function asArray(value) {
+      if (Array.isArray(value)) return value;
+      if (value === null || value === undefined || value === "") return [];
+      return [value];
+    }
+
+    function normalizeObtainmentItems(mate) {
+      const raw = mate?.obtainment;
+
+      if (Array.isArray(raw)) return raw;
+      if (raw && typeof raw === "object") return [raw];
+      if (typeof raw === "string" && raw.trim()) return [raw.trim()];
+
+      if (typeof mate?.quest === "string" && mate.quest.trim()) {
+        return [{ quest: { "quest desc": mate.quest.trim() } }];
+      }
+
+      return [];
+    }
+
+    function renderObtainmentHtml(mate) {
+      const items = normalizeObtainmentItems(mate);
+      if (!items.length) return `<b>Obtainment:</b><div>None</div>`;
+
+      const blocks = [];
+
+      items.forEach(item => {
+        if (typeof item === "string") {
+          blocks.push(`<div>${escapeHtml(item)}</div>`);
+          return;
+        }
+
+        if (!item || typeof item !== "object") return;
+
+        if (item.quest !== undefined) {
+          asArray(item.quest).forEach(quest => {
+            if (typeof quest === "string") {
+              blocks.push(`<div><strong>Quest:</strong> ${escapeHtml(quest)}</div>`);
+              return;
+            }
+
+            if (!quest || typeof quest !== "object") return;
+
+            const questName = quest["quest-name"] || quest.questName || quest.name || "";
+            const questDesc = quest["quest desc"] || quest.questDesc || quest.description || quest.desc || "";
+            const parts = [];
+            if (questName) parts.push(`<div><strong>Quest:</strong> ${escapeHtml(questName)}</div>`);
+            if (questDesc) parts.push(`<div>${escapeHtml(questDesc)}</div>`);
+            if (!parts.length) parts.push(`<div><strong>Quest:</strong> None</div>`);
+            blocks.push(parts.join(""));
+          });
+        }
+
+        if (item.shop !== undefined) {
+          asArray(item.shop).forEach(shop => {
+            if (typeof shop === "string") {
+              blocks.push(`<div><strong>Shop:</strong> ${escapeHtml(shop)}</div>`);
+              return;
+            }
+
+            if (!shop || typeof shop !== "object") return;
+
+            const shopkeeper = shop.shopkeeper || shop["shopkeeper:"] || shop.keeper || "";
+            const cost = shop.cost || "";
+            const shopDesc = shop["shop-desc"] || shop.shopDesc || shop.description || shop.desc || "";
+            const parts = [`<div><strong>Shop:</strong> ${escapeHtml(shopkeeper || "Unknown")}</div>`];
+            if (cost) parts.push(`<div><strong>Cost:</strong> ${escapeHtml(cost)}</div>`);
+            if (shopDesc) parts.push(`<div>${escapeHtml(shopDesc)}</div>`);
+            blocks.push(parts.join(""));
+          });
+        }
+      });
+
+      if (!blocks.length) return `<b>Obtainment:</b><div>None</div>`;
+      return `<b>Obtainment:</b>${blocks.map(block => `<div style="margin-top:6px;">${block}</div>`).join("")}`;
+    }
+
+    function applyMateStyle(el, mate) {
+      if (!el) return;
+      el.style.backgroundColor = "";
+      el.style.color = "";
+      el.style.fontFamily = "";
+      el.style.border = "";
+      el.style.removeProperty("--outline-color");
+
+      if (mate.event === "halloween") {
+        el.style.backgroundColor = "#4B0082";
+        el.style.color = "#ff6c1c";
+      } else if (mate.event === "winter") {
+        el.style.backgroundColor = "#001f4d";
+        el.style.color = "#cce6ff";
+      } else if (mate.event === "fools") {
+        el.style.backgroundColor = "#fff";
+        el.style.color = "#000";
+        el.style.fontFamily = "Arial, sans-serif";
+      }
+
+      const primaryType = mate.types?.[0];
+      const typeObj = typesData.find(t => t.name === primaryType);
+      const outlineColor = typeObj ? typeObj.color : "#ccc";
+      el.style.setProperty("--outline-color", outlineColor);
+      el.style.border = `3px solid ${outlineColor}`;
+    }
+
+    function sameMate(a, b) {
+      return (a.name === b.name) && (getResolvedMateRef(a) === getResolvedMateRef(b)) && ((a.mode || "") === (b.mode || ""));
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return "";
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[s]));
+    }
+
+    search.addEventListener("input", renderGroups);
+
+    closeModal.onclick = () => modal.classList.add("hidden");
+    nextMate.onclick = () => {
+      if (!visibleMates.length) return;
+      currentMateIndex = (currentMateIndex + 1) % visibleMates.length;
+      updateDetails(visibleMates[currentMateIndex]);
+    };
+    prevMate.onclick = () => {
+      if (!visibleMates.length) return;
+      currentMateIndex = (currentMateIndex - 1 + visibleMates.length) % visibleMates.length;
+      updateDetails(visibleMates[currentMateIndex]);
+    };
+  });
+}
 const remoteScripts = []
 
 function loadRemoteScript(src) {
@@ -33,11 +697,10 @@ export default function CatalogPage() {
       for (const src of remoteScripts) {
         await loadRemoteScript(src)
       }
-
-      if (cancelled || !pageScript) return
+      if (cancelled) return
 
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=CatalogPage.legacy.js`)()
+      runPageScript()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {

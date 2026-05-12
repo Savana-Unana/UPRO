@@ -1,7 +1,268 @@
 import { useEffect } from 'react'
 
+/* eslint-disable no-unused-vars, no-redeclare */
 const pageStyles = "html {\r\n                color: #FFFFFF;\r\n                background-color: #292929;\r\n                font-family: UPRO;\r\n                font-size: 15px;\r\n                line-height: 1.5;\r\n            }\r\n\r\n            table {\r\n                border-collapse: collapse;\r\n                border-spacing: 0;\r\n                margin: 0 auto 15px;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th {\r\n                border: 2px solid #292929;\r\n                font-weight: normal;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table td {\r\n                border: 2px solid #292929;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th a, .type-table td {\r\n                border-radius: 6px;\r\n            }\r\n\r\n            .cell-nano {\r\n                font-size: 19px;\r\n            }\r\n\r\n            .type-abbr {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                display: inline-block;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-icon-th {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                float: left;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 54px;\r\n            }\r\n\r\n            .type-icon-th:first-child {\r\n                margin-left: 0;\r\n            }\r\n\r\n            .type-fx-cell {\r\n                color: #292929;\r\n                font-size: 24px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-fx-0 {\r\n                background-color: #4A4A4A;\r\n                color: white;\r\n            }\r\n\r\n            .type-fx-50 {\r\n                background-color: #F2665C;\r\n            }\r\n\r\n            .type-fx-75 {\r\n                background-color: #F2665C;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-100 {\r\n                background-color: #bebebe;\r\n            }\r\n\r\n            .type-fx-150 {\r\n                background-color: #B1D490;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-200 {\r\n                background-color: #B1D490;\r\n            }\r\n\r\n            .type-normal {\r\n                background: black url(\"../images/ui/Normal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-plant {\r\n                background: black url(\"../images/ui/Plant.png\") center no-repeat;\r\n            }\r\n\r\n            .type-water {\r\n                background: black url(\"../images/ui/Water.png\") center no-repeat;\r\n            }\r\n\r\n            .type-fire {\r\n                background: black url(\"../images/ui/Fire.png\") center no-repeat;\r\n            }\r\n\r\n            .type-earth {\r\n                background: black url(\"../images/ui/Earth.png\") center no-repeat;\r\n            }\r\n\r\n            .type-ice {\r\n                background: black url(\"../images/ui/Ice.png\") center no-repeat;\r\n            }\r\n\r\n            .type-air {\r\n                background: black url(\"../images/ui/Air.png\") center no-repeat;\r\n            }\r\n\r\n            .type-metal {\r\n                background: black url(\"../images/ui/Metal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-electric {\r\n                background: black url(\"../images/ui/Electric.png\") center no-repeat;\r\n            }\r\n\r\n            .type-light {\r\n                background: black url(\"../images/ui/Light.png\") center no-repeat;\r\n            }\r\n\r\n            .type-dark {\r\n                background: black url(\"../images/ui/Dark.png\") center no-repeat;\r\n            }\r\n\r\n            .type-savage {\r\n                background: black url(\"../images/ui/Savage.png\") center no-repeat;\r\n            }\r\n\r\n            .type-mystic {\r\n                background: black url(\"../images/ui/Mystic.png\") center no-repeat;\r\n            }\r\n\r\n            .type-gross {\r\n                background: black url(\"../images/ui/Gross.png\") center no-repeat;\r\n            }\r\n\r\n            .type-spectral {\r\n                background: black url(\"../images/ui/Spectral.png\") center no-repeat;\r\n            }\r\n\r\n            .type-artillery {\r\n                background: black url(\"../images/ui/Artillery.png\") center no-repeat;\r\n            }\r\n\r\n            .type-lucid {\r\n                background: black url(\"../images/ui/Lucid.png\") center no-repeat;\r\n            }"
-const pageScript = "window.addEventListener(\"DOMContentLoaded\", function () {\r\n    var typenames = [\"Normal\", \"Plant\", \"Water\", \"Fire\", \"Earth\", \"Ice\", \"Air\", \"Metal\", \"Electric\", \"Light\", \"Dark\", \"Savage\", \"Mystic\", \"Gross\", \"Spectral\", \"Artillery\", \"Lucid\"];\r\n\r\n    var typechartHead = document.getElementById(\"typechart-head\");\r\n    var typechartBody = document.getElementById(\"typechart-body\");\r\n    var typestatsHead = document.getElementById(\"typestats-head\");\r\n\r\n    var typestatsOffense = document.getElementById(\"typestats-offense\");\r\n    var typestatsDefense = document.getElementById(\"typestats-defense\");\r\n    var typestatsOverall = document.getElementById(\"typestats-overall\");\r\n\r\n    var typerows = typenames.map(getElementById);\r\n\r\n    var types = typenames.length;\r\n    var constant = types + 1;\r\n    var size = types * types;\r\n\r\n    var crumbs = new Array(size);\r\n    var index = 0;\r\n    for (var i = 0; i < types; i++) {\r\n        for (var j = 0; j < types; j++) {\r\n            var id = typenames[i] + \" → \" + typenames[j];\r\n            crumbs[index++] = document.getElementById(id);\r\n        }\r\n    }\r\n\r\n    var typestats = typenames.map(getStats);\r\n\r\n    hashUpdate();\r\n    crumbs.forEach(listen);\r\n    window.addEventListener(\"hashchange\", hashUpdate, false);\r\n\r\n    function hashUpdate() {\r\n        var data = window.location.hash || getHash();\r\n        data = concat(data.slice(1).split(\"\").map(parse));\r\n\r\n        var length = Math.sqrt(data.length);\r\n        var mod = length % 1;\r\n\r\n        if (mod !== 0) {\r\n            length -= mod;\r\n            data.pop();\r\n        }\r\n\r\n        if (length === types) {\r\n            data.forEach(updateCrumb);\r\n            updateStats();\r\n        } else if (length + 1 === types) {\r\n            var i = length * length;\r\n            while (i > 0) {\r\n                data.splice(i, 0, 2);\r\n                i -= length;\r\n            }\r\n            for (var i = 0; i < types; i++) data.push(2);\r\n            var hash = \"#\",\r\n                index = 0;\r\n            while (index < size) {\r\n                var a = data[index++];\r\n                var b = data[index++] || 0;\r\n                hash += (a << 2 | b).toString(16);\r\n            }\r\n            window.location.href = hash.toUpperCase();\r\n        } else throw new Error(\"Unexpected error\");\r\n    }\r\n\r\n    function getElementById(id) {\r\n        return document.getElementById(id);\r\n    }\r\n\r\n    function getStats(name) {\r\n        return {\r\n            offense: document.getElementById(\"Offense \" + name),\r\n            defense: document.getElementById(\"Defense \" + name),\r\n            overall: document.getElementById(\"Overall \" + name)\r\n        };\r\n    }\r\n\r\n    function parse(x) {\r\n        var y = parseInt(x, 16);\r\n        if (isNaN(y)) throw new Error(\"Invalid data\");\r\n        return [y >>> 2, y & 3];\r\n    }\r\n\r\n    function concat(xs) {\r\n        return Array.prototype.concat.apply(Array.prototype, xs);\r\n    }\r\n\r\n    function updateCrumb(value, index) {\r\n        var crumb = crumbs[index];\r\n        switch (value) {\r\n            case 0:\r\n                crumb.className = \"type-fx-cell type-fx-0\";\r\n                crumb.innerHTML = \"0x\";\r\n                break;\r\n            case 1:\r\n                crumb.className = \"type-fx-cell type-fx-50\";\r\n                crumb.innerHTML = \".5x\";\r\n                break;\r\n            case 2:\r\n                crumb.className = \"type-fx-cell type-fx-100\";\r\n                crumb.innerHTML = \"\"; // 1x is invisible\r\n                break;\r\n            case 3:\r\n                crumb.className = \"type-fx-cell type-fx-200\";\r\n                crumb.innerHTML = \"2x\";\r\n                break;\r\n        }\r\n    }\r\n\r\n    function updateStats() {\r\n        var typechart = crumbs.map(getValue);\r\n\r\n        var result = new Array(types);\r\n        var attack = new Array(types);\r\n\r\n        for (var i = 0; i < types; i++) {\r\n            var sigmaSquare = 0;\r\n            var sigmaAttack = 0;\r\n\r\n            for (var j = 0; j < types; j++) {\r\n                var offense = typechart[i * types + j];\r\n                sigmaSquare += offense * offense;\r\n                sigmaAttack += offense;\r\n            }\r\n\r\n            result[i] = sigmaAttack * (sigmaAttack + 2) - sigmaSquare;\r\n            attack[i] = sigmaAttack;\r\n        }\r\n\r\n        var average = {\r\n            offense: 0,\r\n            defense: 0,\r\n            overall: 0\r\n        };\r\n\r\n        var stats = new Array(types);\r\n\r\n        for (var i = 0; i < types; i++) {\r\n            var sigmaDefense = 0;\r\n\r\n            for (var j = 0; j < types; j++) {\r\n                var defenses = typechart[i + types * j];\r\n                sigmaDefense += defenses * (attack[j] - defenses + 1);\r\n            }\r\n\r\n            var offense = result[i];\r\n            var overall = Math.sqrt(types * offense / sigmaDefense / constant);\r\n\r\n            var offenseValue = offense / types / constant;\r\n            var defenseValue = size / sigmaDefense;\r\n            var overallValue = overall;\r\n\r\n            stats[i] = {\r\n                offense: types * offenseValue,\r\n                defense: types * defenseValue,\r\n                overall: types * overallValue\r\n            };\r\n\r\n            average.offense += offenseValue;\r\n            average.defense += defenseValue;\r\n            average.overall += overallValue;\r\n        }\r\n\r\n        for (var i = 0; i < types; i++) {\r\n            var typestat = typestats[i];\r\n\r\n            var offenseValue = Math.log(stats[i].offense / average.offense);\r\n            var defenseValue = Math.log(stats[i].defense / average.defense);\r\n            var overallValue = Math.log(stats[i].overall / average.overall);\r\n\r\n            updateValue(typestat.offense, 100 * offenseValue);\r\n            updateValue(typestat.defense, 100 * defenseValue);\r\n            updateValue(typestat.overall, 100 * overallValue);\r\n        }\r\n\r\n        window.location.hash = getHash();\r\n    }\r\n\r\n    function getHash() {\r\n        var data = \"#\",\r\n            index = 0;\r\n\r\n        while (index < size) {\r\n            var a = getIndex(crumbs[index++]);\r\n            var b = getIndex(crumbs[index++]);\r\n            data += (a << 2 | b).toString(16);\r\n        }\r\n        return data.toUpperCase();\r\n    }\r\n\r\n    function getValue(crumb) {\r\n        switch (crumb.innerHTML) {\r\n            case \"0x\":\r\n                return 0 / 1;\r\n            case \".5x\":\r\n                return 1 / 2;\r\n            case \"\": // invisible 1x\r\n                return 1 / 1;\r\n            case \"2x\":\r\n                return 2 / 1;\r\n        }\r\n    }\r\n\r\n    function getIndex(crumb) {\r\n        if (crumb) {\r\n            switch (crumb.innerHTML) {\r\n                case \"0x\":\r\n                    return 0;\r\n                case \".5x\":\r\n                    return 1;\r\n                case \"\": // invisible 1x\r\n                    return 2;\r\n                case \"2x\":\r\n                    return 3;\r\n            }\r\n        }\r\n        return 0;\r\n    }\r\n\r\n    function updateValue(stat, value) {\r\n        if (!stat) return;\r\n\r\n        stat.className = value <= -0.01 ? \"type-fx-cell type-fx-75\" :\r\n            value >= 0.01 ? \"type-fx-cell type-fx-150\" :\r\n            \"type-fx-cell type-fx-0\";\r\n\r\n        if (stat.className === \"type-fx-cell type-fx-0\") value = 0;\r\n\r\n        stat.innerHTML = value.toFixed(2);\r\n    }\r\n\r\n    function listen(crumb) {\r\n        crumb.style.cursor = \"pointer\";\r\n\r\n        crumb.addEventListener(\"mousedown\", function (event) {\r\n            event.preventDefault();\r\n\r\n            switch (crumb.innerHTML) {\r\n                case \"\":\r\n                    crumb.className = \"type-fx-cell type-fx-200\";\r\n                    crumb.innerHTML = \"2x\";\r\n                    break;\r\n                case \"2x\":\r\n                    crumb.className = \"type-fx-cell type-fx-50\";\r\n                    crumb.innerHTML = \".5x\";\r\n                    break;\r\n                case \".5x\":\r\n                    crumb.className = \"type-fx-cell type-fx-0\";\r\n                    crumb.innerHTML = \"0x\";\r\n                    break;\r\n                case \"0x\":\r\n                    crumb.className = \"type-fx-cell type-fx-100\";\r\n                    crumb.innerHTML = \"\"; // Back to invisible 1x\r\n                    break;\r\n            }\r\n            updateStats();\r\n        }, false);\r\n    }\r\n}, false);"
+function runPageScript() {
+  window.addEventListener("DOMContentLoaded", function () {
+      var typenames = ["Normal", "Plant", "Water", "Fire", "Earth", "Ice", "Air", "Metal", "Electric", "Light", "Dark", "Savage", "Mystic", "Gross", "Spectral", "Artillery", "Lucid"];
+
+      var typechartHead = document.getElementById("typechart-head");
+      var typechartBody = document.getElementById("typechart-body");
+      var typestatsHead = document.getElementById("typestats-head");
+
+      var typestatsOffense = document.getElementById("typestats-offense");
+      var typestatsDefense = document.getElementById("typestats-defense");
+      var typestatsOverall = document.getElementById("typestats-overall");
+
+      var typerows = typenames.map(getElementById);
+
+      var types = typenames.length;
+      var constant = types + 1;
+      var size = types * types;
+
+      var crumbs = new Array(size);
+      var index = 0;
+      for (var i = 0; i < types; i++) {
+          for (var j = 0; j < types; j++) {
+              var id = typenames[i] + " → " + typenames[j];
+              crumbs[index++] = document.getElementById(id);
+          }
+      }
+
+      var typestats = typenames.map(getStats);
+
+      hashUpdate();
+      crumbs.forEach(listen);
+      window.addEventListener("hashchange", hashUpdate, false);
+
+      function hashUpdate() {
+          var data = window.location.hash || getHash();
+          data = concat(data.slice(1).split("").map(parse));
+
+          var length = Math.sqrt(data.length);
+          var mod = length % 1;
+
+          if (mod !== 0) {
+              length -= mod;
+              data.pop();
+          }
+
+          if (length === types) {
+              data.forEach(updateCrumb);
+              updateStats();
+          } else if (length + 1 === types) {
+              var i = length * length;
+              while (i > 0) {
+                  data.splice(i, 0, 2);
+                  i -= length;
+              }
+              for (var i = 0; i < types; i++) data.push(2);
+              var hash = "#",
+                  index = 0;
+              while (index < size) {
+                  var a = data[index++];
+                  var b = data[index++] || 0;
+                  hash += (a << 2 | b).toString(16);
+              }
+              window.location.href = hash.toUpperCase();
+          } else throw new Error("Unexpected error");
+      }
+
+      function getElementById(id) {
+          return document.getElementById(id);
+      }
+
+      function getStats(name) {
+          return {
+              offense: document.getElementById("Offense " + name),
+              defense: document.getElementById("Defense " + name),
+              overall: document.getElementById("Overall " + name)
+          };
+      }
+
+      function parse(x) {
+          var y = parseInt(x, 16);
+          if (isNaN(y)) throw new Error("Invalid data");
+          return [y >>> 2, y & 3];
+      }
+
+      function concat(xs) {
+          return Array.prototype.concat.apply(Array.prototype, xs);
+      }
+
+      function updateCrumb(value, index) {
+          var crumb = crumbs[index];
+          switch (value) {
+              case 0:
+                  crumb.className = "type-fx-cell type-fx-0";
+                  crumb.innerHTML = "0x";
+                  break;
+              case 1:
+                  crumb.className = "type-fx-cell type-fx-50";
+                  crumb.innerHTML = ".5x";
+                  break;
+              case 2:
+                  crumb.className = "type-fx-cell type-fx-100";
+                  crumb.innerHTML = ""; // 1x is invisible
+                  break;
+              case 3:
+                  crumb.className = "type-fx-cell type-fx-200";
+                  crumb.innerHTML = "2x";
+                  break;
+          }
+      }
+
+      function updateStats() {
+          var typechart = crumbs.map(getValue);
+
+          var result = new Array(types);
+          var attack = new Array(types);
+
+          for (var i = 0; i < types; i++) {
+              var sigmaSquare = 0;
+              var sigmaAttack = 0;
+
+              for (var j = 0; j < types; j++) {
+                  var offense = typechart[i * types + j];
+                  sigmaSquare += offense * offense;
+                  sigmaAttack += offense;
+              }
+
+              result[i] = sigmaAttack * (sigmaAttack + 2) - sigmaSquare;
+              attack[i] = sigmaAttack;
+          }
+
+          var average = {
+              offense: 0,
+              defense: 0,
+              overall: 0
+          };
+
+          var stats = new Array(types);
+
+          for (var i = 0; i < types; i++) {
+              var sigmaDefense = 0;
+
+              for (var j = 0; j < types; j++) {
+                  var defenses = typechart[i + types * j];
+                  sigmaDefense += defenses * (attack[j] - defenses + 1);
+              }
+
+              var offense = result[i];
+              var overall = Math.sqrt(types * offense / sigmaDefense / constant);
+
+              var offenseValue = offense / types / constant;
+              var defenseValue = size / sigmaDefense;
+              var overallValue = overall;
+
+              stats[i] = {
+                  offense: types * offenseValue,
+                  defense: types * defenseValue,
+                  overall: types * overallValue
+              };
+
+              average.offense += offenseValue;
+              average.defense += defenseValue;
+              average.overall += overallValue;
+          }
+
+          for (var i = 0; i < types; i++) {
+              var typestat = typestats[i];
+
+              var offenseValue = Math.log(stats[i].offense / average.offense);
+              var defenseValue = Math.log(stats[i].defense / average.defense);
+              var overallValue = Math.log(stats[i].overall / average.overall);
+
+              updateValue(typestat.offense, 100 * offenseValue);
+              updateValue(typestat.defense, 100 * defenseValue);
+              updateValue(typestat.overall, 100 * overallValue);
+          }
+
+          window.location.hash = getHash();
+      }
+
+      function getHash() {
+          var data = "#",
+              index = 0;
+
+          while (index < size) {
+              var a = getIndex(crumbs[index++]);
+              var b = getIndex(crumbs[index++]);
+              data += (a << 2 | b).toString(16);
+          }
+          return data.toUpperCase();
+      }
+
+      function getValue(crumb) {
+          switch (crumb.innerHTML) {
+              case "0x":
+                  return 0 / 1;
+              case ".5x":
+                  return 1 / 2;
+              case "": // invisible 1x
+                  return 1 / 1;
+              case "2x":
+                  return 2 / 1;
+          }
+      }
+
+      function getIndex(crumb) {
+          if (crumb) {
+              switch (crumb.innerHTML) {
+                  case "0x":
+                      return 0;
+                  case ".5x":
+                      return 1;
+                  case "": // invisible 1x
+                      return 2;
+                  case "2x":
+                      return 3;
+              }
+          }
+          return 0;
+      }
+
+      function updateValue(stat, value) {
+          if (!stat) return;
+
+          stat.className = value <= -0.01 ? "type-fx-cell type-fx-75" :
+              value >= 0.01 ? "type-fx-cell type-fx-150" :
+              "type-fx-cell type-fx-0";
+
+          if (stat.className === "type-fx-cell type-fx-0") value = 0;
+
+          stat.innerHTML = value.toFixed(2);
+      }
+
+      function listen(crumb) {
+          crumb.style.cursor = "pointer";
+
+          crumb.addEventListener("mousedown", function (event) {
+              event.preventDefault();
+
+              switch (crumb.innerHTML) {
+                  case "":
+                      crumb.className = "type-fx-cell type-fx-200";
+                      crumb.innerHTML = "2x";
+                      break;
+                  case "2x":
+                      crumb.className = "type-fx-cell type-fx-50";
+                      crumb.innerHTML = ".5x";
+                      break;
+                  case ".5x":
+                      crumb.className = "type-fx-cell type-fx-0";
+                      crumb.innerHTML = "0x";
+                      break;
+                  case "0x":
+                      crumb.className = "type-fx-cell type-fx-100";
+                      crumb.innerHTML = ""; // Back to invisible 1x
+                      break;
+              }
+              updateStats();
+          }, false);
+      }
+  }, false);
+}
 const remoteScripts = []
 
 function loadRemoteScript(src) {
@@ -33,11 +294,10 @@ export default function TypeChartPage() {
       for (const src of remoteScripts) {
         await loadRemoteScript(src)
       }
-
-      if (cancelled || !pageScript) return
+      if (cancelled) return
 
       window.onload = null
-      new Function(`${pageScript}\n//# sourceURL=TypeChartPage.legacy.js`)()
+      runPageScript()
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
       window.dispatchEvent(new Event('load'))
       if (typeof window.onload === 'function') {
