@@ -6,7 +6,7 @@ const pageStyles = ""
 export default function AnimatrixPage() {
   useEffect(() => {
     document.title = "Animatrix"
-    document.body.className = ""
+    document.body.className = "animatrix-page"
     document.body.setAttribute('style', "")
 
     let currentMode = "base";
@@ -1668,7 +1668,7 @@ export default function AnimatrixPage() {
 
 
     return () => {
-      document.body.classList.remove("animatrix-list-view")
+      document.body.classList.remove("animatrix-page", "animatrix-list-view")
       window.onload = null
     }
   }, [])

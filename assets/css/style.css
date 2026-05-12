@@ -928,6 +928,10 @@ body {
   align-items: stretch;
 }
 
+body.animatrix-page {
+  zoom: 0.8;
+}
+
 /* ---------- HEADER ---------- */
 header {
   text-align: center;
