@@ -518,10 +518,10 @@ function runPageScript() {
       return [];
     }
 
-    function biomeImagePath(biomeName) {
-      if (!biomeName) return "";
-      return `assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
-    }
+  function biomeImagePath(biomeName) {
+    if (!biomeName) return "";
+    return `${import.meta.env.BASE_URL}assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
+  }
 
     function mateVitalsHtml(mate) {
       if (mate.mode === "costumes") return "";
