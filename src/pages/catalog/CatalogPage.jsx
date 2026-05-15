@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars, no-useless-assignment */
 const pageStyles = ""
@@ -182,25 +183,19 @@ function runPageScript() {
         typesData = types || [];
         return Promise.all([
           fetch("data/mates/groups.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/goner.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
-          fetch("data/mates/npc.json").then(r => r.json()).catch(() => []),
+          fetchMateBuckets(),
         ]);
       })
-      .then(([groups, base, sacred, ace, goner, ncanon, costumes, npc]) => {
+      .then(([groups, mateBuckets]) => {
         groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];
         allData = {
-          base: annotateMateOrder("base", base || []),
-          sacred: annotateMateOrder("sacred", sacred || []),
-          ace: annotateMateOrder("ace", ace || []),
-          goner: annotateMateOrder("goner", goner || []),
-          ncanon: annotateMateOrder("ncanon", ncanon || []),
-          costumes: annotateMateOrder("costumes", costumes || []),
-          npc: annotateMateOrder("npc", npc || []),
+          base: annotateMateOrder("base", mateBuckets.base || []),
+          sacred: annotateMateOrder("sacred", mateBuckets.sacred || []),
+          ace: annotateMateOrder("ace", mateBuckets.ace || []),
+          goner: annotateMateOrder("goner", mateBuckets.goner || []),
+          ncanon: annotateMateOrder("ncanon", mateBuckets.ncanon || []),
+          costumes: annotateMateOrder("costumes", mateBuckets.costumes || []),
+          npc: annotateMateOrder("npc", mateBuckets.npc || []),
           event: []
         };
 
@@ -387,7 +382,7 @@ function runPageScript() {
 
       document.getElementById("mateName").textContent = mate.name || "";
       document.getElementById("mateImage").src = mate.image || "";
-      document.getElementById("mateTypes").innerHTML = mateMode !== "npc"
+      document.getElementById("mateTypes").innerHTML = mateMode !== "npc" && mateMode !== "costumes"
         ? (mate.types || []).map(t => typeTag(t)).join("")
         : "";
       document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
@@ -444,8 +439,32 @@ function runPageScript() {
       }
 
       const sacredC = document.getElementById("sacredContainer");
+      const ModeC = document.getElementById("ModeContainer");
       sacredC.innerHTML = "";
+      ModeC.innerHTML = "";
       const modeForms = (allData[mateMode] || []).map(m => ({ ...m, mode: mateMode }));
+
+      {
+        const alternateGroupKey = getAlternateGroupKey(mate);
+        const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
+        const modeOnlyForms = sameSpeciesSameMode.filter(f => {
+          if (f.name === mate.name && f.image === mate.image) return false;
+          if (mateMode === "npc") return true;
+          if (isMode(mate)) return true;
+          return isMode(f);
+        });
+        if (modeOnlyForms.length) {
+          ModeC.innerHTML = "<b>Modes:</b><br>";
+          modeOnlyForms.forEach(form => {
+            const img = document.createElement("img");
+            img.src = form.image || "";
+            img.title = `${form.name} (${form.mode})`;
+            img.onclick = () => openDetails(form);
+            ModeC.appendChild(img);
+          });
+        }
+      }
+
       {
         const mateRef = getResolvedMateRef(mate);
         const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
@@ -463,29 +482,6 @@ function runPageScript() {
             img.title = `${form.name} (${form.mode})`;
             img.onclick = () => openDetails(form);
             sacredC.appendChild(img);
-          });
-        }
-      }
-
-      const ModeC = document.getElementById("ModeContainer");
-      ModeC.innerHTML = "";
-      {
-        const alternateGroupKey = getAlternateGroupKey(mate);
-        const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
-        const modeOnlyForms = sameSpeciesSameMode.filter(f => {
-          if (f.name === mate.name && f.image === mate.image) return false;
-          if (mateMode === "npc") return true;
-          if (isMode(mate)) return true;
-          return isMode(f);
-        });
-        if (modeOnlyForms.length) {
-          ModeC.innerHTML = "<b>Alternates:</b><br>";
-          modeOnlyForms.forEach(form => {
-            const img = document.createElement("img");
-            img.src = form.image || "";
-            img.title = `${form.name} (${form.mode})`;
-            img.onclick = () => openDetails(form);
-            ModeC.appendChild(img);
           });
         }
       }
@@ -748,8 +744,8 @@ export default function CatalogPage() {
         <div id="abilityContainer" />
         <div id="paraTypesContainer" />
         <div id="evolutionsContainer" />
-        <div id="sacredContainer" />
         <div id="ModeContainer" />
+        <div id="sacredContainer" />
       </div>
       <div className="modal-footer">
         <button id="prevMate" className="nav-btn">← Previous</button>

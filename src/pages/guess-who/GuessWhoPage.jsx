@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { fetchMateBuckets, mateModes } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars */
 const pageStyles = ""
@@ -10,15 +11,6 @@ function runPageScript() {
   const DEFAULT_NAME = "Placeholder";
   const GUESSES_TOTAL = 3;
   const KEY_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
-  const DATA_FILES = [
-    { mode: "base", path: "data/mates/base.json" },
-    { mode: "sacred", path: "data/mates/sacred.json" },
-    { mode: "ace", path: "data/mates/ace.json" },
-    { mode: "goner", path: "data/mates/goner.json" },
-    { mode: "ncanon", path: "data/mates/ncanon.json" },
-    { mode: "costumes", path: "data/mates/costumes.json" },
-    { mode: "npc", path: "data/mates/npc.json" }
-  ];
 
   if (sessionStorage.getItem(ACCESS_KEY) !== "true") {
     window.location.replace("/");
@@ -70,16 +62,8 @@ function runPageScript() {
     renderHearts();
 
     try {
-      const datasets = await Promise.all(
-        DATA_FILES.map(file =>
-          fetch(file.path)
-            .then(response => {
-              if (!response.ok) throw new Error(`Failed to load ${file.path}`);
-              return response.json();
-            })
-            .then(items => ({ mode: file.mode, items }))
-        )
-      );
+      const mateBuckets = await fetchMateBuckets();
+      const datasets = mateModes.map(mode => ({ mode, items: mateBuckets[mode] || [] }));
 
       state.pool = buildFinalizedPool(datasets);
       state.poolByName = new Map(state.pool.map(mon => [mon.name.toLowerCase(), mon]));
@@ -189,6 +173,7 @@ function runPageScript() {
         const normalizedName = String(entry?.name || "").trim();
         const image = String(entry?.image || "").toLowerCase();
         if (!normalizedName || seen.has(normalizedName.toLowerCase())) return;
+        if (mode === "costumes" || entry?.cosmark === "Y") return;
 
         if (mode !== "npc" && (
           normalizedName === "MissingNo" ||
@@ -240,7 +225,8 @@ function runPageScript() {
       [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
     }
 
-    state.board = shuffled.slice(0, BOARD_SIZE).map(mon => ({
+    const targetSize = shuffled.length < BOARD_SIZE ? 25 : BOARD_SIZE;
+    state.board = shuffled.slice(0, Math.min(targetSize, shuffled.length)).map(mon => ({
       ...mon,
       hidden: false,
       questioned: false
@@ -346,7 +332,7 @@ function runPageScript() {
 
   function updateBoardCounter() {
     const visible = state.board.filter(card => !card.hidden).length;
-    cardsLeftLabel.textContent = `${visible}/${BOARD_SIZE}`;
+    cardsLeftLabel.textContent = `${visible}/${state.board.length || BOARD_SIZE}`;
   }
 
   function renderHearts() {
@@ -383,7 +369,7 @@ function runPageScript() {
     const raw = String(key || "").trim();
     const compact = raw.startsWith("G") ? raw.slice(1) : raw;
 
-    if (compact.startsWith("2") && compact.length === (BOARD_SIZE * 2) + 1) {
+    if (compact.startsWith("2") && (compact.length === (BOARD_SIZE * 2) + 1 || compact.length === (25 * 2) + 1)) {
       const encoded = compact.slice(1);
       return encoded.match(/.{2}/g).map(pair => {
         const high = KEY_ALPHABET.indexOf(pair[0]);
@@ -396,7 +382,7 @@ function runPageScript() {
       });
     }
 
-    if (compact.length !== BOARD_SIZE) {
+    if (compact.length !== BOARD_SIZE && compact.length !== 25) {
       throw new Error("Bad length");
     }
 
@@ -418,8 +404,8 @@ function runPageScript() {
       return;
     }
 
-    if (names.length !== BOARD_SIZE) {
-      joinStatus.textContent = "That key does not contain 50 mons.";
+    if (names.length !== BOARD_SIZE && names.length !== 25) {
+      joinStatus.textContent = "That key does not contain a valid board size.";
       return;
     }
 

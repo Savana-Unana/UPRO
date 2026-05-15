@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 const pageStyles = ""
 
@@ -19,6 +20,7 @@ export default function AnimatrixPage() {
     let listCostumeMode = false;
     let listCostumeReturnMode = "base";
     let listCostumeSourceMate = null;
+    let rightClickSearchId = "";
 
       const animatrix = document.getElementById("animatrix");
       const gridView = document.getElementById("gridView");
@@ -230,6 +232,39 @@ export default function AnimatrixPage() {
         return `${sign}${String(Math.abs(displayId)).padStart(4, "0")}`;
       }
 
+      function normalizeSearchId(term) {
+        const normalized = String(term || "").trim();
+        if (!/^-?\d+$/.test(normalized)) return null;
+        return Number(normalized);
+      }
+
+      function mateMatchesSearch(mate, term) {
+        if (!term) return true;
+
+        const searchId = normalizeSearchId(term);
+        if (searchId !== null) {
+          return getMateDisplayId(mate) === searchId;
+        }
+
+        return (mate.name || "").toLowerCase().includes(term);
+      }
+
+      function showVariationsById(mate) {
+        const displayId = getMateDisplayId(mate);
+        if (displayId === null) return;
+
+        rightClickSearchId = String(displayId);
+        search.value = rightClickSearchId;
+        listCostumeMode = false;
+        listCostumeSourceMate = null;
+        loadMode(currentMode);
+        search.focus();
+      }
+
+      function isRightClickSearchActive() {
+        return rightClickSearchId && (search.value || "").trim() === rightClickSearchId;
+      }
+
       function setMainModeButton(mode) {
         const match = modeButtons.find(b => b.dataset.mode === mode);
         if (!match) return;
@@ -350,25 +385,19 @@ export default function AnimatrixPage() {
           // load abilities and all mode JSONs
           return Promise.all([
             fetch("data/abilities.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/goner.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
-            fetch("data/mates/npc.json").then(r => r.json()).catch(() => []),
+            fetchMateBuckets(),
           ]);
         })
-        .then(([abilities, base, sacred, ace, goner, ncanon, costumes, npc]) => {
+        .then(([abilities, mateBuckets]) => {
             abilitiesData = abilities || [];
             allData = { 
-              base: annotateMateOrder("base", base || []), 
-              sacred: annotateMateOrder("sacred", sacred || []), 
-              ace: annotateMateOrder("ace", ace || []), 
-              goner: annotateMateOrder("goner", goner || []),
-              ncanon: annotateMateOrder("ncanon", ncanon || []), 
-              costumes: annotateMateOrder("costumes", costumes || []),
-              npc: annotateMateOrder("npc", npc || []),
+              base: annotateMateOrder("base", mateBuckets.base || []), 
+              sacred: annotateMateOrder("sacred", mateBuckets.sacred || []), 
+              ace: annotateMateOrder("ace", mateBuckets.ace || []), 
+              goner: annotateMateOrder("goner", mateBuckets.goner || []),
+              ncanon: annotateMateOrder("ncanon", mateBuckets.ncanon || []), 
+              costumes: annotateMateOrder("costumes", mateBuckets.costumes || []),
+              npc: annotateMateOrder("npc", mateBuckets.npc || []),
               event: [] // initialize event
             };
 
@@ -376,7 +405,7 @@ export default function AnimatrixPage() {
             Object.entries(allData).forEach(([mode, mates]) => {
               if (mode === "event") return; // skip event itself
               allData[mode] = mates.filter(mate => {
-                if (mode === "base" && mate.event !== undefined && mate.event !== null) {
+                if (mate.event !== undefined && mate.event !== null) {
                   mate.sourceMode = mode;    // preserve original tab for event-specific logic
                   mate.mode = "event";       // mark it as event
                   mate.__mode = "event";
@@ -715,10 +744,10 @@ export default function AnimatrixPage() {
         const aHasId = aId !== null;
         const bHasId = bId !== null;
         if (aHasId && bHasId) {
-          const aSortableId = Math.abs(aId);
-          const bSortableId = Math.abs(bId);
-          if (aSortableId !== bSortableId) return aSortableId - bSortableId;
-          if (aId !== bId) return aId - bId;
+          const aSortId = aId > 0 ? aId : Number.MAX_SAFE_INTEGER + Math.abs(aId);
+          const bSortId = bId > 0 ? bId : Number.MAX_SAFE_INTEGER + Math.abs(bId);
+          if (aSortId !== bSortId) return aSortId - bSortId;
+          if (aId !== bId) return bId - aId;
         } else if (aHasId !== bHasId) {
           return aHasId ? -1 : 1;
         }
@@ -951,7 +980,9 @@ export default function AnimatrixPage() {
         const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database" && mode !== "npc"
           ? "base"
           : mode;
-        const sourceData = listSidebarMode === "database"
+        const sourceData = isRightClickSearchActive()
+          ? getDatabaseMates()
+          : listSidebarMode === "database"
           ? getDatabaseMates()
           : (listCostumeMode && listSidebarMode === "costumes")
             ? getRelatedCostumes(listCostumeSourceMate || currentDetailMate)
@@ -979,7 +1010,7 @@ export default function AnimatrixPage() {
             if (!mate) return false;
             if (isMode(mate)) return false;
             if (listViewActive) return true;
-            if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
+            if (!mateMatchesSearch(mate, term)) return false;
             if (selectedTypes.length) {
               if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
             }
@@ -1056,6 +1087,10 @@ export default function AnimatrixPage() {
             }
 
             card.addEventListener("click", () => openDetails(mate));
+            card.addEventListener("contextmenu", event => {
+              event.preventDefault();
+              showVariationsById(mate);
+            });
             animatrix.appendChild(card);
           });
       }
@@ -1197,7 +1232,14 @@ export default function AnimatrixPage() {
         setMainModeButton("base");
       });
 
-      search.addEventListener("input", renderAnimatrix);
+      search.addEventListener("input", () => {
+        if (!isRightClickSearchActive()) {
+          rightClickSearchId = "";
+          loadMode(currentMode);
+          return;
+        }
+        renderAnimatrix();
+      });
 
 
       const randomMateBtn = document.getElementById("randomMateBtn");
@@ -1220,7 +1262,7 @@ export default function AnimatrixPage() {
         const visibleMates = animatrixData.filter(mate => {
           if (!mate) return false;
           if (isMode(mate)) return false;
-          if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
+          if (!mateMatchesSearch(mate, term)) return false;
           if (selectedTypes.length) {
             if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
           }
@@ -1344,7 +1386,7 @@ export default function AnimatrixPage() {
         }
 
         // Types (hide for NPCs)
-        document.getElementById("mateTypes").innerHTML = currentMode !== "npc"
+        document.getElementById("mateTypes").innerHTML = currentMode !== "npc" && currentMode !== "costumes"
           ? (mate.types || []).map(t => typeTag(t)).join("")
           : "";
 
@@ -1411,7 +1453,7 @@ export default function AnimatrixPage() {
 
           const listTypesContainer = document.getElementById("listTypesContainer");
           if (listTypesContainer) {
-            listTypesContainer.innerHTML = isListViewActive() && currentMode !== "npc"
+            listTypesContainer.innerHTML = isListViewActive() && currentMode !== "npc" && currentMode !== "costumes"
               ? `<b>Types:</b> ${(mate.types || []).map(t => typeTag(t)).join("")}`
               : "";
           }
@@ -1559,15 +1601,45 @@ export default function AnimatrixPage() {
           }
         }
 
-        // Alternate Forms: same ref across tabs, excluding ncanon and Mode entries
         const sacredC = document.getElementById("sacredContainer");
+        const ModeC = document.getElementById("ModeContainer");
         sacredC.innerHTML = "";
+        ModeC.innerHTML = "";
         if (isListViewActive()) {
-          document.getElementById("ModeContainer").innerHTML = "";
           return;
         }
         const mateMode = mate.mode || currentMode;
         const modeForms = getMateModePool(mate);
+
+        // Modes: same tab + same id, Mode entries only
+        {
+          const alternateGroupKey = getAlternateGroupKey(mate);
+          const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
+          const modeOnlyForms = sameSpeciesSameMode.filter(f => {
+            if (f.name === mate.name && f.image === mate.image) return false;
+            if (mateMode === "npc") return true;
+            if (isMode(mate)) return true;
+            return isMode(f);
+          });
+
+          if (modeOnlyForms.length) {
+            ModeC.innerHTML = "<b>Modes:</b><br>";
+            modeOnlyForms.forEach(form => {
+              const img = document.createElement("img");
+              img.src = form.image || "";
+              img.title = `${form.name} (${form.mode})`;
+              img.onclick = () => openDetails(form);
+              img.style.width = "80px";
+              img.style.margin = "4px";
+              img.style.border = "2px solid #0ff";
+              img.style.borderRadius = "10px";
+              img.style.cursor = "pointer";
+              ModeC.appendChild(img);
+            });
+          }
+        }
+
+        // Alternate Forms: same ref across tabs, excluding ncanon and Mode entries
         {
           const mateRef = getResolvedMateRef(mate);
           const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
@@ -1591,36 +1663,6 @@ export default function AnimatrixPage() {
               img.style.borderRadius = "10px";
               img.style.cursor = "pointer";
               sacredC.appendChild(img);
-            });
-          }
-        }
-
-        // Alternates: same tab + same id, Mode entries only
-        const ModeC = document.getElementById("ModeContainer");
-        ModeC.innerHTML = "";
-        {
-          const alternateGroupKey = getAlternateGroupKey(mate);
-          const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
-          const modeOnlyForms = sameSpeciesSameMode.filter(f => {
-            if (f.name === mate.name && f.image === mate.image) return false;
-            if (mateMode === "npc") return true;
-            if (isMode(mate)) return true;
-            return isMode(f);
-          });
-
-          if (modeOnlyForms.length) {
-            ModeC.innerHTML = "<b>Alternates:</b><br>";
-            modeOnlyForms.forEach(form => {
-              const img = document.createElement("img");
-              img.src = form.image || "";
-              img.title = `${form.name} (${form.mode})`;
-              img.onclick = () => openDetails(form);
-              img.style.width = "80px";
-              img.style.margin = "4px";
-              img.style.border = "2px solid #0ff";
-              img.style.borderRadius = "10px";
-              img.style.cursor = "pointer";
-              ModeC.appendChild(img);
             });
           }
         }
@@ -1817,7 +1859,7 @@ export default function AnimatrixPage() {
       </div>
       <div className="modal-body">
         <div className="image-container">
-          <img id="mateImage" alt />
+          <img id="mateImage" alt="" />
         </div>
         <div className="dex-tabs">
           <button className="dex-tab active" data-entry="Discovered">Discovered</button>
@@ -1831,8 +1873,8 @@ export default function AnimatrixPage() {
         <div id="listTypesContainer" />
         <div id="paraTypesContainer" />
         <div id="evolutionsContainer" />
-        <div id="sacredContainer" />
         <div id="ModeContainer" />
+        <div id="sacredContainer" />
       </div>
       <div className="modal-footer">
         <button id="prevMate" className="nav-btn">← Previous</button>

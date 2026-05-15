@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 export default function AnimatrixPageSimple() {
   const [mates, setMates] = useState([])
@@ -6,10 +7,10 @@ export default function AnimatrixPageSimple() {
   useEffect(() => {
     document.title = 'Animatrix Simple'
     Promise.all([
-      fetch('data/mates/base.json').then(response => response.json()),
+      fetchMateBuckets(),
       fetch('data/types.json').then(response => response.json()),
-    ]).then(([baseMates, typeData]) => {
-      setMates(baseMates)
+    ]).then(([mateBuckets, typeData]) => {
+      setMates(mateBuckets.base || [])
       setTypes(typeData)
     })
   }, [])
@@ -23,7 +24,7 @@ export default function AnimatrixPageSimple() {
             <img src={mate.image} alt={mate.name} />
             <h3>{mate.name}</h3>
             <div className="types">
-              {mate.types.map(type => (
+              {(mate.types || []).map(type => (
                 <span
                   key={type}
                   style={{ backgroundColor: typeColors.get(type) }}>

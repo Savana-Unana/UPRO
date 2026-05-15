@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 const pageStyles = ""
 function runPageScript() {
-  const BASE_DATA_PATH = "data/mates/base.json";
   const MAX_GUESSES = 6;
 
   const pickerBtn = document.getElementById("aniordlePickerBtn");
@@ -32,11 +32,8 @@ function runPageScript() {
     wireEvents();
 
     try {
-      const baseItems = await fetch(BASE_DATA_PATH)
-        .then(response => {
-          if (!response.ok) throw new Error(`Failed to load ${BASE_DATA_PATH}`);
-          return response.json();
-        });
+      const mateBuckets = await fetchMateBuckets();
+      const baseItems = mateBuckets.base || [];
 
       state.pool = buildPool(baseItems);
       state.pool.sort((a, b) => a.name.localeCompare(b.name));

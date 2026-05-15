@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars */
 const pageStyles = ""
@@ -654,26 +655,20 @@ function runPageScript() {
       fetch("data/abilities.json").then(response => response.json()).catch(() => []),
       fetch("data/mates/uprod.json").then(response => response.json()).catch(() => []),
       fetch("data/mates/crorder.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/sacred.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/ace.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/goner.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/ncanon.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/costumes.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
-    ]).then(([types, abilities, credits, crorder, base, sacred, ace, goner, ncanon, costumes, npc]) => {
+      fetchMateBuckets()
+    ]).then(([types, abilities, credits, crorder, mateBuckets]) => {
       typesData = types || [];
       abilitiesData = abilities || [];
       creditsData = Array.isArray(credits) ? credits.map(normalizeCreditsEntry) : [];
       crorderData = Array.isArray(crorder) ? crorder.map(name => String(name || "").trim()).filter(Boolean) : [];
       allData = {
-        base: annotateMateOrder("base", base || []),
-        sacred: annotateMateOrder("sacred", sacred || []),
-        ace: annotateMateOrder("ace", ace || []),
-        goner: annotateMateOrder("goner", goner || []),
-        ncanon: annotateMateOrder("ncanon", ncanon || []),
-        costumes: annotateMateOrder("costumes", costumes || []),
-        npc: annotateMateOrder("npc", npc || []),
+        base: annotateMateOrder("base", mateBuckets.base || []),
+        sacred: annotateMateOrder("sacred", mateBuckets.sacred || []),
+        ace: annotateMateOrder("ace", mateBuckets.ace || []),
+        goner: annotateMateOrder("goner", mateBuckets.goner || []),
+        ncanon: annotateMateOrder("ncanon", mateBuckets.ncanon || []),
+        costumes: annotateMateOrder("costumes", mateBuckets.costumes || []),
+        npc: annotateMateOrder("npc", mateBuckets.npc || []),
         event: []
       };
 

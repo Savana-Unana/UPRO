@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 const pageStyles = ""
 function runPageScript() {
@@ -92,19 +93,15 @@ function runPageScript() {
   Promise.all([
     fetch("data/abilities.json").then(r => r.json()).catch(() => []),
     fetch("data/moves.json").then(r => r.json()).catch(() => []),
-    fetch("data/mates/base.json").then(r => r.json()).catch(() => []),
-    fetch("data/mates/sacred.json").then(r => r.json()).catch(() => []),
-    fetch("data/mates/ace.json").then(r => r.json()).catch(() => []),
-    fetch("data/mates/costumes.json").then(r => r.json()).catch(() => []),
-    fetch("data/mates/ncanon.json").then(r => r.json()).catch(() => []),
+    fetchMateBuckets(),
     fetch("data/unused/status.json").then(r => r.json()).catch(() => [])
-  ]).then(([abilities, moves, base, sacred, ace, event, ncanon, statuses]) => {
+  ]).then(([abilities, moves, mateBuckets, statuses]) => {
     abilitiesData = Array.isArray(abilities) ? abilities : [];
     movesData = Array.isArray(moves) ? moves : [];
 
     // merge mons into allMons
     const merged = [];
-    [base, sacred, ace, event, ncanon].forEach(arr => {
+    [mateBuckets.base, mateBuckets.sacred, mateBuckets.ace, mateBuckets.costumes, mateBuckets.ncanon].forEach(arr => {
       if (Array.isArray(arr)) merged.push(...arr);
     });
     allMons = merged;

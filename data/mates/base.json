@@ -1,57 +1,840 @@
 [
-{"name":"Erbacub","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Erbacub roams the forest gathering leaves and twigs, often seen tying them together with vines. It seems eager to prove itself, though its paws still tremble in battle.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Bearosion","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Green","biomes":["Ranch"],"image":"assets/images/mates/base/Erbacub.png","versions":"Demo 1"},
-{"name":"Bearosion","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Bearosion patrols forests like a ranger. Its safari hat never falls off, even during battle. It exudes leadership and calm strength.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Hileaph","level":null}],"abilities":[],"moves":[],"height":"5ft","color":"Green","biomes":["Ranch"],"image":"assets/images/mates/base/Bearosion.png","versions":"Demo 2"},
-{"name":"Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Hileaph towers over the forest, wielding a fallen tree. Its wide-brim safari hat casts a long shadow, under which others gather for safety.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"10ft","color":"Green","biomes":["Ranch"],"image":"assets/images/mates/base/Hileaph.png","versions":"Demo 7"},
-{"name":"Sparcoon","types":["Fire"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Sparcoon has a tail that glows brighter with its excitement, often setting the area around it aflame in its playful antics.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Blazuki","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Red","biomes":["Volcano"],"image":"assets/images/mates/base/Sparcoon.png","versions":"Demo 1"},
-{"name":"Blazuki","types":["Fire","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Blazuki glides across tall heights and long distances, leaving streaks of embers in the air. Its fiery mohawk flares up even further when it flies, warning others of its incoming presence.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Furnacoon","level":null}],"abilities":[],"moves":[],"height":"4ft","color":"Red","biomes":["Volcano"],"image":"assets/images/mates/base/Blazuki.png","versions":"Demo 2"},
-{"name":"Furnacoon","types":["Fire","Air"],"paraTypes":["Metal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"8ft","color":"Red","biomes":["Volcano"],"image":"assets/images/mates/base/Furnacoon.png","versions":"Demo 7"},
-{"name":"Axolitl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Axolitl is often seen with its head dipped low. A mysterious crystal grows where its gills should be, making it difficult to lift its head above water. The crystal pulses faintly when it feels safe.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Axolote","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Blue","biomes":["Axo-Skerry"],"image":"assets/images/mates/base/Axolitl.png","versions":"Demo 1"},
-{"name":"Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Axolote loses it's once gentle movements and now have an alien quality to them. It now also appears to mutter to itself in an unknown language.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Axolarg","level":null}],"abilities":[],"moves":[],"height":"6ft","color":"Purple","biomes":["Axo-Skerry"],"image":"assets/images/mates/base/Axolote.png","versions":"Demo 2"},
-{"name":"Axolarg","types":["Water","Earth"],"paraTypes":["Gross"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Axolarg towers above its foes, with a hulking physique sculpted by its crystalline armor. The only part of its body not encased in crystals is its head, and a floating crystal hovers above it, pulsing with mysterious energy.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"9ft","color":"Purple","biomes":["Axo-Skerry"],"image":"assets/images/mates/lost/Axolarg.png","versions":"Demo 7"},
-{"name":"Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Duadog","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Plains","Big City"],"image":"assets/images/mates/base/Caneins.png","versions":"Demo 1"},
-{"name":"Duadog","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Dodecadog","level":null}],"abilities":[],"moves":[],"height":"5ft","color":"Brown","biomes":["Plains","Big City"],"image":"assets/images/mates/base/Duadog.png","versions":"Demo 2"},
-{"name":"Dodecadog","types":["Normal","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Brown","biomes":["Plains","Big City"],"image":"assets/images/mates/base/Dodecadog.png","versions":"Demo 7"},
-{"name":"Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Espiorange","level":null}],"abilities":[],"moves":[],"height":"7in","color":"Green","biomes":["Forest","Borgo Slor"],"image":"assets/images/mates/base/Pretengerine.png","versions":"Demo 1"},
-{"name":"Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"12ft","color":"Green","biomes":["Forest","Borgo Slor"],"image":"assets/images/mates/base/Espiorange.png","versions":"Demo 2"},
-{"name":"Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Pigturee","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Pink","biomes":["Forest","Plains"],"image":"assets/images/mates/base/Bakunbush.png","versions":"Demo 1"},
-{"name":"Pigturee","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"Pink","biomes":["Forest","Plains"],"image":"assets/images/mates/base/Pigturee.png","versions":"Demo 2"},
-{"name":"Statipillar","types":["Electric"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Red","biomes":["Forest","Jungle","Swamp"],"image":"assets/images/mates/base/Statipillar.png","versions":"Demo 1"},
-{"name":"Grovy (Palm)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"Brown","biomes":["Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"},
-{"name":"Dribsom","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Dribsom lurks in alleys and caves, its wings flapping silently as it watches from the shadows. Despite its small size, it's known for stealing food and vanishing into the night sky with a hiss-like screech. They also pick on small prey in the nighttime.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Dribtar","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Gray","biomes":["Forest","Desert","Swamp"],"image":"assets/images/mates/base/Dribsom.png","versions":"Demo 1"},
-{"name":"Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"3ft","color":"Gray","biomes":["Forest","Desert","Swamp"],"image":"assets/images/mates/base/Dribtar.png","versions":"Demo 1"},
-{"name":"Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Black","biomes":["Forest","Desert"],"image":"assets/images/mates/base/Ircencaat.png","versions":"Demo 1"},
-{"name":"Cocompis","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Coconkurer","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Forest"],"image":"assets/images/mates/base/Cocompis.png","versions":"Demo 2"},
-{"name":"Coconkurer","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"9ft","color":"Brown","biomes":["Forest"],"image":"assets/images/mates/lost/Coconkurer.png","versions":"Demo 2"},
-{"name":"Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Nature","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Yellow","biomes":["Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"},
-{"name":"Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Blue","biomes":["Forest","Lake"],"image":"assets/images/mates/base/Gerrindamo.png","versions":"Demo 1"},
-{"name":"Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Blue","biomes":["Lake","Forest","Lake"],"image":"assets/images/mates/base/Blarb.png","versions":"Demo 1"},
-{"name":"Gaslug","types":["Gross"],"paraTypes":["Water"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Green","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Gaslug.png","versions":"Demo 1"},
-{"name":"Quubbly","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Quontoon","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Yellow","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Quubbly.png","versions":"Demo 1"},
-{"name":"Quontoon","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Honkraft","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Quontoon.png","versions":"Demo 2"},
-{"name":"Honkraft","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"White","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Honkraft.png","versions":"Demo 7"},
-{"name":"Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Fizzik","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Orange","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Fizzlet.png","versions":"Demo 1"},
-{"name":"Fizzik","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Orange","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Fizzik.png","versions":"Demo 7"},
-{"name":"Beabar","types":["Normal","Water"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Lake"],"image":"assets/images/mates/base/Beabar.png","versions":"Demo 1"},
-{"name":"Bowlfish","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Tankfish","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Bowlfish.png","versions":"Demo 1"},
-{"name":"Tankfish","types":["Water","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Tankfish.png","versions":"Demo 2"},
-{"name":"Camoflish","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"1ft","color":"White","biomes":["Lake"],"image":"assets/images/mates/base/Camoflish.png","versions":"Demo 1"},
-{"name":"Confished","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Twynami","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Confished.png","versions":"Demo 1"},
-{"name":"Twynami","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"12ft","color":null,"biomes":["Lake"],"image":"assets/images/mates/lost/Twynami.png","versions":"Demo 2"},
-{"name":"Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/base/Chordal.png","versions":"Demo 1"},
-{"name":"Cartilicht","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"White","biomes":["Lake"],"image":"assets/images/mates/base/Cartilicht.png","versions":"Demo 1"},
-{"name":"Emene","types":["Savage","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Red","biomes":["Lake"],"image":"assets/images/mates/base/Emene.png","versions":"Demo 1"},
-{"name":"Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Fear","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"10ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Ghouliath.png","versions":"Demo 1"},
-{"event":"Halloween","name":"Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Plains"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"},
-{"event":"Halloween","name":"Shiver Molds","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"},
-{"event":"Halloween","name":"Waxilo","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/Waxilo.png","description":"","versions":"Halloween"},
-{"event":"Halloween","name":"Betophage","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"},
-{"event":"Halloween","name":"Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"},
-{"event":"Halloween","name":"Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/Duplergrail.png","description":"","versions":"Halloween"},
-{"event":"April Fools","name":"Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/Thoot.png","description":"","versions":"April Fools"},
-{"event":"Anti","name":"Aurorial","types":["Light"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Light","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"},
-{"event":"Anti","name":"Citrinel","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"},
-{"event":"Anti","name":"Axoloth","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"},
-{"event":"Anti","name":"Salelesure","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"},
-{"event":"Anti","name":"Accelotl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"},
-{"event":"Anti","name":"Placibial","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+  {
+    "name": "Erbacub",
+    "forms": {
+      "base": [
+        {"name":"Erbacub","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Erbacub roams the forest gathering leaves and twigs, often seen tying them together with vines. It seems eager to prove itself, though its paws still tremble in battle.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Bearosion","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Green","biomes":["Ranch"],"image":"assets/images/mates/base/Erbacub.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Erbacub","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Bearosion","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Erbacub","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Erbacub.png","description":"","versions":"Demo 1"},
+        {"name":"Ranger Erbacub","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"},
+        {"name":"Rave Erbacub","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Bearosion",
+    "forms": {
+      "base": [
+        {"name":"Bearosion","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Bearosion patrols forests like a ranger. Its safari hat never falls off, even during battle. It exudes leadership and calm strength.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Hileaph","level":null}],"abilities":[],"moves":[],"height":"5ft","color":"Green","biomes":["Ranch"],"image":"assets/images/mates/base/Bearosion.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Bearosion","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Hileaph","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Bearosion","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Bearosion.png","description":"","versions":"Demo 2"},
+        {"name":"Apocalypse Bearosion","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 10"},
+        {"name":"Crusader Bearosion","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 5"}
+      ]
+    }
+  },
+  {
+    "name": "Hileaph",
+    "forms": {
+      "base": [
+        {"name":"Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Hileaph towers over the forest, wielding a fallen tree. Its wide-brim safari hat casts a long shadow, under which others gather for safety.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"10ft","color":"Green","biomes":["Ranch"],"image":"assets/images/mates/base/Hileaph.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "ace": [
+        {"name":"Ace Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 9"}
+      ],
+      "costumes": [
+        {"name":"LED Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Hileaph.png","description":"","versions":"Demo 7"}
+      ],
+      "ncanon": [
+        {"name":"OG Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGHileaph.png","description":"","versions":null},
+        {"name":"OG LED Hileaph","types":["Plant","Savage"],"paraTypes":["Earth"],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGL.Hileaph.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Sparcoon",
+    "forms": {
+      "base": [
+        {"name":"Sparcoon","types":["Fire"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Sparcoon has a tail that glows brighter with its excitement, often setting the area around it aflame in its playful antics.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Blazuki","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Red","biomes":["Volcano"],"image":"assets/images/mates/base/Sparcoon.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Sparcoon","types":["Fire"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Blazuki","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Sparcoon","types":["Fire"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Sparcoon.png","description":"","versions":"Demo 1"},
+        {"name":"Fighter Jet Sparcoon","types":["Fire"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 7"}
+      ]
+    }
+  },
+  {
+    "name": "Blazuki",
+    "forms": {
+      "base": [
+        {"name":"Blazuki","types":["Fire","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Blazuki glides across tall heights and long distances, leaving streaks of embers in the air. Its fiery mohawk flares up even further when it flies, warning others of its incoming presence.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Furnacoon","level":null}],"abilities":[],"moves":[],"height":"4ft","color":"Red","biomes":["Volcano"],"image":"assets/images/mates/base/Blazuki.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Blazuki","types":["Fire","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Furnacoon","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Blazuki","types":["Fire","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Blazuki.png","description":"","versions":"Demo 2"},
+        {"name":"Apocalypse Blazuki","types":["Fire","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 10"}
+      ]
+    }
+  },
+  {
+    "name": "Furnacoon",
+    "forms": {
+      "base": [
+        {"name":"Furnacoon","types":["Fire","Air"],"paraTypes":["Metal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"8ft","color":"Red","biomes":["Volcano"],"image":"assets/images/mates/base/Furnacoon.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Furnacoon","types":["Fire","Air"],"paraTypes":["Metal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "ace": [
+        {"name":"Ace Furnacoon","types":["Fire","Air"],"paraTypes":["Metal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 9"}
+      ],
+      "costumes": [
+        {"name":"LED Furnacoon","types":["Fire","Air"],"paraTypes":["Metal"],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Furnacoon.png","description":"","versions":"Demo 7"},
+        {"name":"Blire Furnacoon","types":["Fire","Air"],"paraTypes":["Metal"],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Furnacoon.png","description":"","versions":"Demo 7"}
+      ]
+    }
+  },
+  {
+    "name": "Axolitl",
+    "forms": {
+      "base": [
+        {"name":"Axolitl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Axolitl is often seen with its head dipped low. A mysterious crystal grows where its gills should be, making it difficult to lift its head above water. The crystal pulses faintly when it feels safe.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Axolote","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Blue","biomes":["Axo-Skerry"],"image":"assets/images/mates/base/Axolitl.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Axolitl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Axolote","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Axolitl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Axolitl.png","description":"","versions":"Demo 1"},
+        {"name":"Armored Axolitl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 10"}
+      ]
+    }
+  },
+  {
+    "name": "Axolote",
+    "forms": {
+      "base": [
+        {"name":"Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Axolote loses it's once gentle movements and now have an alien quality to them. It now also appears to mutter to itself in an unknown language.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Axolarg","level":null}],"abilities":[],"moves":[],"height":"6ft","color":"Purple","biomes":["Axo-Skerry"],"image":"assets/images/mates/base/Axolote.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Axolarg","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Axolote.png","description":"","versions":"Demo 2"},
+        {"name":"Origin Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"name":"Apocalypse Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 10"}
+      ],
+      "ncanon": [
+        {"name":"OG Axolote","types":["Water","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Forest"],"image":"assets/images/mates/lost/Axolote.png","versions":"Demo 2"}
+      ]
+    }
+  },
+  {
+    "name": "Axolarg",
+    "forms": {
+      "base": [
+        {"name":"Axolarg","types":["Water","Earth"],"paraTypes":["Gross"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Axolarg towers above its foes, with a hulking physique sculpted by its crystalline armor. The only part of its body not encased in crystals is its head, and a floating crystal hovers above it, pulsing with mysterious energy.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"9ft","color":"Purple","biomes":["Axo-Skerry"],"image":"assets/images/mates/lost/Axolarg.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Axolarg","types":["Water","Earth"],"paraTypes":["Gross"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "ace": [
+        {"name":"Ace Axolarg","types":["Water","Earth"],"paraTypes":["Gross"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 9"}
+      ],
+      "costumes": [
+        {"name":"LED Axolarg","types":["Water","Earth"],"paraTypes":["Gross"],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Axolarg.png","description":"","versions":"Demo 7"},
+        {"name":"Binary Axolarg","types":["Water","Earth"],"paraTypes":["Gross"],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Caneins",
+    "forms": {
+      "base": [
+        {"name":"Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Duadog","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Plains","Big City"],"image":"assets/images/mates/base/Caneins.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Duadog","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Caneins.png","description":"","versions":"Demo 1"},
+        {"name":"Tengy Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/P.Caneins.png","description":"","versions":"Demo 1"},
+        {"name":"Bee Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 7"},
+        {"name":"Skeleton Caneins","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Duadog",
+    "forms": {
+      "base": [
+        {"name":"Duadog","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Dodecadog","level":null}],"abilities":[],"moves":[],"height":"5ft","color":"Brown","biomes":["Plains","Big City"],"image":"assets/images/mates/base/Duadog.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Duadog","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Dodecadog","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Duadog","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Duadog.png","description":"","versions":"Demo 2"},
+        {"name":"Gargoyle Duadog","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"name":"Monster Duadog","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Dodecadog",
+    "forms": {
+      "base": [
+        {"name":"Dodecadog","types":["Normal","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Brown","biomes":["Plains","Big City"],"image":"assets/images/mates/base/Dodecadog.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Dodecadog","types":["Normal","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "costumes": [
+        {"name":"LED Dodecadog","types":["Normal","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Dodecadog.png","description":"","versions":"Demo 7"},
+        {"name":"Devil Dodecadog","types":["Normal","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Pretengerine",
+    "forms": {
+      "base": [
+        {"name":"Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Espiorange","level":null}],"abilities":[],"moves":[],"height":"7in","color":"Green","biomes":["Forest","Borgo Slor"],"image":"assets/images/mates/base/Pretengerine.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Espiorange","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Pretengerine.png","description":"","versions":"Demo 1"},
+        {"name":"Pumpkin Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"name":"Fallen Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 5"},
+        {"name":"Book Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "ncanon": [
+        {"name":"OG Pretengerine","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Pretengerine.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Espiorange",
+    "forms": {
+      "base": [
+        {"name":"Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"12ft","color":"Green","biomes":["Forest","Borgo Slor"],"image":"assets/images/mates/base/Espiorange.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Espiorange.png","description":"","versions":"Demo 2"},
+        {"name":"Clown Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 5"},
+        {"name":"Special Tree Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"name":"Grovy Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "ncanon": [
+        {"name":"OG Espiorange","types":["Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Espiorange.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Bakunbush",
+    "forms": {
+      "base": [
+        {"name":"Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Pigturee","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Pink","biomes":["Forest","Plains"],"image":"assets/images/mates/base/Bakunbush.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Pigturee","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Bakunbush.png","description":"","versions":"Demo 1"},
+        {"name":"Burning Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"name":"Beast Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"name":"Blood King Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 8"},
+        {"name":"Chilly Bakunbush","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 8"}
+      ]
+    }
+  },
+  {
+    "name": "Pigturee",
+    "forms": {
+      "base": [
+        {"name":"Pigturee","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"Pink","biomes":["Forest","Plains"],"image":"assets/images/mates/base/Pigturee.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Pigturee","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Pigturee","types":["Normal","Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Pigturee.png","description":"","versions":"Demo 2"}
+      ]
+    }
+  },
+  {
+    "name": "Statipillar",
+    "forms": {
+      "base": [
+        {"name":"Statipillar","types":["Electric"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Red","biomes":["Forest","Jungle","Swamp"],"image":"assets/images/mates/base/Statipillar.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Statipillar","types":["Electric"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Statipillar","types":["Electric"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Statipillar.png","versions":"Demo 1","description":""},
+        {"name":"Emoji Statipillar","types":["Electric"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 13","description":""},
+        {"name":"Sports Statipillar","types":["Electric"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 7","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Grovy (Palm)",
+    "forms": {
+      "base": [
+        {"name":"Grovy (Palm)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"Brown","biomes":["Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Grovy (Oak)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""},
+        {"name":"Grovy (Baobab)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""},
+        {"name":"Sacred Grovy","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Grovy (Palm)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"},
+        {"name":"LED Grovy (Oak)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 2","description":""},
+        {"name":"LED Grovy (Baobab)","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 2","description":""},
+        {"name":"Ornament Grovy","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Winter","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Dribsom",
+    "forms": {
+      "base": [
+        {"name":"Dribsom","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"Dribsom lurks in alleys and caves, its wings flapping silently as it watches from the shadows. Despite its small size, it's known for stealing food and vanishing into the night sky with a hiss-like screech. They also pick on small prey in the nighttime.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Dribtar","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Gray","biomes":["Forest","Desert","Swamp"],"image":"assets/images/mates/base/Dribsom.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Dribsom","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Dribtar","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Gray","image":"assets/images/mates/base/S.Dribsom.png","description":"","versions":"Demo 1"}
+      ],
+      "costumes": [
+        {"name":"LED Dribsom","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Dribsom.png","description":"","versions":"Demo 1"},
+        {"name":"Raven Dribsom","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Dribtar",
+    "forms": {
+      "base": [
+        {"name":"Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"3ft","color":"Gray","biomes":["Forest","Desert","Swamp"],"image":"assets/images/mates/base/Dribtar.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"3ft","color":"Gray","image":"assets/images/mates/base/S.Dribtar.png","description":"","versions":"Demo 1"}
+      ],
+      "costumes": [
+        {"name":"LED Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Dribtar.png","description":"","versions":"Demo 1"},
+        {"name":"Aqua Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/A.Dribtar.png","description":"","versions":"Demo 1"},
+        {"name":"Seagull Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ],
+      "ncanon": [
+        {"name":"OG Dribtar","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGDribtar.png","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Ircencaat",
+    "forms": {
+      "base": [
+        {"name":"Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Black","biomes":["Forest","Desert"],"image":"assets/images/mates/base/Ircencaat.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Ircencaat.png","description":"","versions":"Demo 1"},
+        {"name":"Bedtime Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"},
+        {"name":"Nutcracker Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Winter"},
+        {"name":"Friend Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/Friend.png","description":"","versions":"April Fools"},
+        {"name":"Plague Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"name":"Funbun Ircencaat","types":["Dark"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Cocompis",
+    "forms": {
+      "base": [
+        {"name":"Cocompis","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Coconkurer","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Forest"],"image":"assets/images/mates/base/Cocompis.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Cocompis","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Coconkurer","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Cocompis","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 1","description":""},
+        {"name":"Bowling Cocompis","types":["Plant"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 7","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Coconkurer",
+    "forms": {
+      "base": [
+        {"name":"Coconkurer","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"9ft","color":"Brown","biomes":["Forest"],"image":"assets/images/mates/lost/Coconkurer.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Coconkurer","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Coconkurer","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
+      ]
+    }
+  },
+  {
+    "name": "Lemody",
+    "forms": {
+      "base": [
+        {"name":"Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Nature","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Yellow","biomes":["Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"}
+      ],
+      "costumes": [
+        {"name":"LED Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"name":"Peach Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"name":"Maid Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"name":"Butler Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"name":"Raggedy Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Gerrindamo",
+    "forms": {
+      "base": [
+        {"name":"Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Blue","biomes":["Forest","Lake"],"image":"assets/images/mates/base/Gerrindamo.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Gerrindamo.png","versions":"Demo 1","description":""},
+        {"name":"Canoe Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 1","description":""},
+        {"name":"Nighttime Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 1","description":""},
+        {"name":"Rice Gerrindamo","types":["Gross","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 5","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Blarb",
+    "forms": {
+      "base": [
+        {"name":"Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Blue","biomes":["Lake","Forest","Lake"],"image":"assets/images/mates/base/Blarb.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Blue","image":"assets/images/mates/base/S.Blarb.png","description":"","versions":"Demo 1"}
+      ],
+      "ace": [
+        {"name":"Ace Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"32ft","color":"Blue","image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"}
+      ],
+      "costumes": [
+        {"name":"LED Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Blarb.png","description":"","versions":"Demo 1"},
+        {"name":"Amazing World Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 9"},
+        {"name":"Pink Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/P.Blarb.png","description":"","versions":null},
+        {"name":"Green Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/G.Blarb.png","description":"","versions":null},
+        {"name":"Origin Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"name":"Super Evil Blarb","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Gaslug",
+    "forms": {
+      "base": [
+        {"name":"Gaslug","types":["Gross"],"paraTypes":["Water"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Green","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Gaslug.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Gaslug","types":["Gross"],"paraTypes":["Water"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Gaslug","types":["Gross"],"paraTypes":["Water"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Gaslug.png","versions":"Demo 1","description":""},
+        {"name":"Amoeba Gaslug","types":["Gross"],"paraTypes":["Water"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 1","description":""},
+        {"name":"Spaghetti Gaslug","types":["Gross"],"paraTypes":["Water"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 5","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Quubbly",
+    "forms": {
+      "base": [
+        {"name":"Quubbly","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Quontoon","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Yellow","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Quubbly.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Quubbly","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Quontoon","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Quubbly","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Quubbly.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Quontoon",
+    "forms": {
+      "base": [
+        {"name":"Quontoon","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Honkraft","level":null}],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Quontoon.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Quontoon","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Honkraft","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Quontoon","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Quontoon.png","description":"","versions":"Demo 2"}
+      ]
+    }
+  },
+  {
+    "name": "Honkraft",
+    "forms": {
+      "base": [
+        {"name":"Honkraft","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"White","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Honkraft.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Honkraft","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "costumes": [
+        {"name":"LED Honkraft","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Honkraft.png","description":"","versions":"Demo 7"}
+      ]
+    }
+  },
+  {
+    "name": "Fizzlet",
+    "forms": {
+      "base": [
+        {"name":"Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Fizzik","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Orange","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Fizzlet.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Fizzik","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Fizzlet.png","description":"","versions":"Demo 1"},
+        {"name":"Mexican Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"},
+        {"name":"Beans Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"},
+        {"name":"Fancy Fizzlet","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 5"}
+      ]
+    }
+  },
+  {
+    "name": "Fizzik",
+    "forms": {
+      "base": [
+        {"name":"Fizzik","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Orange","biomes":["Lake","Forest"],"image":"assets/images/mates/base/Fizzik.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Fizzik","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "ace": [
+        {"name":"Ace Fizzik","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7"}
+      ],
+      "costumes": [
+        {"name":"LED Fizzik","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Fizzik.png","description":"","versions":"Demo 7"},
+        {"name":"Reverse Fizzik","types":["Water","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 7"}
+      ]
+    }
+  },
+  {
+    "name": "Beabar",
+    "forms": {
+      "base": [
+        {"name":"Beabar","types":["Normal","Water"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"3ft","color":"Brown","biomes":["Lake"],"image":"assets/images/mates/base/Beabar.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Beabar","types":["Normal","Water"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Beabar","types":["Normal","Water"],"paraTypes":["Earth"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Beabar.png","versions":"Demo 1","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Bowlfish",
+    "forms": {
+      "base": [
+        {"name":"Bowlfish","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Tankfish","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Bowlfish.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Bowlfish","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Tankfish","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Bowlfish","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Bowlfish.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Tankfish",
+    "forms": {
+      "base": [
+        {"name":"Tankfish","types":["Water","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"4ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Tankfish.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Tankfish","types":["Water","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Tankfish","types":["Water","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Tankfish.png","description":"","versions":"Demo 2"},
+        {"name":"Cowboy Tankfish","types":["Water","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 3"}
+      ]
+    }
+  },
+  {
+    "name": "Camoflish",
+    "forms": {
+      "base": [
+        {"name":"Camoflish","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"1ft","color":"White","biomes":["Lake"],"image":"assets/images/mates/base/Camoflish.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Camoflish","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Camoflish","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 1","description":""},
+        {"name":"Backwards Camoflish","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 1","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Confished",
+    "forms": {
+      "base": [
+        {"name":"Confished","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Twynami","level":null}],"abilities":[],"moves":[],"height":"1ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Confished.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Confished","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Twynami","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Confished","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Confished.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Twynami",
+    "forms": {
+      "base": [
+        {"name":"Twynami","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"12ft","color":null,"biomes":["Lake"],"image":"assets/images/mates/lost/Twynami.png","versions":"Demo 2"}
+      ],
+      "sacred": [
+        {"name":"Sacred Twynami","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Twynami","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Chordal",
+    "forms": {
+      "base": [
+        {"name":"Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/base/Chordal.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Chordal.png","description":"","versions":"Demo 1"},
+        {"name":"Wooden Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
+      ]
+    }
+  },
+  {
+    "name": "Cartilicht",
+    "forms": {
+      "base": [
+        {"name":"Cartilicht","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"White","biomes":["Lake"],"image":"assets/images/mates/base/Cartilicht.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Cartilicht","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Cartilicht","types":["Water","Light"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Cartilicht.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Emene",
+    "forms": {
+      "base": [
+        {"name":"Emene","types":["Savage","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Red","biomes":["Lake"],"image":"assets/images/mates/base/Emene.png","versions":"Demo 1"}
+      ],      
+      "sacred": [
+        {"name":"Sacred Emene","types":["Savage","Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ]
+    }
+  },
+  {
+    "name": "Ghouliath",
+    "forms": {
+      "base": [
+        {"name":"Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Fear","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"10ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/base/Ghouliath.png","versions":"Demo 1"}
+      ],
+      "ace": [
+        {"name":"Ghouliath (Ace)","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Fear","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"210ft","color":"Blue","biomes":["Lake"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"}
+      ],
+      "costumes": [
+        {"name":"LED Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Ghouliath.png","description":"","versions":"Demo 6"},
+        {"name":"Bald Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 6"},
+        {"name":"Sand Worm Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 6"},
+        {"name":"Diving Dress Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 6"},
+        {"name":"Disco Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 6"},
+        {"name":"Glad Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"},
+        {"name":"Wonderland Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "ncanon": [
+        {"name":"OG Ghouliath","types":["Spectral","Water"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGGhouliath.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Toumern",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Plains"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Sacred Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":null}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Shiver Molds",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Shiver Molds","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Shiver Molds V2.0","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Shiver Molds","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Waxilo",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Waxilo","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/Waxilo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Waxilo V2.0","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Waxilo","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Betophage",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Betophage","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Betophage V2.0","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Betophage","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Drawrlin",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"name":"Sacred Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"name":"LED Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":[],"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Shiver Dupes",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/Duplergrail.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Shiver Dupes V2.0","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"event":"halloween","name":"Stone Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"event":"halloween","name":"Docto Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"event":"halloween","name":"Playtime Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Thoot",
+    "forms": {
+      "base": [
+        {"event":"April Fools","name":"Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/Thoot.png","description":"","versions":"April Fools"}
+      ],
+      "sacred": [
+        {"event":"fools","name":"Sacred Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/S.Thoot.png","description":"","versions":"April Fools"}
+      ],
+      "costumes": [
+        {"event":"fools","name":"LED Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":[],"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"event":"fools","name":"Cat Piano Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"event":"fools","name":"Suit Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"event":"fools","name":"Ringmaster Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Aurorial",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Aurorial","types":["Light"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Light","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Citrinel",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Citrinel","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Axoloth",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Axoloth","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Salelesure",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Salelesure","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Accelotl",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Accelotl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Placibial",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Placibial","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  }
 ]
