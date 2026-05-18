@@ -176,7 +176,6 @@ function runPageScript() {
       primaryColor,
       textColor: getReadableTextColor(primaryColor),
       ost: Number.isFinite(ostNumber) ? ostNumber : null,
-      order: Number(entry.order) || 0,
       source: isCanonTrack ? "Canon" : "Non-Canon",
       isCanonTrack,
       isNonCanonTrack,

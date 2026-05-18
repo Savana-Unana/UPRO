@@ -56,13 +56,14 @@ function runPageScript() {
 
   async function init() {
     try {
-      const [types, base, ace, npc] = await Promise.all([
-        fetchJson("data/types.json"),
+      const [info, base, ace, npc] = await Promise.all([
+        fetchJson("data/info.json"),
         fetchJson("data/mates/base.json"),
         fetchJson("data/mates/ace.json"),
         fetchJson("data/mates/npc.json")
       ]);
 
+      const types = Array.isArray(info?.typings) ? info.typings : [];
       for (const type of types) {
         state.typeColors.set(type.name, type.color);
       }

@@ -651,13 +651,13 @@ function runPageScript() {
     }
 
     Promise.all([
-      fetch("data/types.json").then(response => response.json()).catch(() => []),
+      fetch("data/info.json").then(response => response.json()).catch(() => ({ typings: [] })),
       fetch("data/abilities.json").then(response => response.json()).catch(() => []),
       fetch("data/mates/uprod.json").then(response => response.json()).catch(() => []),
       fetch("data/mates/crorder.json").then(response => response.json()).catch(() => []),
       fetchMateBuckets()
-    ]).then(([types, abilities, credits, crorder, mateBuckets]) => {
-      typesData = types || [];
+    ]).then(([info, abilities, credits, crorder, mateBuckets]) => {
+      typesData = Array.isArray(info?.typings) ? info.typings : [];
       abilitiesData = abilities || [];
       creditsData = Array.isArray(credits) ? credits.map(normalizeCreditsEntry) : [];
       crorderData = Array.isArray(crorder) ? crorder.map(name => String(name || "").trim()).filter(Boolean) : [];

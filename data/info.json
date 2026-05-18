@@ -1,0 +1,352 @@
+{
+  "typings": [
+    {
+      "name": "Normal",
+      "color": "white",
+      "strongAgainst": [
+        "Water",
+        "Earth"
+      ],
+      "weakTo": [
+        "Fire",
+        "Ice"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Plant",
+      "color": "#6BBF59",
+      "strongAgainst": [
+        "Water",
+        "Earth"
+      ],
+      "weakTo": [
+        "Fire",
+        "Ice"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Water",
+      "color": "#3BA5FF",
+      "strongAgainst": [
+        "Fire",
+        "Earth"
+      ],
+      "weakTo": [
+        "Electric",
+        "Mystic"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Ice",
+      "color": "#C9F0FF",
+      "strongAgainst": [
+        "Air",
+        "Earth"
+      ],
+      "weakTo": [
+        "Fire",
+        "Metal"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Fire",
+      "color": "#FF7A4D",
+      "strongAgainst": [
+        "Plant",
+        "Ice"
+      ],
+      "weakTo": [
+        "Water",
+        "Earth"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Earth",
+      "color": "#C99C6B",
+      "strongAgainst": [
+        "Electric",
+        "Fire"
+      ],
+      "weakTo": [
+        "Water",
+        "Air"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Mystic",
+      "color": "#BFA6FF",
+      "strongAgainst": [
+        "Metal",
+        "Lucid"
+      ],
+      "weakTo": [
+        "Spectral",
+        "Dark"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Air",
+      "color": "#9ED8FF",
+      "strongAgainst": [
+        "Earth",
+        "Plant"
+      ],
+      "weakTo": [
+        "Metal",
+        "Savage"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Savage",
+      "color": "#D6C79B",
+      "strongAgainst": [
+        "Lucid",
+        "Gross"
+      ],
+      "weakTo": [
+        "Metal",
+        "Mystic"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Metal",
+      "color": "#B0B8C1",
+      "strongAgainst": [
+        "Savage",
+        "Ice"
+      ],
+      "weakTo": [
+        "Mystic",
+        "Electric"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Electric",
+      "color": "#F6C94C",
+      "strongAgainst": [
+        "Water",
+        "Air"
+      ],
+      "weakTo": [
+        "Earth",
+        "Metal"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Artillery",
+      "color": "#D88F8F",
+      "strongAgainst": [
+        "Gross",
+        "Metal"
+      ],
+      "weakTo": [
+        "Earth",
+        "Water"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Light",
+      "color": "#FFF3B0",
+      "strongAgainst": [
+        "Dark",
+        "Spectral"
+      ],
+      "weakTo": [
+        "Gross",
+        "Lucid"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Dark",
+      "color": "#3B3B3F",
+      "strongAgainst": [
+        "Lucid",
+        "Mystic"
+      ],
+      "weakTo": [
+        "Light",
+        "Spectral"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Gross",
+      "color": "#A8A77A",
+      "strongAgainst": [
+        "Light",
+        "Lucid"
+      ],
+      "weakTo": [
+        "Artillery",
+        "Savage"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Spectral",
+      "color": "#8F7AE6",
+      "strongAgainst": [
+        "Mystic",
+        "Dark"
+      ],
+      "weakTo": [
+        "Light",
+        "Lucid"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Lucid",
+      "color": "#9FE5D1",
+      "strongAgainst": [
+        "Spectral",
+        "Mystic"
+      ],
+      "weakTo": [
+        "Dark",
+        "Savage"
+      ],
+      "immuneTo": [
+        "Light",
+        "Spectral"
+      ]
+    }
+  ],
+  "biomes": [
+    "Lake",
+    "Forest",
+    "Desert",
+    "River",
+    "Mountains",
+    "Plains",
+    "Circus",
+    "Ice-Caps",
+    "Ranch",
+    "Volcano",
+    "Axo-Skerry",
+    "Alcatraz",
+    "Jungle",
+    "Borgo Slor",
+    "Big City",
+    "Ocean",
+    "Caverns",
+    "Swamp",
+    "Shiver Co.",
+    "I'eland",
+    "Factory"
+  ],
+  "areas": [
+    "Miscellaneous",
+    "Homegrounds",
+    "Forest",
+    "Reposition",
+    "Spawnpoint",
+    "MT",
+    "Chef Perfecatoly's",
+    "Lake",
+    "Water Gauntlet",
+    "Demolition",
+    "Deep Waters",
+    "???"
+  ],
+  "motifs": [
+    {
+      "name": null,
+      "songs": [
+        {
+          "song": "UPRO",
+          "start": "0:12",
+          "end": "0:28"
+        },
+        {
+          "song": "Familiarity",
+          "start": "1:05",
+          "end": "1:21"
+        }
+      ]
+    }
+  ],
+  "versions": [
+    {
+      "name": "Demo 1",
+      "image": "assets/images/ui/covers/Demo1.png"
+    }
+  ],
+  "composers": [
+    "Glitched 0ut",
+    "Jakedacake",
+    "AriPlays",
+    "Cran_Bot"
+  ],
+  "themeTypes": [
+    "Game Theme",
+    "Cutscene Theme",
+    "Overworld Theme",
+    "Battle Theme",
+    "Gauntlet Theme",
+    "Gauntlet Battle Theme",
+    "Ace Theme",
+    "False Theme"
+  ]
+}

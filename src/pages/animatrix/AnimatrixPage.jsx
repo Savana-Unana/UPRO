@@ -78,7 +78,7 @@ export default function AnimatrixPage() {
         npc: "NPCs"
       };
       const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5, npc: 6 };
-      const biomeOptions = [
+      let biomeOptions = [
         "Lake",
         "Forest",
         "Desert",
@@ -371,11 +371,15 @@ export default function AnimatrixPage() {
         });
       }
 
-      // Load types first
-      fetch("data/types.json")
+      // Load shared ordering/info first
+      fetch("data/info.json")
         .then(res => res.json())
-        .then(types => {
-          typesData = types || [];
+        .then(info => {
+          const infoTypings = Array.isArray(info?.typings) ? info.typings : [];
+          typesData = infoTypings;
+          if (Array.isArray(info?.biomes) && info.biomes.length) {
+            biomeOptions = info.biomes;
+          }
           populateFilterOptions(typesData, typeOptionsEl);
           populateFilterOptions(typesData, type2OptionsEl);
           populateFilterOptions(typesData, paraOptionsEl);

@@ -8,10 +8,10 @@ export default function AnimatrixPageSimple() {
     document.title = 'Animatrix Simple'
     Promise.all([
       fetchMateBuckets(),
-      fetch('data/types.json').then(response => response.json()),
-    ]).then(([mateBuckets, typeData]) => {
+      fetch('data/info.json').then(response => response.json()),
+    ]).then(([mateBuckets, info]) => {
       setMates(mateBuckets.base || [])
-      setTypes(typeData)
+      setTypes(Array.isArray(info?.typings) ? info.typings : [])
     })
   }, [])
   const typeColors = new Map(types.map(type => [type.name, type.color]))

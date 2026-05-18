@@ -1,10 +1,32 @@
 import { useEffect } from 'react'
 
 /* eslint-disable no-unused-vars, no-redeclare */
-const pageStyles = "html {\r\n                color: #FFFFFF;\r\n                background-color: #292929;\r\n                font-family: UPRO;\r\n                font-size: 15px;\r\n                line-height: 1.5;\r\n            }\r\n\r\n            table {\r\n                border-collapse: collapse;\r\n                border-spacing: 0;\r\n                margin: 0 auto 15px;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th {\r\n                border: 2px solid #292929;\r\n                font-weight: normal;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table td {\r\n                border: 2px solid #292929;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th a, .type-table td {\r\n                border-radius: 6px;\r\n            }\r\n\r\n            .cell-nano {\r\n                font-size: 19px;\r\n            }\r\n\r\n            .type-abbr {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                display: inline-block;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-icon-th {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                float: left;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 54px;\r\n            }\r\n\r\n            .type-icon-th:first-child {\r\n                margin-left: 0;\r\n            }\r\n\r\n            .type-fx-cell {\r\n                color: #292929;\r\n                font-size: 24px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-fx-0 {\r\n                background-color: #4A4A4A;\r\n                color: white;\r\n            }\r\n\r\n            .type-fx-50 {\r\n                background-color: #F2665C;\r\n            }\r\n\r\n            .type-fx-75 {\r\n                background-color: #F2665C;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-100 {\r\n                background-color: #bebebe;\r\n            }\r\n\r\n            .type-fx-150 {\r\n                background-color: #B1D490;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-200 {\r\n                background-color: #B1D490;\r\n            }\r\n\r\n            .type-normal {\r\n                background: black url(\"../images/ui/Normal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-plant {\r\n                background: black url(\"../images/ui/Plant.png\") center no-repeat;\r\n            }\r\n\r\n            .type-water {\r\n                background: black url(\"../images/ui/Water.png\") center no-repeat;\r\n            }\r\n\r\n            .type-fire {\r\n                background: black url(\"../images/ui/Fire.png\") center no-repeat;\r\n            }\r\n\r\n            .type-earth {\r\n                background: black url(\"../images/ui/Earth.png\") center no-repeat;\r\n            }\r\n\r\n            .type-ice {\r\n                background: black url(\"../images/ui/Ice.png\") center no-repeat;\r\n            }\r\n\r\n            .type-air {\r\n                background: black url(\"../images/ui/Air.png\") center no-repeat;\r\n            }\r\n\r\n            .type-metal {\r\n                background: black url(\"../images/ui/Metal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-electric {\r\n                background: black url(\"../images/ui/Electric.png\") center no-repeat;\r\n            }\r\n\r\n            .type-light {\r\n                background: black url(\"../images/ui/Light.png\") center no-repeat;\r\n            }\r\n\r\n            .type-dark {\r\n                background: black url(\"../images/ui/Dark.png\") center no-repeat;\r\n            }\r\n\r\n            .type-savage {\r\n                background: black url(\"../images/ui/Savage.png\") center no-repeat;\r\n            }\r\n\r\n            .type-mystic {\r\n                background: black url(\"../images/ui/Mystic.png\") center no-repeat;\r\n            }\r\n\r\n            .type-gross {\r\n                background: black url(\"../images/ui/Gross.png\") center no-repeat;\r\n            }\r\n\r\n            .type-spectral {\r\n                background: black url(\"../images/ui/Spectral.png\") center no-repeat;\r\n            }\r\n\r\n            .type-artillery {\r\n                background: black url(\"../images/ui/Artillery.png\") center no-repeat;\r\n            }\r\n\r\n            .type-lucid {\r\n                background: black url(\"../images/ui/Lucid.png\") center no-repeat;\r\n            }"
+const pageStyles = "html {\r\n                color: #FFFFFF;\r\n                background-color: #292929;\r\n                font-family: UPRO;\r\n                font-size: 15px;\r\n                line-height: 1.5;\r\n            }\r\n\r\n            table {\r\n                border-collapse: collapse;\r\n                border-spacing: 0;\r\n                margin: 0 auto 15px;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th {\r\n                border: 2px solid #292929;\r\n                font-weight: normal;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table td {\r\n                border: 2px solid #292929;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th a, .type-table td {\r\n                border-radius: 6px;\r\n            }\r\n\r\n            .cell-nano {\r\n                font-size: 19px;\r\n            }\r\n\r\n            .type-abbr {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                display: inline-block;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-icon-th {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                float: left;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 54px;\r\n            }\r\n\r\n            .type-icon-th:first-child {\r\n                margin-left: 0;\r\n            }\r\n\r\n            .type-fx-cell {\r\n                color: #292929;\r\n                font-size: 24px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-fx-0 {\r\n                background-color: #4A4A4A;\r\n                color: white;\r\n            }\r\n\r\n            .type-fx-50 {\r\n                background-color: #F2665C;\r\n            }\r\n\r\n            .type-fx-75 {\r\n                background-color: #F2665C;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-100 {\r\n                background-color: #bebebe;\r\n            }\r\n\r\n            .type-fx-150 {\r\n                background-color: #B1D490;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-200 {\r\n                background-color: #B1D490;\r\n            }\r\n\r\n            .type-normal {\r\n                background: black url(\"assets/images/ui/types/Normal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-plant {\r\n                background: black url(\"assets/images/ui/types/Plant.png\") center no-repeat;\r\n            }\r\n\r\n            .type-water {\r\n                background: black url(\"assets/images/ui/types/Water.png\") center no-repeat;\r\n            }\r\n\r\n            .type-fire {\r\n                background: black url(\"assets/images/ui/types/Fire.png\") center no-repeat;\r\n            }\r\n\r\n            .type-earth {\r\n                background: black url(\"assets/images/ui/types/Earth.png\") center no-repeat;\r\n            }\r\n\r\n            .type-ice {\r\n                background: black url(\"assets/images/ui/types/Ice.png\") center no-repeat;\r\n            }\r\n\r\n            .type-air {\r\n                background: black url(\"assets/images/ui/types/Air.png\") center no-repeat;\r\n            }\r\n\r\n            .type-metal {\r\n                background: black url(\"assets/images/ui/types/Metal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-electric {\r\n                background: black url(\"assets/images/ui/types/Electric.png\") center no-repeat;\r\n            }\r\n\r\n            .type-light {\r\n                background: black url(\"assets/images/ui/types/Light.png\") center no-repeat;\r\n            }\r\n\r\n            .type-dark {\r\n                background: black url(\"assets/images/ui/types/Dark.png\") center no-repeat;\r\n            }\r\n\r\n            .type-savage {\r\n                background: black url(\"assets/images/ui/types/Savage.png\") center no-repeat;\r\n            }\r\n\r\n            .type-mystic {\r\n                background: black url(\"assets/images/ui/types/Mystic.png\") center no-repeat;\r\n            }\r\n\r\n            .type-gross {\r\n                background: black url(\"assets/images/ui/types/Gross.png\") center no-repeat;\r\n            }\r\n\r\n            .type-spectral {\r\n                background: black url(\"assets/images/ui/types/Spectral.png\") center no-repeat;\r\n            }\r\n\r\n            .type-artillery {\r\n                background: black url(\"assets/images/ui/types/Artillery.png\") center no-repeat;\r\n            }\r\n\r\n            .type-lucid {\r\n                background: black url(\"assets/images/ui/types/Lucid.png\") center no-repeat;\r\n            }"
 function runPageScript() {
-  window.addEventListener("DOMContentLoaded", function () {
-      var typenames = ["Normal", "Plant", "Water", "Fire", "Earth", "Ice", "Air", "Metal", "Electric", "Light", "Dark", "Savage", "Mystic", "Gross", "Spectral", "Artillery", "Lucid"];
+  window.addEventListener("DOMContentLoaded", async function () {
+      var fallbackTypings = [
+          {"name":"Normal","strongAgainst":["Water","Earth"],"weakTo":["Fire","Ice"]},
+          {"name":"Plant","strongAgainst":["Water","Earth"],"weakTo":["Fire","Ice"]},
+          {"name":"Water","strongAgainst":["Fire","Earth"],"weakTo":["Electric","Mystic"]},
+          {"name":"Ice","strongAgainst":["Air","Earth"],"weakTo":["Fire","Metal"]},
+          {"name":"Fire","strongAgainst":["Plant","Ice"],"weakTo":["Water","Earth"]},
+          {"name":"Earth","strongAgainst":["Electric","Fire"],"weakTo":["Water","Air"]},
+          {"name":"Mystic","strongAgainst":["Metal","Lucid"],"weakTo":["Spectral","Dark"]},
+          {"name":"Air","strongAgainst":["Earth","Plant"],"weakTo":["Metal","Savage"]},
+          {"name":"Savage","strongAgainst":["Lucid","Gross"],"weakTo":["Metal","Mystic"]},
+          {"name":"Metal","strongAgainst":["Savage","Ice"],"weakTo":["Mystic","Electric"]},
+          {"name":"Electric","strongAgainst":["Water","Air"],"weakTo":["Earth","Metal"]},
+          {"name":"Artillery","strongAgainst":["Gross","Metal"],"weakTo":["Earth","Water"]},
+          {"name":"Light","strongAgainst":["Dark","Spectral"],"weakTo":["Gross","Lucid"]},
+          {"name":"Dark","strongAgainst":["Lucid","Mystic"],"weakTo":["Light","Spectral"]},
+          {"name":"Gross","strongAgainst":["Light","Lucid"],"weakTo":["Artillery","Savage"]},
+          {"name":"Spectral","strongAgainst":["Mystic","Dark"],"weakTo":["Light","Lucid"]},
+          {"name":"Lucid","strongAgainst":["Spectral","Mystic"],"weakTo":["Dark","Savage"]}
+      ];
+
+      var info = await fetch("data/info.json").then(res => res.json()).catch(() => null);
+      var typings = Array.isArray(info?.typings) && info.typings.length ? info.typings : fallbackTypings;
+      var typenames = typings.map(type => type.name).filter(Boolean);
 
       var typechartHead = document.getElementById("typechart-head");
       var typechartBody = document.getElementById("typechart-body");
@@ -13,6 +35,9 @@ function runPageScript() {
       var typestatsOffense = document.getElementById("typestats-offense");
       var typestatsDefense = document.getElementById("typestats-defense");
       var typestatsOverall = document.getElementById("typestats-overall");
+
+      buildTypeChart();
+      applyTypingDefaults();
 
       var typerows = typenames.map(getElementById);
 
@@ -34,6 +59,77 @@ function runPageScript() {
       hashUpdate();
       crumbs.forEach(listen);
       window.addEventListener("hashchange", hashUpdate, false);
+
+      function typeClass(name) {
+          return "type-" + String(name || "").toLowerCase().replace(/\s+/g, "-");
+      }
+
+      function buildTypeChart() {
+          typechartHead.innerHTML = `<th class="cell-nano">DEFEND&nbsp;→<br />ATTACK&nbsp;↴</th>`;
+          typenames.forEach(name => {
+              var th = document.createElement("th");
+              th.innerHTML = `<a class="type-abbr ${typeClass(name)}">&nbsp;</a>`;
+              typechartHead.appendChild(th);
+          });
+
+          typechartBody.innerHTML = "";
+          typenames.forEach(attackName => {
+              var tr = document.createElement("tr");
+              tr.id = attackName;
+              tr.innerHTML = `<th><a class="type-icon-th ${typeClass(attackName)}">&nbsp;</a></th>`;
+
+              typenames.forEach(defenseName => {
+                  var td = document.createElement("td");
+                  td.id = `${attackName} → ${defenseName}`;
+                  td.className = "type-fx-cell";
+                  tr.appendChild(td);
+              });
+
+              typechartBody.appendChild(tr);
+          });
+      }
+
+      function setCellValue(cell, value) {
+          if (!cell) return;
+
+          switch (value) {
+              case 1:
+                  cell.className = "type-fx-cell type-fx-50";
+                  cell.innerHTML = ".5x";
+                  break;
+              case 3:
+                  cell.className = "type-fx-cell type-fx-200";
+                  cell.innerHTML = "2x";
+                  break;
+              case 0:
+                  cell.className = "type-fx-cell type-fx-0";
+                  cell.innerHTML = "0x";
+                  break;
+              default:
+                  cell.className = "type-fx-cell type-fx-100";
+                  cell.innerHTML = "";
+          }
+      }
+
+      function applyTypingDefaults() {
+          typings.forEach(type => {
+              var attackName = type.name;
+              typenames.forEach(defenseName => {
+                  var cell = document.getElementById(`${attackName} → ${defenseName}`);
+                  var value = 2;
+
+                  if (Array.isArray(type.immuneTo) && type.immuneTo.includes(defenseName)) {
+                      value = 0;
+                  } else if (Array.isArray(type.strongAgainst) && type.strongAgainst.includes(defenseName)) {
+                      value = 3;
+                  } else if (Array.isArray(type.weakTo) && type.weakTo.includes(defenseName)) {
+                      value = 1;
+                  }
+
+                  setCellValue(cell, value);
+              });
+          });
+      }
 
       function hashUpdate() {
           var data = window.location.hash || getHash();
@@ -761,3 +857,4 @@ export default function TypeChartPage() {
     </>
   )
 }
+

@@ -177,10 +177,10 @@ function runPageScript() {
       });
     }
 
-    fetch("data/types.json")
+    fetch("data/info.json")
       .then(r => r.json())
-      .then(types => {
-        typesData = types || [];
+      .then(info => {
+        typesData = Array.isArray(info?.typings) ? info.typings : [];
         return Promise.all([
           fetch("data/mates/groups.json").then(r => r.json()).catch(() => []),
           fetchMateBuckets(),
