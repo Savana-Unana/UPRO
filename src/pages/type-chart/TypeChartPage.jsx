@@ -155,7 +155,7 @@ function runPageScript() {
 
           if (spectralMode === "pre" && defenseName === "Spectral") {
               if (attackName === "Plant") return 1;
-              if (attackName === "Lucid") return 3;
+              if (attackName === "Lucid") return 2;
               if (attackName === "Spectral") return 2;
               return 0;
           }
@@ -178,7 +178,7 @@ function runPageScript() {
 
           spectralModeToggle.addEventListener("click", function () {
               spectralMode = spectralMode === "post" ? "pre" : "post";
-              spectralModeToggle.textContent = spectralMode === "post" ? "Post-Spectral" : "Pre-Spectral";
+              spectralModeToggle.textContent = spectralMode === "post" ? "Pre-Spectral" : "Post-Spectral";
               spectralModeToggle.setAttribute("aria-pressed", String(spectralMode === "post"));
               spectralModeToggle.title = spectralMode === "post" ? "Using the current type chart" : "Using the pre-Spectral chart";
               applyTypingDefaults();
@@ -478,7 +478,7 @@ export default function TypeChartPage() {
   <h1 style={{marginTop: 0, marginBottom: 5}}>TypeChart</h1>
   <div className="typechart-toolbar">
     <button id="spectral-mode-toggle" className="typechart-mode-button" type="button" aria-pressed="true" title="Using the current type chart">
-      Post-Spectral
+      Pre-Spectral
     </button>
   </div>
   <table className="type-table">
