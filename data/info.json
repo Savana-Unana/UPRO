@@ -301,17 +301,132 @@
   ],
   "motifs": [
     {
-      "name": null,
+      "name": "Skip Motif",
       "songs": [
         {
           "song": "UPRO",
-          "start": "0:12",
-          "end": "0:28"
+          "start": "0:30",
+          "end": "0:38"
         },
         {
           "song": "Familiarity",
-          "start": "1:05",
-          "end": "1:21"
+          "start": "0:09",
+          "end": "0:18"
+        }
+      ]
+    },
+    {
+      "name": "Chip Motif",
+      "songs": [
+        {
+          "song": "On The Block",
+          "start": "0:13",
+          "end": "0:53.00"
+        }
+      ]
+    },
+    {
+      "name": "Home Motif",
+      "songs": [
+        {
+          "song": "Humble Ashore",
+          "start": "0:15",
+          "end": "0:23"
+        },
+        {
+          "song": "Call of the Wild",
+          "start": "0:12",
+          "end": "0:22"
+        }
+      ]
+    },
+    {
+      "name": "Death Motif",
+      "songs": [
+        {
+          "song": "Another World",
+          "start": "0:00",
+          "end": "1:04.47"
+        }
+      ]
+    },
+    {
+      "name": "Upgrade Motif",
+      "songs": [
+        {
+          "song": "Evolution",
+          "start": "0:00",
+          "end": "0:08.05"
+        }
+      ]
+    },
+    {
+      "name": "Reposition Motif",
+      "songs": [
+        {
+          "song": "Relinquish",
+          "start": "0:06",
+          "end": "0:18"
+        },
+        {
+          "song": "Repression",
+          "start": "0:05",
+          "end": "0:12"
+        }
+      ]
+    },
+    {
+      "name": "Kal Motif",
+      "songs": [
+        {
+          "song": "Repression",
+          "start": "0:59",
+          "end": "1:07"
+        }
+      ]
+    },
+    {
+      "name": "Sanctuary Motif",
+      "songs": [
+        {
+          "song": "Spawn Point",
+          "start": "0:11",
+          "end": "0:17"
+        },
+        {
+          "song": "Dawn Point",
+          "start": "0:14",
+          "end": "0:20"
+        }
+      ]
+    },
+    {
+      "name": "Shop Motif",
+      "songs": [
+        {
+          "song": "Calm After The Storm",
+          "start": "0:14",
+          "end": "0:28"
+        }
+      ]
+    },
+    {
+      "name": "Water Motif",
+      "songs": [
+        {
+          "song": "Bait",
+          "start": "0:00",
+          "end": "1:30.31"
+        }
+      ]
+    },
+    {
+      "name": "Demolition Motif",
+      "songs": [
+        {
+          "song": "Desecration",
+          "start": "0:00",
+          "end": "2:13.56"
         }
       ]
     }
@@ -325,6 +440,7 @@
   "composers": [
     "Glitched 0ut",
     "Jakedacake",
+    "Jimm560",
     "AriPlays",
     "Cran_Bot"
   ],
