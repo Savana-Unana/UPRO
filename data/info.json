@@ -5,14 +5,50 @@
       "color": "white",
       "strongAgainst": [
         "Water",
-        "Earth"
+        "Plant"
+      ],
+      "weakTo": [
+        "Savage",
+        "Metal",
+        "Artillery"
+      ],
+      "immuneTo": [
+        "Spectral"
+      ]
+    },
+    {
+      "name": "Fire",
+      "color": "#FF7A4D",
+      "strongAgainst": [
+        "Normal",
+        "Plant",
+        "Ice",
+        "Gross",
+        "Dark",
+        "Spectral",
+        "Metal"
       ],
       "weakTo": [
         "Fire",
-        "Ice"
+        "Water",
+        "Savage",
+        "Earth"
+      ]
+    },
+    {
+      "name": "Water",
+      "color": "#3BA5FF",
+      "strongAgainst": [
+        "Fire",
+        "Gross",
+        "Metal",
+        "Artillery"
+      ],
+      "weakTo": [
+        "Normal",
+        "Plant"
       ],
       "immuneTo": [
-        "Light",
         "Spectral"
       ]
     },
@@ -21,222 +57,155 @@
       "color": "#6BBF59",
       "strongAgainst": [
         "Water",
-        "Earth"
-      ],
-      "weakTo": [
-        "Fire",
-        "Ice"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Water",
-      "color": "#3BA5FF",
-      "strongAgainst": [
-        "Fire",
-        "Earth"
-      ],
-      "weakTo": [
-        "Electric",
-        "Mystic"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Ice",
-      "color": "#C9F0FF",
-      "strongAgainst": [
-        "Air",
-        "Earth"
-      ],
-      "weakTo": [
-        "Fire",
-        "Metal"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Fire",
-      "color": "#FF7A4D",
-      "strongAgainst": [
-        "Plant",
-        "Ice"
-      ],
-      "weakTo": [
-        "Water",
-        "Earth"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Earth",
-      "color": "#C99C6B",
-      "strongAgainst": [
-        "Electric",
-        "Fire"
-      ],
-      "weakTo": [
-        "Water",
-        "Air"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Mystic",
-      "color": "#BFA6FF",
-      "strongAgainst": [
-        "Metal",
-        "Lucid"
-      ],
-      "weakTo": [
-        "Spectral",
-        "Dark"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Air",
-      "color": "#9ED8FF",
-      "strongAgainst": [
         "Earth",
-        "Plant"
-      ],
-      "weakTo": [
-        "Metal",
-        "Savage"
-      ],
-      "immuneTo": [
         "Light",
         "Spectral"
-      ]
-    },
-    {
-      "name": "Savage",
-      "color": "#D6C79B",
-      "strongAgainst": [
-        "Lucid",
-        "Gross"
       ],
       "weakTo": [
-        "Metal",
-        "Mystic"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Metal",
-      "color": "#B0B8C1",
-      "strongAgainst": [
-        "Savage",
-        "Ice"
-      ],
-      "weakTo": [
-        "Mystic",
-        "Electric"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
+        "Normal",
+        "Fire",
+        "Dark"
       ]
     },
     {
       "name": "Electric",
       "color": "#F6C94C",
       "strongAgainst": [
+        "Normal",
         "Water",
-        "Air"
-      ],
-      "weakTo": [
-        "Earth",
-        "Metal"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
-    },
-    {
-      "name": "Artillery",
-      "color": "#D88F8F",
-      "strongAgainst": [
-        "Gross",
+        "Electric",
+        "Air",
+        "Mystic",
         "Metal"
       ],
       "weakTo": [
-        "Earth",
-        "Water"
+        "Savage",
+        "Artillery"
       ],
       "immuneTo": [
-        "Light",
-        "Spectral"
+        "Earth"
       ]
     },
     {
-      "name": "Light",
-      "color": "#FFF3B0",
+      "name": "Ice",
+      "color": "#C9F0FF",
       "strongAgainst": [
-        "Dark",
-        "Spectral"
-      ],
-      "weakTo": [
+        "Water",
+        "Savage",
         "Gross",
-        "Lucid"
+        "Earth"
       ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
+      "weakTo": [
+        "Fire"
       ]
     },
     {
-      "name": "Dark",
-      "color": "#3B3B3F",
+      "name": "Savage",
+      "color": "#D6C79B",
       "strongAgainst": [
-        "Lucid",
-        "Mystic"
+        "Normal",
+        "Fire",
+        "Plant",
+        "Savage",
+        "Air",
+        "Dark"
       ],
       "weakTo": [
+        "Mystic",
         "Light",
-        "Spectral"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
+        "Metal",
+        "Artillery"
       ]
     },
     {
       "name": "Gross",
       "color": "#A8A77A",
       "strongAgainst": [
-        "Light",
-        "Lucid"
+        "Plant",
+        "Ice",
+        "Mystic",
+        "Dark"
       ],
       "weakTo": [
-        "Artillery",
-        "Savage"
+        "Gross",
+        "Light"
+      ]
+    },
+    {
+      "name": "Earth",
+      "color": "#C99C6B",
+      "strongAgainst": [
+        "Fire",
+        "Electric",
+        "Artillery"
+      ],
+      "weakTo": [
+        "Normal",
+        "Water",
+        "Plant",
+        "Gross"
       ],
       "immuneTo": [
+        "Air"
+      ]
+    },
+    {
+      "name": "Air",
+      "color": "#9ED8FF",
+      "strongAgainst": [
+        "Fire",
+        "Earth",
+        "Artillery"
+      ],
+      "weakTo": [
+        "Normal",
+        "Plant",
+        "Metal"
+      ]
+    },
+    {
+      "name": "Mystic",
+      "color": "#BFA6FF",
+      "strongAgainst": [
+        "Normal",
+        "Savage",
+        "Gross",
+        "Dark",
+        "Spectral",
+        "Metal"
+      ],
+      "weakTo": [
+        "Electric",
+        "Light"
+      ]
+    },
+    {
+      "name": "Light",
+      "color": "#FFF3B0",
+      "strongAgainst": [
+        "Ice",
+        "Gross",
+        "Dark",
+        "Spectral"
+      ],
+      "weakTo": [
+        "Water",
+        "Plant",
+        "Earth",
+        "Metal"
+      ]
+    },
+    {
+      "name": "Dark",
+      "color": "#3B3B3F",
+      "strongAgainst": [
+        "Air",
+        "Mystic",
         "Light",
+        "Artillery"
+      ],
+      "weakTo": [
+        "Savage",
         "Spectral"
       ]
     },
@@ -244,33 +213,53 @@
       "name": "Spectral",
       "color": "#8F7AE6",
       "strongAgainst": [
+        "Electric",
+        "Savage",
         "Mystic",
         "Dark"
       ],
+      "immuneTo": [
+        "Normal"
+      ]
+    },
+    {
+      "name": "Metal",
+      "color": "#B0B8C1",
+      "strongAgainst": [
+        "Fire"
+      ],
       "weakTo": [
-        "Light",
-        "Lucid"
+        "Plant",
+        "Electric",
+        "Savage",
+        "Metal"
+      ]
+    },
+    {
+      "name": "Artillery",
+      "color": "#D88F8F",
+      "strongAgainst": [
+        "Normal",
+        "Ice",
+        "Savage",
+        "Air",
+        "Mystic",
+        "Light"
+      ],
+      "weakTo": [
+        "Water",
+        "Earth",
+        "Metal"
       ],
       "immuneTo": [
-        "Light",
         "Spectral"
       ]
     },
     {
       "name": "Lucid",
       "color": "#9FE5D1",
-      "strongAgainst": [
-        "Spectral",
-        "Mystic"
-      ],
-      "weakTo": [
-        "Dark",
-        "Savage"
-      ],
-      "immuneTo": [
-        "Light",
-        "Spectral"
-      ]
+      "strongAgainst": [],
+      "weakTo": []
     }
   ],
   "biomes": [

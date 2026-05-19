@@ -2,26 +2,52 @@ import { useEffect } from 'react'
 
 /* eslint-disable no-unused-vars, no-redeclare */
 const pageStyles = "html {\r\n                color: #FFFFFF;\r\n                background-color: #292929;\r\n                font-family: UPRO;\r\n                font-size: 15px;\r\n                line-height: 1.5;\r\n            }\r\n\r\n            table {\r\n                border-collapse: collapse;\r\n                border-spacing: 0;\r\n                margin: 0 auto 15px;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th {\r\n                border: 2px solid #292929;\r\n                font-weight: normal;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table td {\r\n                border: 2px solid #292929;\r\n                padding: 0;\r\n            }\r\n\r\n            .type-table th a, .type-table td {\r\n                border-radius: 6px;\r\n            }\r\n\r\n            .cell-nano {\r\n                font-size: 19px;\r\n            }\r\n\r\n            .type-abbr {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                display: inline-block;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-icon-th {\r\n                background: #CCCCCC;\r\n                color: #292929;\r\n                float: left;\r\n                font-size: 20px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                text-transform: uppercase;\r\n                width: 54px;\r\n            }\r\n\r\n            .type-icon-th:first-child {\r\n                margin-left: 0;\r\n            }\r\n\r\n            .type-fx-cell {\r\n                color: #292929;\r\n                font-size: 24px;\r\n                font-weight: bold;\r\n                height: 32px;\r\n                line-height: 32px;\r\n                text-align: center;\r\n                width: 32px;\r\n            }\r\n\r\n            .type-fx-0 {\r\n                background-color: #4A4A4A;\r\n                color: white;\r\n            }\r\n\r\n            .type-fx-50 {\r\n                background-color: #F2665C;\r\n            }\r\n\r\n            .type-fx-75 {\r\n                background-color: #F2665C;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-100 {\r\n                background-color: #bebebe;\r\n            }\r\n\r\n            .type-fx-150 {\r\n                background-color: #B1D490;\r\n                font-size: 28px;\r\n            }\r\n\r\n            .type-fx-200 {\r\n                background-color: #B1D490;\r\n            }\r\n\r\n            .type-normal {\r\n                background: black url(\"assets/images/ui/types/Normal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-plant {\r\n                background: black url(\"assets/images/ui/types/Plant.png\") center no-repeat;\r\n            }\r\n\r\n            .type-water {\r\n                background: black url(\"assets/images/ui/types/Water.png\") center no-repeat;\r\n            }\r\n\r\n            .type-fire {\r\n                background: black url(\"assets/images/ui/types/Fire.png\") center no-repeat;\r\n            }\r\n\r\n            .type-earth {\r\n                background: black url(\"assets/images/ui/types/Earth.png\") center no-repeat;\r\n            }\r\n\r\n            .type-ice {\r\n                background: black url(\"assets/images/ui/types/Ice.png\") center no-repeat;\r\n            }\r\n\r\n            .type-air {\r\n                background: black url(\"assets/images/ui/types/Air.png\") center no-repeat;\r\n            }\r\n\r\n            .type-metal {\r\n                background: black url(\"assets/images/ui/types/Metal.png\") center no-repeat;\r\n            }\r\n\r\n            .type-electric {\r\n                background: black url(\"assets/images/ui/types/Electric.png\") center no-repeat;\r\n            }\r\n\r\n            .type-light {\r\n                background: black url(\"assets/images/ui/types/Light.png\") center no-repeat;\r\n            }\r\n\r\n            .type-dark {\r\n                background: black url(\"assets/images/ui/types/Dark.png\") center no-repeat;\r\n            }\r\n\r\n            .type-savage {\r\n                background: black url(\"assets/images/ui/types/Savage.png\") center no-repeat;\r\n            }\r\n\r\n            .type-mystic {\r\n                background: black url(\"assets/images/ui/types/Mystic.png\") center no-repeat;\r\n            }\r\n\r\n            .type-gross {\r\n                background: black url(\"assets/images/ui/types/Gross.png\") center no-repeat;\r\n            }\r\n\r\n            .type-spectral {\r\n                background: black url(\"assets/images/ui/types/Spectral.png\") center no-repeat;\r\n            }\r\n\r\n            .type-artillery {\r\n                background: black url(\"assets/images/ui/types/Artillery.png\") center no-repeat;\r\n            }\r\n\r\n            .type-lucid {\r\n                background: black url(\"assets/images/ui/types/Lucid.png\") center no-repeat;\r\n            }"
+const spectralToggleStyles = `
+  .typechart-toolbar {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 0 0 10px;
+  }
+
+  .typechart-mode-button {
+    background: #bebebe;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    color: #292929;
+    cursor: pointer;
+    font-family: UPRO;
+    font-size: 18px;
+    line-height: 1;
+    min-width: 136px;
+    padding: 8px 12px;
+  }
+
+  .typechart-mode-button[aria-pressed="true"] {
+    background: #B1D490;
+  }
+`
 function runPageScript() {
   window.addEventListener("DOMContentLoaded", async function () {
       var fallbackTypings = [
-          {"name":"Normal","strongAgainst":["Water","Earth"],"weakTo":["Fire","Ice"]},
-          {"name":"Plant","strongAgainst":["Water","Earth"],"weakTo":["Fire","Ice"]},
-          {"name":"Water","strongAgainst":["Fire","Earth"],"weakTo":["Electric","Mystic"]},
-          {"name":"Ice","strongAgainst":["Air","Earth"],"weakTo":["Fire","Metal"]},
-          {"name":"Fire","strongAgainst":["Plant","Ice"],"weakTo":["Water","Earth"]},
-          {"name":"Earth","strongAgainst":["Electric","Fire"],"weakTo":["Water","Air"]},
-          {"name":"Mystic","strongAgainst":["Metal","Lucid"],"weakTo":["Spectral","Dark"]},
-          {"name":"Air","strongAgainst":["Earth","Plant"],"weakTo":["Metal","Savage"]},
-          {"name":"Savage","strongAgainst":["Lucid","Gross"],"weakTo":["Metal","Mystic"]},
-          {"name":"Metal","strongAgainst":["Savage","Ice"],"weakTo":["Mystic","Electric"]},
-          {"name":"Electric","strongAgainst":["Water","Air"],"weakTo":["Earth","Metal"]},
-          {"name":"Artillery","strongAgainst":["Gross","Metal"],"weakTo":["Earth","Water"]},
-          {"name":"Light","strongAgainst":["Dark","Spectral"],"weakTo":["Gross","Lucid"]},
-          {"name":"Dark","strongAgainst":["Lucid","Mystic"],"weakTo":["Light","Spectral"]},
-          {"name":"Gross","strongAgainst":["Light","Lucid"],"weakTo":["Artillery","Savage"]},
-          {"name":"Spectral","strongAgainst":["Mystic","Dark"],"weakTo":["Light","Lucid"]},
-          {"name":"Lucid","strongAgainst":["Spectral","Mystic"],"weakTo":["Dark","Savage"]}
+          {"name":"Normal","strongAgainst":["Water","Plant"],"weakTo":["Savage","Metal","Artillery"],"immuneTo":["Spectral"]},
+          {"name":"Fire","strongAgainst":["Normal","Plant","Ice","Gross","Dark","Spectral","Metal"],"weakTo":["Fire","Water","Savage","Earth"]},
+          {"name":"Water","strongAgainst":["Fire","Gross","Metal","Artillery"],"weakTo":["Normal","Plant"],"immuneTo":["Spectral"]},
+          {"name":"Plant","strongAgainst":["Water","Earth","Light","Spectral"],"weakTo":["Normal","Fire","Dark"]},
+          {"name":"Electric","strongAgainst":["Normal","Water","Electric","Air","Mystic","Metal"],"weakTo":["Savage","Artillery"],"immuneTo":["Earth"]},
+          {"name":"Ice","strongAgainst":["Water","Savage","Gross","Earth"],"weakTo":["Fire"]},
+          {"name":"Savage","strongAgainst":["Normal","Fire","Plant","Savage","Air","Dark"],"weakTo":["Mystic","Light","Metal","Artillery"]},
+          {"name":"Gross","strongAgainst":["Plant","Ice","Mystic","Dark"],"weakTo":["Gross","Light"]},
+          {"name":"Earth","strongAgainst":["Fire","Electric","Artillery"],"weakTo":["Normal","Water","Plant","Gross"],"immuneTo":["Air"]},
+          {"name":"Air","strongAgainst":["Fire","Earth","Artillery"],"weakTo":["Normal","Plant","Metal"]},
+          {"name":"Mystic","strongAgainst":["Normal","Savage","Gross","Dark","Spectral","Metal"],"weakTo":["Electric","Light"]},
+          {"name":"Light","strongAgainst":["Ice","Gross","Dark","Spectral"],"weakTo":["Water","Plant","Earth","Metal"]},
+          {"name":"Dark","strongAgainst":["Air","Mystic","Light","Artillery"],"weakTo":["Savage","Spectral"]},
+          {"name":"Spectral","strongAgainst":["Electric","Savage","Mystic","Dark"],"immuneTo":["Normal"]},
+          {"name":"Metal","strongAgainst":["Fire"],"weakTo":["Plant","Electric","Savage","Metal"]},
+          {"name":"Artillery","strongAgainst":["Normal","Ice","Savage","Air","Mystic","Light"],"weakTo":["Water","Earth","Metal"],"immuneTo":["Spectral"]},
+          {"name":"Lucid","strongAgainst":[],"weakTo":[]}
       ];
 
       var info = await fetch("data/info.json").then(res => res.json()).catch(() => null);
@@ -35,6 +61,8 @@ function runPageScript() {
       var typestatsOffense = document.getElementById("typestats-offense");
       var typestatsDefense = document.getElementById("typestats-defense");
       var typestatsOverall = document.getElementById("typestats-overall");
+      var spectralModeToggle = document.getElementById("spectral-mode-toggle");
+      var spectralMode = "post";
 
       buildTypeChart();
       applyTypingDefaults();
@@ -58,6 +86,7 @@ function runPageScript() {
 
       hashUpdate();
       crumbs.forEach(listen);
+      listenSpectralModeToggle();
       window.addEventListener("hashchange", hashUpdate, false);
 
       function typeClass(name) {
@@ -116,19 +145,45 @@ function runPageScript() {
               var attackName = type.name;
               typenames.forEach(defenseName => {
                   var cell = document.getElementById(`${attackName} → ${defenseName}`);
-                  var value = 2;
-
-                  if (Array.isArray(type.immuneTo) && type.immuneTo.includes(defenseName)) {
-                      value = 0;
-                  } else if (Array.isArray(type.strongAgainst) && type.strongAgainst.includes(defenseName)) {
-                      value = 3;
-                  } else if (Array.isArray(type.weakTo) && type.weakTo.includes(defenseName)) {
-                      value = 1;
-                  }
-
-                  setCellValue(cell, value);
+                  setCellValue(cell, getTypingValue(type, defenseName));
               });
           });
+      }
+
+      function getTypingValue(type, defenseName) {
+          var attackName = type.name;
+
+          if (spectralMode === "pre" && defenseName === "Spectral") {
+              if (attackName === "Plant") return 1;
+              if (attackName === "Lucid") return 3;
+              if (attackName === "Spectral") return 2;
+              return 0;
+          }
+
+          if (Array.isArray(type.immuneTo) && type.immuneTo.includes(defenseName)) {
+              return 0;
+          }
+          if (Array.isArray(type.strongAgainst) && type.strongAgainst.includes(defenseName)) {
+              return 3;
+          }
+          if (Array.isArray(type.weakTo) && type.weakTo.includes(defenseName)) {
+              return 1;
+          }
+
+          return 2;
+      }
+
+      function listenSpectralModeToggle() {
+          if (!spectralModeToggle) return;
+
+          spectralModeToggle.addEventListener("click", function () {
+              spectralMode = spectralMode === "post" ? "pre" : "post";
+              spectralModeToggle.textContent = spectralMode === "post" ? "Post-Spectral" : "Pre-Spectral";
+              spectralModeToggle.setAttribute("aria-pressed", String(spectralMode === "post"));
+              spectralModeToggle.title = spectralMode === "post" ? "Using the current type chart" : "Using the pre-Spectral chart";
+              applyTypingDefaults();
+              updateStats();
+          }, false);
       }
 
       function hashUpdate() {
@@ -412,6 +467,7 @@ export default function TypeChartPage() {
   return (
     <>
       {pageStyles && <style>{pageStyles}</style>}
+      <style>{spectralToggleStyles}</style>
       <div className="upro-page-root"><div style={{display: 'flex'}}>
     <div id="nav-btn">
       <a href="/">
@@ -420,6 +476,11 @@ export default function TypeChartPage() {
     </div>
   </div>
   <h1 style={{marginTop: 0, marginBottom: 5}}>TypeChart</h1>
+  <div className="typechart-toolbar">
+    <button id="spectral-mode-toggle" className="typechart-mode-button" type="button" aria-pressed="true" title="Using the current type chart">
+      Post-Spectral
+    </button>
+  </div>
   <table className="type-table">
     <thead>
       <tr id="typechart-head">
