@@ -84,7 +84,7 @@ function runPageScript() {
     document.getElementById("loadKeyBtn").addEventListener("click", () => loadBoardFromKey(joinGameKeyInput.value));
     document.getElementById("editNameBtn").addEventListener("click", () => showScreen("name"));
     document.getElementById("instructionsBtn").addEventListener("click", () => showScreen("instructions"));
-    document.getElementById("quitBtn").addEventListener("click", () => window.location.href = "/");
+    document.getElementById("quitBtn").addEventListener("click", quitToNormalPage);
     document.getElementById("instructionsBackBtn").addEventListener("click", () => showScreen("menu"));
     document.getElementById("quitToMenuBtn").addEventListener("click", () => showScreen("menu"));
     document.getElementById("notesBtn").addEventListener("click", () => showScreen("notes"));
@@ -127,6 +127,14 @@ function runPageScript() {
         toggleAllCards();
       }
     });
+  }
+
+  function quitToNormalPage() {
+    if (typeof window.uproNavigate === "function" && window.uproNavigate("/normal")) {
+      return;
+    }
+
+    window.location.assign("/normal");
   }
 
   function showScreen(name) {
