@@ -31,7 +31,7 @@ const switchedButtonConfigs = [
   { text: "Type Chart", href: "/typechart", bg: "linear-gradient(135deg, #e48dff, #c300ff)" },
   { text: "Chat", href: "/chat", bg: "linear-gradient(135deg, #eaa78f, #c96e4e)" },
   { text: "Moves/Abilities", href: "/hurty", bg: "linear-gradient(135deg, #ffbc62, #ff9200)" },
-  { text: "Credits", href: "/friend", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)" },
+  { text: "Credits", href: "/credtrix", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)" },
 ]
 
 export default function MainMenuPage() {
