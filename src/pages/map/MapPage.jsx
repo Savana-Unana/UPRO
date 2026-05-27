@@ -237,13 +237,12 @@ export default function MapPage() {
   }
 
   function handleMapClick(event) {
-    const regionElement = event.target.closest?.('.map-region')
-
     if (suppressClickRef.current) {
       suppressClickRef.current = false
       return
     }
 
+    const regionElement = event.target.closest?.('.map-region')
     if (regionElement?.id && regionData[regionElement.id]) {
       setSelectedRegionId(regionElement.id)
     }
@@ -324,7 +323,7 @@ export default function MapPage() {
                   <rect
                     key={region.id}
                     id={region.id}
-                    className={`map-region${isDimmed ? ' is-dimmed' : ''}`}
+                    className={`map-region${isDimmed ? ' is-dimmed' : ''}${selectedRegionId === region.id ? ' is-selected' : ''}`}
                     x={region.x}
                     y={region.y}
                     width={region.width}

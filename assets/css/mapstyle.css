@@ -100,6 +100,10 @@ body.map-body p {
   overflow: hidden;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #map {
@@ -115,6 +119,9 @@ body.map-body p {
   cursor: grab;
   touch-action: none;
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 #map:active {
@@ -163,6 +170,11 @@ body.map-body p {
   filter: brightness(1.25);
   outline: none;
   transform: scale(1.06);
+}
+
+.map-region.is-selected {
+  filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
+  transform: scale(1.08);
 }
 
 .map-region.is-dimmed {
