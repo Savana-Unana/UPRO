@@ -1,172 +1,385 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import '/assets/css/mapstyle.css'
 
-/* eslint-disable no-unused-vars */
-const pageStyles = "body {\r\n  font-size: 1rem;\r\n  line-height: 1.5rem;\r\n  margin: 0;\r\n  padding: 0;\r\n  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,\r\n               Bitstream Vera Sans Mono, Courier New, monospace, serif;\r\n  word-wrap: break-word;\r\n  text-align: center;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n}\r\n\r\n#map-container {\r\n  position: relative;\r\n  margin: 20px auto;\r\n  width: 460px;\r\n  max-width: 100%;\r\n  height: auto;\r\n}\r\n\r\n@media screen and (min-height: 900px) {\r\n  #map-container {\r\n    width: 540px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 520px) {\r\n  #map-container {\r\n    width: 100%;\r\n  }\r\n}\r\n\r\n#map {\r\n  width: 105%;\r\n  height: auto;\r\n  cursor: crosshair;\r\n}\r\n\r\n#location-details {\r\n  display: none;\r\n  position: fixed;\r\n  top: 60px;\r\n  right: 20px;\r\n  width: 250px;\r\n  background: white;\r\n  border: 1px solid #ccc;\r\n  padding: 10px;\r\n  z-index: 10;\r\n  text-align: left;\r\n}\r\n#location-details img {\r\n  max-width: 100%;\r\n  height: auto;\r\n  display: block;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.search-alt-container {\r\n  display: flex;\r\n  gap: 15px;\r\n  align-items: center;\r\n  margin: 20px 0;\r\n}\r\n\r\ninput#search {\r\n  padding: 12px;\r\n  width: 300px;\r\n  border: 1px solid #ccc;\r\n  border-radius: 8px;\r\n  box-shadow: 0 2px 6px rgba(0,0,0,0.1);\r\n  transition: all 0.3s ease;\r\n}\r\ninput#search:focus {\r\n  border-color: #4824f8;\r\n  box-shadow: 0 0 8px rgba(46,46,46,0.6);\r\n  outline: none;\r\n}\r\n\r\nbutton.Alt {\r\n  background: #333;\r\n  color: #fff;\r\n  text-transform: uppercase;\r\n  font-size: 1.2em;\r\n  letter-spacing: 0.1em;\r\n  padding: 12px 30px;\r\n  border: 3px solid #00a2ff;\r\n  border-radius: 8px;\r\n  cursor: pointer;\r\n  position: relative;\r\n  overflow: hidden;\r\n  transition: 0.5s;\r\n}\r\nbutton.Alt:hover {\r\n  letter-spacing: 0.2em;\r\n  background: #555;\r\n  border-color: #00ba32;\r\n}\r\n\r\n#nav-buttons {\r\n  margin: 20px 0;\r\n  display: flex;\r\n  gap: 12px;\r\n  flex-wrap: wrap;\r\n}\r\n#nav-buttons button {\r\n  font-size: 18px;\r\n  padding: 12px 24px;\r\n  background: linear-gradient(135deg, #74ebd5, #acb6e5);\r\n  color: #333;\r\n  border: none;\r\n  border-radius: 10px;\r\n  cursor: pointer;\r\n  box-shadow: 0 3px 8px rgba(0,0,0,0.15);\r\n  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;\r\n}\r\n#nav-buttons button:hover {\r\n  background: linear-gradient(135deg, #4fd1c5, #8e9de5);\r\n  transform: translateY(-2px) scale(1.03);\r\n  box-shadow: 0 5px 12px rgba(0,0,0,0.2);\r\n}\r\n#nav-buttons button:active {\r\n  transform: translateY(0) scale(0.97);\r\n  box-shadow: 0 2px 6px rgba(0,0,0,0.15);\r\n}\r\n"
-function runPageScript() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const detailsBox = document.getElementById("location-details");
-    const nameBox = document.getElementById("location-name");
-    const imgBox = document.getElementById("location-image");
-    const descBox = document.getElementById("location-description");
-
-    const magnifier = document.createElement("div");
-    magnifier.className = "magnifier";
-    document.getElementById("map-container").appendChild(magnifier);
-
-    let activeAlt = false;
-
-    const regionData = {
-        region1: {
-            name: "Home",
-            image: "assets/images/mates/lost/MissingNo.png",
-            description: "Where Skip and his family live.",
-            link: "/"
-        },
-        region2: {
-            name: "Homegrounds",
-            image: "assets/images/mates/lost/MissingNo.png",
-            description: "Ariel Salama is here.",
-            link: "/"
-        },
-        region3: {
-            name: "Lake Wyonaut",
-            image: "assets/images/mates/lost/MissingNo.png",
-            description: "Deep waters. Great for fishing!",
-            link: "/"
-        }
-    };
-
-    let currentRegionLink = null;
-
-    document.querySelectorAll("svg [id]").forEach(region => {
-        region.addEventListener("click", () => {
-            const id = region.id;
-            if (regionData[id]) {
-                nameBox.textContent = regionData[id].name;
-                imgBox.src = regionData[id].image;
-                descBox.textContent = regionData[id].description;
-                currentRegionLink = regionData[id].link;
-                detailsBox.style.display = "block";
-            }
-        });
-    });
-
-    imgBox.addEventListener("click", () => {
-        if (currentRegionLink) {
-            window.location.href = currentRegionLink;
-        }
-    });
-
-    window.closeDetails = function () {
-        detailsBox.style.display = "none";
-    };
-
-    window.filterLocation = function () {
-        const input = document.getElementById("search").value.toLowerCase();
-        document.querySelectorAll("svg [id]").forEach(region => {
-            const data = regionData[region.id];
-            if (data && (data.name.toLowerCase().includes(input) || region.id.includes(input))) {
-                region.style.opacity = 1;
-            } else {
-                region.style.opacity = 0.2;
-            }
-        });
-    };
-
-    const mapImg = document.getElementById("map");
-    mapImg.addEventListener("mousemove", e => {
-        const rect = mapImg.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const zoom = 2;
-        magnifier.style.left = `${x - 75}px`;
-        magnifier.style.top = `${y - 75}px`;
-        magnifier.style.backgroundImage = `url(${mapImg.src})`;
-        magnifier.style.backgroundRepeat = "no-repeat";
-        magnifier.style.backgroundSize = `${mapImg.width * zoom}px ${mapImg.height * zoom}px`;
-        magnifier.style.backgroundPosition = `-${x * zoom - 75}px -${y * zoom - 75}px`;
-        magnifier.style.display = "block";
-    });
-
-    mapImg.addEventListener("mouseleave", () => {
-        magnifier.style.display = "none";
-    });
-  });
+const regionData = {
+  region1: {
+    name: 'Home',
+    image: 'assets/images/mates/lost/MissingNo.png',
+    description: 'Where Skip and his family live.',
+    link: '/',
+    color: '#8d5131',
+  },
+  region2: {
+    name: 'Homegrounds',
+    image: 'assets/images/mates/lost/MissingNo.png',
+    description: 'Ariel Salama is here.',
+    link: '/',
+    color: '#4fb06d',
+  },
+  region3: {
+    name: 'Lake Wyonaut',
+    image: 'assets/images/mates/lost/MissingNo.png',
+    description: 'Deep waters. Great for fishing!',
+    link: '/',
+    color: '#3ba5ff',
+  },
 }
-const remoteScripts = []
 
-function loadRemoteScript(src) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[data-upro-src="${src}"]`)) {
-      resolve()
-      return
-    }
+const regions = [
+  { id: 'region1', x: 0, y: 400, width: 25, height: 25 },
+  { id: 'region2', x: 0, y: 425, width: 25, height: 25 },
+  { id: 'region3', x: 25, y: 400, width: 25, height: 25 },
+]
 
-    const script = document.createElement('script')
-    script.src = src
-    script.async = false
-    script.dataset.uproSrc = src
-    script.onload = resolve
-    script.onerror = reject
-    document.body.appendChild(script)
-  })
+const mapBounds = regions.reduce(
+  (bounds, region) => ({
+    minX: Math.min(bounds.minX, region.x),
+    minY: Math.min(bounds.minY, region.y),
+    maxX: Math.max(bounds.maxX, region.x + region.width),
+    maxY: Math.max(bounds.maxY, region.y + region.height),
+  }),
+  { minX: Infinity, minY: Infinity, maxX: -Infinity, maxY: -Infinity },
+)
+
+const mapContentCenter = {
+  x: (mapBounds.minX + mapBounds.maxX) / 2,
+  y: (mapBounds.minY + mapBounds.maxY) / 2,
 }
+
+const MAP_FRAME_CENTER = 250
+const MIN_MAP_ZOOM = 4
+const MAX_MAP_ZOOM = 10
+const DEFAULT_MAP_ZOOM = 6
+const MAP_ZOOM_STEP = 0.5
+const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
 
 export default function MapPage() {
+  const [selectedRegionId, setSelectedRegionId] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
+  const svgRef = useRef(null)
+  const pointersRef = useRef(new Map())
+  const dragRef = useRef(null)
+  const pinchRef = useRef(null)
+  const suppressClickRef = useRef(false)
+
   useEffect(() => {
-    document.title = "Shiverica Map"
-    document.body.className = ""
-    document.body.setAttribute('style', "")
-
-    let cancelled = false
-
-    async function startPage() {
-      for (const src of remoteScripts) {
-        await loadRemoteScript(src)
-      }
-      if (cancelled) return
-
-      window.onload = null
-      runPageScript()
-      document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }))
-      window.dispatchEvent(new Event('load'))
-      if (typeof window.onload === 'function') {
-        window.onload()
-      }
-    }
-
-    startPage().catch(error => console.error(error))
+    document.title = 'Shiverica Map'
+    document.body.className = 'map-body'
+    document.body.setAttribute('style', '')
 
     return () => {
-      cancelled = true
-      window.onload = null
+      document.body.classList.remove('map-body')
     }
   }, [])
 
+  const selectedRegion = selectedRegionId ? regionData[selectedRegionId] : null
+  const normalizedSearch = searchTerm.trim().toLowerCase()
+
+  const visibleRegionIds = useMemo(() => {
+    if (!normalizedSearch) return new Set(regions.map(region => region.id))
+
+    return new Set(
+      regions
+        .filter(region => {
+          const data = regionData[region.id]
+          return data.name.toLowerCase().includes(normalizedSearch) || region.id.includes(normalizedSearch)
+        })
+        .map(region => region.id),
+    )
+  }, [normalizedSearch])
+
+  function openSelectedLocation() {
+    if (selectedRegion?.link) {
+      window.location.href = selectedRegion.link
+    }
+  }
+
+  function clampZoom(nextZoom) {
+    return Math.min(MAX_MAP_ZOOM, Math.max(MIN_MAP_ZOOM, Number(nextZoom)))
+  }
+
+  function getSvgPoint(event) {
+    const svg = svgRef.current
+    if (!svg) return { x: MAP_FRAME_CENTER, y: MAP_FRAME_CENTER }
+
+    const rect = svg.getBoundingClientRect()
+    const scaleX = 500 / rect.width
+    const scaleY = 500 / rect.height
+
+    return {
+      x: (event.clientX - rect.left) * scaleX,
+      y: (event.clientY - rect.top) * scaleY,
+    }
+  }
+
+  function getDistance(firstPoint, secondPoint) {
+    return Math.hypot(firstPoint.x - secondPoint.x, firstPoint.y - secondPoint.y)
+  }
+
+  function getMidpoint(firstPoint, secondPoint) {
+    return {
+      x: (firstPoint.x + secondPoint.x) / 2,
+      y: (firstPoint.y + secondPoint.y) / 2,
+    }
+  }
+
+  function zoomViewAtPoint(view, nextZoom, point) {
+    const nextScale = clampZoom(nextZoom)
+    const mapOffsetX = (point.x - MAP_FRAME_CENTER - view.x) / view.scale
+    const mapOffsetY = (point.y - MAP_FRAME_CENTER - view.y) / view.scale
+
+    return {
+      scale: nextScale,
+      x: point.x - MAP_FRAME_CENTER - nextScale * mapOffsetX,
+      y: point.y - MAP_FRAME_CENTER - nextScale * mapOffsetY,
+    }
+  }
+
+  function updateMapZoom(nextZoom, point = { x: MAP_FRAME_CENTER, y: MAP_FRAME_CENTER }) {
+    setMapView(view => zoomViewAtPoint(view, nextZoom, point))
+  }
+
+  function resetMapView() {
+    setMapView(DEFAULT_MAP_VIEW)
+  }
+
+  function handleMapWheel(event) {
+    event.preventDefault()
+    const point = getSvgPoint(event)
+    const wheelDirection = event.deltaY > 0 ? -1 : 1
+    const nextZoom = mapView.scale + wheelDirection * MAP_ZOOM_STEP
+    updateMapZoom(nextZoom, point)
+  }
+
+  function handleMapPointerDown(event) {
+    const point = getSvgPoint(event)
+    pointersRef.current.set(event.pointerId, point)
+    event.currentTarget.setPointerCapture(event.pointerId)
+
+    if (pointersRef.current.size === 1) {
+      dragRef.current = { pointerId: event.pointerId, lastPoint: point, moved: false }
+      pinchRef.current = null
+      return
+    }
+
+    if (pointersRef.current.size === 2) {
+      const [firstPoint, secondPoint] = Array.from(pointersRef.current.values())
+      const midpoint = getMidpoint(firstPoint, secondPoint)
+
+      dragRef.current = null
+      pinchRef.current = {
+        distance: getDistance(firstPoint, secondPoint),
+        mapOffsetX: (midpoint.x - MAP_FRAME_CENTER - mapView.x) / mapView.scale,
+        mapOffsetY: (midpoint.y - MAP_FRAME_CENTER - mapView.y) / mapView.scale,
+        scale: mapView.scale,
+      }
+    }
+  }
+
+  function handleMapPointerMove(event) {
+    if (!pointersRef.current.has(event.pointerId)) return
+
+    const point = getSvgPoint(event)
+    pointersRef.current.set(event.pointerId, point)
+
+    if (pointersRef.current.size === 2 && pinchRef.current) {
+      const [firstPoint, secondPoint] = Array.from(pointersRef.current.values())
+      const midpoint = getMidpoint(firstPoint, secondPoint)
+      const nextScale = clampZoom(
+        pinchRef.current.scale * (getDistance(firstPoint, secondPoint) / pinchRef.current.distance),
+      )
+
+      suppressClickRef.current = true
+      setMapView({
+        scale: nextScale,
+        x: midpoint.x - MAP_FRAME_CENTER - nextScale * pinchRef.current.mapOffsetX,
+        y: midpoint.y - MAP_FRAME_CENTER - nextScale * pinchRef.current.mapOffsetY,
+      })
+      return
+    }
+
+    if (dragRef.current?.pointerId === event.pointerId) {
+      const deltaX = point.x - dragRef.current.lastPoint.x
+      const deltaY = point.y - dragRef.current.lastPoint.y
+
+      if (Math.hypot(deltaX, deltaY) > 0.8 || dragRef.current.moved) {
+        suppressClickRef.current = true
+        dragRef.current.moved = true
+        setMapView(view => ({
+          ...view,
+          x: view.x + deltaX,
+          y: view.y + deltaY,
+        }))
+      }
+
+      dragRef.current.lastPoint = point
+    }
+  }
+
+  function handleMapPointerEnd(event) {
+    pointersRef.current.delete(event.pointerId)
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
+    }
+
+    if (pointersRef.current.size < 2) {
+      pinchRef.current = null
+    }
+
+    if (pointersRef.current.size === 1) {
+      const [pointerId, point] = Array.from(pointersRef.current.entries())[0]
+      dragRef.current = { pointerId, lastPoint: point, moved: false }
+    } else {
+      dragRef.current = null
+    }
+  }
+
+  function handleMapClick(event) {
+    if (suppressClickRef.current) {
+      suppressClickRef.current = false
+      return
+    }
+
+    const regionElement = event.target.closest?.('.map-region')
+    if (regionElement?.id && regionData[regionElement.id]) {
+      setSelectedRegionId(regionElement.id)
+    }
+  }
+
+  const mapLayerTransform = [
+    `translate(${MAP_FRAME_CENTER + mapView.x} ${MAP_FRAME_CENTER + mapView.y})`,
+    `scale(${mapView.scale})`,
+    `translate(${-mapContentCenter.x} ${-mapContentCenter.y})`,
+  ].join(' ')
+
   return (
-    <>
-      {pageStyles && <style>{pageStyles}</style>}
-      <div className="upro-page-root"><h1>Shiverica Map</h1>
-  <input type="text" id="search" placeholder="Type Location (Under-Construction)" data-oninput="filterMap()" />
-  <div id="map-container">
-    <svg id="map" viewBox="0 0 500 500">
-      <rect id="region1" x={0} y={400} width={25} height={25} fill="brown" />
-      <rect id="region2" x={0} y={425} width={25} height={25} fill="green" />
-      <rect id="region3" x={25} y={400} width={25} height={25} fill="blue" />
-    </svg>
-  </div>
-  <div id="location-details" className="hidden">
-    <h2 id="location-name" />
-    <img id="location-image" src alt="Location Image" />
-    <p id="location-description" />
-    <button data-onclick="closeDetails()">Back</button>
-  </div>
-  <div id="nav-buttons">
-    <a href="/">
-      <button>Return</button>
-    </a>
-  </div></div>
-    </>
+    <main className="upro-page-root map-page">
+      <header className="map-header">
+        <h1>Shiverica Map</h1>
+        <input
+          type="text"
+          id="search"
+          placeholder="Type Location"
+          value={searchTerm}
+          onChange={event => setSearchTerm(event.target.value)}
+        />
+      </header>
+
+      <section className="map-stage" aria-label="Shiverica map">
+        <div id="map-container">
+          <div className="map-zoom-controls" aria-label="Map zoom controls">
+            <button
+              className="map-button map-zoom-button"
+              type="button"
+              onClick={() => updateMapZoom(mapView.scale - MAP_ZOOM_STEP)}
+              aria-label="Zoom out">
+              -
+            </button>
+            <input
+              className="map-zoom-slider"
+              type="range"
+              min={MIN_MAP_ZOOM}
+              max={MAX_MAP_ZOOM}
+              step={MAP_ZOOM_STEP}
+              value={mapView.scale}
+              onChange={event => updateMapZoom(event.target.value)}
+              aria-label="Map zoom"
+            />
+            <button
+              className="map-button map-zoom-button"
+              type="button"
+              onClick={() => updateMapZoom(mapView.scale + MAP_ZOOM_STEP)}
+              aria-label="Zoom in">
+              +
+            </button>
+            <button
+              className="map-button map-reset-button"
+              type="button"
+              onClick={resetMapView}>
+              Center
+            </button>
+          </div>
+          <svg
+            ref={svgRef}
+            id="map"
+            viewBox="0 0 500 500"
+            role="img"
+            aria-label="Clickable map regions"
+            onWheel={handleMapWheel}
+            onPointerDown={handleMapPointerDown}
+            onPointerMove={handleMapPointerMove}
+            onPointerUp={handleMapPointerEnd}
+            onPointerCancel={handleMapPointerEnd}
+            onPointerLeave={handleMapPointerEnd}
+            onClick={handleMapClick}>
+            <g className="map-layer" transform={mapLayerTransform}>
+              {regions.map(region => {
+                const data = regionData[region.id]
+                const isDimmed = !visibleRegionIds.has(region.id)
+
+                return (
+                  <rect
+                    key={region.id}
+                    id={region.id}
+                    className={`map-region${isDimmed ? ' is-dimmed' : ''}${selectedRegionId === region.id ? ' is-selected' : ''}`}
+                    x={region.x}
+                    y={region.y}
+                    width={region.width}
+                    height={region.height}
+                    fill={data.color}
+                    stroke="#0d0d0f"
+                    strokeWidth="1"
+                    vectorEffect="non-scaling-stroke"
+                    tabIndex={0}
+                    aria-label={data.name}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setSelectedRegionId(region.id)
+                      }
+                    }}
+                  />
+                )
+              })}
+            </g>
+          </svg>
+        </div>
+
+        <aside
+          id="location-details"
+          className={!selectedRegion ? 'location-details-empty' : undefined}
+          aria-live="polite">
+          {selectedRegion ? (
+            <>
+              <p className="location-kicker">Location</p>
+              <h2 id="location-name">{selectedRegion.name}</h2>
+              <button
+                className="location-image-button"
+                type="button"
+                onClick={openSelectedLocation}
+                aria-label={`Open ${selectedRegion.name}`}>
+                <img id="location-image" src={selectedRegion.image} alt={selectedRegion.name} />
+              </button>
+              <p id="location-description">{selectedRegion.description}</p>
+              <div className="location-actions">
+                <button className="map-button" type="button" onClick={() => setSelectedRegionId(null)}>
+                  Back
+                </button>
+              </div>
+            </>
+          ) : (
+            <p id="location-description">Select a region to view details.</p>
+          )}
+        </aside>
+      </section>
+
+      <nav id="nav-buttons" aria-label="Map navigation">
+        <a className="map-button" href="/">
+          Return
+        </a>
+      </nav>
+    </main>
   )
 }
