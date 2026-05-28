@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import '/assets/css/mapstyle.css'
 
+/* **Information pertaining to the map regions.** */
 const regionData = {
   region1: {
     name: 'Home',
@@ -30,6 +31,7 @@ const regions = [
   { id: 'region2', x: 0, y: 425, width: 25, height: 25 },
   { id: 'region3', x: 25, y: 400, width: 25, height: 25 },
 ]
+/* **Information pertaining to the map regions.** */
 
 const mapBounds = regions.reduce(
   (bounds, region) => ({
@@ -73,7 +75,6 @@ export default function MapPage() {
     }
   }, [])
 
-  const selectedRegion = selectedRegionId ? regionData[selectedRegionId] : null
   const normalizedSearch = searchTerm.trim().toLowerCase()
 
   const visibleRegionIds = useMemo(() => {
@@ -88,12 +89,6 @@ export default function MapPage() {
         .map(region => region.id),
     )
   }, [normalizedSearch])
-
-  function openSelectedLocation() {
-    if (selectedRegion?.link) {
-      window.location.href = selectedRegion.link
-    }
-  }
 
   function clampZoom(nextZoom) {
     return Math.min(MAX_MAP_ZOOM, Math.max(MIN_MAP_ZOOM, Number(nextZoom)))
@@ -347,32 +342,6 @@ export default function MapPage() {
           </svg>
         </div>
 
-        <aside
-          id="location-details"
-          className={!selectedRegion ? 'location-details-empty' : undefined}
-          aria-live="polite">
-          {selectedRegion ? (
-            <>
-              <p className="location-kicker">Location</p>
-              <h2 id="location-name">{selectedRegion.name}</h2>
-              <button
-                className="location-image-button"
-                type="button"
-                onClick={openSelectedLocation}
-                aria-label={`Open ${selectedRegion.name}`}>
-                <img id="location-image" src={selectedRegion.image} alt={selectedRegion.name} />
-              </button>
-              <p id="location-description">{selectedRegion.description}</p>
-              <div className="location-actions">
-                <button className="map-button" type="button" onClick={() => setSelectedRegionId(null)}>
-                  Back
-                </button>
-              </div>
-            </>
-          ) : (
-            <p id="location-description">Select a region to view details.</p>
-          )}
-        </aside>
       </section>
 
       <nav id="nav-buttons" aria-label="Map navigation">
