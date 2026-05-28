@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '/assets/css/mapstyle.css'
 
 /* **Information pertaining to the map regions.** */
@@ -57,7 +57,6 @@ const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
 
 export default function MapPage() {
   const [selectedRegionId, setSelectedRegionId] = useState(null)
-  const [searchTerm, setSearchTerm] = useState('')
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
   const svgRef = useRef(null)
   const pointersRef = useRef(new Map())
@@ -74,21 +73,6 @@ export default function MapPage() {
       document.body.classList.remove('map-body')
     }
   }, [])
-
-  const normalizedSearch = searchTerm.trim().toLowerCase()
-
-  const visibleRegionIds = useMemo(() => {
-    if (!normalizedSearch) return new Set(regions.map(region => region.id))
-
-    return new Set(
-      regions
-        .filter(region => {
-          const data = regionData[region.id]
-          return data.name.toLowerCase().includes(normalizedSearch) || region.id.includes(normalizedSearch)
-        })
-        .map(region => region.id),
-    )
-  }, [normalizedSearch])
 
   function clampZoom(nextZoom) {
     return Math.min(MAX_MAP_ZOOM, Math.max(MIN_MAP_ZOOM, Number(nextZoom)))
@@ -252,14 +236,10 @@ export default function MapPage() {
   return (
     <main className="upro-page-root map-page">
       <header className="map-header">
+        <a className="map-button map-back-button" href="/">
+          Back
+        </a>
         <h1>Shiverica Map</h1>
-        <input
-          type="text"
-          id="search"
-          placeholder="Type Location"
-          value={searchTerm}
-          onChange={event => setSearchTerm(event.target.value)}
-        />
       </header>
 
       <section className="map-stage" aria-label="Shiverica map">
@@ -312,13 +292,12 @@ export default function MapPage() {
             <g className="map-layer" transform={mapLayerTransform}>
               {regions.map(region => {
                 const data = regionData[region.id]
-                const isDimmed = !visibleRegionIds.has(region.id)
 
                 return (
                   <rect
                     key={region.id}
                     id={region.id}
-                    className={`map-region${isDimmed ? ' is-dimmed' : ''}${selectedRegionId === region.id ? ' is-selected' : ''}`}
+                    className={`map-region${selectedRegionId === region.id ? ' is-selected' : ''}`}
                     x={region.x}
                     y={region.y}
                     width={region.width}
@@ -342,12 +321,6 @@ export default function MapPage() {
           </svg>
         </div>
       </section>
-
-      <nav id="nav-buttons" aria-label="Map navigation">
-        <a className="map-button" href="/">
-          Return
-        </a>
-      </nav>
     </main>
   )
 }
