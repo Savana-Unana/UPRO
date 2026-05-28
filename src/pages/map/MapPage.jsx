@@ -341,7 +341,6 @@ export default function MapPage() {
             </g>
           </svg>
         </div>
-
       </section>
 
       <nav id="nav-buttons" aria-label="Map navigation">

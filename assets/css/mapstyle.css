@@ -74,7 +74,8 @@ body.map-body p {
 
 .map-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  grid-template-columns: minmax(0, min(100%, 860px));
+  justify-content: center;
   align-items: stretch;
   gap: 20px;
   width: min(100%, 1280px);
