@@ -123,6 +123,13 @@ export default function MapPage() {
     setMapView(DEFAULT_MAP_VIEW)
   }
 
+  function getRegionEntries() {
+    return regions.map(region => ({
+      ...region,
+      data: regionData[region.id],
+    }))
+  }
+
   function handleMapWheel(event) {
     event.preventDefault()
     const point = getSvgPoint(event)
@@ -290,9 +297,7 @@ export default function MapPage() {
             onPointerLeave={handleMapPointerEnd}
             onClick={handleMapClick}>
             <g className="map-layer" transform={mapLayerTransform}>
-              {regions.map(region => {
-                const data = regionData[region.id]
-
+              {getRegionEntries().map(region => {
                 return (
                   <rect
                     key={region.id}
@@ -302,12 +307,12 @@ export default function MapPage() {
                     y={region.y}
                     width={region.width}
                     height={region.height}
-                    fill={data.color}
+                    fill={region.data.color}
                     stroke="#0d0d0f"
                     strokeWidth="1"
                     vectorEffect="non-scaling-stroke"
                     tabIndex={0}
-                    aria-label={data.name}
+                    aria-label={region.data.name}
                     onKeyDown={event => {
                       if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault()
@@ -319,6 +324,31 @@ export default function MapPage() {
               })}
             </g>
           </svg>
+          <aside className="map-region-window" aria-label="Map region data">
+            <div className="map-region-list">
+              {getRegionEntries().map(region => (
+                <article
+                  key={region.id}
+                  className={`map-region-card${selectedRegionId === region.id ? ' is-selected' : ''}`}>
+                  <button
+                    className="map-region-card-button"
+                    type="button"
+                    onClick={() => setSelectedRegionId(region.id)}
+                    aria-label={`Select ${region.data.name}`}>
+                    <span className="map-region-swatch" style={{ backgroundColor: region.data.color }} />
+                    <img className="map-region-image" src={region.data.image} alt={region.data.name} />
+                    <span className="map-region-copy">
+                      <strong>{region.data.name}</strong>
+                      <span>{region.data.description}</span>
+                    </span>
+                  </button>
+                  <a className="map-region-link" href={region.data.link}>
+                    Open
+                  </a>
+                </article>
+              ))}
+            </div>
+          </aside>
         </div>
       </section>
     </main>
