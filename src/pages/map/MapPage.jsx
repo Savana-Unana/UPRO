@@ -59,9 +59,12 @@ export default function MapPage() {
   const [selectedRegionId, setSelectedRegionId] = useState(null)
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
   const svgRef = useRef(null)
+  const mapViewRef = useRef(DEFAULT_MAP_VIEW)
   const pointersRef = useRef(new Map())
   const dragRef = useRef(null)
   const pinchRef = useRef(null)
+  const pendingMapViewRef = useRef(null)
+  const animationFrameRef = useRef(null)
   const suppressClickRef = useRef(false)
 
   useEffect(() => {
@@ -71,8 +74,15 @@ export default function MapPage() {
 
     return () => {
       document.body.classList.remove('map-body')
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+      }
     }
   }, [])
+
+  useEffect(() => {
+    mapViewRef.current = mapView
+  }, [mapView])
 
   function clampZoom(nextZoom) {
     return Math.min(MAX_MAP_ZOOM, Math.max(MIN_MAP_ZOOM, Number(nextZoom)))
@@ -123,6 +133,23 @@ export default function MapPage() {
     setMapView(DEFAULT_MAP_VIEW)
   }
 
+  function scheduleMapView(nextView) {
+    pendingMapViewRef.current = nextView
+    mapViewRef.current = nextView
+
+    if (animationFrameRef.current) return
+
+    animationFrameRef.current = requestAnimationFrame(() => {
+      animationFrameRef.current = null
+      const queuedView = pendingMapViewRef.current
+      pendingMapViewRef.current = null
+
+      if (queuedView) {
+        setMapView(queuedView)
+      }
+    })
+  }
+
   function getRegionEntries() {
     return regions.map(region => ({
       ...region,
@@ -134,7 +161,7 @@ export default function MapPage() {
     event.preventDefault()
     const point = getSvgPoint(event)
     const wheelDirection = event.deltaY > 0 ? -1 : 1
-    const nextZoom = mapView.scale + wheelDirection * MAP_ZOOM_STEP
+    const nextZoom = mapViewRef.current.scale + wheelDirection * MAP_ZOOM_STEP
     updateMapZoom(nextZoom, point)
   }
 
@@ -152,13 +179,14 @@ export default function MapPage() {
     if (pointersRef.current.size === 2) {
       const [firstPoint, secondPoint] = Array.from(pointersRef.current.values())
       const midpoint = getMidpoint(firstPoint, secondPoint)
+      const currentView = mapViewRef.current
 
       dragRef.current = null
       pinchRef.current = {
         distance: getDistance(firstPoint, secondPoint),
-        mapOffsetX: (midpoint.x - MAP_FRAME_CENTER - mapView.x) / mapView.scale,
-        mapOffsetY: (midpoint.y - MAP_FRAME_CENTER - mapView.y) / mapView.scale,
-        scale: mapView.scale,
+        mapOffsetX: (midpoint.x - MAP_FRAME_CENTER - currentView.x) / currentView.scale,
+        mapOffsetY: (midpoint.y - MAP_FRAME_CENTER - currentView.y) / currentView.scale,
+        scale: currentView.scale,
       }
     }
   }
@@ -177,7 +205,7 @@ export default function MapPage() {
       )
 
       suppressClickRef.current = true
-      setMapView({
+      scheduleMapView({
         scale: nextScale,
         x: midpoint.x - MAP_FRAME_CENTER - nextScale * pinchRef.current.mapOffsetX,
         y: midpoint.y - MAP_FRAME_CENTER - nextScale * pinchRef.current.mapOffsetY,
@@ -192,11 +220,12 @@ export default function MapPage() {
       if (Math.hypot(deltaX, deltaY) > 0.8 || dragRef.current.moved) {
         suppressClickRef.current = true
         dragRef.current.moved = true
-        setMapView(view => ({
-          ...view,
-          x: view.x + deltaX,
-          y: view.y + deltaY,
-        }))
+        const currentView = mapViewRef.current
+        scheduleMapView({
+          ...currentView,
+          x: currentView.x + deltaX,
+          y: currentView.y + deltaY,
+        })
       }
 
       dragRef.current.lastPoint = point
