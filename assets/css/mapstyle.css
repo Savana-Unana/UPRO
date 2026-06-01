@@ -157,7 +157,6 @@ body.map-body p {
 }
 
 .map-region {
-  cursor: pointer;
   transition: opacity 0.2s, filter 0.2s, transform 0.2s;
   transform-box: fill-box;
   transform-origin: center;
@@ -168,115 +167,6 @@ body.map-body p {
   filter: brightness(1.25);
   outline: none;
   transform: scale(1.06);
-}
-
-.map-region.is-selected {
-  filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
-  transform: scale(1.08);
-}
-
-.map-region-window {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  z-index: 2;
-  width: min(360px, calc(100% - 32px));
-  max-height: min(440px, calc(100% - 32px));
-  padding: 10px;
-  background: rgba(17, 17, 17, 0.9);
-  border: 1px solid rgba(0, 255, 255, 0.72);
-  border-radius: 8px;
-  box-shadow: 0 0 16px rgba(0, 255, 255, 0.18);
-  overflow: auto;
-}
-
-.map-region-list {
-  display: grid;
-  gap: 8px;
-}
-
-.map-region-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  padding: 8px;
-  background: rgba(27, 27, 31, 0.92);
-  border: 1px solid rgba(0, 255, 255, 0.24);
-  border-radius: 6px;
-}
-
-.map-region-card.is-selected {
-  border-color: #0ff;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.22);
-}
-
-.map-region-card-button {
-  display: grid;
-  grid-template-columns: 14px 48px minmax(0, 1fr);
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  padding: 0;
-  background: transparent;
-  color: inherit;
-  border: 0;
-  cursor: pointer;
-  text-align: left;
-}
-
-.map-region-card-button:focus-visible {
-  outline: 2px solid #0ff;
-  outline-offset: 4px;
-}
-
-.map-region-swatch {
-  width: 14px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  border-radius: 4px;
-}
-
-.map-region-image {
-  display: block;
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-
-.map-region-copy {
-  display: grid;
-  gap: 2px;
-  min-width: 0;
-}
-
-.map-region-copy strong {
-  color: #e0f0ff;
-  font-size: 0.7em;
-  line-height: 1.05;
-  overflow-wrap: anywhere;
-}
-
-.map-region-copy span {
-  color: #cfefff;
-  font-size: 0.52em;
-  line-height: 1.15;
-  overflow-wrap: anywhere;
-}
-
-.map-region-link {
-  color: #0ff;
-  font-size: 0.58em;
-  line-height: 1;
-  text-decoration: none;
-}
-
-.map-region-link:hover,
-.map-region-link:focus-visible {
-  color: #f4ff9a;
-  outline: none;
-  text-decoration: underline;
 }
 
 .map-button {
@@ -345,29 +235,4 @@ body.map-body p {
     grid-column: 1 / -1;
   }
 
-  .map-region-window {
-    right: 10px;
-    bottom: 10px;
-    width: calc(100% - 20px);
-    max-height: 38%;
-  }
-
-  .map-region-card {
-    grid-template-columns: minmax(0, 1fr) auto;
-    padding: 6px;
-  }
-
-  .map-region-card-button {
-    grid-template-columns: 12px 40px minmax(0, 1fr);
-  }
-
-  .map-region-swatch {
-    width: 12px;
-    height: 38px;
-  }
-
-  .map-region-image {
-    width: 40px;
-    height: 40px;
-  }
 }
