@@ -157,6 +157,7 @@ body.map-body p {
 }
 
 .map-region {
+  cursor: pointer;
   transition: opacity 0.2s, filter 0.2s, transform 0.2s;
   transform-box: fill-box;
   transform-origin: center;
@@ -167,6 +168,109 @@ body.map-body p {
   filter: brightness(1.25);
   outline: none;
   transform: scale(1.06);
+}
+
+.map-region.is-selected {
+  filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
+  transform: scale(1.08);
+}
+
+.map-region-window {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  width: min(360px, calc(100% - 32px));
+  padding: 12px;
+  background: rgba(17, 17, 17, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.72);
+  border-radius: 8px;
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.18);
+  text-align: left;
+}
+
+.map-region-window-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.map-region-window h2 {
+  margin: 0;
+  color: #e0f0ff;
+  font-size: 0.95em;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.map-region-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: #222;
+  color: #0ff;
+  border: 1px solid #0ff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.map-region-close:hover,
+.map-region-close:focus-visible {
+  background: #0ff;
+  color: #000;
+  outline: none;
+}
+
+.map-region-detail {
+  display: grid;
+  grid-template-columns: 16px 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.map-region-swatch {
+  width: 16px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 4px;
+}
+
+.map-region-image {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.map-region-detail p {
+  margin: 0;
+  color: #cfefff;
+  font-size: 0.58em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.map-region-link {
+  grid-column: 2 / -1;
+  color: #0ff;
+  font-size: 0.62em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.map-region-link:hover,
+.map-region-link:focus-visible {
+  color: #f4ff9a;
+  outline: none;
+  text-decoration: underline;
 }
 
 .map-button {
@@ -235,4 +339,28 @@ body.map-body p {
     grid-column: 1 / -1;
   }
 
+  .map-region-window {
+    right: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .map-region-window h2 {
+    font-size: 0.85em;
+  }
+
+  .map-region-detail {
+    grid-template-columns: 12px 48px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .map-region-swatch {
+    width: 12px;
+    height: 44px;
+  }
+
+  .map-region-image {
+    width: 48px;
+    height: 48px;
+  }
 }

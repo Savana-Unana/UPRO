@@ -56,6 +56,7 @@ const MAP_ZOOM_STEP = 0.5
 const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
 
 export default function MapPage() {
+  const [selectedRegionId, setSelectedRegionId] = useState(null)
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
   const svgRef = useRef(null)
   const mapViewRef = useRef(DEFAULT_MAP_VIEW)
@@ -64,6 +65,7 @@ export default function MapPage() {
   const pinchRef = useRef(null)
   const pendingMapViewRef = useRef(null)
   const animationFrameRef = useRef(null)
+  const suppressClickRef = useRef(false)
 
   useEffect(() => {
     document.title = 'Shiverica Map'
@@ -202,6 +204,7 @@ export default function MapPage() {
         pinchRef.current.scale * (getDistance(firstPoint, secondPoint) / pinchRef.current.distance),
       )
 
+      suppressClickRef.current = true
       scheduleMapView({
         scale: nextScale,
         x: midpoint.x - MAP_FRAME_CENTER - nextScale * pinchRef.current.mapOffsetX,
@@ -215,6 +218,7 @@ export default function MapPage() {
       const deltaY = point.y - dragRef.current.lastPoint.y
 
       if (Math.hypot(deltaX, deltaY) > 0.8 || dragRef.current.moved) {
+        suppressClickRef.current = true
         dragRef.current.moved = true
         const currentView = mapViewRef.current
         scheduleMapView({
@@ -246,6 +250,20 @@ export default function MapPage() {
       dragRef.current = null
     }
   }
+
+  function handleMapClick(event) {
+    if (suppressClickRef.current) {
+      suppressClickRef.current = false
+      return
+    }
+
+    const regionElement = event.target.closest?.('.map-region')
+    if (regionElement?.id && regionData[regionElement.id]) {
+      setSelectedRegionId(regionElement.id)
+    }
+  }
+
+  const selectedRegion = selectedRegionId ? regionData[selectedRegionId] : null
 
   const mapLayerTransform = [
     `translate(${MAP_FRAME_CENTER + mapView.x} ${MAP_FRAME_CENTER + mapView.y})`,
@@ -307,14 +325,15 @@ export default function MapPage() {
             onPointerMove={handleMapPointerMove}
             onPointerUp={handleMapPointerEnd}
             onPointerCancel={handleMapPointerEnd}
-            onPointerLeave={handleMapPointerEnd}>
+            onPointerLeave={handleMapPointerEnd}
+            onClick={handleMapClick}>
             <g className="map-layer" transform={mapLayerTransform}>
               {getRegionEntries().map(region => {
                 return (
                   <rect
                     key={region.id}
                     id={region.id}
-                    className="map-region"
+                    className={`map-region${selectedRegionId === region.id ? ' is-selected' : ''}`}
                     x={region.x}
                     y={region.y}
                     width={region.width}
@@ -323,12 +342,41 @@ export default function MapPage() {
                     stroke="#0d0d0f"
                     strokeWidth="1"
                     vectorEffect="non-scaling-stroke"
+                    tabIndex={0}
                     aria-label={region.data.name}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setSelectedRegionId(region.id)
+                      }
+                    }}
                   />
                 )
               })}
             </g>
           </svg>
+          {selectedRegion && (
+            <aside className="map-region-window" aria-label={`${selectedRegion.name} region data`}>
+              <div className="map-region-window-header">
+                <h2>{selectedRegion.name}</h2>
+                <button
+                  className="map-region-close"
+                  type="button"
+                  onClick={() => setSelectedRegionId(null)}
+                  aria-label="Close region data">
+                  x
+                </button>
+              </div>
+              <div className="map-region-detail">
+                <span className="map-region-swatch" style={{ backgroundColor: selectedRegion.color }} />
+                <img className="map-region-image" src={selectedRegion.image} alt={selectedRegion.name} />
+                <p>{selectedRegion.description}</p>
+                <a className="map-region-link" href={selectedRegion.link}>
+                  Open
+                </a>
+              </div>
+            </aside>
+          )}
         </div>
       </section>
     </main>
