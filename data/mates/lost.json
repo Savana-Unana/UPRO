@@ -223,6 +223,28 @@
     }
   },
   {
+    "name": "Goblit",
+    "forms": {
+      "base": [
+        {"name":"Goblit","types":["Mystic","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Mustaroid","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Borgo Slor"],"image":"assets/images/mates/lost/Goblit.png","versions":"Demo 5"}
+      ],
+      "costumes": [
+        {"name":"LED Goblit","types":["Mystic","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 5"}
+      ]
+    }
+  },
+    {
+    "name": "Mustaroid",
+    "forms": {
+      "base": [
+        {"name":"Mustaroid","types":["Mystic","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Borgo Slor"],"image":"assets/images/mates/lost/Mustaroid.png","versions":"Demo 5"}
+      ],
+      "costumes": [
+        {"name":"LED Mustaroid","types":["Mystic","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 5"}
+      ]
+    }
+  },
+  {
     "name": "Borgo Slor",
     "forms": {
       "base": [
