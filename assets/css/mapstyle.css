@@ -170,6 +170,10 @@ body.map-body p {
   transform: scale(1.06);
 }
 
+.map-region:focus {
+  outline: none;
+}
+
 .map-region.is-selected {
   filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
   transform: scale(1.08);
@@ -195,6 +199,9 @@ body.map-body p {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
 }
 
 .map-region-window h2 {

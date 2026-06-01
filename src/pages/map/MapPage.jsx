@@ -54,10 +54,14 @@ const MAX_MAP_ZOOM = 10
 const DEFAULT_MAP_ZOOM = 6
 const MAP_ZOOM_STEP = 0.5
 const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
+const DEFAULT_REGION_WINDOW_OFFSET = 16
 
 export default function MapPage() {
   const [selectedRegionId, setSelectedRegionId] = useState(null)
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
+  const [regionWindowPosition, setRegionWindowPosition] = useState(null)
+  const mapContainerRef = useRef(null)
+  const regionWindowRef = useRef(null)
   const svgRef = useRef(null)
   const mapViewRef = useRef(DEFAULT_MAP_VIEW)
   const pointersRef = useRef(new Map())
@@ -66,6 +70,7 @@ export default function MapPage() {
   const pendingMapViewRef = useRef(null)
   const animationFrameRef = useRef(null)
   const suppressClickRef = useRef(false)
+  const regionWindowDragRef = useRef(null)
 
   useEffect(() => {
     document.title = 'Shiverica Map'
@@ -157,6 +162,28 @@ export default function MapPage() {
     }))
   }
 
+  function clampRegionWindowPosition(nextPosition) {
+    const container = mapContainerRef.current
+    const regionWindow = regionWindowRef.current
+    if (!container || !regionWindow) return nextPosition
+
+    const containerRect = container.getBoundingClientRect()
+    const windowRect = regionWindow.getBoundingClientRect()
+    const maxX = Math.max(DEFAULT_REGION_WINDOW_OFFSET, containerRect.width - windowRect.width - DEFAULT_REGION_WINDOW_OFFSET)
+    const maxY = Math.max(DEFAULT_REGION_WINDOW_OFFSET, containerRect.height - windowRect.height - DEFAULT_REGION_WINDOW_OFFSET)
+
+    return {
+      x: Math.min(maxX, Math.max(DEFAULT_REGION_WINDOW_OFFSET, nextPosition.x)),
+      y: Math.min(maxY, Math.max(DEFAULT_REGION_WINDOW_OFFSET, nextPosition.y)),
+    }
+  }
+
+  function selectRegion(regionId) {
+    if (regionData[regionId]) {
+      setSelectedRegionId(regionId)
+    }
+  }
+
   function handleMapWheel(event) {
     event.preventDefault()
     const point = getSvgPoint(event)
@@ -167,11 +194,17 @@ export default function MapPage() {
 
   function handleMapPointerDown(event) {
     const point = getSvgPoint(event)
+    const regionElement = event.target.closest?.('.map-region')
     pointersRef.current.set(event.pointerId, point)
     event.currentTarget.setPointerCapture(event.pointerId)
 
     if (pointersRef.current.size === 1) {
-      dragRef.current = { pointerId: event.pointerId, lastPoint: point, moved: false }
+      dragRef.current = {
+        pointerId: event.pointerId,
+        lastPoint: point,
+        moved: false,
+        regionId: regionElement?.id || null,
+      }
       pinchRef.current = null
       return
     }
@@ -233,6 +266,7 @@ export default function MapPage() {
   }
 
   function handleMapPointerEnd(event) {
+    const finishedDrag = dragRef.current?.pointerId === event.pointerId ? dragRef.current : null
     pointersRef.current.delete(event.pointerId)
 
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
@@ -249,21 +283,79 @@ export default function MapPage() {
     } else {
       dragRef.current = null
     }
+
+    if (event.type === 'pointerup' && finishedDrag?.regionId && !finishedDrag.moved) {
+      selectRegion(finishedDrag.regionId)
+    }
+
+    if (suppressClickRef.current) {
+      setTimeout(() => {
+        suppressClickRef.current = false
+      }, 0)
+    }
   }
 
-  function handleMapClick(event) {
+  function handleRegionClick(regionId) {
     if (suppressClickRef.current) {
       suppressClickRef.current = false
       return
     }
 
-    const regionElement = event.target.closest?.('.map-region')
-    if (regionElement?.id && regionData[regionElement.id]) {
-      setSelectedRegionId(regionElement.id)
+    selectRegion(regionId)
+  }
+
+  function handleRegionWindowPointerDown(event) {
+    if (event.button !== 0 || event.target.closest?.('button')) return
+
+    const container = mapContainerRef.current
+    const regionWindow = regionWindowRef.current
+    if (!container || !regionWindow) return
+
+    const containerRect = container.getBoundingClientRect()
+    const windowRect = regionWindow.getBoundingClientRect()
+    const startPosition = {
+      x: windowRect.left - containerRect.left,
+      y: windowRect.top - containerRect.top,
+    }
+
+    regionWindowDragRef.current = {
+      pointerId: event.pointerId,
+      offsetX: event.clientX - windowRect.left,
+      offsetY: event.clientY - windowRect.top,
+    }
+
+    setRegionWindowPosition(startPosition)
+    event.currentTarget.setPointerCapture(event.pointerId)
+  }
+
+  function handleRegionWindowPointerMove(event) {
+    const drag = regionWindowDragRef.current
+    if (!drag || drag.pointerId !== event.pointerId) return
+
+    const container = mapContainerRef.current
+    if (!container) return
+
+    const containerRect = container.getBoundingClientRect()
+    setRegionWindowPosition(clampRegionWindowPosition({
+      x: event.clientX - containerRect.left - drag.offsetX,
+      y: event.clientY - containerRect.top - drag.offsetY,
+    }))
+  }
+
+  function handleRegionWindowPointerEnd(event) {
+    const drag = regionWindowDragRef.current
+    if (!drag || drag.pointerId !== event.pointerId) return
+
+    regionWindowDragRef.current = null
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId)
     }
   }
 
   const selectedRegion = selectedRegionId ? regionData[selectedRegionId] : null
+  const regionWindowStyle = regionWindowPosition
+    ? { left: `${regionWindowPosition.x}px`, top: `${regionWindowPosition.y}px`, right: 'auto', bottom: 'auto' }
+    : undefined
 
   const mapLayerTransform = [
     `translate(${MAP_FRAME_CENTER + mapView.x} ${MAP_FRAME_CENTER + mapView.y})`,
@@ -281,7 +373,7 @@ export default function MapPage() {
       </header>
 
       <section className="map-stage" aria-label="Shiverica map">
-        <div id="map-container">
+        <div ref={mapContainerRef} id="map-container">
           <div className="map-zoom-controls" aria-label="Map zoom controls">
             <button
               className="map-button map-zoom-button"
@@ -325,8 +417,7 @@ export default function MapPage() {
             onPointerMove={handleMapPointerMove}
             onPointerUp={handleMapPointerEnd}
             onPointerCancel={handleMapPointerEnd}
-            onPointerLeave={handleMapPointerEnd}
-            onClick={handleMapClick}>
+            onPointerLeave={handleMapPointerEnd}>
             <g className="map-layer" transform={mapLayerTransform}>
               {getRegionEntries().map(region => {
                 return (
@@ -344,10 +435,11 @@ export default function MapPage() {
                     vectorEffect="non-scaling-stroke"
                     tabIndex={0}
                     aria-label={region.data.name}
+                    onClick={() => handleRegionClick(region.id)}
                     onKeyDown={event => {
                       if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault()
-                        setSelectedRegionId(region.id)
+                        selectRegion(region.id)
                       }
                     }}
                   />
@@ -356,12 +448,22 @@ export default function MapPage() {
             </g>
           </svg>
           {selectedRegion && (
-            <aside className="map-region-window" aria-label={`${selectedRegion.name} region data`}>
-              <div className="map-region-window-header">
+            <aside
+              ref={regionWindowRef}
+              className="map-region-window"
+              style={regionWindowStyle}
+              aria-label={`${selectedRegion.name} region data`}>
+              <div
+                className="map-region-window-header"
+                onPointerDown={handleRegionWindowPointerDown}
+                onPointerMove={handleRegionWindowPointerMove}
+                onPointerUp={handleRegionWindowPointerEnd}
+                onPointerCancel={handleRegionWindowPointerEnd}>
                 <h2>{selectedRegion.name}</h2>
                 <button
                   className="map-region-close"
                   type="button"
+                  onPointerDown={event => event.stopPropagation()}
                   onClick={() => setSelectedRegionId(null)}
                   aria-label="Close region data">
                   x
