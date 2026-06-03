@@ -4,32 +4,40 @@ import '/assets/css/mapstyle.css'
 /* **Information pertaining to the map regions.** */
 const regionData = {
   region1: {
+    name: 'Northshore',
+    image: 'assets/images/map/northshore.png',
+    description: 'A beautiful shoreline region with forests and sandy beaches.',
+    link: '/',
+    color: '#7cb342',
+  },
+  region2: {
     name: 'Home',
-    image: 'assets/images/mates/lost/MissingNo.png',
+    image: 'assets/images/map/home.png',
     description: 'Where Skip and his family live.',
     link: '/',
     color: '#8d5131',
   },
-  region2: {
-    name: 'Homegrounds',
-    image: 'assets/images/mates/lost/MissingNo.png',
-    description: 'Ariel Salama is here.',
-    link: '/',
-    color: '#4fb06d',
-  },
   region3: {
-    name: 'Lake Wyonaut',
-    image: 'assets/images/mates/lost/MissingNo.png',
-    description: 'Deep waters. Great for fishing!',
+    name: 'Bay',
+    image: 'assets/images/map/bay.png',
+    description: 'A scenic bay area with water and coastal features.',
     link: '/',
-    color: '#3ba5ff',
+    color: '#558b2f',
+  },
+  region4: {
+    name: 'Spawn Point City',
+    image: 'assets/images/map/spawnpoin_city.png',
+    description: 'A bustling city where adventures begin.',
+    link: '/',
+    color: '#ff6f00',
   },
 }
 
 const regions = [
-  { id: 'region1', x: 0, y: 400, width: 25, height: 25 },
-  { id: 'region2', x: 0, y: 425, width: 25, height: 25 },
-  { id: 'region3', x: 25, y: 400, width: 25, height: 25 },
+  { id: 'region1', x: 0, y: 0, width: 150, height: 120 },
+  { id: 'region2', x: 0, y: 120, width: 120, height: 140 },
+  { id: 'region3', x: 0, y: 260, width: 120, height: 140 },
+  { id: 'region4', x: 200, y: 0, width: 180, height: 200 },
 ]
 /* **Information pertaining to the map regions.** */
 
@@ -421,7 +429,7 @@ export default function MapPage() {
             <g className="map-layer" transform={mapLayerTransform}>
               {getRegionEntries().map(region => {
                 return (
-                  <rect
+                  <image
                     key={region.id}
                     id={region.id}
                     className={`map-region${selectedRegionId === region.id ? ' is-selected' : ''}`}
@@ -429,10 +437,8 @@ export default function MapPage() {
                     y={region.y}
                     width={region.width}
                     height={region.height}
-                    fill={region.data.color}
-                    stroke="#0d0d0f"
-                    strokeWidth="1"
-                    vectorEffect="non-scaling-stroke"
+                    href={region.data.image}
+                    preserveAspectRatio="xMidYMid slice"
                     tabIndex={0}
                     aria-label={region.data.name}
                     onClick={() => handleRegionClick(region.id)}
