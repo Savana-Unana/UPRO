@@ -57,10 +57,10 @@ const mapContentCenter = {
 }
 
 const MAP_FRAME_CENTER = 250
-const MIN_MAP_ZOOM = 4
+const MIN_MAP_ZOOM = 1
 const MAX_MAP_ZOOM = 10
-const DEFAULT_MAP_ZOOM = 6
-const MAP_ZOOM_STEP = 0.5
+const DEFAULT_MAP_ZOOM = 1.1
+const MAP_ZOOM_STEP = 0.1
 const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
 const DEFAULT_REGION_WINDOW_OFFSET = 16
 
