@@ -34,10 +34,10 @@ const regionData = {
 }
 
 const regions = [
-  { id: 'region3', x: 0, y: 110, width: 156, height: 235 },
-  { id: 'region1', x: 156, y: 76, width: 220, height: 129 },
+  { id: 'region3', x: 0, y: 130, width: 156, height: 235 },
+  { id: 'region1', x: 156, y: 77, width: 205, height: 120 },
   { id: 'region2', x: 116, y: 343, width: 155, height: 155 },
-  { id: 'region4', x: 320, y: 0, width: 180, height: 166 },
+  { id: 'region4', x: 345, y: 40, width: 180, height: 166 },
 ]
 /* **Information pertaining to the map regions.** */
 
