@@ -24,7 +24,7 @@ const normalButtonConfigs = [
   { text: "Animatrix", href: "/animatrix", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
   { text: "OST", href: "/ost", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
   { text: "Battle", href: "/construction", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
-  { text: "Map", href: "/construction", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" },
+  { text: "Map", href: "/map", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" },
 ]
 
 const switchedButtonConfigs = [
@@ -221,14 +221,14 @@ export default function MainMenuPage() {
       <a id="btn1" href="/animatrix" className="overlay-btn">Animatrix</a>
       <a id="btn2" href="/ost" className="overlay-btn">OST</a>
       <a id="btn3" href="/construction" className="overlay-btn">Battle</a>
-      <a id="btn4" href="/construction" className="overlay-btn">Map</a>
+      <a id="btn4" href="/map" className="overlay-btn">Map</a>
     </div>
   </div>
   <div className="buttons">
     <a href="/animatrix"><button id="btn1-alt">Animatrix</button></a>
     <a href="/ost"><button id="btn2-alt">OST</button></a>
     <a href="/construction"><button id="btn3-alt">Battle</button></a>
-    <a href="/construction"><button id="btn4-alt">Map</button></a>
+    <a href="/map"><button id="btn4-alt">Map</button></a>
   </div>
   <div className="switcheroo-container">
     <img src="assets/images/ui/BadSwitch.png" alt="Switcheroo" id="switcheroo-btn" />
