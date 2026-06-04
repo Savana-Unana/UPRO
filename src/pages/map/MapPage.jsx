@@ -34,10 +34,10 @@ const regionData = {
 }
 
 const regions = [
-  { id: 'region1', x: 0, y: 0, width: 150, height: 120 },
-  { id: 'region2', x: 0, y: 120, width: 120, height: 140 },
-  { id: 'region3', x: 0, y: 260, width: 120, height: 140 },
-  { id: 'region4', x: 200, y: 0, width: 180, height: 200 },
+  { id: 'region3', x: 0, y: 110, width: 156, height: 235 },
+  { id: 'region1', x: 156, y: 76, width: 220, height: 129 },
+  { id: 'region2', x: 116, y: 343, width: 155, height: 155 },
+  { id: 'region4', x: 320, y: 0, width: 180, height: 166 },
 ]
 /* **Information pertaining to the map regions.** */
 
@@ -57,10 +57,10 @@ const mapContentCenter = {
 }
 
 const MAP_FRAME_CENTER = 250
-const MIN_MAP_ZOOM = 1
+const MIN_MAP_ZOOM = 0.9
 const MAX_MAP_ZOOM = 10
-const DEFAULT_MAP_ZOOM = 1.1
-const MAP_ZOOM_STEP = 0.1
+const DEFAULT_MAP_ZOOM = 0.9
+const MAP_ZOOM_STEP = 0.05
 const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
 const DEFAULT_REGION_WINDOW_OFFSET = 16
 
