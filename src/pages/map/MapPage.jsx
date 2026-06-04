@@ -33,11 +33,13 @@ const regionData = {
   },
 }
 
+const MAP_IMAGE_SCALE = 0.42
+
 const regions = [
-  { id: 'region3', x: 0, y: 130, width: 156, height: 235 },
-  { id: 'region1', x: 156, y: 77, width: 205, height: 120 },
-  { id: 'region2', x: 116, y: 343, width: 155, height: 155 },
-  { id: 'region4', x: 345, y: 40, width: 180, height: 166 },
+  { id: 'region3', x: 0, y: 130, width: 378 * MAP_IMAGE_SCALE, height: 568 * MAP_IMAGE_SCALE },
+  { id: 'region1', x: 159, y: 77, width: 452 * MAP_IMAGE_SCALE, height: 266 * MAP_IMAGE_SCALE },
+  { id: 'region2', x: 116, y: 343, width: 378 * MAP_IMAGE_SCALE, height: 377 * MAP_IMAGE_SCALE },
+  { id: 'region4', x: 304, y: 40, width: 570 * MAP_IMAGE_SCALE, height: 527 * MAP_IMAGE_SCALE },
 ]
 /* **Information pertaining to the map regions.** */
 
