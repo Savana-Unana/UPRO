@@ -37,9 +37,9 @@ const MAP_IMAGE_SCALE = 0.42
 
 const regions = [
   { id: 'region3', x: 0, y: 130, width: 378 * MAP_IMAGE_SCALE, height: 568 * MAP_IMAGE_SCALE },
-  { id: 'region1', x: 159, y: 77, width: 452 * MAP_IMAGE_SCALE, height: 266 * MAP_IMAGE_SCALE },
+  { id: 'region1', x: 158, y: 83, width: 452 * MAP_IMAGE_SCALE, height: 266 * MAP_IMAGE_SCALE },
   { id: 'region2', x: 116, y: 343, width: 378 * MAP_IMAGE_SCALE, height: 377 * MAP_IMAGE_SCALE },
-  { id: 'region4', x: 304, y: 40, width: 570 * MAP_IMAGE_SCALE, height: 527 * MAP_IMAGE_SCALE },
+  { id: 'region4', x: 335, y: -10, width: 570 * MAP_IMAGE_SCALE, height: 527 * MAP_IMAGE_SCALE },
 ]
 /* **Information pertaining to the map regions.** */
 
