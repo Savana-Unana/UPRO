@@ -195,10 +195,13 @@ body.map-body p {
 .map-object-hotspot {
   fill: transparent;
   stroke: transparent;
+  stroke-width: 0;
+  outline: none;
   cursor: pointer;
 }
 
 .map-object-hotspot:hover,
+.map-object-hotspot:focus,
 .map-object-hotspot:focus-visible {
   outline: none;
 }
