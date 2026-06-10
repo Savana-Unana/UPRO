@@ -43,6 +43,47 @@ const regions = [
 ]
 /* **Information pertaining to the map regions.** */
 
+const regionObjectData = {
+  region4: [
+    {
+      id: 'observatory',
+      name: 'Observatory Building',
+      description: 'The large gray-roofed building with the rooftop satellite dish.',
+      box: { x: 122, y: 52, width: 112, height: 106 },
+    },
+    {
+      id: 'pavilion',
+      name: 'Central Pavilion',
+      description: 'The round white pavilion in the middle of Spawn Point City.',
+      box: { x: 300, y: 109, width: 63, height: 67 },
+    },
+    {
+      id: 'shop-row',
+      name: 'Shop Row',
+      description: 'The row of tall storefronts on the upper-right side of the city.',
+      box: { x: 385, y: 78, width: 135, height: 116 },
+    },
+    {
+      id: 'dock-building',
+      name: 'Red Dock Building',
+      description: 'The red-roofed structure with two blue pools on the lower-left side.',
+      box: { x: 47, y: 177, width: 92, height: 84 },
+    },
+    {
+      id: 'stage',
+      name: 'Boardwalk Stage',
+      description: 'The small performance stage near the lower-right walkway.',
+      box: { x: 365, y: 190, width: 76, height: 78 },
+    },
+    {
+      id: 'boardwalk',
+      name: 'Beach Boardwalk',
+      description: 'The long wooden boardwalk running across the bottom of the city.',
+      box: { x: 33, y: 309, width: 537, height: 59 },
+    },
+  ],
+}
+
 const mapBounds = regions.reduce(
   (bounds, region) => ({
     minX: Math.min(bounds.minX, region.x),
@@ -69,6 +110,7 @@ const REGION_FOCUS_PADDING = 0.9
 
 export default function MapPage() {
   const [selectedRegionId, setSelectedRegionId] = useState(null)
+  const [selectedObjectId, setSelectedObjectId] = useState(null)
   const [focusedRegionId, setFocusedRegionId] = useState(null)
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
   const [regionWindowPosition, setRegionWindowPosition] = useState(null)
@@ -188,6 +230,22 @@ export default function MapPage() {
     return regions.find(region => region.id === regionId)
   }
 
+  function getFocusedRegionObjects() {
+    if (!focusedRegionId) return []
+
+    const focusedRegion = getRegionById(focusedRegionId)
+    const focusedObjects = regionObjectData[focusedRegionId] || []
+    if (!focusedRegion) return []
+
+    return focusedObjects.map(object => ({
+      ...object,
+      x: focusedRegion.x + object.box.x * MAP_IMAGE_SCALE,
+      y: focusedRegion.y + object.box.y * MAP_IMAGE_SCALE,
+      width: object.box.width * MAP_IMAGE_SCALE,
+      height: object.box.height * MAP_IMAGE_SCALE,
+    }))
+  }
+
   function getRegionFocusView(region) {
     const regionCenter = {
       x: region.x + region.width / 2,
@@ -240,13 +298,24 @@ export default function MapPage() {
 
     returnMapViewRef.current = mapViewRef.current
     setSelectedRegionId(null)
+    setSelectedObjectId(null)
     setFocusedRegionId(regionId)
     focusRegion(regionId)
   }
 
   function returnToMainMap() {
     setFocusedRegionId(null)
+    setSelectedObjectId(null)
     setMapView(returnMapViewRef.current)
+  }
+
+  function selectObject(objectId) {
+    if (!focusedRegionId) return
+
+    const objectExists = getFocusedRegionObjects().some(object => object.id === objectId)
+    if (objectExists) {
+      setSelectedObjectId(objectId)
+    }
   }
 
   function handleMapWheel(event) {
@@ -418,6 +487,8 @@ export default function MapPage() {
   }
 
   const selectedRegion = selectedRegionId ? regionData[selectedRegionId] : null
+  const focusedRegionObjects = getFocusedRegionObjects()
+  const selectedObject = focusedRegionObjects.find(object => object.id === selectedObjectId)
   const regionWindowStyle = regionWindowPosition
     ? { left: `${regionWindowPosition.x}px`, top: `${regionWindowPosition.y}px`, right: 'auto', bottom: 'auto' }
     : undefined
@@ -516,6 +587,27 @@ export default function MapPage() {
                   />
                 )
               })}
+              {focusedRegionObjects.map(object => (
+                <rect
+                  key={object.id}
+                  className="map-object-hotspot"
+                  x={object.x}
+                  y={object.y}
+                  width={object.width}
+                  height={object.height}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={object.name}
+                  onPointerDown={event => event.stopPropagation()}
+                  onClick={() => selectObject(object.id)}
+                  onKeyDown={event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      selectObject(object.id)
+                    }
+                  }}
+                />
+              ))}
             </g>
           </svg>
           {selectedRegion && !focusedRegionId && (
@@ -550,6 +642,33 @@ export default function MapPage() {
                   onClick={() => openRegionFocus(selectedRegionId)}>
                   Open
                 </button>
+              </div>
+            </aside>
+          )}
+          {selectedObject && (
+            <aside
+              ref={regionWindowRef}
+              className="map-region-window map-object-window"
+              style={regionWindowStyle}
+              aria-label={`${selectedObject.name} object data`}>
+              <div
+                className="map-region-window-header"
+                onPointerDown={handleRegionWindowPointerDown}
+                onPointerMove={handleRegionWindowPointerMove}
+                onPointerUp={handleRegionWindowPointerEnd}
+                onPointerCancel={handleRegionWindowPointerEnd}>
+                <h2>{selectedObject.name}</h2>
+                <button
+                  className="map-region-close"
+                  type="button"
+                  onPointerDown={event => event.stopPropagation()}
+                  onClick={() => setSelectedObjectId(null)}
+                  aria-label="Close object data">
+                  x
+                </button>
+              </div>
+              <div className="map-object-detail">
+                <p>{selectedObject.description}</p>
               </div>
             </aside>
           )}
