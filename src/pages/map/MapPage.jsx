@@ -65,9 +65,11 @@ const DEFAULT_MAP_ZOOM = 0.9
 const MAP_ZOOM_STEP = 0.05
 const DEFAULT_MAP_VIEW = { scale: DEFAULT_MAP_ZOOM, x: 0, y: 0 }
 const DEFAULT_REGION_WINDOW_OFFSET = 16
+const REGION_FOCUS_PADDING = 0.9
 
 export default function MapPage() {
   const [selectedRegionId, setSelectedRegionId] = useState(null)
+  const [focusedRegionId, setFocusedRegionId] = useState(null)
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
   const [regionWindowPosition, setRegionWindowPosition] = useState(null)
   const mapContainerRef = useRef(null)
@@ -81,6 +83,7 @@ export default function MapPage() {
   const animationFrameRef = useRef(null)
   const suppressClickRef = useRef(false)
   const regionWindowDragRef = useRef(null)
+  const returnMapViewRef = useRef(DEFAULT_MAP_VIEW)
 
   useEffect(() => {
     document.title = 'Shiverica Map'
@@ -145,6 +148,11 @@ export default function MapPage() {
   }
 
   function resetMapView() {
+    if (focusedRegionId) {
+      focusRegion(focusedRegionId)
+      return
+    }
+
     setMapView(DEFAULT_MAP_VIEW)
   }
 
@@ -166,10 +174,41 @@ export default function MapPage() {
   }
 
   function getRegionEntries() {
-    return regions.map(region => ({
+    const visibleRegions = focusedRegionId
+      ? regions.filter(region => region.id === focusedRegionId)
+      : regions
+
+    return visibleRegions.map(region => ({
       ...region,
       data: regionData[region.id],
     }))
+  }
+
+  function getRegionById(regionId) {
+    return regions.find(region => region.id === regionId)
+  }
+
+  function getRegionFocusView(region) {
+    const regionCenter = {
+      x: region.x + region.width / 2,
+      y: region.y + region.height / 2,
+    }
+    const nextScale = clampZoom(
+      Math.min(500 / region.width, 500 / region.height) * REGION_FOCUS_PADDING,
+    )
+
+    return {
+      scale: nextScale,
+      x: -nextScale * (regionCenter.x - mapContentCenter.x),
+      y: -nextScale * (regionCenter.y - mapContentCenter.y),
+    }
+  }
+
+  function focusRegion(regionId) {
+    const region = getRegionById(regionId)
+    if (!region) return
+
+    setMapView(getRegionFocusView(region))
   }
 
   function clampRegionWindowPosition(nextPosition) {
@@ -189,9 +228,25 @@ export default function MapPage() {
   }
 
   function selectRegion(regionId) {
+    if (focusedRegionId) return
+
     if (regionData[regionId]) {
       setSelectedRegionId(regionId)
     }
+  }
+
+  function openRegionFocus(regionId) {
+    if (!regionData[regionId]) return
+
+    returnMapViewRef.current = mapViewRef.current
+    setSelectedRegionId(null)
+    setFocusedRegionId(regionId)
+    focusRegion(regionId)
+  }
+
+  function returnToMainMap() {
+    setFocusedRegionId(null)
+    setMapView(returnMapViewRef.current)
   }
 
   function handleMapWheel(event) {
@@ -415,6 +470,14 @@ export default function MapPage() {
               onClick={resetMapView}>
               Center
             </button>
+            {focusedRegionId && (
+              <button
+                className="map-button map-main-map-button"
+                type="button"
+                onClick={returnToMainMap}>
+                Main Map
+              </button>
+            )}
           </div>
           <svg
             ref={svgRef}
@@ -455,7 +518,7 @@ export default function MapPage() {
               })}
             </g>
           </svg>
-          {selectedRegion && (
+          {selectedRegion && !focusedRegionId && (
             <aside
               ref={regionWindowRef}
               className="map-region-window"
@@ -481,9 +544,12 @@ export default function MapPage() {
                 <span className="map-region-swatch" style={{ backgroundColor: selectedRegion.color }} />
                 <img className="map-region-image" src={selectedRegion.image} alt={selectedRegion.name} />
                 <p>{selectedRegion.description}</p>
-                <a className="map-region-link" href={selectedRegion.link}>
+                <button
+                  className="map-region-link"
+                  type="button"
+                  onClick={() => openRegionFocus(selectedRegionId)}>
                   Open
-                </a>
+                </button>
               </div>
             </aside>
           )}
