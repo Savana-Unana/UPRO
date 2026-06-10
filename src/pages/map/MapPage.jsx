@@ -500,7 +500,7 @@ export default function MapPage() {
   ].join(' ')
 
   return (
-    <main className="upro-page-root map-page">
+    <main className={`upro-page-root map-page${focusedRegionId ? ' region-focused' : ''}`}>
       <header className="map-header">
         <a className="map-button map-back-button" href="/">
           Back

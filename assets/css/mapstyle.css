@@ -169,6 +169,13 @@ body.map-body p {
   transform-origin: center;
 }
 
+.map-page.region-focused .map-region:hover,
+.map-page.region-focused .map-region:focus-visible {
+  filter: brightness(1.25);
+  outline: none;
+  transform: none;
+}
+
 .map-region:hover,
 .map-region:focus-visible {
   filter: brightness(1.25);
@@ -183,6 +190,17 @@ body.map-body p {
 .map-region.is-selected {
   filter: brightness(1.4) drop-shadow(0 0 8px currentColor);
   transform: scale(1.08);
+}
+
+.map-object-hotspot {
+  fill: transparent;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+.map-object-hotspot:hover,
+.map-object-hotspot:focus-visible {
+  outline: none;
 }
 
 .map-region-window {
