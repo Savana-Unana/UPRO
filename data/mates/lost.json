@@ -1,35 +1,5 @@
 [
   {
-    "name": "Krat",
-    "forms": {
-      "base": [
-        {"name":"Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Kroxer","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Brown","biomes":["Desert"],"image":"assets/images/mates/base/Krat.png","versions":"Demo 2"}
-      ],
-      "sacred": [
-        {"name":"Sacred Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Kroxer","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
-      ],
-      "costumes": [
-        {"name":"LED Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Krat.png","description":"","versions":"Demo 2"},
-        {"name":"Bouncy Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
-      ]
-    }
-  },
-  {
-    "name": "Kroxer",
-    "forms": {
-      "base": [
-        {"name":"Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"","color":null,"biomes":["Desert"],"image":"assets/images/mates/base/Kroxer.png","versions":"Demo 2"}
-      ],
-      "sacred": [
-        {"name":"Sacred Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
-      ],
-      "costumes": [
-        {"name":"LED Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Kroxer.png","description":"","versions":"Demo 2"},
-        {"name":"Beach Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
-      ]
-    }
-  },
-  {
     "name": "Schuck",
     "forms": {
       "base": [
@@ -629,6 +599,9 @@
       ],
       "costumes": [
         {"name":"LED Wyrachnos","types":["Gross","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"}
+      ],
+      "ncanon": [
+        {"name":"OG Wyrachnos","types":["Gross","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGWyrachnos.png","description":"","versions":null}
       ]
     }
   },
@@ -1022,7 +995,7 @@
     "name": "Ohmelisk",
     "forms": {
       "base": [
-        {"name":"Ohmelisk","types":["Electric","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Desert"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2"}
+        {"name":"Ohmelisk","types":["Electric","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Desert"],"image":"assets/images/mates/lost/Ohmelisk.png","versions":"Demo 2"}
       ],
       "sacred": [
         {"name":"Sacred Ohmelisk","types":["Electric","Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2","description":""}
@@ -1834,7 +1807,7 @@
     "name": "Flapdrag",
     "forms": {
       "base": [
-        {"name":"Flapdrag","types":["Savage","Air"],"paraTypes":["Mystic"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Borgo Slor"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 5"}
+        {"name":"Flapdrag","types":["Savage","Air"],"paraTypes":["Mystic"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Borgo Slor"],"image":"assets/images/mates/lost/Flapdrag.png","versions":"Demo 5"}
       ],
       "sacred": [
         {"name":"Sacred Flapdrag","types":["Savage","Air"],"paraTypes":["Mystic"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 5","description":""}
@@ -1911,6 +1884,20 @@
       ],
       "costumes": [
         {"name":"LED Bansheep","types":["Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 6","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Corvendyx",
+    "forms": {
+      "base": [
+        {"name":"Corvendyx","types":["Dark","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Alcatraz"],"image":"assets/images/mates/lost/Corvendyx.png","versions":"Demo 6"}
+      ],
+      "sacred": [
+        {"name":"Sacred Corvendyx","types":["Dark","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 6","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Corvendyx","types":["Dark","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 6","description":""}
       ]
     }
   },
@@ -2110,7 +2097,7 @@
     "name": "Flexoform",
     "forms": {
       "base": [
-        {"name":"Flexoform","types":["Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7"}
+        {"name":"Flexoform","types":["Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/Flexoform.png","versions":"Demo 7"}
       ],
       "sacred": [
         {"name":"Sacred Flexoform","types":["Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7","description":""}
@@ -2121,10 +2108,24 @@
     }
   },
   {
+    "name": "Langle",
+    "forms": {
+      "base": [
+        {"name":"Langle","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/Langle.png","versions":"Demo 7"}
+      ],
+      "sacred": [
+        {"name":"Sacred Langle","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Langle","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 7","description":""}
+      ]
+    }
+  },
+  {
     "name": "Poutglet",
     "forms": {
       "base": [
-        {"name":"Poutglet","types":["Electric","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7"}
+        {"name":"Poutglet","types":["Electric","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/Poutglet.png","versions":"Demo 7"}
       ]
     }
   },
@@ -2146,7 +2147,7 @@
     "name": "Ruok",
     "forms": {
       "base": [
-        {"name":"Ruok","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Urntok","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7"}
+        {"name":"Ruok","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Urntok","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Big City"],"image":"assets/images/mates/lost/Ruok.png","versions":"Demo 7"}
       ],
       "sacred": [
         {"name":"Sacred Ruok","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 7","description":""}
@@ -2217,7 +2218,7 @@
     "name": "Frostent",
     "forms": {
       "base": [
-        {"name":"Frostent","types":["Ice","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Ice-Caps"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 8"}
+        {"name":"Frostent","types":["Ice","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Ice-Caps"],"image":"assets/images/mates/lost/Frostent.png","versions":"Demo 8"}
       ]
     }
   },
@@ -2731,13 +2732,13 @@
     "name": "Buzzibee",
     "forms": {
       "base": [
-        {"name":"Buzzibee","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Wasniach","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Swamp"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 12"}
+        {"name":"Buzzibee","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Wasniach","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Swamp"],"image":"assets/images/mates/lost/Buzzibee.png","versions":"Demo 12"}
       ],
       "sacred": [
-        {"name":"Sacred Buzzibee","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Wasniach","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 12"}
+        {"name":"Sacred Buzzibee","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Wasniach","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 12"}
       ],
       "costumes": [
-        {"name":"LED Buzzibee","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"}
+        {"name":"LED Buzzibee","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"}
       ]
     }
   },
@@ -2745,13 +2746,13 @@
     "name": "Wasniach",
     "forms": {
       "base": [
-        {"name":"Wasniach","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Swamp"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 12"}
+        {"name":"Wasniach","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Swamp"],"image":"assets/images/mates/lost/Wasniach.png","versions":"Demo 12"}
       ],
       "sacred": [
-        {"name":"Sacred Wasniach","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 12"}
+        {"name":"Sacred Wasniach","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 12"}
       ],
       "costumes": [
-        {"name":"LED Wasniach","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"}
+        {"name":"LED Wasniach","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"}
       ]
     }
   },
@@ -2829,13 +2830,13 @@
     "name": "Guardung",
     "forms": {
       "base": [
-        {"name":"Guardung","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Swamp"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 12"}
+        {"name":"Guardung","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Swamp"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 12"}
       ],
       "sacred": [
-        {"name":"Sacred Guardung","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 12","description":""}
+        {"name":"Sacred Guardung","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 12","description":""}
       ],
       "costumes": [
-        {"name":"LED Guardung","types":["Metal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 12","description":""}
+        {"name":"LED Guardung","types":["Gross","Metal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 12","description":""}
       ]
     }
   },
@@ -3106,7 +3107,7 @@
     "name": "Solaphim",
     "forms": {
       "base": [
-        {"name":"Solaphim","types":["Air","Light"],"paraTypes":["Fire"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Mos.png","description":"","versions":null}
+        {"name":"Solaphim","types":["Air","Light"],"paraTypes":["Fire"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Solaphim.png","description":"","versions":null}
       ]
     }
   },
@@ -3178,7 +3179,7 @@
     "name": "Vinelurk",
     "forms": {
       "base": [
-        {"name":"Vinelurk","types":["Earth","Plant"],"paraTypes":["Normal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Vinetrap","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Mos.png","description":"","versions":null}
+        {"name":"Vinelurk","types":["Earth","Plant"],"paraTypes":["Normal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Vinetrap","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Vinelurk.png","description":"","versions":null}
       ]
     }
   },
@@ -3186,7 +3187,7 @@
     "name": "Vinetrap",
     "forms": {
       "base": [
-        {"name":"Vinetrap","types":["Earth","Plant"],"paraTypes":["Normal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Mos.png","description":"","versions":null}
+        {"name":"Vinetrap","types":["Earth","Plant"],"paraTypes":["Normal"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Vinetrap.png","description":"","versions":null}
       ]
     }
   },
@@ -3203,6 +3204,14 @@
     "forms": {
       "base": [
         {"name":"Wiplash","types":["Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Mos.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Got",
+    "forms": {
+      "base": [
+        {"name":"Got","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/Got.png","description":"","versions":null}
       ]
     }
   },

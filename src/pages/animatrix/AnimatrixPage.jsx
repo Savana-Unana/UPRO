@@ -86,6 +86,7 @@ export default function AnimatrixPage() {
         "Mountains",
         "Plains",
         "Circus",
+        "Dead Zone",
         "Ice-Caps",
         "Ranch",
         "Volcano",
@@ -973,8 +974,13 @@ export default function AnimatrixPage() {
       }
 
       function biomeImagePath(biomeName) {
-        if (!biomeName) return "";
-        return `${import.meta.env.BASE_URL}assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
+        const name = String(biomeName || "").trim();
+        if (!name) return "";
+        return `${import.meta.env.BASE_URL}assets/images/ui/biomes/${name}.png`;
+      }
+
+      function cssImageUrl(path) {
+        return `url("${String(path || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"')}")`;
       }
 
       function loadMode(mode) {
@@ -1055,7 +1061,7 @@ export default function AnimatrixPage() {
             const firstBiome = getMateBiomes(mate)[0];
             if (!listViewCard && firstBiome && modeUsesBiomeArt(currentMode)) {
               card.classList.add("biome-bg");
-              card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
+              card.style.setProperty("--biome-image", cssImageUrl(biomeImagePath(firstBiome)));
             }
             if (!listViewCard) {
               applyMateStyle(card, mate);
@@ -1384,7 +1390,7 @@ export default function AnimatrixPage() {
         const detailBiome = getMateBiomes(mate)[0];
         mateVitals.classList.toggle("biome-bg", Boolean(detailBiome));
         if (detailBiome) {
-          mateVitals.style.setProperty("--biome-image", `url('${biomeImagePath(detailBiome)}')`);
+          mateVitals.style.setProperty("--biome-image", cssImageUrl(biomeImagePath(detailBiome)));
         } else {
           mateVitals.style.removeProperty("--biome-image");
         }

@@ -1,35 +1,5 @@
 [
   {
-    "name": "Krat",
-    "forms": {
-      "base": [
-        {"name":"Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Kroxer","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Brown","biomes":["Desert"],"image":"assets/images/mates/base/Krat.png","versions":"Demo 2"}
-      ],
-      "sacred": [
-        {"name":"Sacred Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Kroxer","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
-      ],
-      "costumes": [
-        {"name":"LED Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Krat.png","description":"","versions":"Demo 2"},
-        {"name":"Bouncy Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
-      ]
-    }
-  },
-  {
-    "name": "Kroxer",
-    "forms": {
-      "base": [
-        {"name":"Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"","color":null,"biomes":["Desert"],"image":"assets/images/mates/base/Kroxer.png","versions":"Demo 2"}
-      ],
-      "sacred": [
-        {"name":"Sacred Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
-      ],
-      "costumes": [
-        {"name":"LED Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Kroxer.png","description":"","versions":"Demo 2"},
-        {"name":"Beach Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
-      ]
-    }
-  },
-  {
     "name": "Schuck",
     "forms": {
       "base": [
@@ -2633,7 +2603,7 @@
       ]
     }
   },
-{
+  {
     "name": "Bellop",
     "forms": {
       "base": [
@@ -3045,6 +3015,158 @@
       ],
       "costumes": [
         {"name":"LED Cuggaeous","types":["Mystic","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 14"}
+      ]
+    }
+  },
+  {
+    "name": "Toumern",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Plains"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Sacred Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":null}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Toumern","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Shiver Molds",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Shiver Molds","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Shiver Molds V2.0","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Shiver Molds","types":["Earth","Spectral"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Waxilo",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Waxilo","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/Waxilo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Waxilo V2.0","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Waxilo","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Betophage",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Betophage","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Betophage V2.0","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Betophage","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Drawrlin",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"name":"Sacred Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"name":"LED Drawrlin","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":[],"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"}
+      ]
+    }
+  },
+  {
+    "name": "Shiver Dupes",
+    "forms": {
+      "base": [
+        {"event":"Halloween","name":"Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Factory"],"image":"assets/images/mates/lost/Duplergrail.png","description":"","versions":"Halloween"}
+      ],
+      "sacred": [
+        {"event":"Halloween","name":"Shiver Dupes V2.0","types":["Metal"],"paraTypes":[""],"rarity":"Shiver","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Halloween"}
+      ],
+      "costumes": [
+        {"event":"halloween","name":"LED Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Halloween"},
+        {"event":"halloween","name":"Stone Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"event":"halloween","name":"Docto Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
+        {"event":"halloween","name":"Playtime Shiver Dupes","types":["Metal"],"paraTypes":[""],"rarity":"Shiver, Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Thoot",
+    "forms": {
+      "base": [
+        {"event":"April Fools","name":"Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/Thoot.png","description":"","versions":"April Fools"}
+      ],
+      "sacred": [
+        {"event":"fools","name":"Sacred Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/S.Thoot.png","description":"","versions":"April Fools"}
+      ],
+      "costumes": [
+        {"event":"fools","name":"LED Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":[],"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"event":"fools","name":"Cat Piano Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"event":"fools","name":"Suit Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"},
+        {"event":"fools","name":"Ringmaster Thoot","types":["Lucid"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Aurorial",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Aurorial","types":["Light"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Light","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Citrinel",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Citrinel","types":["Plant","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Axoloth",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Axoloth","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Salelesure",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Salelesure","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Accelotl",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Accelotl","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
+      ]
+    }
+  },
+  {
+    "name": "Placibial",
+    "forms": {
+      "base": [
+        {"event":"Anti","name":"Placibial","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":[""],"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"April Fools"}
       ]
     }
   },

@@ -35,12 +35,17 @@ function applyInheritedFields(form, baseForm, mode) {
 }
 
 function getOutputMode(mode, sourceKind) {
-  if (sourceKind === "lost" && mode === "base") return "goner";
+  if ((sourceKind === "lost" || sourceKind === "goner") && mode === "base") return "goner";
   return mode;
 }
 
-export function expandGroupedMateData(groups, sourceKind = "base") {
+function isEventForm(form) {
+  return form?.event !== undefined && form?.event !== null;
+}
+
+export function expandGroupedMateData(groups, sourceKind = "base", options = {}) {
   const buckets = createMateBuckets();
+  const eventOnly = options.eventOnly === true;
 
   if (!Array.isArray(groups)) return buckets;
 
@@ -61,6 +66,7 @@ export function expandGroupedMateData(groups, sourceKind = "base") {
       if (!buckets[outputMode] || !Array.isArray(forms)) return;
       forms.forEach(form => {
         if (!form || typeof form !== "object") return;
+        if (eventOnly && !isEventForm(form)) return;
         buckets[outputMode].push({
           ...applyInheritedFields(form, baseForm, mode),
           ref: form.ref || groupName,
@@ -88,17 +94,47 @@ export function mergeMateBuckets(...bucketSets) {
   return merged;
 }
 
+function mateBucketKey(mate) {
+  return [
+    mate?.mode || "",
+    mate?.ref || "",
+    mate?.name || "",
+    mate?.image || "",
+    mate?.event || ""
+  ].join("\u0000");
+}
+
+function removeExistingBucketEntries(source, existing) {
+  const seen = new Set();
+  mateModes.forEach(mode => {
+    (existing?.[mode] || []).forEach(mate => {
+      seen.add(mateBucketKey(mate));
+    });
+  });
+
+  const filtered = createMateBuckets();
+  mateModes.forEach(mode => {
+    filtered[mode] = (source?.[mode] || []).filter(mate => !seen.has(mateBucketKey(mate)));
+  });
+  return filtered;
+}
+
 export async function fetchMateBuckets() {
-  const [baseGroups, lostGroups, npc] = await Promise.all([
+  const [baseGroups, lostGroups, gonerGroups, npc] = await Promise.all([
     fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/lost.json").then(response => response.json()).catch(() => []),
+    fetch("data/mates/goner.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
   ]);
 
-  const buckets = mergeMateBuckets(
-    expandGroupedMateData(baseGroups, "base"),
-    expandGroupedMateData(lostGroups, "lost")
+  const baseBuckets = expandGroupedMateData(baseGroups, "base");
+  const lostBuckets = expandGroupedMateData(lostGroups, "lost");
+  const loadedBuckets = mergeMateBuckets(baseBuckets, lostBuckets);
+  const gonerEventBuckets = removeExistingBucketEntries(
+    expandGroupedMateData(gonerGroups, "goner", { eventOnly: true }),
+    loadedBuckets
   );
+  const buckets = mergeMateBuckets(loadedBuckets, gonerEventBuckets);
   buckets.npc = Array.isArray(npc) ? npc : [];
   return buckets;
 }
