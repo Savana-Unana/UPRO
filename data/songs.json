@@ -72,8 +72,20 @@
     "Version": "Demo 1"
   },
   {
-    "name": "Twilight",
-    "file": null,
+    "name": "Twilight Ashore",
+    "file": "assets/audio/TwilightAshore.mp3",
+    "ost": 6,
+    "composer": "Glitched 0ut",
+    "area": "Forest",
+    "theme": "Overworld Theme",
+    "typing": "Plant",
+    "description": "",
+    "description-title": "Forest Night Theme",
+    "Version": "Demo 1"
+  },  
+  {
+    "name": "Midnight Ashore",
+    "file": "assets/audio/MidnightAshore.mp3",
     "ost": 6,
     "composer": "Glitched 0ut",
     "area": "Forest",
