@@ -37,7 +37,7 @@
   },
   {
     "name": "On The Block",
-    "file": "assets/audio/OnTheBlockDemo.mp3",
+    "file": "assets/audio/OnTheBlock.mp3",
     "ost": 4,
     "composer": "Jimm560",
     "area": "Homegrounds",
@@ -89,7 +89,19 @@
     "ost": 6,
     "composer": "Glitched 0ut",
     "area": "Forest",
-    "theme": "Overworld Theme",
+    "theme": "False Theme",
+    "typing": "Plant",
+    "description": "",
+    "description-title": "Forest Night Theme",
+    "Version": "Demo 1"
+  },
+    {
+    "name": "Gospel Ashore",
+    "file": "assets/audio/GospelAshore.mp3",
+    "ost": 6,
+    "composer": "Glitched 0ut",
+    "area": "Forest",
+    "theme": "False Theme",
     "typing": "Plant",
     "description": "",
     "description-title": "Forest Night Theme",
@@ -253,7 +265,7 @@
   },
   {
     "name": "Low Tide",
-    "file": null,
+    "file": "assets/audio/LowTide.mp3",
     "ost": 20,
     "composer": null,
     "area": "Water Gauntlet",
