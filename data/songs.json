@@ -277,9 +277,9 @@
   },
   {
     "name": "Thalassophobia",
-    "file": null,
+    "file": "assets/audio/Thalassophobia.mp3",
     "ost": 21,
-    "composer": null,
+    "composer": "Glitched 0ut",
     "area": "Water Gauntlet",
     "theme": "Game Theme",
     "typing": "Water",
