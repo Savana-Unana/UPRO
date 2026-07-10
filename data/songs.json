@@ -48,18 +48,6 @@
     "Version": "Demo 1"
   },
   {
-    "name": "Just Kidding",
-    "file": "assets/audio/JustKidding.mp3",
-    "ost": 4,
-    "composer": "Jimm560",
-    "area": "Homegrounds",
-    "theme": "False Theme",
-    "typing": "Normal",
-    "description": "",
-    "description-title": "Chip Tutorial Overworld Theme?",
-    "Version": "Demo 1"
-  },
-  {
     "name": "Humble Ashore",
     "file": "assets/audio/HumbleAshore.mp3",
     "ost": 5,
@@ -83,30 +71,6 @@
     "description-title": "Forest Night Theme",
     "Version": "Demo 1"
   },  
-  {
-    "name": "Midnight Ashore",
-    "file": "assets/audio/MidnightAshore.mp3",
-    "ost": 6,
-    "composer": "Glitched 0ut",
-    "area": "Forest",
-    "theme": "False Theme",
-    "typing": "Plant",
-    "description": "",
-    "description-title": "Forest Night Theme",
-    "Version": "Demo 1"
-  },
-    {
-    "name": "Gospel Ashore",
-    "file": "assets/audio/GospelAshore.mp3",
-    "ost": 6,
-    "composer": "Glitched 0ut",
-    "area": "Forest",
-    "theme": "False Theme",
-    "typing": "Plant",
-    "description": "",
-    "description-title": "Forest Night Theme",
-    "Version": "Demo 1"
-  },
   {
     "name": "Call of the Wild",
     "file": "assets/audio/CalloftheWild.mp3",
@@ -152,7 +116,7 @@
     "theme": "Battle Theme",
     "typing": "Normal",
     "description": "",
-    "description-title": "",
+    "description-title": "Reposition Normal Battle Theme",
     "Version": "Demo 1"
   },
   {
@@ -168,27 +132,27 @@
     "Version": "Demo 1"
   },
   {
-    "name": "Spawn Point",
-    "file": "assets/audio/SpawnPoint.mp3",
+    "name": "Calm After The Storm",
+    "file": "assets/audio/CalmAfterTheStorm.mp3",
     "ost": 12,
     "composer": "Glitched 0ut",
     "area": "Spawnpoint",
     "theme": "Overworld Theme",
     "typing": "Normal",
     "description": "",
-    "description-title": "Spawn-Point Theme",
+    "description-title": "Herc At Werc Theme",
     "Version": "Demo 1"
   },
   {
-    "name": "Wears and Tares",
-    "file": null,
+    "name": "Spawn Point",
+    "file": "assets/audio/SpawnPoint.mp3",
     "ost": 13,
     "composer": "Glitched 0ut",
-    "area": "MT",
-    "theme": "Game Theme",
-    "typing": "Plant",
+    "area": "Spawnpoint",
+    "theme": "Overworld Theme",
+    "typing": "Normal",
     "description": "",
-    "description-title": "Mysterious Trader Shop Theme",
+    "description-title": "Spawn-Point Theme",
     "Version": "Demo 1"
   },
   {
@@ -204,15 +168,15 @@
     "Version": "Demo 1"
   },
   {
-    "name": "Calm After The Storm",
-    "file": "assets/audio/CalmAfterTheStorm.mp3",
+    "name": "Wears and Tares",
+    "file": null,
     "ost": 15,
     "composer": "Glitched 0ut",
-    "area": "Spawnpoint",
-    "theme": "Overworld Theme",
-    "typing": "Normal",
+    "area": "MT",
+    "theme": "Game Theme",
+    "typing": "Plant",
     "description": "",
-    "description-title": "Herc At Werc Theme",
+    "description-title": "Mysterious Trader Shop Theme",
     "Version": "Demo 1"
   },
   {
@@ -241,9 +205,9 @@
   },
   {
     "name": "Wading",
-    "file": null,
+    "file": "assets/audio/Wading.mp3",
     "ost": 18,
-    "composer": null,
+    "composer": "Glitched 0ut",
     "area": "Water Gauntlet",
     "theme": "Gauntlet Theme",
     "typing": "Water",
@@ -324,9 +288,21 @@
     "Version": "Demo 1"
   },
   {
-    "name": "Submerged",
+    "name": "Drifting",
     "file": null,
     "ost": 25,
+    "composer": null,
+    "area": "TV Game",
+    "theme": "Game Theme",
+    "typing": "Metal",
+    "description": "",
+    "description-title": "Driving Game Theme",
+    "Version": "Demo 1"
+  },
+  {
+    "name": "Submerged",
+    "file": null,
+    "ost": 26,
     "composer": null,
     "area": "Deep Waters",
     "theme": "Overworld Theme",
@@ -338,7 +314,7 @@
   {
     "name": "Deep Water",
     "file": null,
-    "ost": 25,
+    "ost": 27,
     "composer": null,
     "area": "Deep Waters",
     "theme": "Battle Theme",
@@ -350,13 +326,49 @@
   {
     "name": "Dead Zone",
     "file": null,
-    "ost": 26,
+    "ost": 28,
     "composer": null,
     "area": "Deep Waters",
     "theme": "Ace Theme",
     "typing": "Spectral",
     "description": "",
     "description-title": "Ghouliath Battle Theme",
+    "Version": "Demo 1"
+  },
+  {
+    "name": "Just Kidding",
+    "file": "assets/audio/JustKidding.mp3",
+    "ost": 1000,
+    "composer": "Jimm560",
+    "area": "Homegrounds",
+    "theme": "False Theme",
+    "typing": "Normal",
+    "description": "",
+    "description-title": "Chip Tutorial Overworld Theme?",
+    "Version": "Demo 1"
+  },
+  {
+    "name": "Midnight Ashore",
+    "file": "assets/audio/MidnightAshore.mp3",
+    "ost": 1000,
+    "composer": "Glitched 0ut",
+    "area": "Forest",
+    "theme": "False Theme",
+    "typing": "Plant",
+    "description": "",
+    "description-title": "Forest Night Theme",
+    "Version": "Demo 1"
+  },
+  {
+    "name": "Gospel Ashore",
+    "file": "assets/audio/GospelAshore.mp3",
+    "ost": 1000,
+    "composer": "Glitched 0ut",
+    "area": "Forest",
+    "theme": "False Theme",
+    "typing": "Plant",
+    "description": "",
+    "description-title": "Forest Night Theme",
     "Version": "Demo 1"
   },
   {
