@@ -1,6 +1,5 @@
 import MainMenuPage from '../pages/main-menu/MainMenuPage.jsx'
 import AnimatrixPage from '../pages/animatrix/AnimatrixPage.jsx'
-import AnimatrixPageSimple from '../pages/animatrix/AnimatrixPageSimple.jsx'
 import CatalogPage from '../pages/catalog/CatalogPage.jsx'
 import ChatPage from '../pages/chat/ChatPage.jsx'
 import ConstructionPage from '../pages/construction/ConstructionPage.jsx'
@@ -20,7 +19,6 @@ import VotePage from '../pages/vote/VotePage.jsx'
 export const routes = [
   { path: '/', title: 'Erm Ma Ha Sigma', Component: MainMenuPage },
   { path: '/animatrix', title: 'Animatrix', Component: AnimatrixPage },
-  { path: '/codingassignment', title: 'Animatrix Simple', Component: AnimatrixPageSimple },
   { path: '/catalog', title: 'Catalog', Component: CatalogPage },
   { path: '/chat', title: 'Dialogue Box Builder', Component: ChatPage },
   { path: '/construction', title: 'Under Construction', Component: ConstructionPage },

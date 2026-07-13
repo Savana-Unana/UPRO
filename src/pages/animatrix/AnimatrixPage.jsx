@@ -1408,13 +1408,44 @@ export default function AnimatrixPage() {
           document.getElementById("abilityContainer").innerHTML = renderObtainmentHtml(mate);
           document.getElementById("paraTypesContainer").innerHTML = "";
           document.getElementById("evolutionsContainer").innerHTML = "";
-          const tabsContainer = document.querySelector(".dex-tabs");
-          tabsContainer.innerHTML = "";
           const npcHtml = `
-              <div><strong>Description: </strong>${escapeHtml(mate.Description || "None")}</div>
+              <div><strong>Friendskip Message: </strong>${escapeHtml(mate.Description || "None")}</div>
               <div><strong>Reference:</strong> ${escapeHtml(mate.reference || "None")}</div>
-          `;
+            `;
           document.getElementById("mateDexText").innerHTML = npcHtml;
+
+          if (mate.cosmark !== "Y") {
+            const fullHeart = "\u2665";
+            const emptyHeart = "\u2661";
+            const npcEntryNames = [
+              `${fullHeart}${emptyHeart}${emptyHeart}${emptyHeart}`,
+              `${fullHeart}${fullHeart}${emptyHeart}${emptyHeart}`,
+              `${fullHeart}${fullHeart}${fullHeart}${emptyHeart}`,
+              `${fullHeart}${fullHeart}${fullHeart}${fullHeart}`
+            ];
+            const renderNpcEntry = entryName => {
+              const entryText = mate.dexEntries?.[entryName] || mate.entries?.[entryName] || mate[entryName];
+              return entryText ? escapeHtml(entryText) : npcHtml;
+            };
+            const setNpcEntry = activeIndex => {
+              tabsContainer.querySelectorAll(".dex-tab").forEach((tab, index) => {
+                tab.classList.toggle("active", index === activeIndex);
+                tab.textContent = index <= activeIndex ? fullHeart : emptyHeart;
+              });
+              document.getElementById("mateDexText").innerHTML = renderNpcEntry(npcEntryNames[activeIndex]);
+            };
+
+            npcEntryNames.forEach((name, idx) => {
+              const tabBtn = document.createElement("button");
+              tabBtn.className = "dex-tab";
+              tabBtn.dataset.entry = name;
+              tabBtn.setAttribute("aria-label", name);
+              tabBtn.onclick = () => setNpcEntry(idx);
+              tabsContainer.appendChild(tabBtn);
+            });
+
+            setNpcEntry(0);
+          }
         }
         else {
           let tabNames = ["Discovered", "First Caught", "Experienced", "Reverense"];
