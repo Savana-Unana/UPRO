@@ -1,19 +1,97 @@
 [
-{"name":"Bored","typing":"Normal","desc":"Has a 10% chance per turn to not do anything while inflicted."},
-{"name":"Wet","typing":"Water","desc":""},
-{"name":"Burn","typing":"Fire","desc":"Takes 5% dmg per turn. Also lowers MATK by 15% while inflicted."},
-{"name":"Poison","typing":"Plant","desc":""},
-{"name":"Bloated","typing":"Air","desc":"Will heal by 2% per turn, but SP is lowered by 20% and RATK is lowered by 5% while inflicted."},
-{"name":"","typing":"Metal","desc":""},
-{"name":"Conductive","typing":"Electric","desc":"Opposing damaging attacks attack 25% faster while inflicted."},
-{"name":"Confused","typing":"Mystic","desc":"A 10% chance per turn to attack itself while inflicted."},
-{"name":"Possessed","typing":"Spectral","desc":"A 30% chance once to attack itself with it's own move."},
-{"name":"","typing":"Savage","desc":""},
-{"name":"Nauseous","typing":"Gross","desc":"Has a 10% chance per turn to use the wrong move and lowers RATK by 10% while inflicted"},
-{"name":"Frozen","typing":"Ice","desc":""},
-{"name":"","typing":"Earth","desc":""},
-{"name":"Wounded","typing":"Artillery","desc":"Cannot be swapped out. Increases all RATK dmg by 14% while inflicted."},
-{"name":"Exposed","typing":"Light","desc":"Opposing attacks are unable to miss while inflicted."},
-{"name":"Blind","typing":"Dark","desc":"Attacks have a 40% increase in missing while inflicted."},
-{"name":"","typing":"Lucid","desc":""}
+  {
+    "name": "Bored",
+    "typing": "Normal",
+    "desc": "Has a 10% chance per turn to not do anything while inflicted."
+  },
+  {
+    "name": "Rooted",
+    "typing": "Plant",
+    "desc": "Cannot use melee actions or swap out. Earth attacks on it free it."
+  },
+  {
+    "name": "Burned",
+    "typing": "Fire",
+    "desc": "Takes 5% dmg per turn. Also lowers MATK by 15% while inflicted."
+  },
+  {
+    "name": "Wet",
+    "typing": "Water",
+    "desc": "Takes 125% damage from Electric attacks, 80% from Fire attacks, and has a 20% higher chance to get Frozen."
+  },
+  {
+    "name": "Frozen",
+    "typing": "Ice",
+    "desc": "Cannot use ranged actions or swap out. Fire attacks on it free it."
+  },
+  {
+    "name": "Nauseus",
+    "typing": "Gross",
+    "desc": "Has a 10% chance per turn to use the wrong action and lowers RATK by 10% while inflicted."
+  },
+  {
+    "name": "Bleeding",
+    "typing": "Artillery",
+    "desc": "EP is lowered by 1."
+  },
+  {
+    "name": "Drained",
+    "typing": "Electric",
+    "desc": "Can only use 2 actions."
+  },
+  {
+    "name": "",
+    "typing": "Air",
+    "desc": ""
+  },
+  {
+    "name": "Bound",
+    "typing": "Spectral",
+    "desc": "Cannot switch out."
+  },
+  {
+    "name": "Afraid",
+    "typing": "Savage",
+    "desc": "The second half of all attacking actions an opponent uses loses 30% Accuracy."
+  },
+  {
+    "name": "Exposed",
+    "typing": "Light",
+    "desc": "Opposing attacks that have >79% accuracy are unable to miss while inflicted."
+  },
+  {
+    "name": "Blinded",
+    "typing": "Dark",
+    "desc": "Max accuracy is 90%."
+  },
+  {
+    "name": "Dizzy",
+    "typing": "Mystic",
+    "desc": "Attacks have a 20% chance to self-harm."
+  },
+  {
+    "name": "Burrowed",
+    "typing": "Earth",
+    "desc": "Immune to ranged attacks but cannot use ranged."
+  },
+  {
+    "name": "",
+    "typing": "Metal",
+    "desc": ""
+  },
+  {
+    "name": "Prone",
+    "typing": "Lucid",
+    "desc": "If a Prone Mon's attack is blocked, canceled, or misses, the next attack that successfully hits it deals increased damage."
+  },
+  {
+    "name": "Armored",
+    "typing": "Lucid",
+    "desc": "Revives at 10% HP."
+  },
+  {
+    "name": "Groovy",
+    "typing": "Lucid",
+    "desc": "Repeated attacks do extra damage increasingly."
+  }
 ]

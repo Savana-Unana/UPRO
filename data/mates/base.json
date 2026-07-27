@@ -642,17 +642,16 @@
     }
   },
   {
-    "name": "Chordal",
+    "name": "???",
     "forms": {
       "base": [
-        {"name":"Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/base/Chordal.png","versions":"Demo 1"}
+        {"name":"???","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/base/Chordal.png","versions":"Demo 1"}
       ],
       "sacred": [
-        {"name":"Sacred Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+        {"name":"Sacred ???","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
       ],
       "costumes": [
-        {"name":"LED Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Chordal.png","description":"","versions":"Demo 1"},
-        {"name":"Wooden Chordal","types":["Water","Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+        {"name":"LED ???","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Chordal.png","description":"","versions":"Demo 1"}
       ]
     }
   },
@@ -706,33 +705,106 @@
       ]
     }
   },
-    {
-    "name": "Krat",
+  {
+    "name": "Bombabeak",
     "forms": {
       "base": [
-        {"name":"Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Kroxer","level":null}],"abilities":[],"moves":[],"height":"2ft","color":"Brown","biomes":["Desert"],"image":"assets/images/mates/base/Krat.png","versions":"Demo 2"}
+        {"name":"Bombabeak","types":["Metal","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"5ft","color":"Red","biomes":["Mountains"],"image":"assets/images/mates/lost/Bombabeak.png","versions":"Demo 1"}
       ],
       "sacred": [
-        {"name":"Sacred Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Kroxer","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+        {"name":"Sacred Bombabeak","types":["Metal","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 4"}
       ],
       "costumes": [
-        {"name":"LED Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Krat.png","description":"","versions":"Demo 2"},
-        {"name":"Bouncy Krat","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
+        {"name":"LED Bombabeak","types":["Metal","Artillery"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 4"}
       ]
     }
   },
   {
-    "name": "Kroxer",
+    "name": "Buntot",
     "forms": {
       "base": [
-        {"name":"Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"","color":null,"biomes":["Desert"],"image":"assets/images/mates/base/Kroxer.png","versions":"Demo 2"}
+        {"name":"Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","CExperienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Challadin","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Borgo Slor"],"image":"assets/images/mates/base/Buntot.png","versions":"Demo 5"}
       ],
       "sacred": [
-        {"name":"Sacred Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+        {"name":"Buntot Toasted Forme","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Challadin Toasted Forme","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/base/BuntotTF.png","description":"","versions":"Demo 5"}
       ],
       "costumes": [
-        {"name":"LED Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Kroxer.png","description":"","versions":"Demo 2"},
-        {"name":"Beach Kroxer","types":["Normal","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
+        {"name":"LED Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Buntot.png","description":"","versions":"Demo 5"},
+        {"name":"Chocolate Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 5","description":""},
+        {"name":"Birthday Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/BD.Buntot.png","description":"","versions":"Demo 5"},
+        {"name":"Belated Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/B.Buntot.png","description":"","versions":"April Fools"},
+        {"name":"Burnt Belated Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/B.BuntotTF.png","description":"","versions":"April Fools"},
+        {"name":"Marshmellow Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 7"}
+      ],
+      "ncanon": [
+        {"name":"Old Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":null},
+        {"name":"Chocolate Buntot","types":["Earth","Air"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 5"},
+        {"name":"Older LED Buntot","types":["Mystic"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OOL.Buntot.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Challadin",
+    "forms": {
+      "base": [
+        {"name":"Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Bagueezer","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Borgo Slor"],"image":"assets/images/mates/base/Challadin.png","versions":"Demo 5"}
+      ],
+      "sacred": [
+        {"name":"Challadin Toasted Forme","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Bagueezer Toasted Forme","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/base/ChalladinTF.png","description":"","versions":"Demo 5"}
+      ],
+      "costumes": [
+        {"name":"LED Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Challadin.png","description":"","versions":"Demo 5"},
+        {"name":"Hero Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/H.Challadin.png","description":"","versions":"Demo 7"},
+        {"name":"Holo Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"},
+        {"name":"Bouncer Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 12"}
+      ],
+      "ncanon": [
+        {"name":"OG Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGChalladin.png","description":"","versions":null},
+        {"name":"OG Challadin Toasted Forme","types":["Mystic","Fire"],"paraTypes":["Gross"],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OGChalladinTF.png","description":"","versions":null},
+        {"name":"OG LED Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OOGL.Challadin.png","description":"","versions":null},
+        {"name":"2nd OG LED Challadin","types":["Mystic"],"paraTypes":[""],"rarity":"Mode","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/OL.Challadin.png","description":"","versions":null}
+      ]
+    }
+  },
+  {
+    "name": "Cryodon",
+    "forms": {
+      "base": [
+        {"name":"Cryodon","types":["Ice","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Reptundra","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Ice-Caps"],"image":"assets/images/mates/base/Cryodon.png","versions":"Demo 8"}
+      ],
+      "sacred": [
+        {"name":"Sacred Cryodon","types":["Ice","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Reptundra","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 8"}
+      ],
+      "costumes": [
+        {"name":"LED Cryodon","types":["Ice","Savage"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 8"}
+      ]
+    }
+  },
+  {
+    "name": "Polerb",
+    "forms": {
+      "base": [
+        {"name":"Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Ice-Caps"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 8"}
+      ],
+      "sacred": [
+        {"name":"Sacred Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 8","description":""}
+      ],
+      "costumes": [
+        {"name":"LED Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 8","description":""}
+      ]
+    }
+  },
+  {
+    "name": "Rebble",
+    "forms": {
+      "base": [
+        {"name":"Rebble","types":["Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Tectoadaver","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Caverns"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 11"}
+      ],
+      "sacred": [
+        {"name":"Sacred Rebble","types":["Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Sacred Tectoadaver","level":null}],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 11"}
+      ],
+      "costumes": [
+        {"name":"LED Rebble","types":["Earth"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 11"}
       ]
     }
   }

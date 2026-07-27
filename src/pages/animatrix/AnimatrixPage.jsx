@@ -403,12 +403,13 @@ export default function AnimatrixPage() {
               ncanon: annotateMateOrder("ncanon", mateBuckets.ncanon || []), 
               costumes: annotateMateOrder("costumes", mateBuckets.costumes || []),
               npc: annotateMateOrder("npc", mateBuckets.npc || []),
+              evolution: mateBuckets.evolution || {},
               event: [] // initialize event
             };
 
             // now safe to filter and push to event
             Object.entries(allData).forEach(([mode, mates]) => {
-              if (mode === "event") return; // skip event itself
+              if (mode === "event" || mode === "evolution") return; // skip non-display pools
               allData[mode] = mates.filter(mate => {
                 if (mate.event !== undefined && mate.event !== null) {
                   mate.sourceMode = mode;    // preserve original tab for event-specific logic
@@ -448,7 +449,7 @@ export default function AnimatrixPage() {
         function buildStats() {
           const hasValidId = m => getMateDisplayId(m) !== null;
           const allMons = Object.entries(allData).flatMap(
-            ([mode, mons]) => mons.map(m => ({ ...m, mode }))
+            ([mode, mons]) => mode === "evolution" ? [] : mons.map(m => ({ ...m, mode }))
           );
 
           // -------------------- MODE STATS --------------------
@@ -489,7 +490,9 @@ export default function AnimatrixPage() {
           modeHtml += `</div></section>`;
 
         // -------------------- MISSINGNO COUNT (all modes except NPC) --------------------
-        const nonNpcMons = Object.values(allData)
+        const nonNpcMons = Object.entries(allData)
+          .filter(([mode]) => mode !== "evolution")
+          .map(([, mons]) => mons)
           .flat()
           .filter(m => m.mode !== "npc" && hasValidId(m)); // includes event now
 
@@ -861,6 +864,7 @@ export default function AnimatrixPage() {
         mateByName = new Map();
 
         Object.entries(allData).forEach(([mode, mates]) => {
+          if (mode === "evolution") return;
           (mates || []).forEach(mate => {
             const form = { ...mate, mode };
             const ownName = getReferenceKey(form);
@@ -878,6 +882,7 @@ export default function AnimatrixPage() {
         });
 
         Object.entries(allData).forEach(([mode, mates]) => {
+          if (mode === "evolution") return;
           (mates || []).forEach(mate => {
             const form = { ...mate, mode };
             const resolvedRef = getResolvedMateRef(form);
@@ -1111,6 +1116,22 @@ export default function AnimatrixPage() {
           return (allData.event || []).map(m => ({ ...m, mode: "event", sourceMode: m.sourceMode }));
         }
         return (allData[mode] || []).map(m => ({ ...m, mode }));
+      }
+
+      function getMateEvolutionPool(mate) {
+        const mode = mate?.mode || currentMode;
+        const evolutionMode = mode === "goner" ? "base" : mode;
+        const pools = [
+          getMateModePool(mate),
+          ((allData.evolution || {})[evolutionMode] || []).map(m => ({ ...m, mode: m.mode || evolutionMode }))
+        ];
+        const seen = new Set();
+        return pools.flat().filter(entry => {
+          const key = [entry.name || "", entry.ref || "", entry.image || "", entry.mode || ""].join("\u0000");
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
       }
 
       function sameMateForList(a, b) {
@@ -1382,7 +1403,11 @@ export default function AnimatrixPage() {
         if ((mate.name || "").toLowerCase() === "thoot") {
           mateImage.title = "Open UPROD";
           mateImage.onclick = () => {
-            window.location.href = "/credtrix";
+            if (window.uproNavigate?.("/credtrix")) return;
+            const basePath = window.location.pathname.toLowerCase().startsWith("/upro/")
+              ? "/UPRO"
+              : "";
+            window.location.href = `${basePath}/credtrix`;
           };
         }
         document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
@@ -1508,7 +1533,7 @@ export default function AnimatrixPage() {
           evoC.innerHTML = "";
           if (currentMode !== "costumes") {
             const mateMode = mate.mode || currentMode;
-            const modeForms = getMateModePool(mate);
+            const modeForms = getMateEvolutionPool(mate);
             const byName = new Map(modeForms.map(m => [m.name, m]));
             if (!byName.has(mate.name)) byName.set(mate.name, mate);
 

@@ -26,7 +26,7 @@ export const routes = [
   { path: '/friend', title: 'Friend In Us', Component: FriendPage },
   { path: '/guessr', title: 'Guessr', Component: GuessrPage },
   { path: '/guesswho', title: 'Animatrix Guess Who?', Component: GuessWhoPage },
-  { path: '/hurty', title: 'Moves & Abilities', Component: HurtyPage },
+  { path: '/hurty', title: 'Actions & Passives', Component: HurtyPage },
   { path: '/map', title: 'Shiverica Map', Component: MapPage },
   { path: '/normal', title: 'Normal Mode', Component: NormalPage },
   { path: '/ost', title: 'Le Official Soundtrack', Component: OstPage },

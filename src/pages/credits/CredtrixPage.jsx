@@ -158,6 +158,7 @@ function runPageScript() {
       mateByName = new Map();
 
       Object.entries(allData).forEach(([mode, mates]) => {
+        if (mode === "evolution") return;
         (mates || []).forEach(mate => {
           const form = { ...mate, mode };
           const ownName = getReferenceKey(form);
@@ -172,6 +173,7 @@ function runPageScript() {
       });
 
       Object.entries(allData).forEach(([mode, mates]) => {
+        if (mode === "evolution") return;
         (mates || []).forEach(mate => {
           const form = { ...mate, mode };
           const resolvedRef = getResolvedMateRef(form);
@@ -404,7 +406,7 @@ function runPageScript() {
       if ((mate.mode || "base") === "costumes") return;
 
       const mateMode = mate.mode || "base";
-      const modeForms = getMateModePool(mate);
+      const modeForms = getMateEvolutionPool(mate);
       const byName = new Map(modeForms.map(entry => [entry.name, entry]));
       if (!byName.has(mate.name)) byName.set(mate.name, mate);
 
@@ -604,6 +606,22 @@ function runPageScript() {
       return (allData[mode] || []).map(entry => ({ ...entry, mode }));
     }
 
+    function getMateEvolutionPool(mate) {
+      const mode = mate?.mode || "base";
+      const evolutionMode = mode === "goner" ? "base" : mode;
+      const pools = [
+        getMateModePool(mate),
+        ((allData.evolution || {})[evolutionMode] || []).map(entry => ({ ...entry, mode: entry.mode || evolutionMode }))
+      ];
+      const seen = new Set();
+      return pools.flat().filter(entry => {
+        const key = [entry.name || "", entry.ref || "", entry.image || "", entry.mode || ""].join("\u0000");
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
     function setModeBadge(mode) {
       modeBadge.textContent = mode ? mode.toUpperCase() : "";
     }
@@ -669,11 +687,12 @@ function runPageScript() {
         ncanon: annotateMateOrder("ncanon", mateBuckets.ncanon || []),
         costumes: annotateMateOrder("costumes", mateBuckets.costumes || []),
         npc: annotateMateOrder("npc", mateBuckets.npc || []),
+        evolution: mateBuckets.evolution || {},
         event: []
       };
 
       Object.entries(allData).forEach(([mode, mates]) => {
-        if (mode === "event") return;
+        if (mode === "event" || mode === "evolution") return;
         allData[mode] = mates.filter(mate => {
           if (mate.event !== undefined && mate.event !== null) {
             mate.mode = "event";

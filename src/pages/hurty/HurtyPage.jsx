@@ -26,6 +26,8 @@ function runPageScript() {
 
   const moveTypeWrapper = document.getElementById("moveTypeWrapper");
   const moveTypeSelect = document.getElementById("moveTypeSelect");
+  const moveEpWrapper = document.getElementById("moveEpWrapper");
+  const moveEpSelect = document.getElementById("moveEpSelect");
 
   const tabButtons = Array.from(document.querySelectorAll(".dex-tab"));
   const statusEffectsIcon = document.getElementById("statusEffectsIcon");
@@ -76,10 +78,10 @@ function runPageScript() {
     { name: "Defenseless", typing: "Normal", desc: "This Animates takes 150% dmg from attacks." },
     { name: "Burn", typing: "Fire", desc: "Takes 1+(number of turns with effect)% of max HP as damage each turn." },
     { name: "Wet", typing: "Water", desc: "125% damage from Electric attacks, and only deals 80% fire damage. Accuracy is reduced to maximum of 95%." },
-    { name: "Frozen", typing: "Ice", desc: "Can't move. Any fire attacks disable the status." },
-    { name: "Filthy", typing: "Gross", desc: "All healing items, moves, and abilities are halved in effect." },
-    { name: "Blinded", typing: "Light", desc: "Accuracy is reduced to maximum of 90%. Any damage from Dark-type moves ends the status." },
-    { name: "Obscured", typing: "Dark", desc: "Accuracy is reduced to maximum of 90%. Any damage from Light-type moves ends the status." },
+    { name: "Frozen", typing: "Ice", desc: "Can't act. Any fire attacks disable the status." },
+    { name: "Filthy", typing: "Gross", desc: "All healing items, actions, and passives are halved in effect." },
+    { name: "Blinded", typing: "Light", desc: "Accuracy is reduced to maximum of 90%. Any damage from Dark-type actions ends the status." },
+    { name: "Obscured", typing: "Dark", desc: "Accuracy is reduced to maximum of 90%. Any damage from Light-type actions ends the status." },
     { name: "Placeholder", typing: "Placeholder", desc: "Placeholder" }
   ];
 
@@ -89,7 +91,7 @@ function runPageScript() {
     return String(str).replace(/[&<>"']/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[s]));
   }
 
-  // load abilities, moves, and all mon files
+  // load passives, actions, and all mon files
   Promise.all([
     fetch("data/abilities.json").then(r => r.json()).catch(() => []),
     fetch("data/moves.json").then(r => r.json()).catch(() => []),
@@ -107,21 +109,23 @@ function runPageScript() {
     allMons = merged;
     statusEffectsData = buildStatusEffects(statuses);
 
-    // gather types from moves + abilities + mons (so the type filter dropdown is useful)
+    // gather types from actions + passives + mons (so the type filter dropdown is useful)
     collectAllTypes();
 
     // populate type checkboxes
     populateTypeOptions();
+    populateEpOptions();
 
     // initial render
     renderCurrentTab();
     renderStatusEffects();
   }).catch(err => {
     console.error("Failed to load JSONs:", err);
-    // if fetch fails, keep abilities/moves empty and continue with UI (no user list)
+    // if fetch fails, keep passives/actions empty and continue with UI (no user list)
     allTypes = defaultTypes.slice();
     statusEffectsData = fallbackStatusEffects.slice();
     populateTypeOptions();
+    populateEpOptions();
     renderCurrentTab();
     renderStatusEffects();
   });
@@ -157,6 +161,28 @@ function runPageScript() {
       label.innerHTML = `<input type="checkbox" value="${escapeHtml(t)}"> <span>${escapeHtml(t)}</span>`;
       typeOptionsEl.appendChild(label);
     });
+  }
+
+  function populateEpOptions() {
+    if (!moveEpSelect) return;
+
+    const values = Array.from(new Set(
+      movesData
+        .map(move => move?.ep)
+        .filter(value => value !== null && value !== undefined && value !== "")
+        .map(value => String(value))
+    )).sort((a, b) => {
+      const numA = Number(a);
+      const numB = Number(b);
+      if (Number.isFinite(numA) && Number.isFinite(numB)) return numA - numB;
+      if (Number.isFinite(numA)) return -1;
+      if (Number.isFinite(numB)) return 1;
+      return a.localeCompare(b);
+    });
+
+    moveEpSelect.innerHTML = `<option value="">All EP</option>${values.map(value => (
+      `<option value="${escapeHtml(value)}">${escapeHtml(value)} EP</option>`
+    )).join("")}`;
   }
 
   /* ----------------- Toggle behavior (unchanged) ----------------- */
@@ -209,6 +235,7 @@ function runPageScript() {
   typeOptionsEl.addEventListener("change", renderCurrentTab);
   searchInput.addEventListener("input", renderCurrentTab);
   moveTypeSelect.addEventListener("change", renderCurrentTab);
+  moveEpSelect?.addEventListener("change", renderCurrentTab);
 
   // tab switching
   tabButtons.forEach(btn => {
@@ -233,12 +260,20 @@ function runPageScript() {
     if ((entity.text || "").toLowerCase().includes(term)) return true;
     if ((entity.description || "").toLowerCase().includes(term)) return true;
     if ((entity.type || "").toLowerCase().includes(term)) return true;
+    if ((entity.category || "").toLowerCase().includes(term)) return true;
+    if ((entity.speed || "").toLowerCase().includes(term)) return true;
+    if ((entity.target || "").toLowerCase().includes(term)) return true;
+    if ((entity.status || "").toLowerCase().includes(term)) return true;
+    if ((entity.special || "").toLowerCase().includes(term)) return true;
+    if (Array.isArray(entity.learners) && entity.learners.some(name => (name || "").toLowerCase().includes(term))) return true;
+    if (Array.isArray(entity.users) && entity.users.some(name => (name || "").toLowerCase().includes(term))) return true;
     if (Array.isArray(entity.types) && entity.types.some(t => (t||"").toLowerCase().includes(term))) return true;
     return false;
   }
 
   function typeTag(t) {
-    return `<span class="hurty-type-tag">${escapeHtml(t)}</span>`;
+    const className = `hurty-type-${String(t || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+    return `<span class="hurty-type-tag ${escapeHtml(className)}">${escapeHtml(t)}</span>`;
   }
 
   function getTypeColor(typeName) {
@@ -248,17 +283,67 @@ function runPageScript() {
 
   function buildStatusEffects(rawStatuses) {
     const raw = Array.isArray(rawStatuses) ? rawStatuses : [];
-    return fallbackStatusEffects.map((fallback, index) => {
-      const exact = raw.find(s => (s?.typing || "").trim().toLowerCase() === fallback.typing.toLowerCase());
-      if (!exact) return { ...fallback, order: index + 1 };
-
-      return {
-        name: (exact.name || "").trim() || fallback.name,
-        typing: (exact.typing || "").trim() || fallback.typing,
-        desc: (exact.desc || "").trim() || fallback.desc,
+    const source = raw.length ? raw : fallbackStatusEffects;
+    return source
+      .filter(status => status && ((status.name || "").trim() || (status.typing || "").trim() || (status.desc || "").trim()))
+      .map((status, index) => ({
+        name: (status.name || "").trim(),
+        typing: (status.typing || "").trim(),
+        desc: (status.desc || "").trim(),
         order: index + 1
-      };
-    });
+      }));
+  }
+
+  function formatStatValue(value) {
+    if (value === null || value === undefined || value === "") return "None";
+    return value;
+  }
+
+  function moveStatusText(move) {
+    if (!move?.status || move.status === "None") return "None";
+    return `${move.status}${move.statusChance ? ` ${move.statusChance}%` : ""}`;
+  }
+
+  function renderMoveDetails(move, compact = false) {
+    const rows = compact
+      ? []
+      : [
+        ["EP", formatStatValue(move.ep)],
+        ["DMG", formatStatValue(move.damage || move.power)],
+        ["SPD", formatStatValue(move.speed)],
+        ["Target", formatStatValue(move.target)],
+        ["Status", moveStatusText(move)],
+        ["Accuracy", move.accuracy === null || move.accuracy === undefined ? "None" : `${move.accuracy}%`]
+      ];
+
+    if (!compact && move.special) rows.push(["SP", move.special]);
+    if (!compact && Array.isArray(move.learners) && move.learners.length) {
+      rows.push(["Learners", move.learners.join(", ")]);
+    }
+
+    return rows.map(([label, value]) => `
+      <div class="hurty-move-detail${String(value).length > 30 ? " hurty-move-detail-wide" : ""}">
+        <span>${escapeHtml(label)}</span>
+        <strong>${escapeHtml(value)}</strong>
+      </div>
+    `).join("");
+  }
+
+  function renderMoveSummary(move) {
+    const bits = [
+      move.ep !== null && move.ep !== undefined && move.ep !== "" ? `${move.ep} EP` : "",
+      move.damage || "",
+      move.speed || ""
+    ].filter(Boolean);
+    return bits.length ? `<p class="hurty-move-summary">${escapeHtml(bits.join(" / "))}</p>` : "";
+  }
+
+  function renderMoveMeta(move) {
+    const pieces = [];
+    if (move.target) pieces.push(`<span>${escapeHtml(move.target)}</span>`);
+    const status = moveStatusText(move);
+    if (status !== "None") pieces.push(`<span>${escapeHtml(status)}</span>`);
+    return pieces.length ? `<div class="hurty-card-meta">${pieces.join("")}</div>` : "";
   }
 
   function renderStatusEffects() {
@@ -268,7 +353,7 @@ function runPageScript() {
     statusEffectsList.innerHTML = effects.map(effect => {
       return `
         <li>
-          <span class="hurty-type-tag">${escapeHtml(effect.typing)}</span>
+          ${typeTag(effect.typing)}
           <strong>${escapeHtml(effect.name)}</strong>
           <p>${escapeHtml(effect.desc)}</p>
         </li>
@@ -297,8 +382,10 @@ function runPageScript() {
   /* ----------------- Renderers (mostly unchanged) ----------------- */
 
   function renderCurrentTab() {
-    if (activeTab === "moves") moveTypeWrapper.style.display = "inline-block";
-    else moveTypeWrapper.style.display = "none";
+    const isMoves = activeTab === "moves";
+    if (typeToggle) typeToggle.textContent = isMoves ? "Typings v" : "Types v";
+    if (moveTypeWrapper) moveTypeWrapper.style.display = isMoves ? "inline-block" : "none";
+    if (moveEpWrapper) moveEpWrapper.style.display = isMoves ? "inline-block" : "none";
 
     if (activeTab === "abilities") renderAbilities();
     else renderMoves();
@@ -306,6 +393,7 @@ function runPageScript() {
 
   function renderAbilities() {
     pokedex.innerHTML = "";
+    pokedex.className = "grid";
     const types = getCheckedTypes();
     const term = (searchInput.value || "").trim();
 
@@ -322,7 +410,7 @@ function runPageScript() {
     });
 
     if (!filteredList.length) {
-      pokedex.innerHTML = `<div class="hurty-empty">No abilities found.</div>`;
+      pokedex.innerHTML = `<div class="hurty-empty">No passives found.</div>`;
       return;
     }
 
@@ -346,9 +434,11 @@ function runPageScript() {
 
   function renderMoves() {
     pokedex.innerHTML = "";
+    pokedex.className = "hurty-move-list";
     const types = getCheckedTypes();
     const term = (searchInput.value || "").trim();
     const category = (moveTypeSelect.value || "").trim();
+    const ep = (moveEpSelect?.value || "").trim();
 
     filteredList = movesData.filter(m => {
       if (!matchesSearch(m, term)) return false;
@@ -360,27 +450,26 @@ function runPageScript() {
         if (!m.category) return false;
         if (m.category.toLowerCase() !== category.toLowerCase()) return false;
       }
+      if (ep && String(m.ep) !== ep) return false;
       return true;
     });
 
     if (!filteredList.length) {
-      pokedex.innerHTML = `<div class="hurty-empty">No moves found.</div>`;
+      pokedex.innerHTML = `<div class="hurty-empty">No actions found.</div>`;
       return;
     }
 
     filteredList.forEach((m, i) => {
       const card = document.createElement("div");
-      card.className = "card";
+      card.className = "card hurty-move-row";
       card.style.borderColor = getTypeColor(m.type);
       card.innerHTML = `
-        <h3 class="hurty-card-title">${escapeHtml(m.name)}</h3>
-        <div class="types">${m.type ? typeTag(m.type) : ''}</div>
-        <p class="hurty-card-copy">${escapeHtml(m.description || "")}</p>
-        <div class="hurty-card-quickstats">
-          <div>Power: ${escapeHtml(m.power ?? "")}</div>
-          <div>Acc: ${escapeHtml(m.accuracy ?? "")}</div>
-          <div>EP: ${escapeHtml(m.ep ?? "")}</div>
+        <div class="hurty-move-row-main">
+          <h3 class="hurty-card-title">${escapeHtml(m.name)}</h3>
+          <div class="types">${m.type ? typeTag(m.type) : ''}</div>
         </div>
+        <div class="hurty-move-row-summary">${renderMoveSummary(m)}</div>
+        ${renderMoveMeta(m)}
       `;
       card.addEventListener("click", () => openModal(i));
       pokedex.appendChild(card);
@@ -401,6 +490,17 @@ function runPageScript() {
     });
   }
 
+  function getAbilityUserMons(ability) {
+    const users = getUsersOfAbility(ability.name);
+    if (users.length || !Array.isArray(ability.users) || !ability.users.length) return users;
+
+    const byName = new Map(allMons.map(mon => [String(mon.name || "").toLowerCase(), mon]));
+    return ability.users.map(name => {
+      const exact = byName.get(String(name || "").toLowerCase());
+      return exact || { name, types: [], image: "" };
+    });
+  }
+
   // returns array of mon objects that have `moveName` in their moves[]
   function getUsersOfMove(moveName) {
     if (!moveName) return [];
@@ -408,6 +508,17 @@ function runPageScript() {
       if (!mon) return false;
       if (Array.isArray(mon.moves) && mon.moves.includes(moveName)) return true;
       return false;
+    });
+  }
+
+  function getMoveLearnerMons(move) {
+    const users = getUsersOfMove(move.name);
+    if (users.length || !Array.isArray(move.learners) || !move.learners.length) return users;
+
+    const byName = new Map(allMons.map(mon => [String(mon.name || "").toLowerCase(), mon]));
+    return move.learners.map(name => {
+      const exact = byName.get(String(name || "").toLowerCase());
+      return exact || { name, types: [], image: "" };
     });
   }
 
@@ -425,18 +536,13 @@ function runPageScript() {
 
     if (activeTab === "moves") {
       itemTypes.innerHTML = item.type ? typeTag(item.type) : "";
-      itemText.textContent = item.description || "";
+      itemText.textContent = item.special || "";
       extraStats.innerHTML = `
-        <div class="hurty-move-stats">
-          <b>Category:</b> ${escapeHtml(item.category || "")}<br>
-          <b>Power:</b> ${escapeHtml(item.power ?? "")} &nbsp;
-          <b>Accuracy:</b> ${escapeHtml(item.accuracy ?? "")} &nbsp;
-          <b>EP:</b> ${escapeHtml(item.ep ?? "")}
-        </div>
+        <div class="hurty-move-stats">${renderMoveDetails(item)}</div>
       `;
 
       // find and render mons that learn this move
-      const users = getUsersOfMove(item.name);
+      const users = getMoveLearnerMons(item);
       renderMonUsersGrid(users);
     } else {
       // ability
@@ -448,7 +554,7 @@ function runPageScript() {
       extraStats.innerHTML = "";
 
       // find and render mons that have this ability
-      const users = getUsersOfAbility(item.name);
+      const users = getAbilityUserMons(item);
       renderMonUsersGrid(users);
     }
 
@@ -474,12 +580,15 @@ function runPageScript() {
       const card = document.createElement("div");
       card.className = "mon-user-card";
 
-      // image (use mon.image exactly)
-      const img = document.createElement("img");
-      img.src = mon.image || "";
-      img.alt = mon.name || "";
-      img.className = "mon-user-image";
-      card.appendChild(img);
+      if (mon.image) {
+        const img = document.createElement("img");
+        img.src = mon.image;
+        img.alt = mon.name || "";
+        img.className = "mon-user-image";
+        card.appendChild(img);
+      } else {
+        card.classList.add("mon-user-card-text-only");
+      }
 
       // name
       const nm = document.createElement("div");
@@ -539,7 +648,7 @@ function loadRemoteScript(src) {
 
 export default function HurtyPage() {
   useEffect(() => {
-    document.title = "Moves & Abilities"
+    document.title = "Actions & Passives"
     document.body.className = "hurty-page"
     document.body.setAttribute('style', "")
 
@@ -587,12 +696,12 @@ export default function HurtyPage() {
         <a href="/"><button>Main Menu</button></a>
       </div>
     </div>
-    <h1>Moves &amp; Abilities</h1>
+    <h1>Actions &amp; Passives</h1>
     <div className="controls">
       <input type="text" id="search" placeholder="Search..." />
       {/* Type filter */}
       <div className="multi-filter" id="typeFilterWrapper">
-        <button className="filter-toggle" id="typeToggle">Types ▾</button>
+        <button className="filter-toggle" id="typeToggle">Types v</button>
         <div className="filter-panel" id="typePanel" aria-hidden="true">
           <div className="panel-actions">
             <button id="clearTypes" className="clear-btn">Clear</button>
@@ -600,19 +709,24 @@ export default function HurtyPage() {
           <div className="options" id="typeOptions" />
         </div>
       </div>
-      {/* Move category filter */}
+      {/* Action category filter */}
       <div id="moveTypeWrapper" style={{display: 'none'}}>
         <select id="moveTypeSelect">
-          <option value>All Categories</option>
+          <option value="">All Categories</option>
           <option value="Melee">Melee</option>
           <option value="Ranged">Ranged</option>
           <option value="Status">Status</option>
         </select>
       </div>
+      <div id="moveEpWrapper" style={{display: 'none'}}>
+        <select id="moveEpSelect">
+          <option value="">All EP</option>
+        </select>
+      </div>
       {/* Tabs */}
       <div className="mode-switch">
-        <button className="dex-tab active" data-tab="abilities">Abilities</button>
-        <button className="dex-tab" data-tab="moves">Moves</button>
+        <button className="dex-tab active" data-tab="abilities">Passives</button>
+        <button className="dex-tab" data-tab="moves">Actions</button>
       </div>
     </div>
   </header>

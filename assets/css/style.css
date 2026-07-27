@@ -2397,7 +2397,7 @@ body.hurty-page .dex-tab.active {
 }
 
 body.hurty-page .controls {
-  max-width: 1180px;
+  max-width: 1380px;
   margin: 0 auto;
   gap: 12px;
 }
@@ -2409,7 +2409,7 @@ body.hurty-page .mode-switch {
 
 body.hurty-page .multi-filter {
   position: relative;
-  z-index: 2200;
+  z-index: 20;
 }
 
 body.hurty-page .filter-toggle {
@@ -2420,7 +2420,7 @@ body.hurty-page .filter-panel {
   background: #1b1b1f;
   border: 1px solid #0ff;
   color: #e0f0ff;
-  z-index: 2300;
+  z-index: 21;
 }
 
 body.hurty-page .filter-panel .opt {
@@ -2438,12 +2438,23 @@ body.hurty-page input#search:focus {
 }
 
 body.hurty-page #pokedex.grid {
-  max-width: 1600px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 18px;
-  padding: 22px 24px 28px;
+  max-width: 1320px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  padding: 18px 22px 28px;
   width: 100%;
   justify-items: stretch;
+  box-sizing: border-box;
+}
+
+body.hurty-page #pokedex.hurty-move-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  max-width: 1280px;
+  width: 100%;
+  padding: 18px 22px 28px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -2451,25 +2462,59 @@ body.hurty-page #pokedex .card {
   width: 100%;
   max-width: none;
   background: #1b1b1f;
-  border: 4px solid rgba(0, 255, 255, 0.58);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
+  border: 2px solid rgba(0, 255, 255, 0.42);
+  border-radius: 8px;
+  box-shadow: none;
   color: #e0f0ff;
-  padding: 14px 12px;
+  min-height: 150px;
+  padding: 16px 14px 14px;
   margin: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.hurty-page #pokedex.hurty-move-list .card {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(300px, 1.05fr) minmax(390px, 1.35fr) minmax(240px, 0.85fr);
+  align-items: center;
+  gap: 20px;
+  padding: 22px 24px;
+  text-align: left;
 }
 
 body.hurty-page #pokedex .card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 14px var(--outline-color, #0ff);
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--outline-color, #0ff) 45%, transparent);
 }
 
 body.hurty-page .hurty-card-title {
-  font-size: 3.2rem;
-  margin: 4px 0 8px;
-  line-height: 1.1;
+  font-size: 2rem;
+  margin: 0 0 10px;
+  line-height: 1.15;
   color: #f4ff9a;
+  min-height: 2.3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.hurty-page #pokedex.hurty-move-list .hurty-card-title {
+  min-height: 0;
+  justify-content: flex-start;
+  margin: 0 0 8px;
+  font-size: 38px;
+  line-height: 1.1;
+}
+
+body.hurty-page .hurty-move-row-main {
+  min-width: 0;
+}
+
+body.hurty-page .hurty-move-row-summary {
+  min-width: 0;
 }
 
 body.hurty-page .hurty-card-copy {
@@ -2480,14 +2525,45 @@ body.hurty-page .hurty-card-copy {
   padding: 0 4px;
 }
 
-body.hurty-page .hurty-card-quickstats {
+body.hurty-page .hurty-move-summary {
+  color: #d7fbff;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  margin: 12px 0 0;
+  max-width: 100%;
+  min-height: 2.5em;
+  overflow-wrap: anywhere;
+}
+
+body.hurty-page #pokedex.hurty-move-list .hurty-move-summary {
+  min-height: 0;
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+body.hurty-page .hurty-card-meta {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
-  font-size: 2rem;
-  color: #9cfbff;
-  margin-top: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+body.hurty-page #pokedex.hurty-move-list .hurty-card-meta {
+  justify-content: flex-end;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body.hurty-page .hurty-card-meta span {
+  border: 1px solid rgba(156, 251, 255, 0.32);
+  border-radius: 999px;
+  color: #d7fbff;
+  font-size: 22px;
+  line-height: 1;
+  padding: 6px 9px;
 }
 
 body.hurty-page .hurty-type-tag {
@@ -2499,6 +2575,47 @@ body.hurty-page .hurty-type-tag {
   border: 1px solid #0ff;
   color: #000;
   font-weight: 700;
+}
+
+body.hurty-page .hurty-type-tag.hurty-type-normal { background: #d8dde8; border-color: #d8dde8; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-plant { background: #6BBF59; border-color: #6BBF59; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-water { background: #3BA5FF; border-color: #3BA5FF; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-ice { background: #C9F0FF; border-color: #C9F0FF; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-fire { background: #FF7A4D; border-color: #FF7A4D; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-earth { background: #C99C6B; border-color: #C99C6B; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-mystic { background: #BFA6FF; border-color: #BFA6FF; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-air { background: #9ED8FF; border-color: #9ED8FF; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-savage { background: #D6C79B; border-color: #D6C79B; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-metal { background: #B0B8C1; border-color: #B0B8C1; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-electric { background: #F6C94C; border-color: #F6C94C; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-artillery { background: #D88F8F; border-color: #D88F8F; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-light { background: #FFF3B0; border-color: #FFF3B0; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-dark { background: #3B3B3F; border-color: #3B3B3F; color: #fff; }
+body.hurty-page .hurty-type-tag.hurty-type-gross { background: #A8A77A; border-color: #A8A77A; color: #111; }
+body.hurty-page .hurty-type-tag.hurty-type-spectral { background: #8F7AE6; border-color: #8F7AE6; color: #fff; }
+body.hurty-page .hurty-type-tag.hurty-type-lucid { background: #9FE5D1; border-color: #9FE5D1; color: #111; }
+
+body.hurty-page #pokedex .card .types .hurty-type-normal { background: #d8dde8; border-color: #d8dde8; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-plant { background: #6BBF59; border-color: #6BBF59; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-water { background: #3BA5FF; border-color: #3BA5FF; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-ice { background: #C9F0FF; border-color: #C9F0FF; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-fire { background: #FF7A4D; border-color: #FF7A4D; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-earth { background: #C99C6B; border-color: #C99C6B; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-mystic { background: #BFA6FF; border-color: #BFA6FF; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-air { background: #9ED8FF; border-color: #9ED8FF; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-savage { background: #D6C79B; border-color: #D6C79B; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-metal { background: #B0B8C1; border-color: #B0B8C1; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-electric { background: #F6C94C; border-color: #F6C94C; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-artillery { background: #D88F8F; border-color: #D88F8F; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-light { background: #FFF3B0; border-color: #FFF3B0; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-dark { background: #3B3B3F; border-color: #3B3B3F; color: #fff; }
+body.hurty-page #pokedex .card .types .hurty-type-gross { background: #A8A77A; border-color: #A8A77A; color: #111; }
+body.hurty-page #pokedex .card .types .hurty-type-spectral { background: #8F7AE6; border-color: #8F7AE6; color: #fff; }
+body.hurty-page #pokedex .card .types .hurty-type-lucid { background: #9FE5D1; border-color: #9FE5D1; color: #111; }
+
+body.hurty-page #pokedex.hurty-move-list .hurty-type-tag {
+  font-size: 28px;
+  padding: 8px 14px;
 }
 
 body.hurty-page .hurty-empty {
@@ -2592,27 +2709,72 @@ body.hurty-page #statusEffectsList p {
 body.hurty-page .modal-content {
   background: #1b1b1f;
   border: 2px solid #0ff;
-  box-shadow: 0 0 18px #0ff;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.55);
   color: #e0f0ff;
-  max-width: 900px;
-  width: min(900px, calc(100% - 24px));
+  max-width: 980px;
+  width: min(980px, calc(100% - 24px));
   box-sizing: border-box;
 }
 
+body.hurty-page .modal {
+  z-index: 6000;
+}
+
 body.hurty-page .hurty-move-stats {
-  margin-top: 8px;
-  font-size: 2.2rem;
+  display: block;
+  margin: 18px auto 0;
+  font-size: 28px;
+  text-align: left;
+  border: 1px solid rgba(0, 255, 255, 0.22);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.hurty-page .hurty-move-detail {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 16px;
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.16);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 14px 18px;
+}
+
+body.hurty-page .hurty-move-detail-wide {
+  grid-column: auto;
+}
+
+body.hurty-page .hurty-move-detail:last-child {
+  border-bottom: 0;
+}
+
+body.hurty-page .hurty-move-detail span {
+  display: block;
+  color: #9cfbff;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+body.hurty-page .hurty-move-detail strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #e0f0ff;
+  font-size: inherit;
+  line-height: 1.25;
+  margin-top: 0;
 }
 
 body.hurty-page .modal-header h2 {
   margin: 0 0 8px;
   color: #f4ff9a;
-  font-size: 4rem;
+  font-size: 50px;
   line-height: 1.08;
 }
 
 body.hurty-page #itemText {
-  font-size: 2.2rem;
+  font-size: 28px;
   line-height: 1.4;
   color: #e0f0ff;
 }
@@ -2624,25 +2786,30 @@ body.hurty-page .close-btn {
 }
 
 body.hurty-page .mon-users-title {
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
   color: #9cfbff;
-  font-size: 2rem;
+  font-size: 28px;
 }
 
 body.hurty-page .mon-users-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 6px;
   align-items: start;
 }
 
 body.hurty-page .mon-user-card {
   background: #111;
   border: 1px solid rgba(0, 255, 255, 0.4);
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 6px;
+  padding: 7px;
   text-align: center;
   pointer-events: none;
+}
+
+body.hurty-page .mon-user-card-text-only {
+  min-height: auto;
+  padding: 9px 7px;
 }
 
 body.hurty-page .mon-user-image {
@@ -2654,7 +2821,7 @@ body.hurty-page .mon-user-image {
 }
 
 body.hurty-page .mon-user-name {
-  font-size: 1.7rem;
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -2675,6 +2842,19 @@ body.hurty-page .mon-user-types {
     padding: 16px;
     gap: 12px;
     grid-template-columns: 1fr;
+  }
+
+  body.hurty-page #pokedex.hurty-move-list {
+    padding: 16px;
+  }
+
+  body.hurty-page #pokedex.hurty-move-list .card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  body.hurty-page #pokedex.hurty-move-list .hurty-card-meta {
+    justify-content: flex-start;
   }
 
   body.hurty-page #pokedex .card {

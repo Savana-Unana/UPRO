@@ -130,11 +130,16 @@ export async function fetchMateBuckets() {
   const baseBuckets = expandGroupedMateData(baseGroups, "base");
   const lostBuckets = expandGroupedMateData(lostGroups, "lost");
   const loadedBuckets = mergeMateBuckets(baseBuckets, lostBuckets);
-  const gonerEventBuckets = removeExistingBucketEntries(
-    expandGroupedMateData(gonerGroups, "goner", { eventOnly: true }),
+  const gonerBuckets = removeExistingBucketEntries(
+    expandGroupedMateData(gonerGroups, "goner"),
     loadedBuckets
   );
-  const buckets = mergeMateBuckets(loadedBuckets, gonerEventBuckets);
+  const buckets = mergeMateBuckets(loadedBuckets, gonerBuckets);
+  buckets.evolution = mergeMateBuckets(
+    expandGroupedMateData(baseGroups, "base"),
+    expandGroupedMateData(lostGroups, "base"),
+    expandGroupedMateData(gonerGroups, "base")
+  );
   buckets.npc = Array.isArray(npc) ? npc : [];
   return buckets;
 }
