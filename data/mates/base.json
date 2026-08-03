@@ -400,7 +400,7 @@
     "name": "Lemody",
     "forms": {
       "base": [
-        {"name":"Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Nature","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Yellow","biomes":["Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"}
+        {"name":"Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","paragonOf":"Nature","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"7ft","color":"Yellow","biomes":["Forest"],"image":"assets/images/mates/lost/Lemody.png","versions":"Demo 1"}
       ],
       "costumes": [
         {"name":"LED Lemody","types":["Plant","Mystic"],"paraTypes":[""],"rarity":"Paragon","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":null},
@@ -784,13 +784,14 @@
     "name": "Polerb",
     "forms": {
       "base": [
-        {"name":"Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Ice-Caps"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 8"}
+        {"name":"Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Ice-Caps"],"image":"assets/images/mates/lost/Polerb.png","versions":"Demo 8"}
       ],
       "sacred": [
         {"name":"Sacred Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 8","description":""}
       ],
       "costumes": [
-        {"name":"LED Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 8","description":""}
+        {"name":"LED Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","versions":"Demo 8","description":""},
+        {"name":"LED Polerb","types":["Spectral","Ice"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/Polerb.exe.png","versions":"Demo 8","description":""}
       ]
     }
   },
