@@ -642,20 +642,6 @@
     }
   },
   {
-    "name": "???",
-    "forms": {
-      "base": [
-        {"name":"???","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/base/Chordal.png","versions":"Demo 1"}
-      ],
-      "sacred": [
-        {"name":"Sacred ???","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
-      ],
-      "costumes": [
-        {"name":"LED ???","types":["Lucid"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.Chordal.png","description":"","versions":"Demo 1"}
-      ]
-    }
-  },
-  {
     "name": "Cartilicht",
     "forms": {
       "base": [
