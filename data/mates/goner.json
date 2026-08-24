@@ -1400,6 +1400,76 @@
     }
   },
   {
+    "name": "Baleetle",
+    "forms": {
+      "base": [
+        {"name":"Baleetle","types":["Normal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/lost/Baleetle.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Baleetle","types":["Normal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Baleetle","types":["Normal","Gross"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
+    "name": "Poltaghast",
+    "forms": {
+      "base": [
+        {"name":"Poltaghast","types":["Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Poltaghast","types":["Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Poltaghast","types":["Spectral"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+    {
+    "name": "Orangutango",
+    "forms": {
+      "base": [
+        {"name":"Orangutango","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/lost/Orangutango.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Orangutango","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Orangutango","types":["Normal"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },  
+  {
+    "name": "Shiver Rays",
+    "forms": {
+      "base": [
+        {"name":"Shiver Rays","types":["Light"],"paraTypes":["Air"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/lost/ShiverRays.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Shiver Rays V2.0","types":["Light"],"paraTypes":["Air"],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Shiver Rays","types":["Light"],"paraTypes":["Air"],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+    {
+    "name": "Sombat",
+    "forms": {
+      "base": [
+        {"name":"Sombat","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":"2ft","color":"Yellow","biomes":["Lake"],"image":"assets/images/mates/lost/Sombat.png","versions":"Demo 1"}
+      ],
+      "sacred": [
+        {"name":"Sacred Sombat","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[],"abilities":[],"moves":[],"height":null,"color":null,"image":"assets/images/mates/lost/MissingNo.png","description":"","versions":"Demo 2"}
+      ],
+      "costumes": [
+        {"name":"LED Sombat","types":["Normal","Air"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 1"}
+      ]
+    }
+  },
+  {
     "name": "Anchophant",
     "forms": {
       "base": [
@@ -3497,7 +3567,7 @@
     "name": "Minnote",
     "forms": {
       "base": [
-        {"name":"Minnote","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"A minnow that resembles the bass clef symbol. Evolves into Triangeel, Basscsio, Velvetone, Spigle, or Soxafone based on the primary instrument heard last, all at level 25.","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Triangeel","level":25},{"name":"Basscsio","level":25},{"name":"Velvetone","level":25},{"name":"Spigle","level":25},{"name":"Soxafone","level":25}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Deeper Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2"}
+        {"name":"Minnote","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Discovered":"No entry yet","First Caught":"No entry yet","Experienced":"No entry yet","Reverense":"No entry yet"},"evolvesTo":[{"name":"Triangeel","level":25},{"name":"Basscsio","level":25},{"name":"Velvetone","level":25},{"name":"Spigle","level":25},{"name":"Chordal","level":25}],"abilities":[],"moves":[],"height":null,"color":null,"biomes":["Deeper Forest"],"image":"assets/images/mates/lost/MissingNo.png","versions":"Demo 2"}
       ],
       "costumes": [
         {"name":"LED Minnote","types":["Water"],"paraTypes":[""],"rarity":"Normal","dexEntries":{"Store Entry":"No entry yet","Catalog":"No entry yet","Reverense":"No entry yet"},"abilities":[],"moves":[],"obtainment":"","image":"assets/images/mates/costumes/L.MissingNo.png","description":"","versions":"Demo 2"}
