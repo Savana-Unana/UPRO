@@ -21,6 +21,12 @@ export default function AnimatrixPage() {
     let listCostumeReturnMode = "base";
     let listCostumeSourceMate = null;
     let rightClickSearchId = "";
+    let idOrderRank = new Map();
+    let fallbackIdOrder = 0;
+    let fallbackIdOrderByKey = new Map();
+    let sortMode = "id";
+    let subBiomeOptionsByBiome = {};
+    let versionInfoByName = new Map();
 
       const animatrix = document.getElementById("animatrix");
       const gridView = document.getElementById("gridView");
@@ -56,9 +62,17 @@ export default function AnimatrixPage() {
       const biomePanel = document.getElementById("biomePanel");
       const biomeOptionsEl = document.getElementById("biomeOptions");
       const clearBiomes = document.getElementById("clearBiomes");
+      const subBiomeFilterWrapper = document.getElementById("subBiomeFilterWrapper");
+      const subBiomeToggle = document.getElementById("subBiomeToggle");
+      const subBiomePanel = document.getElementById("subBiomePanel");
+      const subBiomeOptionsEl = document.getElementById("subBiomeOptions");
+      const clearSubBiomes = document.getElementById("clearSubBiomes");
       const statusToggle = document.getElementById("statusToggle");
       const statusPanel = document.getElementById("statusPanel");
       const statusOptionsEl = document.getElementById("statusOptions");
+      const idSortView = document.getElementById("idSortView");
+      const appearanceSortView = document.getElementById("appearanceSortView");
+      const animatrixSubtitle = document.getElementById("animatrixSubtitle");
 
       const modal = document.getElementById("detailsModal");
       const closeModal = document.getElementById("closeModal");
@@ -106,12 +120,53 @@ export default function AnimatrixPage() {
       let crossTabFormsByRef = new Map();
       let mateByName = new Map();
 
+      function normalizeOrderName(name) {
+        return String(name || "").trim().replace(/\s*\([^)]*\)\s*$/g, "").toLowerCase();
+      }
+
+      function rebuildIdOrderRank(orderData) {
+        idOrderRank = new Map();
+        fallbackIdOrder = 0;
+        fallbackIdOrderByKey = new Map();
+        (Array.isArray(orderData) ? orderData : []).forEach((name, index) => {
+          const normalized = normalizeOrderName(name);
+          if (!normalized || idOrderRank.has(normalized)) return;
+          idOrderRank.set(normalized, index);
+        });
+      }
+
+      function getFallbackIdOrder(mate) {
+        const key = [
+          normalizeOrderName(mate?.name),
+          normalizeOrderName(mate?.ref),
+          normalizeOrderName(mate?.__groupName),
+          mate?.mode || mate?.__mode || ""
+        ].join("|");
+        if (!fallbackIdOrderByKey.has(key)) {
+          fallbackIdOrderByKey.set(key, idOrderRank.size + fallbackIdOrder);
+          fallbackIdOrder += 1;
+        }
+        return fallbackIdOrderByKey.get(key);
+      }
+
+      function getConfiguredIdOrder(mate) {
+        const candidates = [mate?.name, mate?.ref, mate?.__groupName];
+        for (const candidate of candidates) {
+          const rank = idOrderRank.get(normalizeOrderName(candidate));
+          if (Number.isInteger(rank)) {
+            mate.__hasConfiguredIdOrder = true;
+            return rank;
+          }
+        }
+        mate.__hasConfiguredIdOrder = false;
+        return getFallbackIdOrder(mate);
+      }
+
       function annotateMateOrder(mode, mates) {
-        let idOrder = 0;
         (mates || []).forEach((mate, index) => {
           mate.__mode = mode;
           mate.__order = index;
-          mate.__idOrder = isMode(mate) ? null : idOrder++;
+          mate.__idOrder = getConfiguredIdOrder(mate);
         });
         return mates || [];
       }
@@ -187,36 +242,54 @@ export default function AnimatrixPage() {
 
       function getMateVersions(mate) {
         if (!mate) return [];
-        if (Array.isArray(mate.versions)) return mate.versions.filter(Boolean).map(v => String(v).trim()).filter(Boolean);
-        if (typeof mate.versions === "string" && mate.versions.trim()) return [mate.versions.trim()];
-        if (Array.isArray(mate.version)) return mate.version.filter(Boolean).map(v => String(v).trim()).filter(Boolean);
-        if (typeof mate.version === "string" && mate.version.trim()) return [mate.version.trim()];
-        if (typeof mate.Version === "string" && mate.Version.trim()) return [mate.Version.trim()];
+        if (typeof mate.firstScannableUpdate === "string" && mate.firstScannableUpdate.trim()) return [normalizeVersionLabel(mate.firstScannableUpdate)];
+        if (Array.isArray(mate.versions)) return mate.versions.filter(Boolean).map(v => normalizeVersionLabel(v)).filter(Boolean);
+        if (typeof mate.versions === "string" && mate.versions.trim()) return [normalizeVersionLabel(mate.versions)];
+        if (Array.isArray(mate.version)) return mate.version.filter(Boolean).map(v => normalizeVersionLabel(v)).filter(Boolean);
+        if (typeof mate.version === "string" && mate.version.trim()) return [normalizeVersionLabel(mate.version)];
+        if (typeof mate.Version === "string" && mate.Version.trim()) return [normalizeVersionLabel(mate.Version)];
         return [];
       }
 
-      function compareVersionLabels(a, b) {
-        const aLabel = String(a || "").trim();
-        const bLabel = String(b || "").trim();
-        const aMatch = aLabel.match(/^Demo\s+(\d+)$/i);
-        const bMatch = bLabel.match(/^Demo\s+(\d+)$/i);
+      function normalizeVersionLabel(label) {
+        return String(label || "").trim().replace(/^Demo\s+/i, "Update ");
+      }
 
-        if (aMatch && bMatch) {
-          return Number(aMatch[1]) - Number(bMatch[1]);
-        }
-        if (aMatch) return -1;
-        if (bMatch) return 1;
+      function getVersionSortValue(label) {
+        const normalized = normalizeVersionLabel(label);
+        const match = normalized.match(/^Update\s+(\d+(?:\.\d+)?)$/i);
+        if (!match) return Number.POSITIVE_INFINITY;
+        const value = Number(match[1]);
+        return value === 0 ? 999 : value;
+      }
+
+      function compareVersionLabels(a, b) {
+        const aLabel = normalizeVersionLabel(typeof a === "string" ? a : a?.name || "");
+        const bLabel = normalizeVersionLabel(typeof b === "string" ? b : b?.name || "");
+        const aValue = getVersionSortValue(aLabel);
+        const bValue = getVersionSortValue(bLabel);
+        if (Number.isFinite(aValue) && Number.isFinite(bValue) && aValue !== bValue) return aValue - bValue;
+        if (Number.isFinite(aValue) !== Number.isFinite(bValue)) return Number.isFinite(aValue) ? -1 : 1;
         return aLabel.localeCompare(bLabel);
       }
 
       function rebuildVersionOptions() {
-        const labels = new Set();
+        const labels = new Set(versionInfoByName.keys());
         ["base", "sacred", "ace", "goner", "event", "costumes", "npc"].forEach(mode => {
           (allData[mode] || []).forEach(mate => {
             getMateVersions(mate).forEach(version => labels.add(version));
           });
         });
         versionOptions = Array.from(labels).sort(compareVersionLabels);
+      }
+
+      function rebuildVersionInfo(versions) {
+        versionInfoByName = new Map();
+        (Array.isArray(versions) ? versions : []).forEach(version => {
+          const name = normalizeVersionLabel(typeof version === "string" ? version : version?.name);
+          if (!name) return;
+          versionInfoByName.set(name, typeof version === "object" ? version : { name });
+        });
       }
 
       // mode buttons
@@ -381,6 +454,8 @@ export default function AnimatrixPage() {
           if (Array.isArray(info?.biomes) && info.biomes.length) {
             biomeOptions = info.biomes;
           }
+          subBiomeOptionsByBiome = info?.subBiomes && typeof info.subBiomes === "object" ? info.subBiomes : {};
+          rebuildVersionInfo(info?.versions);
           populateFilterOptions(typesData, typeOptionsEl);
           populateFilterOptions(typesData, type2OptionsEl);
           populateFilterOptions(typesData, paraOptionsEl);
@@ -391,10 +466,12 @@ export default function AnimatrixPage() {
           return Promise.all([
             fetch("data/abilities.json").then(r => r.json()).catch(() => []),
             fetchMateBuckets(),
+            fetch("data/mates/idorder.json").then(r => r.json()).catch(() => []),
           ]);
         })
-        .then(([abilities, mateBuckets]) => {
+        .then(([abilities, mateBuckets, idOrder]) => {
             abilitiesData = abilities || [];
+            rebuildIdOrderRank(idOrder);
             allData = { 
               base: annotateMateOrder("base", mateBuckets.base || []), 
               sacred: annotateMateOrder("sacred", mateBuckets.sacred || []), 
@@ -445,59 +522,60 @@ export default function AnimatrixPage() {
         };
 
         closeStats.onclick = () => statsModal.classList.add("hidden");
+        modal.addEventListener("click", event => {
+          if (event.target === modal) modal.classList.add("hidden");
+        });
+        statsModal.addEventListener("click", event => {
+          if (event.target === statsModal) statsModal.classList.add("hidden");
+        });
+
+        function getVisibleCardMates() {
+          return Array.from(animatrix.querySelectorAll(".card"))
+            .map(card => card.__mate)
+            .filter(Boolean);
+        }
 
         function buildStats() {
           const hasValidId = m => getMateDisplayId(m) !== null;
-          const allMons = Object.entries(allData).flatMap(
-            ([mode, mons]) => mode === "evolution" ? [] : mons.map(m => ({ ...m, mode }))
-          );
+          const statsMode = currentMode;
+          const statsModeLabel = statsMode === "database" ? "Database" : (databaseModeLabels[statsMode] || statsMode || "Current");
+          const statsPool = getVisibleCardMates();
 
           // -------------------- MODE STATS --------------------
-          const modeList = ["base", "sacred", "ace", "goner", "ncanon", "event", "costumes", "npc"];
           let modeHtml = `<section class="stats-section">
-            <h2>Mode Stats</h2>
+            <h2>${escapeHtml(statsModeLabel)} Stats</h2>
             <div class="mode-stats">`;
 
-            modeList.forEach(mode => {
-              const mons = (allData[mode] || []).map(m => ({ ...m, mode }));
-              let createdCount;
-              let finalizedCount;
-              let totalCount;
+          const statsMons = statsMode === "npc"
+            ? statsPool.filter(m => usesNimage(m))
+            : statsPool.filter(m => statsMode === "costumes" || hasValidId(m));
+          const totalCount = statsMons.length;
+          const createdCount = statsMode === "npc"
+            ? statsMons.filter(isNpcCreated).length
+            : statsMons.filter(isDesigned).length;
+          const finalizedCount = statsMode === "npc"
+            ? 0
+            : statsMons.filter(isFinalized).length;
 
-              if (mode === "npc") {
-                const npcMons = mons.filter(m => usesNimage(m));
-                createdCount = npcMons.filter(isNpcCreated).length;
-                totalCount = npcMons.length;
-              } else {
-                const statsMons = mons.filter(hasValidId);
-                totalCount = statsMons.length;
-                createdCount = statsMons.filter(isDesigned).length;
-                finalizedCount = statsMons.filter(isFinalized).length;
-              }
             modeHtml += `<div class="mode-item">
-              <span class="mode-name"><b>${mode.charAt(0).toUpperCase() + mode.slice(1)}</b></span>
+              <span class="mode-name"><b>${escapeHtml(statsModeLabel)}</b></span>
               <div class="mode-counts">
                 <span>
-                ${mode === "npc"
+                ${statsMode === "npc"
                   ? `Created: ${createdCount}/${totalCount}`
                   : `Designed: ${createdCount}/${totalCount}, Finalized: ${finalizedCount}/${totalCount}`
                 }
               </span>
               </div>
             </div>`;
-          });
 
           modeHtml += `</div></section>`;
 
-        // -------------------- MISSINGNO COUNT (all modes except NPC) --------------------
-        const nonNpcMons = Object.entries(allData)
-          .filter(([mode]) => mode !== "evolution")
-          .map(([, mons]) => mons)
-          .flat()
-          .filter(m => m.mode !== "npc" && hasValidId(m)); // includes event now
+        // -------------------- MISSINGNO COUNT (current mode) --------------------
+        const nonNpcMons = statsPool.filter(m => m.mode !== "npc" && hasValidId(m));
 
         const missingNoMons = nonNpcMons.filter(isMissingNo);
-        const highestId = allMons
+        const highestId = statsPool
           .map(m => getMateDisplayId(m))
           .filter(id => Number.isFinite(id))
           .reduce((max, id) => Math.max(max, id), Number.NEGATIVE_INFINITY);
@@ -506,8 +584,8 @@ export default function AnimatrixPage() {
           <p>Total MissingNo: ${missingNoMons.length}/${nonNpcMons.length}</p>
         </section><hr>`;
 
-          // -------------------- TYPING STATS (BASE) --------------------
-          const baseMons = (allData.base || []).filter(hasValidId);
+          // -------------------- TYPING STATS --------------------
+          const baseMons = statsPool.filter(hasValidId);
           const typeMap = {};
 
           // First pass: numerators exclude MissingNo, L.MissingNo, Ones
@@ -549,14 +627,18 @@ export default function AnimatrixPage() {
             }).length;
           });
 
-          // Sort types by 'all' descending
+          const typeOrder = typesData.map(type => type.name);
           const sortedTypes = Object.keys(typeMap).sort((a, b) => {
-            if (typeMap[b].all !== typeMap[a].all) return typeMap[b].all - typeMap[a].all;
-            return typeMap[b].allDen - typeMap[a].allDen; // tie-breaker
+            const aRank = typeOrder.indexOf(a);
+            const bRank = typeOrder.indexOf(b);
+            if (aRank !== -1 && bRank !== -1 && aRank !== bRank) return aRank - bRank;
+            if (aRank !== -1) return -1;
+            if (bRank !== -1) return 1;
+            return a.localeCompare(b);
           });
 
           let typeHtml = `<section class="stats-section">
-            <h2>Typing Stats (Base)</h2>
+            <h2>Typing Stats (${escapeHtml(statsModeLabel)})</h2>
             <div class="typing-stats">`;
 
           sortedTypes.forEach(type => {
@@ -643,6 +725,7 @@ export default function AnimatrixPage() {
       setupToggle(versionToggle, versionPanel);
       setupToggle(databaseTabToggle, databaseTabPanel);
       setupToggle(biomeToggle, biomePanel);
+      setupToggle(subBiomeToggle, subBiomePanel);
       setupToggle(statusToggle, statusPanel);
 
       function getStatusFilterValue() {
@@ -688,6 +771,12 @@ export default function AnimatrixPage() {
       });
       clearBiomes.addEventListener("click", () => {
         clearCheckboxes(biomeOptionsEl);
+        clearCheckboxes(subBiomeOptionsEl);
+        updateSubBiomeFilterVisibility();
+        renderAnimatrix();
+      });
+      clearSubBiomes.addEventListener("click", () => {
+        clearCheckboxes(subBiomeOptionsEl);
         renderAnimatrix();
       });
 
@@ -697,7 +786,11 @@ export default function AnimatrixPage() {
       paraOptionsEl.addEventListener("change", renderAnimatrix);
       versionOptionsEl.addEventListener("change", renderAnimatrix);
       databaseTabOptionsEl.addEventListener("change", () => loadMode(currentMode));
-      biomeOptionsEl.addEventListener("change", renderAnimatrix);
+      biomeOptionsEl.addEventListener("change", () => {
+        updateSubBiomeFilterVisibility();
+        renderAnimatrix();
+      });
+      subBiomeOptionsEl.addEventListener("change", renderAnimatrix);
       statusOptionsEl.addEventListener("change", renderAnimatrix);
 
       // Mode switching
@@ -717,8 +810,16 @@ export default function AnimatrixPage() {
 
       function getVersionRank(mate) {
         const value = getMateVersions(mate)[0] || "";
-        const idx = versionOptions.indexOf(String(value).trim());
-        return idx >= 0 ? idx : 999;
+        const idx = versionOptions.indexOf(normalizeVersionLabel(value));
+        if (idx >= 0) return idx;
+        const sortValue = getVersionSortValue(value);
+        return Number.isFinite(sortValue) ? sortValue : 999;
+      }
+
+      function getAppearanceRank(mate) {
+        const value = mate?.firstScannableUpdate || getMateVersions(mate)[0] || "";
+        const sortValue = getVersionSortValue(value);
+        return Number.isFinite(sortValue) ? sortValue : 999;
       }
 
       function getEventKey(mate) {
@@ -778,6 +879,18 @@ export default function AnimatrixPage() {
         }
 
         return String(a.name || "").localeCompare(String(b.name || ""));
+      }
+
+      function compareByAppearanceOrder(a, b) {
+        const aRank = getAppearanceRank(a);
+        const bRank = getAppearanceRank(b);
+        if (aRank !== bRank) return aRank - bRank;
+        return compareByDisplayOrder(a, b);
+      }
+
+      function compareByCurrentSortMode(a, b) {
+        if (sortMode === "appearance") return compareByAppearanceOrder(a, b);
+        return compareByDisplayOrder(a, b);
       }
 
       function getDatabaseMates() {
@@ -910,7 +1023,8 @@ export default function AnimatrixPage() {
         }
 
         if (mode === "goner" && Number.isInteger(order)) {
-          return -order;
+          if (mate?.__hasConfiguredIdOrder) return order + 1;
+          return -(order + 1);
         }
 
         const resolvedMate = resolveReferenceRoot(mate);
@@ -931,9 +1045,35 @@ export default function AnimatrixPage() {
         if (biomeFilterWrapper) biomeFilterWrapper.style.display = showBiomes ? "inline-block" : "none";
         if (biomeToggle) biomeToggle.textContent = "Biome ▾";
         populateFilterOptions(biomeOptions, biomeOptionsEl);
+        updateSubBiomeFilterVisibility();
         if (!showBiomes) {
           biomePanel.classList.remove("open");
           biomePanel.setAttribute("aria-hidden", "true");
+          if (subBiomeFilterWrapper) subBiomeFilterWrapper.style.display = "none";
+          if (subBiomePanel) {
+            subBiomePanel.classList.remove("open");
+            subBiomePanel.setAttribute("aria-hidden", "true");
+          }
+        }
+      }
+
+      function updateSubBiomeFilterVisibility() {
+        if (!subBiomeFilterWrapper || !subBiomeOptionsEl) return;
+        const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
+        const subBiomes = selectedBiomes
+          .flatMap(biome => Array.isArray(subBiomeOptionsByBiome[biome]) ? subBiomeOptionsByBiome[biome] : [])
+          .filter(Boolean);
+        const uniqueSubBiomes = Array.from(new Set(subBiomes));
+        const selectedSubBiomes = new Set(getCheckedValues(subBiomeOptionsEl));
+        populateFilterOptions(uniqueSubBiomes, subBiomeOptionsEl);
+        subBiomeOptionsEl.querySelectorAll('input[type="checkbox"]').forEach(input => {
+          input.checked = selectedSubBiomes.has(input.value);
+        });
+        const hasSubBiomes = uniqueSubBiomes.length > 0;
+        subBiomeFilterWrapper.style.display = hasSubBiomes ? "inline-block" : "none";
+        if (!hasSubBiomes) {
+          subBiomePanel.classList.remove("open");
+          subBiomePanel.setAttribute("aria-hidden", "true");
         }
       }
 
@@ -966,16 +1106,49 @@ export default function AnimatrixPage() {
         return [];
       }
 
+      function getMateSubBiomes(mate) {
+        if (!mate) return [];
+        if (Array.isArray(mate.subBiomes)) return mate.subBiomes.filter(Boolean);
+        if (Array.isArray(mate.subBiome)) return mate.subBiome.filter(Boolean);
+        if (typeof mate.subBiome === "string" && mate.subBiome.trim()) return [mate.subBiome.trim()];
+        const resolvedMate = resolveReferenceRoot(mate);
+        if (resolvedMate && resolvedMate !== mate) {
+          if (Array.isArray(resolvedMate.subBiomes)) return resolvedMate.subBiomes.filter(Boolean);
+          if (Array.isArray(resolvedMate.subBiome)) return resolvedMate.subBiome.filter(Boolean);
+          if (typeof resolvedMate.subBiome === "string" && resolvedMate.subBiome.trim()) return [resolvedMate.subBiome.trim()];
+        }
+        return [];
+      }
+
       function biomesPassFilter(mateBiomes, selectedBiomes) {
         if (!Array.isArray(selectedBiomes) || !selectedBiomes.length) return true;
         const biomes = Array.isArray(mateBiomes) ? mateBiomes.filter(Boolean) : [];
         return selectedBiomes.some(b => biomes.includes(b));
       }
 
+      function subBiomesPassFilter(mateSubBiomes, selectedSubBiomes) {
+        if (!Array.isArray(selectedSubBiomes) || !selectedSubBiomes.length) return true;
+        const subBiomes = Array.isArray(mateSubBiomes) ? mateSubBiomes.filter(Boolean) : [];
+        return selectedSubBiomes.some(subBiome => subBiomes.includes(subBiome));
+      }
+
       function versionsPassFilter(mate, selectedVersions) {
         if (!Array.isArray(selectedVersions) || !selectedVersions.length) return true;
         const versions = getMateVersions(mate);
         return selectedVersions.some(version => versions.includes(version));
+      }
+
+      function updateAnimatrixSubtitle(selectedVersions = getCheckedValues(versionOptionsEl)) {
+        if (!animatrixSubtitle) return;
+        if (!Array.isArray(selectedVersions) || selectedVersions.length !== 1) {
+          animatrixSubtitle.textContent = "";
+          animatrixSubtitle.hidden = true;
+          return;
+        }
+        const version = normalizeVersionLabel(selectedVersions[0]);
+        const info = versionInfoByName.get(version);
+        animatrixSubtitle.textContent = info?.title || version;
+        animatrixSubtitle.hidden = false;
       }
 
       function biomeImagePath(biomeName) {
@@ -1004,7 +1177,7 @@ export default function AnimatrixPage() {
           : (Array.isArray(allData[listSidebarMode]) ? allData[listSidebarMode].map(mate => ({ ...mate, mode: listSidebarMode })) : []);
         animatrixData = sourceData
           .filter(mate => !isMode(mate))
-          .sort(compareByDisplayOrder);
+          .sort(compareByCurrentSortMode);
         renderAnimatrix();
       }
 
@@ -1018,6 +1191,8 @@ export default function AnimatrixPage() {
         const selectedParas = getCheckedValues(paraOptionsEl);
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
+        const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
+        updateAnimatrixSubtitle(selectedVersions);
 
         const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
         const filteredMates = animatrixData
@@ -1039,6 +1214,8 @@ export default function AnimatrixPage() {
             if (modeSupportsBiomes(currentMode)) {
               const mateBiomes = getMateBiomes(mate);
               if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
+              const mateSubBiomes = getMateSubBiomes(mate);
+              if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
             }
             if (!statusPassesFilter(mate)) return false;
             if (currentMode === "npc" && mate.cosmark === "Y") return false;
@@ -1157,13 +1334,25 @@ export default function AnimatrixPage() {
       function mateVitalsHtml(mate) {
         if ((mate.mode || currentMode) === "costumes") return "";
         const biomes = getMateBiomes(mate);
+        const subBiomes = getMateSubBiomes(mate);
         const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
+        const subBiomeHtml = subBiomes.length ? `<p><b>Sub-Biomes:</b> ${subBiomes.map(b => escapeHtml(b)).join(", ")}</p>` : "";
         const height = escapeHtml(mate.height || "Unknown");
         const color = escapeHtml(mate.color || "Unknown");
+        const etymology = mate.etymology ? `<p><b>Etymology:</b> ${escapeHtml(mate.etymology)}</p>` : "";
+        const firstScannable = mate.firstScannableUpdate
+          ? `<p><b>First Scannable Update:</b> ${escapeHtml(mate.firstScannableUpdate)}</p>`
+          : "";
+        const firstWildCatchable = mate.firstWildCatchableUpdate
+          ? `<p><b>First Wild-Capturable Update:</b> ${escapeHtml(mate.firstWildCatchableUpdate)}</p>`
+          : "";
+        const visualDescription = isMissingNo(mate) && mate.visualDescription
+          ? `<p><b>Visual Description:</b> ${escapeHtml(mate.visualDescription)}</p>`
+          : "";
         const paragonOf = isParagon(mate) ? getParagonOf(mate) : "";
         const paragonHtml = paragonOf ? `<p><b>Paragon of:</b> ${escapeHtml(paragonOf)}</p>` : "";
         const locationLabel = currentMode === "database" ? "Versions" : "Biomes";
-        return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p><p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${paragonHtml}</div>`;
+        return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p>${subBiomeHtml}<p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
       }
 
       function asArray(value) {
@@ -1263,6 +1452,17 @@ export default function AnimatrixPage() {
         setMainModeButton("base");
       });
 
+      function setSortMode(nextSortMode) {
+        sortMode = nextSortMode === "appearance" ? "appearance" : "id";
+        if (idSortView) idSortView.classList.toggle("active", sortMode === "id");
+        if (appearanceSortView) appearanceSortView.classList.toggle("active", sortMode === "appearance");
+        animatrixData.sort(compareByCurrentSortMode);
+        renderAnimatrix();
+      }
+
+      idSortView.addEventListener("click", () => setSortMode("id"));
+      appearanceSortView.addEventListener("click", () => setSortMode("appearance"));
+
       search.addEventListener("input", () => {
         if (!isRightClickSearchActive()) {
           rightClickSearchId = "";
@@ -1285,6 +1485,7 @@ export default function AnimatrixPage() {
         const selectedParas = getCheckedValues(paraOptionsEl);
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
+        const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
         
 
         const intersects = (a, b) =>
@@ -1307,6 +1508,8 @@ export default function AnimatrixPage() {
           if (modeSupportsBiomes(currentMode)) {
             const mateBiomes = getMateBiomes(mate);
             if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
+            const mateSubBiomes = getMateSubBiomes(mate);
+            if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
           }
           if (!statusPassesFilter(mate)) return false;
           if (currentMode === "npc" && mate.cosmark === "Y") return false;
@@ -1400,7 +1603,7 @@ export default function AnimatrixPage() {
         mateImage.src = mate.image || "";
         mateImage.onclick = null;
         mateImage.removeAttribute("title");
-        if ((mate.name || "").toLowerCase() === "thoot") {
+        if ((mate.name || "").toLowerCase() === "blarb") {
           mateImage.title = "Open UPROD";
           mateImage.onclick = () => {
             if (window.uproNavigate?.("/credtrix")) return;
@@ -1801,6 +2004,7 @@ export default function AnimatrixPage() {
       <button id="randomMateBtn" title="Random Mate">Random</button>
     </div>
     <h1>The Animatrix</h1>
+    <p id="animatrixSubtitle" hidden />
     <div className="controls">
       <input type="text" id="search" placeholder="Search..." />
       {/* Custom checkbox-dropdown for Types */}
@@ -1863,6 +2067,15 @@ export default function AnimatrixPage() {
           <div className="options" id="biomeOptions" />
         </div>
       </div>
+      <div className="multi-filter" id="subBiomeFilterWrapper" style={{display: 'none'}}>
+        <button className="filter-toggle" id="subBiomeToggle">Sub-Biome ▾</button>
+        <div className="filter-panel" id="subBiomePanel" aria-hidden="true">
+          <div className="panel-actions">
+            <button id="clearSubBiomes" className="clear-btn">Clear</button>
+          </div>
+          <div className="options" id="subBiomeOptions" />
+        </div>
+      </div>
       {/* Status filter */}
       <div className="multi-filter" id="statusFilterWrapper">
         <button className="filter-toggle" id="statusToggle">Status ▾</button>
@@ -1898,6 +2111,10 @@ export default function AnimatrixPage() {
       <div className="view-toggle">
         <button id="gridView" className="active">Grid</button>
         <button id="listView">List</button>
+      </div>
+      <div className="view-toggle">
+        <button id="appearanceSortView">Appearance</button>
+        <button id="idSortView" className="active">ID</button>
       </div>
       <div className="mode-switch" id="modeSwitch">
         <button className="mode-btn active" data-mode="base">Base</button>

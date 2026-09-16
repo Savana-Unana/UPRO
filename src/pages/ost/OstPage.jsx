@@ -643,7 +643,7 @@ function normalizeSong(entry) {
     theme: entry.theme || 'Theme',
     typing,
     primaryType: typing[0] || 'Normal',
-    version: entry.Version || entry.version || 'Demo 1',
+    version: entry.Version || entry.version || 'Update 1',
     file,
     playable: Boolean(file),
     ost: Number.isFinite(ost) ? ost : 1000,

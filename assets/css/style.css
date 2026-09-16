@@ -944,6 +944,12 @@ header {
   border-bottom: 2px solid #0ff;
 }
 
+#animatrixSubtitle {
+  margin: 2px 0 0;
+  color: #d7f7ff;
+  font-size: 22px;
+}
+
 body.ost-page header {
   position: relative;
   z-index: 200;

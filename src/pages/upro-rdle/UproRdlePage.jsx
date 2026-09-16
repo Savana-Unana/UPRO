@@ -150,8 +150,9 @@ function runPageScript() {
   }
 
   function getVersions(item) {
-    if (Array.isArray(item.versions)) return item.versions.map(entry => String(entry || "").trim()).filter(Boolean);
-    if (typeof item.versions === "string" && item.versions.trim()) return [item.versions.trim()];
+    const normalizeVersion = version => String(version || "").trim().replace(/^Demo\s+/i, "Update ");
+    if (Array.isArray(item.versions)) return item.versions.map(normalizeVersion).filter(Boolean);
+    if (typeof item.versions === "string" && item.versions.trim()) return [normalizeVersion(item.versions)];
     if (item.event === "halloween") return ["Halloween"];
     if (item.event === "winter") return ["Winter"];
     if (item.event === "fools") return ["April Fools"];
@@ -160,7 +161,7 @@ function runPageScript() {
 
   function getDemoNumber(versions) {
     for (const version of versions) {
-      const match = String(version || "").match(/demo\s*(\d+)/i);
+      const match = String(version || "").match(/(?:demo|update)\s*(\d+(?:\.\d+)?)/i);
       if (match) return Number(match[1]);
     }
     return null;
@@ -351,7 +352,7 @@ function runPageScript() {
     const targetType1 = target.types[0] || "";
     const targetType2 = target.types[1] || "";
     const biomeOverlap = intersects(guess.biomes, target.biomes);
-    const guessDemoLabel = guess.demoNumber === null ? "None" : `Demo ${guess.demoNumber}`;
+    const guessDemoLabel = guess.demoNumber === null ? "None" : `Update ${guess.demoNumber}`;
 
     return [
       {
@@ -545,7 +546,7 @@ export default function UproRdlePage() {
         <div className="aniordle-category">Typing-1</div>
         <div className="aniordle-category">Typing-2</div>
         <div className="aniordle-category">Biome</div>
-        <div className="aniordle-category">Demo Number</div>
+        <div className="aniordle-category">Update Number</div>
       </div>
       <div className="aniordle-board" id="aniordleBoard" aria-live="polite" />
     </section>

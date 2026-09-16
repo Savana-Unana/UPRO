@@ -17,25 +17,6 @@
       ]
     },
     {
-      "name": "Fire",
-      "color": "#FF7A4D",
-      "strongAgainst": [
-        "Normal",
-        "Plant",
-        "Ice",
-        "Gross",
-        "Dark",
-        "Spectral",
-        "Metal"
-      ],
-      "weakTo": [
-        "Fire",
-        "Water",
-        "Savage",
-        "Earth"
-      ]
-    },
-    {
       "name": "Water",
       "color": "#3BA5FF",
       "strongAgainst": [
@@ -68,21 +49,21 @@
       ]
     },
     {
-      "name": "Electric",
-      "color": "#F6C94C",
+      "name": "Fire",
+      "color": "#FF7A4D",
       "strongAgainst": [
         "Normal",
-        "Water",
-        "Electric",
-        "Air",
-        "Mystic",
+        "Plant",
+        "Ice",
+        "Gross",
+        "Dark",
+        "Spectral",
         "Metal"
       ],
       "weakTo": [
+        "Fire",
+        "Water",
         "Savage",
-        "Artillery"
-      ],
-      "immuneTo": [
         "Earth"
       ]
     },
@@ -100,35 +81,22 @@
       ]
     },
     {
-      "name": "Savage",
-      "color": "#D6C79B",
+      "name": "Electric",
+      "color": "#F6C94C",
       "strongAgainst": [
         "Normal",
-        "Fire",
-        "Plant",
-        "Savage",
+        "Water",
+        "Electric",
         "Air",
-        "Dark"
+        "Mystic",
+        "Metal"
       ],
       "weakTo": [
-        "Mystic",
-        "Light",
-        "Metal",
+        "Savage",
         "Artillery"
-      ]
-    },
-    {
-      "name": "Gross",
-      "color": "#A8A77A",
-      "strongAgainst": [
-        "Plant",
-        "Ice",
-        "Mystic",
-        "Dark"
       ],
-      "weakTo": [
-        "Gross",
-        "Light"
+      "immuneTo": [
+        "Earth"
       ]
     },
     {
@@ -161,22 +129,6 @@
         "Normal",
         "Plant",
         "Metal"
-      ]
-    },
-    {
-      "name": "Mystic",
-      "color": "#BFA6FF",
-      "strongAgainst": [
-        "Normal",
-        "Savage",
-        "Gross",
-        "Dark",
-        "Spectral",
-        "Metal"
-      ],
-      "weakTo": [
-        "Electric",
-        "Light"
       ]
     },
     {
@@ -223,6 +175,54 @@
       ]
     },
     {
+      "name": "Gross",
+      "color": "#A8A77A",
+      "strongAgainst": [
+        "Plant",
+        "Ice",
+        "Mystic",
+        "Dark"
+      ],
+      "weakTo": [
+        "Gross",
+        "Light"
+      ]
+    },
+    {
+      "name": "Savage",
+      "color": "#D6C79B",
+      "strongAgainst": [
+        "Normal",
+        "Fire",
+        "Plant",
+        "Savage",
+        "Air",
+        "Dark"
+      ],
+      "weakTo": [
+        "Mystic",
+        "Light",
+        "Metal",
+        "Artillery"
+      ]
+    },
+    {
+      "name": "Mystic",
+      "color": "#BFA6FF",
+      "strongAgainst": [
+        "Normal",
+        "Savage",
+        "Gross",
+        "Dark",
+        "Spectral",
+        "Metal"
+      ],
+      "weakTo": [
+        "Electric",
+        "Light"
+      ]
+    },
+    {
       "name": "Metal",
       "color": "#B0B8C1",
       "strongAgainst": [
@@ -263,28 +263,33 @@
     }
   ],
   "biomes": [
-    "Lake",
     "Forest",
-    "Desert",
+    "Lake",
+    "Deeper Waters",
     "River",
-    "Mountains",
-    "Plains",
-    "Circus",
-    "Dead Zone",
-    "Ice-Caps",
-    "Ranch",
-    "Volcano",
-    "Axo-Skerry",
+    "Badlands",
+    "Oasis",
+    "Canyon",
+    "Metaforest",
+    "Meridian Bay",
     "Alcatraz",
-    "Jungle",
+    "Perfecatoly Plains",
     "Borgo Slor",
-    "Big City",
     "Ocean",
+    "Ranch Isles",
+    "Axo-Skerry",
+    "Têtignée Island",
     "Caverns",
+    "Mountains",
+    "Empire City",
+    "New Canadia",
     "Swamp",
-    "Shiver Co.",
-    "I'eland",
-    "Factory"
+    "Lab Fungen",
+    "Shiver Plains",
+    "Shiver Co",
+    "Ieland",
+    "Operation UPRO",
+    "Anti-Realm"
   ],
   "areas": [
     "Miscellaneous",
@@ -434,8 +439,74 @@
   ],
   "versions": [
     {
-      "name": "Demo 1",
+      "name": "Update 1",
+      "title": "Update 1",
       "image": "assets/images/ui/covers/Demo1.png"
+    },
+    {
+      "name": "Update 2",
+      "title": "Update 2",
+      "image": "assets/images/ui/covers/Demo2.png"
+    },
+    {
+      "name": "Update 3",
+      "title": "Update 3",
+      "image": "assets/images/ui/covers/Demo3.png"
+    },
+    {
+      "name": "Update 4",
+      "title": "Update 4",
+      "image": "assets/images/ui/covers/Demo4.png"
+    },
+    {
+      "name": "Update 5",
+      "title": "Update 5",
+      "image": "assets/images/ui/covers/Demo5.png"
+    },
+    {
+      "name": "Update 6",
+      "title": "Update 6",
+      "image": "assets/images/ui/covers/Demo6.png"
+    },
+    {
+      "name": "Update 6.5",
+      "title": "Update 6.5",
+      "image": "assets/images/ui/covers/Demo6.5.png"
+    },
+    {
+      "name": "Update 7",
+      "title": "Update 7",
+      "image": "assets/images/ui/covers/Demo7.png"
+    },
+    {
+      "name": "Update 8",
+      "title": "Update 8",
+      "image": "assets/images/ui/covers/Demo8.png"
+    },
+    {
+      "name": "Update 8.5",
+      "title": "Update 8.5",
+      "image": "assets/images/ui/covers/Demo8.5.png"
+    },
+    {
+      "name": "Update 9",
+      "title": "Update 9",
+      "image": "assets/images/ui/covers/Demo9.png"
+    },
+    {
+      "name": "Update 10",
+      "title": "Update 10",
+      "image": "assets/images/ui/covers/Demo10.png"
+    },
+    {
+      "name": "Update 10.5",
+      "title": "Update 10.5",
+      "image": "assets/images/ui/covers/Demo10.5.png"
+    },
+    {
+      "name": "Update 0",
+      "title": "Update 0",
+      "image": "assets/images/ui/covers/Demo0.png"
     }
   ],
   "composers": [
@@ -454,5 +525,43 @@
     "Gauntlet Battle Theme",
     "Ace Theme",
     "False Theme"
-  ]
+  ],
+  "subBiomes": {
+    "Forest": [
+      "Day",
+      "Night",
+      "Lake",
+      "Spooky"
+    ],
+    "Badlands": [
+      "Day",
+      "Night"
+    ],
+    "Metaforest": [
+      "All",
+      "Rainforest",
+      "Cherry Grove",
+      "Mushroom Fields",
+      "Garden Grounds"
+    ],
+    "Perfecatoly Plains": [
+      "Plains",
+      "Farms"
+    ],
+    "Ieland": [
+      "Metaforest",
+      "Potluck",
+      "Lucky Dip",
+      "Hot Streak / Dessert Desert",
+      "Food Pyramid",
+      "Below the Potluck",
+      "Salt Mountain",
+      "Salt Mines",
+      "Luckingdom",
+      "Above the Potluck"
+    ],
+    "Operation UPRO": [
+      "Operation Pseudo"
+    ]
+  }
 }

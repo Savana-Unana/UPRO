@@ -9,7 +9,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Main Menu Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Perfecto",
@@ -21,7 +21,7 @@
     "typing": "Mystic",
     "description": "",
     "description-title": "Perfactoly's Ad",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Familiarity",
@@ -33,7 +33,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Home Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "On The Block",
@@ -45,7 +45,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Chip Tutorial Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Humble Ashore",
@@ -57,7 +57,7 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Forest Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Twilight Ashore",
@@ -69,8 +69,8 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Forest Night Theme",
-    "Version": "Demo 1"
-  },  
+    "Version": "Update 1"
+  },
   {
     "name": "Call of the Wild",
     "file": "assets/audio/CalloftheWild.mp3",
@@ -81,7 +81,7 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Forest Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Another World",
@@ -93,7 +93,7 @@
     "typing": "Spectral",
     "description": "",
     "description-title": "Death Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Evolution",
@@ -105,7 +105,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Evolution Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Relinquish",
@@ -117,7 +117,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Reposition Normal Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Repression",
@@ -129,7 +129,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Reposition Kal Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Calm After The Storm",
@@ -141,7 +141,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Herc At Werc Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Spawn Point",
@@ -153,7 +153,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Spawn-Point Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Dawn Point",
@@ -165,7 +165,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Spawn-Point Night Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Wears and Tares",
@@ -177,7 +177,7 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Mysterious Trader Shop Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Pizza Pasta",
@@ -189,7 +189,7 @@
     "typing": "Mystic",
     "description": "",
     "description-title": "Perfecatoly's Resturant Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Tranquility",
@@ -201,7 +201,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Lake Fishing Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Wading",
@@ -213,7 +213,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Water Gauntlet Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Bait",
@@ -225,7 +225,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Water Gauntlet Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Low Tide",
@@ -237,7 +237,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Water Gauntlet Ace Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Thalassophobia",
@@ -249,7 +249,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Water Gauntlet Escape Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Desecration",
@@ -261,7 +261,7 @@
     "typing": "Savage",
     "description": "",
     "description-title": "Elite Demolition Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Thanks for Everything",
@@ -273,7 +273,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Opening Credits Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Immersion",
@@ -285,7 +285,7 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Nightmare Forest Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Tankslapper",
@@ -297,7 +297,7 @@
     "typing": "Metal",
     "description": "",
     "description-title": "Driving Game Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Submerged",
@@ -309,7 +309,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Deep Water Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Deep Water",
@@ -321,7 +321,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "Deep Water Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Dead Zone",
@@ -333,7 +333,7 @@
     "typing": "Spectral",
     "description": "",
     "description-title": "Ghouliath Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Just Kidding",
@@ -345,7 +345,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Chip Tutorial Overworld Theme?",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Midnight Ashore",
@@ -357,7 +357,7 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Forest Night Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Gospel Ashore",
@@ -369,7 +369,7 @@
     "typing": "Plant",
     "description": "",
     "description-title": "Forest Night Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Acapella Ashore",
@@ -381,7 +381,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Sussy Ashore",
@@ -393,7 +393,7 @@
     "typing": "Metal",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Desecration Chiptune",
@@ -405,7 +405,7 @@
     "typing": "Savage",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Modest Ashore",
@@ -417,7 +417,7 @@
     "typing": "Water",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Distant Rumbles",
@@ -429,7 +429,7 @@
     "typing": "Earth",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Tumbling Rumbles",
@@ -441,7 +441,7 @@
     "typing": "Earth",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Reminiscence",
@@ -453,7 +453,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Frenzy Ashore",
@@ -465,7 +465,7 @@
     "typing": "Electric",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Skeptic Electric",
@@ -477,7 +477,7 @@
     "typing": "Electric",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Hectic Electric",
@@ -489,7 +489,7 @@
     "typing": "Electric",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Haptic Electric",
@@ -501,7 +501,7 @@
     "typing": "Electric",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Circuit Breaker",
@@ -513,7 +513,7 @@
     "typing": "Electric",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Skibidi Electric",
@@ -525,7 +525,7 @@
     "typing": "Electric",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Sparks of Hope",
@@ -537,7 +537,7 @@
     "typing": "Earth",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Crystaline Caverns",
@@ -549,7 +549,7 @@
     "typing": "Earth",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Fury",
@@ -561,7 +561,7 @@
     "typing": "Savage",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Relocation",
@@ -573,7 +573,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "Reposition Normal Battle Theme",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Despair",
@@ -585,7 +585,7 @@
     "typing": "Savage",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Demo",
@@ -597,7 +597,7 @@
     "typing": "Savage",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Haven",
@@ -609,7 +609,7 @@
     "typing": "Spectral",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Standstill",
@@ -621,7 +621,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Snowscape",
@@ -633,7 +633,7 @@
     "typing": "Ice",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Interstellar Ascension",
@@ -645,7 +645,7 @@
     "typing": "Air",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "The Greatest",
@@ -657,7 +657,7 @@
     "typing": "Mystic",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Carpet",
@@ -669,7 +669,7 @@
     "typing": "Normal",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   },
   {
     "name": "Voodoo",
@@ -681,6 +681,6 @@
     "typing": "Lucid",
     "description": "",
     "description-title": "",
-    "Version": "Demo 1"
+    "Version": "Update 1"
   }
 ]
