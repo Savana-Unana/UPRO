@@ -181,9 +181,9 @@
   },
   {
     "name": "Pizza Pasta",
-    "file": null,
+    "file": "assets/audio/PizzaPasta.mp3",
     "ost": 16,
-    "composer": null,
+    "composer": "Octoking",
     "area": "Chef Perfecatoly's",
     "theme": "Overworld Theme",
     "typing": "Mystic",

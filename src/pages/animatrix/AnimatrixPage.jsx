@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react'
-import { fetchMateBuckets } from '../../utils/mateData'
+import { buildEvolutionStageIndex, fetchMateBuckets } from '../../utils/mateData'
 
 const pageStyles = ""
 
@@ -27,6 +27,7 @@ export default function AnimatrixPage() {
     let sortMode = "id";
     let subBiomeOptionsByBiome = {};
     let versionInfoByName = new Map();
+    let evolutionStageIndexes = new Map();
 
       const animatrix = document.getElementById("animatrix");
       const gridView = document.getElementById("gridView");
@@ -70,9 +71,17 @@ export default function AnimatrixPage() {
       const statusToggle = document.getElementById("statusToggle");
       const statusPanel = document.getElementById("statusPanel");
       const statusOptionsEl = document.getElementById("statusOptions");
+      const stageFilterWrapper = document.getElementById("stageFilterWrapper");
+      const stageToggle = document.getElementById("stageToggle");
+      const stagePanel = document.getElementById("stagePanel");
+      const stageOptionsEl = document.getElementById("stageOptions");
       const idSortView = document.getElementById("idSortView");
       const appearanceSortView = document.getElementById("appearanceSortView");
       const animatrixSubtitle = document.getElementById("animatrixSubtitle");
+      const searchHelpButton = document.getElementById("searchHelpButton");
+      const searchResultCount = document.getElementById("searchResultCount");
+      const searchHelpModal = document.getElementById("searchHelpModal");
+      const closeSearchHelpButton = document.getElementById("closeSearchHelp");
 
       const modal = document.getElementById("detailsModal");
       const closeModal = document.getElementById("closeModal");
@@ -92,6 +101,26 @@ export default function AnimatrixPage() {
         npc: "NPCs"
       };
       const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5, npc: 6 };
+
+      function closeSearchHelp() {
+        searchHelpModal.classList.add("hidden");
+        searchHelpButton.setAttribute("aria-expanded", "false");
+      }
+
+      searchHelpButton.addEventListener("click", event => {
+        event.stopPropagation();
+        searchHelpModal.classList.remove("hidden");
+        searchHelpButton.setAttribute("aria-expanded", "true");
+      });
+
+      closeSearchHelpButton.addEventListener("click", closeSearchHelp);
+      searchHelpModal.addEventListener("click", event => {
+        if (event.target === searchHelpModal) closeSearchHelp();
+      });
+
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && !searchHelpModal.classList.contains("hidden")) closeSearchHelp();
+      });
       let biomeOptions = [
         "Lake",
         "Forest",
@@ -315,6 +344,19 @@ export default function AnimatrixPage() {
       function mateMatchesSearch(mate, term) {
         if (!term) return true;
 
+        const absoluteStage = term.match(/^([1-3])\*$/);
+        if (absoluteStage) {
+          return getEvolutionStageInfo(mate).stages.has(Number(absoluteStage[1]));
+        }
+
+        const linePosition = term.match(/^(\d+)\/(\d+)$/);
+        if (linePosition) {
+          const position = Number(linePosition[1]);
+          const length = Number(linePosition[2]);
+          if (position < 1 || length < 1 || position > length) return false;
+          return getEvolutionStageInfo(mate).positions.has(`${position}/${length}`);
+        }
+
         const searchId = normalizeSearchId(term);
         if (searchId !== null) {
           return getMateDisplayId(mate) === searchId;
@@ -501,6 +543,7 @@ export default function AnimatrixPage() {
 
             annotateMateOrder("event", allData.event);
             rebuildRefIndexes();
+            rebuildEvolutionStageIndexes();
             rebuildVersionOptions();
             populateFilterOptions(versionOptions, versionOptionsEl);
 
@@ -727,6 +770,42 @@ export default function AnimatrixPage() {
       setupToggle(biomeToggle, biomePanel);
       setupToggle(subBiomeToggle, subBiomePanel);
       setupToggle(statusToggle, statusPanel);
+      setupToggle(stageToggle, stagePanel);
+
+      function rebuildEvolutionStageIndexes() {
+        evolutionStageIndexes = new Map();
+        Object.entries(allData.evolution || {}).forEach(([mode, mates]) => {
+          evolutionStageIndexes.set(mode, buildEvolutionStageIndex(mates));
+        });
+      }
+
+      function getStageFilterValue() {
+        const checked = stageOptionsEl.querySelector('input[name="stageFilter"]:checked');
+        return checked ? checked.value : "all";
+      }
+
+      function getEvolutionStageInfo(mate) {
+        let mode = mate?.mode || currentMode;
+        if (mode === "event") mode = mate?.sourceMode || "base";
+        if (mode === "goner" || mode === "database") mode = mate?.sourceMode || mate?.__mode || "base";
+        const index = evolutionStageIndexes.get(mode) || evolutionStageIndexes.get("base");
+        const name = String(mate?.name || "").trim();
+        return index?.get(name) || {
+          stages: new Set([1]),
+          positions: new Set(["1/1"]),
+          first: true,
+          middle: false,
+          final: true
+        };
+      }
+
+      function stagePassesFilter(mate) {
+        const filter = getStageFilterValue();
+        if (filter === "all") return true;
+        const info = getEvolutionStageInfo(mate);
+        if (filter.startsWith("stage-")) return info.stages.has(Number(filter.slice(6)));
+        return Boolean(info[filter]);
+      }
 
       function getStatusFilterValue() {
         const checked = statusOptionsEl.querySelector('input[name="statusFilter"]:checked');
@@ -792,6 +871,7 @@ export default function AnimatrixPage() {
       });
       subBiomeOptionsEl.addEventListener("change", renderAnimatrix);
       statusOptionsEl.addEventListener("change", renderAnimatrix);
+      stageOptionsEl.addEventListener("change", renderAnimatrix);
 
       // Mode switching
       modeButtons.forEach(btn => {
@@ -1199,7 +1279,6 @@ export default function AnimatrixPage() {
           .filter(mate => {
             if (!mate) return false;
             if (isMode(mate)) return false;
-            if (listViewActive) return true;
             if (!mateMatchesSearch(mate, term)) return false;
             if (selectedTypes.length) {
               if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -1218,9 +1297,18 @@ export default function AnimatrixPage() {
               if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
             }
             if (!statusPassesFilter(mate)) return false;
+            if (!stagePassesFilter(mate)) return false;
             if (currentMode === "npc" && mate.cosmark === "Y") return false;
             return true;
           });
+
+        if (term) {
+          searchResultCount.textContent = `${filteredMates.length} ${filteredMates.length === 1 ? "result" : "results"}`;
+          searchResultCount.hidden = false;
+        } else {
+          searchResultCount.textContent = "";
+          searchResultCount.hidden = true;
+        }
 
         if (!filteredMates.length) {
           const empty = document.createElement("div");
@@ -1512,6 +1600,7 @@ export default function AnimatrixPage() {
             if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
           }
           if (!statusPassesFilter(mate)) return false;
+          if (!stagePassesFilter(mate)) return false;
           if (currentMode === "npc" && mate.cosmark === "Y") return false;
           return true;
         });
@@ -1987,7 +2076,16 @@ export default function AnimatrixPage() {
   return (
     <>
       {pageStyles && <style>{pageStyles}</style>}
-      <div className="upro-page-root"><header>
+      <div className="upro-page-root"><header className="animatrix-header">
+    <button
+      id="searchHelpButton"
+      className="search-help-button"
+      type="button"
+      title="Search help"
+      aria-label="Show search help"
+      aria-expanded="false"
+      aria-controls="searchHelpModal"
+    >i</button>
     <div style={{display: 'flex'}}>
       <div id="nav-btn">
         <a href="/">
@@ -2108,6 +2206,41 @@ export default function AnimatrixPage() {
           </div>
         </div>
       </div>
+      <div className="multi-filter" id="stageFilterWrapper">
+        <button className="filter-toggle" id="stageToggle">Stage ▾</button>
+        <div className="filter-panel" id="stagePanel" aria-hidden="true">
+          <div className="options" id="stageOptions">
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="all" defaultChecked />
+              <span>All Stages</span>
+            </label>
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="stage-1" />
+              <span>Stage 1</span>
+            </label>
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="stage-2" />
+              <span>Stage 2</span>
+            </label>
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="stage-3" />
+              <span>Stage 3</span>
+            </label>
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="first" />
+              <span>First Stage</span>
+            </label>
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="middle" />
+              <span>Middle Stage</span>
+            </label>
+            <label className="opt">
+              <input type="radio" name="stageFilter" defaultValue="final" />
+              <span>Final Stage</span>
+            </label>
+          </div>
+        </div>
+      </div>
       <div className="view-toggle">
         <button id="gridView" className="active">Grid</button>
         <button id="listView">List</button>
@@ -2130,7 +2263,26 @@ export default function AnimatrixPage() {
     </div>
   </header>
   <div id="listModeActions" className="list-mode-actions" hidden />
+  <p id="searchResultCount" className="search-result-count" role="status" aria-live="polite" hidden />
   <main id="animatrix" className="grid" />
+  <div id="searchHelpModal" className="modal hidden">
+    <div className="modal-content search-help-content">
+      <button id="closeSearchHelp" className="close-btn" aria-label="Close search guide">✕</button>
+      <div className="modal-header">
+        <h2>Search Guide</h2>
+      </div>
+      <div className="modal-body search-help-body">
+        <dl>
+          <div><dt>Names</dt><dd>Enter a full or partial name, like <code>Lemody</code> or <code>lem</code>.</dd></div>
+          <div><dt>IDs</dt><dd>Enter an exact ID, like <code>42</code> or <code>-3</code>.</dd></div>
+          <div><dt>Stage</dt><dd>Use <code>1*</code>, <code>2*</code>, or <code>3*</code>.</dd></div>
+          <div><dt>Line Position</dt><dd>Use <code>1/2</code>, <code>2/2</code>, <code>1/3</code>, <code>2/3</code>, or <code>3/3</code>.</dd></div>
+          <div><dt>Single Line</dt><dd>Use <code>1/1</code>.</dd></div>
+          <div><dt>Right Click</dt><dd>Right-click an animate card to search for every variation that shares its Animatrix ID.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
   {/* Details Modal */}
   <div id="detailsModal" className="modal hidden">
     <div className="modal-content">

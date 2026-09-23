@@ -309,8 +309,8 @@
           "image": "assets/images/mates/base/Hileaph.png",
           "versions": "Update 7",
           "etymology": "High + Leaf",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -754,8 +754,8 @@
           "image": "assets/images/mates/base/Furnacoon.png",
           "versions": "Update 7",
           "etymology": "Furnace + Raccoon",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -1199,8 +1199,8 @@
           "image": "assets/images/mates/lost/Axolarg.png",
           "versions": "Update 7",
           "etymology": "Axolotl + Large",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -1301,114 +1301,6 @@
           "image": "assets/images/mates/costumes/L.MissingNo.png",
           "description": "",
           "versions": "April Fools"
-        }
-      ]
-    }
-  },
-  {
-    "name": "Dodecadog",
-    "forms": {
-      "base": [
-        {
-          "name": "Dodecadog",
-          "types": [
-            "Normal",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": "7ft",
-          "color": "Brown",
-          "biomes": [],
-          "image": "assets/images/mates/base/Dodecadog.png",
-          "versions": "Update 7",
-          "etymology": "Dodecagon + Dog",
-          "firstScannableUpdate": "Update 7",
-          "firstWildCatchableUpdate": "Update _"
-        }
-      ],
-      "sacred": [
-        {
-          "name": "Sacred Dodecadog",
-          "types": [
-            "Normal",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "description": "",
-          "versions": "Update 7"
-        }
-      ],
-      "costumes": [
-        {
-          "name": "LED Dodecadog",
-          "types": [
-            "Normal",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/costumes/L.Dodecadog.png",
-          "description": "",
-          "versions": "Update 7"
-        },
-        {
-          "name": "Devil Dodecadog",
-          "types": [
-            "Normal",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/costumes/L.MissingNo.png",
-          "description": "",
-          "versions": "Halloween"
         }
       ]
     }
@@ -2647,12 +2539,7 @@
             "Experienced": "No entry yet",
             "Reverense": "No entry yet"
           },
-          "evolvesTo": [
-            {
-              "name": "Citrinel",
-              "level": null
-            }
-          ],
+          "evolvesTo": [],
           "abilities": [],
           "moves": [],
           "height": "7ft",
@@ -3132,7 +3019,7 @@
           ],
           "image": "assets/images/mates/base/Ircencaat.png",
           "versions": "Update 1",
-          "etymology": "*** + Cat",
+          "etymology": "Ircenrraat + Cat",
           "firstScannableUpdate": "Update 1",
           "firstWildCatchableUpdate": "Update 1"
         }
@@ -4691,7 +4578,10 @@
             "Swamp"
           ],
           "image": "assets/images/mates/lost/MissingNo.png",
-          "versions": "Update 12"
+          "versions": "Update 12",
+          "etymology": "Lilypad + Living + Vine",
+          "firstScannableUpdate": "Update 1",
+          "firstWildCatchableUpdate": "Update 1"
         }
       ],
       "sacred": [
@@ -5821,134 +5711,6 @@
     }
   },
   {
-    "name": "Minnote",
-    "forms": {
-      "base": [
-        {
-          "name": "Minnote",
-          "types": [
-            "Water"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [
-            {
-              "name": "Triangeel",
-              "level": null
-            },
-            {
-              "name": "Basscsio",
-              "level": null
-            },
-            {
-              "name": "Velvetone",
-              "level": null
-            },
-            {
-              "name": "Spigle",
-              "level": null
-            },
-            {
-              "name": "Chordal",
-              "level": null
-            }
-          ],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "biomes": [
-            "River",
-            "Ocean"
-          ],
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "versions": "Update 2",
-          "etymology": "Minnow + Note",
-          "firstScannableUpdate": "Update 2",
-          "firstWildCatchableUpdate": "Update 2"
-        }
-      ],
-      "costumes": [
-        {
-          "name": "LED Minnote",
-          "types": [
-            "Water"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/costumes/L.MissingNo.png",
-          "description": "",
-          "versions": "Update 2"
-        }
-      ],
-      "sacred": [
-        {
-          "name": "Sacred Minnote",
-          "types": [
-            "Water"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [
-            {
-              "name": "Sacred Triangeel",
-              "level": 25
-            },
-            {
-              "name": "Sacred Basscsio",
-              "level": 25
-            },
-            {
-              "name": "Sacred Velvetone",
-              "level": 25
-            },
-            {
-              "name": "Sacred Spigle",
-              "level": 25
-            },
-            {
-              "name": "Sacred Soxafone",
-              "level": 25
-            }
-          ],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "description": "",
-          "versions": "Update 2"
-        }
-      ]
-    }
-  },
-  {
     "name": "Chordal",
     "forms": {
       "base": [
@@ -6980,8 +6742,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 2",
           "etymology": "Dust + Terror",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -7333,8 +7095,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 2",
           "etymology": "Kangaroo + Guru",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -7793,8 +7555,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 2",
           "etymology": "Grasp + It",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -9002,8 +8764,8 @@
           "image": "assets/images/mates/lost/Thrack.png",
           "versions": "Update 3",
           "etymology": "Throw + Wack",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -9488,8 +9250,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 3",
           "etymology": "Bonsai + Hadouken",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "ace": [
@@ -10616,8 +10378,8 @@
           "image": "assets/images/mates/lost/Dreadbloom.png",
           "versions": "Update 6",
           "etymology": "Dread + Bloom",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -10713,8 +10475,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 6",
           "etymology": "Rose + Esophagus",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -10803,7 +10565,7 @@
           "versions": "Update 6",
           "etymology": "Pollen + -tron",
           "firstScannableUpdate": "Update 3",
-          "firstWildCatchableUpdate": "Update _"
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -11716,8 +11478,8 @@
           "image": "assets/images/mates/lost/Trashure.png",
           "versions": "Update 5",
           "etymology": "Trash + Treasure",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -13114,7 +12876,7 @@
           ],
           "etymology": "Baguette + Geezer",
           "firstScannableUpdate": "Update 10",
-          "firstWildCatchableUpdate": "Update _"
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -13323,7 +13085,7 @@
           "etymology": "Frankfurter + Fortress",
           "visualDescription": "A fortress made of hotdog/sausages. I'm sure this isn't that hard to conceptualize.",
           "firstScannableUpdate": "Update 5",
-          "firstWildCatchableUpdate": "Update _",
+          "firstWildCatchableUpdate": null,
           "subBiomes": [
             "Food Pyramid"
           ]
@@ -14394,8 +14156,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 10",
           "etymology": "Mantis + Flay + Fillet",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -14953,8 +14715,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 11",
           "etymology": "Tectonic + Toad + Takeover",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -15855,7 +15617,10 @@
             "Mountains"
           ],
           "image": "assets/images/mates/lost/MissingNo.png",
-          "versions": "Update 4"
+          "versions": "Update 4",
+          "etymology": "Rune + Annihilate",
+          "firstScannableUpdate": "Update 6",
+          "firstWildCatchableUpdate": "Update 6"
         }
       ],
       "sacred": [
@@ -18142,7 +17907,7 @@
           "versions": "Update 7",
           "etymology": "Mocking + You",
           "firstScannableUpdate": "Update 7",
-          "firstWildCatchableUpdate": "Update _"
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -18826,7 +18591,7 @@
           "versions": "Update 7",
           "etymology": "Car + Raptor",
           "firstScannableUpdate": "Update 1",
-          "firstWildCatchableUpdate": "Update _"
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -19530,8 +19295,8 @@
           "image": "assets/images/mates/base/Reptundra.png",
           "versions": "Update 8",
           "etymology": "Reptile + Tundra",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -22423,6 +22188,29 @@
           "firstWildCatchableUpdate": "Update 8 Moteeph Scancount"
         }
       ],
+      "sacred": [
+        {
+          "name": "Allusyn",
+          "types": [
+            "Metal"
+          ],
+          "rarity": "Paragon",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 8"
+        }
+      ],
       "costumes": [
         {
           "name": "LED Aestereg",
@@ -22503,8 +22291,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 12",
           "etymology": "Motif",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "costumes": [
@@ -22561,8 +22349,8 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "versions": "Update 12",
           "etymology": "Reference + Reverence",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ],
       "costumes": [
@@ -22622,7 +22410,7 @@
           "versions": "Update 13",
           "etymology": "Spud + Fungus",
           "firstScannableUpdate": "Update 7",
-          "firstWildCatchableUpdate": "Update _"
+          "firstWildCatchableUpdate": null
         }
       ],
       "sacred": [
@@ -22822,12 +22610,7 @@
             "Experienced": "No entry yet",
             "Reverense": "No entry yet"
           },
-          "evolvesTo": [
-            {
-              "name": "Placibial",
-              "level": null
-            }
-          ],
+          "evolvesTo": [],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -24865,178 +24648,6 @@
     }
   },
   {
-    "name": "Sorrauk",
-    "forms": {
-      "base": [
-        {
-          "name": "Sorrauk",
-          "types": [
-            "Air",
-            "Savage"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "biomes": [],
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "versions": "Update 10",
-          "etymology": "Sorry + Hawk",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
-        }
-      ],
-      "sacred": [
-        {
-          "name": "Sacred Sorrauk",
-          "types": [
-            "Air",
-            "Savage"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "description": "",
-          "versions": "Update 10"
-        }
-      ],
-      "costumes": [
-        {
-          "name": "LED Sorrauk",
-          "types": [
-            "Air",
-            "Savage"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/costumes/L.MissingNo.png",
-          "description": "",
-          "versions": "Update 10"
-        }
-      ]
-    }
-  },
-  {
-    "name": "Melaswan",
-    "forms": {
-      "base": [
-        {
-          "name": "Melaswan",
-          "types": [
-            "Air",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "biomes": [],
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "versions": "Update 10",
-          "etymology": "Melancholy + Swan",
-          "firstScannableUpdate": "Update _",
-          "firstWildCatchableUpdate": "Update _"
-        }
-      ],
-      "sacred": [
-        {
-          "name": "Sacred Melaswan",
-          "types": [
-            "Air",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "description": "",
-          "versions": "Update 10"
-        }
-      ],
-      "costumes": [
-        {
-          "name": "LED Melaswan",
-          "types": [
-            "Air",
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Reverense": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/costumes/L.MissingNo.png",
-          "description": "",
-          "versions": "Update 10"
-        }
-      ]
-    }
-  },
-  {
     "name": "Thoot",
     "forms": {
       "ncanon": [
@@ -25502,6 +25113,313 @@
           "description": "",
           "versions": null,
           "ref": "Caraptor"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Canvox",
+    "forms": {
+      "base": [
+        {
+          "name": "Canvox",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Sunline City"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 8",
+          "etymology": "Canvas + Fox",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Briste",
+    "forms": {
+      "base": [
+        {
+          "name": "Briste",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Sunline City"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 8",
+          "etymology": "Bristle",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Markara",
+    "forms": {
+      "base": [
+        {
+          "name": "Markara",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Paragon",
+          "paragonOf": "Freedom",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Sunline City"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 8",
+          "etymology": "Marker",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Apothelugh",
+    "forms": {
+      "base": [
+        {
+          "name": "Apothelugh",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Paragon",
+          "paragonOf": "Light",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 10",
+          "etymology": "Apostle + Pot Luck + Lugh",
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Borealing",
+    "forms": {
+      "base": [
+        {
+          "event": "anti",
+          "name": "Borealing",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 0",
+          "etymology": "Borealis + “ling”",
+          "firstScannableUpdate": "Update 0",
+          "firstWildCatchableUpdate": "Update 0"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sarcophakis",
+    "forms": {
+      "base": [
+        {
+          "name": "Sarcophakis",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Mummyrrh",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Canyon"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 2",
+          "etymology": "Sarcophagus + Kiss",
+          "firstScannableUpdate": "Update 2",
+          "firstWildCatchableUpdate": "Update 2"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Mummyrrh",
+    "forms": {
+      "base": [
+        {
+          "name": "Mummyrrh",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Pharamone",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Canyon"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": "Update 2",
+          "etymology": "Mummy + Myrrh",
+          "firstScannableUpdate": "Update 2",
+          "firstWildCatchableUpdate": "Update 2"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Pharamone",
+    "forms": {
+      "base": [
+        {
+          "name": "Pharamone",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Reverense": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Canyon"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "versions": null,
+          "etymology": "Pharaoh + Pheromone",
+          "firstScannableUpdate": null,
+          "firstWildCatchableUpdate": null
         }
       ]
     }

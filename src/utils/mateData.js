@@ -94,6 +94,82 @@ export function mergeMateBuckets(...bucketSets) {
   return merged;
 }
 
+export function buildEvolutionStageIndex(mates) {
+  const outgoing = new Map();
+  const incoming = new Map();
+  const names = new Set();
+
+  (Array.isArray(mates) ? mates : []).forEach(mate => {
+    const name = String(mate?.name || "").trim();
+    if (!name) return;
+    names.add(name);
+    if (!outgoing.has(name)) outgoing.set(name, new Set());
+    if (!incoming.has(name)) incoming.set(name, new Set());
+
+    (mate.evolvesTo || []).forEach(evolution => {
+      const target = String(evolution?.name || "").trim();
+      if (!target) return;
+      names.add(target);
+      if (!outgoing.has(target)) outgoing.set(target, new Set());
+      if (!incoming.has(target)) incoming.set(target, new Set());
+      outgoing.get(name).add(target);
+      incoming.get(target).add(name);
+    });
+  });
+
+  const stagesByName = new Map(Array.from(names, name => [name, new Set()]));
+  const positionsByName = new Map(Array.from(names, name => [name, new Set()]));
+  const roots = Array.from(names).filter(name => !incoming.get(name)?.size);
+
+  function visit(name, stage, path) {
+    stagesByName.get(name)?.add(stage);
+    if (path.has(name)) return;
+    const nextPath = new Set(path);
+    nextPath.add(name);
+    (outgoing.get(name) || []).forEach(target => visit(target, stage + 1, nextPath));
+  }
+
+  roots.forEach(root => visit(root, 1, new Set()));
+  names.forEach(name => {
+    if (!stagesByName.get(name)?.size) visit(name, 1, new Set());
+  });
+
+  function recordLine(path) {
+    path.forEach((name, index) => positionsByName.get(name)?.add(`${index + 1}/${path.length}`));
+  }
+
+  function visitLine(name, path) {
+    if (path.includes(name)) {
+      recordLine(path);
+      return;
+    }
+    const nextPath = [...path, name];
+    const children = Array.from(outgoing.get(name) || []);
+    if (!children.length) {
+      recordLine(nextPath);
+      return;
+    }
+    children.forEach(child => visitLine(child, nextPath));
+  }
+
+  roots.forEach(root => visitLine(root, []));
+  names.forEach(name => {
+    if (!positionsByName.get(name)?.size) visitLine(name, []);
+  });
+
+  return new Map(Array.from(names, name => {
+    const hasParents = Boolean(incoming.get(name)?.size);
+    const hasChildren = Boolean(outgoing.get(name)?.size);
+    return [name, {
+      stages: stagesByName.get(name),
+      positions: positionsByName.get(name),
+      first: !hasParents,
+      middle: hasParents && hasChildren,
+      final: !hasChildren
+    }];
+  }));
+}
+
 function mateBucketKey(mate) {
   return [
     mate?.mode || "",

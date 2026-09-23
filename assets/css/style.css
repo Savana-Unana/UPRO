@@ -944,6 +944,65 @@ header {
   border-bottom: 2px solid #0ff;
 }
 
+.animatrix-header {
+  position: relative;
+}
+
+.search-help-button {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  font-family: 'UPRO', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 40px;
+  z-index: 82;
+}
+
+.search-help-body dl,
+.search-help-body dd {
+  margin: 0;
+}
+
+.search-help-body dl {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+.search-help-body dl > div {
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 255, 255, 0.28);
+}
+
+.search-help-body dt {
+  color: #fff;
+}
+
+.search-help-body dd {
+  margin-top: 5px;
+  color: #cfe7ea;
+  line-height: 1.35;
+}
+
+.search-help-body code {
+  color: #f4ff9a;
+  font-family: 'UPRO', serif;
+}
+
+@media screen and (max-width: 600px) {
+  .search-help-button {
+    top: 8px;
+    right: 8px;
+  }
+
+}
+
 #animatrixSubtitle {
   margin: 2px 0 0;
   color: #d7f7ff;
@@ -1022,6 +1081,18 @@ main.list {
 }
 
 .list-mode-actions[hidden] {
+  display: none;
+}
+
+.search-result-count {
+  margin: 10px 20px -8px;
+  color: #a8dce3;
+  font-size: 28px;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.search-result-count[hidden] {
   display: none;
 }
 
