@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react'
-import { buildEvolutionStageIndex, fetchMateBuckets } from '../../utils/mateData'
+import { buildEvolutionStageIndex, fetchMateBuckets, getBiomeImagePath } from '../../utils/mateData'
 
 const pageStyles = ""
 
@@ -36,15 +36,18 @@ export default function AnimatrixPage() {
       const search = document.getElementById("search");
 
       // custom filter UI elements
+      const typeFilterWrapper = document.getElementById("typeFilterWrapper");
       const typeToggle = document.getElementById("typeToggle");
       const typePanel = document.getElementById("typePanel");
       const typeOptionsEl = document.getElementById("typeOptions");
       const clearTypes = document.getElementById("clearTypes");
+      const type2FilterWrapper = document.getElementById("type2FilterWrapper");
       const type2Toggle = document.getElementById("type2Toggle");
       const type2Panel = document.getElementById("type2Panel");
       const type2OptionsEl = document.getElementById("type2Options");
       const clearTypes2 = document.getElementById("clearTypes2");
 
+      const paraFilterWrapper = document.getElementById("paraFilterWrapper");
       const paraToggle = document.getElementById("paraToggle");
       const paraPanel = document.getElementById("paraPanel");
       const paraOptionsEl = document.getElementById("paraOptions");
@@ -68,6 +71,12 @@ export default function AnimatrixPage() {
       const subBiomePanel = document.getElementById("subBiomePanel");
       const subBiomeOptionsEl = document.getElementById("subBiomeOptions");
       const clearSubBiomes = document.getElementById("clearSubBiomes");
+      const foundFilterWrapper = document.getElementById("foundFilterWrapper");
+      const foundToggle = document.getElementById("foundToggle");
+      const foundPanel = document.getElementById("foundPanel");
+      const foundOptionsEl = document.getElementById("foundOptions");
+      const clearFound = document.getElementById("clearFound");
+      const statusFilterWrapper = document.getElementById("statusFilterWrapper");
       const statusToggle = document.getElementById("statusToggle");
       const statusPanel = document.getElementById("statusPanel");
       const statusOptionsEl = document.getElementById("statusOptions");
@@ -328,7 +337,13 @@ export default function AnimatrixPage() {
         return document.body.classList.contains("animatrix-list-view");
       }
 
+      function shouldHideMateId(mate) {
+        const mode = mate?.mode || mate?.__mode || currentMode;
+        return mode === "npc" || mode === "ncanon" || getEventKey(mate) === "anti";
+      }
+
       function formatListCardId(mate) {
+        if (shouldHideMateId(mate)) return "";
         const displayId = getMateDisplayId(mate);
         if (displayId === null) return "????";
         const sign = displayId < 0 ? "-" : "";
@@ -546,6 +561,7 @@ export default function AnimatrixPage() {
             rebuildEvolutionStageIndexes();
             rebuildVersionOptions();
             populateFilterOptions(versionOptions, versionOptionsEl);
+            populateFilterOptions(getNpcFoundOptions(), foundOptionsEl);
 
             loadMode("base");
           })
@@ -769,12 +785,21 @@ export default function AnimatrixPage() {
       setupToggle(databaseTabToggle, databaseTabPanel);
       setupToggle(biomeToggle, biomePanel);
       setupToggle(subBiomeToggle, subBiomePanel);
+      setupToggle(foundToggle, foundPanel);
       setupToggle(statusToggle, statusPanel);
       setupToggle(stageToggle, stagePanel);
 
       function rebuildEvolutionStageIndexes() {
         evolutionStageIndexes = new Map();
+        const baseAndGonerMates = [
+          ...((allData.evolution || {}).base || []),
+          ...((allData.evolution || {}).goner || [])
+        ];
+        const baseAndGonerIndex = buildEvolutionStageIndex(baseAndGonerMates);
+        evolutionStageIndexes.set("base", baseAndGonerIndex);
+        evolutionStageIndexes.set("goner", baseAndGonerIndex);
         Object.entries(allData.evolution || {}).forEach(([mode, mates]) => {
+          if (mode === "base" || mode === "goner") return;
           evolutionStageIndexes.set(mode, buildEvolutionStageIndex(mates));
         });
       }
@@ -817,7 +842,15 @@ export default function AnimatrixPage() {
         if (filter === "all") return true;
 
         const mateWithMode = { ...mate, mode: mate.mode || currentMode };
-        if (mateWithMode.mode === "npc") return true;
+        if (mateWithMode.mode === "npc") {
+          if (filter === "missingno" || filter === "conceptualized" || filter === "nonfinalized") {
+            return isNpcPlaceholder(mateWithMode);
+          }
+          if (filter === "designed" || filter === "finalized") {
+            return isNpcCreated(mateWithMode);
+          }
+          return true;
+        }
 
         if (filter === "missingno") return isMissingNo(mateWithMode);
         if (filter === "designed") return isDesigned(mateWithMode);
@@ -858,6 +891,10 @@ export default function AnimatrixPage() {
         clearCheckboxes(subBiomeOptionsEl);
         renderAnimatrix();
       });
+      clearFound.addEventListener("click", () => {
+        clearCheckboxes(foundOptionsEl);
+        renderAnimatrix();
+      });
 
       // Wire checkbox changes to re-render
       typeOptionsEl.addEventListener("change", renderAnimatrix);
@@ -870,6 +907,7 @@ export default function AnimatrixPage() {
         renderAnimatrix();
       });
       subBiomeOptionsEl.addEventListener("change", renderAnimatrix);
+      foundOptionsEl.addEventListener("change", renderAnimatrix);
       statusOptionsEl.addEventListener("change", renderAnimatrix);
       stageOptionsEl.addEventListener("change", renderAnimatrix);
 
@@ -1099,7 +1137,7 @@ export default function AnimatrixPage() {
         }
 
         if (mode === "ncanon") {
-          return -1;
+          return null;
         }
 
         if (mode === "goner" && Number.isInteger(order)) {
@@ -1118,6 +1156,19 @@ export default function AnimatrixPage() {
 
       function modeUsesBiomeArt(mode) {
         return mode !== "npc" && mode !== "database" && mode !== "costumes";
+      }
+
+      function setNpcControlVisibility(mode) {
+        const isNpcMode = mode === "npc";
+        [typeFilterWrapper, type2FilterWrapper, paraFilterWrapper, stageFilterWrapper].forEach(wrapper => {
+          if (wrapper) wrapper.style.display = isNpcMode ? "none" : "inline-block";
+        });
+        if (foundFilterWrapper) foundFilterWrapper.style.display = isNpcMode ? "inline-block" : "none";
+        if (statusFilterWrapper) statusFilterWrapper.style.display = "inline-block";
+        if (!isNpcMode) {
+          foundPanel.classList.remove("open");
+          foundPanel.setAttribute("aria-hidden", "true");
+        }
       }
 
       function setBiomeFilterVisibility(mode) {
@@ -1200,6 +1251,22 @@ export default function AnimatrixPage() {
         return [];
       }
 
+      function getNpcFoundLocations(mate) {
+        if (!mate) return ["Unspecified"];
+        const value = mate.found ?? mate.Found ?? mate.areas ?? mate.area;
+        if (Array.isArray(value)) {
+          const locations = value.map(location => String(location || "").trim()).filter(Boolean);
+          return locations.length ? locations : ["Unspecified"];
+        }
+        if (typeof value === "string" && value.trim()) return [value.trim()];
+        return ["Unspecified"];
+      }
+
+      function getNpcFoundOptions() {
+        return Array.from(new Set((allData.npc || []).flatMap(getNpcFoundLocations)))
+          .sort((a, b) => a.localeCompare(b));
+      }
+
       function biomesPassFilter(mateBiomes, selectedBiomes) {
         if (!Array.isArray(selectedBiomes) || !selectedBiomes.length) return true;
         const biomes = Array.isArray(mateBiomes) ? mateBiomes.filter(Boolean) : [];
@@ -1210,6 +1277,12 @@ export default function AnimatrixPage() {
         if (!Array.isArray(selectedSubBiomes) || !selectedSubBiomes.length) return true;
         const subBiomes = Array.isArray(mateSubBiomes) ? mateSubBiomes.filter(Boolean) : [];
         return selectedSubBiomes.some(subBiome => subBiomes.includes(subBiome));
+      }
+
+      function foundPassesFilter(mate, selectedFound) {
+        if (!Array.isArray(selectedFound) || !selectedFound.length) return true;
+        const locations = getNpcFoundLocations(mate);
+        return selectedFound.some(location => locations.includes(location));
       }
 
       function versionsPassFilter(mate, selectedVersions) {
@@ -1231,18 +1304,13 @@ export default function AnimatrixPage() {
         animatrixSubtitle.hidden = false;
       }
 
-      function biomeImagePath(biomeName) {
-        const name = String(biomeName || "").trim();
-        if (!name) return "";
-        return `${import.meta.env.BASE_URL}assets/images/ui/biomes/${name}.png`;
-      }
-
       function cssImageUrl(path) {
         return `url("${String(path || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"')}")`;
       }
 
       function loadMode(mode) {
         currentMode = mode;
+        setNpcControlVisibility(mode);
         setBiomeFilterVisibility(mode);
         setDatabaseTabFilterVisibility(mode);
         const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database" && mode !== "npc"
@@ -1272,6 +1340,7 @@ export default function AnimatrixPage() {
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
         const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
+        const selectedFound = currentMode === "npc" ? getCheckedValues(foundOptionsEl) : [];
         updateAnimatrixSubtitle(selectedVersions);
 
         const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
@@ -1296,6 +1365,7 @@ export default function AnimatrixPage() {
               const mateSubBiomes = getMateSubBiomes(mate);
               if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
             }
+            if (currentMode === "npc" && !foundPassesFilter(mate, selectedFound)) return false;
             if (!statusPassesFilter(mate)) return false;
             if (!stagePassesFilter(mate)) return false;
             if (currentMode === "npc" && mate.cosmark === "Y") return false;
@@ -1329,9 +1399,10 @@ export default function AnimatrixPage() {
             }
             if (!listViewCard && isParagon(mate)) card.classList.add("rarity-paragon");
             const firstBiome = getMateBiomes(mate)[0];
-            if (!listViewCard && firstBiome && modeUsesBiomeArt(currentMode)) {
+            const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate)[0]);
+            if (!listViewCard && biomeImage && modeUsesBiomeArt(currentMode)) {
               card.classList.add("biome-bg");
-              card.style.setProperty("--biome-image", cssImageUrl(biomeImagePath(firstBiome)));
+              card.style.setProperty("--biome-image", cssImageUrl(biomeImage));
             }
             if (!listViewCard) {
               applyMateStyle(card, mate);
@@ -1340,6 +1411,7 @@ export default function AnimatrixPage() {
             const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
             const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
             const displayId = getMateDisplayId(mate);
+            const showId = !shouldHideMateId(mate);
             const idText = listViewCard ? formatListCardId(mate) : (displayId === null ? "?" : String(displayId));
             const shiverBadge = isShiver(mate)
               ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
@@ -1348,14 +1420,14 @@ export default function AnimatrixPage() {
             if (listViewCard) {
               const rowLabel = document.createElement("span");
               rowLabel.className = "list-card-label";
-              rowLabel.textContent = currentMode === "costumes"
+              rowLabel.textContent = currentMode === "costumes" || !showId
                 ? (mate.name || "")
                 : `${idText} - ${mate.name || ""}${lostImage ? "*" : ""}`;
               card.appendChild(rowLabel);
             } else {
               // Inner HTML for the card
               card.innerHTML = `
-                <div class="card-id">${escapeHtml(idText)}</div>
+                ${showId ? `<div class="card-id">${escapeHtml(idText)}</div>` : ""}
                 ${shiverBadge}
                 <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
                 <h3>${displayName}</h3>
@@ -1385,10 +1457,14 @@ export default function AnimatrixPage() {
 
       function getMateEvolutionPool(mate) {
         const mode = mate?.mode || currentMode;
-        const evolutionMode = mode === "goner" ? "base" : mode;
+        const evolutionModes = mode === "base" || mode === "goner"
+          ? ["base", "goner"]
+          : [mode];
         const pools = [
           getMateModePool(mate),
-          ((allData.evolution || {})[evolutionMode] || []).map(m => ({ ...m, mode: m.mode || evolutionMode }))
+          ...evolutionModes.map(evolutionMode =>
+            ((allData.evolution || {})[evolutionMode] || []).map(m => ({ ...m, mode: m.mode || evolutionMode }))
+          )
         ];
         const seen = new Set();
         return pools.flat().filter(entry => {
@@ -1434,7 +1510,7 @@ export default function AnimatrixPage() {
         const firstWildCatchable = mate.firstWildCatchableUpdate
           ? `<p><b>First Wild-Capturable Update:</b> ${escapeHtml(mate.firstWildCatchableUpdate)}</p>`
           : "";
-        const visualDescription = isMissingNo(mate) && mate.visualDescription
+        const visualDescription = mate.visualDescription
           ? `<p><b>Visual Description:</b> ${escapeHtml(mate.visualDescription)}</p>`
           : "";
         const paragonOf = isParagon(mate) ? getParagonOf(mate) : "";
@@ -1574,6 +1650,7 @@ export default function AnimatrixPage() {
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
         const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
+        const selectedFound = currentMode === "npc" ? getCheckedValues(foundOptionsEl) : [];
         
 
         const intersects = (a, b) =>
@@ -1599,6 +1676,7 @@ export default function AnimatrixPage() {
             const mateSubBiomes = getMateSubBiomes(mate);
             if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
           }
+          if (currentMode === "npc" && !foundPassesFilter(mate, selectedFound)) return false;
           if (!statusPassesFilter(mate)) return false;
           if (!stagePassesFilter(mate)) return false;
           if (currentMode === "npc" && mate.cosmark === "Y") return false;
@@ -1705,9 +1783,10 @@ export default function AnimatrixPage() {
         document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
         const mateVitals = document.getElementById("mateVitals");
         const detailBiome = getMateBiomes(mate)[0];
-        mateVitals.classList.toggle("biome-bg", Boolean(detailBiome));
-        if (detailBiome) {
-          mateVitals.style.setProperty("--biome-image", cssImageUrl(biomeImagePath(detailBiome)));
+        const detailBiomeImage = getBiomeImagePath(detailBiome, getMateSubBiomes(mate)[0]);
+        mateVitals.classList.toggle("biome-bg", Boolean(detailBiomeImage));
+        if (detailBiomeImage) {
+          mateVitals.style.setProperty("--biome-image", cssImageUrl(detailBiomeImage));
         } else {
           mateVitals.style.removeProperty("--biome-image");
         }
@@ -1722,7 +1801,9 @@ export default function AnimatrixPage() {
         tabsContainer.innerHTML = "";
 
         if (currentMode === "npc") {
-          document.getElementById("abilityContainer").innerHTML = renderObtainmentHtml(mate);
+          document.getElementById("abilityContainer").innerHTML = mate.cosmark === "Y"
+            ? renderObtainmentHtml(mate)
+            : "";
           document.getElementById("paraTypesContainer").innerHTML = "";
           document.getElementById("evolutionsContainer").innerHTML = "";
           const npcHtml = `
@@ -1765,8 +1846,8 @@ export default function AnimatrixPage() {
           }
         }
         else {
-          let tabNames = ["Discovered", "First Caught", "Experienced", "Reverense"];
-          if (currentMode === "costumes") tabNames = ["Store", "Catalog", "Reverense"];
+          let tabNames = ["Discovered", "First Caught", "Experienced", "Callside"];
+          if (currentMode === "costumes") tabNames = ["Store", "Catalog", "Callside"];
 
           tabNames.forEach((name, idx) => {
             const tabBtn = document.createElement("button");
@@ -1783,9 +1864,10 @@ export default function AnimatrixPage() {
               if (currentMode === "costumes") {
                 if (name === "Store") text = mate.store || "No entry yet.";
                 else if (name === "Catalog") text = mate.catalog || mate.description || "No entry yet.";
-                else text = mate.reverense || "No entry yet";
+                else text = mate.callside || mate.reverense || "No entry yet";
               } else {
-                text = mate.dexEntries ? (mate.dexEntries[name] || mate.description) : mate.description;
+                const legacyEntry = name === "Callside" ? mate.dexEntries?.Reverense : null;
+                text = mate.dexEntries ? (mate.dexEntries[name] || legacyEntry || mate.description) : mate.description;
               }
 
               document.getElementById("mateDexText").textContent = text;
@@ -1835,10 +1917,20 @@ export default function AnimatrixPage() {
               (m.evolvesTo || []).forEach(e => {
                 if (!e || !e.name) return;
                 if (!outgoing.has(m.name)) outgoing.set(m.name, []);
-                outgoing.get(m.name).push({ to: e.name, level: e.level, item: e.Item });
+                outgoing.get(m.name).push({
+                  to: e.name,
+                  level: e.level,
+                  item: e.Item,
+                  info: e.info || e.customInfo
+                });
 
                 if (!incoming.has(e.name)) incoming.set(e.name, []);
-                incoming.get(e.name).push({ from: m.name, level: e.level, item: e.Item });
+                incoming.get(e.name).push({
+                  from: m.name,
+                  level: e.level,
+                  item: e.Item,
+                  info: e.info || e.customInfo
+                });
               });
             });
 
@@ -1874,7 +1966,7 @@ export default function AnimatrixPage() {
                   if (!edge || !edge.to || seen.has(edge.to)) return;
                   progressed = true;
                   names.push(edge.to);
-                  requirements.push({ level: edge.level, item: edge.item });
+                  requirements.push({ level: edge.level, item: edge.item, info: edge.info });
                   seen.add(edge.to);
                   dfs(edge.to, names, requirements, seen);
                   seen.delete(edge.to);
@@ -1897,6 +1989,9 @@ export default function AnimatrixPage() {
               }
               if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) {
                 parts.push(`Item: ${requirement.item}`);
+              }
+              if (requirement.info !== null && requirement.info !== undefined && String(requirement.info).trim()) {
+                parts.push(String(requirement.info).trim());
               }
               return parts.join(" | ");
             }
@@ -2174,6 +2269,15 @@ export default function AnimatrixPage() {
           <div className="options" id="subBiomeOptions" />
         </div>
       </div>
+      <div className="multi-filter" id="foundFilterWrapper" style={{display: 'none'}}>
+        <button className="filter-toggle" id="foundToggle">Found ▾</button>
+        <div className="filter-panel" id="foundPanel" aria-hidden="true">
+          <div className="panel-actions">
+            <button id="clearFound" className="clear-btn">Clear</button>
+          </div>
+          <div className="options" id="foundOptions" />
+        </div>
+      </div>
       {/* Status filter */}
       <div className="multi-filter" id="statusFilterWrapper">
         <button className="filter-toggle" id="statusToggle">Status ▾</button>
@@ -2300,7 +2404,7 @@ export default function AnimatrixPage() {
           <button className="dex-tab active" data-entry="Discovered">Discovered</button>
           <button className="dex-tab" data-entry="First Caught">First Caught</button>
           <button className="dex-tab" data-entry="Experienced">Experienced</button>
-          <button className="dex-tab" data-entry="Reverence">Reverence</button>
+          <button className="dex-tab" data-entry="Callside">Callside</button>
         </div>
         <p id="mateDexText" />
         <div id="mateVitals" className="mate-vitals" />

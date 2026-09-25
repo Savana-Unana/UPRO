@@ -214,5 +214,11 @@
     "users": [
       "Hileaph"
     ]
+  },
+  {
+    "name": "Cornundrum",
+    "type": "Plant",
+    "text": "Effect unknown.",
+    "users": []
   }
 ]

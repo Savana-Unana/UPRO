@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { fetchMateBuckets } from '../../utils/mateData'
+import { fetchMateBuckets, getBiomeImagePath } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars, no-useless-assignment */
 const pageStyles = ""
@@ -338,9 +338,10 @@ function runPageScript() {
       card.className = "card";
       if (isParagon(mate)) card.classList.add("rarity-paragon");
       const firstBiome = getMateBiomes(mate)[0];
-      if (firstBiome && mate.mode !== "costumes") {
+      const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate)[0]);
+      if (biomeImage && mate.mode !== "costumes") {
         card.classList.add("biome-bg");
-        card.style.setProperty("--biome-image", `url('${biomeImagePath(firstBiome)}')`);
+        card.style.setProperty("--biome-image", `url('${biomeImage}')`);
       }
       applyMateStyle(card, mate);
 
@@ -432,8 +433,8 @@ function runPageScript() {
           setNpcEntry(0);
         }
       } else {
-        let tabNames = ["Discovered", "First Caught", "Experienced", "Reverense"];
-        if (mateMode === "costumes") tabNames = ["Store", "Catalog", "Reverense"];
+        let tabNames = ["Discovered", "First Caught", "Experienced", "Callside"];
+        if (mateMode === "costumes") tabNames = ["Store", "Catalog", "Callside"];
 
         tabNames.forEach((name, idx) => {
           const tabBtn = document.createElement("button");
@@ -449,9 +450,10 @@ function runPageScript() {
             if (mateMode === "costumes") {
               if (name === "Store") text = mate.store || "No entry yet.";
               else if (name === "Catalog") text = mate.catalog || mate.description || "No entry yet.";
-              else text = mate.reverense || "No entry yet";
+              else text = mate.callside || mate.reverense || "No entry yet";
             } else {
-              text = mate.dexEntries ? (mate.dexEntries[name] || mate.description) : mate.description;
+              const legacyEntry = name === "Callside" ? mate.dexEntries?.Reverense : null;
+              text = mate.dexEntries ? (mate.dexEntries[name] || legacyEntry || mate.description) : mate.description;
             }
             document.getElementById("mateDexText").textContent = text;
           };
@@ -546,10 +548,19 @@ function runPageScript() {
       return [];
     }
 
-  function biomeImagePath(biomeName) {
-    if (!biomeName) return "";
-    return `${import.meta.env.BASE_URL}assets/images/ui/biomes/${encodeURIComponent(String(biomeName).trim())}.png`;
-  }
+    function getMateSubBiomes(mate) {
+      if (!mate) return [];
+      if (Array.isArray(mate.subBiomes)) return mate.subBiomes.filter(Boolean);
+      if (Array.isArray(mate.subBiome)) return mate.subBiome.filter(Boolean);
+      if (typeof mate.subBiome === "string" && mate.subBiome.trim()) return [mate.subBiome.trim()];
+      const resolvedMate = resolveReferenceRoot(mate);
+      if (resolvedMate && resolvedMate !== mate) {
+        if (Array.isArray(resolvedMate.subBiomes)) return resolvedMate.subBiomes.filter(Boolean);
+        if (Array.isArray(resolvedMate.subBiome)) return resolvedMate.subBiome.filter(Boolean);
+        if (typeof resolvedMate.subBiome === "string" && resolvedMate.subBiome.trim()) return [resolvedMate.subBiome.trim()];
+      }
+      return [];
+    }
 
     function mateVitalsHtml(mate) {
       if (mate.mode === "costumes") return "";

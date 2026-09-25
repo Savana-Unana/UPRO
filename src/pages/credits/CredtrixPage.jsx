@@ -416,10 +416,20 @@ function runPageScript() {
         (entry.evolvesTo || []).forEach(evo => {
           if (!evo || !evo.name) return;
           if (!outgoing.has(entry.name)) outgoing.set(entry.name, []);
-          outgoing.get(entry.name).push({ to: evo.name, level: evo.level, item: evo.Item });
+          outgoing.get(entry.name).push({
+            to: evo.name,
+            level: evo.level,
+            item: evo.Item,
+            info: evo.info || evo.customInfo
+          });
 
           if (!incoming.has(evo.name)) incoming.set(evo.name, []);
-          incoming.get(evo.name).push({ from: entry.name, level: evo.level, item: evo.Item });
+          incoming.get(evo.name).push({
+            from: entry.name,
+            level: evo.level,
+            item: evo.Item,
+            info: evo.info || evo.customInfo
+          });
         });
       });
 
@@ -455,7 +465,7 @@ function runPageScript() {
             if (!edge || !edge.to || seen.has(edge.to)) return;
             progressed = true;
             names.push(edge.to);
-            requirements.push({ level: edge.level, item: edge.item });
+            requirements.push({ level: edge.level, item: edge.item, info: edge.info });
             seen.add(edge.to);
             dfs(edge.to, names, requirements, seen);
             seen.delete(edge.to);
@@ -473,6 +483,7 @@ function runPageScript() {
         const parts = [];
         if (requirement.level !== null && requirement.level !== undefined && requirement.level !== "") parts.push(`Lvl ${requirement.level}`);
         if (requirement.item !== null && requirement.item !== undefined && String(requirement.item).trim()) parts.push(`Item: ${requirement.item}`);
+        if (requirement.info !== null && requirement.info !== undefined && String(requirement.info).trim()) parts.push(String(requirement.info).trim());
         return parts.join(" | ");
       }
 

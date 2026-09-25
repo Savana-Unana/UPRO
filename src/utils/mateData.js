@@ -1,5 +1,74 @@
 export const mateModes = ["base", "sacred", "ace", "goner", "ncanon", "costumes", "npc"];
 
+const subBiomeImages = {
+  Forest: {
+    Day: "Forest-Day.png",
+    Night: "Forest-Night.png",
+    Lake: "Forest-Lake.png",
+    Spooky: "Forest-Spooky.png"
+  },
+  Badlands: {
+    Day: "Badlands-Day.png",
+    Night: "Badlands-Night.png"
+  },
+  Metaforest: {
+    All: "Metaforest-Rainforest.png",
+    Rainforest: "Metaforest-Rainforest.png",
+    "Cherry Grove": "Metaforest-CherryGrove.png",
+    "Mushroom Fields": "Metaforest-MushroomFields.png",
+    "Garden Grounds": "Metaforest-GardenGrounds.png"
+  },
+  "Perfecatoly Plains": {
+    Plains: "PerfecatolyPlains-Plains.png",
+    Farms: "PerfecatolyPlains-Farms.png"
+  }
+};
+
+const defaultSubBiomes = {
+  Forest: "Day",
+  Badlands: "Day",
+  Metaforest: "Rainforest",
+  "Perfecatoly Plains": "Plains"
+};
+
+const biomeImages = {
+  Lake: "Lake.png",
+  "Deeper Waters": "DeeperWaters.png",
+  River: "River.png",
+  Oasis: "Oasis.png",
+  Canyon: "Canyon.png",
+  "Meridian Bay": "MeridianBay.png",
+  Alcatraz: "Alcatraz.png",
+  "Borgo Slor": "BorgoSlor.png",
+  Ocean: "Ocean.png",
+  "Ranch Isles": "RanchIsles.png",
+  "Axo-Skerry": "AxoSkerry.png",
+  "Têtignée Island": "TetigneeIsland.png",
+  Caverns: "Caverns.png",
+  Mountains: "Mountains.png",
+  "Empire City": "EmpireCity.png",
+  "New Canadia": "NewCanadia.png",
+  Swamp: "Swamp.png",
+  "Lab Fungen": "LabFungen.png",
+  "Shiver Plains": "ShiverPlains.png",
+  "Shiver Co": "ShiverCo.png",
+  Ieland: "Ieland.png",
+  "Operation UPRO": "UPRO.png"
+};
+
+export function getBiomeImagePath(biomeName, subBiomeName = "") {
+  const biome = String(biomeName || "").trim();
+  const subBiome = String(subBiomeName || "").trim();
+  const subBiomeMap = subBiomeImages[biome];
+  const fileName = subBiomeMap
+    ? subBiomeMap[subBiome] || subBiomeMap[defaultSubBiomes[biome]]
+    : biomeImages[biome];
+
+  return fileName
+    ? `${import.meta.env.BASE_URL}assets/images/ui/biomes/${fileName}`
+    : "";
+}
+
 export function createMateBuckets() {
   return Object.fromEntries(mateModes.map(mode => [mode, []]));
 }
@@ -19,7 +88,7 @@ function applyInheritedFields(form, baseForm, mode) {
       ...form,
       store: form.store || dexEntries["Store Entry"] || dexEntries.Store,
       catalog: form.catalog || dexEntries.Catalog,
-      reverense: form.reverense || dexEntries.Reverense
+      callside: form.callside || dexEntries.Callside || dexEntries.Reverense
     };
   }
 
@@ -35,7 +104,7 @@ function applyInheritedFields(form, baseForm, mode) {
 }
 
 function getOutputMode(mode, sourceKind) {
-  if ((sourceKind === "lost" || sourceKind === "goner") && mode === "base") return "goner";
+  if (sourceKind === "lost" && mode === "base") return "goner";
   return mode;
 }
 
@@ -57,9 +126,12 @@ export function expandGroupedMateData(groups, sourceKind = "base", options = {})
     }
 
     const groupName = String(group.name || "").trim();
-    const baseForm = Array.isArray(group.forms.base) && group.forms.base.length
-      ? clone(group.forms.base[0])
-      : null;
+    const inheritedForm = Array.isArray(group.forms.base) && group.forms.base.length
+      ? group.forms.base[0]
+      : Array.isArray(group.forms.goner) && group.forms.goner.length
+        ? group.forms.goner[0]
+        : null;
+    const baseForm = inheritedForm ? clone(inheritedForm) : null;
 
     Object.entries(group.forms).forEach(([mode, forms]) => {
       const outputMode = getOutputMode(mode, sourceKind);
@@ -170,51 +242,19 @@ export function buildEvolutionStageIndex(mates) {
   }));
 }
 
-function mateBucketKey(mate) {
-  return [
-    mate?.mode || "",
-    mate?.ref || "",
-    mate?.name || "",
-    mate?.image || "",
-    mate?.event || ""
-  ].join("\u0000");
-}
-
-function removeExistingBucketEntries(source, existing) {
-  const seen = new Set();
-  mateModes.forEach(mode => {
-    (existing?.[mode] || []).forEach(mate => {
-      seen.add(mateBucketKey(mate));
-    });
-  });
-
-  const filtered = createMateBuckets();
-  mateModes.forEach(mode => {
-    filtered[mode] = (source?.[mode] || []).filter(mate => !seen.has(mateBucketKey(mate)));
-  });
-  return filtered;
-}
-
 export async function fetchMateBuckets() {
-  const [baseGroups, lostGroups, gonerGroups, npc] = await Promise.all([
+  const [baseGroups, lostGroups, npc] = await Promise.all([
     fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/lost.json").then(response => response.json()).catch(() => []),
-    fetch("data/mates/goner.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
   ]);
 
   const baseBuckets = expandGroupedMateData(baseGroups, "base");
   const lostBuckets = expandGroupedMateData(lostGroups, "lost");
-  const loadedBuckets = mergeMateBuckets(baseBuckets, lostBuckets);
-  const gonerBuckets = removeExistingBucketEntries(
-    expandGroupedMateData(gonerGroups, "goner"),
-    loadedBuckets
-  );
-  const buckets = mergeMateBuckets(loadedBuckets, gonerBuckets);
+  const buckets = mergeMateBuckets(baseBuckets, lostBuckets);
   buckets.evolution = mergeMateBuckets(
     expandGroupedMateData(baseGroups, "base"),
-    expandGroupedMateData(lostGroups, "base"),
-    expandGroupedMateData(gonerGroups, "base")
+    expandGroupedMateData(lostGroups, "base")
   );
   buckets.npc = Array.isArray(npc) ? npc : [];
   return buckets;

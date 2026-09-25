@@ -289,7 +289,8 @@
     "Shiver Co",
     "Ieland",
     "Operation UPRO",
-    "Anti-Realm"
+    "Anti-Realm",
+    "Unspecified"
   ],
   "areas": [
     "Miscellaneous",
@@ -507,6 +508,10 @@
       "name": "Update 0",
       "title": "Update 0",
       "image": "assets/images/ui/covers/Demo0.png"
+    },
+    {
+      "name": "Unfound",
+      "title": "Unfound"
     }
   ],
   "composers": [

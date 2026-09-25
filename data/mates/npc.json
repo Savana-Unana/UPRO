@@ -2,7 +2,7 @@
   {
     "id": "Skip",
     "name": "Skip",
-    "image": "assets/images/mates/npc/Skip.gif",
+    "image": "assets/images/mates/npc/Skip.png",
     "obtainment": [
       {
         "quest": [
@@ -628,7 +628,7 @@
   {
     "id": "Kal",
     "name": "Kal",
-    "image": "assets/images/mates/npc/Kal.gif",
+    "image": "assets/images/mates/npc/Kal.png",
     "obtainment": [
       {
         "quest": [
@@ -753,7 +753,7 @@
   {
     "id": "Chip",
     "name": "Chip",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Chip.png",
     "obtainment": [
       {
         "quest": [
@@ -1099,7 +1099,7 @@
   {
     "id": "Marvin",
     "name": "Marvin",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Marvin.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1114,7 +1114,7 @@
   {
     "id": "Arnold",
     "name": "Arnold",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Arnold.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1129,7 +1129,7 @@
   {
     "id": "Shady Guy",
     "name": "Shady Guy",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Shady_Guy.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1144,7 +1144,7 @@
   {
     "id": "Maddiline",
     "name": "Maddiline",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Maddiline.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1159,7 +1159,7 @@
   {
     "id": "Dr. Mitchovitch",
     "name": "Dr. Mitchovitch",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Dr_Mitchovitch.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1174,7 +1174,7 @@
   {
     "id": "Erica Breflower",
     "name": "Erica Breflower",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Erica_Breflower.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1189,7 +1189,7 @@
   {
     "id": "Bug Catcher Beth",
     "name": "Bug Catcher Beth",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Beth.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1204,7 +1204,7 @@
   {
     "id": "Izan",
     "name": "Izan",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "image": "assets/images/mates/npc/Izan.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1292,9 +1292,9 @@
     "versions": "Update 1"
   },
   {
-    "id": "",
-    "name": "",
-    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "id": "Dad",
+    "name": "Dad",
+    "image": "assets/images/mates/npc/Dad_Boat.png",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
@@ -1304,6 +1304,155 @@
       "♥♥♥♡": "No entry yet",
       "♥♥♥♥": "No entry yet"
     },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Dip",
+    "name": "Dip",
+    "image": "assets/images/mates/npc/Dip.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Doggi",
+    "name": "Doggi",
+    "image": "assets/images/mates/npc/Doggi.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Hippie",
+    "name": "Hippie",
+    "image": "assets/images/mates/npc/Hippie.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Lumberjack",
+    "name": "Lumberjack",
+    "image": "assets/images/mates/npc/Lumberjack.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Mom",
+    "name": "Mom",
+    "image": "assets/images/mates/npc/Mom.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "MT",
+    "name": "MT",
+    "image": "assets/images/mates/npc/MT.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Pip",
+    "name": "Pip",
+    "image": "assets/images/mates/npc/Pip.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Zip",
+    "name": "Zip",
+    "image": "assets/images/mates/npc/Zip.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "dexEntries": {
+      "♥♡♡♡": "No entry yet",
+      "♥♥♡♡": "No entry yet",
+      "♥♥♥♡": "No entry yet",
+      "♥♥♥♥": "No entry yet"
+    },
+    "cosmark": "N",
+    "versions": null
+  },
+  {
+    "id": "Skip",
+    "name": "Skip Dance",
+    "image": "assets/images/mates/npc/Skip_Dance.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "cosmark": "Y",
+    "versions": null
+  },
+  {
+    "id": "Kal",
+    "name": "Kal Other",
+    "image": "assets/images/mates/npc/Kal_Other.png",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "cosmark": "Y",
     "versions": null
   }
 ]
