@@ -8,13 +8,13 @@ function runPageScript() {
   let typesData = [];
   let abilitiesData = [];
   let creditsData = [];
-  let crorderData = [];
+  let idorderData = [];
   let visibleMates = [];
   let currentMateIndex = 0;
   let crossTabFormsByRef = new Map();
   let mateByName = new Map();
   let creditsByAnimate = new Map();
-  let crorderRank = new Map();
+  let idorderRank = new Map();
 
   document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("uprodGrid");
@@ -213,12 +213,12 @@ function runPageScript() {
       });
     }
 
-    function rebuildCrorderRanks() {
-      crorderRank = new Map();
-      crorderData.forEach((name, index) => {
+    function rebuildIdorderRanks() {
+      idorderRank = new Map();
+      idorderData.forEach((name, index) => {
         const trimmed = String(name || "").trim();
-        if (!trimmed || crorderRank.has(trimmed)) return;
-        crorderRank.set(trimmed, index);
+        if (!trimmed || idorderRank.has(trimmed)) return;
+        idorderRank.set(trimmed, index);
       });
     }
 
@@ -285,7 +285,7 @@ function runPageScript() {
         mates.forEach(mate => {
           const form = { ...mate, mode };
           if (isMode(form)) return;
-          if (!crorderRank.has(String(form.name || ""))) return;
+          if (!idorderRank.has(String(form.name || ""))) return;
           const key = `${form.mode || ""}|${form.__order ?? ""}|${form.name || ""}|${form.image || ""}`;
           if (seen.has(key)) return;
           seen.add(key);
@@ -296,8 +296,8 @@ function runPageScript() {
       return pool.sort((a, b) => {
         const aName = String(a.name || "");
         const bName = String(b.name || "");
-        const aRank = crorderRank.has(aName) ? crorderRank.get(aName) : Number.POSITIVE_INFINITY;
-        const bRank = crorderRank.has(bName) ? crorderRank.get(bName) : Number.POSITIVE_INFINITY;
+        const aRank = idorderRank.has(aName) ? idorderRank.get(aName) : Number.POSITIVE_INFINITY;
+        const bRank = idorderRank.has(bName) ? idorderRank.get(bName) : Number.POSITIVE_INFINITY;
 
         if (aRank !== bRank) return aRank - bRank;
 
@@ -336,17 +336,11 @@ function runPageScript() {
 
     function makeCard(mate) {
       const card = document.createElement("div");
-      card.className = "card";
-      if (isParagon(mate)) card.classList.add("rarity-paragon");
-      applyMateStyle(card, mate);
+      card.className = "card catalog-card";
 
       const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
       const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
-      const shiverBadge = isShiver(mate)
-        ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
-        : "";
       card.innerHTML = `
-        ${shiverBadge}
         <img src="${escapeHtml(mate.image || "")}" alt="${escapeHtml(mate.name || "")}">
         <h3>${displayName}</h3>
       `;
@@ -683,13 +677,13 @@ function runPageScript() {
       fetch("data/info.json").then(response => response.json()).catch(() => ({ typings: [] })),
       fetch("data/abilities.json").then(response => response.json()).catch(() => []),
       fetch("data/mates/uprod.json").then(response => response.json()).catch(() => []),
-      fetch("data/mates/crorder.json").then(response => response.json()).catch(() => []),
+      fetch("data/mates/idorder.json").then(response => response.json()).catch(() => []),
       fetchMateBuckets()
-    ]).then(([info, abilities, credits, crorder, mateBuckets]) => {
+    ]).then(([info, abilities, credits, idorder, mateBuckets]) => {
       typesData = Array.isArray(info?.typings) ? info.typings : [];
       abilitiesData = abilities || [];
       creditsData = Array.isArray(credits) ? credits.map(normalizeCreditsEntry) : [];
-      crorderData = Array.isArray(crorder) ? crorder.map(name => String(name || "").trim()).filter(Boolean) : [];
+      idorderData = Array.isArray(idorder) ? idorder.map(name => String(name || "").trim()).filter(Boolean) : [];
       allData = {
         base: annotateMateOrder("base", mateBuckets.base || []),
         sacred: annotateMateOrder("sacred", mateBuckets.sacred || []),
@@ -718,7 +712,7 @@ function runPageScript() {
       annotateMateOrder("event", allData.event);
       rebuildRefIndexes();
       buildCreditsIndex();
-      rebuildCrorderRanks();
+      rebuildIdorderRanks();
       populateFilters();
       renderGrid();
     }).catch(error => {

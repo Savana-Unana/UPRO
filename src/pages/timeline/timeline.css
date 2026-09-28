@@ -1,0 +1,36 @@
+.timeline-shell {
+  width: min(100% - 32px, 1100px);
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+.timeline-back {
+  display: table;
+  padding: 8px 16px;
+  border: 1px solid #0ff;
+  border-radius: 6px;
+  color: #0ff;
+  background: #161b22;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+.timeline-back:hover,
+.timeline-back:focus-visible {
+  background: #0ff;
+  color: #111;
+}
+
+.timeline-shell h1 {
+  color: #fde68a;
+  font-size: clamp(40px, 6vw, 72px);
+}
+
+.timeline-empty {
+  padding: 48px 24px;
+  border: 1px solid #fde68a55;
+  border-radius: 12px;
+  background: #161b22;
+  color: #b9c7d8;
+  font-size: 28px;
+}

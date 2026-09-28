@@ -6,13 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/copy-static.mjs",
-    "split:animates": "node scripts/split-animates.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "react-pageflip": "^2.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

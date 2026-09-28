@@ -1,5 +1,6 @@
+import { mateSubBiomes } from '../../utils/biomeData.js'
 import { useEffect } from 'react'
-import { fetchMateBuckets, getBiomeImagePath } from '../../utils/mateData'
+import { fetchMateBuckets } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars, no-useless-assignment */
 const pageStyles = ""
@@ -335,33 +336,14 @@ function runPageScript() {
 
     function makeCard(mate) {
       const card = document.createElement("div");
-      card.className = "card";
-      if (isParagon(mate)) card.classList.add("rarity-paragon");
-      const firstBiome = getMateBiomes(mate)[0];
-      const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate)[0]);
-      if (biomeImage && mate.mode !== "costumes") {
-        card.classList.add("biome-bg");
-        card.style.setProperty("--biome-image", `url('${biomeImage}')`);
-      }
-      applyMateStyle(card, mate);
+      card.className = "card catalog-card";
 
       const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
       const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
-      const shiverBadge = isShiver(mate)
-        ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
-        : "";
-
       card.innerHTML = `
-        ${shiverBadge}
         <img src="${escapeHtml(mate.image || "")}" alt="${escapeHtml(mate.name || "")}">
         <h3>${displayName}</h3>
-        ${(mate.event === "fools" || mate.mode === "npc") ? "" : `
-          <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
-          ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""}
-        `}
       `;
-
-      card.addEventListener("click", () => openDetails(mate));
       return card;
     }
 
@@ -548,18 +530,10 @@ function runPageScript() {
       return [];
     }
 
-    function getMateSubBiomes(mate) {
-      if (!mate) return [];
-      if (Array.isArray(mate.subBiomes)) return mate.subBiomes.filter(Boolean);
-      if (Array.isArray(mate.subBiome)) return mate.subBiome.filter(Boolean);
-      if (typeof mate.subBiome === "string" && mate.subBiome.trim()) return [mate.subBiome.trim()];
-      const resolvedMate = resolveReferenceRoot(mate);
-      if (resolvedMate && resolvedMate !== mate) {
-        if (Array.isArray(resolvedMate.subBiomes)) return resolvedMate.subBiomes.filter(Boolean);
-        if (Array.isArray(resolvedMate.subBiome)) return resolvedMate.subBiome.filter(Boolean);
-        if (typeof resolvedMate.subBiome === "string" && resolvedMate.subBiome.trim()) return [resolvedMate.subBiome.trim()];
-      }
-      return [];
+    function getMateSubBiomes(mate, parent) {
+        if (!mate) return [];
+        const source = mate.subBiomes !== undefined ? mate : resolveReferenceRoot(mate);
+        return mateSubBiomes(source, parent);
     }
 
     function mateVitalsHtml(mate) {

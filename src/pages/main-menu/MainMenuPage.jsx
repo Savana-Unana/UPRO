@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import ProportionalLayout from '../../app/ProportionalLayout.jsx'
 
 const pageStyles = ""
 
@@ -23,7 +24,7 @@ const switchedPositions = [
 const normalButtonConfigs = [
   { text: "Animatrix", href: "/animatrix", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
   { text: "OST", href: "/ost", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
-  { text: "Battle", href: "/construction", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
+  { text: "Timeline", href: "/timeline", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
   { text: "Map", href: "/map", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" },
 ]
 
@@ -31,7 +32,7 @@ const switchedButtonConfigs = [
   { text: "Type Chart", href: "/typechart", bg: "linear-gradient(135deg, #e48dff, #c300ff)" },
   { text: "Chat", href: "/chat", bg: "linear-gradient(135deg, #eaa78f, #c96e4e)" },
   { text: "Actions/Passives", href: "/hurty", bg: "linear-gradient(135deg, #ffbc62, #ff9200)" },
-  { text: "Credits", href: "/credtrix", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)" },
+  { text: "Media", href: "/media", bg: "linear-gradient(135deg, #ffd0d0, #fd9595)" },
 ]
 
 export default function MainMenuPage() {
@@ -83,6 +84,14 @@ export default function MainMenuPage() {
         const overlayBtn = document.getElementById(`btn${index + 1}`)
         const altBtn = document.getElementById(`btn${index + 1}-alt`)
 
+        if (overlayBtn) overlayBtn.style.display = cfg ? '' : 'none'
+        if (altBtn?.parentElement) altBtn.parentElement.style.display = cfg ? '' : 'none'
+        if (!cfg) {
+          overlayBtn?.removeAttribute('href')
+          altBtn?.parentElement?.removeAttribute('href')
+          return
+        }
+
         if (overlayBtn) {
           overlayBtn.textContent = cfg.text
           overlayBtn.style.background = cfg.bg
@@ -116,7 +125,8 @@ export default function MainMenuPage() {
       const runnerRect = skipRunner.getBoundingClientRect()
       const containerRect = capsuleContainer.getBoundingClientRect()
 
-      return (runnerRect.left - containerRect.left) + (runnerRect.width / 2)
+      const scale = containerRect.width / capsuleContainer.offsetWidth
+      return ((runnerRect.left - containerRect.left) + (runnerRect.width / 2)) / scale
     }
 
     function triggerSkipRun() {
@@ -210,9 +220,9 @@ export default function MainMenuPage() {
   return (
     <>
       {pageStyles && <style>{pageStyles}</style>}
-      <div className="upro-page-root"><h1>Main Menu</h1>
+      <ProportionalLayout><div className="upro-page-root"><h1>Main Menu</h1>
   <div className="capsule-container">
-    <a id="skip-runner" className="skip-runner skip-left skip-front" href="/construction">
+    <a id="skip-runner" className="skip-runner skip-left skip-front" href="/friendskip" aria-label="Open Friendskip">
       <img id="skip-img-left" className="skip-sprite is-visible" src="assets/images/ui/Skip_Left.gif" alt="Skip" />
       <img id="skip-img-right" className="skip-sprite" src="assets/images/ui/Skip_Right.gif" alt="Skip" />
     </a>
@@ -220,19 +230,19 @@ export default function MainMenuPage() {
     <div className="image-buttons">
       <a id="btn1" href="/animatrix" className="overlay-btn">Animatrix</a>
       <a id="btn2" href="/ost" className="overlay-btn">OST</a>
-      <a id="btn3" href="/construction" className="overlay-btn">Battle</a>
+      <a id="btn3" href="/timeline" className="overlay-btn">Timeline</a>
       <a id="btn4" href="/map" className="overlay-btn">Map</a>
     </div>
   </div>
   <div className="buttons">
     <a href="/animatrix"><button id="btn1-alt">Animatrix</button></a>
     <a href="/ost"><button id="btn2-alt">OST</button></a>
-    <a href="/construction"><button id="btn3-alt">Battle</button></a>
+    <a href="/timeline"><button id="btn3-alt">Timeline</button></a>
     <a href="/map"><button id="btn4-alt">Map</button></a>
   </div>
   <div className="switcheroo-container">
     <img src="assets/images/ui/BadSwitch.png" alt="Switcheroo" id="switcheroo-btn" />
-  </div></div>
+  </div></div></ProportionalLayout>
     </>
   )
 }

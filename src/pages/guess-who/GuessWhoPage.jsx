@@ -349,7 +349,7 @@ function runPageScript() {
       const button = document.createElement("button");
       button.type = "button";
       button.className = `guesswho-heart${index < state.remainingGuesses ? " is-full" : ""}`;
-      button.innerHTML = `<img src="assets/images/ui/Lucid.png" alt="" class="guesswho-heart-image">`;
+      button.innerHTML = `<img src="assets/images/ui/types/Lucid.png" alt="" class="guesswho-heart-image">`;
       button.addEventListener("click", () => {
         state.remainingGuesses = index + 1 === state.remainingGuesses ? index : index + 1;
         renderHearts();

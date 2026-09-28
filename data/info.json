@@ -278,13 +278,14 @@
     "Ocean",
     "Ranch Isles",
     "Axo-Skerry",
-    "Têtignée Island",
+    "T\u00eatign\u00e9e Island",
     "Caverns",
     "Mountains",
     "Empire City",
     "New Canadia",
     "Swamp",
     "Lab Fungen",
+    "Sunline City",
     "Shiver Plains",
     "Shiver Co",
     "Ieland",
@@ -544,7 +545,6 @@
       "Night"
     ],
     "Metaforest": [
-      "All",
       "Rainforest",
       "Cherry Grove",
       "Mushroom Fields",

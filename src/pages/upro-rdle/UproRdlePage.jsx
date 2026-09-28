@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { fetchMateBuckets } from '../../utils/mateData'
+import { buildEvolutionStageIndex, fetchMateBuckets } from '../../utils/mateData'
 
 const pageStyles = ""
 function runPageScript() {
@@ -35,7 +35,9 @@ function runPageScript() {
       const mateBuckets = await fetchMateBuckets();
       const baseItems = mateBuckets.base || [];
 
-      state.pool = buildPool(baseItems);
+      const evolution = mateBuckets.evolution || mateBuckets;
+      const stageIndex = buildEvolutionStageIndex([...(evolution.base || []), ...(evolution.goner || [])]);
+      state.pool = buildPool(baseItems, stageIndex);
       state.pool.sort((a, b) => a.name.localeCompare(b.name));
       startDailyRound();
       renderOptions("");
@@ -94,13 +96,13 @@ function runPageScript() {
     pickerBtn.setAttribute("aria-expanded", "false");
   }
 
-  function buildPool(baseItems) {
+  function buildPool(baseItems, stageIndex) {
     return baseItems
-      .map((item, index) => normalizeAnimate(item, index))
+      .map((item, index) => normalizeAnimate(item, index, stageIndex))
       .filter(Boolean);
   }
 
-  function normalizeAnimate(item, index) {
+  function normalizeAnimate(item, index, stageIndex) {
     const imagePath = String(item.image || "");
     const path = imagePath.toLowerCase();
     const hasFinalArt = (
@@ -115,9 +117,8 @@ function runPageScript() {
 
     const types = normalizeStrings(item.types);
     const paraTypes = normalizeStrings(item.paraTypes);
-    const biomes = getBiomes(item);
-    const versions = getVersions(item);
-    const demoNumber = getDemoNumber(versions);
+    const stages = [...(stageIndex.get(item.name)?.stages || [1])].sort((a, b) => a - b);
+    const height = normalizeHeight(item.height);
     const displayMode = item.event ? item.event : "base";
 
     return {
@@ -127,9 +128,8 @@ function runPageScript() {
       displayMode,
       types,
       paraTypes,
-      biomes,
-      versions,
-      demoNumber,
+      stages,
+      height,
       image: imagePath
     };
   }
@@ -142,33 +142,24 @@ function runPageScript() {
     return value.map(entry => String(entry || "").trim()).filter(Boolean);
   }
 
-  function getBiomes(item) {
-    const direct = normalizeStrings(item.biomes).concat(normalizeStrings(item.biome));
-    if (direct.length) return unique(direct);
-    if (typeof item.Biome === "string" && item.Biome.trim()) return [item.Biome.trim()];
-    return [];
+  function normalizeHeight(value) {
+    const label = String(value ?? "").trim();
+    if (!label || /^(undefined|null|unknown)$/i.test(label)) return undefined;
+    const match = label.match(/^(\d+(?:\.\d+)?)\s*(ft|in)$/i);
+    return {
+      label,
+      inches: match ? Number(match[1]) * (match[2].toLowerCase() === "ft" ? 12 : 1) : undefined
+    };
   }
 
-  function getVersions(item) {
-    const normalizeVersion = version => String(version || "").trim().replace(/^Demo\s+/i, "Update ");
-    if (Array.isArray(item.versions)) return item.versions.map(normalizeVersion).filter(Boolean);
-    if (typeof item.versions === "string" && item.versions.trim()) return [normalizeVersion(item.versions)];
-    if (item.event === "halloween") return ["Halloween"];
-    if (item.event === "winter") return ["Winter"];
-    if (item.event === "fools") return ["April Fools"];
-    return [];
-  }
-
-  function getDemoNumber(versions) {
-    for (const version of versions) {
-      const match = String(version || "").match(/(?:demo|update)\s*(\d+(?:\.\d+)?)/i);
-      if (match) return Number(match[1]);
+  function evaluateHeight(guess, target) {
+    if (!guess || !target) {
+      return { label: guess?.label || "undefined", state: !guess && !target ? "green" : "red" };
     }
-    return null;
-  }
-
-  function unique(list) {
-    return [...new Set(list)];
+    const numeric = guess.inches !== undefined && target.inches !== undefined;
+    const matches = numeric ? guess.inches === target.inches : guess.label.toLowerCase() === target.label.toLowerCase();
+    const arrow = numeric && !matches ? (guess.inches < target.inches ? " \u2191" : " \u2193") : "";
+    return { label: guess.label + arrow, state: matches ? "green" : "red" };
   }
 
   function startDailyRound() {
@@ -351,8 +342,7 @@ function runPageScript() {
     const guessType2 = guess.types[1] || "";
     const targetType1 = target.types[0] || "";
     const targetType2 = target.types[1] || "";
-    const biomeOverlap = intersects(guess.biomes, target.biomes);
-    const guessDemoLabel = guess.demoNumber === null ? "None" : `Update ${guess.demoNumber}`;
+
 
     return [
       {
@@ -368,15 +358,10 @@ function runPageScript() {
         state: !guessType2 && !targetType2 ? "green" : guessType2 === targetType2 ? "green" : guessType2 && target.types.includes(guessType2) ? "yellow" : "red"
       },
       {
-        label: formatList(guess.biomes),
-        state: sameList(guess.biomes, target.biomes) ? "green" : biomeOverlap ? "yellow" : "red"
+        label: formatList(guess.stages),
+        state: sameList(guess.stages, target.stages) ? "green" : intersects(guess.stages, target.stages) ? "yellow" : "red"
       },
-      {
-        label: guessDemoLabel + (guess.demoNumber === null || target.demoNumber === null || guess.demoNumber === target.demoNumber ? "" : guess.demoNumber < target.demoNumber ? " ↑" : " ↓"),
-        state: guess.demoNumber === target.demoNumber
-          ? "green"
-          : "red"
-      }
+      evaluateHeight(guess.height, target.height)
     ];
   }
 
@@ -545,8 +530,8 @@ export default function UproRdlePage() {
         <div className="aniordle-category">Id</div>
         <div className="aniordle-category">Typing-1</div>
         <div className="aniordle-category">Typing-2</div>
-        <div className="aniordle-category">Biome</div>
-        <div className="aniordle-category">Update Number</div>
+        <div className="aniordle-category">Stage Number</div>
+        <div className="aniordle-category">Height</div>
       </div>
       <div className="aniordle-board" id="aniordleBoard" aria-live="polite" />
     </section>

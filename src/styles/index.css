@@ -6,3 +6,67 @@
 .upro-page-root {
   display: contents;
 }
+
+/* Keep padding inside the available page width. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 0;
+  min-height: 100dvh;
+}
+
+img,
+video {
+  object-fit: contain;
+}
+
+.proportional-frame {
+  width: 100%;
+  position: relative;
+  flex: none;
+}
+
+.proportional-content {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  transform-origin: top center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 24px;
+}
+
+/* Fluid sizing keeps the hub controls in proportion on short and narrow screens. */
+.normal-hub-tile {
+  min-width: 0;
+  font-size: clamp(18px, min(4.5vw, 8dvh), 72px);
+  overflow-wrap: anywhere;
+}
+
+.normal-hub-center-button {
+  width: min(14vw, 24dvh, 192px);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+#pokedex.grid,
+#ostGrid {
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+}
+
+#pokedex .card {
+  max-width: 100%;
+  margin-inline: 0;
+}
+
+@media (max-width: 1100px) {
+  body.animatrix-list-view {
+    height: auto;
+    overflow: visible;
+  }
+}

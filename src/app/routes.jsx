@@ -15,6 +15,10 @@ import SongVotePage from '../pages/song-vote/SongVotePage.jsx'
 import TypeChartPage from '../pages/type-chart/TypeChartPage.jsx'
 import UproRdlePage from '../pages/upro-rdle/UproRdlePage.jsx'
 import VotePage from '../pages/vote/VotePage.jsx'
+import TimelinePage from '../pages/timeline/TimelinePage.jsx'
+import FriendskipPage from '../pages/friendskip/FriendskipPage.jsx'
+import MediaPage from '../pages/media/MediaPage.jsx'
+import EncoderPage from '../pages/encoder/EncoderPage.jsx'
 
 export const routes = [
   { path: '/', title: 'Erm Ma Ha Sigma', Component: MainMenuPage },
@@ -34,6 +38,10 @@ export const routes = [
   { path: '/typechart', title: 'UPRO Type Chart', Component: TypeChartPage },
   { path: '/upro-rdle', title: 'UPROrdle', Component: UproRdlePage },
   { path: '/vote', title: 'UPRO Vote', Component: VotePage },
+  { path: '/timeline', title: 'Timeline', Component: TimelinePage },
+  { path: '/friendskip', title: 'Friendskip', Component: FriendskipPage },
+  { path: '/media', title: 'Media', Component: MediaPage },
+  { path: '/encoder', title: 'Encoder', Component: EncoderPage },
 ]
 
 export const legacyRouteRedirects = new Map([
@@ -56,4 +64,7 @@ export const legacyRouteRedirects = new Map([
   ['/UPROrdle.html', '/upro-rdle'],
   ['/up-rordle.html', '/upro-rdle'],
   ['/vote.html', '/vote'],
+  ['/timeline.html', '/timeline'],
+  ['/friendskip.html', '/friendskip'],
+  ['/media.html', '/media'],
 ])

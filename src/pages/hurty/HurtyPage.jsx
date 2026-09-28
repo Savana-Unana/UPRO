@@ -48,8 +48,8 @@ function runPageScript() {
 
   // fallback default types (ensures Lucid is present)
   const defaultTypes = [
-    "Normal","Fire","Water","Plant","Electric","Ice","Savage","Gross",
-    "Earth","Air","Mystic","Light","Dark","Spectral","Metal","Artillery",
+    "Normal","Water","Plant","Fire","Ice","Electric","Earth","Air",
+    "Light","Dark","Spectral","Gross","Savage","Mystic","Metal","Artillery",
     "Lucid"
   ];
 
@@ -96,8 +96,9 @@ function runPageScript() {
     fetch("data/abilities.json").then(r => r.json()).catch(() => []),
     fetch("data/moves.json").then(r => r.json()).catch(() => []),
     fetchMateBuckets(),
-    fetch("data/unused/status.json").then(r => r.json()).catch(() => [])
-  ]).then(([abilities, moves, mateBuckets, statuses]) => {
+    fetch("data/unused/status.json").then(r => r.json()).catch(() => []),
+    fetch("data/info.json").then(r => r.json()).catch(() => null)
+  ]).then(([abilities, moves, mateBuckets, statuses, info]) => {
     abilitiesData = Array.isArray(abilities) ? abilities : [];
     movesData = Array.isArray(moves) ? moves : [];
 
@@ -110,7 +111,7 @@ function runPageScript() {
     statusEffectsData = buildStatusEffects(statuses);
 
     // gather types from actions + passives + mons (so the type filter dropdown is useful)
-    collectAllTypes();
+    collectAllTypes(info?.typings);
 
     // populate type checkboxes
     populateTypeOptions();
@@ -132,7 +133,7 @@ function runPageScript() {
 
   /* ----------------- Helpers for types/filter UI ----------------- */
 
-  function collectAllTypes() {
+  function collectAllTypes(typings) {
     const set = new Set();
 
     movesData.forEach(m => { if (m && typeof m.type === "string" && m.type.trim()) set.add(m.type.trim()); });
@@ -149,8 +150,11 @@ function runPageScript() {
     // ensure defaults (Lucid etc) present
     defaultTypes.forEach(dt => set.add(dt));
 
-    if (set.size === 0) allTypes = defaultTypes.slice();
-    else allTypes = Array.from(set).sort((a,b) => a.localeCompare(b));
+    const sharedOrder = Array.isArray(typings) ? typings.map(type => type.name).filter(Boolean) : [];
+    const orderedTypes = [...new Set([...sharedOrder, ...defaultTypes])];
+    const knownTypes = new Set(orderedTypes);
+    const extraTypes = [...set].filter(type => !knownTypes.has(type)).sort((a, b) => a.localeCompare(b));
+    allTypes = [...orderedTypes, ...extraTypes];
   }
 
   function populateTypeOptions() {

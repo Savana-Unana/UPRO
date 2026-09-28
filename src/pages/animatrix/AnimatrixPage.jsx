@@ -1,3 +1,4 @@
+import { mateSubBiomes, subBiomeOptions } from '../../utils/biomeData.js'
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react'
 import { buildEvolutionStageIndex, fetchMateBuckets, getBiomeImagePath } from '../../utils/mateData'
@@ -71,11 +72,6 @@ export default function AnimatrixPage() {
       const subBiomePanel = document.getElementById("subBiomePanel");
       const subBiomeOptionsEl = document.getElementById("subBiomeOptions");
       const clearSubBiomes = document.getElementById("clearSubBiomes");
-      const foundFilterWrapper = document.getElementById("foundFilterWrapper");
-      const foundToggle = document.getElementById("foundToggle");
-      const foundPanel = document.getElementById("foundPanel");
-      const foundOptionsEl = document.getElementById("foundOptions");
-      const clearFound = document.getElementById("clearFound");
       const statusFilterWrapper = document.getElementById("statusFilterWrapper");
       const statusToggle = document.getElementById("statusToggle");
       const statusPanel = document.getElementById("statusPanel");
@@ -99,17 +95,17 @@ export default function AnimatrixPage() {
       const modeBadge = document.getElementById("modeBadge");
       const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
       const eventOrder = { winter: 0, fools: 1, halloween: 2, anti: 3 };
-      const databaseModes = ["base", "sacred", "ace", "goner", "event", "costumes", "npc"];
+      const antiRealmNames = new Set(["aurorial", "axoloth", "axolth", "salelesure", "accelotl", "placibial", "citrinel", "borealing"]);
+      const databaseModes = ["base", "sacred", "ace", "goner", "event", "costumes"];
       const databaseModeLabels = {
         base: "Base",
         sacred: "Sacred",
         ace: "Ace",
         goner: "Goner",
         event: "Event",
-        costumes: "Costumes",
-        npc: "NPCs"
+        costumes: "Costumes"
       };
-      const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5, npc: 6 };
+      const databaseModeRank = { base: 0, sacred: 1, ace: 2, goner: 3, event: 4, costumes: 5 };
 
       function closeSearchHelp() {
         searchHelpModal.classList.add("hidden");
@@ -168,8 +164,8 @@ export default function AnimatrixPage() {
         fallbackIdOrderByKey = new Map();
         (Array.isArray(orderData) ? orderData : []).forEach((name, index) => {
           const normalized = normalizeOrderName(name);
-          if (!normalized || idOrderRank.has(normalized)) return;
-          idOrderRank.set(normalized, index);
+          if (!normalized || antiRealmNames.has(normalized) || idOrderRank.has(normalized)) return;
+          idOrderRank.set(normalized, idOrderRank.size);
         });
       }
 
@@ -239,29 +235,19 @@ export default function AnimatrixPage() {
       const isParagon = mate => hasRarity(mate, "Paragon");
 
       const isMissingNo = m =>
-        m.mode !== "npc" &&
         (
           m.name === "MissingNo" ||
           m.name === "L.MissingNo" ||
           (m.image || "").includes("MissingNo") ||
-          (m.mode === "goner" && (m.image || "").toLowerCase().includes("mois.png"))
+          (m.mode === "goner" && ["mois.png", "mos.png", "l.mos.png"].some(marker => (m.image || "").toLowerCase().includes(marker)))
         );
       const isOnes = m => m.name === "Ones";
       const isSpecial = m => isMissingNo(m) || isOnes(m);
-      const usesNimage = m => /(^|\/)assets\/images\/mates\/npc\//i.test(m.image || "");
-      const isNpcPlaceholder = m =>
-        usesNimage(m) && (m.image || "").toLowerCase().includes("youknowwhoiam");
-      const isNpcCreated = m =>
-        usesNimage(m) && !isNpcPlaceholder(m);
       const hasImage = m => {
         const imgPath = m.image;
         if (!imgPath) return false;
 
         const path = imgPath.toLowerCase();
-
-        if (m.mode === "npc") {
-          return path.includes("/assets/images/mates/npc/") && !path.includes("youknowwhoiam");
-        }
 
         return (
           path.startsWith("assets/images/mates/base/") ||
@@ -270,7 +256,6 @@ export default function AnimatrixPage() {
         );
       };
       const isDesigned = m =>
-        m.mode !== "npc" &&
         !isMissingNo(m) &&
         !isOnes(m);
       const isFinalized = m =>
@@ -281,8 +266,7 @@ export default function AnimatrixPage() {
       function getMateVersions(mate) {
         if (!mate) return [];
         if (typeof mate.firstScannableUpdate === "string" && mate.firstScannableUpdate.trim()) return [normalizeVersionLabel(mate.firstScannableUpdate)];
-        if (Array.isArray(mate.versions)) return mate.versions.filter(Boolean).map(v => normalizeVersionLabel(v)).filter(Boolean);
-        if (typeof mate.versions === "string" && mate.versions.trim()) return [normalizeVersionLabel(mate.versions)];
+        if ((mate.mode || "") === "costumes" && typeof mate.versions === "string" && mate.versions.trim()) return [normalizeVersionLabel(mate.versions)];
         if (Array.isArray(mate.version)) return mate.version.filter(Boolean).map(v => normalizeVersionLabel(v)).filter(Boolean);
         if (typeof mate.version === "string" && mate.version.trim()) return [normalizeVersionLabel(mate.version)];
         if (typeof mate.Version === "string" && mate.Version.trim()) return [normalizeVersionLabel(mate.Version)];
@@ -290,7 +274,9 @@ export default function AnimatrixPage() {
       }
 
       function normalizeVersionLabel(label) {
-        return String(label || "").trim().replace(/^Demo\s+/i, "Update ");
+        const normalized = String(label || "").trim().replace(/^Demo\s+/i, "Update ");
+        const updateMatch = normalized.match(/^(Update\s+\d+(?:\.\d+)?)/i);
+        return updateMatch ? updateMatch[1] : normalized;
       }
 
       function getVersionSortValue(label) {
@@ -313,7 +299,7 @@ export default function AnimatrixPage() {
 
       function rebuildVersionOptions() {
         const labels = new Set(versionInfoByName.keys());
-        ["base", "sacred", "ace", "goner", "event", "costumes", "npc"].forEach(mode => {
+        ["base", "sacred", "ace", "goner", "event", "costumes"].forEach(mode => {
           (allData[mode] || []).forEach(mate => {
             getMateVersions(mate).forEach(version => labels.add(version));
           });
@@ -339,7 +325,7 @@ export default function AnimatrixPage() {
 
       function shouldHideMateId(mate) {
         const mode = mate?.mode || mate?.__mode || currentMode;
-        return mode === "npc" || mode === "ncanon" || getEventKey(mate) === "anti";
+        return mode === "ncanon" || getEventKey(mate) === "anti";
       }
 
       function formatListCardId(mate) {
@@ -522,7 +508,7 @@ export default function AnimatrixPage() {
           // load abilities and all mode JSONs
           return Promise.all([
             fetch("data/abilities.json").then(r => r.json()).catch(() => []),
-            fetchMateBuckets(),
+            fetchMateBuckets({ includeNpc: false }),
             fetch("data/mates/idorder.json").then(r => r.json()).catch(() => []),
           ]);
         })
@@ -536,7 +522,6 @@ export default function AnimatrixPage() {
               goner: annotateMateOrder("goner", mateBuckets.goner || []),
               ncanon: annotateMateOrder("ncanon", mateBuckets.ncanon || []), 
               costumes: annotateMateOrder("costumes", mateBuckets.costumes || []),
-              npc: annotateMateOrder("npc", mateBuckets.npc || []),
               evolution: mateBuckets.evolution || {},
               event: [] // initialize event
             };
@@ -561,7 +546,6 @@ export default function AnimatrixPage() {
             rebuildEvolutionStageIndexes();
             rebuildVersionOptions();
             populateFilterOptions(versionOptions, versionOptionsEl);
-            populateFilterOptions(getNpcFoundOptions(), foundOptionsEl);
 
             loadMode("base");
           })
@@ -605,25 +589,16 @@ export default function AnimatrixPage() {
             <h2>${escapeHtml(statsModeLabel)} Stats</h2>
             <div class="mode-stats">`;
 
-          const statsMons = statsMode === "npc"
-            ? statsPool.filter(m => usesNimage(m))
-            : statsPool.filter(m => statsMode === "costumes" || hasValidId(m));
+          const statsMons = statsPool.filter(m => statsMode === "costumes" || hasValidId(m));
           const totalCount = statsMons.length;
-          const createdCount = statsMode === "npc"
-            ? statsMons.filter(isNpcCreated).length
-            : statsMons.filter(isDesigned).length;
-          const finalizedCount = statsMode === "npc"
-            ? 0
-            : statsMons.filter(isFinalized).length;
+          const createdCount = statsMons.filter(isDesigned).length;
+          const finalizedCount = statsMons.filter(isFinalized).length;
 
             modeHtml += `<div class="mode-item">
               <span class="mode-name"><b>${escapeHtml(statsModeLabel)}</b></span>
               <div class="mode-counts">
                 <span>
-                ${statsMode === "npc"
-                  ? `Created: ${createdCount}/${totalCount}`
-                  : `Designed: ${createdCount}/${totalCount}, Finalized: ${finalizedCount}/${totalCount}`
-                }
+                Designed: ${createdCount}/${totalCount}, Finalized: ${finalizedCount}/${totalCount}
               </span>
               </div>
             </div>`;
@@ -631,16 +606,16 @@ export default function AnimatrixPage() {
           modeHtml += `</div></section>`;
 
         // -------------------- MISSINGNO COUNT (current mode) --------------------
-        const nonNpcMons = statsPool.filter(m => m.mode !== "npc" && hasValidId(m));
+        const validMons = statsPool.filter(m => hasValidId(m));
 
-        const missingNoMons = nonNpcMons.filter(isMissingNo);
+        const missingNoMons = validMons.filter(isMissingNo);
         const highestId = statsPool
           .map(m => getMateDisplayId(m))
           .filter(id => Number.isFinite(id))
           .reduce((max, id) => Math.max(max, id), Number.NEGATIVE_INFINITY);
         const missingNoHtml = `<section class="stats-section">
           <p>Current Highest ID: ${Number.isFinite(highestId) ? highestId : "None"}</p>
-          <p>Total MissingNo: ${missingNoMons.length}/${nonNpcMons.length}</p>
+          <p>Total MissingNo: ${missingNoMons.length}/${validMons.length}</p>
         </section><hr>`;
 
           // -------------------- TYPING STATS --------------------
@@ -785,7 +760,6 @@ export default function AnimatrixPage() {
       setupToggle(databaseTabToggle, databaseTabPanel);
       setupToggle(biomeToggle, biomePanel);
       setupToggle(subBiomeToggle, subBiomePanel);
-      setupToggle(foundToggle, foundPanel);
       setupToggle(statusToggle, statusPanel);
       setupToggle(stageToggle, stagePanel);
 
@@ -842,16 +816,6 @@ export default function AnimatrixPage() {
         if (filter === "all") return true;
 
         const mateWithMode = { ...mate, mode: mate.mode || currentMode };
-        if (mateWithMode.mode === "npc") {
-          if (filter === "missingno" || filter === "conceptualized" || filter === "nonfinalized") {
-            return isNpcPlaceholder(mateWithMode);
-          }
-          if (filter === "designed" || filter === "finalized") {
-            return isNpcCreated(mateWithMode);
-          }
-          return true;
-        }
-
         if (filter === "missingno") return isMissingNo(mateWithMode);
         if (filter === "designed") return isDesigned(mateWithMode);
         if (filter === "nonfinalized") return isDesigned(mateWithMode) && !isFinalized(mateWithMode);
@@ -891,23 +855,17 @@ export default function AnimatrixPage() {
         clearCheckboxes(subBiomeOptionsEl);
         renderAnimatrix();
       });
-      clearFound.addEventListener("click", () => {
-        clearCheckboxes(foundOptionsEl);
-        renderAnimatrix();
-      });
-
       // Wire checkbox changes to re-render
       typeOptionsEl.addEventListener("change", renderAnimatrix);
       type2OptionsEl.addEventListener("change", renderAnimatrix);
       paraOptionsEl.addEventListener("change", renderAnimatrix);
-      versionOptionsEl.addEventListener("change", renderAnimatrix);
+      versionOptionsEl.addEventListener("change", () => loadMode(currentMode));
       databaseTabOptionsEl.addEventListener("change", () => loadMode(currentMode));
       biomeOptionsEl.addEventListener("change", () => {
         updateSubBiomeFilterVisibility();
         renderAnimatrix();
       });
       subBiomeOptionsEl.addEventListener("change", renderAnimatrix);
-      foundOptionsEl.addEventListener("change", renderAnimatrix);
       statusOptionsEl.addEventListener("change", renderAnimatrix);
       stageOptionsEl.addEventListener("change", renderAnimatrix);
 
@@ -934,7 +892,23 @@ export default function AnimatrixPage() {
         return Number.isFinite(sortValue) ? sortValue : 999;
       }
 
+      function getCostumeVersionValue(costume) {
+        const raw = Array.isArray(costume?.versions) ? costume.versions[0] : costume?.versions;
+        const match = String(raw || "").match(/(?:Update|Demo)\s+(\d+(?:\.\d+)?)/i);
+        if (!match) return Number.POSITIVE_INFINITY;
+        const value = Number(match[1]);
+        return value === 0 ? 999 : value;
+      }
+
+      function costumeAvailableForVersions(costume, selectedVersions) {
+        if (!selectedVersions.length) return true;
+        const selectedValues = selectedVersions.map(getVersionSortValue).filter(Number.isFinite);
+        const costumeValue = getCostumeVersionValue(costume);
+        return !selectedValues.length || !Number.isFinite(costumeValue) || selectedValues.some(value => costumeValue <= value);
+      }
+
       function getAppearanceRank(mate) {
+        if ((mate?.mode || mate?.__mode) === "costumes") return getCostumeVersionValue(mate);
         const value = mate?.firstScannableUpdate || getMateVersions(mate)[0] || "";
         const sortValue = getVersionSortValue(value);
         return Number.isFinite(sortValue) ? sortValue : 999;
@@ -953,6 +927,19 @@ export default function AnimatrixPage() {
       function compareByDisplayOrder(a, b) {
         const aMode = a.mode || a.__mode || "";
         const bMode = b.mode || b.__mode || "";
+        if (aMode === "costumes" && bMode === "costumes") {
+          const aId = getMateDisplayId(a);
+          const bId = getMateDisplayId(b);
+          if (aId !== null && bId !== null && aId !== bId) {
+            if (aId < 0 && bId >= 0) return 1;
+            if (aId >= 0 && bId < 0) return -1;
+            return aId - bId;
+          }
+          const aCostumeVersion = getCostumeVersionValue(a);
+          const bCostumeVersion = getCostumeVersionValue(b);
+          if (aCostumeVersion !== bCostumeVersion) return aCostumeVersion - bCostumeVersion;
+          return String(a.name || "").localeCompare(String(b.name || ""));
+        }
         if (aMode === "event" && bMode === "event") {
           const aEventRank = getEventRank(a);
           const bEventRank = getEventRank(b);
@@ -987,19 +974,23 @@ export default function AnimatrixPage() {
         const bRank = databaseModeRank[bMode] ?? 999;
         if (aRank !== bRank) return aRank - bRank;
 
-        if (aMode === "npc" && bMode === "npc") {
-          const aOrder = Number(a.__order);
-          const bOrder = Number(b.__order);
-          const aHasOrder = Number.isInteger(aOrder);
-          const bHasOrder = Number.isInteger(bOrder);
-          if (aHasOrder && bHasOrder && aOrder !== bOrder) return aOrder - bOrder;
-          if (aHasOrder !== bHasOrder) return aHasOrder ? -1 : 1;
-        }
-
         return String(a.name || "").localeCompare(String(b.name || ""));
       }
 
       function compareByAppearanceOrder(a, b) {
+        if ((a.mode || a.__mode) === "costumes" && (b.mode || b.__mode) === "costumes") {
+          const aCostumeVersion = getCostumeVersionValue(a);
+          const bCostumeVersion = getCostumeVersionValue(b);
+          if (aCostumeVersion !== bCostumeVersion) return aCostumeVersion - bCostumeVersion;
+          const aId = getMateDisplayId(a);
+          const bId = getMateDisplayId(b);
+          if (aId !== null && bId !== null && aId !== bId) {
+            if (aId < 0 && bId >= 0) return 1;
+            if (aId >= 0 && bId < 0) return -1;
+            return aId - bId;
+          }
+          return String(a.name || "").localeCompare(String(b.name || ""));
+        }
         const aRank = getAppearanceRank(a);
         const bRank = getAppearanceRank(b);
         if (aRank !== bRank) return aRank - bRank;
@@ -1030,14 +1021,7 @@ export default function AnimatrixPage() {
         return String(mate?.name || "").trim();
       }
 
-      function getNpcFamilyKey(mate) {
-        return String(mate?.id || "").trim();
-      }
-
       function getAlternateGroupKey(mate) {
-        if ((mate?.mode || currentMode) === "npc") {
-          return `npc:${getNpcFamilyKey(mate)}`;
-        }
         return `ref:${getResolvedMateRef(mate)}`;
       }
 
@@ -1132,7 +1116,7 @@ export default function AnimatrixPage() {
         const mode = mate?.mode || mate?.__mode || "";
         const order = Number(mate?.__idOrder ?? mate?.__order);
 
-        if (mode === "base" && Number.isInteger(order)) {
+        if ((mode === "base" || mode === "event") && Number.isInteger(order)) {
           return order + 1;
         }
 
@@ -1151,24 +1135,11 @@ export default function AnimatrixPage() {
       }
 
       function modeSupportsBiomes(mode) {
-        return mode !== "npc" && mode !== "database" && mode !== "costumes";
+        return mode !== "database" && mode !== "costumes";
       }
 
       function modeUsesBiomeArt(mode) {
-        return mode !== "npc" && mode !== "database" && mode !== "costumes";
-      }
-
-      function setNpcControlVisibility(mode) {
-        const isNpcMode = mode === "npc";
-        [typeFilterWrapper, type2FilterWrapper, paraFilterWrapper, stageFilterWrapper].forEach(wrapper => {
-          if (wrapper) wrapper.style.display = isNpcMode ? "none" : "inline-block";
-        });
-        if (foundFilterWrapper) foundFilterWrapper.style.display = isNpcMode ? "inline-block" : "none";
-        if (statusFilterWrapper) statusFilterWrapper.style.display = "inline-block";
-        if (!isNpcMode) {
-          foundPanel.classList.remove("open");
-          foundPanel.setAttribute("aria-hidden", "true");
-        }
+        return mode !== "database" && mode !== "costumes";
       }
 
       function setBiomeFilterVisibility(mode) {
@@ -1191,10 +1162,7 @@ export default function AnimatrixPage() {
       function updateSubBiomeFilterVisibility() {
         if (!subBiomeFilterWrapper || !subBiomeOptionsEl) return;
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
-        const subBiomes = selectedBiomes
-          .flatMap(biome => Array.isArray(subBiomeOptionsByBiome[biome]) ? subBiomeOptionsByBiome[biome] : [])
-          .filter(Boolean);
-        const uniqueSubBiomes = Array.from(new Set(subBiomes));
+        const uniqueSubBiomes = subBiomeOptions(subBiomeOptionsByBiome, selectedBiomes);
         const selectedSubBiomes = new Set(getCheckedValues(subBiomeOptionsEl));
         populateFilterOptions(uniqueSubBiomes, subBiomeOptionsEl);
         subBiomeOptionsEl.querySelectorAll('input[type="checkbox"]').forEach(input => {
@@ -1237,34 +1205,10 @@ export default function AnimatrixPage() {
         return [];
       }
 
-      function getMateSubBiomes(mate) {
+      function getMateSubBiomes(mate, parent) {
         if (!mate) return [];
-        if (Array.isArray(mate.subBiomes)) return mate.subBiomes.filter(Boolean);
-        if (Array.isArray(mate.subBiome)) return mate.subBiome.filter(Boolean);
-        if (typeof mate.subBiome === "string" && mate.subBiome.trim()) return [mate.subBiome.trim()];
-        const resolvedMate = resolveReferenceRoot(mate);
-        if (resolvedMate && resolvedMate !== mate) {
-          if (Array.isArray(resolvedMate.subBiomes)) return resolvedMate.subBiomes.filter(Boolean);
-          if (Array.isArray(resolvedMate.subBiome)) return resolvedMate.subBiome.filter(Boolean);
-          if (typeof resolvedMate.subBiome === "string" && resolvedMate.subBiome.trim()) return [resolvedMate.subBiome.trim()];
-        }
-        return [];
-      }
-
-      function getNpcFoundLocations(mate) {
-        if (!mate) return ["Unspecified"];
-        const value = mate.found ?? mate.Found ?? mate.areas ?? mate.area;
-        if (Array.isArray(value)) {
-          const locations = value.map(location => String(location || "").trim()).filter(Boolean);
-          return locations.length ? locations : ["Unspecified"];
-        }
-        if (typeof value === "string" && value.trim()) return [value.trim()];
-        return ["Unspecified"];
-      }
-
-      function getNpcFoundOptions() {
-        return Array.from(new Set((allData.npc || []).flatMap(getNpcFoundLocations)))
-          .sort((a, b) => a.localeCompare(b));
+        const source = mate.subBiomes !== undefined ? mate : resolveReferenceRoot(mate);
+        return mateSubBiomes(source, parent);
       }
 
       function biomesPassFilter(mateBiomes, selectedBiomes) {
@@ -1273,22 +1217,39 @@ export default function AnimatrixPage() {
         return selectedBiomes.some(b => biomes.includes(b));
       }
 
-      function subBiomesPassFilter(mateSubBiomes, selectedSubBiomes) {
+      function subBiomesPassFilter(mate, selectedSubBiomes, selectedBiomes) {
         if (!Array.isArray(selectedSubBiomes) || !selectedSubBiomes.length) return true;
-        const subBiomes = Array.isArray(mateSubBiomes) ? mateSubBiomes.filter(Boolean) : [];
-        return selectedSubBiomes.some(subBiome => subBiomes.includes(subBiome));
-      }
-
-      function foundPassesFilter(mate, selectedFound) {
-        if (!Array.isArray(selectedFound) || !selectedFound.length) return true;
-        const locations = getNpcFoundLocations(mate);
-        return selectedFound.some(location => locations.includes(location));
+        const biomes = getMateBiomes(mate);
+        const resolved = mate?.subBiomes !== undefined ? mate : resolveReferenceRoot(mate);
+        const source = resolved?.subBiomes && !Array.isArray(resolved.subBiomes)
+          ? resolved.subBiomes
+          : null;
+        return selectedSubBiomes.some(option => {
+          const separator = option.indexOf(": ");
+          const parent = separator >= 0 ? option.slice(0, separator) : selectedBiomes[0];
+          const subBiome = separator >= 0 ? option.slice(separator + 2) : option;
+          if (!biomes.includes(parent)) return false;
+          const assigned = source?.[parent];
+          return !Array.isArray(assigned) || assigned.length === 0 || assigned.includes(subBiome);
+        });
       }
 
       function versionsPassFilter(mate, selectedVersions) {
         if (!Array.isArray(selectedVersions) || !selectedVersions.length) return true;
         const versions = getMateVersions(mate);
-        return selectedVersions.some(version => versions.includes(version));
+        return selectedVersions.some(version => {
+          const normalized = normalizeVersionLabel(version);
+          const eventKey = getEventKey(mate);
+          const mateMode = mate?.mode || mate?.__mode || currentMode;
+          if (normalized === "Update 10.5") {
+            return (mateMode === "event" && eventKey === "halloween") || (mateMode === currentMode && versions.includes("Update 10.5"));
+          }
+          if (normalized === "Update 0") {
+            return (mateMode === "event" && eventKey === "fools") || (mateMode === currentMode && versions.includes("Update 0"));
+          }
+          if (versions.includes(normalized)) return true;
+          return false;
+        });
       }
 
       function updateAnimatrixSubtitle(selectedVersions = getCheckedValues(versionOptionsEl)) {
@@ -1310,10 +1271,9 @@ export default function AnimatrixPage() {
 
       function loadMode(mode) {
         currentMode = mode;
-        setNpcControlVisibility(mode);
         setBiomeFilterVisibility(mode);
         setDatabaseTabFilterVisibility(mode);
-        const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database" && mode !== "npc"
+        const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database"
           ? "base"
           : mode;
         const sourceData = isRightClickSearchActive()
@@ -1323,7 +1283,17 @@ export default function AnimatrixPage() {
           : (listCostumeMode && listSidebarMode === "costumes")
             ? getRelatedCostumes(listCostumeSourceMate || currentDetailMate)
           : (Array.isArray(allData[listSidebarMode]) ? allData[listSidebarMode].map(mate => ({ ...mate, mode: listSidebarMode })) : []);
-        animatrixData = sourceData
+        const selectedVersions = getCheckedValues(versionOptionsEl).map(normalizeVersionLabel);
+        const eventVersions = new Set();
+        if (selectedVersions.includes("Update 10.5")) eventVersions.add("halloween");
+        if (selectedVersions.includes("Update 0")) eventVersions.add("fools");
+        const matchingEvents = eventVersions.size
+          ? (allData.event || []).filter(mate => eventVersions.has(getEventKey(mate))).map(mate => ({ ...mate, mode: "event" }))
+          : [];
+        const combinedSourceData = matchingEvents.length
+          ? [...sourceData, ...matchingEvents.filter(eventMate => !sourceData.some(mate => getMateRef(mate) === getMateRef(eventMate)))]
+          : sourceData;
+        animatrixData = combinedSourceData
           .filter(mate => !isMode(mate))
           .sort(compareByCurrentSortMode);
         renderAnimatrix();
@@ -1340,7 +1310,6 @@ export default function AnimatrixPage() {
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
         const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
-        const selectedFound = currentMode === "npc" ? getCheckedValues(foundOptionsEl) : [];
         updateAnimatrixSubtitle(selectedVersions);
 
         const intersects = (a, b) => Array.isArray(a) && Array.isArray(b) && a.some(x => b.includes(x));
@@ -1362,13 +1331,10 @@ export default function AnimatrixPage() {
             if (modeSupportsBiomes(currentMode)) {
               const mateBiomes = getMateBiomes(mate);
               if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
-              const mateSubBiomes = getMateSubBiomes(mate);
-              if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
+              if (!subBiomesPassFilter(mate, selectedSubBiomes, selectedBiomes)) return false;
             }
-            if (currentMode === "npc" && !foundPassesFilter(mate, selectedFound)) return false;
             if (!statusPassesFilter(mate)) return false;
             if (!stagePassesFilter(mate)) return false;
-            if (currentMode === "npc" && mate.cosmark === "Y") return false;
             return true;
           });
 
@@ -1392,6 +1358,9 @@ export default function AnimatrixPage() {
             const card = document.createElement("div");
             card.className = "card";
             card.__mate = mate;
+            if ((mate.mode || currentMode) === "costumes" && !costumeAvailableForVersions(mate, selectedVersions)) {
+              card.style.opacity = "0.5";
+            }
             const listViewCard = isListViewActive();
             if (listViewCard) card.classList.add("list-card");
             if (listViewCard && currentDetailMate && sameMateForList(mate, currentDetailMate)) {
@@ -1399,7 +1368,7 @@ export default function AnimatrixPage() {
             }
             if (!listViewCard && isParagon(mate)) card.classList.add("rarity-paragon");
             const firstBiome = getMateBiomes(mate)[0];
-            const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate)[0]);
+            const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate, firstBiome)[0]);
             if (!listViewCard && biomeImage && modeUsesBiomeArt(currentMode)) {
               card.classList.add("biome-bg");
               card.style.setProperty("--biome-image", cssImageUrl(biomeImage));
@@ -1496,7 +1465,16 @@ export default function AnimatrixPage() {
       }
 
       function mateVitalsHtml(mate) {
-        if ((mate.mode || currentMode) === "costumes") return "";
+        if ((mate.mode || currentMode) === "costumes") {
+          const visualAppearance = mate.visualAppearance || mate.visualDescription;
+          const reference = mate.reference || mate.referenceImage || mate.ref;
+          const obtainable = Array.isArray(mate.versions) ? mate.versions.filter(Boolean).join(", ") : String(mate.versions || mate.firstObtainableUpdate || "").trim();
+          const visualHtml = visualAppearance ? `<p><b>Visual Appearance:</b> ${escapeHtml(visualAppearance)}</p>` : "";
+          const referenceHtml = reference ? `<p><b>Reference:</b> ${escapeHtml(reference)}</p>` : "";
+          const obtainableHtml = obtainable ? `<p><b>First Obtainable:</b> ${escapeHtml(obtainable)}</p>` : "";
+          const obtainmentHtml = renderObtainmentHtml(mate);
+          return `<div class="mate-meta">${visualHtml}${referenceHtml}${obtainableHtml}${obtainmentHtml}</div>`;
+        }
         const biomes = getMateBiomes(mate);
         const subBiomes = getMateSubBiomes(mate);
         const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
@@ -1515,8 +1493,8 @@ export default function AnimatrixPage() {
           : "";
         const paragonOf = isParagon(mate) ? getParagonOf(mate) : "";
         const paragonHtml = paragonOf ? `<p><b>Paragon of:</b> ${escapeHtml(paragonOf)}</p>` : "";
-        const locationLabel = currentMode === "database" ? "Versions" : "Biomes";
-        return `<div class="mate-meta"><p><b>${locationLabel}:</b> ${biomeText}</p>${subBiomeHtml}<p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
+        const biomeHtml = currentMode === "database" ? "" : `<p><b>Biomes:</b> ${biomeText}</p>${subBiomeHtml}`;
+        return `<div class="mate-meta">${biomeHtml}<p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
       }
 
       function asArray(value) {
@@ -1650,7 +1628,6 @@ export default function AnimatrixPage() {
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
         const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
-        const selectedFound = currentMode === "npc" ? getCheckedValues(foundOptionsEl) : [];
         
 
         const intersects = (a, b) =>
@@ -1673,13 +1650,10 @@ export default function AnimatrixPage() {
           if (modeSupportsBiomes(currentMode)) {
             const mateBiomes = getMateBiomes(mate);
             if (!biomesPassFilter(mateBiomes, selectedBiomes)) return false;
-            const mateSubBiomes = getMateSubBiomes(mate);
-            if (!subBiomesPassFilter(mateSubBiomes, selectedSubBiomes)) return false;
+            if (!subBiomesPassFilter(mate, selectedSubBiomes, selectedBiomes)) return false;
           }
-          if (currentMode === "npc" && !foundPassesFilter(mate, selectedFound)) return false;
           if (!statusPassesFilter(mate)) return false;
           if (!stagePassesFilter(mate)) return false;
-          if (currentMode === "npc" && mate.cosmark === "Y") return false;
           return true;
         });
 
@@ -1697,11 +1671,6 @@ export default function AnimatrixPage() {
         // set mode badge and activate mode button if possible
         const mateMode = mate.mode || currentMode;
         setModeBadge(mateMode, mate);
-        if (isListViewActive() && mateMode !== "costumes") {
-          setMainModeButton("base");
-        } else if (currentMode !== "database") {
-          activateModeButton(mateMode);
-        }
 
         // set currentMateIndex to the index within the current filtered animatrixData, if present
         const idx = animatrixData.findIndex(m =>
@@ -1783,7 +1752,7 @@ export default function AnimatrixPage() {
         document.getElementById("mateVitals").innerHTML = mateVitalsHtml(mate);
         const mateVitals = document.getElementById("mateVitals");
         const detailBiome = getMateBiomes(mate)[0];
-        const detailBiomeImage = getBiomeImagePath(detailBiome, getMateSubBiomes(mate)[0]);
+        const detailBiomeImage = getBiomeImagePath(detailBiome, getMateSubBiomes(mate, detailBiome)[0]);
         mateVitals.classList.toggle("biome-bg", Boolean(detailBiomeImage));
         if (detailBiomeImage) {
           mateVitals.style.setProperty("--biome-image", cssImageUrl(detailBiomeImage));
@@ -1791,61 +1760,18 @@ export default function AnimatrixPage() {
           mateVitals.style.removeProperty("--biome-image");
         }
 
-        // Types (hide for NPCs)
-        document.getElementById("mateTypes").innerHTML = currentMode !== "npc" && currentMode !== "costumes"
+        // Types
+        document.getElementById("mateTypes").innerHTML = currentMode !== "costumes"
           ? (mate.types || []).map(t => typeTag(t)).join("")
           : "";
 
         // Tabs
         const tabsContainer = document.querySelector(".dex-tabs");
         tabsContainer.innerHTML = "";
+        tabsContainer.style.display = currentMode === "costumes" ? "none" : "";
+        document.getElementById("mateTypes").style.display = currentMode === "costumes" ? "none" : "";
 
-        if (currentMode === "npc") {
-          document.getElementById("abilityContainer").innerHTML = mate.cosmark === "Y"
-            ? renderObtainmentHtml(mate)
-            : "";
-          document.getElementById("paraTypesContainer").innerHTML = "";
-          document.getElementById("evolutionsContainer").innerHTML = "";
-          const npcHtml = `
-              <div><strong>Friendskip Message: </strong>${escapeHtml(mate.Description || "None")}</div>
-              <div><strong>Reference:</strong> ${escapeHtml(mate.reference || "None")}</div>
-            `;
-          document.getElementById("mateDexText").innerHTML = npcHtml;
-
-          if (mate.cosmark !== "Y") {
-            const fullHeart = "\u2665";
-            const emptyHeart = "\u2661";
-            const npcEntryNames = [
-              `${fullHeart}${emptyHeart}${emptyHeart}${emptyHeart}`,
-              `${fullHeart}${fullHeart}${emptyHeart}${emptyHeart}`,
-              `${fullHeart}${fullHeart}${fullHeart}${emptyHeart}`,
-              `${fullHeart}${fullHeart}${fullHeart}${fullHeart}`
-            ];
-            const renderNpcEntry = entryName => {
-              const entryText = mate.dexEntries?.[entryName] || mate.entries?.[entryName] || mate[entryName];
-              return entryText ? escapeHtml(entryText) : npcHtml;
-            };
-            const setNpcEntry = activeIndex => {
-              tabsContainer.querySelectorAll(".dex-tab").forEach((tab, index) => {
-                tab.classList.toggle("active", index === activeIndex);
-                tab.textContent = index <= activeIndex ? fullHeart : emptyHeart;
-              });
-              document.getElementById("mateDexText").innerHTML = renderNpcEntry(npcEntryNames[activeIndex]);
-            };
-
-            npcEntryNames.forEach((name, idx) => {
-              const tabBtn = document.createElement("button");
-              tabBtn.className = "dex-tab";
-              tabBtn.dataset.entry = name;
-              tabBtn.setAttribute("aria-label", name);
-              tabBtn.onclick = () => setNpcEntry(idx);
-              tabsContainer.appendChild(tabBtn);
-            });
-
-            setNpcEntry(0);
-          }
-        }
-        else {
+        {
           let tabNames = ["Discovered", "First Caught", "Experienced", "Callside"];
           if (currentMode === "costumes") tabNames = ["Store", "Catalog", "Callside"];
 
@@ -1882,6 +1808,7 @@ export default function AnimatrixPage() {
           // Abilities container
           const abilityContainer = document.getElementById("abilityContainer");
           abilityContainer.innerHTML = "";
+          abilityContainer.style.display = currentMode === "costumes" ? "none" : "";
           if (mate.ability) {
             const ab = abilitiesData.find(a => a.name === mate.ability);
             abilityContainer.innerHTML = ab
@@ -1893,7 +1820,7 @@ export default function AnimatrixPage() {
 
           const listTypesContainer = document.getElementById("listTypesContainer");
           if (listTypesContainer) {
-            listTypesContainer.innerHTML = isListViewActive() && currentMode !== "npc" && currentMode !== "costumes"
+            listTypesContainer.innerHTML = isListViewActive() && currentMode !== "costumes"
               ? `<b>Types:</b> ${(mate.types || []).map(t => typeTag(t)).join("")}`
               : "";
           }
@@ -2070,7 +1997,6 @@ export default function AnimatrixPage() {
           const sameSpeciesSameMode = modeForms.filter(f => getAlternateGroupKey(f) === alternateGroupKey);
           const modeOnlyForms = sameSpeciesSameMode.filter(f => {
             if (f.name === mate.name && f.image === mate.image) return false;
-            if (mateMode === "npc") return true;
             if (isMode(mate)) return true;
             return isMode(f);
           });
@@ -2269,15 +2195,6 @@ export default function AnimatrixPage() {
           <div className="options" id="subBiomeOptions" />
         </div>
       </div>
-      <div className="multi-filter" id="foundFilterWrapper" style={{display: 'none'}}>
-        <button className="filter-toggle" id="foundToggle">Found ▾</button>
-        <div className="filter-panel" id="foundPanel" aria-hidden="true">
-          <div className="panel-actions">
-            <button id="clearFound" className="clear-btn">Clear</button>
-          </div>
-          <div className="options" id="foundOptions" />
-        </div>
-      </div>
       {/* Status filter */}
       <div className="multi-filter" id="statusFilterWrapper">
         <button className="filter-toggle" id="statusToggle">Status ▾</button>
@@ -2362,7 +2279,6 @@ export default function AnimatrixPage() {
         <button className="mode-btn" data-mode="event">Event</button>
         <button className="mode-btn" data-mode="costumes">Costumes</button>
         <button className="mode-btn" data-mode="database">Database</button>
-        <button className="mode-btn" data-mode="npc">NPCs</button>
       </div>
     </div>
   </header>
@@ -2380,8 +2296,7 @@ export default function AnimatrixPage() {
           <div><dt>Names</dt><dd>Enter a full or partial name, like <code>Lemody</code> or <code>lem</code>.</dd></div>
           <div><dt>IDs</dt><dd>Enter an exact ID, like <code>42</code> or <code>-3</code>.</dd></div>
           <div><dt>Stage</dt><dd>Use <code>1*</code>, <code>2*</code>, or <code>3*</code>.</dd></div>
-          <div><dt>Line Position</dt><dd>Use <code>1/2</code>, <code>2/2</code>, <code>1/3</code>, <code>2/3</code>, or <code>3/3</code>.</dd></div>
-          <div><dt>Single Line</dt><dd>Use <code>1/1</code>.</dd></div>
+          <div><dt>Line Position</dt><dd>Use fractions such as <code>1/3</code> to ask for the first stage of a three stage line. This works for any combination of the three numbers.</dd></div>
           <div><dt>Right Click</dt><dd>Right-click an animate card to search for every variation that shares its Animatrix ID.</dd></div>
         </dl>
       </div>

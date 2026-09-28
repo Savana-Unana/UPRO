@@ -72,9 +72,9 @@ export default function NormalPage() {
       <a className="normal-hub-tile normal-hub-red" href="/guessr">
         <span>Guessr</span>
       </a>
-      <button className="normal-hub-tile normal-hub-yellow" type="button" aria-disabled="true">
-        <span>Coming Soon</span>
-      </button>
+      <a className="normal-hub-tile normal-hub-yellow" href="/encoder">
+        <span>Encoder</span>
+      </a>
       <a className="normal-hub-tile normal-hub-blue" href="/upro-rdle">
         <span>UPROrdle</span>
       </a>

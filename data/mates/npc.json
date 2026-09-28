@@ -2,7 +2,7 @@
   {
     "id": "Skip",
     "name": "Skip",
-    "image": "assets/images/mates/npc/Skip.png",
+    "image": "assets/images/mates/npc/Skip.gif",
     "obtainment": [
       {
         "quest": [
@@ -16,32 +16,12 @@
     "reference": null,
     "Description": "The Normal sprites.",
     "dexEntries": {
-      "♥♡♡♡": "The Normal sprites.",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": "Update 1"
-  },
-  {
-    "id": "Skip",
-    "name": "Noob",
-    "image": "assets/images/mates/npc/Noob.gif",
-    "obtainment": [
-      {
-        "quest": [
-          {
-            "quest-name": "",
-            "quest desc": "Complete the Limbo minigame."
-          }
-        ]
-      }
-    ],
-    "reference": "Roblox",
-    "Description": "A yellow, blue, and green humanoid. Is from another world, and has unique voicelines.",
-    "cosmark": "Y",
-    "versions": "April Fools"
+    "cosmark": "N"
   },
   {
     "id": "Skip",
@@ -59,8 +39,7 @@
     ],
     "reference": "Axolarg",
     "Description": "Skip but controlled by Axo-Shards.",
-    "cosmark": "Y",
-    "versions": "Update 5"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -78,8 +57,7 @@
     ],
     "reference": "Chip",
     "Description": "Skip that looks like Chip.",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -97,8 +75,7 @@
     ],
     "reference": "Pip",
     "Description": "Skip that looks like Chip.",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -116,8 +93,7 @@
     ],
     "reference": "Dip",
     "Description": "Skip that looks like Chip.",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -135,8 +111,7 @@
     ],
     "reference": "Zip",
     "Description": "Skip that looks like Chip.",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -154,8 +129,7 @@
     ],
     "reference": "Deltarune",
     "Description": "A color-altered Skip, with a Sheriff outfit.",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -173,8 +147,7 @@
     ],
     "reference": "Deltarune",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -192,8 +165,7 @@
     ],
     "reference": null,
     "Description": "A monochrome, faceless ****.",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -210,9 +182,8 @@
       }
     ],
     "reference": null,
-    "Description": "Skip with a sewn mouth. Replaces all Skip dialogue with ''Ã¢â‚¬Â¦''.",
-    "cosmark": "Y",
-    "versions": "Update 13"
+    "Description": "Skip with a sewn mouth. Replaces all Skip dialogue with ''\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a6''.",
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -221,8 +192,7 @@
     "obtainment": [],
     "reference": "Folklore",
     "Description": "Skip but he is holding his own head in his backpack.",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -240,8 +210,7 @@
     ],
     "reference": "Monument Mythos",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -259,8 +228,7 @@
     ],
     "reference": "Super Paper Mario: The Thousand-Year Door",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 6"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -269,8 +237,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "Skip but dressed with a suit and a mask.",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -279,8 +246,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -289,8 +255,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -299,8 +264,7 @@
     "obtainment": [],
     "reference": "Mario Bros.",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -309,8 +273,7 @@
     "obtainment": [],
     "reference": "Little Nightmares 2",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -319,8 +282,7 @@
     "obtainment": [],
     "reference": "SFAWTDE",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -329,8 +291,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Winter"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -339,8 +300,7 @@
     "obtainment": [],
     "reference": "Horror Trope",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -349,8 +309,7 @@
     "obtainment": [],
     "reference": "Friday the 13th",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -359,8 +318,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 13"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -369,8 +327,7 @@
     "obtainment": [],
     "reference": "Capture Capsule",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -379,8 +336,7 @@
     "obtainment": [],
     "reference": "The Amazing Digital Circus",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -389,8 +345,7 @@
     "obtainment": [],
     "reference": "Sparcoon",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -399,8 +354,7 @@
     "obtainment": [],
     "reference": "Kal",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 5"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -409,8 +363,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 2"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -419,8 +372,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 2"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -429,8 +381,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 2"
+    "cosmark": "Y"
   },
   {
     "id": "Skip",
@@ -439,8 +390,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 2"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -459,13 +409,12 @@
     "reference": null,
     "Description": "The Normal sprites.",
     "dexEntries": {
-      "♥♡♡♡": "The Normal sprites.",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": "Update 1"
+    "cosmark": "N"
   },
   {
     "id": "CC",
@@ -483,8 +432,7 @@
     ],
     "reference": null,
     "Description": "",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -493,8 +441,7 @@
     "obtainment": [],
     "reference": "Battle For Dream Island",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -512,8 +459,7 @@
     ],
     "reference": null,
     "Description": "A ketchup covered Capture Capsule.",
-    "cosmark": "Y",
-    "versions": "Update 5"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -522,8 +468,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "AHHHHH A UFO!!!!!",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -532,8 +477,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "A broken Capture Capsule.",
-    "cosmark": "Y",
-    "versions": "Update 13"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -542,8 +486,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 8"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -552,8 +495,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Winter"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -562,8 +504,7 @@
     "obtainment": [],
     "reference": "Lego",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -572,8 +513,7 @@
     "obtainment": [],
     "reference": "Mockenyu",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -582,8 +522,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -592,8 +531,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 4"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -602,8 +540,7 @@
     "obtainment": [],
     "reference": "Mario Bros.",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 2"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -612,8 +549,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "CC",
@@ -622,13 +558,12 @@
     "obtainment": [],
     "reference": "Ghostbusters",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 6"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
     "name": "Kal",
-    "image": "assets/images/mates/npc/Kal.png",
+    "image": "assets/images/mates/npc/Kal.gif",
     "obtainment": [
       {
         "quest": [
@@ -642,13 +577,12 @@
     "reference": null,
     "Description": "The Normal sprites.",
     "dexEntries": {
-      "♥♡♡♡": "The Normal sprites.",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": "Update 10"
+    "cosmark": "N"
   },
   {
     "id": "Kal",
@@ -657,8 +591,7 @@
     "obtainment": [],
     "reference": "Gerrindamo",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 10"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -667,8 +600,7 @@
     "obtainment": [],
     "reference": "Frankenstein Story",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -677,8 +609,7 @@
     "obtainment": [],
     "reference": "FNAF: The Musical",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -687,8 +618,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 10"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -697,8 +627,7 @@
     "obtainment": [],
     "reference": "The Fantastic Four",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 10"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -707,8 +636,7 @@
     "obtainment": [],
     "reference": "SFAWTDE",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -717,8 +645,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Winter"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -727,8 +654,7 @@
     "obtainment": [],
     "reference": "Monument Mythos",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 13"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -737,8 +663,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 10"
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
@@ -747,8 +672,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 3"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -767,13 +691,12 @@
     "reference": null,
     "Description": "The Normal sprites.",
     "dexEntries": {
-      "♥♡♡♡": "The Normal sprites.",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": "Update 12"
+    "cosmark": "N"
   },
   {
     "id": "Chip",
@@ -782,8 +705,7 @@
     "obtainment": [],
     "reference": "Monument Mythos",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -801,8 +723,7 @@
     ],
     "reference": "Roblox",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "April Fools"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -820,8 +741,7 @@
     ],
     "reference": "Batman and Robin",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -830,8 +750,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -840,8 +759,7 @@
     "obtainment": [],
     "reference": "Dodecadog",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -859,8 +777,7 @@
     ],
     "reference": "Megaman",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -869,8 +786,7 @@
     "obtainment": [],
     "reference": "Mario Bros.",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -879,8 +795,7 @@
     "obtainment": [],
     "reference": "Radioactive Ronald",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 13"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -889,8 +804,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -899,8 +813,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -909,8 +822,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -919,8 +831,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -929,8 +840,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -939,8 +849,7 @@
     "obtainment": [],
     "reference": "The Grinch",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Winter"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -949,8 +858,7 @@
     "obtainment": [],
     "reference": "Pinocchio",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -959,8 +867,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -969,8 +876,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Chip",
@@ -979,8 +885,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 12"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -999,13 +904,12 @@
     "reference": null,
     "Description": "The Normal sprites.",
     "dexEntries": {
-      "♥♡♡♡": "The Normal sprites.",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": "Update 7"
+    "cosmark": "N"
   },
   {
     "id": "Maya",
@@ -1014,8 +918,7 @@
     "obtainment": [],
     "reference": "Hazbin Hotel",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1033,8 +936,7 @@
     ],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 1"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1043,8 +945,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1053,8 +954,7 @@
     "obtainment": [],
     "reference": "Little Nightmares",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Halloween"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1063,8 +963,7 @@
     "obtainment": [],
     "reference": "Ircencaat",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1073,8 +972,7 @@
     "obtainment": [],
     "reference": "Super Paper Mario: The Thousand-Year Door",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1083,8 +981,7 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "Maya",
@@ -1093,128 +990,119 @@
     "obtainment": [],
     "reference": null,
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": "Update 7"
+    "cosmark": "Y"
   },
   {
     "id": "Marvin",
     "name": "Marvin",
-    "image": "assets/images/mates/npc/Marvin.png",
+    "image": "assets/images/mates/npc/Marvin.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Arnold",
     "name": "Arnold",
-    "image": "assets/images/mates/npc/Arnold.png",
+    "image": "assets/images/mates/npc/Arnold.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Shady Guy",
     "name": "Shady Guy",
-    "image": "assets/images/mates/npc/Shady_Guy.png",
+    "image": "assets/images/mates/npc/Shady_Guy.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Maddiline",
     "name": "Maddiline",
-    "image": "assets/images/mates/npc/Maddiline.png",
+    "image": "assets/images/mates/npc/Maddiline.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Dr. Mitchovitch",
     "name": "Dr. Mitchovitch",
-    "image": "assets/images/mates/npc/Dr_Mitchovitch.png",
+    "image": "assets/images/mates/npc/Dr_Mitchovitch.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Erica Breflower",
     "name": "Erica Breflower",
-    "image": "assets/images/mates/npc/Erica_Breflower.png",
+    "image": "assets/images/mates/npc/Erica_Breflower.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Bug Catcher Beth",
     "name": "Bug Catcher Beth",
-    "image": "assets/images/mates/npc/Beth.png",
+    "image": "assets/images/mates/npc/Beth.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Izan",
     "name": "Izan",
-    "image": "assets/images/mates/npc/Izan.png",
+    "image": "assets/images/mates/npc/Izan.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Sally",
@@ -1224,12 +1112,11 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Riley",
@@ -1239,12 +1126,11 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "May",
@@ -1254,12 +1140,11 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Stiphicus",
@@ -1269,12 +1154,11 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Jackary",
@@ -1284,44 +1168,41 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
-    },
-    "versions": "Update 1"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
+    }
   },
   {
     "id": "Dad",
     "name": "Dad",
-    "image": "assets/images/mates/npc/Dad_Boat.png",
+    "image": "assets/images/mates/npc/Dad_Boat.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Dip",
     "name": "Dip",
-    "image": "assets/images/mates/npc/Dip.png",
+    "image": "assets/images/mates/npc/Dip.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Doggi",
@@ -1331,13 +1212,12 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Hippie",
@@ -1347,13 +1227,12 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Lumberjack",
@@ -1363,29 +1242,27 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Mom",
     "name": "Mom",
-    "image": "assets/images/mates/npc/Mom.png",
+    "image": "assets/images/mates/npc/Mom.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "MT",
@@ -1395,29 +1272,27 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Pip",
     "name": "Pip",
-    "image": "assets/images/mates/npc/Pip.png",
+    "image": "assets/images/mates/npc/Pip.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Zip",
@@ -1427,32 +1302,29 @@
     "reference": "",
     "Description": "No entry yet",
     "dexEntries": {
-      "♥♡♡♡": "No entry yet",
-      "♥♥♡♡": "No entry yet",
-      "♥♥♥♡": "No entry yet",
-      "♥♥♥♥": "No entry yet"
+      "\u2665\u2661\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2661\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2661": "No entry yet",
+      "\u2665\u2665\u2665\u2665": "No entry yet"
     },
-    "cosmark": "N",
-    "versions": null
+    "cosmark": "N"
   },
   {
     "id": "Skip",
     "name": "Skip Dance",
-    "image": "assets/images/mates/npc/Skip_Dance.png",
+    "image": "assets/images/mates/npc/Skip_Dance.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": null
+    "cosmark": "Y"
   },
   {
     "id": "Kal",
     "name": "Kal Other",
-    "image": "assets/images/mates/npc/Kal_Other.png",
+    "image": "assets/images/mates/npc/Kal_Other.gif",
     "obtainment": [],
     "reference": "",
     "Description": "No entry yet",
-    "cosmark": "Y",
-    "versions": null
+    "cosmark": "Y"
   }
 ]

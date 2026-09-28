@@ -12,7 +12,6 @@ const subBiomeImages = {
     Night: "Badlands-Night.png"
   },
   Metaforest: {
-    All: "Metaforest-Rainforest.png",
     Rainforest: "Metaforest-Rainforest.png",
     "Cherry Grove": "Metaforest-CherryGrove.png",
     "Mushroom Fields": "Metaforest-MushroomFields.png",
@@ -242,11 +241,14 @@ export function buildEvolutionStageIndex(mates) {
   }));
 }
 
-export async function fetchMateBuckets() {
+export async function fetchMateBuckets(options = {}) {
+  const includeNpc = options.includeNpc !== false;
   const [baseGroups, lostGroups, npc] = await Promise.all([
     fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/lost.json").then(response => response.json()).catch(() => []),
-    fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
+    includeNpc
+      ? fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
+      : Promise.resolve([])
   ]);
 
   const baseBuckets = expandGroupedMateData(baseGroups, "base");

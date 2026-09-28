@@ -930,9 +930,8 @@ body {
 }
 
 body.animatrix-page {
-  zoom: 0.8;
-  width: 125vw;
-  min-height: 125dvh;
+  width: 100%;
+  min-height: 100dvh;
   background: #0d0d0f;
 }
 
@@ -1284,6 +1283,26 @@ main.list {
 }
 
 .card:hover { transform: scale(1.04); box-shadow: 0 0 12px var(--outline-color, #0ff); }
+.cat-grid .catalog-card {
+  cursor: default;
+  border-color: #64748b;
+  box-shadow: none;
+}
+.cat-grid .catalog-card:hover {
+  transform: scale(1.04);
+  border-color: #64748b;
+  box-shadow: none;
+}
+.cat-grid .catalog-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.cat-grid .catalog-card h3 {
+  margin: 6px 0 0;
+  color: #f7f8fb;
+  text-align: center;
+}
 .card img { width: 100px; height: 100px; object-fit: contain; }
 .card img.rarity-shiver-badge {
   position: absolute;
@@ -1379,7 +1398,7 @@ body.animatrix-list-view {
   grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
   grid-template-rows: auto auto minmax(0, 1fr);
   align-items: start;
-  height: 125dvh;
+  height: 100dvh;
   overflow: hidden;
   overflow-x: hidden;
   width: 100%;
@@ -3601,10 +3620,13 @@ body.guesswho-page textarea {
 }
 
 .guesswho-board-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  padding: 6px;
+  object-fit: contain;
+  object-position: center;
   display: block;
   image-rendering: pixelated;
 }
@@ -3904,6 +3926,15 @@ body.guesswho-page textarea {
 }
 
 @media screen and (max-width: 1180px) {
+  #gameScreen {
+    overflow-y: auto;
+  }
+
+  .guesswho-board-panel {
+    height: auto;
+    padding-bottom: 24px;
+  }
+
   .guesswho-large-title {
     font-size: 8.2rem;
   }
@@ -3922,10 +3953,26 @@ body.guesswho-page textarea {
 
   .guesswho-game-layout {
     grid-template-columns: 1fr;
+    height: auto;
+    min-height: calc(100dvh - 4px);
+    overflow: visible;
   }
 
   .guesswho-sidebar-panel {
-    padding-top: 28px;
+    padding-top: 12px;
+  }
+
+  .guesswho-board {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    flex: none;
+    overflow: visible;
+  }
+
+  .guesswho-board-card {
+    aspect-ratio: 1;
+    height: auto;
   }
 
   .guesswho-secret-portrait,
@@ -4011,7 +4058,7 @@ body.guesswho-page textarea {
 
   .guesswho-board {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    grid-template-rows: repeat(10, minmax(0, 1fr));
+    grid-template-rows: none;
   }
 
   .guesswho-controls-panel {

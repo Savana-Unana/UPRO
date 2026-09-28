@@ -221,7 +221,7 @@ body.ost-page select {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto 18px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 12px;
 }
 
@@ -230,7 +230,7 @@ body.ost-page select {
   gap: 6px;
 }
 
-.ost-filter-group label {
+.ost-filter-group > .ost-filter-label {
   color: var(--ost-muted);
   font-size: 2.35rem;
   text-transform: uppercase;
@@ -244,6 +244,110 @@ body.ost-page select {
   font-size: 2.28rem;
   outline: none;
 }
+
+.ost-filter-group { min-width: 0; align-content: start; text-align: left; }
+.ost-filter-label { padding-left: 2px; }
+.ost-multiselect { position: relative; min-width: 0; }
+.ost-multiselect[open] { z-index: 7; }
+.ost-multiselect summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  cursor: pointer;
+  list-style: none;
+  border: 1px solid var(--ost-line);
+  border-radius: 6px;
+  color: var(--ost-text);
+  transition: border-color 150ms ease, background 150ms ease;
+}
+.ost-multiselect summary::-webkit-details-marker { display: none; }
+.ost-multiselect summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-left: auto;
+  flex: none;
+  border-right: 2px solid var(--ost-cyan);
+  border-bottom: 2px solid var(--ost-cyan);
+  transform: rotate(45deg) translateY(-2px);
+}
+.ost-multiselect[open] summary::after { transform: rotate(225deg) translate(-2px, -2px); }
+.ost-multiselect summary span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ost-multiselect summary:hover,
+.ost-multiselect[open] summary { border-color: var(--ost-cyan); background: #101e25; }
+.ost-multiselect summary:focus-visible { outline: 2px solid var(--ost-cyan); outline-offset: 2px; }
+.ost-multiselect-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  max-height: min(320px, 55dvh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 6px;
+  background: #101720;
+  border: 1px solid var(--ost-line);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px #0009;
+  color-scheme: dark;
+  scrollbar-width: thin;
+  scrollbar-color: #405564 #101720;
+}
+.ost-multiselect-options .ost-multiselect-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 2.28rem;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+}
+.ost-multiselect-option:hover { background: #ffffff09; }
+.ost-multiselect-option:has(input:checked) { background: #00ffff10; color: var(--ost-cyan); }
+.ost-multiselect-option:focus-within { outline: 1px solid var(--ost-cyan); outline-offset: -1px; }
+.ost-multiselect-option input {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  flex: none;
+  display: grid;
+  place-content: center;
+  border: 1px solid #617483;
+  border-radius: 3px;
+  background: #090e14;
+}
+.ost-multiselect-option input:checked { background: var(--ost-cyan); border-color: var(--ost-cyan); }
+.ost-multiselect-option input:checked::after {
+  content: "";
+  width: 7px;
+  height: 4px;
+  border-left: 2px solid #071016;
+  border-bottom: 2px solid #071016;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.ost-multiselect-options .ost-filter-reset {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  margin: 0 0 4px;
+  padding: 6px 10px 10px;
+  border: 0;
+  border-bottom: 1px solid var(--ost-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ost-muted);
+  font-size: 1.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+.ost-multiselect-options .ost-filter-reset:hover { color: var(--ost-cyan); background: #ffffff06; }
 
 .ost-main {
   width: min(1180px, calc(100% - 40px));
@@ -778,6 +882,46 @@ function normalizeMotif(motif) {
   }
 }
 
+function MultiSelectFilter({ id, label, allLabel, options, value, onChange }) {
+  const detailsRef = useRef(null)
+
+  useEffect(() => {
+    function closeOutside(event) {
+      const details = detailsRef.current
+      if (details && !details.contains(event.target)) details.open = false
+    }
+    document.addEventListener('pointerdown', closeOutside)
+    return () => document.removeEventListener('pointerdown', closeOutside)
+  }, [])
+
+  return (
+    <div className="ost-filter-group">
+      <span className="ost-filter-label" id={`${id}-label`}>{label}</span>
+      <details className="ost-multiselect" ref={detailsRef} onKeyDown={event => {
+        if (event.key === 'Escape') {
+          detailsRef.current.open = false
+          detailsRef.current.querySelector('summary').focus()
+        }
+      }}>
+        <summary className="ost-select" id={id} aria-labelledby={`${id}-label ${id}-value`}>
+          <span id={`${id}-value`} title={value.join(', ')}>{value.length > 1 ? `${value.length} selected` : value[0] || allLabel}</span>
+        </summary>
+        <div className="ost-multiselect-options" role="group" aria-labelledby={`${id}-label`}>
+          <button className="ost-filter-reset" type="button" onClick={() => onChange([])}>Clear selection</button>
+          {options.map(option => (
+            <label key={option} className="ost-multiselect-option">
+              <input type="checkbox" checked={value.includes(option)} onChange={event => {
+                onChange(event.target.checked ? [...value, option] : value.filter(item => item !== option))
+              }} />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </details>
+    </div>
+  )
+}
+
 export default function OstPage() {
   const audioRef = useRef(null)
   const [tracks, setTracks] = useState([])
@@ -787,12 +931,12 @@ export default function OstPage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedType, setSelectedType] = useState('all')
-  const [selectedArea, setSelectedArea] = useState('all')
-  const [selectedComposer, setSelectedComposer] = useState('all')
-  const [selectedTheme, setSelectedTheme] = useState('all')
-  const [selectedVersion, setSelectedVersion] = useState('all')
-  const [selectedMotif, setSelectedMotif] = useState('all')
+  const [selectedType, setSelectedType] = useState([])
+  const [selectedArea, setSelectedArea] = useState([])
+  const [selectedComposer, setSelectedComposer] = useState([])
+  const [selectedTheme, setSelectedTheme] = useState([])
+  const [selectedVersion, setSelectedVersion] = useState([])
+  const [selectedMotif, setSelectedMotif] = useState([])
   const [queue, setQueue] = useState([])
   const [isQueueOpen, setIsQueueOpen] = useState(false)
 
@@ -879,12 +1023,12 @@ export default function OstPage() {
   }, [info.versions])
   const getTrackCover = track => coverByVersion.get(track?.version) || defaultCoverArt
   const currentMotif = useMemo(
-    () => info.motifs.find(motif => motif.name === selectedMotif) || null,
+    () => selectedMotif.length === 1 ? info.motifs.find(motif => motif.name === selectedMotif[0]) || null : null,
     [info.motifs, selectedMotif],
   )
   const motifTrackNames = useMemo(
-    () => new Set(currentMotif?.sections.map(section => section.song) || []),
-    [currentMotif],
+    () => new Set(info.motifs.filter(motif => selectedMotif.includes(motif.name)).flatMap(motif => motif.sections.map(section => section.song))),
+    [info.motifs, selectedMotif],
   )
   const currentSegment = useMemo(() => {
     if (!currentTrack || !currentMotif) {
@@ -905,13 +1049,13 @@ export default function OstPage() {
           track.composer.toLowerCase().includes(query) ||
           track.area.toLowerCase().includes(query) ||
           track.theme.toLowerCase().includes(query)
-        const matchesType = selectedType === 'all' || track.typing.includes(selectedType)
-        const matchesArea = selectedArea === 'all' || track.area === selectedArea
-        const matchesComposer = selectedComposer === 'all' || track.composer === selectedComposer
-        const matchesFalseThemeVisibility = !isFalseTheme(track.theme) || selectedTheme === 'False Theme'
-        const matchesTheme = selectedTheme === 'all' || track.theme === selectedTheme || (selectedTheme === 'False Theme' && isFalseTheme(track.theme))
-        const matchesVersion = selectedVersion === 'all' || track.version === selectedVersion
-        const matchesMotif = selectedMotif === 'all' || motifTrackNames.has(track.name)
+        const matchesType = !selectedType.length || selectedType.some(type => track.typing.includes(type))
+        const matchesArea = !selectedArea.length || selectedArea.includes(track.area)
+        const matchesComposer = !selectedComposer.length || selectedComposer.includes(track.composer)
+        const matchesFalseThemeVisibility = !isFalseTheme(track.theme) || selectedTheme.includes('False Theme')
+        const matchesTheme = !selectedTheme.length || selectedTheme.includes(track.theme) || (selectedTheme.includes('False Theme') && isFalseTheme(track.theme))
+        const matchesVersion = !selectedVersion.length || selectedVersion.includes(track.version)
+        const matchesMotif = !selectedMotif.length || motifTrackNames.has(track.name)
 
         return matchesSearch && matchesType && matchesArea && matchesComposer && matchesFalseThemeVisibility && matchesTheme && matchesVersion && matchesMotif
       }),
@@ -1072,12 +1216,12 @@ export default function OstPage() {
 
   function resetFilters() {
     setSearchQuery('')
-    setSelectedType('all')
-    setSelectedArea('all')
-    setSelectedComposer('all')
-    setSelectedTheme('all')
-    setSelectedVersion('all')
-    setSelectedMotif('all')
+    setSelectedType([])
+    setSelectedArea([])
+    setSelectedComposer([])
+    setSelectedTheme([])
+    setSelectedVersion([])
+    setSelectedMotif([])
   }
 
   return (
@@ -1141,57 +1285,16 @@ export default function OstPage() {
           </section>
 
           <section className="ost-filters" aria-label="Soundtrack filters">
-            <div className="ost-filter-group">
-              <label htmlFor="ost-type-filter">Typing</label>
-              <select className="ost-select" id="ost-type-filter" value={selectedType} onChange={event => setSelectedType(event.target.value)}>
-                <option value="all">All typings</option>
-                {filterOptions.types.map(type => <option key={type} value={type}>{type}</option>)}
-              </select>
-            </div>
-            <div className="ost-filter-group">
-              <label htmlFor="ost-area-filter">Area</label>
-              <select className="ost-select" id="ost-area-filter" value={selectedArea} onChange={event => setSelectedArea(event.target.value)}>
-                <option value="all">All areas</option>
-                {filterOptions.areas.map(area => <option key={area} value={area}>{area}</option>)}
-              </select>
-            </div>
-            <div className="ost-filter-group">
-              <label htmlFor="ost-composer-filter">Composer</label>
-              <select className="ost-select" id="ost-composer-filter" value={selectedComposer} onChange={event => setSelectedComposer(event.target.value)}>
-                <option value="all">All composers</option>
-                {filterOptions.composers.map(composer => <option key={composer} value={composer}>{composer}</option>)}
-              </select>
-            </div>
-            <div className="ost-filter-group">
-              <label htmlFor="ost-theme-filter">Song Type</label>
-              <select className="ost-select" id="ost-theme-filter" value={selectedTheme} onChange={event => setSelectedTheme(event.target.value)}>
-                <option value="all">All song types</option>
-                {filterOptions.themes.map(theme => <option key={theme} value={theme}>{theme}</option>)}
-              </select>
-            </div>
-            <div className="ost-filter-group">
-              <label htmlFor="ost-version-filter">Version</label>
-              <select className="ost-select" id="ost-version-filter" value={selectedVersion} onChange={event => setSelectedVersion(event.target.value)}>
-                <option value="all">All versions</option>
-                {filterOptions.versions.map(version => <option key={version} value={version}>{version}</option>)}
-              </select>
-            </div>
-            <div className="ost-filter-group">
-              <label htmlFor="ost-motif-filter">Motifs</label>
-              <select
-                className="ost-select"
-                id="ost-motif-filter"
-                value={selectedMotif}
-                onChange={event => {
-                  setSelectedMotif(event.target.value)
-                  setQueue([])
-                  setIsQueueOpen(false)
-                }}
-              >
-                <option value="all">All motifs</option>
-                {filterOptions.motifs.map(motif => <option key={motif} value={motif}>{motif}</option>)}
-              </select>
-            </div>
+            <MultiSelectFilter id="ost-type-filter" label="Typing" allLabel="All typings" options={filterOptions.types} value={selectedType} onChange={setSelectedType} />
+            <MultiSelectFilter id="ost-area-filter" label="Area" allLabel="All areas" options={filterOptions.areas} value={selectedArea} onChange={setSelectedArea} />
+            <MultiSelectFilter id="ost-composer-filter" label="Composer" allLabel="All composers" options={filterOptions.composers} value={selectedComposer} onChange={setSelectedComposer} />
+            <MultiSelectFilter id="ost-theme-filter" label="Song Type" allLabel="All song types" options={filterOptions.themes} value={selectedTheme} onChange={setSelectedTheme} />
+            <MultiSelectFilter id="ost-version-filter" label="Version" allLabel="All versions" options={filterOptions.versions} value={selectedVersion} onChange={setSelectedVersion} />
+            <MultiSelectFilter id="ost-motif-filter" label="Motifs" allLabel="All motifs" options={filterOptions.motifs} value={selectedMotif} onChange={values => {
+              setSelectedMotif(values)
+              setQueue([])
+              setIsQueueOpen(false)
+            }} />
           </section>
 
           <section className="ost-main" aria-label="Soundtrack songs">
