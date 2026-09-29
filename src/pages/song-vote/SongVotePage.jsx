@@ -11,24 +11,12 @@ function runPageScript() {
     bonus: { label: "Non-Canon", sheetName: "Song Non-Canon" }
   };
 
-  const TYPE_COLORS = {
-    Normal: "#d7cfbf",
-    Plant: "#6BBF59",
-    Water: "#3BA5FF",
-    Ice: "#C9F0FF",
-    Fire: "#FF7A4D",
-    Earth: "#C99C6B",
-    Mystic: "#BFA6FF",
-    Air: "#9ED8FF",
-    Savage: "#D6C79B",
-    Metal: "#B0B8C1",
-    Electric: "#F6C94C",
-    Artillery: "#D88F8F",
-    Light: "#FFF3B0",
-    Dark: "#3B3B3F",
-    Gross: "#A8A77A",
-    Spectral: "#8F7AE6",
-    Lucid: "#9FE5D1"
+  const THEME_COLORS = {
+    "Game Theme": "#6bd6c7",
+    "Overworld Theme": "#83c56a",
+    "Battle Theme": "#ef7474",
+    "Ace Theme": "#f1bd58",
+    "False Theme": "#b493e7"
   };
 
   const DEFAULT_MODE = "ost";
@@ -72,8 +60,11 @@ function runPageScript() {
 
   async function init() {
     try {
-      const songs = await fetchJson("data/songs.json");
-      state.pools = buildPools(songs);
+      const [songs, songOrder] = await Promise.all([
+        fetchJson("data/songs.json"),
+        fetchJson("data/ostorder.json")
+      ]);
+      state.pools = buildPools(songs, songOrder);
       refreshForCurrentMode();
       flushPendingVotes();
     } catch (error) {
@@ -128,7 +119,7 @@ function runPageScript() {
     return state.pools[state.currentMode] || [];
   }
 
-  function buildPools(songEntries) {
+  function buildPools(songEntries, songOrder) {
     const pools = {
       ost: [],
       bonus: []
@@ -137,9 +128,11 @@ function runPageScript() {
       ost: new Set(),
       bonus: new Set()
     };
+    const orderRank = new Map(songOrder.map((name, index) => [name, index]));
 
-    songEntries
-      .map(normalizeSong)
+    [...songEntries]
+      .sort((a, b) => (orderRank.get(a.name) ?? Number.MAX_SAFE_INTEGER) - (orderRank.get(b.name) ?? Number.MAX_SAFE_INTEGER))
+      .map(entry => normalizeSong(entry, orderRank))
       .filter(song => song && song.playable)
       .forEach(song => {
         if (song.isCanonTrack) {
@@ -152,31 +145,27 @@ function runPageScript() {
     return pools;
   }
 
-  function normalizeSong(entry) {
+  function normalizeSong(entry, orderRank) {
     if (!entry || !entry.name) {
       return null;
     }
 
-    const typing = Array.isArray(entry.typing) ? entry.typing : [entry.typing || "Normal"];
-    const primaryType = typing[0] || "Normal";
-    const primaryColor = TYPE_COLORS[primaryType] || FALLBACK_COLOR;
-    const ostNumber = Number(entry.ost);
+    const themeType = entry.themeType || "Overworld Theme";
+    const primaryColor = THEME_COLORS[themeType] || FALLBACK_COLOR;
     const file = typeof entry.file === "string" ? entry.file.trim() : "";
     const playable = Boolean(file);
-    const isNonCanonTrack = Number.isFinite(ostNumber) && ostNumber === 1000;
+    const isNonCanonTrack = themeType === "False Theme";
     const isCanonTrack = playable && !isNonCanonTrack;
 
     return {
       key: `Song:${entry.name}`,
       name: entry.name,
       composer: entry.composer || "Unknown",
-      area: entry.area || "Unknown",
-      theme: entry.theme || "Theme",
-      typing,
-      primaryType,
+      themeType,
+      progress: entry.progress || "Untouched",
       primaryColor,
       textColor: getReadableTextColor(primaryColor),
-      ost: Number.isFinite(ostNumber) ? ostNumber : null,
+      orderNumber: orderRank.has(entry.name) ? orderRank.get(entry.name) + 1 : null,
       source: isCanonTrack ? "Canon" : "Non-Canon",
       isCanonTrack,
       isNonCanonTrack,
@@ -248,11 +237,7 @@ function runPageScript() {
       handleVote(sideIndex);
     };
 
-    const numberLabel = song.isCanonTrack ? `OST ${song.ost}` : "NON-CANON";
-    const typingChips = song.typing
-      .filter(Boolean)
-      .map(type => `<span class="song-chip">${escapeHtml(type)}</span>`)
-      .join("");
+    const numberLabel = song.isCanonTrack && song.orderNumber ? `OST ${song.orderNumber}` : "NON-CANON";
     const listenLabel = song.playable ? "Listen" : "Unavailable";
     const listenStatus = song.playable ? "Preview this song" : "No file available";
 
@@ -262,9 +247,8 @@ function runPageScript() {
         <h2 class="song-name">${escapeHtml(song.name)}</h2>
         <div class="song-meta">
           <p>Composer: ${escapeHtml(song.composer)}</p>
-          <p>${escapeHtml(song.area)} | ${escapeHtml(song.theme)}</p>
+          <p>${escapeHtml(song.themeType)} | ${escapeHtml(song.progress)}</p>
         </div>
-        <div class="song-chip-row">${typingChips}</div>
         <div class="song-actions">
           <button class="listen-button" type="button" ${song.playable ? "" : "disabled"}>${listenLabel}</button>
         </div>

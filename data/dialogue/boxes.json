@@ -1,18 +1,20 @@
 {
   "DialogueBox": [
-    "DialogueBox_0.png",
-    "DialogueBox_1.png"
+    { "file": "Dialogue_Panel.png", "x": 0, "y": 0, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "dialogue", "choice": false },
+    { "file": "Dialogue_Panel.png", "x": 256, "y": 0, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "dialogue", "choice": false },
+    { "file": "Dialogue_Panel.png", "x": 0, "y": 100, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "dialogue", "choice": true },
+    { "file": "Dialogue_Panel.png", "x": 256, "y": 100, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "dialogue", "choice": true }
   ],
-  "ChoiceBox": [
-    "ChoiceBox_0.png",
-    "ChoiceBox_1.png"
+  "NamelessBox": [
+    { "file": "Dialogue_Panel.png", "x": 0, "y": 200, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "nameless", "choice": false },
+    { "file": "Dialogue_Panel.png", "x": 256, "y": 200, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "nameless", "choice": true }
   ],
-  "FacelessBox": [
-    "FacelessBox_0.png",
-    "FacelessBox_1.png"
+  "IconlessBox": [
+    { "file": "Dialogue_Panel.png", "x": 0, "y": 300, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "iconless", "choice": false },
+    { "file": "Dialogue_Panel.png", "x": 256, "y": 300, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "iconless", "choice": true }
   ],
-  "FacelessChoice": [
-    "FacelessChoice_0.png",
-    "FacelessChoice_1.png"
+  "CharacterlessBox": [
+    { "file": "Dialogue_Panel.png", "x": 0, "y": 400, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "characterless", "choice": false },
+    { "file": "Dialogue_Panel.png", "x": 256, "y": 400, "width": 256, "height": 100, "sheetWidth": 512, "sheetHeight": 700, "kind": "characterless", "choice": true }
   ]
 }

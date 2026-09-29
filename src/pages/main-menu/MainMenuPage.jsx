@@ -24,7 +24,7 @@ const switchedPositions = [
 const normalButtonConfigs = [
   { text: "Animatrix", href: "/animatrix", bg: "linear-gradient(135deg, #a3e635, #65a30d)" },
   { text: "OST", href: "/ost", bg: "linear-gradient(135deg, #f87171, #b91c1c)" },
-  { text: "Timeline", href: "/timeline", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
+  { text: "History", href: "/history", bg: "linear-gradient(135deg, #fde68a, #ca8a04)" },
   { text: "Map", href: "/map", bg: "linear-gradient(135deg, #93c5fd, #2563eb)" },
 ]
 
@@ -230,14 +230,14 @@ export default function MainMenuPage() {
     <div className="image-buttons">
       <a id="btn1" href="/animatrix" className="overlay-btn">Animatrix</a>
       <a id="btn2" href="/ost" className="overlay-btn">OST</a>
-      <a id="btn3" href="/timeline" className="overlay-btn">Timeline</a>
+      <a id="btn3" href="/history" className="overlay-btn">History</a>
       <a id="btn4" href="/map" className="overlay-btn">Map</a>
     </div>
   </div>
   <div className="buttons">
     <a href="/animatrix"><button id="btn1-alt">Animatrix</button></a>
     <a href="/ost"><button id="btn2-alt">OST</button></a>
-    <a href="/timeline"><button id="btn3-alt">Timeline</button></a>
+    <a href="/history"><button id="btn3-alt">History</button></a>
     <a href="/map"><button id="btn4-alt">Map</button></a>
   </div>
   <div className="switcheroo-container">

@@ -153,6 +153,162 @@ export default function AnimatrixPage() {
       let versionOptions = [];
       let crossTabFormsByRef = new Map();
       let mateByName = new Map();
+      const borgoSlorSourceName = "Borgo Slor";
+      const borgoSlorTextNodes = new Map();
+      let borgoSlorViewportFrame = 0;
+      let borgoSlorObserver = null;
+
+      function normalizeBorgoSlorName(name) {
+        return String(name || "").trim().toLowerCase();
+      }
+
+      function isElementInViewport(el) {
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.width > 0 &&
+          rect.height > 0 &&
+          rect.bottom > 0 &&
+          rect.right > 0 &&
+          rect.top < window.innerHeight &&
+          rect.left < window.innerWidth;
+      }
+
+      function clearBorgoSlorTextTransforms() {
+        borgoSlorTextNodes.forEach(({ original, replacement }, node) => {
+          if (node.isConnected && node.nodeValue === replacement) {
+            node.nodeValue = original;
+          }
+        });
+        borgoSlorTextNodes.clear();
+      }
+
+      function replaceBorgoSlorTextNode(node, replacementText) {
+        const original = node.nodeValue;
+        const leadingWhitespace = original.match(/^\s*/)?.[0] || "";
+        const trailingWhitespace = original.match(/\s*$/)?.[0] || "";
+        const replacement = `${leadingWhitespace}${replacementText}${trailingWhitespace}`;
+        borgoSlorTextNodes.set(node, { original, replacement });
+        node.nodeValue = replacement;
+      }
+
+      function transformVisibleTextWithin(root) {
+        if (!root || !isElementInViewport(root)) return;
+
+        const textNodes = [];
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let textNode = walker.nextNode();
+        while (textNode) {
+          if (textNode.textContent.trim()) textNodes.push(textNode);
+          textNode = walker.nextNode();
+        }
+
+        textNodes.forEach(node => {
+          if (!node.parentElement || !isElementInViewport(node.parentElement)) return;
+          const replacementText = node.parentElement.closest(".animatrix-header h1")
+            ? `The ${borgoSlorSourceName}`
+            : borgoSlorSourceName;
+          replaceBorgoSlorTextNode(node, replacementText);
+        });
+      }
+
+      function transformBorgoSlorStatsLine(root) {
+        if (!root || !isElementInViewport(root)) return;
+
+        const textNodes = [];
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        let textNode = walker.nextNode();
+        while (textNode) {
+          if (textNode.textContent.trim()) textNodes.push(textNode);
+          textNode = walker.nextNode();
+        }
+        if (!textNodes.length) return;
+
+        const lineText = textNodes.map(node => node.nodeValue).join(" ").replace(/\s+/g, " ").trim();
+        const keptPhrases = [];
+        if (/\bCurrent Highest\b/i.test(lineText)) keptPhrases.push("Current Highest");
+        if (/\bTotal\b/i.test(lineText)) keptPhrases.push("Total");
+
+        const otherWords = lineText
+          .replace(/\bCurrent Highest\b/gi, "")
+          .replace(/\bTotal\b/gi, "")
+          .replace(/-?\d+(?:\.\d+)?(?:\/-?\d+(?:\.\d+)?)?/g, "")
+          .replace(/[^A-Za-z]+/g, "");
+        const numbers = lineText.match(/-?\d+(?:\.\d+)?(?:\/-?\d+(?:\.\d+)?)?/g) || [];
+        if (otherWords) {
+          keptPhrases.push(numbers.length ? `${borgoSlorSourceName}:` : borgoSlorSourceName);
+        }
+
+        const replacementLine = [...keptPhrases, ...numbers].join(" ");
+        replaceBorgoSlorTextNode(textNodes[0], replacementLine);
+        textNodes.slice(1).forEach(node => replaceBorgoSlorTextNode(node, ""));
+      }
+
+      function scheduleBorgoSlorViewportUpdate() {
+        if (borgoSlorViewportFrame) return;
+        borgoSlorViewportFrame = window.requestAnimationFrame(() => {
+          borgoSlorViewportFrame = 0;
+          updateBorgoSlorViewportTransforms();
+        });
+      }
+
+      function updateBorgoSlorViewportTransforms() {
+        borgoSlorObserver?.disconnect();
+        clearBorgoSlorTextTransforms();
+
+        const cards = Array.from(animatrix.querySelectorAll(".card"));
+        const borgoCard = cards.find(card =>
+          normalizeBorgoSlorName(card.__mate?.name) === normalizeBorgoSlorName(borgoSlorSourceName) &&
+          isElementInViewport(card)
+        );
+        const page = document.getElementById("animatrixPage");
+        const borgoDetailsOpen = !modal.classList.contains("hidden") &&
+          normalizeBorgoSlorName(currentDetailMate?.name) === normalizeBorgoSlorName(borgoSlorSourceName);
+        const borgoOnlyStatsOpen = cards.length === 1 &&
+          normalizeBorgoSlorName(cards[0].__mate?.name) === normalizeBorgoSlorName(borgoSlorSourceName) &&
+          !statsModal.classList.contains("hidden");
+
+        page?.classList.toggle("borgo-slor-active", Boolean(borgoCard));
+
+        if (borgoCard && page) {
+          page.querySelectorAll([
+            ".card h3",
+            ".card .card-id",
+            ".card .list-card-label",
+            ".card .types span",
+            ".animatrix-header h1",
+            "button",
+            ".filter-panel .opt span",
+            "option"
+          ].join(",")).forEach(transformVisibleTextWithin);
+        }
+
+        if (borgoDetailsOpen) {
+          transformVisibleTextWithin(document.querySelector("#detailsModal .modal-header"));
+          transformVisibleTextWithin(document.querySelector("#detailsModal .modal-body"));
+        }
+
+        if (borgoOnlyStatsOpen) {
+          page.querySelectorAll([
+            "#statsModal .modal-content > h2",
+            "#statsContent .stats-section > h2",
+            "#statsContent .mode-name",
+            "#statsContent .mode-counts",
+            "#statsContent .stats-section > p",
+            "#statsContent .type-name",
+            "#statsContent .type-counts"
+          ].join(",")).forEach(transformBorgoSlorStatsLine);
+        }
+
+        if (page && borgoSlorObserver) {
+          borgoSlorObserver.observe(page, {
+            attributes: true,
+            attributeFilter: ["class", "hidden", "style", "aria-hidden"],
+            childList: true,
+            characterData: true,
+            subtree: true
+          });
+        }
+      }
 
       function normalizeOrderName(name) {
         return String(name || "").trim().replace(/\s*\([^)]*\)\s*$/g, "").toLowerCase();
@@ -562,9 +718,13 @@ export default function AnimatrixPage() {
         statsBtn.onclick = () => {
           buildStats();
           statsModal.classList.remove("hidden");
+          scheduleBorgoSlorViewportUpdate();
         };
 
-        closeStats.onclick = () => statsModal.classList.add("hidden");
+        closeStats.onclick = () => {
+          statsModal.classList.add("hidden");
+          scheduleBorgoSlorViewportUpdate();
+        };
         modal.addEventListener("click", event => {
           if (event.target === modal) modal.classList.add("hidden");
         });
@@ -610,6 +770,7 @@ export default function AnimatrixPage() {
 
         const missingNoMons = validMons.filter(isMissingNo);
         const highestId = statsPool
+          .filter(m => !shouldHideMateId(m))
           .map(m => getMateDisplayId(m))
           .filter(id => Number.isFinite(id))
           .reduce((max, id) => Math.max(max, id), Number.NEGATIVE_INFINITY);
@@ -1269,6 +1430,56 @@ export default function AnimatrixPage() {
         return `url("${String(path || "").replace(/\\/g, "\\\\").replace(/"/g, '\\"')}")`;
       }
 
+      function applyCardShellStyle(card, mate, listViewCard) {
+        if (listViewCard) return;
+
+        card.classList.toggle("rarity-paragon", isParagon(mate));
+        const firstBiome = getMateBiomes(mate)[0];
+        const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate, firstBiome)[0]);
+        card.classList.toggle("biome-bg", Boolean(biomeImage && modeUsesBiomeArt(currentMode)));
+        if (biomeImage && modeUsesBiomeArt(currentMode)) {
+          card.style.setProperty("--biome-image", cssImageUrl(biomeImage));
+        } else {
+          card.style.removeProperty("--biome-image");
+        }
+        applyMateStyle(card, mate);
+      }
+
+      function renderCardContents(card, mate, listViewCard) {
+        const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
+        const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
+        const displayId = getMateDisplayId(mate);
+        const showId = !shouldHideMateId(mate);
+        const idText = listViewCard ? formatListCardId(mate) : (displayId === null ? "?" : String(displayId));
+        const shiverBadge = isShiver(mate)
+          ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
+          : "";
+        const displayTypes = (mate.types || []).filter(type => String(type || "").trim());
+        const displayParaTypes = (mate.paraTypes || []).filter(type => String(type || "").trim());
+
+        card.innerHTML = "";
+        if (listViewCard) {
+          const rowLabel = document.createElement("span");
+          rowLabel.className = "list-card-label";
+          rowLabel.textContent = currentMode === "costumes" || !showId
+            ? (mate.name || "")
+            : `${idText} - ${mate.name || ""}${lostImage ? "*" : ""}`;
+          card.appendChild(rowLabel);
+          return;
+        }
+
+        card.innerHTML = `
+          ${showId ? `<div class="card-id">${escapeHtml(idText)}</div>` : ""}
+          ${shiverBadge}
+          <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
+          <h3>${displayName}</h3>
+          ${(mate.event === "fools") ? "" : `
+            <div class="types">${displayTypes.map(t => typeTag(t)).join("")}</div>
+            ${displayParaTypes.length ? `<div class="types">${displayParaTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+          `}
+        `;
+      }
+
       function loadMode(mode) {
         currentMode = mode;
         setBiomeFilterVisibility(mode);
@@ -1367,45 +1578,8 @@ export default function AnimatrixPage() {
               card.classList.add("selected");
             }
             if (!listViewCard && isParagon(mate)) card.classList.add("rarity-paragon");
-            const firstBiome = getMateBiomes(mate)[0];
-            const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate, firstBiome)[0]);
-            if (!listViewCard && biomeImage && modeUsesBiomeArt(currentMode)) {
-              card.classList.add("biome-bg");
-              card.style.setProperty("--biome-image", cssImageUrl(biomeImage));
-            }
-            if (!listViewCard) {
-              applyMateStyle(card, mate);
-            }
-
-            const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
-            const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
-            const displayId = getMateDisplayId(mate);
-            const showId = !shouldHideMateId(mate);
-            const idText = listViewCard ? formatListCardId(mate) : (displayId === null ? "?" : String(displayId));
-            const shiverBadge = isShiver(mate)
-              ? `<img class="rarity-shiver-badge" src="assets/images/ui/Shiver.png" alt="Shiver" title="Shiver">`
-              : "";
-
-            if (listViewCard) {
-              const rowLabel = document.createElement("span");
-              rowLabel.className = "list-card-label";
-              rowLabel.textContent = currentMode === "costumes" || !showId
-                ? (mate.name || "")
-                : `${idText} - ${mate.name || ""}${lostImage ? "*" : ""}`;
-              card.appendChild(rowLabel);
-            } else {
-              // Inner HTML for the card
-              card.innerHTML = `
-                ${showId ? `<div class="card-id">${escapeHtml(idText)}</div>` : ""}
-                ${shiverBadge}
-                <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
-                <h3>${displayName}</h3>
-                ${(mate.event === "fools") ? "" : `
-                  <div class="types">${(mate.types || []).map(t => typeTag(t)).join("")}</div>
-                  ${(mate.paraTypes || []).length ? `<div class="types">${mate.paraTypes.map(p => typeTag(p)).join("")}</div>` : ""} 
-                `}
-              `;
-            }
+            applyCardShellStyle(card, mate, listViewCard);
+            renderCardContents(card, mate, listViewCard);
 
             card.addEventListener("click", () => openDetails(mate));
             card.addEventListener("contextmenu", event => {
@@ -1414,6 +1588,7 @@ export default function AnimatrixPage() {
             });
             animatrix.appendChild(card);
           });
+        scheduleBorgoSlorViewportUpdate();
       }
 
       function getMateModePool(mate) {
@@ -1683,6 +1858,7 @@ export default function AnimatrixPage() {
         updateDetails(mate);
         updateListSelectionClasses();
         modal.classList.remove("hidden");
+        scheduleBorgoSlorViewportUpdate();
       }
 
       function applyMateStyle(el, mate) {
@@ -2045,6 +2221,8 @@ export default function AnimatrixPage() {
             });
           }
         }
+
+        scheduleBorgoSlorViewportUpdate();
       }
 
 
@@ -2062,7 +2240,10 @@ export default function AnimatrixPage() {
         }
       }
 
-      closeModal.onclick = () => modal.classList.add("hidden");
+      closeModal.onclick = () => {
+        modal.classList.add("hidden");
+        scheduleBorgoSlorViewportUpdate();
+      };
 
       nextMate.onclick = () => {
         if (!animatrixData || animatrixData.length === 0) return;
@@ -2087,8 +2268,32 @@ export default function AnimatrixPage() {
         }[s]));
       }
 
+      window.addEventListener("scroll", scheduleBorgoSlorViewportUpdate, { passive: true });
+      window.addEventListener("resize", scheduleBorgoSlorViewportUpdate);
+      document.addEventListener("scroll", scheduleBorgoSlorViewportUpdate, true);
+      borgoSlorObserver = new MutationObserver(scheduleBorgoSlorViewportUpdate);
+      const animatrixPage = document.getElementById("animatrixPage");
+      if (animatrixPage) {
+        borgoSlorObserver.observe(animatrixPage, {
+          attributes: true,
+          attributeFilter: ["class", "hidden", "style", "aria-hidden"],
+          childList: true,
+          characterData: true,
+          subtree: true
+        });
+      }
 
     return () => {
+      window.removeEventListener("scroll", scheduleBorgoSlorViewportUpdate);
+      window.removeEventListener("resize", scheduleBorgoSlorViewportUpdate);
+      document.removeEventListener("scroll", scheduleBorgoSlorViewportUpdate, true);
+      borgoSlorObserver?.disconnect();
+      clearBorgoSlorTextTransforms();
+      document.getElementById("animatrixPage")?.classList.remove("borgo-slor-active");
+      if (borgoSlorViewportFrame) {
+        window.cancelAnimationFrame(borgoSlorViewportFrame);
+        borgoSlorViewportFrame = 0;
+      }
       document.body.classList.remove("animatrix-page", "animatrix-list-view")
       window.onload = null
     }
@@ -2097,7 +2302,7 @@ export default function AnimatrixPage() {
   return (
     <>
       {pageStyles && <style>{pageStyles}</style>}
-      <div className="upro-page-root"><header className="animatrix-header">
+      <div className="upro-page-root" id="animatrixPage"><header className="animatrix-header">
     <button
       id="searchHelpButton"
       className="search-help-button"

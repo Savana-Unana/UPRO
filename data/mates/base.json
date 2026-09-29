@@ -31643,11 +31643,10 @@
         {
           "name": "Sacred Scyphon",
           "types": [
-            "Air",
-            "Electric"
+            "Air"
           ],
           "paraTypes": [
-            ""
+            "Electric"
           ],
           "rarity": "Normal",
           "dexEntries": {
@@ -31693,12 +31692,11 @@
         {
           "name": "Scyphon",
           "types": [
-            "Air",
-            "Electric"
+            "Air"
           ],
           "paraTypes": [
-            "",
             "Electric"
+
           ],
           "rarity": "Normal",
           "dexEntries": {

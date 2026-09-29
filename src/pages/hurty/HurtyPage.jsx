@@ -652,7 +652,7 @@ function loadRemoteScript(src) {
 
 export default function HurtyPage() {
   useEffect(() => {
-    document.title = "Actions & Passives"
+    document.title = "Battle Stuff"
     document.body.className = "hurty-page"
     document.body.setAttribute('style', "")
 

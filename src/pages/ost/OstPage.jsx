@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 const pageStyles = `
 @font-face {
@@ -247,6 +248,8 @@ body.ost-page select {
 
 .ost-filter-group { min-width: 0; align-content: start; text-align: left; }
 .ost-filter-label { padding-left: 2px; }
+.ost-filter-group.is-disabled { opacity: 0.45; }
+.ost-filter-group.is-disabled .ost-select { cursor: not-allowed; }
 .ost-multiselect { position: relative; min-width: 0; }
 .ost-multiselect[open] { z-index: 7; }
 .ost-multiselect summary {
@@ -331,6 +334,15 @@ body.ost-page select {
   border-bottom: 2px solid #071016;
   transform: rotate(-45deg) translateY(-1px);
 }
+.ost-multiselect-option input[type="radio"] { border-radius: 50%; }
+.ost-multiselect-option input[type="radio"]:checked::after {
+  width: 6px;
+  height: 6px;
+  border: 0;
+  border-radius: 50%;
+  background: #071016;
+  transform: none;
+}
 .ost-multiselect-options .ost-filter-reset {
   display: block;
   width: 100%;
@@ -358,10 +370,10 @@ body.ost-page select {
 .ost-track-heading,
 .ost-track-row {
   display: grid;
-  grid-template-columns: 64px 82px minmax(230px, 1.8fr) minmax(150px, 0.78fr) minmax(140px, 0.8fr) minmax(130px, 0.74fr) 86px 92px;
-  gap: 14px;
+  grid-template-columns: 48px 64px minmax(180px, 1.8fr) minmax(100px, 0.78fr) minmax(110px, 0.8fr) minmax(86px, 0.62fr) minmax(86px, 0.62fr) 58px 170px;
+  gap: 10px;
   align-items: center;
-  min-width: 760px;
+  min-width: 1020px;
 }
 
 .ost-track-heading {
@@ -388,6 +400,17 @@ body.ost-page select {
     linear-gradient(90deg, rgba(var(--song-rgb, 215, 207, 191), 0.12), rgba(255, 255, 255, 0.03)),
     var(--ost-panel-strong);
   color: var(--ost-text);
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.ost-track-row:hover,
+.ost-track-row:focus-visible {
+  border-color: rgb(var(--song-rgb, 215, 207, 191));
+  background:
+    linear-gradient(90deg, rgba(var(--song-rgb, 215, 207, 191), 0.18), rgba(255, 255, 255, 0.05)),
+    var(--ost-panel-strong);
+  outline: none;
 }
 
 .ost-track-row.is-current {
@@ -419,8 +442,9 @@ body.ost-page select {
 .ost-track-name,
 .ost-track-subtitle,
 .ost-track-composer,
-.ost-track-area,
 .ost-track-theme,
+.ost-track-version,
+.ost-track-progress,
 .ost-track-duration {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -437,8 +461,9 @@ body.ost-page select {
 
 .ost-track-subtitle,
 .ost-track-composer,
-.ost-track-area,
 .ost-track-theme,
+.ost-track-version,
+.ost-track-progress,
 .ost-track-duration {
   color: var(--ost-muted);
   font-size: 2.45rem;
@@ -449,21 +474,16 @@ body.ost-page select {
 }
 
 .ost-track-theme {
-  display: flex;
-  gap: 7px;
-  align-items: center;
+  display: block;
 }
 
-.ost-type-dot {
-  width: 12px;
-  height: 12px;
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: rgb(var(--song-rgb, 215, 207, 191));
+.ost-track-progress {
+  color: #dce8f6;
 }
 
 .ost-track-actions {
   display: flex;
+  min-width: 0;
   gap: 8px;
   justify-content: flex-end;
 }
@@ -479,6 +499,136 @@ body.ost-page select {
   min-width: 48px;
   width: 48px;
   padding-inline: 0;
+}
+
+.ost-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2, 5, 8, 0.82);
+  backdrop-filter: blur(10px);
+}
+
+.ost-detail-modal {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: #10161e;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.58);
+}
+
+.ost-detail-close {
+  position: sticky;
+  top: 14px;
+  z-index: 2;
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 14px 14px -58px auto;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: #0b1017;
+  color: #fff;
+  font-size: 1.9rem;
+  cursor: pointer;
+}
+
+.ost-detail-close:hover,
+.ost-detail-close:focus-visible {
+  border-color: var(--ost-cyan);
+  color: var(--ost-cyan);
+  outline: none;
+}
+
+.ost-detail-hero {
+  min-height: min(650px, 72dvh);
+  display: grid;
+  grid-template-columns: minmax(230px, 340px) minmax(0, 1fr);
+  gap: 30px;
+  align-items: center;
+  padding: 58px 44px 44px;
+  background: linear-gradient(180deg, rgba(107, 214, 199, 0.14), transparent 72%);
+}
+
+.ost-detail-hero > img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+}
+
+.ost-detail-heading > span {
+  color: var(--ost-cyan);
+  font-size: 1.9rem;
+  text-transform: uppercase;
+}
+
+.ost-detail-heading h2 {
+  margin: 10px 0 8px;
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  line-height: 0.98;
+}
+
+.ost-detail-heading p {
+  margin: 0 0 24px;
+  color: var(--ost-muted);
+  font-size: 2.5rem;
+}
+
+.ost-detail-player {
+  width: 100%;
+  min-height: 54px;
+}
+
+.ost-detail-unavailable { color: #ffbe8c !important; }
+
+.ost-detail-about {
+  padding: 44px;
+  border-top: 1px solid var(--ost-line);
+  background: #0c1118;
+}
+
+.ost-detail-about h3 {
+  margin: 0 0 18px;
+  font-size: 4rem;
+}
+
+.ost-detail-about > p {
+  margin: 0;
+  color: #d8e2ee;
+  font-family: var(--ost-display-font);
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.ost-detail-about dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 32px 0 0;
+}
+
+.ost-detail-about dl > div {
+  padding-top: 12px;
+  border-top: 1px solid var(--ost-line);
+}
+
+.ost-detail-about dt {
+  color: var(--ost-muted);
+  font-size: 1.55rem;
+}
+
+.ost-detail-about dd {
+  margin: 4px 0 0;
+  font-size: 2.15rem;
 }
 
 .ost-empty {
@@ -701,56 +851,77 @@ body.ost-page select {
   .ost-track-row {
     grid-template-columns: 42px 62px minmax(0, 1fr) auto;
     gap: 10px;
+    min-width: 0;
   }
 
   .ost-track-row > .ost-track-composer,
-  .ost-track-area,
   .ost-track-theme,
+  .ost-track-version,
+  .ost-track-progress,
   .ost-track-duration {
     display: none;
   }
+
+  .ost-detail-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: 64px 24px 36px;
+  }
+
+  .ost-detail-hero > img { width: min(320px, 100%); }
+  .ost-detail-about { padding: 32px 24px; }
+  .ost-detail-about dl { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .ost-main { overflow-x: visible; }
+
+  .ost-track-row {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .ost-track-cover { display: none; }
+  .ost-track-number { grid-column: 1; grid-row: 1; }
+  .ost-track-title-cell { grid-column: 2; grid-row: 1; }
+
+  .ost-track-actions {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: stretch;
+  }
+
+  .ost-track-actions .ost-track-action:not(.ost-track-add) { flex: 1; }
 }
 `
 
-const typeColors = {
-  Normal: '#d7cfbf',
-  Plant: '#6BBF59',
-  Water: '#3BA5FF',
-  Ice: '#C9F0FF',
-  Fire: '#FF7A4D',
-  Earth: '#C99C6B',
-  Mystic: '#BFA6FF',
-  Air: '#9ED8FF',
-  Savage: '#D6C79B',
-  Metal: '#B0B8C1',
-  Electric: '#F6C94C',
-  Artillery: '#D88F8F',
-  Light: '#FFF3B0',
-  Dark: '#3B3B3F',
-  Gross: '#A8A77A',
-  Spectral: '#8F7AE6',
-  Lucid: '#9FE5D1',
+const themeColors = {
+  'Game Theme': '#6bd6c7',
+  'Overworld Theme': '#83c56a',
+  'Battle Theme': '#ef7474',
+  'Ace Theme': '#f1bd58',
+  'False Theme': '#b493e7',
 }
+
+const themeTypeOrder = ['Game Theme', 'Overworld Theme', 'Battle Theme', 'Ace Theme', 'False Theme']
+const progressOrder = ['Untouched', 'Composed', 'Finalized']
 
 const defaultCoverArt = 'assets/images/ui/UPRO-OSTs.png'
 
-function normalizeSong(entry) {
-  const typing = Array.isArray(entry.typing) ? entry.typing : [entry.typing || 'Normal']
+function normalizeSong(entry, orderIndex) {
   const file = typeof entry.file === 'string' ? entry.file.trim() : ''
-  const ost = Number(entry.ost)
 
   return {
-    key: `${entry.name}-${entry.file || entry.ost}`,
+    key: `${entry.name}-${entry.file || orderIndex}`,
     name: entry.name || 'Unknown Song',
     composer: entry.composer || 'Unknown',
-    area: entry.area || 'Unknown',
-    theme: entry.theme || 'Theme',
-    typing,
-    primaryType: typing[0] || 'Normal',
-    version: entry.Version || entry.version || 'Update 1',
+    themeType: themeTypeOrder.includes(entry.themeType) ? entry.themeType : 'Overworld Theme',
+    progress: progressOrder.includes(entry.progress) ? entry.progress : 'Untouched',
+    version: entry.Version ?? entry.version ?? '',
     file,
     playable: Boolean(file),
-    ost: Number.isFinite(ost) ? ost : 1000,
+    order: Number.isFinite(orderIndex) ? orderIndex : Number.MAX_SAFE_INTEGER,
+    image: entry.image || '',
+    motifs: Array.isArray(entry.motifs) ? entry.motifs.filter(Boolean) : [],
     description: entry.description || '',
     descriptionTitle: entry['description-title'] || '',
   }
@@ -828,17 +999,13 @@ function parseTime(value) {
 }
 
 function getTrackColor(track) {
-  return typeColors[track?.primaryType] || typeColors.Normal
+  return themeColors[track?.themeType] || themeColors['Game Theme']
 }
 
 function sortTracks(tracks) {
   return [...tracks].sort((a, b) => {
-    return a.ost - b.ost || a.name.localeCompare(b.name)
+    return a.order - b.order || a.name.localeCompare(b.name)
   })
-}
-
-function isFalseTheme(theme) {
-  return theme === 'False Theme' || theme === 'FakeTheme'
 }
 
 function getInfoName(item) {
@@ -882,7 +1049,51 @@ function normalizeMotif(motif) {
   }
 }
 
-function MultiSelectFilter({ id, label, allLabel, options, value, onChange }) {
+function MultiSelectFilter({ id, label, allLabel, options, value, onChange, disabled = false }) {
+  const detailsRef = useRef(null)
+
+  useEffect(() => {
+    function closeOutside(event) {
+      const details = detailsRef.current
+      if (details && !details.contains(event.target)) details.open = false
+    }
+    document.addEventListener('pointerdown', closeOutside)
+    return () => document.removeEventListener('pointerdown', closeOutside)
+  }, [])
+
+  return (
+    <div className={`ost-filter-group ${disabled ? 'is-disabled' : ''}`}>
+      <span className="ost-filter-label" id={`${id}-label`}>{label}</span>
+      <details className="ost-multiselect" ref={detailsRef} onToggle={event => {
+        if (disabled) event.currentTarget.open = false
+      }} onKeyDown={event => {
+        if (event.key === 'Escape') {
+          detailsRef.current.open = false
+          detailsRef.current.querySelector('summary').focus()
+        }
+      }}>
+        <summary className="ost-select" id={id} aria-disabled={disabled} onClick={event => {
+          if (disabled) event.preventDefault()
+        }} aria-labelledby={`${id}-label ${id}-value`}>
+          <span id={`${id}-value`} title={value.join(', ')}>{value.length > 1 ? `${value.length} selected` : value[0] || allLabel}</span>
+        </summary>
+        <div className="ost-multiselect-options" role="group" aria-labelledby={`${id}-label`}>
+          <button className="ost-filter-reset" type="button" onClick={() => onChange([])}>Clear selection</button>
+          {options.map(option => (
+            <label key={option} className="ost-multiselect-option">
+              <input type="checkbox" disabled={disabled} checked={value.includes(option)} onChange={event => {
+                onChange(event.target.checked ? [...value, option] : value.filter(item => item !== option))
+              }} />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </details>
+    </div>
+  )
+}
+
+function SingleSelectFilter({ id, label, allLabel, options, value, onChange }) {
   const detailsRef = useRef(null)
 
   useEffect(() => {
@@ -897,21 +1108,17 @@ function MultiSelectFilter({ id, label, allLabel, options, value, onChange }) {
   return (
     <div className="ost-filter-group">
       <span className="ost-filter-label" id={`${id}-label`}>{label}</span>
-      <details className="ost-multiselect" ref={detailsRef} onKeyDown={event => {
-        if (event.key === 'Escape') {
-          detailsRef.current.open = false
-          detailsRef.current.querySelector('summary').focus()
-        }
-      }}>
+      <details className="ost-multiselect" ref={detailsRef}>
         <summary className="ost-select" id={id} aria-labelledby={`${id}-label ${id}-value`}>
-          <span id={`${id}-value`} title={value.join(', ')}>{value.length > 1 ? `${value.length} selected` : value[0] || allLabel}</span>
+          <span id={`${id}-value`}>{value || allLabel}</span>
         </summary>
-        <div className="ost-multiselect-options" role="group" aria-labelledby={`${id}-label`}>
-          <button className="ost-filter-reset" type="button" onClick={() => onChange([])}>Clear selection</button>
+        <div className="ost-multiselect-options" role="radiogroup" aria-labelledby={`${id}-label`}>
+          <button className="ost-filter-reset" type="button" onClick={() => onChange('')}>Clear selection</button>
           {options.map(option => (
             <label key={option} className="ost-multiselect-option">
-              <input type="checkbox" checked={value.includes(option)} onChange={event => {
-                onChange(event.target.checked ? [...value, option] : value.filter(item => item !== option))
+              <input type="radio" name={id} checked={value === option} onChange={() => {
+                onChange(option)
+                detailsRef.current.open = false
               }} />
               <span>{option}</span>
             </label>
@@ -925,18 +1132,18 @@ function MultiSelectFilter({ id, label, allLabel, options, value, onChange }) {
 export default function OstPage() {
   const audioRef = useRef(null)
   const [tracks, setTracks] = useState([])
-  const [info, setInfo] = useState({ typings: [], areas: [], composers: [], themeTypes: [], motifs: [], versions: [] })
+  const [info, setInfo] = useState({ composers: [], themeTypes: [], motifs: [], versions: [] })
   const [durations, setDurations] = useState({})
   const [currentTrackKey, setCurrentTrackKey] = useState('')
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedType, setSelectedType] = useState([])
-  const [selectedArea, setSelectedArea] = useState([])
   const [selectedComposer, setSelectedComposer] = useState([])
   const [selectedTheme, setSelectedTheme] = useState([])
   const [selectedVersion, setSelectedVersion] = useState([])
-  const [selectedMotif, setSelectedMotif] = useState([])
+  const [selectedProgress, setSelectedProgress] = useState([])
+  const [selectedMotif, setSelectedMotif] = useState('')
+  const [detailTrack, setDetailTrack] = useState(null)
   const [queue, setQueue] = useState([])
   const [isQueueOpen, setIsQueueOpen] = useState(false)
 
@@ -954,14 +1161,15 @@ export default function OstPage() {
         }
         return response.json()
       }),
-      fetch('data/info.json').then(response => response.json()).catch(() => ({ typings: [], areas: [] })),
+      fetch('data/info.json').then(response => response.json()).catch(() => ({})),
+      fetch('data/ostorder.json').then(response => response.json()).catch(() => []),
     ])
-      .then(([data, sharedInfo]) => {
+      .then(([data, sharedInfo, songOrder]) => {
         if (cancelled) return
-        const nextTracks = data.map(normalizeSong)
+        const orderedSongNames = Array.isArray(songOrder) ? songOrder : []
+        const orderRank = new Map(orderedSongNames.map((name, index) => [name, index]))
+        const nextTracks = data.map((entry, index) => normalizeSong(entry, orderRank.get(entry.name) ?? (orderedSongNames.length + index)))
         setInfo({
-          typings: Array.isArray(sharedInfo?.typings) ? sharedInfo.typings : [],
-          areas: Array.isArray(sharedInfo?.areas) ? sharedInfo.areas : [],
           composers: Array.isArray(sharedInfo?.composers) ? sharedInfo.composers : [],
           themeTypes: Array.isArray(sharedInfo?.themeTypes) ? sharedInfo.themeTypes : [],
           versions: Array.isArray(sharedInfo?.versions) ? sharedInfo.versions : [],
@@ -1021,14 +1229,14 @@ export default function OstPage() {
 
     return covers
   }, [info.versions])
-  const getTrackCover = track => coverByVersion.get(track?.version) || defaultCoverArt
+  const getTrackCover = track => track?.image || coverByVersion.get(track?.version) || defaultCoverArt
   const currentMotif = useMemo(
-    () => selectedMotif.length === 1 ? info.motifs.find(motif => motif.name === selectedMotif[0]) || null : null,
+    () => selectedMotif ? info.motifs.find(motif => motif.name === selectedMotif) || null : null,
     [info.motifs, selectedMotif],
   )
   const motifTrackNames = useMemo(
-    () => new Set(info.motifs.filter(motif => selectedMotif.includes(motif.name)).flatMap(motif => motif.sections.map(section => section.song))),
-    [info.motifs, selectedMotif],
+    () => new Set(currentMotif?.sections.map(section => section.song) || []),
+    [currentMotif],
   )
   const currentSegment = useMemo(() => {
     if (!currentTrack || !currentMotif) {
@@ -1047,20 +1255,22 @@ export default function OstPage() {
           !query ||
           track.name.toLowerCase().includes(query) ||
           track.composer.toLowerCase().includes(query) ||
-          track.area.toLowerCase().includes(query) ||
-          track.theme.toLowerCase().includes(query)
-        const matchesType = !selectedType.length || selectedType.some(type => track.typing.includes(type))
-        const matchesArea = !selectedArea.length || selectedArea.includes(track.area)
+          track.themeType.toLowerCase().includes(query) ||
+          track.progress.toLowerCase().includes(query) ||
+          track.descriptionTitle.toLowerCase().includes(query)
         const matchesComposer = !selectedComposer.length || selectedComposer.includes(track.composer)
-        const matchesFalseThemeVisibility = !isFalseTheme(track.theme) || selectedTheme.includes('False Theme')
-        const matchesTheme = !selectedTheme.length || selectedTheme.includes(track.theme) || (selectedTheme.includes('False Theme') && isFalseTheme(track.theme))
+        const matchesTheme = !selectedTheme.length || selectedTheme.includes(track.themeType)
         const matchesVersion = !selectedVersion.length || selectedVersion.includes(track.version)
-        const matchesMotif = !selectedMotif.length || motifTrackNames.has(track.name)
+        const matchesProgress = !selectedProgress.length || selectedProgress.includes(track.progress)
+        const matchesMotif = !selectedMotif || motifTrackNames.has(track.name)
+        const matchesDropdowns = selectedMotif
+          ? matchesMotif
+          : matchesComposer && matchesTheme && matchesVersion && matchesProgress
 
-        return matchesSearch && matchesType && matchesArea && matchesComposer && matchesFalseThemeVisibility && matchesTheme && matchesVersion && matchesMotif
+        return matchesSearch && matchesDropdowns
       }),
     )
-  }, [motifTrackNames, searchQuery, selectedArea, selectedComposer, selectedMotif, selectedTheme, selectedType, selectedVersion, tracks])
+  }, [motifTrackNames, searchQuery, selectedComposer, selectedMotif, selectedProgress, selectedTheme, selectedVersion, tracks])
 
   const playableTracks = useMemo(() => tracks.filter(track => track.playable), [tracks])
   const playableFilteredTracks = useMemo(() => filteredTracks.filter(track => track.playable), [filteredTracks])
@@ -1073,13 +1283,12 @@ export default function OstPage() {
     : 0
 
   const filterOptions = useMemo(() => ({
-    types: orderOptions(tracks.flatMap(track => track.typing), info.typings),
-    areas: orderOptions(tracks.map(track => track.area), info.areas),
-    composers: info.composers.map(getInfoName).filter(Boolean),
-    themes: info.themeTypes.map(getInfoName).filter(Boolean),
+    composers: orderOptions(tracks.map(track => track.composer), info.composers),
+    themes: orderOptions(tracks.map(track => track.themeType), themeTypeOrder),
     versions: orderOptions(tracks.map(track => track.version), info.versions),
+    progress: progressOrder,
     motifs: info.motifs.map(motif => motif.name),
-  }), [info.areas, info.composers, info.motifs, info.themeTypes, info.typings, info.versions, tracks])
+  }), [info.composers, info.motifs, info.versions, tracks])
 
   useEffect(() => {
     const audio = audioRef.current
@@ -1216,13 +1425,23 @@ export default function OstPage() {
 
   function resetFilters() {
     setSearchQuery('')
-    setSelectedType([])
-    setSelectedArea([])
     setSelectedComposer([])
     setSelectedTheme([])
     setSelectedVersion([])
-    setSelectedMotif([])
+    setSelectedProgress([])
+    setSelectedMotif('')
   }
+
+  useEffect(() => {
+    if (!detailTrack) return undefined
+
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') setDetailTrack(null)
+    }
+
+    document.addEventListener('keydown', closeOnEscape)
+    return () => document.removeEventListener('keydown', closeOnEscape)
+  }, [detailTrack])
 
   return (
     <>
@@ -1242,7 +1461,7 @@ export default function OstPage() {
 
           <section className="ost-hero" aria-labelledby="ost-title">
             <div className="ost-cover">
-              <img src={getTrackCover(currentTrack)} alt="UPRO OSTs cover" />
+              <img src={getTrackCover(currentTrack)} onError={event => { event.currentTarget.src = defaultCoverArt }} alt="UPRO OSTs cover" />
             </div>
             <div>
               <h1 className="ost-title" id="ost-title">UPRO Original Soundtrack</h1>
@@ -1263,7 +1482,7 @@ export default function OstPage() {
               type="search"
               value={searchQuery}
               onChange={event => setSearchQuery(event.target.value)}
-              placeholder="Search songs, composers, areas..."
+              placeholder="Search songs and composers..."
               aria-label="Search soundtrack"
             />
             <div className="ost-control-row">
@@ -1285,16 +1504,15 @@ export default function OstPage() {
           </section>
 
           <section className="ost-filters" aria-label="Soundtrack filters">
-            <MultiSelectFilter id="ost-type-filter" label="Typing" allLabel="All typings" options={filterOptions.types} value={selectedType} onChange={setSelectedType} />
-            <MultiSelectFilter id="ost-area-filter" label="Area" allLabel="All areas" options={filterOptions.areas} value={selectedArea} onChange={setSelectedArea} />
-            <MultiSelectFilter id="ost-composer-filter" label="Composer" allLabel="All composers" options={filterOptions.composers} value={selectedComposer} onChange={setSelectedComposer} />
-            <MultiSelectFilter id="ost-theme-filter" label="Song Type" allLabel="All song types" options={filterOptions.themes} value={selectedTheme} onChange={setSelectedTheme} />
-            <MultiSelectFilter id="ost-version-filter" label="Version" allLabel="All versions" options={filterOptions.versions} value={selectedVersion} onChange={setSelectedVersion} />
-            <MultiSelectFilter id="ost-motif-filter" label="Motifs" allLabel="All motifs" options={filterOptions.motifs} value={selectedMotif} onChange={values => {
-              setSelectedMotif(values)
+            <MultiSelectFilter id="ost-theme-filter" label="Theme-types" allLabel="All theme-types" options={filterOptions.themes} value={selectedTheme} onChange={setSelectedTheme} disabled={Boolean(selectedMotif)} />
+            <MultiSelectFilter id="ost-version-filter" label="Version" allLabel="All versions" options={filterOptions.versions} value={selectedVersion} onChange={setSelectedVersion} disabled={Boolean(selectedMotif)} />
+            <SingleSelectFilter id="ost-motif-filter" label="Motifs" allLabel="All motifs" options={filterOptions.motifs} value={selectedMotif} onChange={value => {
+              setSelectedMotif(value)
               setQueue([])
               setIsQueueOpen(false)
             }} />
+            <MultiSelectFilter id="ost-progress-filter" label="Progress" allLabel="All progress" options={filterOptions.progress} value={selectedProgress} onChange={setSelectedProgress} disabled={Boolean(selectedMotif)} />
+            <MultiSelectFilter id="ost-composer-filter" label="Composers" allLabel="All composers" options={filterOptions.composers} value={selectedComposer} onChange={setSelectedComposer} disabled={Boolean(selectedMotif)} />
           </section>
 
           <section className="ost-main" aria-label="Soundtrack songs">
@@ -1303,8 +1521,9 @@ export default function OstPage() {
               <span></span>
               <span>Title</span>
               <span>Composer</span>
-              <span>Area</span>
-              <span>Song Type</span>
+              <span>Theme-type</span>
+              <span>Version</span>
+              <span>Progress</span>
               <span>Time</span>
               <span></span>
             </div>
@@ -1319,9 +1538,18 @@ export default function OstPage() {
                     className={`ost-track-row ${isCurrent ? 'is-current' : ''}`}
                     key={track.key}
                     style={{ '--song-rgb': songRgb }}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setDetailTrack(track)}
+                    onKeyDown={event => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        setDetailTrack(track)
+                      }
+                    }}
                   >
-                    <div className="ost-track-number">{track.ost === 1000 ? '+' : track.ost || index + 1}</div>
-                    <img className="ost-track-cover" src={getTrackCover(track)} alt="" />
+                    <div className="ost-track-number">{Number.isFinite(track.order) ? track.order + 1 : index + 1}</div>
+                    <img className="ost-track-cover" src={getTrackCover(track)} onError={event => { event.currentTarget.src = defaultCoverArt }} alt="" />
                     <div className="ost-track-title-cell">
                       <div>
                         <span className="ost-track-name">{track.name}</span>
@@ -1329,17 +1557,23 @@ export default function OstPage() {
                       </div>
                     </div>
                     <div className="ost-track-composer">{track.composer}</div>
-                    <div className="ost-track-area">{track.area}</div>
                     <div className="ost-track-theme">
-                      <span className="ost-type-dot" aria-hidden="true"></span>
-                      <span>{track.theme}</span>
+                      <span>{track.themeType}</span>
                     </div>
+                    <div className="ost-track-version">{track.version}</div>
+                    <div className="ost-track-progress">{track.progress}</div>
                     <div className="ost-track-duration">{track.playable ? formatDuration(durations[track.key]) : ''}</div>
                     <div className="ost-track-actions">
-                      <button className="ost-track-action" type="button" onClick={() => handleTrackPlayback(track)} disabled={!track.playable}>
+                      <button className="ost-track-action" type="button" onClick={event => {
+                        event.stopPropagation()
+                        handleTrackPlayback(track)
+                      }} disabled={!track.playable}>
                         {isCurrent && isPlaying ? 'Pause' : 'Play'}
                       </button>
-                      <button className="ost-track-action ost-track-add" type="button" onClick={() => addToQueue(track)} disabled={!track.playable} aria-label={`Add ${track.name} to queue`}>
+                      <button className="ost-track-action ost-track-add" type="button" onClick={event => {
+                        event.stopPropagation()
+                        addToQueue(track)
+                      }} disabled={!track.playable} aria-label={`Add ${track.name} to queue`}>
                         +
                       </button>
                     </div>
@@ -1352,6 +1586,39 @@ export default function OstPage() {
               <div className="ost-empty">No songs match those filters.</div>
             )}
           </section>
+
+          {detailTrack && createPortal(
+            <div className="ost-detail-backdrop" role="presentation" onMouseDown={event => {
+              if (event.target === event.currentTarget) setDetailTrack(null)
+            }}>
+              <section className="ost-detail-modal" role="dialog" aria-modal="true" aria-labelledby="ost-detail-title">
+                <button className="ost-detail-close" type="button" aria-label="Close song details" onClick={() => setDetailTrack(null)}>X</button>
+                <div className="ost-detail-hero">
+                  <img src={detailTrack.image || getTrackCover(detailTrack)} onError={event => { event.currentTarget.src = defaultCoverArt }} alt="" />
+                  <div className="ost-detail-heading">
+                    <span>{detailTrack.themeType}</span>
+                    <h2 id="ost-detail-title">{detailTrack.name}</h2>
+                    <p>{detailTrack.composer}</p>
+                    {detailTrack.playable ? (
+                      <audio className="ost-detail-player" controls preload="metadata" src={detailTrack.file} />
+                    ) : (
+                      <p className="ost-detail-unavailable">Audio unavailable</p>
+                    )}
+                  </div>
+                </div>
+                <div className="ost-detail-about">
+                  <h3>About the Song</h3>
+                  <p>{detailTrack.description || 'No Context.'}</p>
+                  <dl>
+                    {detailTrack.version && <div><dt>Version</dt><dd>{detailTrack.version}</dd></div>}
+                    <div><dt>Progress</dt><dd>{detailTrack.progress}</dd></div>
+                    <div><dt>Theme-type</dt><dd>{detailTrack.themeType}</dd></div>
+                  </dl>
+                </div>
+              </section>
+            </div>,
+            document.body,
+          )}
 
           {isQueueOpen && queue.length > 0 && (
             <aside className="ost-queue" aria-label="Playlist queue">
@@ -1372,7 +1639,7 @@ export default function OstPage() {
 
           <footer className="ost-now-playing" aria-label="Now playing">
             <div className="ost-current-track">
-              <img src={getTrackCover(currentTrack)} alt="" />
+              <img src={getTrackCover(currentTrack)} onError={event => { event.currentTarget.src = defaultCoverArt }} alt="" />
               <div>
                 <strong>{currentTrack?.name || 'No song selected'}</strong>
                 <span>{currentTrack?.composer || 'UPRO'}</span>

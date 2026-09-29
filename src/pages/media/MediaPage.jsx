@@ -7,7 +7,7 @@ export default function MediaPage() {
   const [posts, setPosts] = useState([])
   const [postError, setPostError] = useState('')
   useEffect(() => {
-    document.title = 'Media'
+    document.title = 'Socials'
     document.body.className = 'media-page'
     document.body.setAttribute('style', '')
   }, [])
