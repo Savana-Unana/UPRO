@@ -16,7 +16,6 @@ export default function AnimatrixPage() {
     let allData = {}; // store all JSON data for cross-referencing
     let typesData = [];
     let abilitiesData = [];
-    let currentMateIndex = 0;
     let currentDetailMate = null;
     let listCostumeMode = false;
     let listCostumeReturnMode = "base";
@@ -1835,7 +1834,6 @@ export default function AnimatrixPage() {
         if (!visibleMates.length) return;
 
         const randomIndex = Math.floor(Math.random() * visibleMates.length);
-        currentMateIndex = randomIndex;
 
         openDetails(visibleMates[randomIndex]);
       });
@@ -1846,14 +1844,6 @@ export default function AnimatrixPage() {
         // set mode badge and activate mode button if possible
         const mateMode = mate.mode || currentMode;
         setModeBadge(mateMode, mate);
-
-        // set currentMateIndex to the index within the current filtered animatrixData, if present
-        const idx = animatrixData.findIndex(m =>
-          m.name === mate.name &&
-          getResolvedMateRef(m) === getResolvedMateRef(mate) &&
-          (m.mode || currentMode) === (mate.mode || mateMode)
-        );
-        currentMateIndex = idx >= 0 ? idx : 0;
 
         updateDetails(mate);
         updateListSelectionClasses();
@@ -2245,16 +2235,34 @@ export default function AnimatrixPage() {
         scheduleBorgoSlorViewportUpdate();
       };
 
-      nextMate.onclick = () => {
-        if (!animatrixData || animatrixData.length === 0) return;
-        currentMateIndex = (currentMateIndex + 1) % animatrixData.length;
-        updateDetails(animatrixData[currentMateIndex]);
-      };
-      prevMate.onclick = () => {
-        if (!animatrixData || animatrixData.length === 0) return;
-        currentMateIndex = (currentMateIndex - 1 + animatrixData.length) % animatrixData.length;
-        updateDetails(animatrixData[currentMateIndex]);
-      };
+      function navigateDetails(direction) {
+        const displayedMates = Array.from(animatrix.querySelectorAll(".card"), card => card.__mate)
+          .filter(Boolean);
+        if (!displayedMates.length) return;
+        const currentIndex = displayedMates.findIndex(mate => currentDetailMate &&
+          mate.name === currentDetailMate.name &&
+          getResolvedMateRef(mate) === getResolvedMateRef(currentDetailMate) &&
+          (mate.mode || currentMode) === (currentDetailMate.mode || currentMode)
+        );
+        const nextIndex = currentIndex < 0
+          ? (direction > 0 ? 0 : displayedMates.length - 1)
+          : (currentIndex + direction + displayedMates.length) % displayedMates.length;
+        openDetails(displayedMates[nextIndex]);
+      }
+
+      nextMate.onclick = () => navigateDetails(1);
+      prevMate.onclick = () => navigateDetails(-1);
+
+      function handleDetailsKeyDown(event) {
+        if (modal.classList.contains("hidden") || event.defaultPrevented) return;
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+        if (event.target instanceof Element &&
+          (event.target.closest("input, textarea, select") || event.target.isContentEditable)) return;
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        (event.key === "ArrowLeft" ? prevMate : nextMate).click();
+      }
+      document.addEventListener("keydown", handleDetailsKeyDown);
 
       // small HTML escape
       function escapeHtml(str) {
@@ -2284,6 +2292,7 @@ export default function AnimatrixPage() {
       }
 
     return () => {
+      document.removeEventListener("keydown", handleDetailsKeyDown);
       window.removeEventListener("scroll", scheduleBorgoSlorViewportUpdate);
       window.removeEventListener("resize", scheduleBorgoSlorViewportUpdate);
       document.removeEventListener("scroll", scheduleBorgoSlorViewportUpdate, true);
