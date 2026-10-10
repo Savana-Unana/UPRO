@@ -1,8 +1,88 @@
 [
   {
-    "name": "Blarb",
+    "name": "Food Chain",
+    "grouping": "All Animates that are based off of food.",
     "animates": [
-      "Blarb"
+      "Pretengerine",
+      "Bakunbush",
+      "Brisancado",
+      "Butterwalk",
+      "Buntot",
+      "Challadin",
+      "Bagueezer",
+      "Frankyurt",
+      "Frankfortress",
+      "Lunam",
+      "Soltan",
+      "Fettugenie",
+      "Beerkat",
+      "Gloobie",
+      "Flapdrag",
+      "Elixion",
+      "Eternip",
+      "Pumpkadav",
+      "Cheorie",
+      "Aestereg"
     ]
+  },
+  {
+    "name": "Toy Box",
+    "grouping": "All Animates that are based off of toys.",
+    "animates": [
+      "Quubbly",
+      "Limirail",
+      "Beit",
+      "Pocube",
+      "Puppechyu",
+      "Mockenyu",
+      "Verdaermy",
+      "Berdminton",
+      "Masqulpt",
+      "Acorgin",
+      "Cuddol"
+    ]
+  },
+  {
+      "name": "Rubberhose",
+      "grouping": "All Animates that have a rubberhose design.",
+      "animates": [
+        "Borgo Slor",
+        "Aestereg",
+        "Drawrlin"
+      ]
+  },
+  {
+      "name": "Color Me Mad",
+      "grouping": "All Animates that change color.",
+      "animates": [
+        "Scregling",
+        "Markara",
+        "Shiver Molds"
+      ]
+  },
+  {
+      "name": "Blarb",
+      "grouping": "",
+      "animates": [
+        "Blarb"
+      ]
+  },
+  {
+      "name": "Blarb",
+      "animates": [
+        "Blarb"
+      ]
+  },
+  {
+      "name": "Blarb",
+      "animates": [
+        "Blarb"
+      ]
+  },
+  {
+      "name": "Blarb",
+      "animates": [
+        "Blarb"
+      ]
   }
 ]
