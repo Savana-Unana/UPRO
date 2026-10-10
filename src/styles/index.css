@@ -21,7 +21,26 @@ body {
 
 img,
 video {
+  max-width: 100%;
   object-fit: contain;
+}
+
+/* Shared controls must fit narrow viewports on every page. */
+.controls > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    overflow-wrap: anywhere;
+  }
+
+  .modal-content {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
 }
 
 .proportional-frame {

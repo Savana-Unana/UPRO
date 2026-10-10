@@ -1,13 +1,13 @@
 [
   {
     "name": "Food Chain",
+    "star": "Buntot",
     "grouping": "All Animates that are based off of food.",
     "animates": [
       "Pretengerine",
       "Bakunbush",
       "Brisancado",
       "Butterwalk",
-      "Buntot",
       "Challadin",
       "Bagueezer",
       "Frankyurt",
@@ -27,6 +27,7 @@
   },
   {
     "name": "Toy Box",
+    "star": "Mockenyu",
     "grouping": "All Animates that are based off of toys.",
     "animates": [
       "Quubbly",
@@ -34,7 +35,6 @@
       "Beit",
       "Pocube",
       "Puppechyu",
-      "Mockenyu",
       "Verdaermy",
       "Berdminton",
       "Masqulpt",
@@ -43,46 +43,177 @@
     ]
   },
   {
-      "name": "Rubberhose",
-      "grouping": "All Animates that have a rubberhose design.",
+    "name": "Rubberhose",
+    "star": "Drawrlin",
+    "grouping": "All Animates that have a rubberhose design.",
       "animates": [
         "Borgo Slor",
-        "Aestereg",
-        "Drawrlin"
+        "Aestereg"
       ]
   },
   {
-      "name": "Color Me Mad",
-      "grouping": "All Animates that change color.",
+    "name": "Color Me Mad",
+    "star": "Markara",
+    "grouping": "All Animates that change color.",
       "animates": [
         "Scregling",
-        "Markara",
         "Shiver Molds"
       ]
   },
   {
-      "name": "Blarb",
-      "grouping": "",
+    "name": "Fear Mongers",
+    "star": "Ghouliath",
+    "grouping": "All Animates that resemble parts of Ghouliath.",
+    "animates": [
+      "Ircencaat",
+      "Hexkwet",
+      "Vultumbra"
+    ]
+  },
+  {
+    "name": "Corrupted",
+    "star": "Axolote",
+    "grouping": "All Animates that are infected by Axo-Shards.",
+    "animates": [
+      "Axolitl",
+      "Axolarg",
+      "Garbajool",
+      "Trashure",
+      "Urntok"
+    ]
+  },
+  {
+    "name": "Awarded Fighters",
+    "star": "Kroxer",
+    "grouping": "",
+    "animates": [
+      "Thrack",
+      "Grraft",
+      "Bunkit",
+      "Lurkest"
+    ]
+  },
+  {
+    "name": "The Hell is That?",
+    "star": "Scregling",
+    "grouping": "",
+    "animates": [
+      "Ghouliath",
+      "Borgo Slor",
+      "Gloobie",
+      "Bewag",
+      "Acorgin",
+      "Cuggaeous"
+    ]
+  },
+  {
+    "name": "All Seeing Eye",
+    "star": "Cuddol",
+    "grouping": "",
       "animates": [
-        "Blarb"
+      "Dodecadog",
+      "Borgo Slor",
+      "Ommewtan",
+      "Aestereg",
+      "Pydromaglar",
+      "Cuddol",
+      "Shiver Dupes"
       ]
   },
   {
-      "name": "Blarb",
+    "name": "",
+    "star": "",
+    "grouping": "",
       "animates": [
-        "Blarb"
+        ""
       ]
   },
   {
-      "name": "Blarb",
+    "name": "",
+    "star": "",
+    "grouping": "",
       "animates": [
-        "Blarb"
+        ""
       ]
   },
   {
-      "name": "Blarb",
+    "name": "",
+    "star": "",
+    "grouping": "",
       "animates": [
-        "Blarb"
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
+      ]
+  },
+  {
+    "name": "",
+    "star": "",
+    "grouping": "",
+      "animates": [
+        ""
       ]
   }
 ]

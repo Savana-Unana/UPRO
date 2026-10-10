@@ -3,15 +3,51 @@ import { useEffect } from 'react'
 import { fetchMateBuckets } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars, no-useless-assignment */
-const pageStyles = ""
+const pageStyles = `
+  #categoryGroups { width: 100%; max-width: 1600px; margin-inline: auto; padding: clamp(16px, 3vw, 40px); }
+  .cat-group-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: clamp(14px, 2vw, 24px); align-items: start; }
+  .cat-group-cards > .cat-grouping-title { grid-column: 1 / -1; }
+  .cat-group-cards > .cat-section { min-width: 0; margin: 0; padding: 0; border: 1px solid #00ffff60; border-radius: 12px; background: #222; overflow: hidden; }
+  .cat-group-cards .cat-title { margin: 0; padding: 0; }
+  .cat-group-cards > .cat-group-open { grid-column: 1 / -1; }
+  .cat-group-toggle { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: start; gap: 12px 16px; width: 100%; min-height: 180px; margin: 0; border: 0; border-radius: 0; background: transparent; text-align: left; cursor: pointer; padding: clamp(20px, 2vw, 28px); font-size: clamp(26px, 2vw, 32px); line-height: 1.25; white-space: normal; overflow-wrap: anywhere; }
+  .cat-group-toggle:hover { background: #ffffff08; }
+  .cat-group-toggle:focus-visible { outline: 2px solid #0ff; outline-offset: -4px; }
+  .cat-group-name { align-self: center; }
+  .cat-group-count { font-size: 22px; border: 1px solid #00ffff50; border-radius: 8px; padding: 4px 10px; align-self: start; }
+  .cat-group-hint { grid-column: 1 / -1; display: block; font-size: clamp(20px, 1.5vw, 24px); line-height: 1.4; font-weight: normal; }
+  .cat-group-preview { grid-column: 1 / -1; display: flex; justify-content: center; align-items: center; margin-top: 8px; padding-top: 16px; border-top: 1px solid #ffffff18; }
+  .cat-group-preview img { width: clamp(140px, 12vw, 190px); height: clamp(140px, 12vw, 190px); max-width: 100%; object-fit: contain; }
+  .cat-group-cards .cat-group-contents:not([hidden]) { padding: 20px; border-top: 1px solid #ffffff20; }
+  .cat-grid { grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); }
+  .cat-grid .card { max-width: 100%; min-width: 0; }
+  @media (max-width: 480px) {
+    .cat-group-cards .cat-group-contents:not([hidden]) { padding: 12px; }
+    .cat-group-toggle { min-height: 150px; }
+  }
+`
 function runPageScript() {
   let allData = {};
   let typesData = [];
   let visibleMates = [];
   let currentMateIndex = 0;
   let groupsData = [];
+  const expandedGroups = new Set();
+  let idOrderRank = new Map();
   let crossTabFormsByRef = new Map();
   let mateByName = new Map();
+
+  function normalizeOrderName(name) {
+    return String(name || "").trim().replace(/\s*\([^)]*\)\s*$/g, "").toLowerCase();
+  }
+
+  function getIdOrder(mate) {
+    for (const name of [mate.name, mate.ref, mate.__groupName]) {
+      const rank = idOrderRank.get(normalizeOrderName(name));
+      if (rank !== undefined) return rank;
+    }
+    return Number.MAX_SAFE_INTEGER;
+  }
 
   function annotateMateOrder(mode, mates) {
     (mates || []).forEach((mate, index) => {
@@ -34,19 +70,23 @@ function runPageScript() {
     const normalizedType = String(group.type || "normal").trim().toLowerCase() === "bonus"
       ? "bonus"
       : "normal";
+    const star = String(group.Star || group.star || "").trim();
 
     return {
       ...group,
       name: group.name ? String(group.name) : "Unnamed Group",
       type: normalizedType,
+      star,
+      grouping: typeof group.grouping === "string" ? group.grouping.trim() : "",
       description: typeof group.description === "string" ? group.description.trim() : "",
-      animates: Array.isArray(group.animates) ? group.animates : []
+      animates: [...new Set([...(Array.isArray(group.animates) ? group.animates : []), star].filter(Boolean))]
     };
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     const groupsRoot = document.getElementById("categoryGroups");
     const search = document.getElementById("search");
+    const groupView = document.getElementById("groupView");
     const modeBadge = document.getElementById("modeBadge");
     const modal = document.getElementById("detailsModal");
     const closeModal = document.getElementById("closeModal");
@@ -185,9 +225,15 @@ function runPageScript() {
         return Promise.all([
           fetch("data/mates/groups.json").then(r => r.json()).catch(() => []),
           fetchMateBuckets(),
+          fetch("data/mates/idorder.json").then(r => r.json()).catch(() => []),
         ]);
       })
-      .then(([groups, mateBuckets]) => {
+      .then(([groups, mateBuckets, idOrder]) => {
+        idOrderRank = new Map();
+        (Array.isArray(idOrder) ? idOrder : []).forEach((name, index) => {
+          const key = normalizeOrderName(name);
+          if (key && !idOrderRank.has(key)) idOrderRank.set(key, index);
+        });
         groupsData = Array.isArray(groups) ? groups.map(normalizeGroup) : [];
         allData = {
           base: annotateMateOrder("base", mateBuckets.base || []),
@@ -252,6 +298,8 @@ function runPageScript() {
 
       const wrapper = document.createElement("section");
       wrapper.className = options.isBonusSection ? "cat-grouping cat-grouping-bonus" : "cat-grouping";
+      const cardView = groupView.value === "cards";
+      if (cardView) wrapper.classList.add("cat-group-cards");
 
       if (options.heading) {
         const heading = document.createElement("h2");
@@ -286,9 +334,16 @@ function runPageScript() {
         const filtered = deduped.filter(mate => {
           if (!mate) return false;
           if (isMode(mate)) return false;
-          if (term && !(mate.name || "").toLowerCase().includes(term)) return false;
+          if (term && !(mate.name || "").toLowerCase().includes(term)
+            && !(cardView && groupName.toLowerCase().includes(term))) return false;
           return true;
         });
+
+        filtered.sort((a, b) => getIdOrder(a) - getIdOrder(b)
+          || getModeRank(a.mode) - getModeRank(b.mode)
+          || a.__order - b.__order);
+
+        if (cardView && term && !filtered.length && !groupName.toLowerCase().includes(term)) return;
 
         const section = document.createElement("section");
         section.className = group.type === "bonus" ? "cat-section cat-section-bonus" : "cat-section";
@@ -298,26 +353,73 @@ function runPageScript() {
         title.textContent = `${groupName} (${filtered.length})`;
         section.appendChild(title);
 
+        const expanded = !cardView || expandedGroups.has(group);
+        if (cardView) {
+          section.classList.toggle("cat-group-open", expanded);
+          const toggle = document.createElement("button");
+          toggle.type = "button";
+          toggle.id = `group-toggle-${groupsData.indexOf(group)}`;
+          toggle.className = "cat-group-toggle";
+          const name = document.createElement("span");
+          name.className = "cat-group-name";
+          name.textContent = groupName;
+          const count = document.createElement("span");
+          count.className = "cat-group-count";
+          count.textContent = filtered.length;
+          count.setAttribute("aria-label", `${filtered.length} Animates`);
+          toggle.append(name, count);
+          toggle.setAttribute("aria-expanded", String(expanded));
+          const hint = document.createElement("span");
+          hint.className = "cat-group-hint";
+          hint.textContent = group.grouping || group.description;
+          toggle.appendChild(hint);
+          if (!expanded) {
+            const preview = document.createElement("span");
+            preview.className = "cat-group-preview";
+            const star = deduped
+              .filter(mate => mate.name === group.star && mate.image && !isMode(mate))
+              .sort((a, b) => getModeRank(a.mode) - getModeRank(b.mode))[0];
+            const image = document.createElement("img");
+            image.src = star?.image || `${import.meta.env.BASE_URL}assets/images/mates/lost/MissingNo.png`;
+            image.alt = star?.name || "MissingNo";
+            image.loading = "lazy";
+            preview.appendChild(image);
+            toggle.appendChild(preview);
+          }
+          toggle.onclick = () => {
+            if (expandedGroups.has(group)) expandedGroups.delete(group);
+            else expandedGroups.add(group);
+            renderGroups();
+            document.getElementById(toggle.id)?.focus();
+          };
+          title.replaceChildren(toggle);
+        }
+
+        const contents = document.createElement("div");
+        contents.className = "cat-group-contents";
+        contents.hidden = !expanded;
+        section.appendChild(contents);
+
         if (group.type === "bonus" && group.description) {
           const description = document.createElement("p");
           description.className = "cat-description";
           description.textContent = group.description;
-          section.appendChild(description);
+          contents.appendChild(description);
         }
 
         if (!filtered.length) {
           const empty = document.createElement("div");
           empty.className = "cat-empty";
           empty.textContent = "No matching animates.";
-          section.appendChild(empty);
+          contents.appendChild(empty);
         } else {
           const grid = document.createElement("div");
           grid.className = "cat-grid";
           filtered.forEach(mate => {
-            visibleMates.push(mate);
+            if (expanded) visibleMates.push(mate);
             grid.appendChild(makeCard(mate));
           });
-          section.appendChild(grid);
+          contents.appendChild(grid);
         }
 
         wrapper.appendChild(section);
@@ -665,6 +767,7 @@ function runPageScript() {
     }
 
     search.addEventListener("input", renderGroups);
+    groupView.addEventListener("change", renderGroups);
 
     closeModal.onclick = () => modal.classList.add("hidden");
     nextMate.onclick = () => {
@@ -740,6 +843,11 @@ export default function CatalogPage() {
     <h1>The Catalog</h1>
     <div className="controls">
       <input type="text" id="search" placeholder="Search..." />
+      <label htmlFor="groupView">View: </label>
+      <select id="groupView" defaultValue="cards">
+        <option value="cards">Group cards</option>
+        <option value="expanded">All Animates</option>
+      </select>
     </div>
   </header>
   <main id="categoryGroups" />
