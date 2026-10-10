@@ -1,0 +1,19 @@
+[
+  {"name":"Normal","color":"white","strongAgainst":["Water","Earth"],"weakTo":["Fire","Ice"]},
+  {"name":"Plant","color":"#6BBF59","strongAgainst":["Water","Earth"],"weakTo":["Fire","Ice"]},
+  {"name":"Water","color":"#3BA5FF","strongAgainst":["Fire","Earth"],"weakTo":["Electric","Mystic"]},
+  {"name":"Ice","color":"#C9F0FF","strongAgainst":["Air","Earth"],"weakTo":["Fire","Metal"]},
+  {"name":"Fire","color":"#FF7A4D","strongAgainst":["Plant","Ice"],"weakTo":["Water","Earth"]},
+  {"name":"Earth","color":"#C99C6B","strongAgainst":["Electric","Fire"],"weakTo":["Water","Air"]},
+  {"name":"Mystic","color":"#BFA6FF","strongAgainst":["Metal","Lucid"],"weakTo":["Spectral","Dark"]},
+  {"name":"Air","color":"#9ED8FF","strongAgainst":["Earth","Plant"],"weakTo":["Metal","Savage"]},
+  {"name":"Savage","color":"#D6C79B","strongAgainst":["Lucid","Gross"],"weakTo":["Metal","Mystic"]},
+  {"name":"Metal","color":"#B0B8C1","strongAgainst":["Savage","Ice"],"weakTo":["Mystic","Electric"]},
+  {"name":"Electric","color":"#F6C94C","strongAgainst":["Water","Air"],"weakTo":["Earth","Metal"]},
+  {"name":"Artillery","color":"#D88F8F","strongAgainst":["Gross","Metal"],"weakTo":["Earth","Water"]},
+  {"name":"Light","color":"#FFF3B0","strongAgainst":["Dark","Spectral"],"weakTo":["Gross","Lucid"]},
+  {"name":"Dark","color":"#3B3B3F","strongAgainst":["Lucid","Mystic"],"weakTo":["Light","Spectral"]},
+  {"name":"Gross","color":"#A8A77A","strongAgainst":["Light","Lucid"],"weakTo":["Artillery","Savage"]},
+  {"name":"Spectral","color":"#8F7AE6","strongAgainst":["Mystic","Dark"],"weakTo":["Light","Lucid"]},
+  {"name":"Lucid","color":"#9FE5D1","strongAgainst":["Spectral","Mystic"],"weakTo":["Dark","Savage"]}
+]

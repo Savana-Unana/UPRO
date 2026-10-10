@@ -1,0 +1,6 @@
+{
+  "DialogueBox": ["DialogueBox_0.png", "DialogueBox_1.png"],
+  "ChoiceBox": ["ChoiceBox_0.png", "ChoiceBox_1.png"],
+  "FacelessBox": ["FacelessBox_0.png", "FacelessBox_1.png"],
+  "FacelessChoice": ["FacelessChoice_0.png", "FacelessChoice_1.png"]
+}

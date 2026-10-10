@@ -1,0 +1,19 @@
+[
+    {"name":"Bored", "typing":"Normal", "desc":"Has a 10% chance per turn to not do anything while inflicted."},
+        {"name":"Wet", "typing":"Water", "desc":""},
+    {"name":"Burn", "typing":"Fire", "desc":"Takes 5% dmg per turn. Also lowers MATK by 15% while inflicted."},
+        {"name":"Poison", "typing":"Plant", "desc":""},
+    {"name":"Bloated", "typing":"Air", "desc":"Will heal by 2% per turn, but SP is lowered by 20% and RATK is lowered by 5% while inflicted."},
+        {"name":"", "typing":"Metal", "desc":""},
+    {"name":"Conductive", "typing":"Electric", "desc":"Opposing damaging attacks attack 25% faster while inflicted."},
+    {"name":"Confused", "typing":"Mystic", "desc":"A 10% chance per turn to attack itself while inflicted."},
+    {"name":"Possessed", "typing":"Spectral", "desc":"A 30% chance once to attack itself with it's own move."},
+        {"name":"", "typing":"Savage", "desc":""},
+    {"name":"Nauseous", "typing":"Gross", "desc":"Has a 10% chance per turn to use the wrong move and lowers RATK by 10% while inflicted"},
+        {"name":"Frozen", "typing":"Ice", "desc":""},
+        {"name":"", "typing":"Earth", "desc":""},
+    {"name":"Wounded", "typing":"Artillery", "desc":"Cannot be swapped out. Increases all RATK dmg by 14% while inflicted."},
+    {"name":"Exposed", "typing":"Light", "desc":"Opposing attacks are unable to miss while inflicted."},
+    {"name":"Blind", "typing":"Dark", "desc":"Attacks have a 40% increase in missing while inflicted."},
+        {"name":"", "typing":"Lucid", "desc":""}
+]

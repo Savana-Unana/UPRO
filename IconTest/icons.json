@@ -1,0 +1,66 @@
+{
+  "Nothing": [
+    { "file": "Empty.png", "index": 0 }
+  ],
+  "Skip": [
+    { "file": "Skip_Icon_0.png", "index": 0 },
+    { "file": "Skip_Icon_1.png", "index": 1 },
+    { "file": "Skip_Icon_2.png", "index": 2 },
+    { "file": "Skip_Icon_3.png", "index": 3 },
+    { "file": "Skip_Icon_4.png", "index": 4 },
+    { "file": "Skip_Icon_5.png", "index": 5 },
+    { "file": "Skip_Icon_6.png", "index": 6 },
+    { "file": "Skip_Icon_7.png", "index": 7 },
+    { "file": "Skip_Icon_8.png", "index": 8 },
+    { "file": "Skip_Icon_9.png", "index": 9 },
+    { "file": "Skip_Icon_10.png", "index": 10 },
+    { "file": "Skip_Icon_11.png", "index": 11 },
+    { "file": "Skip_Icon_12.png", "index": 12 },
+    { "file": "Skip_Icon_13.png", "index": 13 },
+    { "file": "Skip_Icon_14.png", "index": 14 },
+    { "file": "Skip_Icon_15.png", "index": 15 },
+    { "file": "Skip_Icon_16.png", "index": 16 },
+    { "file": "Skip_Icon_17.png", "index": 17 },
+    { "file": "Skip_Icon_18.png", "index": 18 },
+    { "file": "Skip_Icon_19.png", "index": 19 },
+    { "file": "Skip_Icon_20.png", "index": 20 },
+    { "file": "Skip_Icon_21.png", "index": 21 },
+    { "file": "Skip_Icon_22.png", "index": 22 },
+    { "file": "Skip_Icon_23.png", "index": 23 },
+    { "file": "Skip_Icon_24.png", "index": 24 },
+    { "file": "Skip_Icon_25.png", "index": 25 },
+    { "file": "Skip_Icon_26.png", "index": 26 },
+    { "file": "Skip_Icon_27.png", "index": 27 }
+  ],
+  "Chip": [
+    { "file": "Chip_Icon_0.png", "index": 0 },
+    { "file": "Chip_Icon_1.png", "index": 1 },
+    { "file": "Chip_Icon_2.png", "index": 2 },
+    { "file": "Chip_Icon_3.png", "index": 3 },
+    { "file": "Chip_Icon_4.png", "index": 4 },
+    { "file": "Chip_Icon_5.png", "index": 5 },
+    { "file": "Chip_Icon_6.png", "index": 6 },
+    { "file": "Chip_Icon_7.png", "index": 7 },
+    { "file": "Chip_Icon_8.png", "index": 8 },
+    { "file": "Chip_Icon_9.png", "index": 9 },
+    { "file": "Chip_Icon_10.png", "index": 10 },
+    { "file": "Chip_Icon_11.png", "index": 11 },
+    { "file": "Chip_Icon_12.png", "index": 12 },
+    { "file": "Chip_Icon_13.png", "index": 13 }
+  ],
+  "Doggi": [
+    { "file": "Doggi_Icon_0.png", "index": 0 }
+  ],
+  "Dad": [
+    { "file": "Dad_Icon_0.png", "index": 0 }
+  ],
+  "Mom": [
+    { "file": "Mom_Icon_0.png", "index": 0 }
+  ],
+  "Pip": [
+    { "file": "Pip_Icon_0.png", "index": 0 }
+  ],
+  "Dip": [
+    { "file": "Dip_Icon_0.png", "index": 0 }
+  ]
+}
