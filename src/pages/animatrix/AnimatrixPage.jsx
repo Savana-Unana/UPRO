@@ -1,7 +1,7 @@
 import { mateSubBiomes, subBiomeOptions } from '../../utils/biomeData.js'
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react'
-import { buildEvolutionStageIndex, fetchMateBuckets, getBiomeImagePath } from '../../utils/mateData'
+import { buildEvolutionStageIndex, fetchMateBuckets, getBiomeImagePath, getMateStatus } from '../../utils/mateData'
 
 const pageStyles = ""
 
@@ -398,25 +398,11 @@ export default function AnimatrixPage() {
         );
       const isOnes = m => m.name === "Ones";
       const isSpecial = m => isMissingNo(m) || isOnes(m);
-      const hasImage = m => {
-        const imgPath = m.image;
-        if (!imgPath) return false;
-
-        const path = imgPath.toLowerCase();
-
-        return (
-          path.startsWith("assets/images/mates/base/") ||
-          path.startsWith("./assets/images/mates/base/") ||
-          path.includes("/assets/images/mates/base/")
-        );
-      };
-      const isDesigned = m =>
-        !isMissingNo(m) &&
-        !isOnes(m);
-      const isFinalized = m =>
-        hasImage(m) && !isSpecial(m);
-      const isConceptualized = m =>
-        /(^|\/)assets\/images\/mates\/lost\//i.test(m.image || "");
+      const hasImage = m => getMateStatus(m) === "finalized";
+      const isDesigned = m => !isMissingNo(m) && !isOnes(m);
+      const isFinalized = m => getMateStatus(m) === "finalized";
+      const isConceptualized = m => getMateStatus(m) === "conceptualized";
+      const isNonFinalized = m => getMateStatus(m) === "nonfinalized";
 
       function getMateVersions(mate) {
         if (!mate) return [];
@@ -978,7 +964,7 @@ export default function AnimatrixPage() {
         const mateWithMode = { ...mate, mode: mate.mode || currentMode };
         if (filter === "missingno") return isMissingNo(mateWithMode);
         if (filter === "designed") return isDesigned(mateWithMode);
-        if (filter === "nonfinalized") return isDesigned(mateWithMode) && !isFinalized(mateWithMode);
+        if (filter === "nonfinalized") return isNonFinalized(mateWithMode);
         if (filter === "conceptualized") return isConceptualized(mateWithMode);
         if (filter === "finalized") return isFinalized(mateWithMode);
         return true;
@@ -1035,6 +1021,9 @@ export default function AnimatrixPage() {
           listCostumeMode = false;
           modeButtons.forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
+          if (btn.dataset.mode === "database") {
+            statusOptionsEl.querySelector('input[name="statusFilter"][value="finalized"]').checked = true;
+          }
           loadMode(btn.dataset.mode);
           updateListModeActions();
         });
@@ -1095,6 +1084,8 @@ export default function AnimatrixPage() {
             if (aId >= 0 && bId < 0) return -1;
             return aId - bId;
           }
+          const ledPriority = Number(/^LED\b/i.test(b.name || "")) - Number(/^LED\b/i.test(a.name || ""));
+          if (ledPriority) return ledPriority;
           const aCostumeVersion = getCostumeVersionValue(a);
           const bCostumeVersion = getCostumeVersionValue(b);
           if (aCostumeVersion !== bCostumeVersion) return aCostumeVersion - bCostumeVersion;
@@ -1124,6 +1115,12 @@ export default function AnimatrixPage() {
           if (aId !== bId) return bId - aId;
         } else if (aHasId !== bHasId) {
           return aHasId ? -1 : 1;
+        }
+
+        // Within a Database roster ID, forms take priority over release versions.
+        if (currentMode === "database") {
+          const modeDifference = (databaseModeRank[aMode] ?? 999) - (databaseModeRank[bMode] ?? 999);
+          if (modeDifference) return modeDifference;
         }
 
         const aVersionRank = getVersionRank(a);
@@ -1445,8 +1442,9 @@ export default function AnimatrixPage() {
       }
 
       function renderCardContents(card, mate, listViewCard) {
-        const lostImage = mate.image && mate.image.toLowerCase().includes("assets/images/mates/lost");
-        const displayName = escapeHtml(mate.name) + (lostImage ? "*" : "");
+        const status = getMateStatus(mate);
+        const statusMarker = status === "conceptualized" || status === "nonfinalized" ? "*" : "";
+        const displayName = escapeHtml(mate.name) + statusMarker;
         const displayId = getMateDisplayId(mate);
         const showId = !shouldHideMateId(mate);
         const idText = listViewCard ? formatListCardId(mate) : (displayId === null ? "?" : String(displayId));
@@ -1461,8 +1459,8 @@ export default function AnimatrixPage() {
           const rowLabel = document.createElement("span");
           rowLabel.className = "list-card-label";
           rowLabel.textContent = currentMode === "costumes" || !showId
-            ? (mate.name || "")
-            : `${idText} - ${mate.name || ""}${lostImage ? "*" : ""}`;
+            ? `${mate.name || ""}${statusMarker}`
+            : `${idText} - ${mate.name || ""}${statusMarker}`;
           card.appendChild(rowLabel);
           return;
         }
@@ -1778,6 +1776,12 @@ export default function AnimatrixPage() {
 
       idSortView.addEventListener("click", () => setSortMode("id"));
       appearanceSortView.addEventListener("click", () => setSortMode("appearance"));
+      const outlineToggle = document.getElementById("outlineToggle");
+      outlineToggle.onclick = () => {
+        const enabled = document.body.classList.toggle("animatrix-outline");
+        outlineToggle.classList.toggle("active", enabled);
+        outlineToggle.setAttribute("aria-pressed", String(enabled));
+      };
 
       search.addEventListener("input", () => {
         if (!isRightClickSearchActive()) {
@@ -2303,7 +2307,9 @@ export default function AnimatrixPage() {
         window.cancelAnimationFrame(borgoSlorViewportFrame);
         borgoSlorViewportFrame = 0;
       }
-      document.body.classList.remove("animatrix-page", "animatrix-list-view")
+      document.body.classList.remove("animatrix-page", "animatrix-list-view", "animatrix-outline")
+      const outlineToggle = document.getElementById("outlineToggle")
+      if (outlineToggle) outlineToggle.onclick = null
       window.onload = null
     }
   }, [])
@@ -2483,6 +2489,7 @@ export default function AnimatrixPage() {
       <div className="view-toggle">
         <button id="appearanceSortView">Appearance</button>
         <button id="idSortView" className="active">ID</button>
+        <button id="outlineToggle" type="button" aria-pressed="false">Outline</button>
       </div>
       <div className="mode-switch" id="modeSwitch">
         <button className="mode-btn active" data-mode="base">Base</button>

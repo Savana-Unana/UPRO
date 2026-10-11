@@ -3,9 +3,1338 @@
     "name": "Skip",
     "sprite": "assets/npc/sprites/Skip.gif",
     "drawing": "assets/npc/images/Skip.png",
+    "height": "5\"11",
+    "age": "17",
+    "costumes": [
+      {
+        "name": "Skip Dance",
+        "sprite": "Skip_Dance.gif",
+        "opinion": "Watch me groove!",
+        "callside": "EVERYBODY DO THE SKIP DANCE!"
+      },
+      {
+        "name": "Placeholder",
+        "sprite": "YouKnowWhoIAm.gif",
+        "drawing": "ICantRemember.gif",
+        "opinion": "1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1",
+        "firstObtainableUpdate": "Update 0",
+        "obtainment": "Go somewhere you aren't supposed to be."
+      },
+      {
+        "name": "Scuba Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "Man this one is so cool. Doesn't bring back the best of memories though.",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": "I am unda da water"
+      },
+      {
+        "name": "Capsule Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Infested Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Trashcan Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Athlete Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Swimmer Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Bedtime Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Dark Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Darker Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Sewn Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Headless Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Liberty Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Shadow Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Masquerade Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Beachside Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Scout Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Plumber Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Slime Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Merry Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Slasher Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Skip.exe",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Rapper Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Jester Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Joyride Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Tropical Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Birthday Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Fancy Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cool Guy Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Doodle Skip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      }
+    ],
+    "levelObtainment": {
+      "1": "Start the game.",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified"
+  },
+  {
+    "name": "CC",
+    "costumes": [
+      {
+        "name": "Speaker Box CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cult CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "IFO CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Defective CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Frozen CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Sleigh CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Brick CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Wind-Up CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cart CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Backwards CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Lucky Block CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cardboard CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Origin CC",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      }
+    ],
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "height": "2\"0"
+  },
+  {
+    "name": "Kal",
+    "costumes": [
+      {
+        "name": "Super Surfer Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Flaminstein’s Monster Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Evil Dirtbag with Chainsaw Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Actor Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Human Flame Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Golden Gladiator Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Elf Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Founding Father Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Fire Hawk Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Chill Kal",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      }
+    ],
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "height": "6\"2"
+  },
+  {
+    "name": "Chip",
+    "costumes": [
+      {
+        "name": "The Rodent",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "El Chipo",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Dodeca Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cyborg Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Plumber Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Randy Cosplay Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Waiter Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cult Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Scuba Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Poker Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Lord of Flames Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Grinch Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Real Boy Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cub Scout Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Birthday Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Banana Suit Chip",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      }
+    ],
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "height": "5\"2"
+  },
+  {
+    "name": "MT",
+    "costumes": [],
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "height": "5\"6"
+  },
+  {
+    "name": "Maya",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
     "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Marvin",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Arnold",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Shady Guy",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Maddiline",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Dr. Mitchovitch",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Erica Breflower",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Bug Catcher Beth",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Izan",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Sally",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Riley",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "May",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Stiphicus",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Jackary",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Dad",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Dip",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Doggi",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Hippie",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Lumberjack",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Mom",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Pip",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "quests": [],
+    "schedule": "",
+    "costumes": []
+  },
+  {
+    "name": "Zip",
+    "role": "",
+    "versions": "",
+    "found": "",
+    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "drawing": "assets/images/npc/images/ICantRemember.gif",
+    "height": "",
+    "age": "",
+    "levels": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
+    "levelObtainment": {
       "1": "",
       "2": "",
       "3": "",

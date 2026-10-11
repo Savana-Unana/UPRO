@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
+.friendskip-shell .friendskip-book { margin-top: 32px; }
+
 .friendskip-page{margin:0;min-height:100dvh;background:#1e2023;color:#17222a;font-family:'UPRO',serif}
 .friendskip-shell{width:100%;min-height:100dvh;margin:auto;padding:24px 0 42px;text-align:center;box-sizing:border-box}
 .friendskip-back{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:2px solid #d7e0e8;border-radius:9px;background:#2d333a;color:#fff;text-decoration:none;font-size:18px}
@@ -27,3 +29,42 @@
 .friendskip-page-sheet h2,.friendskip-page-sheet h3,.friendskip-page-sheet p,.friendskip-page-sheet .friendskip-list{position:relative;top:-8px}
 .friendskip-page-sheet{background-image:none}.friendskip-page-sheet:before{display:none}
 .friendskip-page-sheet:after{display:none}
+
+
+.friendskip-book-frame { position: relative; width: min(1440px, calc(100% - 112px)); margin: 28px auto 0; }
+.friendskip-book-frame .friendskip-book { width: 100%; margin: 0; }
+.friendskip-bookmarks { position: absolute; inset: 0; z-index: 10; pointer-events: none; }
+.friendskip-bookmarks .friendskip-bookmark {
+  position: absolute; left: -46px; top: 46px; width: 48px; min-height: 100px;
+  padding: 12px 8px; border: 1px solid #ad8549; border-radius: 7px 0 0 7px;
+  background: #e3c183; color: #493521; box-shadow: inset -5px 0 8px #62401722, 0 3px 5px #0003;
+  font: 22px/1.1 Lobster, cursive; writing-mode: vertical-rl; pointer-events: auto; cursor: pointer;
+}
+.friendskip-bookmarks .npc-tab { top: 170px; }
+.friendskip-bookmarks .costume-tab {
+  left: auto; right: -46px; top: 46px; writing-mode: horizontal-tb;
+  border-radius: 0 7px 7px 0; background: #c3a7cc; border-color: #87648f;
+  box-shadow: inset 5px 0 8px #49304b22, 0 3px 5px #0003;
+}
+.friendskip-bookmarks .character-tab { top: 170px; background: #dbc4e2; }
+.friendskip-bookmarks .costume-tab img { display: block; width: 32px; height: 40px; object-fit: contain; image-rendering: pixelated; margin: auto; }
+.friendskip-bookmarks .friendskip-bookmark:hover { filter: brightness(1.08); }
+.friendskip-bookmarks .friendskip-bookmark:focus-visible { outline: 3px solid #57bfc7; outline-offset: 3px; }
+.friendskip-bookmarks .friendskip-bookmark { transition: transform 160ms ease, box-shadow 160ms ease; }
+.friendskip-bookmarks .friendskip-bookmark[aria-pressed="true"] {
+  transform: translateX(14px);
+  box-shadow: 3px 3px 5px #0004;
+}
+.friendskip-bookmarks .costume-tab[aria-pressed="true"] {
+  transform: translateX(-14px);
+  box-shadow: -3px 3px 5px #0004;
+}
+@media(prefers-reduced-motion: reduce) {
+  .friendskip-bookmarks .friendskip-bookmark { transition: none; }
+}
+@media(max-width:760px) {
+  .friendskip-book-frame { width: calc(100% - 80px); }
+  .friendskip-bookmarks .friendskip-bookmark { width: 36px; left: -34px; font-size: 18px; padding: 10px 4px; }
+  .friendskip-bookmarks .costume-tab { left: auto; right: -34px; }
+  .friendskip-bookmarks .costume-tab img { width: 26px; }
+}

@@ -25,6 +25,28 @@
   min-width: 0;
 }
 
+.timeline-exit {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 2px solid var(--timeline-accent);
+  background: var(--timeline-background);
+  color: var(--timeline-accent);
+  font: 22px/1 'UPRO', serif;
+  cursor: pointer;
+}
+
+.timeline-exit:hover,
+.timeline-exit:focus-visible {
+  background: var(--timeline-accent);
+  color: var(--timeline-background);
+  outline: 2px solid var(--timeline-accent);
+  outline-offset: 3px;
+}
+
 .timeline-login h1 {
   margin: 0 0 20px;
   color: var(--timeline-text);

@@ -1,0 +1,547 @@
+﻿{
+    "image":  "mates-base.png",
+    "columns":  9,
+    "rows":  8,
+    "cellWidth":  128,
+    "cellHeight":  128,
+    "gifFrame":  0,
+    "order":  "data/mates/idorder.json",
+    "sprites":  [
+                    {
+                        "name":  "Erbacub",
+                        "file":  "Erbacub.png",
+                        "x":  0,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Bearosion",
+                        "file":  "Bearosion.png",
+                        "x":  128,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Hileaph",
+                        "file":  "Hileaph.png",
+                        "x":  256,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Sparcoon",
+                        "file":  "Sparcoon.png",
+                        "x":  384,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Blazuki",
+                        "file":  "Blazuki.png",
+                        "x":  512,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Furnacoon",
+                        "file":  "Furnacoon.png",
+                        "x":  640,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Axolitl",
+                        "file":  "Axolitl.png",
+                        "x":  768,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Axolote",
+                        "file":  "Axolote.png",
+                        "x":  896,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Caneins",
+                        "file":  "Caneins.png",
+                        "x":  1024,
+                        "y":  0,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Duadog",
+                        "file":  "Duadog.png",
+                        "x":  0,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dodecadog",
+                        "file":  "Dodecadog.png",
+                        "x":  128,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Pretengerine",
+                        "file":  "Pretengerine.png",
+                        "x":  256,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Espiorange",
+                        "file":  "Espiorange.png",
+                        "x":  384,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Bakunbush",
+                        "file":  "Bakunbush.png",
+                        "x":  512,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Pigturee",
+                        "file":  "Pigturee.png",
+                        "x":  640,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Statipillar",
+                        "file":  "Statipillar.png",
+                        "x":  768,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Cocompis",
+                        "file":  "Cocompis.png",
+                        "x":  896,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dribsom",
+                        "file":  "Dribsom.png",
+                        "x":  1024,
+                        "y":  128,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "S.Dribsom",
+                        "file":  "S.Dribsom.png",
+                        "x":  0,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dribtar",
+                        "file":  "Dribtar.png",
+                        "x":  128,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "S.Dribtar",
+                        "file":  "S.Dribtar.png",
+                        "x":  256,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Ircencaat",
+                        "file":  "Ircencaat.png",
+                        "x":  384,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Gerrindamo",
+                        "file":  "Gerrindamo.png",
+                        "x":  512,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Blarb",
+                        "file":  "Blarb.png",
+                        "x":  640,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "S.Blarb",
+                        "file":  "S.Blarb.png",
+                        "x":  768,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Gaslug",
+                        "file":  "Gaslug.png",
+                        "x":  896,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Quubbly",
+                        "file":  "Quubbly.png",
+                        "x":  1024,
+                        "y":  256,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Quontoon",
+                        "file":  "Quontoon.png",
+                        "x":  0,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Honkraft",
+                        "file":  "Honkraft.png",
+                        "x":  128,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Fizzlet",
+                        "file":  "Fizzlet.png",
+                        "x":  256,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Fizzik",
+                        "file":  "Fizzik.png",
+                        "x":  384,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Beabar",
+                        "file":  "Beabar.png",
+                        "x":  512,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Bowlfish",
+                        "file":  "Bowlfish.png",
+                        "x":  640,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Tankfish",
+                        "file":  "Tankfish.png",
+                        "x":  768,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Camoflish",
+                        "file":  "Camoflish.png",
+                        "x":  896,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Confished",
+                        "file":  "Confished.png",
+                        "x":  1024,
+                        "y":  384,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Cartilicht",
+                        "file":  "Cartilicht.png",
+                        "x":  0,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Emene",
+                        "file":  "Emene.png",
+                        "x":  128,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Ghouliath",
+                        "file":  "Ghouliath.png",
+                        "x":  256,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Chordal",
+                        "file":  "Chordal.png",
+                        "x":  384,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Schuck",
+                        "file":  "Schuck.png",
+                        "x":  512,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Krat",
+                        "file":  "Krat.png",
+                        "x":  640,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Kroxer",
+                        "file":  "Kroxer.png",
+                        "x":  768,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Buntot",
+                        "file":  "Buntot.png",
+                        "x":  896,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "BuntotTF",
+                        "file":  "BuntotTF.png",
+                        "x":  1024,
+                        "y":  512,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Challadin",
+                        "file":  "Challadin.png",
+                        "x":  0,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "ChalladinTF",
+                        "file":  "ChalladinTF.png",
+                        "x":  128,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Starpod",
+                        "file":  "Starpod.png",
+                        "x":  256,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Gastrover",
+                        "file":  "Gastrover.png",
+                        "x":  384,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Charquid",
+                        "file":  "Charquid.png",
+                        "x":  512,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Rebble",
+                        "file":  "Rebble.png",
+                        "x":  640,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Shiver Jaws",
+                        "file":  "Shiver Jaws.png",
+                        "x":  768,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Paranger",
+                        "file":  "Paranger.png",
+                        "x":  896,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Fonceer",
+                        "file":  "Fonceer.png",
+                        "x":  1024,
+                        "y":  640,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani",
+                        "file":  "Dressiani.gif",
+                        "x":  0,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani_B",
+                        "file":  "Dressiani_B.png",
+                        "x":  128,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani_O",
+                        "file":  "Dressiani_O.png",
+                        "x":  256,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani_P",
+                        "file":  "Dressiani_P.png",
+                        "x":  384,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani_R",
+                        "file":  "Dressiani_R.png",
+                        "x":  512,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani_V",
+                        "file":  "Dressiani_V.png",
+                        "x":  640,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Dressiani_Y",
+                        "file":  "Dressiani_Y.png",
+                        "x":  768,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Blizard",
+                        "file":  "Blizard.png",
+                        "x":  896,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Cryodon",
+                        "file":  "Cryodon.png",
+                        "x":  1024,
+                        "y":  768,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Reptundra",
+                        "file":  "Reptundra.png",
+                        "x":  0,
+                        "y":  896,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Prismite",
+                        "file":  "Prismite.png",
+                        "x":  128,
+                        "y":  896,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Duochrom",
+                        "file":  "Duochrom.png",
+                        "x":  256,
+                        "y":  896,
+                        "width":  128,
+                        "height":  128
+                    },
+                    {
+                        "name":  "Wyvearn",
+                        "file":  "Wyvearn.png",
+                        "x":  384,
+                        "y":  896,
+                        "width":  128,
+                        "height":  128
+                    }
+                ]
+}

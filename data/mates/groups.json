@@ -85,12 +85,21 @@
   {
     "name": "Awarded Fighters",
     "star": "Kroxer",
-    "grouping": "",
+    "grouping": "All Animates that wear the Redband.",
     "animates": [
       "Thrack",
       "Grraft",
       "Bunkit",
       "Lurkest"
+    ]
+  },
+  {
+    "name": "The Worthy",
+    "star": "Exosteel",
+    "grouping": "All Animates that wear Protosteel.",
+    "animates": [
+      "Perchancealot",
+      "Bagueezer"
     ]
   },
   {
@@ -111,53 +120,85 @@
     "star": "Cuddol",
     "grouping": "",
       "animates": [
-      "Dodecadog",
+        "Dodecadog",
+        "Borgo Slor",
+        "Ommewtan",
+        "Aestereg",
+        "Pydromaglar",
+        "Cuddol",
+        "Shiver Dupes",
+        "Sapphae",
+        "Coconkurer"
+      ]
+  },
+  {
+    "name": "Humanity's Haters",
+    "star": "Alliminiyum",
+    "grouping": "All Animates that are live to detriment humans.",
+      "animates": [
+        "Beit",
+        "Pirotte",
+        "Bewag",
+        "Puppechyu",
+        "Mockenyu",
+        "Fortome",
+        "Chloomacrab",
+        "Myte",
+        "Masqulpt",
+        "Enchrancess",
+        "Meducap"
+      ]
+  },
+  
+  {
+    "name": "Down With The Old!",
+    "star": "Bagueezer",
+    "grouping": "All Animates that are replacements for old ones.",
+      "animates": [
+      "Cocompis",
+      "Cacculent",
+      "Signilith",
+      "Alliminiyum",
+      "Fumerey"
+    ]
+  },
+  
+  {
+    "name": "Single Squad",
+    "star": "All Animates that only have one of their kind.",
+    "grouping": "",
+      "animates": [
+      "Ghouliath",
+      "Tralgon",
+      "Thundrake",
+      "Aquipesh",
+      "Alpacalypse",
       "Borgo Slor",
-      "Ommewtan",
+      "Empire Vigilith",
+      "Bewag",
+      "Spongus",
+      "Symbrex",
       "Aestereg",
+      "Cuggaeous",
+      "Lemody",
       "Pydromaglar",
+      "Exosteel",
       "Cuddol",
-      "Shiver Dupes"
-      ]
+      "Cosmicanine",
+      "Apothelugh",
+      "Shiver Dupes",
+      "Shiver Molds",
+      "Waxilo",
+      "Drawrlin"
+    ]
   },
   {
-    "name": "",
-    "star": "",
+    "name": "False Treasure",
+    "star": "Trashure",
     "grouping": "",
       "animates": [
-        ""
-      ]
-  },
-  {
-    "name": "",
-    "star": "",
-    "grouping": "",
-      "animates": [
-        ""
-      ]
-  },
-  {
-    "name": "",
-    "star": "",
-    "grouping": "",
-      "animates": [
-        ""
-      ]
-  },
-  {
-    "name": "",
-    "star": "",
-    "grouping": "",
-      "animates": [
-        ""
-      ]
-  },
-  {
-    "name": "",
-    "star": "",
-    "grouping": "",
-      "animates": [
-        ""
+        "Garbajool",
+        "Sarcaphakis"
       ]
   },
   {

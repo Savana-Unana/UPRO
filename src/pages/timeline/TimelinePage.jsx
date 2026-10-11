@@ -129,6 +129,9 @@ export default function TimelinePage() {
 
   return (
     <main className={`timeline-shell is-${mode}`}>
+      <button className="timeline-exit" type="button" onClick={() => navigateTo('/')}>
+        Exit
+      </button>
       <section className="timeline-login" aria-labelledby="timeline-prompt">
         <h1 id="timeline-prompt">Please Enter Username</h1>
         <form className="timeline-form" onSubmit={submitUsername}>

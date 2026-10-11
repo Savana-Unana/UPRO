@@ -1,5 +1,14 @@
 export const mateModes = ["base", "sacred", "ace", "goner", "ncanon", "costumes", "npc"];
 
+export function getMateStatus(mate) {
+  const folder = String(mate?.image || "").replace(/\\/g, "/")
+    .match(/(?:^|\/)assets\/images\/mates\/([^/]+)\//i)?.[1]?.toLowerCase();
+  if (folder === "base" || folder === "other") return "finalized";
+  if (folder === "lost") return "conceptualized";
+  if (folder === "goner") return "nonfinalized";
+  return null;
+}
+
 const subBiomeImages = {
   Forest: {
     Day: "Forest-Day.png",

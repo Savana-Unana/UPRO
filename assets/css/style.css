@@ -1298,6 +1298,16 @@ main.list {
   height: 100px;
   object-fit: contain;
 }
+#outlineToggle {
+  margin-left: 10px;
+}
+body.animatrix-page.animatrix-outline #detailsModal #mateImage {
+  filter:
+    drop-shadow(1px 0 0 #dce6ef80)
+    drop-shadow(-1px 0 0 #dce6ef80)
+    drop-shadow(0 1px 0 #dce6ef80)
+    drop-shadow(0 -1px 0 #dce6ef80);
+}
 .cat-grid .catalog-card h3 {
   margin: 6px 0 0;
   color: #f7f8fb;

@@ -1,0 +1,893 @@
+[
+  {
+    "id": "Skip",
+    "name": "Infested Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Use an Ace Axolarg."
+          }
+        ]
+      }
+    ],
+    "reference": "Axolarg",
+    "Description": "Skip but controlled by Axo-Shards.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Trashcan Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Interact with everything at Homegrounds."
+          }
+        ]
+      }
+    ],
+    "reference": "Chip",
+    "Description": "Skip that looks like Chip.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Athlete Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Interact with everything at Homegrounds."
+          }
+        ]
+      }
+    ],
+    "reference": "Pip",
+    "Description": "Skip that looks like Chip.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Swimmer Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Interact with everything at Homegrounds."
+          }
+        ]
+      }
+    ],
+    "reference": "Dip",
+    "Description": "Skip that looks like Chip.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Bedtime Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Interact with everything at Homegrounds."
+          }
+        ]
+      }
+    ],
+    "reference": "Zip",
+    "Description": "Skip that looks like Chip.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Dark Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Play UPRO Pokeless Version."
+          }
+        ]
+      }
+    ],
+    "reference": "Deltarune",
+    "Description": "A color-altered Skip, with a Sheriff outfit.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Darker Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Complete UPRO Pokeless Version"
+          }
+        ]
+      }
+    ],
+    "reference": "Deltarune",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Placeholder",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Restart the Game After it ''freezes''"
+          }
+        ]
+      }
+    ],
+    "reference": null,
+    "Description": "A monochrome, faceless ****.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Sewn Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Get the ''You Okay, Doll?'' achievement."
+          }
+        ]
+      }
+    ],
+    "reference": null,
+    "Description": "Skip with a sewn mouth. Replaces all Skip dialogue with ''Ã¢â‚¬Â¦''.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Headless Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Folklore",
+    "Description": "Skip but he is holding his own head in his backpack.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Liberty Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Exchange One Life For Another."
+          }
+        ]
+      }
+    ],
+    "reference": "Monument Mythos",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Shadow Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Beat Chip and Kal's duo fight."
+          }
+        ]
+      }
+    ],
+    "reference": "Super Paper Mario: The Thousand-Year Door",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Masquerade Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "Skip but dressed with a suit and a mask.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Beachside Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Scout Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Plumber Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Mario Bros.",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Mono Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Little Nightmares 2",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Slime Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "SFAWTDE",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Merry Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Skip.exe",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Horror Trope",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Slasher Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Friday the 13th",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Rapper Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Capsule Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Capture Capsule",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Jester Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "The Amazing Digital Circus",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Joyride Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Sparcoon",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Hawaiian Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Kal",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Birthday Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Fancy Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Cool Guy Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Doodle Skip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Battle CC",
+    "image": "assets/images/mates/npc/BattleCC.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Play a Battle"
+          }
+        ]
+      }
+    ],
+    "reference": null,
+    "Description": "",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Speaker Box CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Battle For Dream Island",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Cult CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Beat the Fairy Gauntlet."
+          }
+        ]
+      }
+    ],
+    "reference": null,
+    "Description": "A ketchup covered Capture Capsule.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "IFO CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "AHHHHH A UFO!!!!!",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Defective CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "A broken Capture Capsule.",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Frozen CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Sleigh CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Brick CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Lego",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Wind Up CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Mockenyu",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Cart CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Backwards CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Lucky Block CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Mario Bros.",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Cardboard CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "CC",
+    "name": "Origin CC",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Ghostbusters",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Super Surfer Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Gerrindamo",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Flaminstein's Monster Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Frankenstein Story",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Evil Dirtbag With Chainsaw Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "FNAF: The Musical",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Actor Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Human Flame Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "The Fantastic Four",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Golden Gladiator Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "SFAWTDE",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Elf Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Founding Father Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Monument Mythos",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Fire Hawk Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Reposition Kal",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Fate",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Monument Mythos",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Guest",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Complete the Limbo minigame."
+          }
+        ]
+      }
+    ],
+    "reference": "Roblox",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "The Rodent",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Beat Chip in the Alleyways."
+          }
+        ]
+      }
+    ],
+    "reference": "Batman and Robin",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "El Chipo",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Dodeca Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Dodecadog",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Cyborg Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Beat Chip in the Lab"
+          }
+        ]
+      }
+    ],
+    "reference": "Megaman",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Plumber Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Mario Bros.",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Randy Cosplay Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Radioactive Ronald",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Waiter Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Cult Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Scuba Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Poker Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Lord of Flames Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Grinch Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "The Grinch",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Real Boy Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Pinocchio",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Cub Scout Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Birthday Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Chip",
+    "name": "Banana Suit Chip",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Devil Maid Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Hazbin Hotel",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Mysterious Trader",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [
+      {
+        "quest": [
+          {
+            "quest-name": "",
+            "quest desc": "Beat Maya in a battle."
+          }
+        ]
+      }
+    ],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Haven Cosplay Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Raincoat Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Little Nightmares",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Cloaked Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Ircencaat",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Shadow Siren Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": "Super Paper Mario: The Thousand-Year Door",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Birthday Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Maya",
+    "name": "Cool Gal Maya",
+    "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
+    "obtainment": [],
+    "reference": null,
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Skip",
+    "name": "Skip Dance",
+    "image": "assets/images/mates/npc/Skip_Dance.gif",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  },
+  {
+    "id": "Kal",
+    "name": "Kal Other",
+    "image": "assets/images/mates/npc/Kal_Other.gif",
+    "obtainment": [],
+    "reference": "",
+    "Description": "No entry yet",
+    "cosmark": "Y"
+  }
+]
