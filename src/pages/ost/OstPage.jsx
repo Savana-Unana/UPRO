@@ -605,8 +605,8 @@ body.ost-page select {
   margin: 0;
   color: #d8e2ee;
   font-family: var(--ost-display-font);
-  font-size: 1.15rem;
-  line-height: 1.7;
+  font-size: clamp(2.2rem, 3vw, 3.2rem);
+  line-height: 1.45;
 }
 
 .ost-detail-about dl {
@@ -905,7 +905,7 @@ const themeColors = {
 const themeTypeOrder = ['Game Theme', 'Overworld Theme', 'Battle Theme', 'Ace Theme', 'False Theme']
 const progressOrder = ['Untouched', 'Composed', 'Finalized']
 
-const defaultCoverArt = 'assets/images/ui/UPRO-OSTs.png'
+const defaultCoverArt = 'assets/images/ui/Placeholder.png'
 
 function normalizeSong(entry, orderIndex) {
   const file = typeof entry.file === 'string' ? entry.file.trim() : ''

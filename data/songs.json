@@ -271,10 +271,10 @@
   },
   {
     "name": "Dead Zone",
-    "file": null,
-    "composer": "Untaken",
+    "file": "assets/audio/DeadZone.mp3",
+    "composer": "Glitched 0ut",
     "themeType": "Ace Theme",
-    "progress": "Untouched",
+    "progress": "Composed",
     "description": "",
     "description-title": "Ghouliath Ace Theme",
     "Version": "Update 1"

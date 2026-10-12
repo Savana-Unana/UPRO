@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { expandGroupedMateData, mergeMateBuckets } from '../../utils/mateData.js'
+import { expandGroupedMateData, getMateStatus, mergeMateBuckets } from '../../utils/mateData.js'
 
 const pageStyles = "@font-face {\r\n      font-family: \"UPRO\";\r\n      src: url(\"assets/fonts/UPRO.ttf\") format(\"truetype\");\r\n    }\r\n\r\n    :root {\r\n      --bg: #111418;\r\n      --panel-text: #111418;\r\n      --panel-light-text: #f7f8fb;\r\n      --neutral: #d7cfbf;\r\n      --neutral-dark: #6b6459;\r\n      --header-bg: rgba(10, 14, 20, 0.86);\r\n      --card-shadow: rgba(0, 0, 0, 0.24);\r\n    }\r\n\r\n    * {\r\n      box-sizing: border-box;\r\n    }\r\n\r\n    body {\r\n      margin: 0;\r\n      min-height: 100dvh;\r\n      background:\r\n        radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 30%),\r\n        linear-gradient(180deg, #0e1116 0%, #171c24 100%);\r\n      color: #f7f8fb;\r\n      font-family: \"UPRO\", \"Trebuchet MS\", sans-serif;\r\n    }\r\n\r\n    button,\r\n    h1,\r\n    h2,\r\n    div,\r\n    span {\r\n      font-family: \"UPRO\", \"Trebuchet MS\", sans-serif;\r\n    }\r\n\r\n    .page {\r\n      min-height: 100dvh;\r\n      display: grid;\r\n      grid-template-rows: auto 1fr auto;\r\n    }\r\n\r\n    .header {\r\n      position: sticky;\r\n      top: 0;\r\n      z-index: 10;\r\n      padding: 16px 20px;\r\n      text-align: center;\r\n      background: var(--header-bg);\r\n      backdrop-filter: blur(10px);\r\n      border-bottom: 1px solid rgba(255, 255, 255, 0.12);\r\n    }\r\n\r\n    .header-nav {\r\n      display: flex;\r\n      justify-content: flex-start;\r\n      margin-bottom: 10px;\r\n      gap: 10px;\r\n    }\r\n\r\n    .header h1 {\r\n      margin: 0;\r\n      font-size: 1.8rem;\r\n      letter-spacing: 0.08em;\r\n      text-transform: uppercase;\r\n    }\r\n\r\n    .mode-switcher {\r\n      margin-top: 14px;\r\n      display: inline-flex;\r\n      flex-wrap: wrap;\r\n      justify-content: center;\r\n      gap: 10px;\r\n    }\r\n\r\n    .mode-button {\r\n      border: 1px solid rgba(255, 255, 255, 0.25);\r\n      background: rgba(255, 255, 255, 0.08);\r\n      color: var(--panel-light-text);\r\n      padding: 10px 16px;\r\n      border-radius: 999px;\r\n      cursor: pointer;\r\n      font-size: 0.95rem;\r\n      letter-spacing: 0.04em;\r\n      text-transform: uppercase;\r\n      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;\r\n    }\r\n\r\n    .mode-button:hover,\r\n    .mode-button:focus-visible {\r\n      background: rgba(255, 255, 255, 0.16);\r\n      border-color: rgba(255, 255, 255, 0.45);\r\n      outline: none;\r\n    }\r\n\r\n    .mode-button.is-active {\r\n      background: var(--neutral);\r\n      color: var(--panel-text);\r\n      border-color: var(--neutral);\r\n    }\r\n\r\n    .header-nav button {\r\n      background: #222;\r\n      color: #0ff;\r\n      font-family: \"UPRO\", serif;\r\n      font-size: 30px;\r\n      border: 1px solid #0ff;\r\n      padding: 6px 12px;\r\n      border-radius: 6px;\r\n      cursor: pointer;\r\n    }\r\n\r\n    .header-nav button:hover {\r\n      background: #0ff;\r\n      color: #000;\r\n    }\r\n\r\n    .arena {\r\n      display: grid;\r\n      grid-template-columns: 1fr 1fr;\r\n      min-height: 0;\r\n    }\r\n\r\n    .vote-panel {\r\n      position: relative;\r\n      border: 0;\r\n      padding: 28px;\r\n      cursor: pointer;\r\n      display: flex;\r\n      align-items: stretch;\r\n      justify-content: stretch;\r\n      background: var(--neutral);\r\n      color: var(--panel-text);\r\n      transition: transform 140ms ease, filter 140ms ease;\r\n    }\r\n\r\n    .vote-panel:hover,\r\n    .vote-panel:focus-visible {\r\n      transform: scale(0.992);\r\n      filter: brightness(1.04);\r\n      outline: none;\r\n    }\r\n\r\n    .vote-panel.is-loading {\r\n      cursor: progress;\r\n    }\r\n\r\n    .vote-panel::after {\r\n      content: \"\";\r\n      position: absolute;\r\n      inset: 0;\r\n      background:\r\n        linear-gradient(140deg, rgba(255, 255, 255, 0.2), transparent 45%),\r\n        linear-gradient(0deg, rgba(0, 0, 0, 0.16), transparent 40%);\r\n      pointer-events: none;\r\n    }\r\n\r\n    .vote-panel.left {\r\n      border-right: 1px solid rgba(255, 255, 255, 0.12);\r\n    }\r\n\r\n    .vote-card {\r\n      position: relative;\r\n      z-index: 1;\r\n      width: 100%;\r\n      display: grid;\r\n      align-content: center;\r\n      justify-items: center;\r\n      text-align: center;\r\n      gap: 14px;\r\n      padding: 16px;\r\n      border-radius: 28px;\r\n      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14), 0 24px 60px var(--card-shadow);\r\n      background: rgba(255, 255, 255, 0.12);\r\n      backdrop-filter: blur(6px);\r\n    }\r\n\r\n    .mon-image {\r\n      width: 320px;\r\n      max-width: 100%;\r\n      max-height: 380px;\r\n      object-fit: contain;\r\n      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.28));\r\n    }\r\n\r\n    .mon-name {\r\n      margin: 0;\r\n      font-size: 2.6rem;\r\n      line-height: 1.05;\r\n      letter-spacing: 0.03em;\r\n      text-wrap: balance;\r\n    }\r\n\r\n    .empty-state {\r\n      grid-column: 1 / -1;\r\n      display: grid;\r\n      place-items: center;\r\n      padding: 32px;\r\n      text-align: center;\r\n      font-size: 1.2rem;\r\n    }\r\n\r\n    .status-bar {\r\n      display: flex;\r\n      justify-content: space-between;\r\n      gap: 12px;\r\n      padding: 12px 18px;\r\n      border-top: 1px solid rgba(255, 255, 255, 0.12);\r\n      background: rgba(10, 14, 20, 0.76);\r\n      font-size: 0.9rem;\r\n    }\r\n\r\n    .status-bar strong {\r\n      font-weight: normal;\r\n    }\r\n\r\n    .status-ok {\r\n      color: #aef0b0;\r\n    }\r\n\r\n    .status-warn {\r\n      color: #ffd38a;\r\n    }\r\n\r\n    .status-error {\r\n      color: #ff9d9d;\r\n    }\r\n\r\n    .header h1 {\r\n      font-size: 3.6rem;\r\n    }\r\n\r\n    .mode-button {\r\n      font-size: 1.9rem;\r\n    }\r\n\r\n    .mon-name {\r\n      font-size: 3.12rem;\r\n    }\r\n\r\n    .empty-state {\r\n      font-size: 2.4rem;\r\n    }\r\n\r\n    .status-bar {\r\n      font-size: 1.8rem;\r\n    }\r\n    @media screen and (max-width: 800px) {\r\n      .header h1 {\r\n        font-size: 2.3rem;\r\n      }\r\n\r\n      .mon-name {\r\n        font-size: 1.68rem;\r\n      }\r\n\r\n      .arena {\r\n        grid-template-columns: 1fr;\r\n      }\r\n\r\n      .vote-panel.left {\r\n        border-right: 0;\r\n        border-bottom: 1px solid rgba(255, 255, 255, 0.12);\r\n      }\r\n\r\n      .mon-image {\r\n        width: 240px;\r\n        max-height: 260px;\r\n      }\r\n\r\n      .status-bar {\r\n        flex-direction: column;\r\n      }\r\n    }"
 function runPageScript() {
@@ -12,8 +12,7 @@ function runPageScript() {
 
   const VOTE_MODES = {
     animates: { label: "Animates", sheetName: "Animates" },
-    costumes: { label: "Costumes", sheetName: "Costumes" },
-    npcs: { label: "NPCs", sheetName: "NPCs" }
+    costumes: { label: "Costumes", sheetName: "Costumes" }
   };
 
   const DEFAULT_MODE = "animates";
@@ -23,7 +22,7 @@ function runPageScript() {
 
   const state = {
     pools: {
-      animates: [], costumes: [], npcs: []
+      animates: [], costumes: []
     },
     pair: [],
     currentMode: loadVoteMode(),
@@ -126,10 +125,10 @@ function runPageScript() {
 
   function buildPools(baseEntries, aceEntries) {
     const pools = {
-      animates: [], costumes: [], npcs: [], songs: [], unsongs: []
+      animates: [], costumes: []
     };
     const seen = {
-      animates: new Set(), costumes: new Set(), npcs: new Set()
+      animates: new Set(), costumes: new Set()
     };
 
     const mateEntries = [
@@ -171,7 +170,7 @@ function runPageScript() {
   function isFinalizedEntry(entry) {
     const image = String(entry?.image || "").toLowerCase();
     return (
-      /(^|\/)assets\/images\/mates\/base\//i.test(image) ||
+      getMateStatus(entry) === "finalized" ||
       /(^|\/)assets\/images\/mates\/costumes\//i.test(image)
     );
   }
@@ -672,7 +671,6 @@ export default function VotePage() {
       <div className="mode-switcher" id="mode-switcher" role="tablist" aria-label="Vote mode">
         <button className="mode-button is-active" type="button" data-vote-mode="animates" role="tab" aria-selected="true">Animates</button>
         <button className="mode-button" type="button" data-vote-mode="costumes" role="tab" aria-selected="false">Costumes</button>
-        <button className="mode-button" type="button" data-vote-mode="npcs" role="tab" aria-selected="false">NPCs</button>
       </div>
     </header>
     <main className="arena" id="arena" aria-live="polite">

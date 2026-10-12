@@ -2291,6 +2291,24 @@ input#search:focus {
   font-weight: bold;
 }
 
+body.animatrix-page #animatrix .card {
+  justify-content: flex-start;
+}
+
+body.animatrix-page #animatrix .card .types.compact-types {
+  gap: 1px;
+  margin: 2px 0;
+  max-height: none;
+  overflow: visible;
+}
+
+body.animatrix-page #animatrix .card .types.compact-types span {
+  margin: 1px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  font-size: 2rem;
+}
+
 /* Play button */
 .play-btn {
   font-size: 2.5rem;

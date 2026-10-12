@@ -1,20 +1,22 @@
 [
   {
     "name": "Skip",
-    "sprite": "assets/npc/sprites/Skip.gif",
-    "drawing": "assets/npc/images/Skip.png",
+    "role": "Main Character",
+    "versions": "Update 1",
+    "sprite": "assets/images/npc/sprites/Skip.gif",
+    "drawing": "",
     "height": "5\"11",
     "age": "17",
     "costumes": [
       {
         "name": "Skip Dance",
-        "sprite": "Skip_Dance.gif",
+        "sprite": "assets/images/npc/sprites/Skip_Dance.gif",
         "opinion": "Watch me groove!",
         "callside": "EVERYBODY DO THE SKIP DANCE!"
       },
       {
         "name": "Placeholder",
-        "sprite": "YouKnowWhoIAm.gif",
+        "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
         "drawing": "ICantRemember.gif",
         "opinion": "1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1",
         "firstObtainableUpdate": "Update 0",
@@ -310,19 +312,32 @@
         "obtainment": "",
         "callside": ""
       }
+    ]
+  },
+  {
+    "name": "CC",
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "sprites": [
+      "assets/images/npc/sprites/CC.gif",
+      "assets/images/npc/sprites/BattleCC.gif"
     ],
-    "levelObtainment": {
-      "1": "Start the game.",
+    "drawing": "",
+    "height": "2\"0",
+    "age": "0",
+    "levels": {
+      "1": "",
       "2": "",
       "3": "",
       "4": ""
     },
-    "role": "Main Character",
-    "versions": "Update 1",
-    "found": "Unspecified"
-  },
-  {
-    "name": "CC",
+    "levelObtainment": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": ""
+    },
     "costumes": [
       {
         "name": "Speaker Box CC",
@@ -454,7 +469,19 @@
         "obtainment": "",
         "callside": ""
       }
+    ]
+  },
+  {
+    "name": "Kal",
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "sprites": [
+      "assets/images/npc/sprites/Kal.gif"
     ],
+    "drawing": "",
+    "height": "6\"2",
+    "age": "18",
     "levels": {
       "1": "",
       "2": "",
@@ -467,13 +494,6 @@
       "3": "",
       "4": ""
     },
-    "role": "Main Character",
-    "versions": "Update 1",
-    "found": "Unspecified",
-    "height": "2\"0"
-  },
-  {
-    "name": "Kal",
     "costumes": [
       {
         "name": "Super Surfer Kal",
@@ -567,15 +587,25 @@
       },
       {
         "name": "Chill Kal",
-        "sprite": "",
+        "sprite": "assets/images/npc/sprites/Kal_Other.gif",
         "drawing": "",
-        "opinion": "",
+        "opinion": "I can only imagine what happens if he never met me. What path would he have taken?",
         "reference": "",
         "firstObtainableUpdate": "",
         "obtainment": "",
         "callside": ""
       }
-    ],
+    ]
+  },
+  {
+    "name": "Chip",
+    "role": "Main Character",
+    "versions": "Update 1",
+    "found": "Unspecified",
+    "sprite": "assets/images/npc/sprites/Chip.png",
+    "drawing": "",
+    "height": "5\"2",
+    "age": "12",
     "levels": {
       "1": "",
       "2": "",
@@ -588,13 +618,6 @@
       "3": "",
       "4": ""
     },
-    "role": "Main Character",
-    "versions": "Update 1",
-    "found": "Unspecified",
-    "height": "6\"2"
-  },
-  {
-    "name": "Chip",
     "costumes": [
       {
         "name": "The Rodent",
@@ -756,53 +779,15 @@
         "obtainment": "",
         "callside": ""
       }
-    ],
-    "levels": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
-    },
-    "levelObtainment": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
-    },
-    "role": "Main Character",
-    "versions": "Update 1",
-    "found": "Unspecified",
-    "height": "5\"2"
+    ]
   },
   {
     "name": "MT",
-    "costumes": [],
-    "levels": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
-    },
-    "levelObtainment": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": ""
-    },
     "role": "Main Character",
     "versions": "Update 1",
     "found": "Unspecified",
-    "height": "5\"6"
-  },
-  {
-    "name": "Maya",
-    "role": "",
-    "versions": "",
-    "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
-    "drawing": "assets/images/npc/images/ICantRemember.gif",
-    "height": "",
-    "age": "",
+    "sprite": "assets/images/npc/sprites/MT.png",
+    "height": "5\"6",
     "levels": {
       "1": "",
       "2": "",
@@ -815,16 +800,95 @@
       "3": "",
       "4": ""
     },
-    "quests": [],
-    "schedule": "",
-    "costumes": []
+    "costumes": [
+      {
+        "name": "Devil Maid Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "Hazbin Hotel",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Mysterious Trader",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "Beat MT in a battle.",
+        "callside": ""
+      },
+      {
+        "name": "Haven Cosplay Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Raincoat Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "Little Nightmares",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cloaked Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "Ircencaat",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Shadow Siren Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "Super Paper Mario: The Thousand-Year Door",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Birthday Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      },
+      {
+        "name": "Cool Gal Maya",
+        "sprite": "",
+        "drawing": "",
+        "opinion": "",
+        "reference": "",
+        "firstObtainableUpdate": "",
+        "obtainment": "",
+        "callside": ""
+      }
+    ]
   },
   {
     "name": "Marvin",
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Marvin.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -849,7 +913,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Arnold.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -874,7 +938,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Shady_Guy.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -899,7 +963,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Maddiline.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -924,7 +988,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Dr_Mitchovitch.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -949,7 +1013,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Erica_Breflower.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -974,7 +1038,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Beth.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -999,7 +1063,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Izan.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1149,7 +1213,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Dad_Boat.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1174,7 +1238,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Dip.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1199,7 +1263,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Doggi.png",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1224,7 +1288,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Hippie.png",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1249,7 +1313,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Lumberjack.png",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1274,7 +1338,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Mom.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1299,7 +1363,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Pip.gif",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",
@@ -1324,7 +1388,7 @@
     "role": "",
     "versions": "",
     "found": "",
-    "sprite": "assets/images/npc/sprites/YouKnowWhoIAm.gif",
+    "sprite": "assets/images/npc/sprites/Zip.png",
     "drawing": "assets/images/npc/images/ICantRemember.gif",
     "height": "",
     "age": "",

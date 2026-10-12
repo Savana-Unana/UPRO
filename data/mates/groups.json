@@ -105,7 +105,7 @@
   {
     "name": "The Hell is That?",
     "star": "Scregling",
-    "grouping": "",
+    "grouping": "All Animates that are not based off of anything in particular.",
     "animates": [
       "Ghouliath",
       "Borgo Slor",
@@ -115,10 +115,28 @@
       "Cuggaeous"
     ]
   },
+    {
+    "name": "Im Blue",
+    "star": "Axolitl",
+    "grouping": "All Animates associated with the color blue.",
+      "animates": [
+        "Axolote",
+        "Axolarg",
+        "Chordal",
+        "Baleetle",
+        "Sapphae",
+        "Polerb",
+        "Brroil",
+        "Ampede",
+        "Maychancix",
+        "Gamblanguin",
+        "Predadventure"
+      ]
+  },
   {
     "name": "All Seeing Eye",
     "star": "Cuddol",
-    "grouping": "",
+    "grouping": "All Animates that have a focus on their eye/eyes.",
       "animates": [
         "Dodecadog",
         "Borgo Slor",
@@ -129,6 +147,25 @@
         "Shiver Dupes",
         "Sapphae",
         "Coconkurer"
+      ]
+  },
+  {
+    "name": "Sound Typing",
+    "star": "Chordal",
+    "grouping": "All Animates that would have a Sound-Type.",
+      "animates": [
+        "Lemody",
+        "Minnote",
+        "Tunup",
+        "Triangeel",
+        "Basscsio",
+        "Velvetone",
+        "Spigle",
+        "Moshrill",
+        "Signlith",
+        "Soxaphone",
+        "Thoot",
+        "Elixion Audio Forme"
       ]
   },
   {
@@ -149,7 +186,6 @@
         "Meducap"
       ]
   },
-  
   {
     "name": "Down With The Old!",
     "star": "Bagueezer",
@@ -162,11 +198,10 @@
       "Fumerey"
     ]
   },
-  
   {
     "name": "Single Squad",
-    "star": "All Animates that only have one of their kind.",
-    "grouping": "",
+    "star": "Pydromaglar",
+    "grouping": "All Animates that only have one of their kind.",
       "animates": [
       "Ghouliath",
       "Tralgon",
@@ -181,7 +216,6 @@
       "Aestereg",
       "Cuggaeous",
       "Lemody",
-      "Pydromaglar",
       "Exosteel",
       "Cuddol",
       "Cosmicanine",
@@ -199,22 +233,6 @@
       "animates": [
         "Garbajool",
         "Sarcaphakis"
-      ]
-  },
-  {
-    "name": "",
-    "star": "",
-    "grouping": "",
-      "animates": [
-        ""
-      ]
-  },
-  {
-    "name": "",
-    "star": "",
-    "grouping": "",
-      "animates": [
-        ""
       ]
   },
   {

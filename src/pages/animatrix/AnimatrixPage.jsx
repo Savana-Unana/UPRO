@@ -257,55 +257,19 @@ export default function AnimatrixPage() {
         const cards = Array.from(animatrix.querySelectorAll(".card"));
         const borgoCard = cards.find(card =>
           normalizeBorgoSlorName(card.__mate?.name) === normalizeBorgoSlorName(borgoSlorSourceName) &&
-          isElementInViewport(card)
+          card.classList.contains("borgo-slor-hover")
         );
         const page = document.getElementById("animatrixPage");
-        const borgoDetailsOpen = !modal.classList.contains("hidden") &&
-          normalizeBorgoSlorName(currentDetailMate?.name) === normalizeBorgoSlorName(borgoSlorSourceName);
-        const borgoOnlyStatsOpen = cards.length === 1 &&
-          normalizeBorgoSlorName(cards[0].__mate?.name) === normalizeBorgoSlorName(borgoSlorSourceName) &&
-          !statsModal.classList.contains("hidden");
 
         page?.classList.toggle("borgo-slor-active", Boolean(borgoCard));
 
-        if (borgoCard && page) {
-          page.querySelectorAll([
+        if (borgoCard) {
+          animatrix.querySelectorAll([
             ".card h3",
             ".card .card-id",
             ".card .list-card-label",
-            ".card .types span",
-            ".animatrix-header h1",
-            "button",
-            ".filter-panel .opt span",
-            "option"
+            ".card .types span"
           ].join(",")).forEach(transformVisibleTextWithin);
-        }
-
-        if (borgoDetailsOpen) {
-          transformVisibleTextWithin(document.querySelector("#detailsModal .modal-header"));
-          transformVisibleTextWithin(document.querySelector("#detailsModal .modal-body"));
-        }
-
-        if (borgoOnlyStatsOpen) {
-          page.querySelectorAll([
-            "#statsModal .modal-content > h2",
-            "#statsContent .stats-section > h2",
-            "#statsContent .mode-name",
-            "#statsContent .mode-counts",
-            "#statsContent .stats-section > p",
-            "#statsContent .type-name",
-            "#statsContent .type-counts"
-          ].join(",")).forEach(transformBorgoSlorStatsLine);
-        }
-
-        if (page && borgoSlorObserver) {
-          borgoSlorObserver.observe(page, {
-            attributes: true,
-            attributeFilter: ["class", "hidden", "style", "aria-hidden"],
-            childList: true,
-            characterData: true,
-            subtree: true
-          });
         }
       }
 
@@ -1471,8 +1435,8 @@ export default function AnimatrixPage() {
           <img src="${escapeHtml(mate.image || '')}" alt="${escapeHtml(mate.name)}">
           <h3>${displayName}</h3>
           ${(mate.event === "fools") ? "" : `
-            <div class="types">${displayTypes.map(t => typeTag(t)).join("")}</div>
-            ${displayParaTypes.length ? `<div class="types">${displayParaTypes.map(p => typeTag(p)).join("")}</div>` : ""}
+            <div class="types${displayTypes.length > 2 ? ' compact-types' : ''}">${displayTypes.map(t => typeTag(t)).join("")}</div>
+            ${displayParaTypes.length ? `<div class="types${displayParaTypes.length > 2 ? ' compact-types' : ''}">${displayParaTypes.map(p => typeTag(p)).join("")}</div>` : ""}
           `}
         `;
       }
@@ -1577,6 +1541,17 @@ export default function AnimatrixPage() {
             if (!listViewCard && isParagon(mate)) card.classList.add("rarity-paragon");
             applyCardShellStyle(card, mate, listViewCard);
             renderCardContents(card, mate, listViewCard);
+
+            if (normalizeBorgoSlorName(mate.name) === normalizeBorgoSlorName(borgoSlorSourceName)) {
+              card.addEventListener("mouseenter", () => {
+                card.classList.add("borgo-slor-hover");
+                scheduleBorgoSlorViewportUpdate();
+              });
+              card.addEventListener("mouseleave", () => {
+                card.classList.remove("borgo-slor-hover");
+                scheduleBorgoSlorViewportUpdate();
+              });
+            }
 
             card.addEventListener("click", () => openDetails(mate));
             card.addEventListener("contextmenu", event => {

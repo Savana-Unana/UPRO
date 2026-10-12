@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { fetchMateBuckets, mateModes } from '../../utils/mateData'
+import { fetchMateBuckets, getMateStatus } from '../../utils/mateData'
 
 /* eslint-disable no-unused-vars */
 const pageStyles = ""
@@ -63,7 +63,7 @@ function runPageScript() {
 
     try {
       const mateBuckets = await fetchMateBuckets();
-      const datasets = mateModes.map(mode => ({ mode, items: mateBuckets[mode] || [] }));
+      const datasets = [{ mode: "base", items: mateBuckets.base || [] }];
 
       state.pool = buildFinalizedPool(datasets);
       state.poolByName = new Map(state.pool.map(mon => [mon.name.toLowerCase(), mon]));
@@ -181,20 +181,18 @@ function runPageScript() {
         const normalizedName = String(entry?.name || "").trim();
         const image = String(entry?.image || "").toLowerCase();
         if (!normalizedName || seen.has(normalizedName.toLowerCase())) return;
-        if (mode === "costumes" || entry?.cosmark === "Y") return;
+        if (mode !== "base" || entry?.cosmark === "Y") return;
 
-        if (mode !== "npc" && (
+        if (
           normalizedName === "MissingNo" ||
           normalizedName === "L.MissingNo" ||
           normalizedName === "Ones" ||
           image.includes("missingno")
-        )) {
+        ) {
           return;
         }
 
-        const valid = mode === "npc"
-          ? /(^|\/)assets\/images\/mates\/npc\//i.test(image) && !image.includes("youknowwhoiam")
-          : /(^|\/)assets\/images\/mates\/base\//i.test(image);
+        const valid = getMateStatus(entry) === "finalized";
 
         if (!valid) return;
 
@@ -208,12 +206,7 @@ function runPageScript() {
       });
     });
 
-    return pool.sort((a, b) => {
-      if (a.mode === "npc" && b.mode !== "npc") return 1;
-      if (a.mode !== "npc" && b.mode === "npc") return -1;
-      if (a.mode === "npc" && b.mode === "npc") return a.order - b.order;
-      return a.name.localeCompare(b.name);
-    });
+    return pool.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   function startGame() {
@@ -255,7 +248,11 @@ function runPageScript() {
       return;
     }
 
-    state.secret = state.board[Math.floor(Math.random() * state.board.length)];
+    const alternatives = state.secret
+      ? state.board.filter(card => card.name !== state.secret.name)
+      : state.board;
+    const choices = alternatives.length ? alternatives : state.board;
+    state.secret = choices[Math.floor(Math.random() * choices.length)];
     renderSecret();
   }
 
@@ -661,7 +658,7 @@ export default function GuessWhoPage() {
       <div className="guesswho-controls-dock">
         <div id="controlsPanel" className="guesswho-controls-panel">
           <div className="guesswho-controls-grid">
-            <span>🖱 Flip card.</span>
+            <span>🖱 Remove card.</span>
             <span>🖱 Highlight card.</span>
             <span>⌨ Toggle flipped cards.</span>
             <span>R Reset cards.</span>
