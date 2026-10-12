@@ -41,6 +41,10 @@ function doGet() {
 function doPost(e) {
   var payload = parseVotePayload_(e);
 
+  if (payload.action === "historyResponse") {
+    return saveHistoryResponse_(payload);
+  }
+
   if (payload.action === "reset") {
     resetAllVoteData_();
     return jsonResponse({ ok: true, reset: true });
@@ -63,6 +67,34 @@ function doPost(e) {
   properties.setProperty(config.appearancesKey, JSON.stringify(appearances));
 
   return jsonResponse({ ok: true, entityType: payload.entityType, mode: payload.mode, sheet: config.sheetName });
+}
+
+function saveHistoryResponse_(payload) {
+  var answer = String(payload.answer || "").trim();
+  if (!answer) {
+    return jsonResponse({ ok: false, error: "Missing answer." });
+  }
+
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = spreadsheet.getSheetByName("History Responses");
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet("History Responses");
+      sheet.appendRow(["Timestamp", "Question", "Answer"]);
+    }
+
+    // Treat user text as literal text, including answers beginning with '='.
+    var row = sheet.getLastRow() + 1;
+    sheet.getRange(row, 1).setValue(new Date());
+    sheet.getRange(row, 2, 1, 2).setNumberFormat("@").setValues([
+      ["What is a star?", /^[=+\-@]/.test(answer) ? "'" + answer : answer]
+    ]);
+    return jsonResponse({ ok: true, sheet: "History Responses" });
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 function getSheetConfig_(entityType, mode) {
@@ -228,6 +260,7 @@ function parseVotePayload_(e) {
   var params = (e && e.parameter) || {};
   return normalizeVotePayload_({
     action: params.action || "",
+    answer: params.answer || "",
     entityType: params.entityType || "",
     mode: params.mode || "",
     winner: {
@@ -248,6 +281,7 @@ function normalizeVotePayload_(payload) {
 
   return {
     action: payload.action || "",
+    answer: payload.answer || "",
     entityType: entityType,
     mode: entityConfig[payload.mode] ? payload.mode : defaultMode,
     winner: {
