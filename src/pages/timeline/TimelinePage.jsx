@@ -121,7 +121,7 @@ export default function TimelinePage() {
   const [mode, setMode] = useState('terminal')
   const [status, setStatus] = useState('')
   const [chipDrops, setChipDrops] = useState(0)
-  const [starStep, setStarStep] = useState(() => (Math.floor(Math.random() * 2) === 0 ? 'outside' : ''))
+  const [starStep, setStarStep] = useState(() => (Math.floor(Math.random() * 50) === 0 ? 'outside' : ''))
   const [starMessage, setStarMessage] = useState('')
   const [starAnswer, setStarAnswer] = useState('')
   const [starSending, setStarSending] = useState(false)
