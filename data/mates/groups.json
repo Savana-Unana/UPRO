@@ -48,6 +48,8 @@
     "grouping": "All Animates that have a rubberhose design.",
       "animates": [
         "Borgo Slor",
+        "Pyroad",
+        "Calloyte",
         "Aestereg"
       ]
   },
