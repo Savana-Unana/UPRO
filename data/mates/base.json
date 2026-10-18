@@ -10056,7 +10056,29 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Sporbit",
+          "types": [
+            "Air",
+            "Plant"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -10104,7 +10126,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Picashroom",
+          "types": [
+            "Plant"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -10152,7 +10195,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Buddaneer",
+          "types": [
+            "Plant"
+          ],
+          "paraTypes": [
+            "Artillery"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -10194,7 +10258,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Mycanaut",
+          "types": [
+            "Plant"
+          ],
+          "paraTypes": [
+            "Artillery"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -16419,7 +16504,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Got",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -18749,7 +18855,27 @@
       ],
       "sacred": [],
       "ace": [],
-      "costumes": [],
+      "costumes": [
+        {
+          "name": "LED Tortear",
+          "types": [
+            "Mystic",
+            "Spectral"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ],
       "ncanon": [],
       "goner": []
     }
@@ -18794,7 +18920,27 @@
       ],
       "sacred": [],
       "ace": [],
-      "costumes": [],
+      "costumes": [
+        {
+          "name": "LED Tortandum",
+          "types": [
+            "Mystic",
+            "Spectral"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ],
       "ncanon": [],
       "goner": []
     }
@@ -19915,7 +20061,29 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Alged",
+          "types": [
+            "Plant",
+            "Ice"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -20507,7 +20675,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Flurrish",
+          "types": [
+            "Ice"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -20545,7 +20734,29 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Frostent",
+          "types": [
+            "Ice",
+            "Air"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -22389,7 +22600,29 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Poutglet",
+          "types": [
+            "Electric",
+            "Metal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -24056,6 +24289,214 @@
           "color": null,
           "image": "assets/images/mates/lost/S.Cuddol.png",
           "description": ""
+        }
+      ]
+    }
+  },
+  {
+    "name": "Dohbermun",
+    "forms": {
+      "base": [
+        {
+          "name": "Dohbermun",
+          "types": [
+            "Mystic",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Sipoodle",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/goner/Dohbermun.png",
+          "etymology": "Dough + Dobermann + Munch",
+          "subBiomes": {
+            "Ieland": [
+              "Metaforest",
+              "Potluck"
+            ]
+          },
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10"
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Dohbermun",
+          "types": [
+            "Mystic",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Sipoodle",
+    "forms": {
+      "base": [
+        {
+          "name": "Sipoodle",
+          "types": [
+            "Mystic",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Slurpoodle",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/goner/Sipoodle.png",
+          "etymology": "Sip + Poodle",
+          "subBiomes": {
+            "Ieland": [
+              "Metaforest",
+              "Potluck"
+            ]
+          },
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10"
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Sipoodle",
+          "types": [
+            "Mystic",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Slurpoodle",
+    "forms": {
+      "base": [
+        {
+          "name": "Slurpoodle",
+          "types": [
+            "Mystic",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/goner/Slurpoodle.png",
+          "etymology": "Slurp + Poodle",
+          "subBiomes": {
+            "Ieland": [
+              "Metaforest",
+              "Potluck"
+            ]
+          },
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10"
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Slurpoodle",
+          "types": [
+            "Mystic",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10"
         }
       ]
     }
@@ -25807,7 +26248,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Aurorial",
+          "types": [
+            "Light"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Paragon",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -25851,7 +26313,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Axoloth",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -25895,7 +26378,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Salelesure",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -25934,7 +26438,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Accelotl",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -25973,7 +26498,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Placibial",
+          "types": [
+            "Mystic"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26013,7 +26559,29 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Citrinel",
+          "types": [
+            "Plant",
+            "Savage"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26523,7 +27091,27 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Canvox",
+          "types": [
+            "Mystic",
+            "Light"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26561,7 +27149,27 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Briste",
+          "types": [
+            "Light",
+            "Air"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26604,7 +27212,31 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Markara",
+          "types": [
+            "Light",
+            "Fire"
+          ],
+          "paraTypes": [
+            "Water",
+            "Air",
+            "Dark"
+          ],
+          "rarity": "Paragon",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26649,7 +27281,29 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Apothelugh",
+          "types": [
+            "Light",
+            "Normal"
+          ],
+          "paraTypes": [
+            "Lucid"
+          ],
+          "rarity": "Paragon",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26688,7 +27342,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Borealing",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26731,7 +27406,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Sarcophakis",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26774,7 +27470,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Mummyrrh",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26814,7 +27531,28 @@
         }
       ],
       "goner": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Pharamone",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -26853,7 +27591,29 @@
           "firstWildCatchableUpdate": "Update 8"
         }
       ],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Nostralatu",
+          "types": [
+            "Dark",
+            "Gross"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ]
     }
   },
   {
@@ -36468,7 +37228,27 @@
       ],
       "sacred": [],
       "ace": [],
-      "costumes": [],
+      "costumes": [
+        {
+          "name": "LED Scavangil",
+          "types": [
+            "Metal",
+            "Gross"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": ""
+        }
+      ],
       "ncanon": [],
       "goner": []
     }
