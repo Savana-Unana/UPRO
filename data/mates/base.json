@@ -18976,7 +18976,7 @@
           "image": "assets/images/mates/goner/Vigilith.png",
           "etymology": "Vigil + Lith",
           "visualDescription": "Blindfold (for see no evil), similar design to Statue of Liberty (Green-Orange Designs, Dress, Crown), and not as beanish.",
-          "firstScannableUpdate": "Unfound",
+          "firstScannableUpdate": "Update 1",
           "firstWildCatchableUpdate": "Unfound",
           "subBiomes": {
             "Forest": [
@@ -18989,6 +18989,7 @@
         {
           "event": "halloween",
           "name": "Vigilith Revealed Forme",
+          "firstScannableUpdate": "Halloween",
           "types": [
             "Earth",
             "Spectral"
@@ -19040,6 +19041,7 @@
         {
           "event": "halloween",
           "name": "Empire Vigilith Revealed Forme",
+          "firstScannableUpdate": "Halloween",
           "types": [
             "Earth",
             "Spectral"
@@ -19143,7 +19145,7 @@
           "image": "assets/images/mates/lost/MissingNo.png",
           "etymology": "Signal + Lith",
           "visualDescription": "Gag-esque feature (for say no evil), similar design to Lincoln Memorial, openable chest cavity with Huge Bell inside (Liberty Bell), Arms and Legs like Insane Asylum. (It also is in a curled up pose)",
-          "firstScannableUpdate": "Unfound",
+          "firstScannableUpdate": "Update 1",
           "firstWildCatchableUpdate": "Unfound",
           "subBiomes": {
             "Forest": [
@@ -19156,6 +19158,7 @@
         {
           "event": "halloween",
           "name": "Signilith Revealed Forme",
+          "firstScannableUpdate": "Halloween",
           "types": [
             "Earth",
             "Spectral"

@@ -21,7 +21,7 @@ const destinations = new Map([
   ['tal', '/'],
 ])
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzE1AAJ6sf5zW12k9wTvLRdX_NgYfIoH2ljo-ldCS7PljNG9btqKXjmign-2ny2r4mVlg/exec'
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxdMBtvITZc_PWwlQzZMU3H2JivtIkdkfn7ZB0Y6UvxXeZUIWXRsHOY01iN117fVkknjw/exec'
 
 const starQuestionnaire = {
   outside: {
@@ -121,7 +121,7 @@ export default function TimelinePage() {
   const [mode, setMode] = useState('terminal')
   const [status, setStatus] = useState('')
   const [chipDrops, setChipDrops] = useState(0)
-  const [starStep, setStarStep] = useState(() => (Math.floor(Math.random() * 372) === 0 ? 'outside' : ''))
+  const [starStep, setStarStep] = useState(() => (Math.floor(Math.random() * 30) === 0 ? 'outside' : ''))
   const [starMessage, setStarMessage] = useState('')
   const [starAnswer, setStarAnswer] = useState('')
   const [starSending, setStarSending] = useState(false)

@@ -1,16 +1,12 @@
 var SHEET_CONFIG = {
   mate: {
-    finalized: {
-      sheetName: "Finalized",
-      appearancesKey: "vote_appearances_finalized"
+    animates: {
+      sheetName: "Animates",
+      appearancesKey: "vote_appearances_animates"
     },
-    conceptualized: {
-      sheetName: "Conceptualized",
-      appearancesKey: "vote_appearances_conceptualized"
-    },
-    all: {
-      sheetName: "All Mons",
-      appearancesKey: "vote_appearances_all"
+    costumes: {
+      sheetName: "Costumes",
+      appearancesKey: "vote_appearances_costumes"
     }
   },
   song: {
@@ -27,7 +23,7 @@ var SHEET_CONFIG = {
 
 var DEFAULT_ENTITY_TYPE = "mate";
 var DEFAULT_MODES = {
-  mate: "all",
+  mate: "animates",
   song: "ost"
 };
 var HEADER_ROW = [["Name", "Votes", "Appearances", "Percentage"]];

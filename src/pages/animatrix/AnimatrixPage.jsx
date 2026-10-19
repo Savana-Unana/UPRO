@@ -1060,12 +1060,6 @@ export default function AnimatrixPage() {
           const bEventRank = getEventRank(b);
           if (aEventRank !== bEventRank) return aEventRank - bEventRank;
 
-          const aOrder = Number(a.__order);
-          const bOrder = Number(b.__order);
-          const aHasOrder = Number.isInteger(aOrder);
-          const bHasOrder = Number.isInteger(bOrder);
-          if (aHasOrder && bHasOrder && aOrder !== bOrder) return aOrder - bOrder;
-          if (aHasOrder !== bHasOrder) return aHasOrder ? -1 : 1;
         }
 
         const aId = getMateDisplayId(a);
@@ -1234,10 +1228,17 @@ export default function AnimatrixPage() {
       function getMateDisplayId(mate) {
         if (isMode(mate)) return null;
 
-        const mode = mate?.mode || mate?.__mode || "";
+        const displayMode = mate?.mode || mate?.__mode || "";
+        if (displayMode === "event") {
+          const original = resolveReferenceRoot(mate);
+          if (original && getReferenceKey(original) !== getReferenceKey(mate)) {
+            return getMateDisplayId(original);
+          }
+        }
+        const mode = displayMode === "event" ? mate.sourceMode || "base" : displayMode;
         const order = Number(mate?.__idOrder ?? mate?.__order);
 
-        if ((mode === "base" || mode === "event") && Number.isInteger(order)) {
+        if (mode === "base" && Number.isInteger(order)) {
           return order + 1;
         }
 
