@@ -180,14 +180,14 @@ function writeVoteRows_(sheet, rows) {
       };
     })
     .sort(function(a, b) {
-      if (b.votes !== a.votes) {
-        return b.votes - a.votes;
-      }
-
       var aPct = parseFloat(String(a.percentage).replace("%", "")) || 0;
       var bPct = parseFloat(String(b.percentage).replace("%", "")) || 0;
       if (bPct !== aPct) {
         return bPct - aPct;
+      }
+
+      if (b.votes !== a.votes) {
+        return b.votes - a.votes;
       }
 
       return a.name.localeCompare(b.name);

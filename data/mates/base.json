@@ -1530,7 +1530,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/Pretengerine.png",
+          "image": "assets/images/mates/goner/Pretengerine.png",
           "description": ""
         }
       ],
@@ -6663,7 +6663,7 @@
           "biomes": [
             "Badlands"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/lost/Cacculent.png",
           "etymology": "Cackle + Succulent",
           "firstScannableUpdate": "Update 2",
           "firstWildCatchableUpdate": "Update 2",
@@ -7885,7 +7885,7 @@
           "biomes": [
             "Badlands"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Graspit.png",
           "etymology": "Grasp + It",
           "firstScannableUpdate": "Unfound",
           "firstWildCatchableUpdate": "Unfound",
@@ -7929,7 +7929,7 @@
             "Badlands",
             "Canyon"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Ohmelisk.png",
           "etymology": "Obelisk + Ohm",
           "firstScannableUpdate": "Update 2",
           "firstWildCatchableUpdate": "Update 2",
@@ -10694,7 +10694,7 @@
             "Metaforest",
             "Swamp"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Buzzibee.png",
           "etymology": "Buzz + Bee",
           "firstScannableUpdate": "Update 3",
           "firstWildCatchableUpdate": "Update 3",
@@ -10792,7 +10792,7 @@
             "Metaforest",
             "Swamp"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Wasniach.png",
           "etymology": "Wasp + Chain Saw",
           "firstScannableUpdate": "Update 8",
           "firstWildCatchableUpdate": "Update 8",
@@ -20730,7 +20730,7 @@
           "biomes": [
             "New Canadia"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Frostent.png",
           "etymology": "Frosty + Omnipotent",
           "firstScannableUpdate": "Update 8",
           "firstWildCatchableUpdate": "Update 8"
@@ -22596,7 +22596,7 @@
           "biomes": [
             "Lab Fungen"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Poutglet.png",
           "etymology": "Pout + Glee + Outlet",
           "firstScannableUpdate": "Update 8",
           "firstWildCatchableUpdate": "Update 8"
@@ -22655,7 +22655,7 @@
           "biomes": [
             "Lab Fungen"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Flexoform.png",
           "etymology": "Flex + Form",
           "firstScannableUpdate": "Update 8",
           "firstWildCatchableUpdate": "Update 8"
@@ -32223,7 +32223,7 @@
           "biomes": [
             "Ieland"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Flapdrag.png",
           "etymology": "Flapjack + Dragon",
           "firstScannableUpdate": "Update 5",
           "firstWildCatchableUpdate": "Update 10",
@@ -32985,7 +32985,7 @@
           "biomes": [
             "Ieland"
           ],
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Ruok.png",
           "etymology": "\"Are you okay?\"",
           "firstScannableUpdate": "Update 10",
           "firstWildCatchableUpdate": "Update 10",
@@ -33953,7 +33953,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/OG.Purrl.png"
+          "image": "assets/images/mates/lost/OGPurrl.png"
         }
       ]
     }
@@ -34432,7 +34432,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/Mos.png"
+          "image": "assets/images/mates/goner/Sharpoon.png"
         }
       ],
       "base": [],
@@ -34633,7 +34633,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/Mos.png",
+          "image": "assets/images/mates/goner/Solaphim.png",
           "description": ""
         }
       ],
@@ -34931,7 +34931,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/Mos.png",
+          "image": "assets/images/mates/lost/Vinelurk.png",
           "description": ""
         }
       ],
@@ -34964,7 +34964,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/Mos.png",
+          "image": "assets/images/mates/lost/Vinetrap.png",
           "description": ""
         }
       ],
@@ -35174,7 +35174,7 @@
           "abilities": [],
           "moves": [],
           "obtainment": "",
-          "image": "assets/images/mates/lost/CaptureCapsule.gif",
+          "image": "assets/images/mates/lost/OldAnimated_Capsule.gif",
           "description": "",
           "versions": null
         }
