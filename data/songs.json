@@ -20,6 +20,16 @@
     "Version": "Update 1"
   },
   {
+    "name": "Perfecto (Lyricless)",
+    "file": "assets/audio/Perfecto_Lyricless.mp3",
+    "composer": "OctoKing",
+    "themeType": "Game Theme",
+    "progress": "Composed",
+    "description": "",
+    "description-title": "Perfecatoly's Ad Music",
+    "Version": "Update 1"
+  },
+  {
     "name": "Familiarity",
     "file": "assets/audio/Familiarity.mp3",
     "composer": "AriFilms",
@@ -154,7 +164,7 @@
     "file": "assets/audio/PizzaPasta.mp3",
     "composer": "OctoKing",
     "themeType": "Overworld Theme",
-    "progress": "Finalized",
+    "progress": "Composed",
     "description": "",
     "description-title": "Perfecatoly's Restaurant Theme",
     "Version": "Update 1"
