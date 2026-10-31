@@ -29273,7 +29273,7 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
+          "image": "assets/images/mates/goner/Pjouw.png",
           "etymology": "",
           "biomes": [
             "Meridian Bay",
@@ -35837,94 +35837,6 @@
       ],
       "base": [],
       "costumes": []
-    }
-  },
-  {
-    "name": "Solaphim",
-    "forms": {
-      "goner": [],
-      "sacred": [
-        {
-          "name": "Sacred Solaphim",
-          "types": [
-            "Air",
-            "Light"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "description": ""
-        }
-      ],
-      "costumes": [
-        {
-          "name": "LED Solaphim",
-          "types": [
-            "Air",
-            "Light"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": "",
-          "versions": "Update 8",
-          "evolvesTo": []
-        }
-      ],
-      "base": [
-        {
-          "name": "Solaphim",
-          "types": [
-            "Air",
-            "Light"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "biomes": [
-            "Sunline City"
-          ],
-          "image": "assets/images/mates/goner/Cristail.png",
-          "etymology": "Solar + Seraphim",
-          "firstScannableUpdate": "Update 8",
-          "firstWildCatchableUpdate": "Update 8"
-        }
-      ]
     }
   },
   {

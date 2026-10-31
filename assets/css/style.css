@@ -1341,9 +1341,13 @@ body.animatrix-page.animatrix-outline #detailsModal #mateImage {
     0 0 18px var(--outline-color, #0ff),
     0 0 28px var(--outline-color, #0ff);
 }
-/* Lost events keep their sprites, badges, and detail content monochrome. */
-.event-lost {
+/* Lost card content is monochrome; sprite hover and modal art retain color. */
+.card.event-lost > * {
   filter: grayscale(1);
+}
+.card.event-lost:hover > img:not(.rarity-shiver-badge),
+.card.event-lost:focus-within > img:not(.rarity-shiver-badge) {
+  filter: none;
 }
 .card.event-lost.biome-bg::before {
   display: none;

@@ -644,6 +644,8 @@ export default function AnimatrixPage() {
                 if ((mode === "sacred" || mode === "ace") &&
                     eventOriginals.has(`${getMateRef(mate)}:${getEventKey(mate)}`)) return true;
                 if (getEventKey(mate) === "lost") {
+                  // Lost alternate formes retain their own tabs and modal links.
+                  if (mode === "ncanon" || mode === "sacred" || mode === "ace") return true;
                   mate.sourceMode = mode;
                   mate.mode = "base";
                   mate.__mode = "base";
