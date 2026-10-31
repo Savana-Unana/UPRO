@@ -1664,6 +1664,30 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": "Update 10.5"
+        },
+        {
+          "name": "Remembered Espiorange",
+          "event": "halloween",
+          "types": [
+            "Gross"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "Sppeang",
+          "reference": "Backrooms"
         }
       ],
       "ncanon": [
@@ -2156,6 +2180,30 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": "Update 1"
+        },
+        {
+          "name": "Remembered Statipillar",
+          "event": "halloween",
+          "types": [
+            "Electric"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "Stapler",
+          "reference": "Backrooms"
         }
       ],
       "goner": []
@@ -3055,6 +3103,31 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": "Update 4"
+        },
+        {
+          "name": "Remembered Dribtar",
+          "event": "halloween",
+          "types": [
+            "Normal",
+            "Air"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "Rar Biid",
+          "reference": "Backrooms"
         }
       ],
       "ncanon": [
@@ -3299,6 +3372,29 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": null
+        },
+        {
+          "name": "Ghost Ircencaat",
+          "event": "halloween",
+          "types": [
+            "Dark"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "An Ircencaat that is wearing a cut up table spread."
         }
       ],
       "goner": []
@@ -4921,6 +5017,29 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": "Update 5"
+        },
+        {
+          "name": "Cauldron Bowlfish",
+          "event": "halloween",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "A Bowlfish modeled after a cauldron."
         }
       ],
       "goner": [],
@@ -5761,6 +5880,31 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": "Update 10.5"
+        },
+        {
+          "name": "Remembered Ghouliath",
+          "event": "halloween",
+          "types": [
+            "Spectral",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Paragon",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "Goolieeth",
+          "reference": "Backrooms"
         }
       ],
       "ncanon": [
@@ -7221,6 +7365,218 @@
     }
   },
   {
+    "name": "Unoa",
+    "forms": {
+      "base": [
+        {
+          "name": "Unoa",
+          "types": [
+            "Normal",
+            "Ice"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Unob",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Uno + ?A?",
+          "biomes": [
+            "Badlands",
+            "Oasis",
+            "Têtignée Island"
+          ],
+          "firstScannableUpdate": "Update 2",
+          "firstWildCatchableUpdate": "Update 2",
+          "event": "Lost"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Gillager",
+          "types": [
+            "Normal",
+            "Fire"
+          ],
+          "paraTypes": [
+            "Ice"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Gillalian",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Unob",
+    "forms": {
+      "base": [
+        {
+          "name": "Unob",
+          "types": [
+            "Normal",
+            "Ice"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Unoc",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Uno + ?B?",
+          "biomes": [
+            "Badlands",
+            "Oasis",
+            "Têtignée Island"
+          ],
+          "firstScannableUpdate": "Update 2",
+          "firstWildCatchableUpdate": "Update 2",
+          "event": "Lost"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Gillalian",
+          "types": [
+            "Normal",
+            "Fire"
+          ],
+          "paraTypes": [
+            "Ice"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Gillain",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Unoc",
+    "forms": {
+      "base": [
+        {
+          "name": "Unoc",
+          "types": [
+            "Savage",
+            "Ice"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Uno + ?A?",
+          "biomes": [
+            "Badlands",
+            "Oasis",
+            "Têtignée Island"
+          ],
+          "firstScannableUpdate": "Unfound",
+          "firstWildCatchableUpdate": "Unfound",
+          "event": "Lost"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Gillain",
+          "types": [
+            "Savage",
+            "Fire"
+          ],
+          "paraTypes": [
+            "Ice"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
+        }
+      ]
+    }
+  },
+  {
     "name": "Flikflek",
     "forms": {
       "base": [
@@ -8197,6 +8553,44 @@
         }
       ],
       "goner": []
+    }
+  },
+  {
+    "name": "Vantore",
+    "forms": {
+      "base": [
+        {
+          "name": "Vantore",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [
+            "Dark"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Vanta + Manta + Torso",
+          "biomes": [
+            "Oasis",
+            "Ocean",
+            "Meridian Bay",
+            "Axo-Skerry"
+          ],
+          "firstScannableUpdate": "Update 2",
+          "firstWildCatchableUpdate": "Update 2"
+        }
+      ]
     }
   },
   {
@@ -9863,7 +10257,7 @@
           "firstWildCatchableUpdate": "Update 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -9958,7 +10352,7 @@
           "firstWildCatchableUpdate": "Update 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10050,7 +10444,7 @@
           "firstWildCatchableUpdate": "Demo 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10077,6 +10471,168 @@
           "obtainment": "",
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": ""
+        }
+      ]
+    }
+  },
+  {
+    "name": "Quatroa",
+    "forms": {
+      "base": [
+        {
+          "name": "Quatroa",
+          "types": [
+            "Gross"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Quatrob",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Quatro + ?A?",
+          "biomes": [
+            "Metaforest"
+          ],
+          "firstScannableUpdate": "Update 3",
+          "firstWildCatchableUpdate": "Update 3",
+          "event": "Lost",
+          "subBiomes": {
+            "Metaforest": [
+              "Mushroom Marsh"
+            ]
+          }
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Whyucap",
+          "types": [
+            "Gross"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Nowicap",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
+        }
+      ],
+      "ncanon": [
+        {
+          "name": "Imdacaptainnow",
+          "types": [
+            "Gross"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Quatrob",
+    "forms": {
+      "base": [
+        {
+          "name": "Quatrob",
+          "types": [
+            "Gross",
+            "Earth"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Quatro + ?B?",
+          "biomes": [
+            "Metaforest"
+          ],
+          "firstScannableUpdate": "Unfound",
+          "firstWildCatchableUpdate": "Unfound",
+          "event": "Lost",
+          "subBiomes": {
+            "Metaforest": [
+              "Mushroom Marsh"
+            ]
+          }
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Nowicap",
+          "types": [
+            "Gross",
+            "Earth"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
         }
       ]
     }
@@ -10120,7 +10676,7 @@
           "firstWildCatchableUpdate": "Demo 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10189,7 +10745,7 @@
           "firstWildCatchableUpdate": "Demo 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10252,7 +10808,7 @@
           "firstWildCatchableUpdate": "Unfound",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10315,7 +10871,7 @@
           "firstWildCatchableUpdate": "Update 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10406,7 +10962,7 @@
           "firstWildCatchableUpdate": "Update 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10504,7 +11060,7 @@
           "firstWildCatchableUpdate": "Update 3",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -10602,7 +11158,7 @@
           "firstWildCatchableUpdate": "Update 8",
           "subBiomes": {
             "Metaforest": [
-              "Mushroom Fields"
+              "Mushroom Marsh"
             ]
           }
         }
@@ -14705,6 +15261,70 @@
     }
   },
   {
+    "name": "Cincoa",
+    "forms": {
+      "base": [
+        {
+          "name": "Cincoa",
+          "types": [
+            "Fire",
+            "Earth"
+          ],
+          "paraTypes": [
+            "Metal"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Cinco + ?A?",
+          "biomes": [
+            "Têtignée Island"
+          ],
+          "firstScannableUpdate": "Update 6",
+          "firstWildCatchableUpdate": "Update 6",
+          "event": "Lost"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Lavavore",
+          "types": [
+            "Fire",
+            "Earth"
+          ],
+          "paraTypes": [
+            "Metal"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "event": "Lost"
+        }
+      ]
+    }
+  },
+  {
     "name": "Forgalyss",
     "forms": {
       "base": [
@@ -18372,6 +18992,30 @@
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": "",
           "versions": "Update 5"
+        },
+        {
+          "name": "Apparition Dressiani",
+          "event": "halloween",
+          "types": [
+            "Light",
+            "Mystic"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "Dressiani with a gray gown, and a flower crown."
         }
       ],
       "ncanon": [
@@ -18811,6 +19455,163 @@
     }
   },
   {
+    "name": "Dosa",
+    "forms": {
+      "base": [
+        {
+          "name": "Dosa",
+          "types": [
+            "Normal",
+            "Metal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Empire City"
+          ],
+          "image": "assets/images/mates/lost/Thoot.png",
+          "description": "",
+          "etymology": "Dos + ?A?",
+          "event": "Lost",
+          "firstScannableUpdate": "Update 7",
+          "firstWildCatchableUpdate": "Unfound"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Thoot",
+          "types": [
+            "Lucid"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/S.Thoot.png",
+          "description": "",
+          "event": "Lost"
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Dosa",
+          "types": [
+            "Normal",
+            "Metal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": [],
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "ref": "Dosa",
+          "event": "Lost"
+        },
+        {
+          "name": "Cat Piano Dosa",
+          "types": [
+            "Normal",
+            "Metal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "ref": "Dosa",
+          "event": "Lost"
+        },
+        {
+          "name": "Suit Dosa",
+          "types": [
+            "Normal",
+            "Metal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "ref": "Dosa",
+          "event": "Lost"
+        },
+        {
+          "name": "Ringmaster Dosa",
+          "types": [
+            "Normal",
+            "Metal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "ref": "Dosa",
+          "event": "Lost"
+        }
+      ]
+    }
+  },
+  {
     "name": "Tortear",
     "forms": {
       "base": [
@@ -18952,12 +19753,10 @@
         {
           "name": "Vigilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -18991,12 +19790,10 @@
           "name": "Vigilith Revealed Forme",
           "firstScannableUpdate": "Halloween",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -19017,12 +19814,10 @@
         {
           "name": "Empire Vigilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -19043,12 +19838,10 @@
           "name": "Empire Vigilith Revealed Forme",
           "firstScannableUpdate": "Halloween",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -19069,12 +19862,10 @@
         {
           "name": "LED Vigilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Store Entry": "No entry yet",
@@ -19091,12 +19882,10 @@
         {
           "name": "Nurse Vigilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Store Entry": "No entry yet",
@@ -19121,12 +19910,10 @@
         {
           "name": "Signilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -19160,12 +19947,10 @@
           "name": "Signilith Revealed Forme",
           "firstScannableUpdate": "Halloween",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -19186,12 +19971,10 @@
         {
           "name": "LED Signilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Store Entry": "No entry yet",
@@ -19208,12 +19991,10 @@
         {
           "name": "Teacher Signilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Store Entry": "No entry yet",
@@ -19239,12 +20020,10 @@
         {
           "name": "Agilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -19273,11 +20052,11 @@
           "event": "halloween",
           "name": "Agilith Revealed Forme",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
           "paraTypes": [
-            ""
+            "Savage"
           ],
           "rarity": "Normal",
           "dexEntries": {
@@ -19299,12 +20078,10 @@
         {
           "name": "LED Agilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Store Entry": "No entry yet",
@@ -19321,12 +20098,10 @@
         {
           "name": "Weeping Angel Agilith",
           "types": [
-            "Earth",
-            "Spectral"
+            "Spectral",
+            "Earth"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Normal",
           "dexEntries": {
             "Store Entry": "No entry yet",
@@ -21682,6 +22457,31 @@
           "image": "assets/images/mates/other/L.Prismoth.png",
           "description": "",
           "versions": "Update 8"
+        },
+        {
+          "name": "Knightly Prismoth",
+          "event": "halloween",
+          "types": [
+            "Light",
+            "Gross"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5",
+          "visualAppearance": "Prismoth referencing Hollow Knight.",
+          "reference": "Hollow Knight"
         }
       ],
       "goner": []
@@ -22452,6 +23252,69 @@
         }
       ],
       "goner": []
+    }
+  },
+  {
+    "name": "Tresa",
+    "forms": {
+      "base": [
+        {
+          "name": "Tresa",
+          "types": [
+            "Metal",
+            "Dark"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/Relion.png",
+          "etymology": "Tres + ?A?",
+          "biomes": [
+            "Lab Fungen"
+          ],
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8",
+          "event": "Lost"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Relion",
+          "types": [
+            "Metal",
+            "Dark"
+          ],
+          "paraTypes": [
+            "Light",
+            "Mystic"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/Relion.png",
+          "description": "",
+          "event": "Lost"
+        }
+      ]
     }
   },
   {
@@ -24505,6 +25368,309 @@
     }
   },
   {
+    "name": "Mammint",
+    "forms": {
+      "base": [
+        {
+          "name": "Mammint",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Mintusk",
+              "level": null,
+              "info": "Level up"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "visualDescription": "",
+          "etymology": "Mammoth + Mint",
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10",
+          "subBiomes": {
+            "Ieland": [
+              "Hot Streak / Dessert Desert"
+            ]
+          }
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Mammint",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Sacred Mammint",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Sacred Mintusk",
+              "level": null,
+              "info": "Level up"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": ""
+        }
+      ],
+      "goner": []
+    }
+  },
+  {
+    "name": "Mintusk",
+    "forms": {
+      "base": [
+        {
+          "name": "Mintusk",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Menthadon",
+              "level": null,
+              "info": "Level up"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "visualDescription": "",
+          "etymology": "Mint + Tusk",
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10",
+          "subBiomes": {
+            "Ieland": [
+              "Hot Streak / Dessert Desert"
+            ]
+          }
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Mintusk",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Sacred Mintusk",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Sacred Menthadon",
+              "level": null,
+              "info": "Level up"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": ""
+        }
+      ],
+      "goner": []
+    }
+  },
+  {
+    "name": "Menthadon",
+    "forms": {
+      "base": [
+        {
+          "name": "Menthadon",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "visualDescription": "",
+          "etymology": "Menthal + Mammodon",
+          "firstScannableUpdate": "Update 10",
+          "firstWildCatchableUpdate": "Update 10",
+          "subBiomes": {
+            "Ieland": [
+              "Hot Streak / Dessert Desert"
+            ]
+          }
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Menthadon",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10"
+        }
+      ],
+      "sacred": [
+        {
+          "name": "Sacred Menthadon",
+          "types": [
+            "Mystic",
+            "Earth"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": ""
+        }
+      ],
+      "goner": []
+    }
+  },
+  {
     "name": "Macarino",
     "forms": {
       "base": [
@@ -25663,8 +26829,7 @@
           "event": "halloween",
           "name": "Shiver Molds",
           "types": [
-            "Earth",
-            "Spectral"
+            "Lucid"
           ],
           "paraTypes": [
             ""
@@ -25701,8 +26866,7 @@
           "event": "halloween",
           "name": "Shiver Molds V2.0",
           "types": [
-            "Earth",
-            "Spectral"
+            "Lucid"
           ],
           "paraTypes": [
             ""
@@ -25728,8 +26892,7 @@
           "event": "halloween",
           "name": "LED Shiver Molds",
           "types": [
-            "Earth",
-            "Spectral"
+            "Lucid"
           ],
           "paraTypes": [
             ""
@@ -25760,6 +26923,7 @@
           "event": "halloween",
           "name": "Betophage",
           "types": [
+            "Earth",
             "Metal"
           ],
           "paraTypes": [
@@ -25797,6 +26961,7 @@
           "event": "halloween",
           "name": "Betophage V2.0",
           "types": [
+            "Earth",
             "Metal"
           ],
           "paraTypes": [
@@ -25823,6 +26988,7 @@
           "event": "halloween",
           "name": "LED Betophage",
           "types": [
+            "Earth",
             "Metal"
           ],
           "paraTypes": [
@@ -25852,7 +27018,7 @@
         {
           "name": "Waxilo",
           "types": [
-            "Metal"
+            "Artillery"
           ],
           "paraTypes": [
             ""
@@ -25889,7 +27055,7 @@
         {
           "name": "Waxilo V2.0",
           "types": [
-            "Metal"
+            "Artillery"
           ],
           "paraTypes": [
             ""
@@ -25915,7 +27081,7 @@
         {
           "name": "LED Waxilo",
           "types": [
-            "Metal"
+            "Artillery"
           ],
           "paraTypes": [
             ""
@@ -25966,7 +27132,7 @@
           "event": "halloween",
           "name": "Drawrlin",
           "types": [
-            "Normal"
+            "Savage"
           ],
           "paraTypes": [
             ""
@@ -26002,7 +27168,7 @@
         {
           "name": "Sacred Drawrlin",
           "types": [
-            "Normal"
+            "Savage"
           ],
           "paraTypes": [
             ""
@@ -26028,7 +27194,7 @@
         {
           "name": "LED Drawrlin",
           "types": [
-            "Normal"
+            "Savage"
           ],
           "paraTypes": [
             ""
@@ -26052,17 +27218,111 @@
     }
   },
   {
+    "name": "Skroptera",
+    "forms": {
+      "base": [
+        {
+          "event": "halloween",
+          "name": "Skroptera",
+          "types": [
+            "Air",
+            "Metal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Shiver",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Operation UPRO"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": "",
+          "etymology": "Scrap + Pteron",
+          "subBiomes": {
+            "Operation UPRO": [
+              "Operation Pseudo"
+            ]
+          },
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5"
+        }
+      ],
+      "sacred": [
+        {
+          "event": "halloween",
+          "name": "Skroptera V2.0",
+          "types": [
+            "Air",
+            "Metal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Shiver",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": ""
+        }
+      ],
+      "costumes": [
+        {
+          "event": "halloween",
+          "name": "LED Skroptera",
+          "types": [
+            "Air",
+            "Metal"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Shiver",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5"
+        }
+      ],
+      "goner": []
+    }
+  },
+  {
     "name": "Shiver Dupes",
     "forms": {
       "base": [
         {
           "name": "Shiver Dupes",
           "types": [
-            "Metal"
+            "Normal"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Shiver",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -26095,11 +27355,9 @@
         {
           "name": "Shiver Dupes V2.0",
           "types": [
-            "Metal"
+            "Normal"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Shiver",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -26121,11 +27379,9 @@
         {
           "name": "LED Shiver Dupes",
           "types": [
-            "Metal"
+            "Normal"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Shiver, Mode",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -26144,11 +27400,9 @@
         {
           "name": "Stone Shiver Dupes",
           "types": [
-            "Metal"
+            "Normal"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Shiver, Mode",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -26167,11 +27421,9 @@
         {
           "name": "Docto Shiver Dupes",
           "types": [
-            "Metal"
+            "Normal"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Shiver, Mode",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -26190,11 +27442,9 @@
         {
           "name": "Playtime Shiver Dupes",
           "types": [
-            "Metal"
+            "Normal"
           ],
-          "paraTypes": [
-            ""
-          ],
+          "paraTypes": [],
           "rarity": "Shiver, Mode",
           "dexEntries": {
             "Discovered": "No entry yet",
@@ -26583,159 +27833,6 @@
           "obtainment": "",
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": ""
-        }
-      ]
-    }
-  },
-  {
-    "name": "Thoot",
-    "forms": {
-      "ncanon": [
-        {
-          "name": "Thoot",
-          "types": [
-            "Lucid"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "biomes": [],
-          "image": "assets/images/mates/lost/Thoot.png",
-          "description": "",
-          "ref": "Thoot"
-        },
-        {
-          "name": "Sacred Thoot",
-          "types": [
-            "Lucid"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Mode",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/S.Thoot.png",
-          "description": "",
-          "ref": "Thoot"
-        }
-      ],
-      "base": [],
-      "goner": [],
-      "costumes": [
-        {
-          "name": "LED Thoot",
-          "types": [
-            "Lucid"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": [],
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": "",
-          "ref": "Thoot"
-        },
-        {
-          "name": "Cat Piano Thoot",
-          "types": [
-            "Lucid"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Mode",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": "",
-          "ref": "Thoot"
-        },
-        {
-          "name": "Suit Thoot",
-          "types": [
-            "Lucid"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Mode",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": "",
-          "ref": "Thoot"
-        },
-        {
-          "name": "Ringmaster Thoot",
-          "types": [
-            "Lucid"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Mode",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": "",
-          "ref": "Thoot"
         }
       ]
     }
@@ -28154,6 +29251,42 @@
     }
   },
   {
+    "name": "Pjouw",
+    "forms": {
+      "base": [
+        {
+          "name": "Pjouw",
+          "types": [
+            "Electric",
+            "Spectral"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "",
+          "biomes": [
+            "Meridian Bay",
+            "Shiver Plains",
+            "Empire City"
+          ],
+          "firstScannableUpdate": "Update 4",
+          "firstWildCatchableUpdate": "Update 4"
+        }
+      ]
+    }
+  },
+  {
     "name": "Gastrover",
     "forms": {
       "sacred": [
@@ -28333,7 +29466,7 @@
           "event": "halloween",
           "name": "Shiver Pests V2.0",
           "types": [
-            "Metal"
+            "Gross"
           ],
           "paraTypes": [
             ""
@@ -30804,7 +31937,12 @@
             "Experienced": "No entry yet",
             "Callside": "No entry yet"
           },
-          "evolvesTo": [],
+          "evolvesTo": [
+            {
+              "name": "Sacred Solaphim",
+              "level": null
+            }
+          ],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -30854,6 +31992,99 @@
             "Experienced": "No entry yet",
             "Callside": "No entry yet"
           },
+          "evolvesTo": [
+            {
+              "name": "Solaphim",
+              "level": null
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Sunline City"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Crystal + Tail",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Solaphim",
+    "forms": {
+      "goner": [],
+      "sacred": [
+        {
+          "name": "Sacred Solaphim",
+          "types": [
+            "Air",
+            "Light"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "description": ""
+        }
+      ],
+      "costumes": [
+        {
+          "name": "LED Solaphim",
+          "types": [
+            "Air",
+            "Light"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 8",
+          "evolvesTo": []
+        }
+      ],
+      "base": [
+        {
+          "name": "Solaphim",
+          "types": [
+            "Air",
+            "Light"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -30863,7 +32094,7 @@
             "Sunline City"
           ],
           "image": "assets/images/mates/goner/Cristail.png",
-          "etymology": "Crystal + Tail",
+          "etymology": "Solar + Seraphim",
           "firstScannableUpdate": "Update 8",
           "firstWildCatchableUpdate": "Update 8"
         }
@@ -34611,15 +35842,16 @@
   {
     "name": "Solaphim",
     "forms": {
-      "goner": [
+      "goner": [],
+      "sacred": [
         {
-          "name": "Solaphim",
+          "name": "Sacred Solaphim",
           "types": [
             "Air",
             "Light"
           ],
           "paraTypes": [
-            "Fire"
+            ""
           ],
           "rarity": "Normal",
           "dexEntries": {
@@ -34633,12 +35865,66 @@
           "moves": [],
           "height": null,
           "color": null,
-          "image": "assets/images/mates/goner/Solaphim.png",
+          "image": "assets/images/mates/lost/MissingNo.png",
           "description": ""
         }
       ],
-      "base": [],
-      "costumes": []
+      "costumes": [
+        {
+          "name": "LED Solaphim",
+          "types": [
+            "Air",
+            "Light"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 8",
+          "evolvesTo": []
+        }
+      ],
+      "base": [
+        {
+          "name": "Solaphim",
+          "types": [
+            "Air",
+            "Light"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Sunline City"
+          ],
+          "image": "assets/images/mates/goner/Cristail.png",
+          "etymology": "Solar + Seraphim",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8"
+        }
+      ]
     }
   },
   {
@@ -36024,39 +37310,6 @@
           "height": null,
           "color": null,
           "image": "assets/images/mates/lost/MissingNo.png",
-          "description": ""
-        }
-      ],
-      "base": [],
-      "goner": [],
-      "costumes": []
-    }
-  },
-  {
-    "name": "Relion",
-    "forms": {
-      "ncanon": [
-        {
-          "name": "Relion",
-          "types": [
-            "Light"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/Relion.png",
           "description": ""
         }
       ],

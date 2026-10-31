@@ -32,7 +32,6 @@ function runPageScript() {
   const state = {
     pool: [],
     rounds: {},
-    randomRound: false,
     dailyKey: "",
     activeTab: CLUE_CONFIGS[0].id
   };
@@ -126,6 +125,7 @@ function runPageScript() {
         target: null,
         guesses: [],
         finished: false,
+        randomRound: false,
         pickerBtn: article.querySelector(`#guessrPickerBtn-${config.id}`),
         pickerLabel: article.querySelector(`#guessrPickerLabel-${config.id}`),
         pickerPanel: article.querySelector(`#guessrPickerPanel-${config.id}`),
@@ -157,6 +157,7 @@ function runPageScript() {
         closePicker(round);
       }
     });
+    updateGlobalActions();
   }
 
   function wireGlobalEvents() {
@@ -227,7 +228,7 @@ function runPageScript() {
   }
 
   function startDailyRound() {
-    state.randomRound = false;
+    Object.values(state.rounds).forEach(round => { round.randomRound = false; });
     state.dailyKey = getDailyStorageKey();
     modeLabel.textContent = "Two daily clue hunts, two different animates";
     assignTargets(pickDistinctTargets(getDailySeed()));
@@ -237,12 +238,17 @@ function runPageScript() {
   }
 
   function startRandomRound() {
-    state.randomRound = true;
-    state.dailyKey = "";
-    modeLabel.textContent = "Random round with two different animates";
-    assignTargets(pickDistinctTargets(`${Date.now()}-${Math.random()}`));
-    resetRounds();
-    renderAll();
+    const round = state.rounds[state.activeTab];
+    if (!round?.target) return;
+    saveDailyProgress();
+    const otherTargets = Object.values(state.rounds)
+      .filter(other => other !== round).map(other => other.target);
+    const candidates = state.pool.filter(target => target !== round.target && !otherTargets.includes(target));
+    const available = candidates.length ? candidates : state.pool.filter(target => target !== round.target);
+    round.target = available[Math.floor(Math.random() * available.length)];
+    round.randomRound = true;
+    resetRound(round);
+    updateGlobalActions();
   }
 
   function assignTargets(targets) {
@@ -251,19 +257,21 @@ function runPageScript() {
     });
   }
 
-  function resetRounds() {
-    Object.values(state.rounds).forEach(round => {
-      round.guesses = [];
-      round.finished = false;
-      round.pickerBtn.disabled = false;
-      round.pickerLabel.textContent = "Guess the animate";
-      round.status.textContent = `You have ${MAX_GUESSES} guesses for ${round.config.title}.`;
-      renderOptions(round, "");
-      renderBoard(round);
-      renderClue(round);
-    });
+  function resetRound(round) {
+    closePicker(round);
+    round.guesses = [];
+    round.finished = false;
+    round.pickerBtn.disabled = false;
+    round.pickerLabel.textContent = "Guess the animate";
+    round.searchInput.value = "";
+    renderOptions(round, "");
+    renderBoard(round);
+    renderClue(round);
+    updateRoundStatus(round);
+  }
 
-    randomBtn.hidden = true;
+  function resetRounds() {
+    Object.values(state.rounds).forEach(resetRound);
   }
 
   function restoreDailyProgress() {
@@ -417,7 +425,10 @@ function runPageScript() {
 
     const image = new Image();
     image.decoding = "async";
+    const clueVersion = (round.clueVersion || 0) + 1;
+    round.clueVersion = clueVersion;
     image.onload = () => {
+      if (round.clueVersion !== clueVersion) return;
       try {
         const clueData = buildClueData(image, round.config.id);
 
@@ -444,6 +455,7 @@ function runPageScript() {
       }
     };
     image.onerror = () => {
+      if (round.clueVersion !== clueVersion) return;
       if (round.config.id === "blackout") {
         round.clueFallback.textContent = "Clue unavailable.";
       }
@@ -476,7 +488,7 @@ function runPageScript() {
     }
 
     const rawPalette = extractPalette(context.getImageData(0, 0, width, height).data);
-    return sortPalette(rawPalette).slice(0, 24);
+    return rawPalette.slice(0, 24);
   }
 
   function extractPalette(pixels) {
@@ -499,61 +511,6 @@ function runPageScript() {
         const [red, green, blue] = key.split(",").map(Number);
         return rgbToHex(red, green, blue);
       });
-  }
-
-  function sortPalette(colors) {
-    return colors.slice().sort((left, right) => {
-      const leftHsl = hexToHsl(left);
-      const rightHsl = hexToHsl(right);
-
-      const leftNeutral = leftHsl.s < 0.12;
-      const rightNeutral = rightHsl.s < 0.12;
-      if (leftNeutral && rightNeutral) return rightHsl.l - leftHsl.l;
-      if (leftNeutral) return 1;
-      if (rightNeutral) return -1;
-
-      const leftHue = normalizeHueOrder(leftHsl.h);
-      const rightHue = normalizeHueOrder(rightHsl.h);
-      if (leftHue !== rightHue) return leftHue - rightHue;
-      if (leftHsl.l !== rightHsl.l) return rightHsl.l - leftHsl.l;
-      return rightHsl.s - leftHsl.s;
-    });
-  }
-
-  function normalizeHueOrder(hue) {
-    return hue < 0 ? 999 : ((hue - 360) % 360 + 360) % 360;
-  }
-
-  function hexToHsl(hex) {
-    const red = parseInt(hex.slice(1, 3), 16) / 255;
-    const green = parseInt(hex.slice(3, 5), 16) / 255;
-    const blue = parseInt(hex.slice(5, 7), 16) / 255;
-    const max = Math.max(red, green, blue);
-    const min = Math.min(red, green, blue);
-    const lightness = (max + min) / 2;
-    const delta = max - min;
-
-    if (delta === 0) {
-      return { h: -1, s: 0, l: lightness };
-    }
-
-    const saturation = delta / (1 - Math.abs(2 * lightness - 1));
-    let hue;
-
-    switch (max) {
-      case red:
-        hue = 60 * (((green - blue) / delta) % 6);
-        break;
-      case green:
-        hue = 60 * (((blue - red) / delta) + 2);
-        break;
-      default:
-        hue = 60 * (((red - green) / delta) + 4);
-        break;
-    }
-
-    if (hue < 0) hue += 360;
-    return { h: hue, s: saturation, l: lightness };
   }
 
   function quantizeChannel(value) {
@@ -580,16 +537,22 @@ function runPageScript() {
   }
 
   function updateGlobalActions() {
-    const allFinished = Object.values(state.rounds).every(round => round.finished);
-    randomBtn.hidden = !allFinished;
+    const round = state.rounds[state.activeTab];
+    randomBtn.hidden = !round?.target;
+    randomBtn.textContent = `Reload ${round?.config.title || "clue"}`;
+    if (round?.target) {
+      modeLabel.textContent = `${round.config.title}: ${round.randomRound ? "Random round" : "Daily round"}`;
+    }
   }
 
   function saveDailyProgress() {
-    if (state.randomRound || !state.dailyKey) return;
-    const payload = {
-      targets: Object.fromEntries(CLUE_CONFIGS.map(config => [config.id, state.rounds[config.id].target?.name || ""])),
-      guesses: Object.fromEntries(CLUE_CONFIGS.map(config => [config.id, state.rounds[config.id].guesses.map(entry => entry.animate.name)]))
-    };
+    if (!state.dailyKey) return;
+    const saved = loadDailyProgress();
+    const payload = { targets: { ...saved?.targets }, guesses: { ...saved?.guesses } };
+    Object.values(state.rounds).filter(round => !round.randomRound).forEach(round => {
+      payload.targets[round.config.id] = round.target?.name || "";
+      payload.guesses[round.config.id] = round.guesses.map(entry => entry.animate.name);
+    });
     try {
       localStorage.setItem(state.dailyKey, JSON.stringify(payload));
     } catch (error) {

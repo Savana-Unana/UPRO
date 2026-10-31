@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { buildSongIds } from '../../utils/songData'
 
 const pageStyles = `
 @font-face {
@@ -907,11 +908,12 @@ const progressOrder = ['Untouched', 'Composed', 'Finalized']
 
 const defaultCoverArt = 'assets/images/ui/Placeholder.png'
 
-function normalizeSong(entry, orderIndex) {
+function normalizeSong(entry, orderIndex, songIds) {
   const file = typeof entry.file === 'string' ? entry.file.trim() : ''
 
   return {
     key: `${entry.name}-${entry.file || orderIndex}`,
+    id: songIds.get(entry.name),
     name: entry.name || 'Unknown Song',
     composer: entry.composer || 'Unknown',
     themeType: themeTypeOrder.includes(entry.themeType) ? entry.themeType : 'Overworld Theme',
@@ -1168,7 +1170,8 @@ export default function OstPage() {
         if (cancelled) return
         const orderedSongNames = Array.isArray(songOrder) ? songOrder : []
         const orderRank = new Map(orderedSongNames.map((name, index) => [name, index]))
-        const nextTracks = data.map((entry, index) => normalizeSong(entry, orderRank.get(entry.name) ?? (orderedSongNames.length + index)))
+        const songIds = buildSongIds(data, orderedSongNames)
+        const nextTracks = data.map((entry, index) => normalizeSong(entry, orderRank.get(entry.name) ?? (orderedSongNames.length + index), songIds))
         setInfo({
           composers: Array.isArray(sharedInfo?.composers) ? sharedInfo.composers : [],
           themeTypes: Array.isArray(sharedInfo?.themeTypes) ? sharedInfo.themeTypes : [],
@@ -1548,7 +1551,7 @@ export default function OstPage() {
                       }
                     }}
                   >
-                    <div className="ost-track-number">{Number.isFinite(track.order) ? track.order + 1 : index + 1}</div>
+                    <div className="ost-track-number">{track.id ?? index + 1}</div>
                     <img className="ost-track-cover" src={getTrackCover(track)} onError={event => { event.currentTarget.src = defaultCoverArt }} alt="" />
                     <div className="ost-track-title-cell">
                       <div>

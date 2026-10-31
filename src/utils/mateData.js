@@ -23,7 +23,7 @@ const subBiomeImages = {
   Metaforest: {
     Rainforest: "Metaforest-Rainforest.png",
     "Cherry Grove": "Metaforest-CherryGrove.png",
-    "Mushroom Fields": "Metaforest-MushroomFields.png",
+    "Mushroom Marsh": "Metaforest-MushroomFields.png",
     "Garden Grounds": "Metaforest-GardenGrounds.png"
   },
   "Perfecatoly Plains": {
@@ -116,6 +116,13 @@ function getOutputMode(mode, sourceKind) {
   return mode;
 }
 
+export function inferMateEvent(form) {
+  const updates = [form.firstScannableUpdate, form.firstWildCatchableUpdate,
+    form.versions, form.version, form.Version].flat();
+  const halloween = updates.some(value => /^(?:Update|Demo)\s+10\.5$/i.test(String(value || "").trim()));
+  return halloween ? { ...form, event: "halloween" } : form;
+}
+
 function isEventForm(form) {
   return form?.event !== undefined && form?.event !== null;
 }
@@ -146,9 +153,10 @@ export function expandGroupedMateData(groups, sourceKind = "base", options = {})
       if (!buckets[outputMode] || !Array.isArray(forms)) return;
       forms.forEach(form => {
         if (!form || typeof form !== "object") return;
-        if (eventOnly && !isEventForm(form)) return;
+        const expanded = inferMateEvent(applyInheritedFields(form, baseForm, mode));
+        if (eventOnly && !isEventForm(expanded)) return;
         buckets[outputMode].push({
-          ...applyInheritedFields(form, baseForm, mode),
+          ...expanded,
           ref: form.ref || groupName,
           mode: outputMode,
           __groupName: groupName

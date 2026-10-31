@@ -631,10 +631,25 @@ export default function AnimatrixPage() {
               event: [] // initialize event
             };
 
-            // now safe to filter and push to event
+            const eventOriginals = new Set(
+              ["base", "goner", "ncanon"].flatMap(mode => (allData[mode] || [])
+                .filter(mate => getEventKey(mate))
+                .map(mate => `${getMateRef(mate)}:${getEventKey(mate)}`))
+            );
+            const lostMates = [];
+            // Lost events belong in Base; other events use the Events tab.
             Object.entries(allData).forEach(([mode, mates]) => {
-              if (mode === "event" || mode === "evolution") return; // skip non-display pools
+              if (mode === "event" || mode === "evolution" || mode === "costumes") return; // Keep formes and costumes available to their animate modals.
               allData[mode] = mates.filter(mate => {
+                if ((mode === "sacred" || mode === "ace") &&
+                    eventOriginals.has(`${getMateRef(mate)}:${getEventKey(mate)}`)) return true;
+                if (getEventKey(mate) === "lost") {
+                  mate.sourceMode = mode;
+                  mate.mode = "base";
+                  mate.__mode = "base";
+                  lostMates.push(mate);
+                  return false;
+                }
                 if (mate.event !== undefined && mate.event !== null) {
                   mate.sourceMode = mode;    // preserve original tab for event-specific logic
                   mate.mode = "event";       // mark it as event
@@ -646,6 +661,8 @@ export default function AnimatrixPage() {
               });
             });
 
+            allData.base.push(...lostMates);
+            annotateMateOrder("base", allData.base);
             annotateMateOrder("event", allData.event);
             rebuildRefIndexes();
             rebuildEvolutionStageIndexes();
@@ -1392,7 +1409,10 @@ export default function AnimatrixPage() {
       }
 
       function applyCardShellStyle(card, mate, listViewCard) {
-        if (listViewCard) return;
+        if (listViewCard) {
+          if (getEventKey(mate) === "lost") applyMateStyle(card, mate);
+          return;
+        }
 
         card.classList.toggle("rarity-paragon", isParagon(mate));
         const firstBiome = getMateBiomes(mate)[0];
@@ -1468,6 +1488,12 @@ export default function AnimatrixPage() {
           : sourceData;
         animatrixData = combinedSourceData
           .filter(mate => !isMode(mate))
+          .filter(mate => {
+            if (!getEventKey(mate)) return true;
+            const mateMode = mate.mode || mate.__mode;
+            if (mateMode === "costumes") return true;
+            return mateMode !== "sacred" && mateMode !== "ace";
+          })
           .sort(compareByCurrentSortMode);
         renderAnimatrix();
       }
@@ -1490,6 +1516,9 @@ export default function AnimatrixPage() {
           .filter(mate => {
             if (!mate) return false;
             if (isMode(mate)) return false;
+            // The details costume browser shows all related costumes; earlier
+            // update selections dim unavailable entries instead of hiding them.
+            if (listCostumeMode && currentMode === "costumes") return true;
             if (!mateMatchesSearch(mate, term)) return false;
             if (selectedTypes.length) {
               if (!mate.types || !intersects(selectedTypes, mate.types)) return false;
@@ -1842,10 +1871,16 @@ export default function AnimatrixPage() {
         el.style.removeProperty("--outline-color");
         el.classList.remove("event-anti");
         el.classList.remove("event-fools");
+        el.classList.remove("event-lost");
 
         // event styles
         const eventKey = getEventKey(mate);
-        if (eventKey === "halloween") {
+        if (eventKey === "lost") {
+          el.style.backgroundColor = "#000";
+          el.style.color = "#fff";
+          el.classList.add("event-lost");
+        }
+        else if (eventKey === "halloween") {
           el.style.backgroundColor = "#4B0082";
           el.style.color = "#ff6c1c";
         } 
@@ -1866,9 +1901,9 @@ export default function AnimatrixPage() {
         // primary type border
         const primaryType = mate.types?.[0];
         const typeObj = typesData.find(t => t.name === primaryType);
-        const outlineColor = typeObj ? typeObj.color : "#ccc";
+        const outlineColor = eventKey === "lost" ? "#fff" : typeObj ? typeObj.color : "#ccc";
         el.style.setProperty("--outline-color", outlineColor);
-        el.style.border = `3px solid ${outlineColor}`;
+        el.style.border = `${eventKey === "lost" ? 4 : 3}px solid ${outlineColor}`;
       }
 
 
@@ -2136,6 +2171,14 @@ export default function AnimatrixPage() {
         }
         const mateMode = mate.mode || currentMode;
         const modeForms = getMateModePool(mate);
+        // Event Mode formes may live in a different tab from their base animate.
+        const relatedEventModes = (crossTabFormsByRef.get(getResolvedMateRef(mate)) || [])
+          .filter(form => getEventKey(form) && isMode(form));
+        for (const form of relatedEventModes) {
+          if (!modeForms.some(existing => existing.name === form.name && existing.mode === form.mode)) {
+            modeForms.push(form);
+          }
+        }
 
         // Modes: same tab + same id, Mode entries only
         {
@@ -2187,7 +2230,16 @@ export default function AnimatrixPage() {
               img.style.border = "2px solid #0ff";
               img.style.borderRadius = "10px";
               img.style.cursor = "pointer";
-              sacredC.appendChild(img);
+              const choice = document.createElement("button");
+              choice.type = "button";
+              choice.className = "alternate-form-choice";
+              choice.onclick = () => openDetails(form);
+              img.onclick = null;
+              img.alt = "";
+              const label = document.createElement("span");
+              label.textContent = form.name;
+              choice.append(img, label);
+              sacredC.appendChild(choice);
             });
           }
         }

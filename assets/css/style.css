@@ -1341,6 +1341,16 @@ body.animatrix-page.animatrix-outline #detailsModal #mateImage {
     0 0 18px var(--outline-color, #0ff),
     0 0 28px var(--outline-color, #0ff);
 }
+/* Lost events keep their sprites, badges, and detail content monochrome. */
+.event-lost {
+  filter: grayscale(1);
+}
+.card.event-lost.biome-bg::before {
+  display: none;
+}
+.event-lost .card-id {
+  color: #fff;
+}
 .event-anti {
   filter: invert(1);
 }
@@ -4583,4 +4593,27 @@ body.guesswho-page textarea {
   .guesswho-controls-grid {
     grid-template-columns: 1fr;
   }
+}
+
+#sacredContainer .alternate-form-choice {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+  width: 112px;
+  margin: 4px;
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+#sacredContainer .alternate-form-choice span {
+  font-size: 0.8em;
+  overflow-wrap: anywhere;
+}
+#sacredContainer .alternate-form-choice:focus-visible {
+  outline: 2px solid currentColor;
+  border-radius: 8px;
 }

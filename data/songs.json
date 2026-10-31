@@ -11,20 +11,21 @@
   },
   {
     "name": "Perfecto",
-    "file": null,
+    "file": "assets/audio/Perfecto_Lyricless.mp3",
     "composer": "OctoKing",
     "themeType": "Game Theme",
-    "progress": "Untouched",
+    "progress": "Composed",
     "description": "",
     "description-title": "Perfactoly's Ad",
     "Version": "Update 1"
   },
   {
     "name": "Perfecto (Lyricless)",
+    "sibling": "Perfecto",
     "file": "assets/audio/Perfecto_Lyricless.mp3",
     "composer": "OctoKing",
     "themeType": "Game Theme",
-    "progress": "Composed",
+    "progress": "Finalized",
     "description": "",
     "description-title": "Perfecatoly's Ad Music",
     "Version": "Update 1"
@@ -37,6 +38,16 @@
     "progress": "Finalized",
     "description": "",
     "description-title": "Home Theme",
+    "Version": "Update 1"
+  },
+  {
+    "name": "A First Look",
+    "file": null,
+    "composer": "Glitched 0ut",
+    "themeType": "Game Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Update 1's Opening",
     "Version": "Update 1"
   },
   {
@@ -120,16 +131,6 @@
     "Version": "Update 1"
   },
   {
-    "name": "Calm After The Storm",
-    "file": "assets/audio/CalmAfterTheStorm.mp3",
-    "composer": "Glitched 0ut",
-    "themeType": "Overworld Theme",
-    "progress": "Finalized",
-    "description": "",
-    "description-title": "Herc At Werc Theme",
-    "Version": "Update 1"
-  },
-  {
     "name": "Spawn Point",
     "file": "assets/audio/SpawnPoint.mp3",
     "composer": "Glitched 0ut",
@@ -137,6 +138,16 @@
     "progress": "Finalized",
     "description": "",
     "description-title": "Spawn-Point Theme",
+    "Version": "Update 1"
+  },
+  {
+    "name": "Wears and Tares",
+    "file": "assets/audio/WearsAndTares.mp3",
+    "composer": "Glitched 0ut",
+    "themeType": "Overworld Theme",
+    "progress": "Finalized",
+    "description": "",
+    "description-title": "Mysterious Trader Shop Theme",
     "Version": "Update 1"
   },
   {
@@ -150,13 +161,13 @@
     "Version": "Update 1"
   },
   {
-    "name": "Wears and Tares",
-    "file": "assets/audio/WearsAndTares.mp3",
+    "name": "Calm After The Storm",
+    "file": "assets/audio/CalmAfterTheStorm.mp3",
     "composer": "Glitched 0ut",
     "themeType": "Overworld Theme",
     "progress": "Finalized",
     "description": "",
-    "description-title": "Mysterious Trader Shop Theme",
+    "description-title": "Herc At Werc Theme",
     "Version": "Update 1"
   },
   {
@@ -197,6 +208,16 @@
     "progress": "Finalized",
     "description": "",
     "description-title": "Water Gauntlet Battle Theme",
+    "Version": "Update 1"
+  },
+  {
+    "name": "A Great Flood",
+    "file": null,
+    "composer": "Glitched 0ut",
+    "themeType": "Game Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Water Gauntlet Acify Mini-Theme",
     "Version": "Update 1"
   },
   {
@@ -262,7 +283,7 @@
   {
     "name": "Submerged",
     "file": null,
-    "composer": "Untaken",
+    "composer": "Glitched 0ut",
     "themeType": "Overworld Theme",
     "progress": "Untouched",
     "description": "",
@@ -272,7 +293,7 @@
   {
     "name": "Deep Water",
     "file": null,
-    "composer": "Untaken",
+    "composer": "Glitched 0ut",
     "themeType": "Battle Theme",
     "progress": "Untouched",
     "description": "",
@@ -320,9 +341,19 @@
     "Version": "Update 2"
   },
   {
+    "name": "A Second Look",
+    "file": null,
+    "composer": "Glitched 0ut",
+    "themeType": "Game Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Update 2's Opening",
+    "Version": "Update 2"
+  },
+  {
     "name": "Stop Right There!",
     "file": null,
-    "composer": "Untaken",
+    "composer": "OctoKing",
     "themeType": "Overworld Theme",
     "progress": "Untouched",
     "description": "",
@@ -380,9 +411,19 @@
     "Version": "Update 2"
   },
   {
-    "name": "Under the Cool Lanternlight",
+    "name": "Rootin Beer and Tootin Here",
     "file": null,
     "composer": "Untaken",
+    "themeType": "Overworld Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Radioactive Saloon Theme",
+    "Version": "Update 2"
+  },
+  {
+    "name": "Under the Cool Lanternlight",
+    "file": null,
+    "composer": "OctoKing",
     "themeType": "Overworld Theme",
     "progress": "Untouched",
     "description": "",
@@ -410,13 +451,23 @@
     "Version": "Update 2"
   },
   {
-    "name": "Some Perfectly Inconspicious Theme",
+    "name": "Some Kinda Inconspicious Piece",
     "file": null,
     "composer": "Untaken",
     "themeType": "Overworld Theme",
     "progress": "Untouched",
     "description": "",
     "description-title": "MT Party Theme",
+    "Version": "Update 2"
+  },
+  {
+    "name": "Quaranteaming",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Battle Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Pyramid Unfair Battle Theme",
     "Version": "Update 2"
   },
   {
@@ -437,6 +488,16 @@
     "progress": "Untouched",
     "description": "",
     "description-title": "Earth Gauntlet Chase Battle Theme",
+    "Version": "Update 2"
+  },
+  {
+    "name": "Troubling Rumbles",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Game Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Earth Gauntlet Acify Mini-Theme",
     "Version": "Update 2"
   },
   {
@@ -506,7 +567,7 @@
     "themeType": "Overworld Theme",
     "progress": "Untouched",
     "description": "",
-    "description-title": "Mushroom Fields Theme",
+    "description-title": "Mushroom Marsh Theme",
     "Version": "Update 3"
   },
   {
@@ -516,7 +577,7 @@
     "themeType": "Battle Theme",
     "progress": "Untouched",
     "description": "",
-    "description-title": "Mushroom Fields Battle Theme",
+    "description-title": "Mushroom Marsh Battle Theme",
     "Version": "Update 3"
   },
   {
@@ -570,6 +631,16 @@
     "Version": "Update 3"
   },
   {
+    "name": "Deforestation",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Overworld Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "",
+    "Version": "Update 3"
+  },
+  {
     "name": "Reminiscence",
     "file": "assets/audio/Reminiscence.mp3",
     "composer": "Glitched 0ut",
@@ -590,6 +661,16 @@
     "Version": "Update 3"
   },
   {
+    "name": "Plant Gauntlet Theme",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Overworld Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Plant Gauntlet Theme",
+    "Version": "Update 3"
+  },
+  {
     "name": "Dereliction",
     "file": null,
     "composer": "Untaken",
@@ -597,6 +678,16 @@
     "progress": "Untouched",
     "description": "",
     "description-title": "Demo+Repo Battle Theme",
+    "Version": "Update 3"
+  },
+  {
+    "name": "Update 3 Secret Boss Theme",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Overworld Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Secret Boss Theme",
     "Version": "Update 3"
   },
   {
@@ -647,6 +738,16 @@
     "progress": "Untouched",
     "description": "",
     "description-title": "Reposition HQ Elevator Theme",
+    "Version": "Update 4"
+  },
+  {
+    "name": "Revelation",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Game Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Reposition Acify Mini-Theme",
     "Version": "Update 4"
   },
   {
@@ -707,6 +808,26 @@
     "progress": "Untouched",
     "description": "",
     "description-title": "Spectral Gauntlet Skip Battle Theme",
+    "Version": "Update 4"
+  },
+  {
+    "name": "Out of Body Experience",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Game Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Spectral Gauntlet Acify Mini-Theme",
+    "Version": "Update 4"
+  },
+  {
+    "name": "The Truth of the Soul",
+    "file": null,
+    "composer": "Untaken",
+    "themeType": "Ace Theme",
+    "progress": "Untouched",
+    "description": "",
+    "description-title": "Spectral Gauntlet Ace Theme",
     "Version": "Update 4"
   },
   {
