@@ -31,6 +31,17 @@
     "Version": "Update 1"
   },
   {
+    "name": "Count Perfecto",
+    "sibling": "Perfecto",
+    "file": "assets/audio/Count_Perfecto.mp3",
+    "composer": "OctoKing",
+    "themeType": "Game Theme",
+    "progress": "Finalized",
+    "description": "",
+    "description-title": "Perfecatoly's Ad Music",
+    "Version": "Update 10.5"
+  },
+  {
     "name": "Familiarity",
     "file": "assets/audio/Familiarity.mp3",
     "composer": "AriFilms",
