@@ -2,7 +2,29 @@
   "version": 1,
   "characters": {
     "Skip": {
-      "Pre-Update 1": [],
+      "Pre-Update 1": [
+        {
+          "id": "d1b48e3a-4aea-4d0c-aad0-405fccadd40a",
+          "name": "Cran_bot",
+          "question": "What's your biggest dream?",
+          "date": "2026-11-03T15:19:02.143Z",
+          "response": []
+        },
+        {
+          "id": "b1921bc9-3aef-4991-94a1-82b3c759a0ea",
+          "name": "Cran_bot",
+          "question": "which brother is your favorite?",
+          "date": "2026-11-03T15:30:56.195Z",
+          "response": []
+        },
+        {
+          "id": "6c9bff76-ed8f-475d-bc99-3803cae99143",
+          "name": "Cran_bot",
+          "question": "Which of your brothers is the favorite child?",
+          "date": "2026-11-03T15:42:55.488Z",
+          "response": []
+        }
+      ],
       "Post-Update 1": [],
       "Post-Update 2": [],
       "Post-Update 3": [],
