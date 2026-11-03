@@ -15525,10 +15525,11 @@
         {
           "name": "Sacred Mantiflay",
           "types": [
+            "Gross",
             "Fire"
           ],
           "paraTypes": [
-            ""
+            "Air"
           ],
           "rarity": "Normal",
           "dexEntries": {
@@ -15550,10 +15551,11 @@
         {
           "name": "LED Mantiflay",
           "types": [
+            "Gross",
             "Fire"
           ],
           "paraTypes": [
-            ""
+            "Air"
           ],
           "rarity": "Normal",
           "dexEntries": {
@@ -15573,10 +15575,11 @@
         {
           "name": "Mantiflay",
           "types": [
+            "Gross",
             "Fire"
           ],
           "paraTypes": [
-            ""
+            "Air"
           ],
           "rarity": "Normal",
           "dexEntries": {
@@ -19492,7 +19495,8 @@
         {
           "name": "Thoot",
           "types": [
-            "Lucid"
+            "Normal",
+            "Metal"
           ],
           "paraTypes": [
             ""
@@ -30861,7 +30865,12 @@
             "Experienced": "No entry yet",
             "Callside": "No entry yet"
           },
-          "evolvesTo": [],
+          "evolvesTo": [
+            {
+              "name": "Sacred Furgery",
+              "level": null
+            }
+          ],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -30909,7 +30918,12 @@
             "Experienced": "No entry yet",
             "Callside": "No entry yet"
           },
-          "evolvesTo": [],
+          "evolvesTo": [
+            {
+              "name": "Furgery",
+              "level": null
+            }
+          ],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -30955,7 +30969,12 @@
             "Experienced": "No entry yet",
             "Callside": "No entry yet"
           },
-          "evolvesTo": [],
+          "evolvesTo": [
+            {
+              "name": "Sacred Weredyagoat",
+              "level": null
+            }
+          ],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -31003,7 +31022,12 @@
             "Experienced": "No entry yet",
             "Callside": "No entry yet"
           },
-          "evolvesTo": [],
+          "evolvesTo": [
+            {
+              "name": "Weredyagoat",
+              "level": null
+            }
+          ],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -31037,8 +31061,7 @@
         {
           "name": "Sacred Weredyagoat",
           "types": [
-            "Normal",
-            "Dark"
+            "Normal"
           ],
           "paraTypes": [
             ""
@@ -31063,8 +31086,7 @@
         {
           "name": "LED Weredyagoat",
           "types": [
-            "Normal",
-            "Dark"
+            "Normal"
           ],
           "paraTypes": [
             ""
@@ -31087,8 +31109,7 @@
         {
           "name": "Weredyagoat",
           "types": [
-            "Normal",
-            "Dark"
+            "Normal"
           ],
           "paraTypes": [
             ""
@@ -31121,7 +31142,8 @@
             "Forest": [
               "Spooky"
             ]
-          }
+          },
+          "event": null
         }
       ]
     }
@@ -38419,6 +38441,90 @@
       ],
       "ncanon": [],
       "goner": []
+    }
+  },
+  {
+    "name": "Gloalese",
+    "forms": {
+      "base": [
+        {
+          "name": "Gloalese",
+          "types": [
+            "Electric",
+            "Water"
+          ],
+          "paraTypes": [
+            ""
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Ilunion",
+              "level": null,
+              "info": "Level"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Meridian Bay",
+            "Ocean",
+            "New Canadia"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Glow + Coalesce",
+          "firstScannableUpdate": "Update 4",
+          "firstWildCatchableUpdate": "Update 4",
+          "visualDescription": "Resembles a siphonophore in shape, a bit like a singular tentacle. When not producing electricity, its outline is formed by small, spherical, black, rice-sized creatures. They function as an electric grid: when producing electricity between themselves, blue lines appear between the spheres, producing the actual design of the animate."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Ilunion",
+    "forms": {
+      "base": [
+        {
+          "name": "Ilunion",
+          "types": [
+            "Electric",
+            "Water"
+          ],
+          "paraTypes": [
+            "Artillery"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "height": null,
+          "color": null,
+          "biomes": [
+            "Meridian Bay",
+            "Ocean",
+            "New Canadia"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Illuminate + Union",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8",
+          "visualDescription": "Like Gloalese, its body is formed by small black spheres connected by blue lines of electricity. It resembles a strange in-between of an octopus and a jellyfish, with a head similar to an octopus and many jellyfish tentacles joining together to create a thick tentacle."
+        }
+      ]
     }
   }
 ]

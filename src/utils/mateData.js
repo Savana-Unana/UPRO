@@ -117,6 +117,9 @@ function getOutputMode(mode, sourceKind) {
 }
 
 export function inferMateEvent(form) {
+  // An explicit null keeps normally obtainable animates in the regular roster,
+  // even when their wild availability falls during an event update.
+  if (form.event !== undefined) return form;
   const updates = [form.firstScannableUpdate, form.firstWildCatchableUpdate,
     form.versions, form.version, form.Version].flat();
   const halloween = updates.some(value => /^(?:Update|Demo)\s+10\.5$/i.test(String(value || "").trim()));
@@ -132,6 +135,31 @@ export function expandGroupedMateData(groups, sourceKind = "base", options = {})
   const eventOnly = options.eventOnly === true;
 
   if (!Array.isArray(groups)) return buckets;
+
+  // Forms belonging to members of one evolution line should share an
+  // alternate-form reference. Without this, e.g. Unoa and Unob each get a
+  // separate ref and the Sacred tab cannot find the line's other formes.
+  const lineParent = new Map();
+  groups.forEach(group => {
+    const name = String(group?.name || "").trim();
+    if (!name) return;
+    lineParent.set(name, name);
+  });
+  const findLineRoot = name => {
+    let current = name;
+    const seen = new Set();
+    while (current && !seen.has(current)) {
+      seen.add(current);
+      const parent = groups.find(group =>
+        Array.isArray(group?.forms?.base) && group.forms.base.some(form =>
+          Array.isArray(form?.evolvesTo) && form.evolvesTo.some(next => String(next?.name || "").trim() === current)
+        )
+      );
+      if (!parent) break;
+      current = String(parent.name || "").trim();
+    }
+    return current || name;
+  };
 
   groups.forEach(group => {
     if (!group || typeof group !== "object") return;
@@ -157,7 +185,7 @@ export function expandGroupedMateData(groups, sourceKind = "base", options = {})
         if (eventOnly && !isEventForm(expanded)) return;
         buckets[outputMode].push({
           ...expanded,
-          ref: form.ref || groupName,
+          ref: form.ref || findLineRoot(groupName),
           mode: outputMode,
           __groupName: groupName
         });

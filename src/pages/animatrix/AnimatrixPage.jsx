@@ -1,6 +1,7 @@
 import { mateSubBiomes, subBiomeOptions } from '../../utils/biomeData.js'
 /* eslint-disable no-unused-vars */
 import { useEffect } from 'react'
+import { buildTypingStats } from '../../utils/typingStats.js'
 import { buildEvolutionStageIndex, fetchMateBuckets, getBiomeImagePath, getMateStatus } from '../../utils/mateData'
 
 const pageStyles = ""
@@ -749,69 +750,20 @@ export default function AnimatrixPage() {
 
           // -------------------- TYPING STATS --------------------
           const baseMons = statsPool.filter(hasValidId);
-          const typeMap = {};
-
-          // First pass: numerators exclude MissingNo, L.MissingNo, Ones
-          baseMons.forEach(m => {
-            if (!hasImage(m) || isSpecial(m)) return;
-
-            const types = Array.isArray(m.types) ? m.types.filter(t => t) : [];
-            const paras = Array.isArray(m.paraTypes) ? m.paraTypes.filter(p => p) : [];
-
-            // Count only primary + secondary types for "All"
-            types.forEach((t, i) => {
-              if (!typeMap[t]) typeMap[t] = { all: 0, primary: 0, para: 0, allDen: 0, primaryDen: 0, paraDen: 0 };
-              typeMap[t].all += 1;
-              if (i === 0) typeMap[t].primary += 1;
-            });
-
-            // Count Para separately
-            paras.forEach(p => {
-              if (!typeMap[p]) typeMap[p] = typeMap[p] || { all: 0, primary: 0, para: 0, allDen: 0, primaryDen: 0, paraDen: 0 };
-              typeMap[p].para += 1;
-            });
-          });
-
-          // Second pass: denominators
-          Object.keys(typeMap).forEach(type => {
-            typeMap[type].allDen = baseMons.filter(m => {
-              const types = Array.isArray(m.types) ? m.types.filter(t => t) : [];
-              return types.includes(type);
-            }).length;
-
-            typeMap[type].primaryDen = baseMons.filter(m => {
-              const types = Array.isArray(m.types) ? m.types.filter(t => t) : [];
-              return types[0] === type;
-            }).length;
-
-            typeMap[type].paraDen = baseMons.filter(m => {
-              const paras = Array.isArray(m.paraTypes) ? m.paraTypes.filter(p => p) : [];
-              return paras.includes(type);
-            }).length;
-          });
-
-          const typeOrder = typesData.map(type => type.name);
-          const sortedTypes = Object.keys(typeMap).sort((a, b) => {
-            const aRank = typeOrder.indexOf(a);
-            const bRank = typeOrder.indexOf(b);
-            if (aRank !== -1 && bRank !== -1 && aRank !== bRank) return aRank - bRank;
-            if (aRank !== -1) return -1;
-            if (bRank !== -1) return 1;
-            return a.localeCompare(b);
-          });
+          const sortedTypes = buildTypingStats(baseMons, m => hasImage(m) && !isSpecial(m));
 
           let typeHtml = `<section class="stats-section">
             <h2>Typing Stats (${escapeHtml(statsModeLabel)})</h2>
             <div class="typing-stats">`;
 
-          sortedTypes.forEach(type => {
-            const t = typeMap[type];
+          sortedTypes.forEach(([type, t]) => {
             typeHtml += `<div class="type-item">
               <span class="type-name"><b>${type}</b></span>
               <div class="type-counts">
                 <span>All: ${t.all}/${t.allDen}</span> |
                 <span>Primary: ${t.primary}/${t.primaryDen}</span> |
-                <span>Para: ${t.para}/${t.paraDen}</span>
+                <span>Para: ${t.para}/${t.paraDen}</span> |
+                <span>Solo: ${t.solo}/${t.soloDen}</span>
               </div>
             </div>`;
           });
@@ -1494,6 +1446,10 @@ export default function AnimatrixPage() {
             if (!getEventKey(mate)) return true;
             const mateMode = mate.mode || mate.__mode;
             if (mateMode === "costumes") return true;
+            // Lost Sacred/Ace formes are real roster entries. They use the
+            // Lost-specific card/modal behavior, but must remain visible in
+            // their own tabs instead of being treated like ordinary events.
+            if (getEventKey(mate) === "lost") return true;
             return mateMode !== "sacred" && mateMode !== "ace";
           })
           .sort(compareByCurrentSortMode);
@@ -2212,7 +2168,18 @@ export default function AnimatrixPage() {
         // Alternate Forms: same ref across tabs, excluding ncanon and Mode entries
         {
           const mateRef = getResolvedMateRef(mate);
-          const sameSpeciesAllTabs = crossTabFormsByRef.get(mateRef) || [];
+          // Include every loaded mode directly as a fallback. This keeps
+          // alternate formes visible when a grouped dataset was rebuilt with
+          // a shared evolution-line ref after the cross-tab index was made.
+          const indexedForms = crossTabFormsByRef.get(mateRef) || [];
+          const allLoadedForms = Object.entries(allData).flatMap(([mode, mates]) =>
+            mode === "evolution" ? [] : (mates || []).map(form => ({ ...form, mode }))
+          );
+          const sameSpeciesAllTabs = [...indexedForms, ...allLoadedForms.filter(form =>
+            getResolvedMateRef(form) === mateRef
+          )].filter((form, index, forms) => forms.findIndex(other =>
+            other.name === form.name && other.mode === form.mode && other.image === form.image
+          ) === index);
           const alternateForms = sameSpeciesAllTabs.filter(f => {
             if (f.name === mate.name && f.mode === mateMode) return false;
             if (isMode(f)) return false;
