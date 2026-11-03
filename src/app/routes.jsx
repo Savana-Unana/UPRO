@@ -19,6 +19,7 @@ import TimelinePage from '../pages/timeline/TimelinePage.jsx'
 import FriendskipPage from '../pages/friendskip/FriendskipPage.jsx'
 import MediaPage from '../pages/media/MediaPage.jsx'
 import EncoderPage from '../pages/encoder/EncoderPage.jsx'
+import AsksPage from '../pages/asks/AsksPage.jsx'
 
 export const routes = [
   { path: '/', title: 'Erm Ma Ha Sigma', Component: MainMenuPage },
@@ -42,6 +43,8 @@ export const routes = [
   { path: '/friendskip', title: 'Friendskip', Component: FriendskipPage },
   { path: '/media', title: 'Media', Component: MediaPage },
   { path: '/encoder', title: 'Encoder', Component: EncoderPage },
+  { path: '/asks', title: 'Asks', Component: AsksPage },
+  { path: '/responses', title: 'Responses', Component: AsksPage },
 ]
 
 export const legacyRouteRedirects = new Map([

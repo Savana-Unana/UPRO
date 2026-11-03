@@ -28,7 +28,10 @@ var DEFAULT_MODES = {
 };
 var HEADER_ROW = [["Name", "Votes", "Appearances", "Percentage"]];
 
-function doGet() {
+function doGet(e) {
+  if (e && e.parameter && e.parameter.action === "listAsks") {
+    return jsonResponse({ ok: true, sheet: "Asks", asks: readAsks_() });
+  }
   return ContentService
     .createTextOutput(JSON.stringify({ ok: true }))
     .setMimeType(ContentService.MimeType.JSON);
@@ -36,6 +39,14 @@ function doGet() {
 
 function doPost(e) {
   var payload = parseVotePayload_(e);
+
+  if (payload.action === "exportAsks") {
+    return exportAsks_((e && e.parameter && e.parameter.token) || "");
+  }
+
+  if (payload.action === "ask") {
+    return saveAsk_(payload);
+  }
 
   if (payload.action === "historyResponse") {
     return saveHistoryResponse_(payload);
@@ -91,6 +102,64 @@ function saveHistoryResponse_(payload) {
   } finally {
     lock.releaseLock();
   }
+}
+
+function saveAsk_(payload) {
+  var characters = ["Skip", "Chip", "Dip", "Pip", "Zip", "Herc", "Marvin", "Mom", "Dad", "Lumberjack", "Hippie", "Mysterious Trader", "Kal"];
+  var times = ["Pre-Update 1", "Post-Update 1"];
+  if (characters.indexOf(payload.character) === -1 || times.indexOf(payload.time) === -1
+    || typeof payload.question !== "string" || !payload.question.trim() || payload.question.length > 4000
+    || typeof payload.name !== "string" || payload.name.length > 80) {
+    return jsonResponse({ ok: false, error: "Invalid ask." });
+  }
+  var lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = spreadsheet.getSheetByName("Asks");
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet("Asks");
+      sheet.appendRow(["ID", "Timestamp", "Character", "Time", "Name", "Question"]);
+    }
+    var id = Utilities.getUuid();
+    var date = new Date().toISOString();
+    var values = [id, date, payload.character, payload.time, payload.name.trim(), payload.question];
+    sheet.getRange(sheet.getLastRow() + 1, 1, 1, 6).setNumberFormat("@").setValues([
+      values.map(function(value) { return /^[=+\-@]/.test(value) ? "'" + value : value; })
+    ]);
+    SpreadsheetApp.flush();
+    return jsonResponse({ ok: true, sheet: "Asks", id: id });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+// Run from the bound spreadsheet, not the public web app.
+function onOpen() {
+  SpreadsheetApp.getUi().createMenu("Asks").addItem("Download asks for website", "downloadAsks").addToUi();
+}
+
+function readAsks_() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Asks");
+  var rows = sheet && sheet.getLastRow() > 1 ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 6).getValues() : [];
+  return rows.filter(function(row) { return row[0]; }).map(function(row) {
+    return { id: String(row[0]), date: new Date(row[1]).toISOString(), character: String(row[2]), time: String(row[3]), name: String(row[4]), question: String(row[5]) };
+  });
+}
+
+function exportAsks_(token) {
+  var expected = PropertiesService.getScriptProperties().getProperty("ASK_SYNC_TOKEN");
+  if (!expected || !token || token !== expected) {
+    return jsonResponse({ ok: false, error: "Unauthorized." });
+  }
+  return jsonResponse({ ok: true, sheet: "Asks", asks: readAsks_() });
+}
+
+function downloadAsks() {
+  var asks = readAsks_();
+  var encoded = Utilities.base64Encode(JSON.stringify(asks, null, 2), Utilities.Charset.UTF_8);
+  var html = HtmlService.createHtmlOutput('<p><a download="ask-inbox.json" href="data:application/json;base64,' + encoded + '">Download ask-inbox.json</a></p>');
+  SpreadsheetApp.getUi().showModalDialog(html, "Download asks");
 }
 
 function getSheetConfig_(entityType, mode) {
@@ -257,6 +326,10 @@ function parseVotePayload_(e) {
   return normalizeVotePayload_({
     action: params.action || "",
     answer: params.answer || "",
+    character: params.character || "",
+    time: params.time || "",
+    name: params.name || "",
+    question: params.question || "",
     entityType: params.entityType || "",
     mode: params.mode || "",
     winner: {
@@ -278,6 +351,10 @@ function normalizeVotePayload_(payload) {
   return {
     action: payload.action || "",
     answer: payload.answer || "",
+    character: payload.character || "",
+    time: payload.time || "",
+    name: payload.name || "",
+    question: payload.question || "",
     entityType: entityType,
     mode: entityConfig[payload.mode] ? payload.mode : defaultMode,
     winner: {

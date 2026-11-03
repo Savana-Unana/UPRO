@@ -1,0 +1,43 @@
+.asks-shell { --timeline-accent: #fff; padding-top: 100px; }
+.asks-nav { position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; gap: 12px; }
+.asks-button { display: inline-block; border: 2px solid white; padding: 8px 16px; background: #000; color: #fff; font: 22px/1.2 'UPRO', serif; text-decoration: none; cursor: pointer; }
+.asks-button:hover, .asks-button:focus-visible { background: white; color: black; }
+.asks-compose { width: min(960px, 100%); }
+.asks-prompt select { max-width: 100%; border: 0; border-bottom: 2px solid white; border-radius: 0; background: black; color: white; font: inherit; cursor: pointer; }
+.asks-prompt option:disabled { color: #777; }
+.asks-compose label { display: block; margin: 20px 0 8px; font-size: 24px; }
+.asks-compose .timeline-input { display: block; width: 100%; font-size: 28px; line-height: 1.2; }
+.asks-compose textarea.timeline-input { height: auto; min-height: 180px; resize: vertical; margin-bottom: 18px; }
+.asks-compose p { font-size: 24px; }
+.asks-shell button:disabled { cursor: default; opacity: .5; }
+.asks-inbox { width: min(1200px, 100%); align-self: flex-start; }
+.asks-inbox h1 { font: 42px/1.2 'UPRO', serif; color: white; margin: 12px 0 28px; }
+.asks-inbox p { font-size: 24px; }
+.asks-messages { list-style: none; padding: 0; margin: 0; border-top: 1px solid #777; }
+.asks-message { display: grid; grid-template-columns: minmax(100px, 180px) minmax(0, 1fr) auto; width: 100%; gap: 24px; align-items: center; padding: 18px 16px; border: 0; border-bottom: 1px solid #777; background: #000; color: #fff; text-align: left; font: 24px/1.3 'UPRO', serif; cursor: pointer; }
+.asks-message:hover, .asks-message:focus-visible { background: #242424; }
+.asks-shell .asks-message:disabled { background: #000; color: #888; opacity: 1; cursor: default; }
+.asks-sender, .asks-subject { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.asks-message time { white-space: nowrap; font-size: 20px; }
+.asks-message-header { border-bottom: 1px solid #777; padding-bottom: 16px; margin-bottom: 24px; }
+.asks-message-header h2 { white-space: pre-wrap; overflow-wrap: anywhere; color: white; font-size: 30px; }
+.ask-dialogue-stack { width: min(100%, 600px); margin: 0 auto; }
+.ask-dialogue-card { position: relative; width: 100%; aspect-ratio: 2 / 1; container-type: inline-size; color: black; font-weight: bold; }
+.ask-box-viewport { position: absolute; top: 0; left: 0; width: 100%; height: 78.125%; overflow: hidden; }
+.ask-box-viewport img, .ask-icon-viewport img { position: absolute; max-width: none; image-rendering: pixelated; object-fit: fill; }
+.ask-speaker { position: absolute; top: 15%; left: 3%; width: 54%; height: 12%; font-size: 5.75cqw; line-height: 1; overflow: hidden; white-space: nowrap; }
+.asks-inbox .ask-dialogue-text { position: absolute; top: 28%; left: 8.75%; right: 30%; height: 44%; margin: 0; font-size: 5.75cqw; line-height: .9; white-space: pre-wrap; overflow-wrap: anywhere; overflow: hidden; }
+.asks-inbox .ask-dialogue-card.is-wide .ask-dialogue-text { right: 6.25%; }
+.ask-icon-viewport { position: absolute; top: 1.5%; right: 2.75%; width: 25%; height: 50%; overflow: hidden; }
+.ask-dialogue-choices { position: absolute; top: 62.5%; left: 8.5%; right: 8.5%; display: flex; flex-wrap: wrap; gap: 4px; }
+.ask-dialogue-choices button { font: inherit; font-size: 4cqw; cursor: pointer; }
+.ask-dialogue-choices button[aria-pressed="true"] { outline: 2px solid white; }
+.ask-speaker, .asks-inbox .ask-dialogue-text { text-align: left; }
+.asks-button, .asks-message { border-radius: 0; }
+.asks-compose .timeline-input { cursor: text; }
+@media (max-width: 560px) {
+  .asks-message { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; padding-inline: 8px; }
+  .asks-subject { grid-column: 1 / -1; grid-row: 2; }
+  .asks-message time { grid-column: 2; grid-row: 1; }
+}
+

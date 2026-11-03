@@ -38,7 +38,7 @@ const switchedButtonConfigs = [
 export default function MainMenuPage() {
   useEffect(() => {
     document.title = "Erm Ma Ha Sigma"
-    document.body.className = ""
+    document.body.className = "main-menu-page"
     document.body.setAttribute('style', "align-items: center")
 
     let switcherooActive = false
@@ -147,6 +147,7 @@ export default function MainMenuPage() {
         : Math.round((totalDistance / SKIP_PIXELS_PER_SECOND) * 1000)
 
       skipTargetRight = nextTargetRight
+      skipRunner.classList.toggle("is-facing-right", nextTargetRight)
       skipImgLeft.classList.toggle("is-visible", !nextTargetRight)
       skipImgRight.classList.toggle("is-visible", nextTargetRight)
 
@@ -220,12 +221,17 @@ export default function MainMenuPage() {
   return (
     <>
       {pageStyles && <style>{pageStyles}</style>}
-      <ProportionalLayout><div className="upro-page-root"><h1>Main Menu</h1>
+      <ProportionalLayout topOffset={20}><div className="upro-page-root"><h1>Main Menu</h1>
   <div className="capsule-container">
-    <a id="skip-runner" className="skip-runner skip-left skip-front" href="/friendskip" aria-label="Open Friendskip">
+    <div id="skip-runner" className="skip-runner skip-left skip-front">
+      <a className="skip-asks" href="/asks" aria-label="Open Asks">
+        <img src="assets/images/ui/Exclamation.png" alt="" />
+      </a>
+      <a className="skip-friendskip" href="/friendskip" aria-label="Open Friendskip">
       <img id="skip-img-left" className="skip-sprite is-visible" src="assets/images/ui/Skip_Left.gif" alt="Skip" />
       <img id="skip-img-right" className="skip-sprite" src="assets/images/ui/Skip_Right.gif" alt="Skip" />
-    </a>
+      </a>
+    </div>
     <img id="capsule-img" src="assets/images/ui/Animated_Capsule.gif" alt="Capture Capsule" />
     <div className="image-buttons">
       <a id="btn1" href="/animatrix" className="overlay-btn">Animatrix</a>

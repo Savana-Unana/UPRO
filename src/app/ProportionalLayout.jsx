@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 
 // Scale the entire composition with one factor, including its text and controls.
-export default function ProportionalLayout({ children, width = 1080 }) {
+export default function ProportionalLayout({ children, width = 1080, topOffset = 0 }) {
   const frameRef = useRef(null)
   const contentRef = useRef(null)
 
@@ -9,7 +9,7 @@ export default function ProportionalLayout({ children, width = 1080 }) {
     const frame = frameRef.current
     const content = contentRef.current
     function resize() {
-      const availableHeight = document.documentElement.clientHeight
+      const availableHeight = document.documentElement.clientHeight - topOffset
       const scale = Math.min(frame.clientWidth / width, availableHeight / content.offsetHeight)
       if (!Number.isFinite(scale) || scale <= 0) return
       content.style.transform = `scale(${scale})`
@@ -24,10 +24,10 @@ export default function ProportionalLayout({ children, width = 1080 }) {
       observer.disconnect()
       window.removeEventListener('resize', resize)
     }
-  }, [width])
+  }, [width, topOffset])
 
   return (
-    <div className="proportional-frame" ref={frameRef}>
+    <div className="proportional-frame" ref={frameRef} style={{ marginTop: topOffset }}>
       <div className="proportional-content" ref={contentRef} style={{ width }}>
         {children}
       </div>

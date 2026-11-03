@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "asks:import": "node scripts/import-asks.mjs",
+    "asks:sync": "node scripts/sync-asks.mjs",
     "build": "vite build && node scripts/copy-static.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
