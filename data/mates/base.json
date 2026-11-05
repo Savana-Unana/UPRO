@@ -18237,7 +18237,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Paragon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18269,7 +18269,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Paragon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18295,7 +18295,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Paragon",
           "dexEntries": {
             "Store Entry": "No entry yet",
             "Catalog": "No entry yet",
@@ -34338,6 +34338,37 @@
           }
         }
       ]
+    }
+  },
+  {
+    "name": "Icarphus",
+    "forms": {
+      "goner": [], "sacred": [], "costumes": [],
+      "base": [{
+        "name": "Icarphus", "types": ["Dark", "Normal"], "paraTypes": [""], "rarity": "Normal",
+        "dexEntries": {"Discovered": "No entry yet", "First Caught": "No entry yet", "Experienced": "No entry yet", "Callside": "No entry yet"},
+        "evolvesTo": [{"name": "Daedo", "level": null}],
+        "abilities": [], "moves": [], "height": null, "color": null,
+        "biomes": ["Alcatraz", "Ieland"], "subBiomes": {"Ieland": ["Metaforest"]},
+        "image": "assets/images/mates/lost/MissingNo.png",
+        "visualDescription": "A skeleton-wax pigeon. It has melted part of its body and is incapable of flight.",
+        "etymology": "Icarus + Raphus", "firstScannableUpdate": "Update 4", "firstWildCatchableUpdate": "Update 4"
+      }]
+    }
+  },
+  {
+    "name": "Daedo",
+    "forms": {
+      "goner": [], "sacred": [], "costumes": [],
+      "base": [{
+        "name": "Daedo", "types": ["Dark", "Normal"], "paraTypes": [""], "rarity": "Normal", "event": "halloween",
+        "dexEntries": {"Discovered": "No entry yet", "First Caught": "No entry yet", "Experienced": "No entry yet", "Callside": "No entry yet"},
+        "evolvesTo": [], "abilities": [], "moves": [], "height": null, "color": null,
+        "biomes": ["Alcatraz", "Ieland"], "subBiomes": {"Ieland": ["Metaforest"]},
+        "image": "assets/images/mates/lost/MissingNo.png",
+        "visualDescription": "A skeleton-wax dodo bird. Half of its body is melted; its wings are entirely melted, leaving tough, skeletal-looking wax foundations. Its head is half melted open to reveal a skull. Its lower half has melted so much that its legs are longer than they should be and much thicker toward the bottom.",
+        "etymology": "Daedalus + Dodo", "firstScannableUpdate": "Update 10.5", "firstWildCatchableUpdate": "Update 10.5"
+      }]
     }
   },
   {

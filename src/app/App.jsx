@@ -138,5 +138,38 @@ export default function App() {
     }
   }, [route])
 
+  useEffect(() => {
+    const rawSequence = sessionStorage.getItem('upro_spongus_sequence')
+    if (!rawSequence) return undefined
+
+    let sequence
+    try {
+      sequence = JSON.parse(rawSequence)
+    } catch {
+      sessionStorage.removeItem('upro_spongus_sequence')
+      return undefined
+    }
+
+    if (!Array.isArray(sequence) || !sequence.length) {
+      sessionStorage.removeItem('upro_spongus_sequence')
+      return undefined
+    }
+
+    const timer = window.setTimeout(() => {
+      const [next, ...remaining] = sequence
+      if (remaining.length) sessionStorage.setItem('upro_spongus_sequence', JSON.stringify(remaining))
+      else sessionStorage.removeItem('upro_spongus_sequence')
+
+      if (next === 'animate:Spongus') {
+        sessionStorage.setItem('upro_open_animate', 'Spongus')
+        navigateTo('/animatrix')
+      } else {
+        navigateTo(next)
+      }
+    }, 850)
+
+    return () => window.clearTimeout(timer)
+  }, [navigateTo, route])
+
   return <Component key={route.path} />
 }

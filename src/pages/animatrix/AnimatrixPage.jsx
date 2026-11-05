@@ -10,6 +10,7 @@ export default function AnimatrixPage() {
   useEffect(() => {
     document.title = "Animatrix"
     document.body.className = "animatrix-page"
+    document.body.classList.toggle("amo-animatrix", sessionStorage.getItem("upro_amo_animatrix_scale") === "true")
     document.body.setAttribute('style', "")
 
     let currentMode = "base";
@@ -673,6 +674,38 @@ export default function AnimatrixPage() {
             populateFilterOptions(versionOptions, versionOptionsEl);
 
             loadMode("base");
+
+            const findLoadedEntry = wanted => Object.entries(allData)
+              .filter(([mode]) => mode !== "evolution")
+              .flatMap(([mode, mates]) => (Array.isArray(mates) ? mates : []).map(mate => ({ mode, mate })))
+              .find(({ mate }) => String(mate.name || "").trim().toLowerCase() === wanted || String(mate.id ?? "") === wanted);
+            const openLoadedEntry = value => {
+              const entry = findLoadedEntry(String(value || "").trim().toLowerCase());
+              if (!entry) return;
+              loadMode(entry.mode === "event" ? "event" : entry.mode);
+              updateDetails(entry.mate);
+              modal.classList.remove("hidden");
+            };
+
+            const pendingAnimate = sessionStorage.getItem("upro_open_animate");
+            if (pendingAnimate) {
+              sessionStorage.removeItem("upro_open_animate");
+              openLoadedEntry(pendingAnimate);
+              const followupAnimate = sessionStorage.getItem("upro_followup_animate");
+              if (followupAnimate) {
+                sessionStorage.removeItem("upro_followup_animate");
+                window.setTimeout(() => openLoadedEntry(followupAnimate), 1000);
+              }
+            }
+
+            const requestedType = new URLSearchParams(window.location.search).get("type");
+            const requestedEvent = new URLSearchParams(window.location.search).get("event");
+            if (requestedType) {
+              const input = Array.from(typeOptionsEl.querySelectorAll('input[type="checkbox"]')).find(option => option.value.toLowerCase() === requestedType.toLowerCase());
+              if (input) { input.checked = true; loadMode("base"); }
+            } else if (requestedEvent?.toLowerCase() === "halloween") {
+              loadMode("event");
+            }
           })
 
         .catch(err => {

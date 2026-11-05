@@ -1060,6 +1060,30 @@ main.grid {
   padding: 20px;
 }
 
+body.animatrix-page.amo-animatrix main.grid {
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 18px;
+  padding: 30px;
+}
+
+body.animatrix-page.amo-animatrix main.grid .card {
+  width: 300px;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 1.5em;
+}
+
+body.animatrix-page.amo-animatrix main.grid .card > img:not(.rarity-shiver-badge) {
+  width: 150px;
+  height: 150px;
+}
+
+body.animatrix-page.amo-animatrix main.grid .rarity-shiver-badge {
+  max-width: 72px;
+  max-height: 72px;
+}
+
 main.list {
   display: flex;
   flex-direction: column;
