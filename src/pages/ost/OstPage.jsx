@@ -1140,7 +1140,10 @@ export default function OstPage() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedComposer, setSelectedComposer] = useState([])
+  const [selectedComposer, setSelectedComposer] = useState(() => {
+    const composer = new URLSearchParams(window.location.search).get('composer')
+    return composer ? [composer] : []
+  })
   const [selectedTheme, setSelectedTheme] = useState([])
   const [selectedVersion, setSelectedVersion] = useState([])
   const [selectedProgress, setSelectedProgress] = useState([])

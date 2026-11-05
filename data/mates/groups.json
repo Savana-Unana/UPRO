@@ -44,6 +44,17 @@
     ]
   },
   {
+    "name": "Wild Catch",
+    "star": "Blarb",
+    "grouping": "All Animates that could be caught swimming around under the waters.",
+    "animates": [
+      "Blarb", "Bowlfish", "Tankfish", "Camoflish", "Confished", "Twynami",
+      "Cartilicht", "Minnote", "Chordal", "Tunup", "Triangeel", "Basscsio",
+      "Velvetone", "Spigle", "Propulfin", "Vantore", "Murchan", "Clamb",
+      "Poorpoise", "Scregling"
+    ]
+  },
+  {
     "name": "Rubberhose",
     "star": "Drawrlin",
     "grouping": "All Animates that have a rubberhose design.",
@@ -277,6 +288,15 @@
       "Wyrachnos",
       "Myte",
       "Elixion"
+    ]
+  },
+  {
+    "name": "Dragon Typing",
+    "star": "Gloobie",
+    "grouping": "All Animates that would have a Dragon-Type.",
+    "animates": [
+      "Gloobie", "Scregling", "Keidromae", "Caraptor", "Symbrex", "Blizzard",
+      "Cryodon", "Reptundra", "Mulchimaw", "Detritan", "Flapdrag"
     ]
   },
   {
