@@ -245,14 +245,12 @@ function writeVoteRows_(sheet, rows) {
         name: name,
         votes: rows[name].votes,
         appearances: rows[name].appearances,
-        percentage: rows[name].percentage
+        percentage: rows[name].appearances ? rows[name].votes / rows[name].appearances : 0
       };
     })
     .sort(function(a, b) {
-      var aPct = parseFloat(String(a.percentage).replace("%", "")) || 0;
-      var bPct = parseFloat(String(b.percentage).replace("%", "")) || 0;
-      if (bPct !== aPct) {
-        return bPct - aPct;
+      if (b.percentage !== a.percentage) {
+        return b.percentage - a.percentage;
       }
 
       if (b.votes !== a.votes) {
@@ -263,7 +261,7 @@ function writeVoteRows_(sheet, rows) {
     });
 
   var values = sortedRows.map(function(row) {
-    return [row.name, row.votes, row.appearances, row.percentage];
+    return [row.name, row.votes, row.appearances, (row.percentage * 100).toFixed(2) + "%"];
   });
 
   var neededRows = values.length + 1;
