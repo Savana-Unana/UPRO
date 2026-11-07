@@ -20,7 +20,7 @@ export default function AsksPage() {
   const [reload, setReload] = useState(0)
 
   useEffect(() => {
-    document.title = inbox ? 'Responses' : 'Asks'
+    document.title = '⊙'
     document.body.className = 'timeline-page asks-page'
     document.body.setAttribute('style', '')
   }, [inbox])

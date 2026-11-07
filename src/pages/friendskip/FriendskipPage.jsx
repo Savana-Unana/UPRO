@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './friendskip.css'
 import { sortCostumesByUpdate } from '../../utils/costumeOrder.js'
+import { usePageStatic } from '../../utils/usePageStatic.js'
 
 const hasField = (entry, field) => entry != null && Object.hasOwn(entry, field)
 
@@ -20,6 +21,7 @@ function NpcImage({ kind, source, alt = '' }) {
 }
 
 export default function FriendskipPage() {
+  usePageStatic()
   const [npcs, setNpcs] = useState([])
   const [order, setOrder] = useState([])
   const [view, setView] = useState('contents')
@@ -32,7 +34,7 @@ export default function FriendskipPage() {
   const suppressClick = useRef(false)
 
   useEffect(() => {
-    document.title = 'Friendskip'
+    document.title = '⊙'
     document.body.className = 'friendskip-page'
     document.body.setAttribute('style', '')
     Promise.all([

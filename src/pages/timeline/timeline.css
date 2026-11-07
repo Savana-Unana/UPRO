@@ -171,11 +171,14 @@
   --timeline-accent: #ffe600;
 }
 
+.timeline-shell.is-energy-absorbed > * { visibility: hidden; }
+
 .timeline-shell.is-dip { animation: water-time 60s steps(20, end) forwards; }
 @keyframes water-time { to { background: #001c80; } }
 .timeline-water-timer { position: fixed; top: 18px; right: 18px; color: #fff; font: 24px/1 'UPRO',serif; }
-.timeline-shell.is-flicker { animation: radioactive-flicker .16s infinite alternate; }
-@keyframes radioactive-flicker { to { filter: sepia(1) saturate(6); background: #ffe600; } }
+.timeline-shell.is-frostbite-flash {
+  --timeline-accent: #28f85a;
+}
 .timeline-shell.is-crashed::after { content: ''; position: fixed; inset: 0; z-index: 20; background: rgba(255,255,255,.72); cursor: wait; animation: crash-glitch .12s steps(2) infinite; }
 @keyframes crash-glitch { to { transform: translate(3px,-2px); filter: contrast(2); } }
 .timeline-shell.is-rip-flash,
@@ -206,13 +209,13 @@
 .timeline-walker.is-reverse { left: 102vw; transform: scaleX(-1); animation-name: mt-walk-reverse; }
 @keyframes mt-walk { to { left: 102vw; } }
 @keyframes mt-walk-reverse { to { left: -28vw; } }
-.timeline-accounts-toggle { position: fixed; left: 12px; bottom: 12px; z-index: 4; padding: 7px 12px; border: 2px solid #28f85a; background: #000; color: #28f85a; font: 17px/1 'UPRO',serif; cursor: pointer; }
-.timeline-accounts { position: fixed; left: 12px; bottom: 52px; z-index: 5; width: min(230px,calc(100vw - 24px)); max-height: min(320px,55vh); overflow: auto; padding: 8px; border: 2px solid #28f85a; background: rgba(0,0,0,.96); color: #555; font-family: 'UPRO',serif; }
+.timeline-accounts-toggle { position: fixed; left: 12px; bottom: 12px; z-index: 4; padding: 7px 12px; border: 2px solid var(--timeline-accent); background: #000; color: var(--timeline-accent); font: 17px/1 'UPRO',serif; cursor: pointer; }
+.timeline-accounts { position: fixed; left: 12px; bottom: 52px; z-index: 5; width: min(230px,calc(100vw - 24px)); max-height: min(320px,55vh); overflow: auto; padding: 8px; border: 2px solid var(--timeline-accent); background: rgba(0,0,0,.96); color: #555; font-family: 'UPRO',serif; }
 .timeline-accounts-heading { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding-bottom: 5px; background: #000; }
 .timeline-accounts h2 { margin: 0; color: #fff; font-size: 19px; }
-.timeline-accounts-heading button { border: 0; background: transparent; color: #28f85a; font-size: 20px; cursor: pointer; }
+.timeline-accounts-heading button { border: 0; background: transparent; color: var(--timeline-accent); font-size: 20px; cursor: pointer; }
 .timeline-accounts > button { width: 100%; display: grid; gap: 2px; padding: 5px 3px; border: 0; border-top: 1px solid #222; background: transparent; color: #555; font: inherit; text-align: left; }
-.timeline-accounts > button.is-found { color: #28f85a; cursor: pointer; }
+.timeline-accounts > button.is-found { color: var(--timeline-accent); cursor: pointer; }
 .timeline-accounts > button:disabled { cursor: default; }
 .timeline-accounts small,.timeline-accounts span { color: #aaa; font-size: 12px; overflow-wrap: anywhere; }
 

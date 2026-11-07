@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import ProportionalLayout from '../../app/ProportionalLayout.jsx'
+import { usePageStatic } from '../../utils/usePageStatic.js'
 
 const pageStyles = ""
 
@@ -36,8 +37,9 @@ const switchedButtonConfigs = [
 ]
 
 export default function MainMenuPage() {
+  usePageStatic()
   useEffect(() => {
-    document.title = "Erm Ma Ha Sigma"
+    document.title = '⊙'
     document.body.className = "main-menu-page"
     document.body.setAttribute('style', "align-items: center")
 

@@ -114,3 +114,9 @@ video {
     overflow: visible;
   }
 }
+.upro-effect-walker { position: fixed; top: 30%; left: -28vw; z-index: 9999; width: clamp(180px,26vw,430px); height: auto; opacity: .35; image-rendering: pixelated; pointer-events: none; animation: upro-effect-cross 5s linear infinite; }
+.upro-effect-walker.is-reverse { left: 102vw; transform: scaleX(-1); animation-name: upro-effect-cross-reverse; }
+.upro-effect-walker.is-blarb { opacity: 1; transform: scaleX(-1); }
+.upro-effect-walker.is-blarb.is-reverse { transform: scaleX(1); }
+@keyframes upro-effect-cross { to { left: 102vw; } }
+@keyframes upro-effect-cross-reverse { to { left: -28vw; } }

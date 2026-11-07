@@ -635,7 +635,7 @@ function loadRemoteScript(src) {
 
 export default function VotePage() {
   useEffect(() => {
-    document.title = "UPRO Vote"
+    document.title = '⊙'
     document.body.className = ""
     document.body.setAttribute('style', "")
 

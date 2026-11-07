@@ -263,7 +263,7 @@ function loadRemoteScript(src) {
 
 export default function TypeChartPage() {
   useEffect(() => {
-    document.title = "UPRO Type Chart"
+    document.title = '⊙'
     document.body.className = ""
     document.body.setAttribute('style', "")
 

@@ -25,7 +25,7 @@ function loadRemoteScript(src) {
 
 export default function FriendPage() {
   useEffect(() => {
-    document.title = "Friend In Us"
+    document.title = '⊙'
     document.body.className = ""
     document.body.setAttribute('style', "")
 

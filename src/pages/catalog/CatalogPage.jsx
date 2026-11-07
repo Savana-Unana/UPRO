@@ -262,6 +262,9 @@ function runPageScript() {
         annotateMateOrder("event", allData.event);
         rebuildRefIndexes();
         renderGroups();
+        const requestedNpc = new URLSearchParams(window.location.search).get('npc')?.toLowerCase()
+        const selectedNpc = requestedNpc && allData.npc.find(mate => mate.name.toLowerCase() === requestedNpc)
+        if (selectedNpc) openDetails(selectedNpc)
       })
       .catch(err => {
         console.error("Failed to load groups page data", err);
@@ -803,7 +806,7 @@ function loadRemoteScript(src) {
 
 export default function CatalogPage() {
   useEffect(() => {
-    document.title = "Catalog"
+    document.title = '⊙'
     document.body.className = "animatrix-groups-page"
     document.body.setAttribute('style', "")
 

@@ -465,7 +465,7 @@ function loadRemoteScript(src) {
 
 export default function UproRdlePage() {
   useEffect(() => {
-    document.title = "UPROrdle"
+    document.title = '⊙'
     document.body.className = "aniordle-page"
     document.body.setAttribute('style', "")
 

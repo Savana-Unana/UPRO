@@ -109,7 +109,7 @@ const DEFAULT_REGION_WINDOW_OFFSET = 16
 const REGION_FOCUS_PADDING = 0.9
 
 export default function MapPage() {
-  const [selectedRegionId, setSelectedRegionId] = useState(null)
+  const [selectedRegionId, setSelectedRegionId] = useState(() => sessionStorage.getItem('upro_lemody_map') === 'true' ? 'region1' : null)
   const [selectedObjectId, setSelectedObjectId] = useState(null)
   const [focusedRegionId, setFocusedRegionId] = useState(null)
   const [mapView, setMapView] = useState(DEFAULT_MAP_VIEW)
@@ -128,7 +128,7 @@ export default function MapPage() {
   const returnMapViewRef = useRef(DEFAULT_MAP_VIEW)
 
   useEffect(() => {
-    document.title = 'Shiverica Map'
+    document.title = '⊙'
     document.body.className = 'map-body'
     document.body.setAttribute('style', '')
 
@@ -139,6 +139,16 @@ export default function MapPage() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    if (sessionStorage.getItem('upro_lemody_map') !== 'true') return undefined
+    sessionStorage.removeItem('upro_lemody_map')
+    const timer = window.setTimeout(() => {
+      sessionStorage.setItem('upro_open_animate','Lemody')
+      window.uproNavigate?.('/animatrix')
+    },1000)
+    return () => window.clearTimeout(timer)
+  },[])
 
   useEffect(() => {
     mapViewRef.current = mapView

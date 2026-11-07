@@ -32,7 +32,7 @@ function loadRemoteScript(src) {
 
 export default function NormalPage() {
   useEffect(() => {
-    document.title = "Normal Mode"
+    document.title = '⊙'
     document.body.className = "normal-hub-page"
     document.body.setAttribute('style', "")
 

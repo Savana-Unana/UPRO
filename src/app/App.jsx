@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { legacyRouteRedirects, routes } from './routes.jsx'
+import { startBorgoSlorEffect } from '../utils/borgoSlorEffect.js'
 
 const routeByPath = new Map(routes.map(route => [route.path.toLowerCase(), route]))
 const basePath = normalizeBasePath(import.meta.env.BASE_URL)
@@ -72,6 +73,28 @@ function getReactPath(href) {
 
 export default function App() {
   const [route, setRoute] = useState(getRoute)
+  const [effects,setEffects] = useState([])
+  const [graffitiColors,setGraffitiColors] = useState(['#ff0099','#00ffff','#88ff00'])
+  const [walkers,setWalkers] = useState([])
+  const nextWalkerId = useRef(0)
+  useEffect(() => {
+    const activate = event => {
+      setEffects(current => current.includes(event.detail) ? current : [...current,event.detail])
+      if (event.detail==='trader'||event.detail==='blarb') {
+        const walker={id:++nextWalkerId.current,effect:event.detail,top:`${8+Math.random()*64}%`,reverse:Math.random()<.5}
+        setWalkers(current => [...current,walker])
+      }
+    }
+    window.addEventListener('upro-effect',activate)
+    return () => window.removeEventListener('upro-effect',activate)
+  },[])
+  useEffect(() => {
+    if (!effects.includes('graffiti')) return undefined
+    const timer = window.setInterval(() => setGraffitiColors(Array.from({length:3},()=>`#${Math.floor(Math.random()*0x1000000).toString(16).padStart(6,'0')}`)),250)
+    return () => window.clearInterval(timer)
+  },[effects])
+  const borgoActive = effects.includes('borgo')
+  useEffect(() => borgoActive ? startBorgoSlorEffect() : undefined, [borgoActive])
   const Component = useMemo(() => route.Component, [route])
   const navigateTo = useCallback((href) => {
     const nextPath = getReactPath(href)
@@ -171,5 +194,5 @@ export default function App() {
     return () => window.clearTimeout(timer)
   }, [navigateTo, route])
 
-  return <Component key={route.path} />
+  return <><Component key={route.path} />{effects.includes('graffiti') && <style>{`body *:not(input) { color: ${graffitiColors[0]} !important; border-color: ${graffitiColors[1]} !important; } body img { filter: hue-rotate(${parseInt(graffitiColors[2].slice(1,3),16)*1.4}deg) !important; }`}</style>}{walkers.map(({id,effect,top,reverse})=><img key={id} className={`upro-effect-walker ${effect==='blarb'?'is-blarb':''} ${reverse?'is-reverse':''}`} style={{top}} onAnimationIteration={() => setWalkers(current=>current.map(item=>item.id===id?{...item,top:`${8+Math.random()*64}%`,reverse:Math.random()<.5}:item))} src={effect==='trader'?'assets/images/ui/MysteriousTrader.png':'assets/images/mates/base/Blarb.png'} alt="" aria-hidden="true" />)}</>
 }

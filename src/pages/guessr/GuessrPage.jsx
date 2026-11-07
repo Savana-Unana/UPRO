@@ -670,7 +670,7 @@ function loadRemoteScript(src) {
 
 export default function GuessrPage() {
   useEffect(() => {
-    document.title = "Guessr"
+    document.title = '⊙'
     document.body.className = "guessr-page"
     document.body.setAttribute('style', "")
 

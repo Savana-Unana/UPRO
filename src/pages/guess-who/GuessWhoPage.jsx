@@ -521,7 +521,7 @@ function loadRemoteScript(src) {
 
 export default function GuessWhoPage() {
   useEffect(() => {
-    document.title = "Animatrix Guess Who?"
+    document.title = '⊙'
     document.body.className = "guesswho-page"
     document.body.setAttribute('style', "")
 

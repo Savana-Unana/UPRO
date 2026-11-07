@@ -17,7 +17,7 @@ export default function ConstructionPage() {
   const audioRef = useRef(null)
 
   useEffect(() => {
-    document.title = 'Under Construction'
+    document.title = '⊙'
     document.body.className = ''
     document.body.setAttribute('style', '')
 

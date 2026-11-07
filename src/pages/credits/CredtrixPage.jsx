@@ -759,7 +759,7 @@ function loadRemoteScript(src) {
 
 export default function CredtrixPage() {
   useEffect(() => {
-    document.title = "Guys thats literally my idea"
+    document.title = '⊙'
     document.body.className = "animatrix-groups-page uprod-page"
     document.body.setAttribute('style', "")
 

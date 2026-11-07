@@ -8,7 +8,7 @@ const pageStyles = ""
 
 export default function AnimatrixPage() {
   useEffect(() => {
-    document.title = "Animatrix"
+    document.title = '⊙'
     document.body.className = "animatrix-page"
     document.body.classList.toggle("amo-animatrix", sessionStorage.getItem("upro_amo_animatrix_scale") === "true")
     document.body.setAttribute('style', "")
@@ -253,6 +253,7 @@ export default function AnimatrixPage() {
       }
 
       function updateBorgoSlorViewportTransforms() {
+        if (window.uproBorgoSlor) { borgoSlorObserver?.disconnect(); return; }
         borgoSlorObserver?.disconnect();
         clearBorgoSlorTextTransforms();
 
@@ -265,14 +266,14 @@ export default function AnimatrixPage() {
 
         page?.classList.toggle("borgo-slor-active", Boolean(borgoCard));
 
-        if (borgoCard) {
-          animatrix.querySelectorAll([
-            ".card h3",
-            ".card .card-id",
-            ".card .list-card-label",
-            ".card .types span"
-          ].join(",")).forEach(transformVisibleTextWithin);
-        }
+        if (borgoCard) transformVisibleTextWithin(page);
+        if (page && borgoSlorObserver) borgoSlorObserver.observe(page, {
+          attributes: true,
+          attributeFilter: ["class", "hidden", "style", "aria-hidden"],
+          childList: true,
+          characterData: true,
+          subtree: true
+        });
       }
 
       function normalizeOrderName(name) {

@@ -11,10 +11,10 @@
   },
   {
     "name": "Perfecto",
-    "file": "assets/audio/Perfecto_Lyricless.mp3",
+    "file": null,
     "composer": "OctoKing",
     "themeType": "Game Theme",
-    "progress": "Composed",
+    "progress": "Untouched",
     "description": "",
     "description-title": "Perfactoly's Ad",
     "Version": "Update 1"
@@ -38,7 +38,7 @@
     "themeType": "Game Theme",
     "progress": "Finalized",
     "description": "",
-    "description-title": "Perfecatoly's Ad Music",
+    "description-title": "Perfecatoly's Ad Music Hollow Mix",
     "Version": "Update 10.5"
   },
   {

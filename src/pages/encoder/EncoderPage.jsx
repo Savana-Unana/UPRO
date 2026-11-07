@@ -39,7 +39,7 @@ export default function EncoderPage() {
   const [turnMessage, setTurnMessage] = useState('Choose a card or stop guessing.')
 
   useEffect(() => {
-    document.title = 'Encoder'
+    document.title = '⊙'
     document.body.className = 'encoder-page'
     document.body.setAttribute('style', '')
   }, [])

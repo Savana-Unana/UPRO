@@ -694,7 +694,7 @@ function loadRemoteScript(src) {
 
 export default function ChatPage() {
   useEffect(() => {
-    document.title = "Dialogue Box Builder"
+    document.title = '⊙'
     document.body.className = "chat-page"
     document.body.setAttribute('style', "")
 
