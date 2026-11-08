@@ -1650,6 +1650,7 @@ export default function OstPage() {
               setSelectedComposer(selected)
               const matching = tracks.filter(track=>matchesComposer(track,selected))
               if (matching.length && !matching.some(track=>track.key===currentTrackKey)) {
+                if (loopTrackKey) stopLoop()
                 setCurrentTrackKey(matching.find(track=>track.playable)?.key || matching[0].key)
                 setIsPlaying(false)
               }
