@@ -208,7 +208,15 @@
       "Post-Update 10.5": []
     },
     "Mysterious Trader": {
-      "Pre-Update 1": [],
+      "Pre-Update 1": [
+        {
+          "id": "35b12cbc-86e3-48cb-a237-abad91f62a17",
+          "name": "Newly Exclamated Dealsmaxxer",
+          "question": "Can i have a free item for free please. I want a free item",
+          "date": "2026-11-12T20:14:27.601Z",
+          "response": []
+        }
+      ],
       "Post-Update 1": [],
       "Post-Update 2": [],
       "Post-Update 3": [],
