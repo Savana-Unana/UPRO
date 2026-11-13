@@ -93,7 +93,7 @@ function runPageScript() {
     const nextMate = document.getElementById("nextMate");
     const prevMate = document.getElementById("prevMate");
 
-    const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
+    const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon", "Pseudogon"]);
     function getRarities(mate) {
       const raw = mate?.rarity;
       let list = [];

@@ -28,7 +28,7 @@ function runPageScript() {
     const prevMate = document.getElementById("prevMate");
     const modeBadge = document.getElementById("modeBadge");
 
-    const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
+    const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon", "Pseudogon"]);
 
     function annotateMateOrder(mode, mates) {
       (mates || []).forEach((mate, index) => {

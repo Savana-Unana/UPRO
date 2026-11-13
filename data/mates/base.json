@@ -18059,7 +18059,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18092,7 +18092,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Store Entry": "No entry yet",
             "Catalog": "No entry yet",
@@ -18116,7 +18116,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18148,7 +18148,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18181,7 +18181,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Store Entry": "No entry yet",
             "Catalog": "No entry yet",
@@ -18205,7 +18205,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18237,7 +18237,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18269,7 +18269,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -18295,7 +18295,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Paragon",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Store Entry": "No entry yet",
             "Catalog": "No entry yet",
@@ -20136,7 +20136,7 @@
           "paraTypes": [
             "Air"
           ],
-          "rarity": "Normal",
+          "rarity": "Shiver",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -27259,7 +27259,8 @@
             ]
           },
           "firstScannableUpdate": "Update 10.5",
-          "firstWildCatchableUpdate": "Update 10.5"
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A robotic creature assembled in the image of a mannequin from scraps of different devices. It has butterfly-like parts and eight arms that seem to fly, connected to its body by only a few strings. It crawls across ceilings and sometimes uses the strings to hover. It is highly hostile to everyone except its creator."
         }
       ],
       "sacred": [

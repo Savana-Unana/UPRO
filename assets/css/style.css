@@ -4,6 +4,31 @@
   src: url('../fonts/UPRO.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'WhatIf';
+  src: url('../fonts/whatIf.ttf') format('truetype');
+}
+
+.animatrix-page .card.extra-sequence-card {
+  opacity: .4;
+}
+
+.animatrix-page .card.extra-sequence-card h3 {
+  font-family: 'WhatIf', 'UPRO', serif;
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  overflow: visible;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.animatrix-page .card.extra-sequence-card:hover,
+.animatrix-page .card.extra-sequence-card:focus-within {
+  opacity: 1;
+}
+
 body.normal-hub-page {
   min-height: 100dvh;
   margin: 0;

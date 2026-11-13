@@ -288,9 +288,10 @@ export function buildEvolutionStageIndex(mates) {
 
 export async function fetchMateBuckets(options = {}) {
   const includeNpc = options.includeNpc !== false;
-  const [baseGroups, lostGroups, npc] = await Promise.all([
+  const [baseGroups, lostGroups, newGroups, npc] = await Promise.all([
     fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/lost.json").then(response => response.json()).catch(() => []),
+    fetch("data/mates/new-animates.json").then(response => response.json()).catch(() => []),
     includeNpc
       ? fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
       : Promise.resolve([])
@@ -298,10 +299,12 @@ export async function fetchMateBuckets(options = {}) {
 
   const baseBuckets = expandGroupedMateData(baseGroups, "base");
   const lostBuckets = expandGroupedMateData(lostGroups, "lost");
-  const buckets = mergeMateBuckets(baseBuckets, lostBuckets);
+  const newBuckets = expandGroupedMateData(newGroups, "base");
+  const buckets = mergeMateBuckets(baseBuckets, lostBuckets, newBuckets);
   buckets.evolution = mergeMateBuckets(
     expandGroupedMateData(baseGroups, "base"),
-    expandGroupedMateData(lostGroups, "base")
+    expandGroupedMateData(lostGroups, "base"),
+    expandGroupedMateData(newGroups, "base")
   );
   buckets.npc = Array.isArray(npc) ? npc : [];
   return buckets;

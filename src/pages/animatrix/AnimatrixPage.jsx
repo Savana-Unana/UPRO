@@ -73,6 +73,15 @@ export default function AnimatrixPage() {
       const subBiomePanel = document.getElementById("subBiomePanel");
       const subBiomeOptionsEl = document.getElementById("subBiomeOptions");
       const clearSubBiomes = document.getElementById("clearSubBiomes");
+      const sequenceFilterWrapper = document.getElementById("sequenceFilterWrapper");
+      const sequenceToggle = document.getElementById("sequenceToggle");
+      const sequencePanel = document.getElementById("sequencePanel");
+      const sequenceOptionsEl = document.getElementById("sequenceOptions");
+      const clearSequences = document.getElementById("clearSequences");
+      const bonusToggle = document.getElementById("bonusToggle");
+      const bonusPanel = document.getElementById("bonusPanel");
+      const bonusOptionsEl = document.getElementById("bonusOptions");
+      const clearBonuses = document.getElementById("clearBonuses");
       const statusFilterWrapper = document.getElementById("statusFilterWrapper");
       const statusToggle = document.getElementById("statusToggle");
       const statusPanel = document.getElementById("statusPanel");
@@ -94,8 +103,10 @@ export default function AnimatrixPage() {
       const nextMate = document.getElementById("nextMate");
       const prevMate = document.getElementById("prevMate");
       const modeBadge = document.getElementById("modeBadge");
-      const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon"]);
-      const eventOrder = { winter: 0, fools: 1, halloween: 2, anti: 3 };
+      const allowedRarities = new Set(["Normal", "Mode", "Shiver", "Paragon", "Pseudogon"]);
+      const eventOrder = { "extra-sequence": 0, halloween: 1, winter: 2, fools: 3, anti: 4 };
+      let sequences = [];
+      let sequenceMembers = new Map();
       const antiRealmNames = new Set(["aurorial", "axoloth", "axolth", "salelesure", "accelotl", "placibial", "citrinel", "borealing"]);
       const databaseModes = ["base", "sacred", "ace", "goner", "event", "costumes"];
       const databaseModeLabels = {
@@ -355,6 +366,7 @@ export default function AnimatrixPage() {
       const isMode = mate => hasRarity(mate, "Mode");
       const isShiver = mate => hasRarity(mate, "Shiver");
       const isParagon = mate => hasRarity(mate, "Paragon");
+      const isPseudogon = mate => hasRarity(mate, "Pseudogon");
 
       const isMissingNo = m =>
         (
@@ -433,7 +445,7 @@ export default function AnimatrixPage() {
 
       function shouldHideMateId(mate) {
         const mode = mate?.mode || mate?.__mode || currentMode;
-        return mode === "ncanon" || getEventKey(mate) === "anti";
+        return mode === "ncanon" || ["anti", "extra-sequence"].includes(getEventKey(mate));
       }
 
       function formatListCardId(mate) {
@@ -618,10 +630,15 @@ export default function AnimatrixPage() {
             fetch("data/abilities.json").then(r => r.json()).catch(() => []),
             fetchMateBuckets({ includeNpc: false }),
             fetch("data/mates/idorder.json").then(r => r.json()).catch(() => []),
+            fetch("data/mates/sequences.json").then(r => r.json()).catch(() => []),
           ]);
         })
-        .then(([abilities, mateBuckets, idOrder]) => {
+        .then(([abilities, mateBuckets, idOrder, sequenceData]) => {
             abilitiesData = abilities || [];
+            sequences = (Array.isArray(sequenceData) ? sequenceData : []).map(sequence => sequence.name).filter(Boolean);
+            sequenceMembers = new Map((Array.isArray(sequenceData) ? sequenceData : []).map(sequence => [sequence.name, new Set(sequence.members || [])]));
+            populateFilterOptions(sequences, sequenceOptionsEl);
+            populateFilterOptions(["Paragons", "Pseudogons", "Shivers", "Acifiable", "Modes"], bonusOptionsEl);
             rebuildIdOrderRank(idOrder);
             allData = { 
               base: annotateMateOrder("base", mateBuckets.base || []), 
@@ -877,6 +894,8 @@ export default function AnimatrixPage() {
       setupToggle(subBiomeToggle, subBiomePanel);
       setupToggle(statusToggle, statusPanel);
       setupToggle(stageToggle, stagePanel);
+      setupToggle(sequenceToggle, sequencePanel);
+      setupToggle(bonusToggle, bonusPanel);
 
       function rebuildEvolutionStageIndexes() {
         evolutionStageIndexes = new Map();
@@ -970,6 +989,14 @@ export default function AnimatrixPage() {
         clearCheckboxes(subBiomeOptionsEl);
         renderAnimatrix();
       });
+      clearSequences.addEventListener("click", () => {
+        clearCheckboxes(sequenceOptionsEl);
+        loadMode(currentMode);
+      });
+      clearBonuses.addEventListener("click", () => {
+        clearCheckboxes(bonusOptionsEl);
+        loadMode(currentMode);
+      });
       // Wire checkbox changes to re-render
       typeOptionsEl.addEventListener("change", renderAnimatrix);
       type2OptionsEl.addEventListener("change", renderAnimatrix);
@@ -983,6 +1010,8 @@ export default function AnimatrixPage() {
       subBiomeOptionsEl.addEventListener("change", renderAnimatrix);
       statusOptionsEl.addEventListener("change", renderAnimatrix);
       stageOptionsEl.addEventListener("change", renderAnimatrix);
+      sequenceOptionsEl.addEventListener("change", () => loadMode(currentMode));
+      bonusOptionsEl.addEventListener("change", () => loadMode(currentMode));
 
       // Mode switching
       modeButtons.forEach(btn => {
@@ -1042,6 +1071,41 @@ export default function AnimatrixPage() {
         return eventOrder[getEventKey(mate)] ?? 999;
       }
 
+      function getMateSequences(mate) {
+        const explicit = Array.isArray(mate?.sequences) ? mate.sequences : mate?.sequence ? [mate.sequence] : [];
+        const name = String(mate?.name || "").trim();
+        const derived = isShiver(mate) ? ["Juvice Co"] : [];
+        return Array.from(new Set([
+          ...explicit,
+          ...derived,
+          ...sequences.filter(sequence => sequenceMembers.get(sequence)?.has(name))
+        ])).filter(Boolean);
+      }
+
+      function getAllDisplayMates() {
+        return databaseModes.flatMap(mode => (allData[mode] || []).map(mate => ({ ...mate, mode })));
+      }
+
+      function bonusPasses(mate, selectedBonuses) {
+        if (!selectedBonuses.length) return true;
+        return selectedBonuses.some(bonus => {
+          if (bonus === "Paragons") return isParagon(mate);
+          if (bonus === "Pseudogons") return isPseudogon(mate);
+          if (bonus === "Shivers") return isShiver(mate);
+          if (bonus === "Modes") return isMode(mate);
+          if (bonus === "Acifiable") {
+            const exactGroup = normalizeOrderName(mate?.__groupName || mate?.name)
+              .replace(/^(?:ace|sacred)\s+/, "");
+            return (allData.ace || []).some(ace => {
+              const aceGroup = normalizeOrderName(ace?.__groupName || ace?.name)
+                .replace(/^(?:ace|sacred)\s+/, "");
+              return aceGroup === exactGroup;
+            });
+          }
+          return false;
+        });
+      }
+
       function compareByDisplayOrder(a, b) {
         const aMode = a.mode || a.__mode || "";
         const bMode = b.mode || b.__mode || "";
@@ -1064,7 +1128,12 @@ export default function AnimatrixPage() {
           const aEventRank = getEventRank(a);
           const bEventRank = getEventRank(b);
           if (aEventRank !== bEventRank) return aEventRank - bEventRank;
-
+          const eventVersionDifference = getVersionRank(a) - getVersionRank(b);
+          if (eventVersionDifference) return eventVersionDifference;
+          if (getEventKey(a) === "extra-sequence" && getEventKey(b) === "extra-sequence") {
+            const authoredOrder = Number(a.__order) - Number(b.__order);
+            if (Number.isFinite(authoredOrder) && authoredOrder !== 0) return authoredOrder;
+          }
         }
 
         const aId = getMateDisplayId(a);
@@ -1314,22 +1383,25 @@ export default function AnimatrixPage() {
 
       function getMateBiomes(mate, mode = currentMode) {
         if (!mate) return [];
-        if (mode === "database") {
-          return getMateVersions(mate);
-        }
+        const withContextualBiomes = biomes => {
+          const values = Array.isArray(biomes) ? biomes.filter(Boolean) : [];
+          const showBlarbIsland = ["event", "database"].includes(mode) &&
+            getMateSequences(mate).includes("Blarb Island");
+          return Array.from(new Set(showBlarbIsland ? [...values, "Blarb Island"] : values));
+        };
         if ((mate.mode || mode) === "costumes") return [];
-        if (Array.isArray(mate.biomes)) return mate.biomes.filter(Boolean);
-        if (Array.isArray(mate.biome)) return mate.biome.filter(Boolean);
-        if (typeof mate.biome === "string" && mate.biome.trim()) return [mate.biome.trim()];
-        if (typeof mate.Biome === "string" && mate.Biome.trim()) return [mate.Biome.trim()];
+        if (Array.isArray(mate.biomes)) return withContextualBiomes(mate.biomes);
+        if (Array.isArray(mate.biome)) return withContextualBiomes(mate.biome);
+        if (typeof mate.biome === "string" && mate.biome.trim()) return withContextualBiomes([mate.biome.trim()]);
+        if (typeof mate.Biome === "string" && mate.Biome.trim()) return withContextualBiomes([mate.Biome.trim()]);
         const resolvedMate = resolveReferenceRoot(mate);
         if (resolvedMate && resolvedMate !== mate) {
-          if (Array.isArray(resolvedMate.biomes)) return resolvedMate.biomes.filter(Boolean);
-          if (Array.isArray(resolvedMate.biome)) return resolvedMate.biome.filter(Boolean);
-          if (typeof resolvedMate.biome === "string" && resolvedMate.biome.trim()) return [resolvedMate.biome.trim()];
-          if (typeof resolvedMate.Biome === "string" && resolvedMate.Biome.trim()) return [resolvedMate.Biome.trim()];
+          if (Array.isArray(resolvedMate.biomes)) return withContextualBiomes(resolvedMate.biomes);
+          if (Array.isArray(resolvedMate.biome)) return withContextualBiomes(resolvedMate.biome);
+          if (typeof resolvedMate.biome === "string" && resolvedMate.biome.trim()) return withContextualBiomes([resolvedMate.biome.trim()]);
+          if (typeof resolvedMate.Biome === "string" && resolvedMate.Biome.trim()) return withContextualBiomes([resolvedMate.Biome.trim()]);
         }
-        return [];
+        return withContextualBiomes([]);
       }
 
       function getMateSubBiomes(mate, parent) {
@@ -1402,7 +1474,7 @@ export default function AnimatrixPage() {
           return;
         }
 
-        card.classList.toggle("rarity-paragon", isParagon(mate));
+        card.classList.toggle("rarity-paragon", isParagon(mate) || isPseudogon(mate));
         const firstBiome = getMateBiomes(mate)[0];
         const biomeImage = getBiomeImagePath(firstBiome, getMateSubBiomes(mate, firstBiome)[0]);
         card.classList.toggle("biome-bg", Boolean(biomeImage && modeUsesBiomeArt(currentMode)));
@@ -1454,16 +1526,30 @@ export default function AnimatrixPage() {
         currentMode = mode;
         setBiomeFilterVisibility(mode);
         setDatabaseTabFilterVisibility(mode);
+        const showSequences = mode === "event";
+        if (sequenceFilterWrapper) sequenceFilterWrapper.style.display = showSequences ? "inline-block" : "none";
+        if (!showSequences) {
+          clearCheckboxes(sequenceOptionsEl);
+          sequencePanel.classList.remove("open");
+          sequencePanel.setAttribute("aria-hidden", "true");
+        }
         const listSidebarMode = isListViewActive() && !listCostumeMode && mode !== "database"
           ? "base"
           : mode;
-        const sourceData = isRightClickSearchActive()
+        const selectedSequences = getCheckedValues(sequenceOptionsEl);
+        const selectedBonuses = getCheckedValues(bonusOptionsEl);
+        const sequencePool = selectedSequences.length
+          ? getAllDisplayMates().filter(mate =>
+              selectedSequences.some(sequence => getMateSequences(mate).includes(sequence))
+            )
+          : null;
+        const sourceData = sequencePool || (isRightClickSearchActive()
           ? getDatabaseMates()
           : listSidebarMode === "database"
           ? getDatabaseMates()
           : (listCostumeMode && listSidebarMode === "costumes")
             ? getRelatedCostumes(listCostumeSourceMate || currentDetailMate)
-          : (Array.isArray(allData[listSidebarMode]) ? allData[listSidebarMode].map(mate => ({ ...mate, mode: listSidebarMode })) : []);
+          : (Array.isArray(allData[listSidebarMode]) ? allData[listSidebarMode].map(mate => ({ ...mate, mode: listSidebarMode })) : []));
         const selectedVersions = getCheckedValues(versionOptionsEl).map(normalizeVersionLabel);
         const eventVersions = new Set();
         if (selectedVersions.includes("Update 10.5")) eventVersions.add("halloween");
@@ -1475,7 +1561,8 @@ export default function AnimatrixPage() {
           ? [...sourceData, ...matchingEvents.filter(eventMate => !sourceData.some(mate => getMateRef(mate) === getMateRef(eventMate)))]
           : sourceData;
         animatrixData = combinedSourceData
-          .filter(mate => !isMode(mate))
+          .filter(mate => bonusPasses(mate, selectedBonuses))
+          .filter(mate => !isMode(mate) || selectedBonuses.includes("Modes"))
           .filter(mate => {
             if (!getEventKey(mate)) return true;
             const mateMode = mate.mode || mate.__mode;
@@ -1498,6 +1585,7 @@ export default function AnimatrixPage() {
         const selectedTypes = getCheckedValues(typeOptionsEl);
         const selectedTypes2 = getCheckedValues(type2OptionsEl);
         const selectedParas = getCheckedValues(paraOptionsEl);
+        const selectedBonuses = getCheckedValues(bonusOptionsEl);
         const selectedVersions = getCheckedValues(versionOptionsEl);
         const selectedBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(biomeOptionsEl) : [];
         const selectedSubBiomes = modeSupportsBiomes(currentMode) ? getCheckedValues(subBiomeOptionsEl) : [];
@@ -1507,7 +1595,7 @@ export default function AnimatrixPage() {
         const filteredMates = animatrixData
           .filter(mate => {
             if (!mate) return false;
-            if (isMode(mate)) return false;
+            if (isMode(mate) && !selectedBonuses.includes("Modes")) return false;
             // The details costume browser shows all related costumes; earlier
             // update selections dim unavailable entries instead of hiding them.
             if (listCostumeMode && currentMode === "costumes") return true;
@@ -1552,6 +1640,7 @@ export default function AnimatrixPage() {
             const card = document.createElement("div");
             card.className = "card";
             card.__mate = mate;
+            card.classList.toggle("extra-sequence-card", getEventKey(mate) === "extra-sequence");
             if ((mate.mode || currentMode) === "costumes" && !costumeAvailableForVersions(mate, selectedVersions)) {
               card.style.opacity = "0.5";
             }
@@ -1560,7 +1649,7 @@ export default function AnimatrixPage() {
             if (listViewCard && currentDetailMate && sameMateForList(mate, currentDetailMate)) {
               card.classList.add("selected");
             }
-            if (!listViewCard && isParagon(mate)) card.classList.add("rarity-paragon");
+            if (!listViewCard && (isParagon(mate) || isPseudogon(mate))) card.classList.add("rarity-paragon");
             applyCardShellStyle(card, mate, listViewCard);
             renderCardContents(card, mate, listViewCard);
 
@@ -1642,7 +1731,9 @@ export default function AnimatrixPage() {
           const referenceHtml = reference ? `<p><b>Reference:</b> ${escapeHtml(reference)}</p>` : "";
           const obtainableHtml = obtainable ? `<p><b>First Obtainable:</b> ${escapeHtml(obtainable)}</p>` : "";
           const obtainmentHtml = renderObtainmentHtml(mate);
-          return `<div class="mate-meta">${visualHtml}${referenceHtml}${obtainableHtml}${obtainmentHtml}</div>`;
+          const sequenceList = getMateSequences(mate);
+          const sequenceHtml = sequenceList.length ? `<p><b>Sequences:</b> ${sequenceList.map(sequence => escapeHtml(sequence)).join(", ")}</p>` : "";
+          return `<div class="mate-meta">${visualHtml}${referenceHtml}${obtainableHtml}${sequenceHtml}${obtainmentHtml}</div>`;
         }
         const biomes = getMateBiomes(mate);
         const subBiomes = getMateSubBiomes(mate);
@@ -1660,10 +1751,13 @@ export default function AnimatrixPage() {
         const visualDescription = mate.visualDescription
           ? `<p><b>Visual Description:</b> ${escapeHtml(mate.visualDescription)}</p>`
           : "";
+        const sequenceList = getMateSequences(mate);
+        const sequenceHtml = sequenceList.length ? `<p><b>Sequences:</b> ${sequenceList.map(sequence => escapeHtml(sequence)).join(", ")}</p>` : "";
         const paragonOf = isParagon(mate) ? getParagonOf(mate) : "";
         const paragonHtml = paragonOf ? `<p><b>Paragon of:</b> ${escapeHtml(paragonOf)}</p>` : "";
-        const biomeHtml = currentMode === "database" ? "" : `<p><b>Biomes:</b> ${biomeText}</p>${subBiomeHtml}`;
-        return `<div class="mate-meta">${biomeHtml}<p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
+        const showDatabaseBiome = currentMode !== "database" || sequenceList.includes("Blarb Island");
+        const biomeHtml = showDatabaseBiome ? `<p><b>Biomes:</b> ${biomeText}</p>${subBiomeHtml}` : "";
+        return `<div class="mate-meta">${biomeHtml}${sequenceHtml}<p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
       }
 
       function asArray(value) {
@@ -2444,6 +2538,20 @@ export default function AnimatrixPage() {
             <button id="clearSubBiomes" className="clear-btn">Clear</button>
           </div>
           <div className="options" id="subBiomeOptions" />
+        </div>
+      </div>
+      <div className="multi-filter" id="sequenceFilterWrapper">
+        <button className="filter-toggle" id="sequenceToggle">Sequences ▾</button>
+        <div className="filter-panel" id="sequencePanel" aria-hidden="true">
+          <div className="panel-actions"><button id="clearSequences" className="clear-btn">Clear</button></div>
+          <div className="options" id="sequenceOptions" />
+        </div>
+      </div>
+      <div className="multi-filter" id="bonusFilterWrapper">
+        <button className="filter-toggle" id="bonusToggle">Bonuses ▾</button>
+        <div className="filter-panel" id="bonusPanel" aria-hidden="true">
+          <div className="panel-actions"><button id="clearBonuses" className="clear-btn">Clear</button></div>
+          <div className="options" id="bonusOptions" />
         </div>
       </div>
       {/* Status filter */}
