@@ -4,16 +4,16 @@
       "name": "Normal",
       "color": "white",
       "strongAgainst": [
-        "Water",
-        "Plant"
+        "Ice",
+        "Electric",
+        "Earth",
+        "Air"
       ],
       "weakTo": [
+        "Gross",
         "Savage",
-        "Metal",
-        "Artillery"
-      ],
-      "immuneTo": [
-        "Spectral"
+        "Mystic",
+        "Metal"
       ]
     },
     {
@@ -21,16 +21,12 @@
       "color": "#3BA5FF",
       "strongAgainst": [
         "Fire",
+        "Earth",
         "Gross",
-        "Metal",
-        "Artillery"
+        "Metal"
       ],
       "weakTo": [
-        "Normal",
         "Plant"
-      ],
-      "immuneTo": [
-        "Spectral"
       ]
     },
     {
@@ -43,27 +39,22 @@
         "Spectral"
       ],
       "weakTo": [
-        "Normal",
         "Fire",
-        "Dark"
+        "Metal"
       ]
     },
     {
       "name": "Fire",
       "color": "#FF7A4D",
       "strongAgainst": [
-        "Normal",
         "Plant",
         "Ice",
         "Gross",
-        "Dark",
-        "Spectral",
+        "Savage",
         "Metal"
       ],
       "weakTo": [
-        "Fire",
         "Water",
-        "Savage",
         "Earth"
       ]
     },
@@ -73,29 +64,25 @@
       "strongAgainst": [
         "Water",
         "Savage",
-        "Gross",
-        "Earth"
+        "Mystic",
+        "Metal"
       ],
       "weakTo": [
-        "Fire"
+        "Earth",
+        "Artillery"
       ]
     },
     {
       "name": "Electric",
       "color": "#F6C94C",
       "strongAgainst": [
-        "Normal",
         "Water",
-        "Electric",
         "Air",
-        "Mystic",
-        "Metal"
+        "Gross",
+        "Savage",
+        "Mystic"
       ],
       "weakTo": [
-        "Savage",
-        "Artillery"
-      ],
-      "immuneTo": [
         "Earth"
       ]
     },
@@ -105,87 +92,91 @@
       "strongAgainst": [
         "Fire",
         "Electric",
-        "Artillery"
+        "Light",
+        "Spectral"
       ],
       "weakTo": [
-        "Normal",
         "Water",
         "Plant",
-        "Gross"
-      ],
-      "immuneTo": [
-        "Air"
+        "Air",
+        "Metal"
       ]
     },
     {
       "name": "Air",
       "color": "#9ED8FF",
       "strongAgainst": [
-        "Fire",
         "Earth",
+        "Savage",
+        "Metal",
         "Artillery"
       ],
       "weakTo": [
-        "Normal",
         "Plant",
-        "Metal"
+        "Electric"
       ]
     },
     {
       "name": "Light",
       "color": "#FFF3B0",
       "strongAgainst": [
-        "Ice",
-        "Gross",
+        "Air",
         "Dark",
-        "Spectral"
+        "Spectral",
+        "Artillery"
       ],
       "weakTo": [
         "Water",
         "Plant",
-        "Earth",
-        "Metal"
+        "Earth"
       ]
     },
     {
       "name": "Dark",
       "color": "#3B3B3F",
       "strongAgainst": [
+        "Plant",
         "Air",
-        "Mystic",
         "Light",
+        "Spectral",
         "Artillery"
       ],
       "weakTo": [
-        "Savage",
-        "Spectral"
+        "Fire",
+        "Electric"
       ]
     },
     {
       "name": "Spectral",
       "color": "#8F7AE6",
       "strongAgainst": [
+        "Normal",
         "Electric",
+        "Gross",
         "Savage",
-        "Mystic",
-        "Dark"
+        "Mystic"
       ],
-      "immuneTo": [
-        "Normal"
+      "weakTo": [
+        "Plant",
+        "Light",
+        "Dark"
       ]
     },
     {
       "name": "Gross",
       "color": "#A8A77A",
       "strongAgainst": [
+        "Normal",
         "Plant",
-        "Ice",
+        "Light",
+        "Dark",
+        "Gross",
         "Mystic",
-        "Dark"
+        "Metal"
       ],
       "weakTo": [
-        "Gross",
-        "Light"
+        "Water",
+        "Savage"
       ]
     },
     {
@@ -193,16 +184,19 @@
       "color": "#D6C79B",
       "strongAgainst": [
         "Normal",
-        "Fire",
+        "Water",
         "Plant",
-        "Savage",
-        "Air",
-        "Dark"
+        "Fire",
+        "Earth",
+        "Light",
+        "Dark",
+        "Gross",
+        "Savage"
       ],
       "weakTo": [
+        "Air",
+        "Spectral",
         "Mystic",
-        "Light",
-        "Metal",
         "Artillery"
       ]
     },
@@ -211,28 +205,34 @@
       "color": "#BFA6FF",
       "strongAgainst": [
         "Normal",
-        "Savage",
-        "Gross",
+        "Air",
+        "Light",
         "Dark",
-        "Spectral",
-        "Metal"
+        "Savage",
+        "Mystic",
+        "Artillery"
       ],
       "weakTo": [
-        "Electric",
-        "Light"
+        "Gross"
       ]
     },
     {
       "name": "Metal",
       "color": "#B0B8C1",
       "strongAgainst": [
-        "Fire"
+        "Ice",
+        "Electric",
+        "Earth",
+        "Air",
+        "Savage",
+        "Mystic",
+        "Metal",
+        "Artillery"
       ],
       "weakTo": [
+        "Water",
         "Plant",
-        "Electric",
-        "Savage",
-        "Metal"
+        "Fire"
       ]
     },
     {
@@ -240,18 +240,17 @@
       "color": "#D88F8F",
       "strongAgainst": [
         "Normal",
+        "Plant",
         "Ice",
-        "Savage",
         "Air",
+        "Gross",
+        "Savage",
         "Mystic",
-        "Light"
+        "Artillery"
       ],
       "weakTo": [
         "Water",
         "Earth",
-        "Metal"
-      ],
-      "immuneTo": [
         "Spectral"
       ]
     },
@@ -278,7 +277,7 @@
     "Ocean",
     "Ranch Isles",
     "Axo-Skerry",
-    "T\u00eatign\u00e9e Island",
+    "Têtignée Island",
     "Caverns",
     "Mountains",
     "Empire City",

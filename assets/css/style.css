@@ -1877,6 +1877,12 @@ body.ost-page .filter-panel {
   font-size: 20px;
 }
 .filter-panel .opt input { width: 18px; height: 18px; cursor: pointer; }
+.filter-panel .opt.type-null-option {
+  color: #ff4d4d;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(255, 77, 77, 0.45);
+}
+.filter-panel .opt.type-null-option input { accent-color: #d71920; }
 
 @media screen and (max-width: 600px) {
   .dex-tab {

@@ -24,12 +24,11 @@ export default function AnimatrixPage() {
     let listCostumeSourceMate = null;
     let rightClickSearchId = "";
     let idOrderRank = new Map();
-    let fallbackIdOrder = 0;
-    let fallbackIdOrderByKey = new Map();
     let sortMode = "id";
     let subBiomeOptionsByBiome = {};
     let versionInfoByName = new Map();
     let evolutionStageIndexes = new Map();
+    const nullTypeFilterValue = "__null__";
 
       const animatrix = document.getElementById("animatrix");
       const gridView = document.getElementById("gridView");
@@ -293,27 +292,11 @@ export default function AnimatrixPage() {
 
       function rebuildIdOrderRank(orderData) {
         idOrderRank = new Map();
-        fallbackIdOrder = 0;
-        fallbackIdOrderByKey = new Map();
         (Array.isArray(orderData) ? orderData : []).forEach((name, index) => {
           const normalized = normalizeOrderName(name);
           if (!normalized || antiRealmNames.has(normalized) || idOrderRank.has(normalized)) return;
           idOrderRank.set(normalized, idOrderRank.size);
         });
-      }
-
-      function getFallbackIdOrder(mate) {
-        const key = [
-          normalizeOrderName(mate?.name),
-          normalizeOrderName(mate?.ref),
-          normalizeOrderName(mate?.__groupName),
-          mate?.mode || mate?.__mode || ""
-        ].join("|");
-        if (!fallbackIdOrderByKey.has(key)) {
-          fallbackIdOrderByKey.set(key, idOrderRank.size + fallbackIdOrder);
-          fallbackIdOrder += 1;
-        }
-        return fallbackIdOrderByKey.get(key);
       }
 
       function getConfiguredIdOrder(mate) {
@@ -326,7 +309,7 @@ export default function AnimatrixPage() {
           }
         }
         mate.__hasConfiguredIdOrder = false;
-        return getFallbackIdOrder(mate);
+        return null;
       }
 
       function annotateMateOrder(mode, mates) {
@@ -445,7 +428,7 @@ export default function AnimatrixPage() {
 
       function shouldHideMateId(mate) {
         const mode = mate?.mode || mate?.__mode || currentMode;
-        return mode === "ncanon" || ["anti", "extra-sequence"].includes(getEventKey(mate));
+        return mode === "ncanon" || getEventKey(mate) === "anti";
       }
 
       function formatListCardId(mate) {
@@ -769,7 +752,9 @@ export default function AnimatrixPage() {
             <h2>${escapeHtml(statsModeLabel)} Stats</h2>
             <div class="mode-stats">`;
 
-          const statsMons = statsPool.filter(m => statsMode === "costumes" || hasValidId(m));
+          // Card totals describe what is actually visible. ID-less entries
+          // (such as Extra Sequences) still count as cards.
+          const statsMons = statsPool;
           const totalCount = statsMons.length;
           const createdCount = statsMons.filter(isDesigned).length;
           const finalizedCount = statsMons.filter(isFinalized).length;
@@ -858,6 +843,44 @@ export default function AnimatrixPage() {
 
       function clearCheckboxes(container) {
         container.querySelectorAll('input[type="checkbox"]').forEach(i => i.checked = false);
+      }
+
+      function getRealTypeSelections(container) {
+        return getCheckedValues(container).filter(value => value !== nullTypeFilterValue);
+      }
+
+      function syncNullTypeOption(source, target) {
+        const shouldShow = getRealTypeSelections(source).length > 0;
+        const existing = target.querySelector("[data-type-null-option]");
+        if (!shouldShow) {
+          existing?.remove();
+          return;
+        }
+        if (existing) return;
+
+        const row = document.createElement("label");
+        row.className = "opt type-null-option";
+        row.dataset.typeNullOption = "true";
+        row.innerHTML = `<input type="checkbox" value="${nullTypeFilterValue}"> <span>Null</span>`;
+        target.prepend(row);
+      }
+
+      function syncNullTypeOptions() {
+        syncNullTypeOption(typeOptionsEl, type2OptionsEl);
+        syncNullTypeOption(type2OptionsEl, typeOptionsEl);
+      }
+
+      function handleTypeFilterChange(event, container) {
+        const changed = event.target.closest('input[type="checkbox"]');
+        if (changed?.value === nullTypeFilterValue && changed.checked) {
+          container.querySelectorAll(`input[type="checkbox"]:not([value="${nullTypeFilterValue}"])`)
+            .forEach(input => input.checked = false);
+        } else if (changed?.checked) {
+          const nullOption = container.querySelector(`input[value="${nullTypeFilterValue}"]`);
+          if (nullOption) nullOption.checked = false;
+        }
+        syncNullTypeOptions();
+        renderAnimatrix();
       }
 
       // Toggle/filter panel open/close
@@ -961,10 +984,12 @@ export default function AnimatrixPage() {
       // Clear buttons
       clearTypes.addEventListener("click", () => {
         clearCheckboxes(typeOptionsEl);
+        syncNullTypeOptions();
         renderAnimatrix();
       });
       clearTypes2.addEventListener("click", () => {
         clearCheckboxes(type2OptionsEl);
+        syncNullTypeOptions();
         renderAnimatrix();
       });
       clearParas.addEventListener("click", () => {
@@ -998,8 +1023,8 @@ export default function AnimatrixPage() {
         loadMode(currentMode);
       });
       // Wire checkbox changes to re-render
-      typeOptionsEl.addEventListener("change", renderAnimatrix);
-      type2OptionsEl.addEventListener("change", renderAnimatrix);
+      typeOptionsEl.addEventListener("change", event => handleTypeFilterChange(event, typeOptionsEl));
+      type2OptionsEl.addEventListener("change", event => handleTypeFilterChange(event, type2OptionsEl));
       paraOptionsEl.addEventListener("change", renderAnimatrix);
       versionOptionsEl.addEventListener("change", () => loadMode(currentMode));
       databaseTabOptionsEl.addEventListener("change", () => loadMode(currentMode));
@@ -1020,7 +1045,12 @@ export default function AnimatrixPage() {
           modeButtons.forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
           if (btn.dataset.mode === "database") {
-            statusOptionsEl.querySelector('input[name="statusFilter"][value="finalized"]').checked = true;
+            statusOptionsEl.querySelector('input[name="statusFilter"][value="all"]').checked = true;
+            clearCheckboxes(databaseTabOptionsEl);
+            ["base", "event"].forEach(mode => {
+              const option = databaseTabOptionsEl.querySelector(`input[value="${mode}"]`);
+              if (option) option.checked = true;
+            });
           }
           loadMode(btn.dataset.mode);
           updateListModeActions();
@@ -1109,6 +1139,54 @@ export default function AnimatrixPage() {
       function compareByDisplayOrder(a, b) {
         const aMode = a.mode || a.__mode || "";
         const bMode = b.mode || b.__mode || "";
+        if (currentMode === "database") {
+          const aId = getMateDisplayId(a);
+          const bId = getMateDisplayId(b);
+          const aHasId = aId !== null;
+          const bHasId = bId !== null;
+          const getDatabaseBucket = (mate, mode, id) => {
+            if (id !== null && id > 0) return 0;
+            if (getEventKey(mate) === "extra-sequence") return 1;
+            if (mode === "goner" || (id !== null && id < 0)) return 2;
+            return 3;
+          };
+          const bucketDifference = getDatabaseBucket(a, aMode, aId) - getDatabaseBucket(b, bMode, bId);
+          if (bucketDifference) return bucketDifference;
+
+          if (aHasId && bHasId && aId !== bId) {
+            const aSortId = aId > 0 ? aId : Number.MAX_SAFE_INTEGER + Math.abs(aId);
+            const bSortId = bId > 0 ? bId : Number.MAX_SAFE_INTEGER + Math.abs(bId);
+            return aSortId - bSortId;
+          }
+          if (aHasId !== bHasId) return aHasId ? -1 : 1;
+
+          const modeDifference = (databaseModeRank[aMode] ?? 999) - (databaseModeRank[bMode] ?? 999);
+          if (modeDifference) return modeDifference;
+
+          if (aMode === "costumes") {
+            const ledPriority = Number(/^LED\b/i.test(b.name || "")) - Number(/^LED\b/i.test(a.name || ""));
+            if (ledPriority) return ledPriority;
+            const costumeVersionDifference = getCostumeVersionValue(a) - getCostumeVersionValue(b);
+            if (costumeVersionDifference) return costumeVersionDifference;
+          }
+
+          if (aMode === "event") {
+            const eventDifference = getEventRank(a) - getEventRank(b);
+            if (eventDifference) return eventDifference;
+            const eventVersionDifference = getVersionRank(a) - getVersionRank(b);
+            if (eventVersionDifference) return eventVersionDifference;
+            if (getEventKey(a) === "extra-sequence" && getEventKey(b) === "extra-sequence") {
+              const authoredOrder = Number(a.__order) - Number(b.__order);
+              if (Number.isFinite(authoredOrder) && authoredOrder !== 0) return authoredOrder;
+            }
+          } else {
+            const versionDifference = getVersionRank(a) - getVersionRank(b);
+            if (versionDifference) return versionDifference;
+          }
+
+          return String(a.name || "").localeCompare(String(b.name || ""));
+        }
+
         if (aMode === "costumes" && bMode === "costumes") {
           const aId = getMateDisplayId(a);
           const bId = getMateDisplayId(b);
@@ -1124,7 +1202,9 @@ export default function AnimatrixPage() {
           if (aCostumeVersion !== bCostumeVersion) return aCostumeVersion - bCostumeVersion;
           return String(a.name || "").localeCompare(String(b.name || ""));
         }
-        if (aMode === "event" && bMode === "event") {
+        // Event-only views group by event/release. In the combined Database,
+        // IDs must remain the primary order across Base and Event cards.
+        if (currentMode !== "database" && aMode === "event" && bMode === "event") {
           const aEventRank = getEventRank(a);
           const bEventRank = getEventRank(b);
           if (aEventRank !== bEventRank) return aEventRank - bEventRank;
@@ -1147,12 +1227,6 @@ export default function AnimatrixPage() {
           if (aId !== bId) return bId - aId;
         } else if (aHasId !== bHasId) {
           return aHasId ? -1 : 1;
-        }
-
-        // Within a Database roster ID, forms take priority over release versions.
-        if (currentMode === "database") {
-          const modeDifference = (databaseModeRank[aMode] ?? 999) - (databaseModeRank[bMode] ?? 999);
-          if (modeDifference) return modeDifference;
         }
 
         const aVersionRank = getVersionRank(a);
@@ -1211,7 +1285,15 @@ export default function AnimatrixPage() {
       }
 
       function getAlternateGroupKey(mate) {
-        return `ref:${getResolvedMateRef(mate)}`;
+        const groupName = normalizeOrderName(mate?.__groupName);
+        return groupName ? `group:${groupName}` : `ref:${getResolvedMateRef(mate)}`;
+      }
+
+      function sharesAlternateIdentity(a, b) {
+        if (getAlternateGroupKey(a) !== getAlternateGroupKey(b)) return false;
+        const aId = getMateDisplayId(a);
+        const bId = getMateDisplayId(b);
+        return aId === bId;
       }
 
       function getReferenceKey(mate) {
@@ -1303,6 +1385,9 @@ export default function AnimatrixPage() {
         if (isMode(mate)) return null;
 
         const displayMode = mate?.mode || mate?.__mode || "";
+        const eventKey = getEventKey(mate);
+        if (displayMode === "ncanon" || eventKey === "anti") return null;
+
         if (displayMode === "event") {
           const original = resolveReferenceRoot(mate);
           if (original && getReferenceKey(original) !== getReferenceKey(mate)) {
@@ -1312,7 +1397,7 @@ export default function AnimatrixPage() {
         const mode = displayMode === "event" ? mate.sourceMode || "base" : displayMode;
         const order = Number(mate?.__idOrder ?? mate?.__order);
 
-        if (mode === "base" && Number.isInteger(order)) {
+        if (mode === "base" && mate?.__hasConfiguredIdOrder && Number.isInteger(order)) {
           return order + 1;
         }
 
@@ -1320,9 +1405,10 @@ export default function AnimatrixPage() {
           return null;
         }
 
-        if (mode === "goner" && Number.isInteger(order)) {
-          if (mate?.__hasConfiguredIdOrder) return order + 1;
-          return -(order + 1);
+        if (mode === "goner") {
+          if (mate?.__hasConfiguredIdOrder && Number.isInteger(order)) return order + 1;
+          const authoredOrder = Number(mate?.__order);
+          return Number.isInteger(authoredOrder) ? -(authoredOrder + 1) : null;
         }
 
         const resolvedMate = resolveReferenceRoot(mate);
@@ -1582,8 +1668,12 @@ export default function AnimatrixPage() {
         updateListModeActions();
         const listViewActive = isListViewActive();
         const term = (search.value || "").trim().toLowerCase();
-        const selectedTypes = getCheckedValues(typeOptionsEl);
-        const selectedTypes2 = getCheckedValues(type2OptionsEl);
+        const rawSelectedTypes = getCheckedValues(typeOptionsEl);
+        const rawSelectedTypes2 = getCheckedValues(type2OptionsEl);
+        const selectedTypes = rawSelectedTypes.filter(value => value !== nullTypeFilterValue);
+        const selectedTypes2 = rawSelectedTypes2.filter(value => value !== nullTypeFilterValue);
+        const requireSoloTyping = rawSelectedTypes.includes(nullTypeFilterValue)
+          || rawSelectedTypes2.includes(nullTypeFilterValue);
         const selectedParas = getCheckedValues(paraOptionsEl);
         const selectedBonuses = getCheckedValues(bonusOptionsEl);
         const selectedVersions = getCheckedValues(versionOptionsEl);
@@ -1605,6 +1695,10 @@ export default function AnimatrixPage() {
             }
             if (selectedTypes2.length) {
               if (!mate.types || !intersects(selectedTypes2, mate.types)) return false;
+            }
+            if (requireSoloTyping) {
+              const primaryTypes = Array.from(new Set((mate.types || []).filter(type => String(type || "").trim())));
+              if (primaryTypes.length !== 1) return false;
             }
             if (selectedParas.length) {
               if (!mate.paraTypes || !intersects(selectedParas, mate.paraTypes)) return false;
@@ -2304,10 +2398,10 @@ export default function AnimatrixPage() {
             mode === "evolution" ? [] : (mates || []).map(form => ({ ...form, mode }))
           );
           const sameSpeciesAllTabs = [...indexedForms, ...allLoadedForms.filter(form =>
-            getResolvedMateRef(form) === mateRef
+            sharesAlternateIdentity(form, mate)
           )].filter((form, index, forms) => forms.findIndex(other =>
             other.name === form.name && other.mode === form.mode && other.image === form.image
-          ) === index);
+          ) === index).filter(form => sharesAlternateIdentity(form, mate));
           const alternateForms = sameSpeciesAllTabs.filter(f => {
             if (f.name === mate.name && f.mode === mateMode) return false;
             if (isMode(f)) return false;

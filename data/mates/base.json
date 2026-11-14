@@ -2209,7 +2209,7 @@
       "goner": []
     }
   },
-  {
+      {
     "name": "Grovy (Palm)",
     "forms": {
       "base": [
@@ -3887,6 +3887,28 @@
           "description": "",
           "versions": "Update 10.5",
           "reference": "Barbarian, Clash Royale"
+        },
+        {
+          "event": "extra-sequence",
+          "name": "Jester Blarb",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "sequences": [
+            "Deltarune"
+          ],
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "Beat Juckle.",
+          "image": "assets/images/mates/goner/J.Blarb.png",
+          "versions": "Update 10.5"
         }
       ],
       "goner": []
@@ -9599,6 +9621,45 @@
     }
   },
   {
+    "name": "Therpo",
+    "forms": {
+      "base": [
+        {
+          "name": "Therpo",
+          "types": [
+            "Plant",
+            "Gross"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Metaforest"
+          ],
+          "image": "assets/images/mates/goner/Therpo.png",
+          "etymology": "Thorn",
+          "firstScannableUpdate": "Update 3",
+          "firstWildCatchableUpdate": "Update 3",
+          "subBiomes": {
+            "Metaforest": [
+              "Rainforest",
+              "Garden Grounds"
+            ]
+          },
+          "visualDescription": "A snake-esque creature that is constantly tripping because its own hallucinogenic thorns prick it."
+        }
+      ]
+    }
+  },
+{
     "name": "Orangutango",
     "forms": {
       "base": [
@@ -10537,30 +10598,6 @@
               "level": null
             }
           ],
-          "abilities": [],
-          "moves": [],
-          "height": null,
-          "color": null,
-          "image": "assets/images/mates/lost/MissingNo.png",
-          "etymology": "",
-          "event": "Lost"
-        }
-      ],
-      "ncanon": [
-        {
-          "name": "Imdacaptainnow",
-          "types": [
-            "Gross"
-          ],
-          "paraTypes": [],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Discovered": "No entry yet",
-            "First Caught": "No entry yet",
-            "Experienced": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "evolvesTo": [],
           "abilities": [],
           "moves": [],
           "height": null,
@@ -20449,7 +20486,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Pseudogon",
           "dexEntries": {
             "Discovered": "No entry yet",
             "First Caught": "No entry yet",
@@ -20869,6 +20906,41 @@
     }
   },
   {
+    "name": "Sealibber",
+    "forms": {
+      "base": [
+        {
+          "name": "Sealibber",
+          "types": [
+            "Ice",
+            "Air"
+          ],
+          "paraTypes": [
+            "Artillery"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "New Canadia"
+          ],
+          "image": "assets/images/mates/goner/Sealibber.png",
+          "etymology": "Sea + Landlubber + Caliber",
+          "firstScannableUpdate": "Update 8",
+          "firstWildCatchableUpdate": "Update 8",
+          "visualDescription": "A seal that cools things down to relax them."
+        }
+      ]
+    }
+  },
+{
     "name": "Blizard",
     "forms": {
       "base": [
@@ -22840,6 +22912,41 @@
     }
   },
   {
+    "name": "Sagitary",
+    "forms": {
+      "base": [
+        {
+          "name": "Sagitary",
+          "types": [
+            "Savage",
+            "Normal"
+          ],
+          "paraTypes": [
+            "Air"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Empire City",
+            "Swamp"
+          ],
+          "image": "assets/images/mates/goner/Sagitary.png",
+          "etymology": "Sagittarius + Secretary",
+          "firstScannableUpdate": "Update 7",
+          "firstWildCatchableUpdate": "Update 8"
+        }
+      ]
+    }
+  },
+{
     "name": "Wyvearn",
     "forms": {
       "base": [
@@ -26826,6 +26933,66 @@
     }
   },
   {
+    "name": "Hushbraun",
+    "forms": {
+      "base": [
+        {
+          "event": "halloween",
+          "name": "Hushbraun",
+          "types": [
+            "Dark",
+            "Spectral"
+          ],
+          "paraTypes": [
+            "Mystic"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Empire City"
+          ],
+          "image": "assets/images/mates/goner/Hushbraun.png",
+          "etymology": "Hush + Hashbrown + Brawn",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5"
+        }
+      ],
+      "costumes": [
+        {
+          "event": "halloween",
+          "name": "Creaking Hushbraun",
+          "types": [
+            "Dark",
+            "Spectral"
+          ],
+          "paraTypes": [
+            "Mystic"
+          ],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "description": "",
+          "versions": "Update 10.5"
+        }
+      ]
+    }
+  },
+{
     "name": "Shiver Molds",
     "forms": {
       "base": [
@@ -27506,28 +27673,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Aurorial",
-          "types": [
-            "Light"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Paragon",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -27571,28 +27717,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Axoloth",
-          "types": [
-            "Water"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -27636,28 +27761,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Salelesure",
-          "types": [
-            "Water"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -27696,28 +27800,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Accelotl",
-          "types": [
-            "Water"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -27756,28 +27839,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Placibial",
-          "types": [
-            "Mystic"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -27817,29 +27879,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Citrinel",
-          "types": [
-            "Plant",
-            "Savage"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -28407,6 +28447,27 @@
           "obtainment": "",
           "image": "assets/images/mates/goner/L.MissingNo.png",
           "description": ""
+        },
+        {
+          "name": "Flower Apothelugh",
+          "types": [
+            "Light",
+            "Normal"
+          ],
+          "paraTypes": [
+            "Lucid"
+          ],
+          "rarity": "Paragon",
+          "dexEntries": {
+            "Store Entry": "No entry yet",
+            "Catalog": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "abilities": [],
+          "moves": [],
+          "obtainment": "Buy it.",
+          "image": "assets/images/mates/goner/L.MissingNo.png",
+          "versions": "Update 10.5"
         }
       ]
     }
@@ -28447,28 +28508,7 @@
         }
       ],
       "goner": [],
-      "costumes": [
-        {
-          "name": "LED Borealing",
-          "types": [
-            "Normal"
-          ],
-          "paraTypes": [
-            ""
-          ],
-          "rarity": "Normal",
-          "dexEntries": {
-            "Store Entry": "No entry yet",
-            "Catalog": "No entry yet",
-            "Callside": "No entry yet"
-          },
-          "abilities": [],
-          "moves": [],
-          "obtainment": "",
-          "image": "assets/images/mates/goner/L.MissingNo.png",
-          "description": ""
-        }
-      ]
+      "costumes": []
     }
   },
   {
@@ -33399,6 +33439,43 @@
     }
   },
   {
+    "name": "Vialentine",
+    "forms": {
+      "base": [
+        {
+          "name": "Vialentine",
+          "types": [
+            "Plant",
+            "Dark"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Ieland"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Vine + Violent + Valentine",
+          "firstScannableUpdate": "Update 5",
+          "firstWildCatchableUpdate": "Update 10",
+          "subBiomes": {
+            "Ieland": [
+              "Above the Potluck"
+            ]
+          }
+        }
+      ]
+    }
+  },
+{
     "name": "Flapdrag",
     "forms": {
       "goner": [],
@@ -34362,7 +34439,7 @@
     "forms": {
       "goner": [], "sacred": [], "costumes": [],
       "base": [{
-        "name": "Daedo", "types": ["Dark", "Normal"], "paraTypes": [""], "rarity": "Normal", "event": "halloween",
+        "name": "Daedo", "types": ["Dark", "Normal"], "paraTypes": [""], "rarity": "Normal", "event": null,
         "dexEntries": {"Discovered": "No entry yet", "First Caught": "No entry yet", "Experienced": "No entry yet", "Callside": "No entry yet"},
         "evolvesTo": [], "abilities": [], "moves": [], "height": null, "color": null,
         "biomes": ["Alcatraz", "Ieland"], "subBiomes": {"Ieland": ["Metaforest"]},
@@ -38555,6 +38632,368 @@
           "firstScannableUpdate": "Update 8",
           "firstWildCatchableUpdate": "Update 8",
           "visualDescription": "Like Gloalese, its body is formed by small black spheres connected by blue lines of electricity. It resembles a strange in-between of an octopus and a jellyfish, with a head similar to an octopus and many jellyfish tentacles joining together to create a thick tentacle."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Freg",
+    "forms": {
+      "goner": [
+        {
+          "name": "Freg",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "image": "assets/images/mates/goner/Freg.png"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Splad",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Splad",
+          "types": [
+            "Earth"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Splat + Spade + Lad",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A mostly blue-and-white, spade-esque creature with a hooded top. Its bottom appendage lets it bounce high and far, but it cannot stick the landing; it lands on its face, destroying the ground and bouncing it into the air with itself."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Thrieline",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Thrieline",
+          "types": [
+            "Normal",
+            "Dark"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Three + Thrill + Feline",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A large three-headed cat. The cats do not share one consciousness and all want to do their own thing, but are unable to. All three are thrill seekers."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Poken",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Poken",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Alphallen",
+              "level": null,
+              "info": "Level"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Poker + Token",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A small poker chip with two stubby legs and a dog face."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Alphallen",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Alphallen",
+          "types": [
+            "Savage"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Alpha + All In",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A giant wolf-shaped creature made of poker chips. Its limbs are solid black, its poker-chip spine and torso shake in a wave whenever it moves, and it wears a crown."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Juckle",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Juckle",
+          "types": [
+            "Lucid"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/goner/Juckle.png",
+          "etymology": "Juggle + Chuckle",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A black-and-red jester that believes toys are the true people and people are toys. It juggles two balls resembling the realms and sometimes its own head; sources state that after its seemingly infinite routine, it puts its head back in a box."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Popuppet",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Popuppet",
+          "types": [
+            "Normal"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [
+            {
+              "name": "Adonine",
+              "level": null,
+              "info": "Level"
+            }
+          ],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Pop Up + Pup + Puppet",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "A black-and-white wooden-toy humanoid with nearly hidden dog ears and a dog nose. It wears cat-like fake eyes-and-nose glasses, offers a blue pill and a red pill, and instinctively plays fetch if one is thrown."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Adonine",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Adonine",
+          "types": [
+            "Normal",
+            "Air"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Ad + Adonis + Canine/Feline",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5",
+          "visualDescription": "An armored evolution of Popuppet that flies with its cat tail and further hides its dog traits. Its armor gives it a stronger build and turns its hands into claw-tipped blasters that fire the same pills it carried before."
+        }
+      ]
+    }
+  },
+  {
+    "name": "Altabby",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Deltarune"
+          ],
+          "name": "Altabby",
+          "types": [
+            "Mystic",
+            "Electric"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Deltarune"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Alt-Tab + Tabby",
+          "firstScannableUpdate": "Update 10.5",
+          "firstWildCatchableUpdate": "Update 10.5"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Bellarb",
+    "forms": {
+      "base": [
+        {
+          "event": "extra-sequence",
+          "sequences": [
+            "Blarb Island"
+          ],
+          "name": "Bellarb",
+          "types": [
+            "Water"
+          ],
+          "paraTypes": [],
+          "rarity": "Normal",
+          "dexEntries": {
+            "Discovered": "No entry yet",
+            "First Caught": "No entry yet",
+            "Experienced": "No entry yet",
+            "Callside": "No entry yet"
+          },
+          "evolvesTo": [],
+          "abilities": [],
+          "moves": [],
+          "biomes": [
+            "Blarb Island"
+          ],
+          "image": "assets/images/mates/lost/MissingNo.png",
+          "etymology": "Belle + Blobfish",
+          "firstScannableUpdate": "Update 6.5",
+          "firstWildCatchableUpdate": "Update 6.5"
         }
       ]
     }
