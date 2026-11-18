@@ -4282,8 +4282,8 @@
           ],
           "image": "assets/images/mates/base/Quontoon.png",
           "etymology": "Quack + Pontoon",
-          "firstScannableUpdate": "Update 1",
-          "firstWildCatchableUpdate": "Update 2"
+          "firstScannableUpdate": "Update 3",
+          "firstWildCatchableUpdate": "Update 3"
         }
       ],
       "sacred": [
@@ -4372,7 +4372,7 @@
           "image": "assets/images/mates/base/Honkraft.png",
           "etymology": "Honk + Raft",
           "firstScannableUpdate": "Update 1",
-          "firstWildCatchableUpdate": "Update 4"
+          "firstWildCatchableUpdate": "Update 6"
         }
       ],
       "sacred": [

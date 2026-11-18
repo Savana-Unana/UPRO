@@ -1291,6 +1291,15 @@ export default function AnimatrixPage() {
 
       function sharesAlternateIdentity(a, b) {
         if (getAlternateGroupKey(a) !== getAlternateGroupKey(b)) return false;
+
+        // Grouped data already gives every forme of a species the same exact
+        // __groupName. Do not compare display IDs here: non-first evolution
+        // stages resolve alternate-form refs through the line's first stage,
+        // while their base forme keeps its own configured dex ID.
+        const aGroupName = normalizeOrderName(a?.__groupName);
+        const bGroupName = normalizeOrderName(b?.__groupName);
+        if (aGroupName && bGroupName) return true;
+
         const aId = getMateDisplayId(a);
         const bId = getMateDisplayId(b);
         return aId === bId;
