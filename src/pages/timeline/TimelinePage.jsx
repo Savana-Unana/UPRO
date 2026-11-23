@@ -59,6 +59,7 @@ const accountEntries = [
   {display:'Chip',aliases:['chip'],effect:'Lowers the enter button.',typed:'chip'},
   {display:'Dip',aliases:['dip'],effect:'Times water-time.',typed:'dip'},
   {display:'Pip',aliases:['pip'],effect:'Enter Button taunts you.',typed:'pip'},
+  {display:"Skip's Fake Siblings",aliases:['__ip'],effect:'Flips the entire page upside down.',fakeSiblings:true},
   {display:'Dad',aliases:['dad','dave'],effect:'Loads a random catch.',group:'Wild Catch'},
   {display:'Mom',aliases:['mom','june'],effect:'Loads the asks page.',path:'/asks'},
   {display:'Ghouliath',aliases:['ghouliath','fear'],effect:'',delay:'Ghouliath'},
@@ -82,6 +83,7 @@ const accountEntries = [
   {display:'Prof. Smogsworth',aliases:['smogsworth','masrich','masrich smogsworth','prof. smogsworth','prof. masrich smogsworth'],effect:'Sends out the forces.',biome:'Lab Fungen'},
   {display:'Randal Shivers',aliases:['randal','randal shivers'],effect:'Display the product line.',nameMatch:'Shiver'},
   {display:'Randy Shivers',aliases:['randy','raegan','ronald','shivers'],effect:'Turns everything radioactive.',typed:'yellow'},
+  {display:'Symbrex',aliases:['symbrex'],effect:'Turns everything purple.',typed:'purple'},
   {display:'Marvin',aliases:['marvin'],effect:'Shows your humanity.',human:true},
   {display:'Rip',aliases:['rip'],effect:'null',rip:true},
   {display:'Cran_Bot',aliases:['shane','cran_bot','shaniqua','cranunerscrbot','voos','shaniqua viss','viss','shaniqua voos','unknown ringtone','glitchygamer'],effect:'Loads the Main Menu.',path:'/'},
@@ -109,14 +111,14 @@ const accountEntries = [
   {display:'Pseudogons',aliases:['tralgon','aguipesh','thundrake'],effect:'Loads the selected Pseudogon.',selected:true},
   {display:'Exosteel',aliases:['exosteel','worth'],effect:'Loads the worthy.',group:'The Worthy'},
 ]
-const accountOrder = 'Harv|Cran_Bot|Jakedacake|Glitched 0ut|Octoking|Tcy35t|Gremlinizi|Ari Films|Ariel|Aviva|Ivri|Shaina|Jimm560|Arlan|Rip|Skip|Chip|Pip|Dip|Zip|Dad|Mom|Kal|MT|Herc|Marvin|Brianna Kaua|Perfecatoly|Karl Molotov|Vincent|Mark Scott|Prof. Smogsworth|Randal Shivers|Randy Shivers|Riley Shivers|CC|Animate|Blarb|Ghouliath|Lemody|Frostbite|Lost Animate|Bewag|Cerebrilith|Borgo Slor|Empire Vigilith|Pseudogons|Spongus|Exosteel|Aestereg|Pydromaglar|Markara|Dopplergrail|Cosmicanine|Apothelugh|Aurorial'.split('|')
+const accountOrder = "Harv|Cran_Bot|Jakedacake|Glitched 0ut|Octoking|Tcy35t|Gremlinizi|Ari Films|Ariel|Aviva|Ivri|Shaina|Jimm560|Arlan|Rip|Skip|Chip|Pip|Skip's Fake Siblings|Dip|Zip|Dad|Mom|Kal|MT|Herc|Marvin|Brianna Kaua|Perfecatoly|Karl Molotov|Vincent|Mark Scott|Prof. Smogsworth|Randal Shivers|Randy Shivers|Symbrex|Riley Shivers|CC|Animate|Blarb|Ghouliath|Lemody|Frostbite|Lost Animate|Bewag|Cerebrilith|Borgo Slor|Empire Vigilith|Pseudogons|Spongus|Exosteel|Aestereg|Pydromaglar|Markara|Dopplergrail|Cosmicanine|Apothelugh|Aurorial".split('|')
 const accountRank = new Map(accountOrder.map((name,index)=>[name,index]))
 const accounts = [...accountEntries].sort((a,b)=>(accountRank.get(a.display)??Infinity)-(accountRank.get(b.display)??Infinity))
 const oldAccountNames = {'Mysterious Trader':'MT',Shane:'Cran_Bot',Jake:'Jakedacake',Eliav:'Octoking',Amorayah:'Gremlinizi',Amo:'Gremlinizi',Tal:'Tcy35t','Ariel Salama':'Ariel'}
 
 export default function TimelinePage() {
   const [username,setUsername]=useState(''), [status,setStatus]=useState(''), [drops,setDrops]=useState(0), [human,setHuman]=useState(false), [crash,setCrash]=useState(false), [ripFlash,setRipFlash]=useState(false)
-  const [waterSeconds,setWaterSeconds]=useState(0), [dipActive,setDipActive]=useState(false), [randyActive,setRandyActive]=useState(false)
+  const [waterSeconds,setWaterSeconds]=useState(0), [dipActive,setDipActive]=useState(false), [randyActive,setRandyActive]=useState(false), [symbrexActive,setSymbrexActive]=useState(false)
   const [frostbiteActive,setFrostbiteActive]=useState(false), [frostbiteFlash,setFrostbiteFlash]=useState(false), [energyAbsorbed,setEnergyAbsorbed]=useState(false)
   const [showStars]=useState(()=>{const forced=sessionStorage.getItem('upro_force_stars')==='true';if(forced)sessionStorage.removeItem('upro_force_stars');return forced||Math.floor(Math.random()*30)===0})
   const [pipStep,setPipStep]=useState(0), [accountsOpen,setAccountsOpen]=useState(false), [hercLifts,setHercLifts]=useState(0), [submittedTyped,setSubmittedTyped]=useState('')
@@ -126,7 +128,11 @@ export default function TimelinePage() {
   const inputRef=useRef(null), audioRef=useRef(null), twailetRef=useRef(null), redirectTimerRef=useRef(null), value=n(username)
   useEffect(()=>{ document.title = '⊙'; document.body.className='timeline-page'; document.body.setAttribute('style',''); Promise.all([fetchMateBuckets({includeNpc:true}),fetch('data/mates/groups.json').then(r=>r.json())]).then(([b,g])=>{setMates(Object.entries(b).filter(([mode])=>mode!=='npc').flatMap(([,items])=>Array.isArray(items)?items:[]).filter(x=>x?.name));setNpcs(b.npc||[]);setGroups(g)}); return()=>{audioRef.current?.pause();twailetRef.current?.pause();clearTimeout(redirectTimerRef.current)} },[])
   useEffect(()=>{if(promptStage!==2||username.trim())return undefined;const timer=setTimeout(()=>setIdleSmile(true),3000);return()=>clearTimeout(timer)},[promptStage,username])
-  const current=useMemo(()=>accounts.find(a=>a.aliases.includes(value)),[value]), typed=current?.typed||''
+  const current=useMemo(()=>{
+    const implemented=accounts.find(a=>a.aliases.includes(value))
+    if(implemented)return implemented
+    return /^[a-z]{1,2}ip$/.test(value)?accounts.find(a=>a.fakeSiblings):undefined
+  },[value]), typed=current?.typed||''
   const liveTyped=['pip','split','grid'].includes(typed)?typed:''
   const activeTyped=liveTyped||submittedTyped
   useEffect(()=>{ if(!dipActive){setWaterSeconds(0);return undefined} const started=Date.now(),timer=setInterval(()=>setWaterSeconds(Math.floor((Date.now()-started)/1000)),250); return()=>clearInterval(timer) },[dipActive])
@@ -163,6 +169,7 @@ export default function TimelinePage() {
       },1000)
     }
     if(a.human){setHuman(true);return setStatus('')}
+    if(a.fakeSiblings){window.dispatchEvent(new CustomEvent('upro-effect',{detail:'upside-down'}));return}
     if(a.aestereg){
       const name=original==='truth'?random(['Aestereg','Reverense','Moteeph']):original==='moteeph'?'Moteeph':original==='reverense'?'Reverense':'Aestereg'
       setStatus('Hello! Your username is “Harv”')
@@ -218,6 +225,7 @@ export default function TimelinePage() {
       if(typed==='chip')setDrops(count=>count+1)
       if(typed==='dip')setDipActive(true)
       if(typed==='yellow')setRandyActive(true)
+      if(typed==='purple')setSymbrexActive(true)
       if(typed==='herc')setHercLifts(count=>count+1)
       setSubmittedTyped('')
       setUsername('')
@@ -235,6 +243,6 @@ export default function TimelinePage() {
   }
   if(showStars)return <StarsPrompt/>
   const accountProgress=`${accounts.filter(account=>found.has(account.display)).length}/${accounts.length}`
-  const cls=['timeline-shell',(randyActive||frostbiteActive)&&'is-yellow',activeTyped==='split'&&'is-split',activeTyped==='grid'&&'is-grid',frostbiteFlash&&'is-frostbite-flash',dipActive&&'is-dip',ripFlash&&'is-rip-flash',crash&&'is-crashed',energyAbsorbed&&'is-energy-absorbed'].filter(Boolean).join(' ')
+  const cls=['timeline-shell',(randyActive||frostbiteActive)&&'is-yellow',symbrexActive&&'is-purple',activeTyped==='split'&&'is-split',activeTyped==='grid'&&'is-grid',frostbiteFlash&&'is-frostbite-flash',dipActive&&'is-dip',ripFlash&&'is-rip-flash',crash&&'is-crashed',energyAbsorbed&&'is-energy-absorbed'].filter(Boolean).join(' ')
   return <main className={cls}><button className="timeline-exit" type="button" onClick={()=>go('/')}>Exit</button>{activeTyped==='grid'&&<EmpireGrid username={username} human={human} drops={drops} onSubmit={()=>inputRef.current?.form?.requestSubmit()}/>} {dipActive&&<output className="timeline-water-timer">{formatElapsed(waterSeconds)}</output>}<section className="timeline-login"><h1 style={{transform:`translateY(-${hercLifts*10}px)`}}>{human?'Please Enter Human Name':promptStage===0?'Please Enter Username':promptStage===1?'Please Enter Valid Username':idleSmile?':)':'Please Stop'}</h1><form className="timeline-form" onSubmit={submit}><input ref={inputRef} className="timeline-input" value={username} onChange={e=>{setUsername(e.target.value);setSubmittedTyped('')}} aria-label={human?'Human name':'Username'} autoComplete="off" autoCapitalize="none" spellCheck="false" autoFocus/><button className={`timeline-enter ${typed==='pip'?`is-taunting pip-step-${pipStep}`:''}`} type="submit" style={{marginTop:`${drops*10}px`}} onMouseEnter={()=>typed==='pip'&&setPipStep(step=>Math.min(step+1,5))} onClick={e=>{if(typed==='pip'&&pipStep<5)e.preventDefault()}}>Enter</button></form><p className={`timeline-status ${status==='Incorrect.'?'is-incorrect':'is-accepted'}`}>{status}</p></section><button className="timeline-accounts-toggle" type="button" aria-expanded={accountsOpen} onClick={()=>setAccountsOpen(open=>!open)}>Accounts ({accountProgress})</button>{accountsOpen&&<aside className="timeline-accounts"><div className="timeline-accounts-heading"><h2>Accounts ({accountProgress})</h2><button type="button" onClick={()=>setAccountsOpen(false)} aria-label="Close Accounts">×</button></div>{accounts.map(a=>{const unlocked=found.has(a.display),insert=accountInputs[a.display]||a.aliases[0];return <button type="button" key={a.display} className={unlocked?'is-found':''} disabled={!unlocked||!insert} onClick={()=>{setUsername(insert);setSubmittedTyped('');setAccountsOpen(false);requestAnimationFrame(()=>inputRef.current?.focus())}}><strong>{unlocked?a.display:'???'}</strong>{unlocked&&<><small>{a.aliases.join(', ')}</small><span>{a.effect}</span></>}</button>})}</aside>}</main>
 }

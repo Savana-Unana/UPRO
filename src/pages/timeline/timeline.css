@@ -171,6 +171,10 @@
   --timeline-accent: #ffe600;
 }
 
+.timeline-shell.is-purple {
+  --timeline-accent: #a020f0;
+}
+
 .timeline-shell.is-energy-absorbed > * { visibility: hidden; }
 
 .timeline-shell.is-dip { animation: water-time 60s steps(20, end) forwards; }

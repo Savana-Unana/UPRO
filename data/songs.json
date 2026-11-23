@@ -2,12 +2,23 @@
   {
     "name": "UPRO",
     "file": "assets/audio/UPRO.mp3",
-    "composer": "JakeDaCake",
+    "composer": "Glitched 0ut",
     "themeType": "Game Theme",
     "progress": "Composed",
     "description": "",
     "description-title": "Main Menu Game Theme",
     "Version": "Update 1"
+  },
+  {
+    "name": "UPRO (Old)",
+    "sibling": "UPRO",
+    "file": "assets/audio/UPROld.mp3",
+    "composer": "JakeDaCake",
+    "themeType": "False Theme",
+    "progress": "Finalized",
+    "description": "",
+    "description-title": "Old Main Menu Game Theme",
+    "Version": "Update 0"
   },
   {
     "name": "Perfecto",
@@ -196,7 +207,7 @@
     "file": null,
     "composer": "Glitched 0ut",
     "themeType": "Overworld Theme",
-    "progress": "Composed",
+    "progress": "Untouched",
     "description": "",
     "description-title": "Lake Fishing Theme",
     "Version": "Update 1"
@@ -262,13 +273,13 @@
     "Version": "Update 1"
   },
   {
-    "name": "Another Beginning",
-    "file": null,
-    "composer": "Untaken",
+    "name": "Forever Ashore",
+    "file": "assets/audio/ForeverAshore.mp3",
+    "composer": "Glitched 0ut",
     "themeType": "Game Theme",
-    "progress": "Untouched",
+    "progress": "Composed",
     "description": "",
-    "description-title": "Opening Credits Game Theme",
+    "description-title": "Opening Credits Cutscene Theme",
     "Version": "Update 1"
   },
   {
@@ -293,10 +304,10 @@
   },
   {
     "name": "Submerged",
-    "file": null,
+    "file": "assets/audio/Submerged.mp3",
     "composer": "Glitched 0ut",
     "themeType": "Overworld Theme",
-    "progress": "Untouched",
+    "progress": "Composed",
     "description": "",
     "description-title": "Deep Water Theme",
     "Version": "Update 1"
@@ -316,7 +327,7 @@
     "file": "assets/audio/DeadZone.mp3",
     "composer": "Glitched 0ut",
     "themeType": "Ace Theme",
-    "progress": "Composed",
+    "progress": "Finalized",
     "description": "",
     "description-title": "Ghouliath Ace Theme",
     "Version": "Update 1"

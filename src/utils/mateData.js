@@ -87,6 +87,82 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+const entryNumberPlaceholder = "Ungathered";
+const entryTextPlaceholder = "No entry yet";
+
+function applyEntryProfile(form, profile = {}) {
+  const entries = profile.entries && typeof profile.entries === "object" ? profile.entries : {};
+  const dexEntries = Object.fromEntries(Object.entries(entries).map(([key, entry]) => [
+    key,
+    typeof entry === "string" ? entry : entry?.text || entryTextPlaceholder
+  ]));
+  return {
+    ...form,
+    genderSplit: profile.genderSplit || entryNumberPlaceholder,
+    averageHeight: profile.averageHeight || entryNumberPlaceholder,
+    averageLength: profile.averageLength || entryNumberPlaceholder,
+    averageWidth: profile.averageWidth || entryNumberPlaceholder,
+    averageWeight: profile.averageWeight || entryNumberPlaceholder,
+    primaryColor: profile.primaryColor || entryNumberPlaceholder,
+    uniqueHeight: profile.uniqueHeight || "",
+    uniqueLength: profile.uniqueLength || "",
+    uniqueWidth: profile.uniqueWidth || "",
+    uniqueWeight: profile.uniqueWeight || "",
+    uniqueFeature: profile.uniqueFeature || "",
+    entryDetails: entries,
+    sacredIssue: profile.sacredIssue || entryTextPlaceholder,
+    sacredSolution: profile.sacredSolution || entryTextPlaceholder,
+    dexEntries,
+    height: profile.averageHeight || entryNumberPlaceholder,
+    color: profile.primaryColor || entryNumberPlaceholder,
+    description: profile.description || entryTextPlaceholder,
+    visualDescription: profile.visualDescription || entryTextPlaceholder,
+    visualAppearance: profile.visualAppearance || entryTextPlaceholder
+  };
+}
+
+function mergeMateEntries(groups, entriesData) {
+  const entryGroups = Array.isArray(entriesData?.mates) ? entriesData.mates : [];
+  const byCategory = new Map(entryGroups.map(group => [String(group?.category || group?.name || "").trim(), group]));
+
+  return (Array.isArray(groups) ? groups : []).map(group => {
+    const category = String(group?.category || group?.name || "").trim();
+    const entryGroup = byCategory.get(category);
+    return {
+      ...group,
+      category,
+      forms: Object.fromEntries(Object.entries(group.forms || {}).map(([mode, forms]) => {
+        const profiles = Array.isArray(entryGroup?.forms?.[mode]) ? entryGroup.forms[mode] : [];
+        const nameOffsets = new Map();
+        const mergedForms = (Array.isArray(forms) ? forms : []).map((form, index) => {
+          const name = String(form?.name || "");
+          const offset = nameOffsets.get(name) || 0;
+          nameOffsets.set(name, offset + 1);
+          const matchingProfiles = profiles.filter(profile => String(profile?.name || "") === name);
+          const profile = profiles[index]?.name === name ? profiles[index] : matchingProfiles[offset];
+          return applyEntryProfile(form, profile);
+        });
+        return [mode, mergedForms];
+      }))
+    };
+  });
+}
+
+function mergeNpcEntries(npcs, entriesData) {
+  const profiles = Array.isArray(entriesData?.npc) ? entriesData.npc : [];
+  const offsets = new Map();
+  return (Array.isArray(npcs) ? npcs : []).map((npc, index) => {
+    const key = `${npc?.id || ""}\u0000${npc?.name || ""}`;
+    const offset = offsets.get(key) || 0;
+    offsets.set(key, offset + 1);
+    const matches = profiles.filter(profile => `${profile?.id || ""}\u0000${profile?.name || ""}` === key);
+    const profile = profiles[index]?.id === npc?.id && profiles[index]?.name === npc?.name
+      ? profiles[index]
+      : matches[offset];
+    return applyEntryProfile(npc, profile);
+  });
+}
+
 function applyInheritedFields(form, baseForm, mode) {
   const expanded = { ...(baseForm || {}), ...form };
 
@@ -168,7 +244,7 @@ export function expandGroupedMateData(groups, sourceKind = "base", options = {})
       return;
     }
 
-    const groupName = String(group.name || "").trim();
+    const groupName = String(group.category || group.name || "").trim();
     const inheritedForm = Array.isArray(group.forms.base) && group.forms.base.length
       ? group.forms.base[0]
       : Array.isArray(group.forms.goner) && group.forms.goner.length
@@ -288,13 +364,18 @@ export function buildEvolutionStageIndex(mates) {
 
 export async function fetchMateBuckets(options = {}) {
   const includeNpc = options.includeNpc !== false;
-  const [baseGroups, lostGroups, npc] = await Promise.all([
+  const [rawBaseGroups, rawLostGroups, rawNpc, entriesData] = await Promise.all([
     fetch("data/mates/base.json").then(response => response.json()).catch(() => []),
     fetch("data/mates/lost.json").then(response => response.json()).catch(() => []),
     includeNpc
       ? fetch("data/mates/npc.json").then(response => response.json()).catch(() => [])
-      : Promise.resolve([])
+      : Promise.resolve([]),
+    fetch("data/mates/entries.json").then(response => response.json()).catch(() => ({}))
   ]);
+
+  const baseGroups = mergeMateEntries(rawBaseGroups, entriesData);
+  const lostGroups = mergeMateEntries(rawLostGroups, entriesData);
+  const npc = mergeNpcEntries(rawNpc, entriesData);
 
   const baseBuckets = expandGroupedMateData(baseGroups, "base");
   const lostBuckets = expandGroupedMateData(lostGroups, "lost");

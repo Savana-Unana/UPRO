@@ -14,13 +14,6 @@
       }
     ],
     "reference": null,
-    "Description": "The Normal sprites.",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -38,7 +31,6 @@
       }
     ],
     "reference": "Axolarg",
-    "Description": "Skip but controlled by Axo-Shards.",
     "cosmark": "Y"
   },
   {
@@ -56,7 +48,6 @@
       }
     ],
     "reference": "Chip",
-    "Description": "Skip that looks like Chip.",
     "cosmark": "Y"
   },
   {
@@ -74,7 +65,6 @@
       }
     ],
     "reference": "Pip",
-    "Description": "Skip that looks like Chip.",
     "cosmark": "Y"
   },
   {
@@ -92,7 +82,6 @@
       }
     ],
     "reference": "Dip",
-    "Description": "Skip that looks like Chip.",
     "cosmark": "Y"
   },
   {
@@ -110,7 +99,6 @@
       }
     ],
     "reference": "Zip",
-    "Description": "Skip that looks like Chip.",
     "cosmark": "Y"
   },
   {
@@ -128,7 +116,6 @@
       }
     ],
     "reference": "Deltarune",
-    "Description": "A color-altered Skip, with a Sheriff outfit.",
     "cosmark": "Y"
   },
   {
@@ -146,7 +133,6 @@
       }
     ],
     "reference": "Deltarune",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -164,7 +150,6 @@
       }
     ],
     "reference": null,
-    "Description": "A monochrome, faceless ****.",
     "cosmark": "Y"
   },
   {
@@ -182,7 +167,6 @@
       }
     ],
     "reference": null,
-    "Description": "Skip with a sewn mouth. Replaces all Skip dialogue with ''\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a6''.",
     "cosmark": "Y"
   },
   {
@@ -191,7 +175,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Folklore",
-    "Description": "Skip but he is holding his own head in his backpack.",
     "cosmark": "Y"
   },
   {
@@ -209,7 +192,6 @@
       }
     ],
     "reference": "Monument Mythos",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -227,7 +209,6 @@
       }
     ],
     "reference": "Super Paper Mario: The Thousand-Year Door",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -236,7 +217,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "Skip but dressed with a suit and a mask.",
     "cosmark": "Y"
   },
   {
@@ -245,7 +225,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -254,7 +233,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -263,7 +241,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Mario Bros.",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -272,7 +249,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Little Nightmares 2",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -281,7 +257,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "SFAWTDE",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -290,7 +265,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -299,7 +273,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Horror Trope",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -308,7 +281,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Friday the 13th",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -317,7 +289,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -326,7 +297,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Capture Capsule",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -335,7 +305,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "The Amazing Digital Circus",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -344,7 +313,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Sparcoon",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -353,7 +321,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Kal",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -362,7 +329,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -371,7 +337,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -380,7 +345,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -389,7 +353,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -407,13 +370,6 @@
       }
     ],
     "reference": null,
-    "Description": "The Normal sprites.",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -431,7 +387,6 @@
       }
     ],
     "reference": null,
-    "Description": "",
     "cosmark": "Y"
   },
   {
@@ -440,7 +395,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Battle For Dream Island",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -458,7 +412,6 @@
       }
     ],
     "reference": null,
-    "Description": "A ketchup covered Capture Capsule.",
     "cosmark": "Y"
   },
   {
@@ -467,7 +420,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "AHHHHH A UFO!!!!!",
     "cosmark": "Y"
   },
   {
@@ -476,7 +428,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "A broken Capture Capsule.",
     "cosmark": "Y"
   },
   {
@@ -485,7 +436,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -494,7 +444,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -503,7 +452,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Lego",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -512,7 +460,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Mockenyu",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -521,7 +468,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -530,7 +476,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -539,7 +484,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Mario Bros.",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -548,7 +492,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -557,7 +500,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Ghostbusters",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -575,13 +517,6 @@
       }
     ],
     "reference": null,
-    "Description": "The Normal sprites.",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -590,7 +525,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Gerrindamo",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -599,7 +533,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Frankenstein Story",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -608,7 +541,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "FNAF: The Musical",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -617,7 +549,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -626,7 +557,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "The Fantastic Four",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -635,7 +565,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "SFAWTDE",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -644,7 +573,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -653,7 +581,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Monument Mythos",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -662,7 +589,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -671,7 +597,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -689,13 +614,6 @@
       }
     ],
     "reference": null,
-    "Description": "The Normal sprites.",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -704,7 +622,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Monument Mythos",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -722,7 +639,6 @@
       }
     ],
     "reference": "Roblox",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -740,7 +656,6 @@
       }
     ],
     "reference": "Batman and Robin",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -749,7 +664,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -758,7 +672,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Dodecadog",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -776,7 +689,6 @@
       }
     ],
     "reference": "Megaman",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -785,7 +697,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Mario Bros.",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -794,7 +705,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Radioactive Ronald",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -803,7 +713,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -812,7 +721,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -821,7 +729,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -830,7 +737,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -839,7 +745,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -848,7 +753,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "The Grinch",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -857,7 +761,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Pinocchio",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -866,7 +769,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -875,7 +777,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -884,7 +785,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -902,13 +802,6 @@
       }
     ],
     "reference": null,
-    "Description": "The Normal sprites.",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "The Normal sprites.",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -917,7 +810,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Hazbin Hotel",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -935,7 +827,6 @@
       }
     ],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -944,7 +835,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -953,7 +843,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Little Nightmares",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -962,7 +851,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Ircencaat",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -971,7 +859,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": "Super Paper Mario: The Thousand-Year Door",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -980,7 +867,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -989,7 +875,6 @@
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
     "reference": null,
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -997,182 +882,91 @@
     "name": "Marvin",
     "image": "assets/images/mates/npc/Marvin.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Arnold",
     "name": "Arnold",
     "image": "assets/images/mates/npc/Arnold.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Shady Guy",
     "name": "Shady Guy",
     "image": "assets/images/mates/npc/Shady_Guy.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Maddiline",
     "name": "Maddiline",
     "image": "assets/images/mates/npc/Maddiline.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Dr. Mitchovitch",
     "name": "Dr. Mitchovitch",
     "image": "assets/images/mates/npc/Dr_Mitchovitch.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Erica Breflower",
     "name": "Erica Breflower",
     "image": "assets/images/mates/npc/Erica_Breflower.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Bug Catcher Beth",
     "name": "Bug Catcher Beth",
     "image": "assets/images/mates/npc/Beth.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Izan",
     "name": "Izan",
     "image": "assets/images/mates/npc/Izan.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Sally",
     "name": "Sally",
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Riley",
     "name": "Riley",
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "May",
     "name": "May",
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Stiphicus",
     "name": "Stiphicus",
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Jackary",
     "name": "Jackary",
     "image": "assets/images/mates/npc/YouKnowWhoIAm.gif",
     "obtainment": [],
-    "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    }
+    "reference": ""
   },
   {
     "id": "Dad",
@@ -1180,13 +974,6 @@
     "image": "assets/images/mates/npc/Dad_Boat.gif",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1195,13 +982,6 @@
     "image": "assets/images/mates/npc/Dip.gif",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1210,13 +990,6 @@
     "image": "assets/images/mates/npc/Doggi.png",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1225,13 +998,6 @@
     "image": "assets/images/mates/npc/Hippie.png",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1240,13 +1006,6 @@
     "image": "assets/images/mates/npc/Lumberjack.png",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1255,13 +1014,6 @@
     "image": "assets/images/mates/npc/Mom.gif",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1270,13 +1022,6 @@
     "image": "assets/images/mates/npc/MT.png",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1285,13 +1030,6 @@
     "image": "assets/images/mates/npc/Pip.gif",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1300,13 +1038,6 @@
     "image": "assets/images/mates/npc/Zip.png",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
-    "dexEntries": {
-      "\u2665\u2661\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2661\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2661": "No entry yet",
-      "\u2665\u2665\u2665\u2665": "No entry yet"
-    },
     "cosmark": "N"
   },
   {
@@ -1315,7 +1046,6 @@
     "image": "assets/images/mates/npc/Skip_Dance.gif",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
     "cosmark": "Y"
   },
   {
@@ -1324,7 +1054,6 @@
     "image": "assets/images/mates/npc/Kal_Other.gif",
     "obtainment": [],
     "reference": "",
-    "Description": "No entry yet",
     "cosmark": "Y"
   }
 ]

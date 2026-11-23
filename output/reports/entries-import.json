@@ -1,0 +1,1144 @@
+{
+  "source": "C:\\Users\\shane\\.codex\\attachments\\e07575ea-6aa3-490f-b55b-058986883216\\Pasted text.txt",
+  "records": 59,
+  "updated": 59,
+  "unmatched": [],
+  "ambiguous": [],
+  "updates": [
+    {
+      "source": "Erbacub",
+      "target": "Erbacub/base/Erbacub",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Bearosion",
+      "target": "Bearosion/base/Bearosion",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Hileaph",
+      "target": "Hileaph/base/Hileaph",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Sparcoon",
+      "target": "Sparcoon/base/Sparcoon",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Blazuki",
+      "target": "Blazuki/base/Blazuki",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Unique Feature"
+      ]
+    },
+    {
+      "source": "Furnacoon",
+      "target": "Furnacoon/base/Furnacoon",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Unique Feature"
+      ]
+    },
+    {
+      "source": "Axolitl",
+      "target": "Axolitl/base/Axolitl",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Unique Height",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Axolote",
+      "target": "Axolote/base/Axolote",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Axolarg",
+      "target": "Axolarg/base/Axolarg",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Caneins",
+      "target": "Caneins/base/Caneins",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Duadog",
+      "target": "Duadog/base/Duadog",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Unique Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Dodecadog",
+      "target": "Dodecadog/base/Dodecadog",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Average Width",
+        "Unique Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Pretengerine",
+      "target": "Pretengerine/base/Pretengerine",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Espiorange",
+      "target": "Espiorange/base/Espiorange",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Bakunbush",
+      "target": "Bakunbush/base/Bakunbush",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Pigturee",
+      "target": "Pigturee/base/Pigturee",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Statipillar",
+      "target": "Statipillar/base/Statipillar",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Grovy (Palm)",
+      "target": "Grovy (Palm)/base/Grovy (Palm)",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Cocompis",
+      "target": "Cocompis/base/Cocompis",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Coconkurer",
+      "target": "Coconkurer/base/Coconkurer",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Lemody",
+      "target": "Lemody/base/Lemody",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Dribsom",
+      "target": "Dribsom/base/Dribsom",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Sacred Dribsom",
+      "target": "Dribsom/sacred/Sacred Dribsom",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Dribtar",
+      "target": "Dribtar/base/Dribtar",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Sacred Dribtar",
+      "target": "Dribtar/sacred/Sacred Dribtar",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Ircencaat",
+      "target": "Ircencaat/base/Ircencaat",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Gerrindamo",
+      "target": "Gerrindamo/base/Gerrindamo",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Blarb",
+      "target": "Blarb/base/Blarb",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Sacred Blarb",
+      "target": "Blarb/sacred/Sacred Blarb",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Ace Blarb",
+      "target": "Blarb/ace/Ace Blarb",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Utilized",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Gaslug",
+      "target": "Gaslug/base/Gaslug",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Quubbly",
+      "target": "Quubbly/base/Quubbly",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Quontoon",
+      "target": "Quontoon/base/Quontoon",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Honkraft",
+      "target": "Honkraft/base/Honkraft",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Fizzlet",
+      "target": "Fizzlet/base/Fizzlet",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Fizzik",
+      "target": "Fizzik/base/Fizzik",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Beabar",
+      "target": "Beabar/base/Beabar",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Lilivine",
+      "target": "Lilivine/base/Lilivine",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Bowlfish",
+      "target": "Bowlfish/base/Bowlfish",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Unique Length",
+        "Average Width",
+        "Unique Width",
+        "Average Weight",
+        "Unique Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Tankfish",
+      "target": "Tankfish/base/Tankfish",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Unique Length",
+        "Average Width",
+        "Unique Width",
+        "Average Weight",
+        "Unique Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Camoflish",
+      "target": "Camoflish/base/Camoflish",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Confished",
+      "target": "Confished/base/Confished",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Twynami",
+      "target": "Twynami/base/Twynami",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Cartilicht",
+      "target": "Cartilicht/base/Cartilicht",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Emene",
+      "target": "Emene/base/Emene",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Sacred Issue",
+        "Sacred Solution"
+      ]
+    },
+    {
+      "source": "Ghouliath",
+      "target": "Ghouliath/base/Ghouliath",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Berdminton",
+      "target": "Berdminton/base/Berdminton",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Buntot",
+      "target": "Buntot/base/Buntot",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Challadin",
+      "target": "Challadin/base/Challadin",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Unique Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Gastrover",
+      "target": "Gastrover/base/Gastrover",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color"
+      ]
+    },
+    {
+      "source": "Rebble",
+      "target": "Rebble/base/Rebble",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Bombabeak",
+      "target": "Bombabeak/base/Bombabeak",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Unique Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Vigilith",
+      "target": "Vigilith/base/Vigilith",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Signilith",
+      "target": "Signilith/base/Signilith",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Caraptor",
+      "target": "Caraptor/base/Caraptor",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Blizard",
+      "target": "Blizard/base/Blizard",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Cryodon",
+      "target": "Cryodon/base/Cryodon",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "First Caught",
+        "Written By",
+        "Date Origin",
+        "Entry Date",
+        "Experienced",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Shiver Waves",
+      "target": "Shiver Waves/base/Shiver Waves",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    },
+    {
+      "source": "Shiver Blades",
+      "target": "Shiver Blades/base/Shiver Blades",
+      "fields": [
+        "Gender Split",
+        "Average Height",
+        "Unique Height",
+        "Average Length",
+        "Average Width",
+        "Average Weight",
+        "Primary Color",
+        "Discovered",
+        "Written By",
+        "Date Origin",
+        "Entry Date"
+      ]
+    }
+  ]
+}

@@ -76,10 +76,15 @@ export default function App() {
   const [effects,setEffects] = useState([])
   const [graffitiColors,setGraffitiColors] = useState(['#ff0099','#00ffff','#88ff00'])
   const [walkers,setWalkers] = useState([])
+  const [siteUpsideDown,setSiteUpsideDown] = useState(() => sessionStorage.getItem('upro_site_upside_down') === 'true')
   const nextWalkerId = useRef(0)
   useEffect(() => {
     const activate = event => {
       setEffects(current => current.includes(event.detail) ? current : [...current,event.detail])
+      if (event.detail === 'upside-down') {
+        sessionStorage.setItem('upro_site_upside_down', 'true')
+        setSiteUpsideDown(true)
+      }
       if (event.detail==='trader'||event.detail==='blarb') {
         const walker={id:++nextWalkerId.current,effect:event.detail,top:`${8+Math.random()*64}%`,reverse:Math.random()<.5}
         setWalkers(current => [...current,walker])
@@ -88,6 +93,11 @@ export default function App() {
     window.addEventListener('upro-effect',activate)
     return () => window.removeEventListener('upro-effect',activate)
   },[])
+  useEffect(() => {
+    const root = document.getElementById('root')
+    root?.classList.toggle('upro-site-upside-down', siteUpsideDown)
+    return () => root?.classList.remove('upro-site-upside-down')
+  }, [siteUpsideDown])
   useEffect(() => {
     if (!effects.includes('graffiti')) return undefined
     const timer = window.setInterval(() => setGraffitiColors(Array.from({length:3},()=>`#${Math.floor(Math.random()*0x1000000).toString(16).padStart(6,'0')}`)),250)

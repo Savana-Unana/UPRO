@@ -300,7 +300,10 @@ export default function AnimatrixPage() {
       }
 
       function getConfiguredIdOrder(mate) {
-        const candidates = [mate?.name, mate?.ref, mate?.__groupName];
+        // A variant belongs to its own category's ID. Its evolution-line ref
+        // is for cross-form navigation and must not make later stages inherit
+        // the first stage's ID (for example, Sacred Bearosion is Bearosion).
+        const candidates = [mate?.name, mate?.__groupName, mate?.ref];
         for (const candidate of candidates) {
           const rank = idOrderRank.get(normalizeOrderName(candidate));
           if (Number.isInteger(rank)) {
@@ -1396,19 +1399,8 @@ export default function AnimatrixPage() {
         const displayMode = mate?.mode || mate?.__mode || "";
         const eventKey = getEventKey(mate);
         if (displayMode === "ncanon" || eventKey === "anti") return null;
-
-        if (displayMode === "event") {
-          const original = resolveReferenceRoot(mate);
-          if (original && getReferenceKey(original) !== getReferenceKey(mate)) {
-            return getMateDisplayId(original);
-          }
-        }
         const mode = displayMode === "event" ? mate.sourceMode || "base" : displayMode;
         const order = Number(mate?.__idOrder ?? mate?.__order);
-
-        if (mode === "base" && mate?.__hasConfiguredIdOrder && Number.isInteger(order)) {
-          return order + 1;
-        }
 
         if (mode === "ncanon") {
           return null;
@@ -1418,6 +1410,17 @@ export default function AnimatrixPage() {
           if (mate?.__hasConfiguredIdOrder && Number.isInteger(order)) return order + 1;
           const authoredOrder = Number(mate?.__order);
           return Number.isInteger(authoredOrder) ? -(authoredOrder + 1) : null;
+        }
+
+        if (mate?.__hasConfiguredIdOrder && Number.isInteger(order)) {
+          return order + 1;
+        }
+
+        if (displayMode === "event") {
+          const original = resolveReferenceRoot(mate);
+          if (original && getReferenceKey(original) !== getReferenceKey(mate)) {
+            return getMateDisplayId(original);
+          }
         }
 
         const resolvedMate = resolveReferenceRoot(mate);
@@ -1826,6 +1829,29 @@ export default function AnimatrixPage() {
       }
 
       function mateVitalsHtml(mate) {
+        const profileHtml = () => {
+          const fields = [
+            ["Gender Split", mate.genderSplit || "Ungathered"],
+            ["Average Height", mate.averageHeight || mate.height || "Ungathered"],
+            ["Average Length", mate.averageLength || "Ungathered"],
+            ["Average Width", mate.averageWidth || "Ungathered"],
+            ["Average Weight", mate.averageWeight || "Ungathered"],
+            ["Primary Color", mate.primaryColor || mate.color || "Ungathered"]
+          ];
+          if (mate.uniqueHeight) fields.push(["Unique Height", mate.uniqueHeight]);
+          if (mate.uniqueLength) fields.push(["Unique Length", mate.uniqueLength]);
+          if (mate.uniqueWidth) fields.push(["Unique Width", mate.uniqueWidth]);
+          if (mate.uniqueWeight) fields.push(["Unique Weight", mate.uniqueWeight]);
+          if (mate.uniqueFeature) fields.push(["Unique Feature", mate.uniqueFeature]);
+          if ((mate.mode || currentMode) === "sacred") {
+            fields.push(
+              ["Sacred Issue", mate.sacredIssue || "No entry yet"],
+              ["Sacred Solution", mate.sacredSolution || "No entry yet"]
+            );
+          }
+          return fields.map(([label, value]) => `<p><b>${label}:</b> ${escapeHtml(value)}</p>`).join("");
+        };
+
         if ((mate.mode || currentMode) === "costumes") {
           const visualAppearance = mate.visualAppearance || mate.visualDescription;
           const reference = mate.reference || mate.referenceImage || mate.ref;
@@ -1836,14 +1862,12 @@ export default function AnimatrixPage() {
           const obtainmentHtml = renderObtainmentHtml(mate);
           const sequenceList = getMateSequences(mate);
           const sequenceHtml = sequenceList.length ? `<p><b>Sequences:</b> ${sequenceList.map(sequence => escapeHtml(sequence)).join(", ")}</p>` : "";
-          return `<div class="mate-meta">${visualHtml}${referenceHtml}${obtainableHtml}${sequenceHtml}${obtainmentHtml}</div>`;
+          return `<div class="mate-meta">${profileHtml()}${visualHtml}${referenceHtml}${obtainableHtml}${sequenceHtml}${obtainmentHtml}</div>`;
         }
         const biomes = getMateBiomes(mate);
         const subBiomes = getMateSubBiomes(mate);
         const biomeText = biomes.length ? biomes.map(b => escapeHtml(b)).join(", ") : "Unknown";
         const subBiomeHtml = subBiomes.length ? `<p><b>Sub-Biomes:</b> ${subBiomes.map(b => escapeHtml(b)).join(", ")}</p>` : "";
-        const height = escapeHtml(mate.height || "Unknown");
-        const color = escapeHtml(mate.color || "Unknown");
         const etymology = mate.etymology ? `<p><b>Etymology:</b> ${escapeHtml(mate.etymology)}</p>` : "";
         const firstScannable = mate.firstScannableUpdate
           ? `<p><b>First Scannable Update:</b> ${escapeHtml(mate.firstScannableUpdate)}</p>`
@@ -1860,7 +1884,7 @@ export default function AnimatrixPage() {
         const paragonHtml = paragonOf ? `<p><b>Paragon of:</b> ${escapeHtml(paragonOf)}</p>` : "";
         const showDatabaseBiome = currentMode !== "database" || sequenceList.includes("Blarb Island");
         const biomeHtml = showDatabaseBiome ? `<p><b>Biomes:</b> ${biomeText}</p>${subBiomeHtml}` : "";
-        return `<div class="mate-meta">${biomeHtml}${sequenceHtml}<p><b>Height:</b> ${height}</p><p><b>Color:</b> ${color}</p>${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
+        return `<div class="mate-meta">${biomeHtml}${sequenceHtml}${profileHtml()}${etymology}${firstScannable}${firstWildCatchable}${visualDescription}${paragonHtml}</div>`;
       }
 
       function asArray(value) {
@@ -2144,6 +2168,9 @@ export default function AnimatrixPage() {
         {
           let tabNames = ["Discovered", "First Caught", "Experienced", "Callside"];
           if (currentMode === "costumes") tabNames = ["Store", "Catalog", "Callside"];
+          const knownEntryKeys = new Set(currentMode === "costumes" ? ["Store Entry", "Catalog", "Callside"] : tabNames);
+          const extraEntryKeys = Object.keys(mate.entryDetails || {}).filter(name => !knownEntryKeys.has(name));
+          tabNames.push(...extraEntryKeys);
 
           tabNames.forEach((name, idx) => {
             const tabBtn = document.createElement("button");
@@ -2157,16 +2184,25 @@ export default function AnimatrixPage() {
               tabBtn.classList.add("active");
 
               let text;
+              let entryKey = name;
               if (currentMode === "costumes") {
-                if (name === "Store") text = mate.store || "No entry yet.";
+                if (name === "Store") {
+                  entryKey = "Store Entry";
+                  text = mate.store || "No entry yet.";
+                }
                 else if (name === "Catalog") text = mate.catalog || mate.description || "No entry yet.";
                 else text = mate.callside || mate.reverense || "No entry yet";
               } else {
                 const legacyEntry = name === "Callside" ? mate.dexEntries?.Reverense : null;
                 text = mate.dexEntries ? (mate.dexEntries[name] || legacyEntry || mate.description) : mate.description;
+                if (name === "Callside" && !mate.entryDetails?.Callside && mate.entryDetails?.Reverense) entryKey = "Reverense";
               }
 
               document.getElementById("mateDexText").textContent = text;
+              const detail = mate.entryDetails?.[entryKey];
+              const metadata = typeof detail === "object" && detail ? detail : {};
+              document.getElementById("mateEntryMeta").textContent =
+                `Writer: ${metadata.entryWriter || "Ungathered"} | Date Origin: ${metadata.entryDateOrigin || "Ungathered"} | Entry Date: ${metadata.entryDate || "Ungathered"}`;
             };
 
             tabsContainer.appendChild(tabBtn);
@@ -2785,6 +2821,7 @@ export default function AnimatrixPage() {
           <button className="dex-tab" data-entry="Callside">Callside</button>
         </div>
         <p id="mateDexText" />
+        <p id="mateEntryMeta" />
         <div id="mateVitals" className="mate-vitals" />
         <div id="abilityContainer" />
         <div id="listTypesContainer" />

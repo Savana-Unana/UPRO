@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { buildSongIds } from '../../utils/songData'
-import { getOstAudio, ostPlayback, setOstLoopTrackKey, setOstOffload, setOstTrackKey } from '../../utils/ostPlayback'
+import { getOstAudio, ostPlayback, setOstLoopTrackKey, setOstOffload, setOstQueue, setOstQueueMode, setOstSequence, setOstTrackKey, startOstOffloadAdvance, stopOstOffloadAdvance } from '../../utils/ostPlayback'
+
+const go = path => window.uproNavigate?.(path) || window.location.assign(path)
 
 const pageStyles = `
 @font-face {
@@ -689,6 +691,7 @@ body.ost-page select {
 
 .ost-queue-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
   align-items: center;
@@ -699,6 +702,58 @@ body.ost-page select {
   margin: 0;
   color: #fff;
   font-size: 3.45rem;
+}
+
+.ost-queue-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ost-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.ost-queue-mode input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ost-queue-mode-switch {
+  position: relative;
+  width: 42px;
+  height: 22px;
+  border: 1px solid var(--ost-line);
+  border-radius: 999px;
+  background: #303844;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+
+.ost-queue-mode-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 140ms ease;
+}
+
+.ost-queue-mode input:checked + .ost-queue-mode-switch {
+  border-color: var(--ost-cyan);
+  background: var(--ost-cyan);
+}
+
+.ost-queue-mode input:checked + .ost-queue-mode-switch::after {
+  transform: translateX(20px);
+  background: #061016;
+}
+
+.ost-queue-mode input:focus-visible + .ost-queue-mode-switch {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .ost-queue-list {
@@ -1070,6 +1125,10 @@ function orderOptions(values, orderedValues) {
   return [...ordered, ...extras]
 }
 
+function pickRandomItem(items) {
+  return items[Math.floor(Math.random() * items.length)]
+}
+
 function normalizeMotif(motif) {
   const name = motif?.name || ''
   const entries = motif?.songs || motif?.sections || motif?.tracks || []
@@ -1193,6 +1252,8 @@ export default function OstPage() {
   const [selectedMotif, setSelectedMotif] = useState('')
   const [detailTrack, setDetailTrack] = useState(null)
   const [queue, setQueue] = useState([])
+  const [queueMode, setQueueMode] = useState(ostPlayback.queueMode)
+  const [queueHydrated, setQueueHydrated] = useState(false)
   const [isQueueOpen, setIsQueueOpen] = useState(false)
   const [offload, setOffload] = useState(ostPlayback.offload)
   const [loopTrackKey, setLoopTrackKey] = useState(ostPlayback.loopTrackKey)
@@ -1200,11 +1261,18 @@ export default function OstPage() {
   useEffect(() => {
     const audio = getOstAudio()
     audioRef.current = audio
+    stopOstOffloadAdvance()
     return () => {
-      if (!ostPlayback.offload) audio.pause()
+      if (ostPlayback.offload) startOstOffloadAdvance()
+      else audio.pause()
       audioRef.current = null
     }
   }, [])
+
+  useEffect(() => {
+    if (!queueHydrated) return
+    setOstQueue(queue)
+  }, [queue, queueHydrated])
 
   useEffect(() => {
     document.title = '⊙'
@@ -1229,6 +1297,11 @@ export default function OstPage() {
         const orderRank = new Map(orderedSongNames.map((name, index) => [name, index]))
         const songIds = buildSongIds(data, orderedSongNames)
         const nextTracks = data.map((entry, index) => normalizeSong(entry, orderRank.get(entry.name) ?? (orderedSongNames.length + index), songIds))
+        const tracksByKey = new Map(nextTracks.map(track => [track.key, track]))
+        // Read the live shared queue after the songs finish loading. Offloaded
+        // playback may have consumed entries while this page was mounting.
+        setQueue(ostPlayback.queue.map(savedTrack => tracksByKey.get(savedTrack.key)).filter(track => track?.playable))
+        setQueueHydrated(true)
         setInfo({
           composers: Array.isArray(sharedInfo?.composers) ? sharedInfo.composers : [],
           themeTypes: Array.isArray(sharedInfo?.themeTypes) ? sharedInfo.themeTypes : [],
@@ -1342,6 +1415,11 @@ export default function OstPage() {
 
   const playableTracks = useMemo(() => tracks.filter(track => track.playable), [tracks])
   const playableFilteredTracks = useMemo(() => filteredTracks.filter(track => track.playable), [filteredTracks])
+
+  useEffect(() => {
+    setOstSequence(playableFilteredTracks)
+  }, [playableFilteredTracks])
+
   const totalDuration = playableTracks.reduce((total, track) => total + (durations[track.key] || 0), 0)
   const currentDuration = durations[currentTrack?.key] || 0
   const seekMin = currentSegment?.start || 0
@@ -1459,7 +1537,7 @@ export default function OstPage() {
 
     if (queue.length > 0) {
       const [nextTrack, ...remainingQueue] = queue
-      setQueue(remainingQueue)
+      setQueue(queueMode === 'cycle' ? [...remainingQueue, nextTrack] : remainingQueue)
       playTrack(nextTrack)
       return nextTrack
     }
@@ -1480,14 +1558,33 @@ export default function OstPage() {
     playTrack(firstTrack)
   }
 
+  function playRandomTrack() {
+    if (!playableFilteredTracks.length) return
+
+    const candidates = playableFilteredTracks.length > 1
+      ? playableFilteredTracks.filter(track => track.key !== currentTrack?.key)
+      : playableFilteredTracks
+    const randomTrack = pickRandomItem(candidates)
+
+    setQueue([])
+    setIsQueueOpen(false)
+    playTrack(randomTrack)
+  }
+
   function addToQueue(track) {
-    if (!track.playable || loopTrackKey) return
+    if (!track.playable || loopTrackKey || track.key === currentTrack?.key) return
     setQueue(currentQueue => [...currentQueue, track])
     setIsQueueOpen(true)
   }
 
   function removeFromQueue(index) {
     setQueue(currentQueue => currentQueue.filter((_, queueIndex) => queueIndex !== index))
+  }
+
+  function toggleQueueMode() {
+    const nextMode = queueMode === 'remove' ? 'cycle' : 'remove'
+    setOstQueueMode(nextMode)
+    setQueueMode(nextMode)
   }
 
   function handleSeek(event) {
@@ -1548,7 +1645,7 @@ export default function OstPage() {
       audio.removeEventListener('play', handlePlay)
       audio.removeEventListener('timeupdate', handleAudioTimeUpdate)
     }
-  })
+  }, [currentSegment, currentTrack, loopTrackKey, playableFilteredTracks, queue, queueMode])
 
   function resetFilters() {
     setSearchQuery('')
@@ -1577,12 +1674,8 @@ export default function OstPage() {
         <main className="ost-shell">
           <header className="ost-header">
             <nav className="ost-nav" aria-label="OST navigation">
-              <a href="/">
-                <button className="ost-nav-button" type="button">Main Menu</button>
-              </a>
-              <a href="/songvote">
-                <button className="ost-nav-button" type="button">Song Vote</button>
-              </a>
+              <button className="ost-nav-button" type="button" onClick={() => go('/')}>Main Menu</button>
+              <button className="ost-nav-button" type="button" onClick={() => go('/songvote')}>Song Vote</button>
               <label className="ost-offload">
                 <input type="checkbox" checked={offload} onChange={event => {
                   setOstOffload(event.target.checked)
@@ -1623,6 +1716,9 @@ export default function OstPage() {
               <button className="ost-control" type="button" onClick={playVisibleTracks} disabled={!playableFilteredTracks.length || Boolean(loopTrackKey)}>
                 Play Visible
               </button>
+              <button className="ost-control" type="button" onClick={playRandomTrack} disabled={!playableFilteredTracks.length}>
+                Random Song
+              </button>
               <button className="ost-control" type="button" onClick={resetFilters}>
                 Clear Filters
               </button>
@@ -1632,7 +1728,7 @@ export default function OstPage() {
                 onClick={() => setIsQueueOpen(isOpen => !isOpen)}
                 disabled={!queue.length || Boolean(loopTrackKey)}
               >
-                Queue {queue.length}
+                Queue
               </button>
             </div>
           </section>
@@ -1717,7 +1813,7 @@ export default function OstPage() {
                       <button className="ost-track-action ost-track-add" type="button" onClick={event => {
                         event.stopPropagation()
                         addToQueue(track)
-                      }} disabled={!track.playable || Boolean(loopTrackKey)} aria-label={`Add ${track.name} to queue`}>
+                      }} disabled={!track.playable || Boolean(loopTrackKey) || isCurrent} aria-label={`Add ${track.name} to queue`}>
                         +
                       </button>
                       <button className="ost-track-action ost-track-loop" type="button" onClick={event => {
@@ -1787,7 +1883,15 @@ export default function OstPage() {
             <aside className="ost-queue" aria-label="Playlist queue">
               <div className="ost-queue-header">
                 <h2>Queue</h2>
-                <button className="ost-close-button" type="button" onClick={() => setIsQueueOpen(false)}>Close</button>
+                <label className="ost-queue-mode">
+                  <span>Keep queue</span>
+                  <input type="checkbox" checked={queueMode === 'cycle'} onChange={toggleQueueMode} />
+                  <span className="ost-queue-mode-switch" aria-hidden="true" />
+                </label>
+                <button className="ost-close-button" type="button" onClick={() => {
+                  setQueue([])
+                  setIsQueueOpen(false)
+                }}>Clear</button>
               </div>
               <ol className="ost-queue-list">
                 {queue.map((track, index) => (
@@ -1838,7 +1942,7 @@ export default function OstPage() {
             </div>
 
             <div className="ost-player-side">
-              <button className="ost-player-button" type="button" onClick={() => currentTrack && addToQueue(currentTrack)} disabled={!currentTrack?.playable || Boolean(loopTrackKey)}>
+              <button className="ost-player-button" type="button" onClick={() => setIsQueueOpen(isOpen => !isOpen)} disabled={!queue.length || Boolean(loopTrackKey)}>
                 Queue
               </button>
             </div>

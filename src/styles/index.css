@@ -28,6 +28,12 @@
   display: contents;
 }
 
+#root.upro-site-upside-down {
+  display: block;
+  min-height: 100dvh;
+  transform: rotate(180deg);
+}
+
 /* Keep padding inside the available page width. */
 *,
 *::before,
