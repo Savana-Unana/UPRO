@@ -24821,12 +24821,12 @@
             {
               "name": "Perchancealot",
               "level": null,
-              "info": "50% chance"
+              "info": "50% chance or use Protosteel"
             },
             {
               "name": "Possibilitor",
               "level": null,
-              "info": "50% chance or use Protosteel"
+              "info": "50% chance"
             }
           ],
           "abilities": [],
