@@ -6436,7 +6436,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Cluchit",
@@ -6516,7 +6516,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Graspit",
@@ -6631,7 +6631,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -7123,7 +7123,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Mummyrrh",
@@ -7173,7 +7173,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Pharamone",
@@ -7223,7 +7223,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [
             "Pitui Tricks"
@@ -8429,7 +8429,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -9198,7 +9198,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -13399,7 +13399,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -16113,7 +16113,7 @@
             "Water",
             "Air"
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -17545,7 +17545,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Knitten",
@@ -18035,7 +18035,7 @@
             "Spectral"
           ],
           "paraTypes": [],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Tortandum",
@@ -18092,7 +18092,7 @@
             "Spectral"
           ],
           "paraTypes": [],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -21005,7 +21005,7 @@
             "Gross"
           ],
           "paraTypes": [],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -21100,7 +21100,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -23649,7 +23649,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Sipoodle",
@@ -23707,7 +23707,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [
             {
               "name": "Slurpoodle",
@@ -23765,7 +23765,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -25529,7 +25529,7 @@
           "paraTypes": [
             "Mystic"
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -26165,7 +26165,7 @@
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],
@@ -26185,14 +26185,14 @@
       ],
       "sacred": [
         {
-          "name": "Sacred Drawrlin",
+          "name": "Real Life Drawrlin",
           "types": [
             "Savage"
           ],
           "paraTypes": [
             ""
           ],
-          "rarity": "Normal",
+          "rarity": "Normal + AI",
           "evolvesTo": [],
           "abilities": [],
           "moves": [],

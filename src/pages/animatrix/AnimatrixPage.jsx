@@ -624,7 +624,7 @@ export default function AnimatrixPage() {
             sequences = (Array.isArray(sequenceData) ? sequenceData : []).map(sequence => sequence.name).filter(Boolean);
             sequenceMembers = new Map((Array.isArray(sequenceData) ? sequenceData : []).map(sequence => [sequence.name, new Set(sequence.members || [])]));
             populateFilterOptions(sequences, sequenceOptionsEl);
-            populateFilterOptions(["Paragons", "Pseudogons", "Shivers", "Acifiable", "Modes"], bonusOptionsEl);
+            populateFilterOptions(["Paragons", "Pseudogons", "Shivers", "Acifiable", "Modes", "AI"], bonusOptionsEl);
             rebuildIdOrderRank(idOrder);
             allData = { 
               base: annotateMateOrder("base", mateBuckets.base || []), 
@@ -952,7 +952,7 @@ export default function AnimatrixPage() {
         return index?.get(name) || {
           stages: new Set([1]),
           positions: new Set(["1/1"]),
-          first: true,
+          first: false,
           middle: false,
           final: true
         };
@@ -1126,6 +1126,7 @@ export default function AnimatrixPage() {
           if (bonus === "Pseudogons") return isPseudogon(mate);
           if (bonus === "Shivers") return isShiver(mate);
           if (bonus === "Modes") return isMode(mate);
+          if (bonus === "AI") return String(mate?.rarity || "").toLowerCase().includes("ai");
           if (bonus === "Acifiable") {
             const exactGroup = normalizeOrderName(mate?.__groupName || mate?.name)
               .replace(/^(?:ace|sacred)\s+/, "");
@@ -1648,6 +1649,17 @@ export default function AnimatrixPage() {
           : (listCostumeMode && listSidebarMode === "costumes")
             ? getRelatedCostumes(listCostumeSourceMate || currentDetailMate)
           : (Array.isArray(allData[listSidebarMode]) ? allData[listSidebarMode].map(mate => ({ ...mate, mode: listSidebarMode })) : []));
+        // Bonus filters treat event entries as members of their original tab.
+        // Events remain separated during ordinary browsing, but selecting a
+        // bonus should not hide a match merely because it was moved to Events.
+        const sourceDataWithBonusEvents = selectedBonuses.length && listSidebarMode !== "event"
+          ? [
+              ...sourceData,
+              ...(allData.event || [])
+                .filter(mate => (mate.sourceMode || "base") === listSidebarMode)
+                .map(mate => ({ ...mate, mode: "event" }))
+            ]
+          : sourceData;
         const selectedVersions = getCheckedValues(versionOptionsEl).map(normalizeVersionLabel);
         const eventVersions = new Set();
         if (selectedVersions.includes("Update 10.5")) eventVersions.add("halloween");
@@ -1656,8 +1668,8 @@ export default function AnimatrixPage() {
           ? (allData.event || []).filter(mate => eventVersions.has(getEventKey(mate))).map(mate => ({ ...mate, mode: "event" }))
           : [];
         const combinedSourceData = matchingEvents.length
-          ? [...sourceData, ...matchingEvents.filter(eventMate => !sourceData.some(mate => getMateRef(mate) === getMateRef(eventMate)))]
-          : sourceData;
+          ? [...sourceDataWithBonusEvents, ...matchingEvents.filter(eventMate => !sourceDataWithBonusEvents.some(mate => getMateRef(mate) === getMateRef(eventMate)))]
+          : sourceDataWithBonusEvents;
         animatrixData = combinedSourceData
           .filter(mate => bonusPasses(mate, selectedBonuses))
           .filter(mate => !isMode(mate) || selectedBonuses.includes("Modes"))

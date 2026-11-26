@@ -355,7 +355,7 @@ export function buildEvolutionStageIndex(mates) {
     return [name, {
       stages: stagesByName.get(name),
       positions: positionsByName.get(name),
-      first: !hasParents,
+      first: !hasParents && hasChildren,
       middle: hasParents && hasChildren,
       final: !hasChildren
     }];

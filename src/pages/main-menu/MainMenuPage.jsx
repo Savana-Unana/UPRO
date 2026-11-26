@@ -49,6 +49,8 @@ export default function MainMenuPage() {
     let skipCrossTimeoutId
     let skipSettleTimeoutId
     let switcherooClickTimes = []
+    let paranormalHoldTimeoutId
+    let paranormalHoldTriggered = false
 
     function updateButtonPositions() {
       const positions = switcherooActive ? switchedPositions : normalPositions
@@ -208,13 +210,49 @@ export default function MainMenuPage() {
       }
     }
 
+    function cancelParanormalHold() {
+      window.clearTimeout(paranormalHoldTimeoutId)
+      paranormalHoldTimeoutId = null
+    }
+
+    function startParanormalHold(event) {
+      if (event.button !== undefined && event.button !== 0) return
+      cancelParanormalHold()
+      paranormalHoldTriggered = false
+      event.currentTarget.setPointerCapture?.(event.pointerId)
+      paranormalHoldTimeoutId = window.setTimeout(() => {
+        paranormalHoldTriggered = true
+        window.location.href = '/paranormal'
+      }, 1500)
+    }
+
+    function handleSwitcherooClick(event) {
+      if (paranormalHoldTriggered) {
+        event.preventDefault()
+        paranormalHoldTriggered = false
+        return
+      }
+      triggerSwitcheroo()
+    }
+
     updateButtons()
 
     const switcherooBtn = document.getElementById("switcheroo-btn")
-    switcherooBtn?.addEventListener("click", triggerSwitcheroo)
+    switcherooBtn?.addEventListener("pointerdown", startParanormalHold)
+    switcherooBtn?.addEventListener("pointerup", cancelParanormalHold)
+    switcherooBtn?.addEventListener("pointercancel", cancelParanormalHold)
+    switcherooBtn?.addEventListener("lostpointercapture", cancelParanormalHold)
+    switcherooBtn?.addEventListener("click", handleSwitcherooClick)
+    switcherooBtn?.addEventListener("contextmenu", event => event.preventDefault())
+    switcherooBtn?.addEventListener("dragstart", event => event.preventDefault())
 
     return () => {
-      switcherooBtn?.removeEventListener("click", triggerSwitcheroo)
+      switcherooBtn?.removeEventListener("pointerdown", startParanormalHold)
+      switcherooBtn?.removeEventListener("pointerup", cancelParanormalHold)
+      switcherooBtn?.removeEventListener("pointercancel", cancelParanormalHold)
+      switcherooBtn?.removeEventListener("lostpointercapture", cancelParanormalHold)
+      switcherooBtn?.removeEventListener("click", handleSwitcherooClick)
+      cancelParanormalHold()
       window.clearTimeout(skipCrossTimeoutId)
       window.clearTimeout(skipSettleTimeoutId)
     }

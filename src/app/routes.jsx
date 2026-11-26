@@ -20,6 +20,8 @@ import FriendskipPage from '../pages/friendskip/FriendskipPage.jsx'
 import MediaPage from '../pages/media/MediaPage.jsx'
 import EncoderPage from '../pages/encoder/EncoderPage.jsx'
 import AsksPage from '../pages/asks/AsksPage.jsx'
+import SudUproPage from '../pages/sudupro/SudUproPage.jsx'
+import ParanormalPage from '../pages/paranormal/ParanormalPage.jsx'
 
 export const routes = [
   { path: '/', title: 'Erm Ma Ha Sigma', Component: MainMenuPage },
@@ -45,6 +47,8 @@ export const routes = [
   { path: '/encoder', title: 'Encoder', Component: EncoderPage },
   { path: '/asks', title: 'Asks', Component: AsksPage },
   { path: '/responses', title: 'Responses', Component: AsksPage },
+  { path: '/sudupro', title: 'SudUPRO', Component: SudUproPage },
+  { path: '/paranormal', title: 'Paranormal Mode', Component: ParanormalPage },
 ]
 
 export const legacyRouteRedirects = new Map([
@@ -71,4 +75,6 @@ export const legacyRouteRedirects = new Map([
   ['/timeline.html', '/history'],
   ['/friendskip.html', '/friendskip'],
   ['/media.html', '/media'],
+  ['/SudUPRO.html', '/sudupro'],
+  ['/paranormal.html', '/paranormal'],
 ])

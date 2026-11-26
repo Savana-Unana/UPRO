@@ -145,10 +145,13 @@ function runPageScript() {
   function normalizeHeight(value) {
     const label = String(value ?? "").trim();
     if (!label || /^(undefined|null|unknown)$/i.test(label)) return undefined;
-    const match = label.match(/^(\d+(?:\.\d+)?)\s*(ft|in)$/i);
+    const match = label.match(/^(?:(\d+(?:\.\d+)?)\s*(?:ft|feet|foot|'))?\s*(?:(\d+(?:\.\d+)?)\s*(?:in|inches|inch|"))?$/i);
+    const hasNumericHeight = Boolean(match && (match[1] !== undefined || match[2] !== undefined));
     return {
       label,
-      inches: match ? Number(match[1]) * (match[2].toLowerCase() === "ft" ? 12 : 1) : undefined
+      inches: hasNumericHeight
+        ? (Number(match[1] || 0) * 12) + Number(match[2] || 0)
+        : undefined
     };
   }
 

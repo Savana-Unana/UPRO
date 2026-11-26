@@ -1,0 +1,41 @@
+{
+  "instructions": {
+    "description": "Add dated handcrafted SudUPRO puzzles to the puzzles array. A date without an entry uses a deterministic Randomized grid.",
+    "dateFormat": "YYYY-MM-DD",
+    "updateMeaning": "Update clues match firstWildCatchableUpdate only.",
+    "clueKinds": [
+      "type",
+      "biome",
+      "stage",
+      "para",
+      "acifiable",
+      "update"
+    ],
+    "stageValues": [
+      "First Stage",
+      "Middle Stage",
+      "Final Stage",
+      "Can Evolve",
+      "Cannot Evolve"
+    ],
+    "acifiableValues": [
+      "Acifiable",
+      "Not Acifiable"
+    ],
+    "example": {
+      "date": "2026-12-25",
+      "word": "Holiday",
+      "rows": [
+        { "kind": "type", "value": "Fire" },
+        { "kind": "type", "value": "Water" },
+        { "kind": "stage", "value": "Can Evolve" }
+      ],
+      "columns": [
+        { "kind": "biome", "value": "Forest" },
+        { "kind": "biome", "value": "Ieland" },
+        { "kind": "update", "value": "Update 6", "label": "Update 6" }
+      ]
+    }
+  },
+  "puzzles": []
+}

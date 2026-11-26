@@ -87,6 +87,11 @@ body.normal-hub-page {
   background: #1864ab;
 }
 
+.paranormal-hub-magenta { background: #d600d6; }
+.paranormal-hub-cyan { background: #00cfe8; }
+.paranormal-hub-aqua { background: #00d9a6; }
+.paranormal-hub-orange-orange { background: #f06a00; }
+
 .normal-hub-center-button {
   position: absolute;
   top: 50%;
@@ -99,6 +104,28 @@ body.normal-hub-page {
   height: 192px;
   border-radius: 999px;
   z-index: 5;
+  touch-action: none;
+  user-select: none;
+}
+
+.normal-hub-center-button::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border: 7px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.normal-hub-center-button.is-holding::after {
+  animation: paranormal-hold 1s linear .5s forwards;
+}
+
+@keyframes paranormal-hold {
+  from { opacity: 1; transform: rotate(0deg); }
+  to { opacity: 1; transform: rotate(720deg); }
 }
 
 .normal-hub-center-button:hover,
@@ -2257,17 +2284,20 @@ input#search:focus {
 
 .switcheroo-container {
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .switcheroo-container img {
   width: 110px;
   cursor: pointer;
   transition: transform 0.2s;
+  touch-action: none;
+  user-select: none;
 }
 .switcheroo-container img:hover {
   transform: scale(1.1);
 }
-
-
 
 /* ---------- OST CARDS ---------- */
 #ostGrid {

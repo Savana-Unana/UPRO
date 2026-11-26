@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const pageStyles = ""
 function runPageScript() {
@@ -31,6 +31,36 @@ function loadRemoteScript(src) {
 }
 
 export default function NormalPage() {
+  const holdTimer = useRef(null)
+  const holdTriggered = useRef(false)
+  const [isHolding, setIsHolding] = useState(false)
+
+  function cancelHold() {
+    window.clearTimeout(holdTimer.current)
+    holdTimer.current = null
+    setIsHolding(false)
+  }
+
+  function startHold(event) {
+    if (event.button !== undefined && event.button !== 0) return
+    cancelHold()
+    holdTriggered.current = false
+    setIsHolding(true)
+    event.currentTarget.setPointerCapture?.(event.pointerId)
+    holdTimer.current = window.setTimeout(() => {
+      holdTriggered.current = true
+      setIsHolding(false)
+      window.location.href = '/paranormal'
+    }, 1500)
+  }
+
+  function handleCenterClick(event) {
+    if (holdTriggered.current) {
+      event.preventDefault()
+      holdTriggered.current = false
+    }
+  }
+
   useEffect(() => {
     document.title = '⊙'
     document.body.className = "normal-hub-page"
@@ -58,6 +88,7 @@ export default function NormalPage() {
     return () => {
       cancelled = true
       window.onload = null
+      window.clearTimeout(holdTimer.current)
     }
   }, [])
 
@@ -79,8 +110,19 @@ export default function NormalPage() {
         <span>UPROrdle</span>
       </a>
     </div>
-    <a className="normal-hub-center-button" href={mainMenuHref} aria-label="Back to main page">
-      <img src="assets/images/ui/BadSwitch.png" alt="Switcheroo" className="normal-hub-center-image" />
+    <a
+      className={`normal-hub-center-button${isHolding ? ' is-holding' : ''}`}
+      href={mainMenuHref}
+      aria-label="Back to main page. Hold for one and a half seconds for Paranormal."
+      onPointerDown={startHold}
+      onPointerUp={cancelHold}
+      onPointerCancel={cancelHold}
+      onLostPointerCapture={cancelHold}
+      onClick={handleCenterClick}
+      onContextMenu={event => event.preventDefault()}
+      onDragStart={event => event.preventDefault()}
+    >
+      <img src="assets/images/ui/BadSwitch.png" alt="Switcheroo" className="normal-hub-center-image" draggable="false" />
     </a>
   </main></div>
     </>
